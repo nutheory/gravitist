@@ -4,7 +4,8 @@
   "description": "marketing site",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "nodemon server.js",
+    "start-dev": "webpack-dev-server",
     "build-dev": "webpack --config webpack.config.js --progress",
     "test": "test"
   },
