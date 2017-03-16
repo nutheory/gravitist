@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "webpack-dev-server",
-    "heroku-postbuild": "webpack -p --config ./webpacks/webpack.prod.config.js --progress",
+    "heroku-postbuild": "webpack -p --config ~/webpacks/webpack.prod.config.js --progress",
     "build-dev": "webpack --config webpack.config.js --progress",
     "test": "test"
   },
