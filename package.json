@@ -2,7 +2,7 @@
   "name": "cffd.ink",
   "version": "0.0.1",
   "description": "marketing site",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "start-dev": "webpack-dev-server",
