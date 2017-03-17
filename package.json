@@ -1,5 +1,5 @@
 {
-  "name": "cffd.ink",
+  "name": "homefilming",
   "version": "0.0.1",
   "description": "marketing site",
   "main": "server.js",
@@ -26,7 +26,6 @@
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-parallax": "^1.2.6",
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "react-tap-event-plugin": "^2.0.1",
