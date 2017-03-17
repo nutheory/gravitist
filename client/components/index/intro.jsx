@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import styles from '../../styles/index/intro'
-// import coltVideo from '../../assets/bg.mp4'
+import coltVideo from '../../assets/bg.mp4'
 import creativeImg from '../../assets/creative.svg'
 import functionalImg from '../../assets/functional.svg'
 import fullstackImg from '../../assets/fullstack.svg'
@@ -14,9 +14,9 @@ class IndexIntro extends Component {
     return(
       <div id="intro" className={css(styles.introContainer)}>
 
-        {/* <video playsInline autoPlay muted loop className={css(styles.video)}>
+        <video playsInline autoPlay muted loop className={css(styles.video)}>
           <source src={coltVideo} type="video/mp4" />
-        </video> */}
+        </video>
 
         <div className={css(styles.titleContainer)}>
           <div className={css(styles.title)}><img src={creativeImg} /></div>
