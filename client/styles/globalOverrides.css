@@ -1,4 +1,9 @@
 html,body{
-  background-color: #1F2326 !important;
+  background-color: #fff !important;
   height:100vh;
+  font-family: 'helvetica neue', 'helvetica', cursive, serif;
+}
+
+h1, h2, h3{
+  font-weight: normal;
 }

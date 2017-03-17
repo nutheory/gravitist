@@ -2,10 +2,9 @@ import { StyleSheet, css } from 'aphrodite'
 
 const layoutCss = StyleSheet.create({
   headerBar: {
-    backgroundColor: '#2B2A2A',
+    backgroundColor: '#fff',
     position: 'fixed',
   },
-
   buttonSpacing: {
     marginLeft:'20px',
   },
@@ -14,11 +13,7 @@ const layoutCss = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '0 20px 0 20px',
-    width:'8em',
-    img: {
-      width: '160px',
-      height: '34px'
-    },
+    width:'3.2em',
   },
   actions: {
     display: 'flex',

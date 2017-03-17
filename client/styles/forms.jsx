@@ -23,7 +23,7 @@ const formsCss = StyleSheet.create({
     color: red900,
   },
   underlineStyle: {
-    borderColor: pink500,
+    borderColor: '#5CC9FF',
   },
   floatingLabelStyle: {
     color: pink500,

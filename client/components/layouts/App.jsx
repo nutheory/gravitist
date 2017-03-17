@@ -3,7 +3,7 @@ import 'normalize.css'
 import React, { Component } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import AppHeader from './Header'
@@ -23,7 +23,7 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
           <div>
             <AppHeader />
             <Routes />

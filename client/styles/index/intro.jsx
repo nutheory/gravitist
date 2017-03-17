@@ -5,8 +5,11 @@ const intro = StyleSheet.create({
   introContainer: {
     position:'relative',
     minWidth: '100%',
-    background: 'teal',
+    backgroundColor: '#fff',
     minHeight: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   video: {
     position: 'fixed',
@@ -15,36 +18,56 @@ const intro = StyleSheet.create({
     minWidth: '100%',
     minHeight: '100%',
     width: 'auto',
-    opacity: '0.7',
+    opacity: '0.3',
     height: 'auto',
     zIndex: '5',
     transform: 'translateX(-50%) translateY(-50%)',
     backgroundSize: 'cover',
   },
-  titleContainer: {
+  container: {
     position:'fixed',
     zIndex: '10',
-    height: 400,
-    width: 478,
-    top: 100,
-    left: 40,
-  },
-  title: {
-    position:'relative',
+    width: '50%',
     textAlign: 'center',
+    top: '20%',
+    margin: 'auto',
+  },
+  title:{
+    color: '#5CC9FF',
+    fontSize: '3em',
+    textShadow: '2px 2px #666',
+  },
+  text: {
+    fontSize: '1.8em',
+    color: '#666',
+    textShadow: '2px 2px #e5e5e5',
+  },
+  input: {
+    fontSize: '1.4em',
     width: '100%',
-    marginBottom: 20,
+    height: '80px',
+    marginBottom:20,
+    color: '#5CC9FF',
   },
-  machine: {
-    position:'absolute',
-    top: '-245px',
-    right: '-80px',
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
-  machineResize: {
-    width: '160%',
+  returning: {
+    width: '45%',
   },
-  // screenSize.[smartphone, smartphoneLandscape, tablet, desktop]
+  getStarted: {
+    width: '45%',
+  },
 
+  // screenSize.[smartphone, smartphoneLandscape, tablet, desktop]
+  // [screenSize.smartphone]: {
+  //   container: {'!important',
+  // },
+  // [screenSize.smartphoneLandscape]: {
+  //   container: {
+  //     position:'relative',
+  // },
 })
 
 export default intro
