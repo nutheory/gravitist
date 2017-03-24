@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { screenSize } from '../cssUtils'
+import { screenSize } from '../../../styles/cssFunc'
 
 const intro = StyleSheet.create({
   introContainer: {
@@ -20,13 +20,13 @@ const intro = StyleSheet.create({
     width: 'auto',
     opacity: '0.3',
     height: 'auto',
-    zIndex: '5',
+    zIndex: '1',
     transform: 'translateX(-50%) translateY(-50%)',
     backgroundSize: 'cover',
   },
   container: {
     position:'fixed',
-    zIndex: '10',
+    zIndex: '2',
     width: '50%',
     textAlign: 'center',
     top: '20%',

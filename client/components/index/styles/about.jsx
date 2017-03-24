@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { screenSize } from '../cssUtils'
+import { screenSize } from '../../../styles/cssFunc'
 
 const about = StyleSheet.create({
   aboutContainer: {

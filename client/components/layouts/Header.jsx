@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/RaisedButton'
 import Popover from 'material-ui/Popover'
-import Login from '../users/login'
+import Login from '../auth/login'
 import { StyleSheet, css } from 'aphrodite'
 import layoutCss from '../../styles/layout'
 import formsCss from '../../styles/forms'
@@ -37,7 +37,7 @@ class AppHeader extends Component {
   render(){
     return(
       <div>
-        {/* <AppBar
+        <AppBar
           zDepth={3}
           className={css(layoutCss.headerBar)}
           iconElementLeft={
@@ -47,24 +47,15 @@ class AppHeader extends Component {
           }
           iconElementRight={
             <div>
-              <RaisedButton
-                label="Log in"
-                onTouchTap={this.handleLogin}
-              />
-              <Popover
-                zDepth={3}
-                className={css(formsCss.loginForm)}
-                open={this.state.open}
-                anchorEl={this.state.anchorEl}
-                anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                onRequestClose={this.handleRequestClose}
-              >
-                <Login />
-              </Popover>
+              <Link to="/login">
+                login
+              </Link> | 
+              <Link to="/signup">
+                signup
+              </Link>
             </div>
           }>
-        </AppBar> */}
+        </AppBar>
       </div>
     )
   }

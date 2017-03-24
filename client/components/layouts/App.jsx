@@ -1,7 +1,8 @@
 import '../../styles/globalOverrides.css'
 import 'normalize.css'
 import React, { Component } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import IndexMain from '../index/main'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -16,7 +17,7 @@ class App extends Component {
     super()
     injectTapEventPlugin()
     this.state = {
-      user:  {}
+      user: {}
     }
   }
 
@@ -26,7 +27,7 @@ class App extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
           <div>
             <AppHeader />
-            <Routes />
+            <Route path='/' component={IndexMain} />
           </div>
         </MuiThemeProvider>
       </Router>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
-import styles from '../../styles/index/about'
+import styles from './styles/about'
 
 class IndexAbout extends Component {
   render(){
