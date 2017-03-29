@@ -1,0 +1,13 @@
+html,body{
+  background-color: #fff !important;
+  height:100vh;
+  font-family: 'helvetica neue', 'helvetica', cursive, serif;
+}
+
+h1, h2, h3{
+  font-weight: normal;
+}
+
+fieldset{
+  border: none !important;
+}

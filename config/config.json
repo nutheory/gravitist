@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "derekrush",
+    "password": null,
+    "database": "homefilming",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
