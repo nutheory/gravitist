@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,6 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       customerId: Sequelize.STRING,
+      addressId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -40,7 +44,7 @@ module.exports = {
       rating: Sequelize.DECIMAL,
       ratingCount: Sequelize.INTEGER,
       payRate: Sequelize.DECIMAL,
-      userType: {
+      type: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
@@ -59,6 +63,6 @@ module.exports = {
     })
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Users')
+    return queryInterface.dropTable('users')
   }
 }

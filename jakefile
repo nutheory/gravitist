@@ -3,8 +3,6 @@ task('default', [], function (params) {
   console.log('This is the default task.');
 });
 
-
-
 namespace('db', function() {
 	desc('drop database');
 	task('drop', function (params){

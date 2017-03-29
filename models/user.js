@@ -1,13 +1,15 @@
 'use strict'
+
+import bcrypt from 'bcrypt'
+
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    externalId: DataTypes.STRING,
-    addressId: DataTypes.INTEGER,
+  const User = sequelize.define('user', {
+    customerId: DataTypes.STRING,
     name: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    userType: DataTypes.STRING,
+    type: DataTypes.STRING,
     avatar: DataTypes.STRING,
     bio: DataTypes.TEXT,
     company: DataTypes.STRING,
@@ -18,14 +20,14 @@ export default (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate(models) {
-        User.hasMany(models.Order, {
+        User.hasMany(models.order, {
           foreignKey: 'userId'
         })
-        User.hasMany(models.Invitation, {
+        User.hasMany(models.invitation, {
           foreignKey: 'userId'
         })
-        User.hasOne(models.Address, {
-          foreignKey: 'addressId'
+        User.hasOne(models.address, {
+          foreignKey: 'userId'
         })
       }
     }

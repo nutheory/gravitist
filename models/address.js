@@ -1,6 +1,6 @@
 'use strict'
 export default (sequelize, DataTypes) => {
-  const Address = sequelize.define('Address', {
+  const Address = sequelize.define('address', {
     streetOne: DataTypes.STRING,
     streetTwo: DataTypes.STRING,
     city: DataTypes.STRING,
@@ -11,8 +11,8 @@ export default (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate(models) {
-        Address.belongsTo(models.Order, {foreignKey: 'addressId'})
-        Address.belongsTo(models.User, {foreignKey: 'addressId'})
+        Address.belongsTo(models.order)
+        Address.belongsTo(models.user)
       }
     }
   })

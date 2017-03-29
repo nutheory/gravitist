@@ -1,6 +1,6 @@
 'use strict'
 export default (sequelize, DataTypes) => {
-  const AviatorOrder = sequelize.define('AviatorOrder', {
+  const AviatorOrder = sequelize.define('aviatorOrder', {
 
   }, {
     classMethods: {
