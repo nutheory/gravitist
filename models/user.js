@@ -1,4 +1,7 @@
 'use strict'
+
+import bcrypt from 'bcrypt'
+
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     customerId: DataTypes.STRING,
