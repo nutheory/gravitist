@@ -7,9 +7,27 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
 import AppHeader from './Header'
-import Routes from '../../routes'
 
+const networkInterface = createNetworkInterface({
+  uri: '/graphql',
+});
+
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    if (!req.options.headers) { req.options.headers = {} }
+
+    const token = localStorage.getItem('hf_auth_header_token')
+    req.options.headers.authorization = token ? `Bearer ${token}` : null
+    next()
+  }
+}])
+
+const client = new ApolloClient({
+  networkInterface
+})
 
 class App extends Component {
 
@@ -21,16 +39,22 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+
+  }
+
   render(){
     return (
-      <Router>
-        <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-          <div>
-            <AppHeader />
-            <Route path='/' component={IndexMain} />
-          </div>
-        </MuiThemeProvider>
-      </Router>
+      <ApolloProvider client={client}>
+        <Router>
+          <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+            <div>
+              <AppHeader />
+              <Route path='/' component={IndexMain} />
+            </div>
+          </MuiThemeProvider>
+        </Router>
+      </ApolloProvider>
     )
   }
 

@@ -8,16 +8,16 @@
 //   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 // }
 //
-// const Aviator = sequelize.define('Aviator', {
+// const pilot = sequelize.define('pilot', {
 //   orderId: Sequelize.INTEGER,
 //   acceptedAt: Sequelize.DATE,
 //   assigned: Sequelize.BOOLEAN
 // }, {
 //   classMethods: {
 //     associate(models) {
-//       Aviator.belongsToMany(models.Order, {
-//         through: 'AviatorOrder',
-//         foriegnKey: 'aviatorId'
+//       pilot.belongsToMany(models.Order, {
+//         through: 'pilotOrder',
+//         foriegnKey: 'pilotId'
 //       })
 //     }
 //   }
@@ -27,7 +27,7 @@
 //   .sync({
 //     force: true
 //   }).then(() => {
-//     Aviator.create({
+//     pilot.create({
 //       orderId: '3',
 //       acceptedAt: new Date(),
 //       assigned: true
@@ -36,5 +36,18 @@
 
 
 import Db from './models'
+import Faker from 'faker'
+import _ from 'lodash'
 
-console.log("DB", Db.sequelize.models.aviatorOrder.findAll())
+console.log(Faker.internet.email())
+let list = []
+Db.sequelize.models.user.findAll().then(function(userlist){
+  _.each(userlist, (user) => {
+    list.push(user.name)
+  })
+
+  console.log("err", list)
+  // console.log("res", res)
+})
+
+// console.log("DB", Db.sequelize.models.user.findAll())
