@@ -5,7 +5,7 @@
   "repository": "https://github.com/nutheory/homefilming",
   "main": "server.js",
   "scripts": {
-    "start": "index.js --ignore client --exec babel-node",
+    "start": "./node_modules/.bin/babel-node  index.js",
     "start-local": "nodemon index.js --ignore client --exec babel-node",
     "start-dev": "webpack-dev-server",
     "build-dev": "webpack --config webpack.config.js --progress",
