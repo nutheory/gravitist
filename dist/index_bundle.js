@@ -12471,8 +12471,13 @@ var Login = function (_Component) {
       e.preventDefault();
       this.props.mutate({
         variables: { email: this.state.email, password: this.state.password }
+      }).catch(function (res) {
+        console.log("Error ", res.graphQLErrors[0].message);
       }).then(function (res) {
-        console.log("res", res);
+        if (res) {
+          console.log("res.data.login.token", res.data.login.token);
+          localStorage.setItem('hf_auth_header_token', res.data.login.token);
+        }
       });
     }
   }, {
@@ -19253,7 +19258,7 @@ networkInterface.use([{
       req.options.headers = {};
     }
 
-    var token = localStorage.getItem('token');
+    var token = localStorage.getItem('hf_auth_header_token');
     req.options.headers.authorization = token ? 'Bearer ' + token : null;
     next();
   }
@@ -23009,7 +23014,6 @@ var AppHeader = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log('hjghkgfk', this.props.data);
       return _react2.default.createElement(
         'div',
         null,
