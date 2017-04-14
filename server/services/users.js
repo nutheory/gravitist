@@ -7,7 +7,7 @@ const User = Db.sequelize.models.user
 
 function getUserList() {
   const users = User.findAll({}).then((users) => {
-    console.log("prom", users.data)
+    console.log("promise", users.data)
   })
   console.log("UsersService", users)
   return users
