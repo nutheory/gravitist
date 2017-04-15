@@ -28,4 +28,4 @@ app.get('*', (req, res) => {
   res.sendfile('./dist/index.html')
 })
 
-export default app
+module.exports = app
