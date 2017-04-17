@@ -50,4 +50,4 @@ const formsCss = StyleSheet.create({
   }
 })
 
-export default formsCss
+module.exports = formsCss

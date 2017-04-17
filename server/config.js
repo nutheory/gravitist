@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   'jwt': {
     'secret': 'fear1ess$peci@lis!woundedKnigh!287'
   },

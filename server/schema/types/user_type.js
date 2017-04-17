@@ -1,12 +1,12 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLID,
   GraphQLInt,
   GraphQLString,
   GraphQLList
-} from 'graphql'
-import Db from '../../models/index'
+} = require('graphql')
+const Db = require('../../models/index')
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -76,4 +76,4 @@ const UserType = new GraphQLObjectType({
   })
 })
 
-export default UserType
+module.exports = UserType

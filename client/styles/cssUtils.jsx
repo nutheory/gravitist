@@ -12,4 +12,4 @@ const generalUtils = StyleSheet.create({
 
 })
 
-export default generalUtils
+module.exports = generalUtils

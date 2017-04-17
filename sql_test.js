@@ -35,9 +35,9 @@
 //   })
 
 
-import Db from './models'
-import Faker from 'faker'
-import _ from 'lodash'
+const Db = require('./models'
+const Faker = require('faker'
+const _ = require('lodash'
 
 console.log(Faker.internet.email())
 let list = []

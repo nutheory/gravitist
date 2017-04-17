@@ -1,13 +1,13 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLInt,
   GraphQLString,
   GraphQLList
-} from 'graphql'
-import Db from '../models'
-import UserType from './types/user_type'
-import AuthService from '../services/auth'
+} = require('graphql')
+const Db = require('../models')
+const UserType = require('./types/user_type')
+const AuthService = require('../services/auth')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -47,4 +47,4 @@ const mutation = new GraphQLObjectType({
   }
 })
 
-export default mutation
+module.exports = mutation

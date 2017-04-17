@@ -23,4 +23,4 @@ const layoutCss = StyleSheet.create({
   }
 })
 
-export default layoutCss
+module.exports = layoutCss

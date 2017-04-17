@@ -62,7 +62,7 @@ const intro = StyleSheet.create({
 
   // screenSize.[smartphone, smartphoneLandscape, tablet, desktop]
   // [screenSize.smartphone]: {
-  //   container: {'!important',
+  //   container: {'!constant',
   // },
   // [screenSize.smartphoneLandscape]: {
   //   container: {

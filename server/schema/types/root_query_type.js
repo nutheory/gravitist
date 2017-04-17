@@ -1,10 +1,10 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString
-} from 'graphql'
-import UserType from './user_type'
-import UsersService from '../../services/users'
+} = require('graphql')
+const UserType = require('./user_type')
+const UsersService = require('../../services/users')
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',

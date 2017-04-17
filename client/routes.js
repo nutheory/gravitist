@@ -1,9 +1,9 @@
-// import React from 'react'
-// import { Route } from 'react-router-dom'
-// import Login from './components/auth/login'
-// import Signup from './components/auth/signup'
-// import IndexMain from './components/index/main'
-// import NotFound from './components/404'
+// const React = require('react'
+// const { Route } = require('react-router-dom'
+// const Login = require('./components/auth/login'
+// const Signup = require('./components/auth/signup'
+// const IndexMain = require('./components/index/main'
+// const NotFound = require('./components/404'
 //
 // const routes = () => {
 //   return(

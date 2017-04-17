@@ -1,12 +1,12 @@
-// import {
+// const {
 //   GraphQLSchema,
 //   GraphQLObjectType,
 //   GraphQLNonNull,
 //   GraphQLInt,
 //   GraphQLString,
 //   GraphQLList
-// } from 'graphql'
-// import Db from '../models/index'
+// } = require('graphql'
+// const Db = require('../models/index'
 //
 //
 //

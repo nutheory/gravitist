@@ -1,8 +1,8 @@
-import passport from 'passport'
-import passportJWT from 'passport-jwt'
-import jwt from 'jsonwebtoken'
-import config from '../config'
-import Db from '../models'
+const passport = require('passport')
+const passportJWT = require('passport-jwt')
+const jwt = require('jsonwebtoken')
+const config = require('../config')
+const Db = require('../models')
 const User = Db.sequelize.models.user
 
 function getUserList() {
