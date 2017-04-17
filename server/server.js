@@ -9,9 +9,11 @@ const models = require('./models')
 const schema = require('./schema')
 const config = require('./config')
 const passportConfig = require('./services/auth')
-const webpackMiddleware = require('webpack-dev-middleware')
-const webpack = require('webpack')
-const webpackConfig = require('../webpack.config.js')
+if (is_dev) {
+  const webpackMiddleware = require('webpack-dev-middleware')
+  const webpack = require('webpack')
+  const webpackConfig = require('../webpack.config.js')
+}
 var app = express()
 const router = express.Router()
 
@@ -23,7 +25,8 @@ app.use(morgan('dev'))
 app.use(passport.initialize())
 app.use(express.static(__dirname + '/dist'))
 app.use('/graphql', graphQLHTTP({ schema, graphiql: true }))
-app.use(webpackMiddleware(webpack(webpackConfig)))
+
+if (is_dev) { app.use(webpackMiddleware(webpack(webpackConfig))) }
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve() + '/dist/index.html')
