@@ -28,7 +28,7 @@ if (app.get('is_dev')) {
 }
 
 app.get('*', (req, res) => {
-  res.send(path.resolve() + '/dist/')
+  res.send(express.static(path.resolve() + '/dist/'))
 })
 
 module.exports = app
