@@ -4,6 +4,10 @@
   "description": "marketing site",
   "repository": "https://github.com/nutheory/homefilming",
   "main": "index.js",
+  "engines": {
+    "node": "6.7.0",
+    "npm": "4.1.2"
+  },
   "scripts": {
     "start": "nodemon index.js",
     "start-local": "nodemon index.js --ignore client --exec babel-node",
