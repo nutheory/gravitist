@@ -27,8 +27,8 @@ if (app.get('is_dev')) {
   app.use(webpackMiddleware(webpack(webpackConfig)))
 }
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve() + '/dist')
-// })
+app.get('*', (req, res) => {
+  res.send(path.resolve() + '/dist')
+})
 
 module.exports = app
