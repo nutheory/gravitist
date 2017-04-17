@@ -20030,6 +20030,10 @@ module.exports = function(module) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 __webpack_require__(561);
@@ -20145,7 +20149,7 @@ var App = function (_Component) {
   return App;
 }(_react.Component);
 
-module.exports = App;
+exports.default = App;
 
 /***/ }),
 /* 241 */
@@ -22934,11 +22938,39 @@ exports.default = IndexIntro;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(136);
+
+var _aphrodite = __webpack_require__(21);
+
+var _login = __webpack_require__(151);
+
+var _login2 = _interopRequireDefault(_login);
+
+var _signup = __webpack_require__(259);
+
+var _signup2 = _interopRequireDefault(_signup);
+
+var _intro = __webpack_require__(261);
+
+var _intro2 = _interopRequireDefault(_intro);
+
+var _about = __webpack_require__(260);
+
+var _about2 = _interopRequireDefault(_about);
+
+var _cssUtils = __webpack_require__(269);
+
+var _cssUtils2 = _interopRequireDefault(_cssUtils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22947,19 +22979,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _require = __webpack_require__(136),
-    Route = _require.Route;
-
-var _require2 = __webpack_require__(21),
-    StyleSheet = _require2.StyleSheet,
-    css = _require2.css;
-
-var Login = __webpack_require__(151);
-var Signup = __webpack_require__(259);
-var Intro = __webpack_require__(261);
-var About = __webpack_require__(260);
-var styles = __webpack_require__(269);
 
 var IndexMain = function (_Component) {
   _inherits(IndexMain, _Component);
@@ -22978,12 +22997,12 @@ var IndexMain = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: css(styles.centerFlexContent) },
-          _react2.default.createElement(Route, { exact: true, path: '/login', component: Login }),
-          _react2.default.createElement(Route, { exact: true, path: '/signup', component: Signup })
+          { className: (0, _aphrodite.css)(_cssUtils2.default.centerFlexContent) },
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _login2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/signup', component: _signup2.default })
         ),
-        _react2.default.createElement(Intro, null),
-        _react2.default.createElement(About, null)
+        _react2.default.createElement(_intro2.default, null),
+        _react2.default.createElement(_about2.default, null)
       );
     }
   }]);
@@ -22991,7 +23010,7 @@ var IndexMain = function (_Component) {
   return IndexMain;
 }(_react.Component);
 
-module.exports = IndexMain;
+exports.default = IndexMain;
 
 /***/ }),
 /* 263 */
@@ -23239,15 +23258,25 @@ exports.default = (0, _reactApollo.graphql)(_current_user2.default)(AppHeader);
 "use strict";
 
 
-var React = __webpack_require__(1);
-var ReactDOM = __webpack_require__(29);
-var App = __webpack_require__(240);
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(29);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _App = __webpack_require__(240);
+
+var _App2 = _interopRequireDefault(_App);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var render = function render(Component) {
-  ReactDOM.render(React.createElement(Component, null), document.getElementById('root'));
+  _reactDom2.default.render(_react2.default.createElement(Component, null), document.getElementById('root'));
 };
 
-render(App);
+render(_App2.default);
 
 /***/ }),
 /* 267 */
