@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'))
 app.use(passport.initialize())
-app.use(express.static(__dirname + '/dist'))
+app.use(express.static(path.resolve() + '/dist/'))
 app.use('/graphql', graphQLHTTP({ schema, graphiql: true }))
 if (app.get('is_dev')) {
   const webpackMiddleware = require('webpack-dev-middleware')
@@ -28,7 +28,7 @@ if (app.get('is_dev')) {
 }
 
 app.get('*', (req, res) => {
-  res.send(path.resolve() + '/dist')
+  res.send(path.resolve() + '/dist/')
 })
 
 module.exports = app
