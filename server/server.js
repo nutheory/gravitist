@@ -20,7 +20,7 @@ app.use(morgan('dev'))
 app.use(passport.initialize())
 app.use(express.static(__dirname + '/dist'))
 app.use('/graphql', graphQLHTTP({ schema, graphiql: true }))
-if (app.get(is_dev)) {
+if (app.get('is_dev')) {
   const webpackMiddleware = require('webpack-dev-middleware')
   const webpack = require('webpack')
   const webpackConfig = require('../webpack.config.js')
