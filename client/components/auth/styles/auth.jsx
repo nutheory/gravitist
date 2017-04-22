@@ -9,9 +9,6 @@ const login = StyleSheet.create({
     borderRadius: '3px',
     backgroundColor: '#fff',
     boxShadow: '3px 3px 3px'
-<<<<<<< HEAD
-  }
-=======
   },
   pricing: {
     position: 'relative',
@@ -25,9 +22,6 @@ const login = StyleSheet.create({
   selectedTomb: {
     boxShadow: '3px 3px 3px'
   },
-
-
->>>>>>> new
 })
 
 export default login
