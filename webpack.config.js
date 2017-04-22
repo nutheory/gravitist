@@ -41,7 +41,7 @@ module.exports = {
           }
         ])
       }, {
-        test: /.*\.(gif|png|jpe?g|svg|mp4)$/i,
+        test: /.*\.(gif|png|jpe?g|svg|mp4|m4v)$/i,
         use: "file-loader?name=[hash].[ext]&publicPath=assets/&outputPath=assets/"
       }
     ]

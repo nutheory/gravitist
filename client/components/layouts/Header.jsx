@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+
 import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/RaisedButton'
 import Popover from 'material-ui/Popover'
@@ -9,7 +10,7 @@ import Login from '../auth/login'
 import { StyleSheet, css } from 'aphrodite'
 import layoutCss from '../../styles/layout'
 import formsCss from '../../styles/forms'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.png'
 
 class AppHeader extends Component {
   constructor(props){
@@ -41,19 +42,21 @@ class AppHeader extends Component {
         <AppBar
           zDepth={3}
           className={css(layoutCss.headerBar)}
+          iconStyleLeft={{position: 'fixed', left: '10%', top: '8px', margin:'0'}}
+          iconStyleRight={{position: 'fixed', right: '10%', top: '8px', margin:'0'}}
           iconElementLeft={
-            <Link to="/">
+            <NavLink to="/">
               <img src={logo} className={css(layoutCss.logo)} />
-            </Link>
+            </NavLink>
           }
           iconElementRight={
             <div>
-              <Link to="/login">
-                login
-              </Link> |
-              <Link to="/signup">
-                signup
-              </Link>
+              <NavLink to="/login">
+                Login
+              </NavLink> |
+              <NavLink to="/pilotSignup">
+                Pilot signup
+              </NavLink>
             </div>
           }>
         </AppBar>

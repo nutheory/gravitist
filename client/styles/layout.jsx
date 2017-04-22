@@ -2,18 +2,20 @@ import { StyleSheet, css } from 'aphrodite'
 
 const layoutCss = StyleSheet.create({
   headerBar: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     position: 'fixed',
+    borderBottom: '1px solid #000',
   },
   buttonSpacing: {
     marginLeft:'20px',
   },
+  logoArea: {
+    position: 'fixed',
+    left: '10%',
+    margin: '0 !important',
+  },
   logo: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 20px 0 20px',
-    width:'3.2em',
+    width:'12em',
   },
   actions: {
     display: 'flex',

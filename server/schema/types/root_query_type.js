@@ -9,21 +9,26 @@ const UsersService = require('../../services/users')
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    user: {
+    current_user: {
+      type: UserType,
+      args: {
+        token: { type: GraphQLString }
+      },
+      resolve(parentValue, {token}, req) {
+        console.log('req', req)
+        return UsersService.getUser({ token, req })
+      }
+    },
+    users: {
       type: UserType,
       args: {
         id: { type: GraphQLID },
         email: { type: GraphQLString },
       },
-      resolve(parentValue, {id, email}, req) {
-        return UsersService.getUserList({ id, email, req })
-      }
-    },
-    users: {
-      type: UserType,
       resolve(parentValue, args, req) {
         console.log("hello")
-        const users = UsersService.getUserList()
+        const users = UsersService.getUserList({ id, email, req })
+
         console.log("users", users)
         return UsersService.getUserList()
       }
