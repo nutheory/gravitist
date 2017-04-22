@@ -1,9 +1,6 @@
 const passport = require('passport')
 const passportJWT = require('passport-jwt')
-<<<<<<< HEAD
-=======
 const _ = require('lodash')
->>>>>>> new
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 const Db = require('../models')
