@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
-=======
 import { NavLink } from 'react-router-dom'
->>>>>>> new
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { StyleSheet, css } from 'aphrodite'
