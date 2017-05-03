@@ -25,6 +25,8 @@
     "express": "^4.15.2",
     "express-graphql": "^0.6.3",
     "faker": "^4.1.0",
+    "formsy-material-ui": "^0.6.0",
+    "formsy-react": "^0.19.2",
     "graphql": "^0.9.1",
     "graphql-tag": "^2.0.0",
     "helmet": "^3.5.0",
@@ -39,6 +41,7 @@
     "path": "^0.12.7",
     "pg": "^6.1.4",
     "pg-hstore": "^2.3.2",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-apollo": "^1.0.1",
     "react-dom": "^15.4.2",
@@ -60,9 +63,9 @@
     "jake": "latest",
     "pug-html-loader": "^1.1.1",
     "style-loader": "^0.13.2",
-    "webpack": "^2.2.1",
+    "webpack": "^2.4.1",
     "webpack-combine-loaders": "^2.0.3",
     "webpack-dev-middleware": "^1.9.0",
-    "webpack-dev-server": "^2.4.1"
+    "webpack-dev-server": "^2.4.5"
   }
 }

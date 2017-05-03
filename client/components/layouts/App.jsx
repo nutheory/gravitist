@@ -26,7 +26,8 @@ networkInterface.use([{
 }])
 
 const client = new ApolloClient({
-  networkInterface
+  networkInterface,
+  dataIdFromObject: o => o.id
 })
 
 class App extends Component {

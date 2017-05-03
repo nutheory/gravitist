@@ -5,8 +5,7 @@ import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/RaisedButton'
 import Popover from 'material-ui/Popover'
 import { graphql } from 'react-apollo'
-import query from '../../queries/current_user'
-import Login from '../auth/login'
+// import query from '../../queries/current_user'
 import { StyleSheet, css } from 'aphrodite'
 import layoutCss from '../../styles/layout'
 import formsCss from '../../styles/forms'
@@ -65,4 +64,4 @@ class AppHeader extends Component {
   }
 }
 
-export default graphql(query)(AppHeader)
+export default AppHeader

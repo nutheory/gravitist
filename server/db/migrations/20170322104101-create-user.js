@@ -10,7 +10,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       accountId: {
-        //allowNull: false,
         type: Sequelize.INTEGER
       },
       avatarId: {
@@ -35,6 +34,16 @@ module.exports = {
           is: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
         }
       },
+      superAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
+      isVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
       bio: Sequelize.TEXT,
       companyName: Sequelize.STRING,
       workRadius: Sequelize.INTEGER,
@@ -45,7 +54,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isIn: [['user', 'pilot', 'admin', 'super']]
+          isIn: [['user', 'pilot', 'admin']]
         }
       },
       createdAt: {

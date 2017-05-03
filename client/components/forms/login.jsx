@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { StyleSheet, css } from 'aphrodite'
 import loginMutation from '../../mutations/auth/login'
-import styles from './styles/auth'
 
 class Login extends Component {
 
@@ -33,7 +32,7 @@ class Login extends Component {
 
   render(){
     return(
-      <div id="LoginComponent" className={css(styles.container)}>
+      <div id="LoginComponent">
         <h2>Login</h2>
         <form id="AuthForm" onSubmit={this.handleSubmit.bind(this)}>
           <fieldset>

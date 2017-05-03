@@ -19,6 +19,13 @@ module.exports = {
           isIn: [['pending', 'dispatching', 'processing', 'done']]
         }
       },
+      plan: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [['basic', 'premuim', 'gold']]
+        }
+      },
       userId: {
         type: Sequelize.INTEGER,
       },

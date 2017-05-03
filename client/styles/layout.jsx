@@ -22,7 +22,14 @@ const layoutCss = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '0 20px 0 20px'
-  }
+  },
+  listItemUL: {
+    listStyleType: 'disc',
+    padding: '10px',
+  },
+  listItemLI: {
+    color: '#666',
+  },
 })
 
 module.exports = layoutCss
