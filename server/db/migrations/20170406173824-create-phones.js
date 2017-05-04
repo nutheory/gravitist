@@ -38,6 +38,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('phones')
+    return queryInterface.dropTable('contacts')
   }
 };

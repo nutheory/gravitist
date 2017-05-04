@@ -8,19 +8,19 @@ import layout from './styles/layout'
 import style from './styles/styling'
 import gql from 'graphql-tag'
 
-class Phone extends Component {
+class Contact extends Component {
   constructor(){
     super()
     this.state = {
-      phones: ""
+      contacts: ""
     }
   }
 
-  addAnotherNumber(evt){
+  addAnotherConact(evt){
 
   }
 
-  renderPhoneInstance(){
+  renderContactInstance(){
 
   }
 
@@ -67,4 +67,4 @@ class Phone extends Component {
   }
 }
 
-export default Phone
+export default Contact

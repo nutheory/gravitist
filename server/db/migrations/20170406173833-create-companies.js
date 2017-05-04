@@ -16,7 +16,6 @@ module.exports = {
       },
       accountId: Sequelize.INTEGER,
       addressId: Sequelize.INTEGER,
-      phoneId: Sequelize.INTEGER,
       logoId: Sequelize.INTEGER,
       colors: Sequelize.ARRAY(Sequelize.STRING),
       font: Sequelize.STRING,

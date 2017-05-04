@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.order, {
           foreignKey: 'userId'
         })
-        User.hasMany(models.phone, {
-          foreignKey: 'phonableId',
+        User.hasMany(models.contact, {
+          foreignKey: 'contactableId',
           constraints: false,
           phonableType: 'user'
         })
