@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import _ from 'lodash'
 import { StyleSheet, css } from 'aphrodite'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import Mutation from '../../mutations/signup'
 import layout from './styles/layout'
 import Address from './address.jsx'
 import Phone from './phone.jsx'
@@ -62,7 +62,7 @@ class Signup extends Component {
           onValid={this.enableButton.bind(this)}
           onSubmit={this.handleSubmit.bind(this)}
         >
-          <User />
+          <User  />
           {/* <Phone />
           <Address /> */}
 
@@ -80,14 +80,14 @@ class Signup extends Component {
   }
 }
 
-const createUserMutation = gql`
-  mutation createUser($name: String!, $email: String!, $password: String!, $type: String!){
-    createUser(name: $name, email: $email, password: $password, type: $type){
-      name
-    }
-  }
-`
+// const createUserMutation = gql`
+//   mutation createUser($name: String!, $email: String!, $password: String!, $type: String!){
+//     createUser(name: $name, email: $email, password: $password, type: $type){
+//       name
+//     }
+//   }
+// `
 
-const AddUserWithMutation = graphql(createUserMutation)(Signup)
+const AddUserWithMutation = graphql(Mutation)(Signup)
 console.log('AddUserWithMutation', AddUserWithMutation)
 export default AddUserWithMutation

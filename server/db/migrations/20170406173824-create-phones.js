@@ -2,18 +2,18 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('phones', {
+    return queryInterface.createTable('contacts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      phonableId: {
+      contactableId: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      phonableType: {
+      contactableType: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      number: {
+      content: {
         type: Sequelize.STRING,
         allowNull: false
       },
