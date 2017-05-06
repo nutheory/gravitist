@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     display: DataTypes.BOOLEAN,
     addressId: DataTypes.INTEGER,
-    phoneId: DataTypes.INTEGER,
     logoId: DataTypes.INTEGER,
     colors: DataTypes.ARRAY(DataTypes.STRING),
     font: DataTypes.STRING
@@ -13,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       associate(models) {
         Company.hasOne(models.address)
         Company.hasOne(models.asset)
-        Company.hasMany(models.phone, {
-          foreignKey: 'phonableId',
+        Company.hasMany(models.contact, {
+          foreignKey: 'contactableId',
           constraints: false,
           scope: {
-            phonableType: 'company'
+            contactableType: 'company'
           }
         })
       }

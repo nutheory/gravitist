@@ -4,10 +4,12 @@ import RaisedButton from 'material-ui/RaisedButton'
 import _ from 'lodash'
 import { StyleSheet, css } from 'aphrodite'
 import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import Mutation from '../../mutations/signup'
 import layout from './styles/layout'
+import style from './styles/styling'
 import Address from './address.jsx'
-import Phone from './phone.jsx'
+import ContactList from './contactList.jsx'
 import User from './user.jsx'
 
 class Signup extends Component {
@@ -15,14 +17,43 @@ class Signup extends Component {
     super()
     this.state = {
       plan: null,
-      canSubmit: false
+      canSubmit: false,
+      user: {},
+      address: {},
+      contacts: []
     }
+
+    this.userState = this.userState.bind(this)
+    this.addressState = this.addressState.bind(this)
+    this.contactsCollection = this.contactsCollection.bind(this)
+    this.enableButton = this.enableButton.bind(this)
+    this.disableButton = this.disableButton.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  userState(user){
+    this.setState({ user })
+    setTimeout(() => {
+      console.log("this.stateSSS", this.state)
+    }, 100)
+  }
+
+  addressState(address){
+    this.setState({ address })
+    console.log("this.stateSSS", this.state)
+  }
+
+  contactsCollection(contacts){
+    console.log("signuppppp", this.state)
+    this.setState({ contacts })
+    setTimeout(() => {
+      console.log("this.stateSSS", this.state)
+    }, 100)
   }
 
   componentDidMount(){
+    console.log('refs', this.contactAddArea)
     this.setState({ plan: this.props.match.params.plan })
-    console.log('this.props', this.props)
-    console.log('this.state', this.state)
   }
 
   componentWillUnmount(){
@@ -41,31 +72,30 @@ class Signup extends Component {
   }
 
   handleSubmit(evt){
-    const {name, email, password} = evt.user
-    let type = ""
-    if(this.props.match.params.plan === "!!admin!!"){
-      type = "admin"
-    } else if(this.state.plan === "pilot"){
-      type = "pilot"
-    } else if(this.state.plan){
-      type = "user"
-    }
     this.props.mutate({variables: {name, email, password, type}})
   }
 
   render(){
     return(
       <div className={css(layout.container)}>
-        <h3>Signup</h3>
+        <h3 className={css(style.sectionTitle)}>New User Signup</h3>
         <Formsy.Form
-          onInvalid={this.disableButton.bind(this)}
-          onValid={this.enableButton.bind(this)}
-          onSubmit={this.handleSubmit.bind(this)}
+          onInvalid={this.disableButton}
+          onValid={this.enableButton}
+          onSubmit={this.handleSubmit}
         >
-          <User  />
-          {/* <Phone />
-          <Address /> */}
-
+          <fieldset className={css(layout.fieldPadding)}>
+            <h4 className={css(style.sectionTitle)}>Personal info</h4>
+            <User userState={this.userState} type={this.props.match.params.type} />
+          </fieldset>
+          <fieldset className={css(layout.fieldPadding)}>
+            <h4 className={css(style.sectionTitle)}>Contact info</h4>
+            <ContactList contactsCollection={this.contactsCollection} />
+          </fieldset>
+          <fieldset className={css(layout.fieldPadding)}>
+            <h4 className={css(style.sectionTitle)}>Address</h4>
+            <Address addressState={this.addressState} />
+          </fieldset>
           <fieldset>
             <RaisedButton
               type="submit"
@@ -89,5 +119,5 @@ class Signup extends Component {
 // `
 
 const AddUserWithMutation = graphql(Mutation)(Signup)
-console.log('AddUserWithMutation', AddUserWithMutation)
+// console.log('AddUserWithMutation', AddUserWithMutation)
 export default AddUserWithMutation

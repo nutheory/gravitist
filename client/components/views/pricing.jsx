@@ -33,7 +33,7 @@ class Pricing extends Component {
             )
           })}
         </ul>
-        <NavLink className={css(styles.planCallToAction)} to={`/signup/${tombObj.plan_name}`}>Choose {tombObj.plan_title}</NavLink>
+        <NavLink className={css(styles.planCallToAction)} to={`/signup/user/${tombObj.plan_name}`}>Choose {tombObj.plan_title}</NavLink>
       </div>
     )
   }

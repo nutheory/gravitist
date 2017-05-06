@@ -27,7 +27,7 @@ if (app.get('is_dev')) {
   app.use(webpackMiddleware(webpack(webpackConfig)))
 }
 
-app.get('*', (req, res) => {
+app.all('*', (req, res) => {
   res.sendFile(path.resolve() + "/dist/index.html")
 })
 

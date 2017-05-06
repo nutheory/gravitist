@@ -1,0 +1,50 @@
+[
+  {
+    "name": "cellPhone",
+    "humanized": "Cell phone"
+  },
+  {
+    "name": "officePhone",
+    "humanized": "Office phone"
+  },
+  {
+    "name": "homePhone",
+    "humanized": "Home phone"
+  },
+  {
+    "name": "skype",
+    "humanized": "Skype"
+  },
+  {
+    "name": "slack",
+    "humanized": "Slack"
+  },
+  {
+    "name": "msnMessenger",
+    "humanized": "MSN Messenger"
+  },
+  {
+    "name": "zillow",
+    "humanized": "Zillow"
+  },
+  {
+    "name": "trulia",
+    "humanized": "Trulia"
+  },
+  {
+    "name": "website",
+    "humanized": "Website"
+  },
+  {
+    "name": "linkedIn",
+    "humanized": "LinkedIn"
+  },
+  {
+    "name": "facebook",
+    "humanized": "Facebook"
+  },
+  {
+    "name": "mlsId",
+    "humanized": "MLS ID"
+  }
+]

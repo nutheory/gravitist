@@ -5,45 +5,48 @@ import { FormsyText } from 'formsy-material-ui/lib'
 import { StyleSheet, css } from 'aphrodite'
 import layout from './styles/layout'
 import style from './styles/styling'
-import gql from 'graphql-tag'
 
 class UserForm extends Component {
   constructor(){
     super()
     this.state = {
-      user_name: "",
-      user_email: "",
-      user_password: ""
+      name: "",
+      email: "",
+      password: "",
+      type: ""
     }
+
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
   }
 
-  // changeValue(evt){
-  //   this.setValue(evt.currentTarget.value)
-  //   console.log(this.state)
-  // }
+  componentDidMount(){
+    this.userCollection = this.props.userCollection
+    this.setState({ type: this.props.type})
+  }
 
   handleNameChange(evt){
-    this.setState({ user_name: evt.target.value })
+    this.setState({ name: evt.target.value }, (res) => {
+      this.userCollection(this.state)
+    })
   }
 
   handleEmailChange(evt){
-    // let valid = this.validateEmail(evt.target.value)
-    this.setState({ user_email: evt.target.value })
+    this.setState({ email: evt.target.value }, (res) => {
+      this.userCollection(this.state)
+    })
   }
-  //
-  // handlePasswordConfirm(evt){
-  //   if(this.PasswordConfirmInput.input.value === this.PasswordInput.input.value &&
-  //     this.PasswordInput.input.value.length >= 6){
-  //       this.setState({ user_password: this.refs.user_password })
-  //   } else {
-  //     this.setState({ user_password: '' })
-  //   }
-  // }
+
+  handlePasswordChange(evt){
+    this.setState({ password: evt.target.value }, (res) => {
+      this.userCollection(this.state)
+    })
+  }
 
   render(){
     return (
-      <fieldset className={css(layout.fieldPadding)}>
-        <h4>Your Info</h4>
+      <div>
         <div className={css(layout.fieldRow)}>
           <div className={css(layout.multiColumnEvenSize)}>
             <FormsyText
@@ -52,8 +55,8 @@ class UserForm extends Component {
                 minLength: 2
               }}
               validationError="Required field"
-              onChange={this.handleNameChange.bind(this)}
-              value={this.state.user_name}
+              onChange={this.handleNameChange}
+              value={this.state.name}
               className={css(style.textfieldFullSize)}
               hintText="Name"
               floatingLabelText="Name"
@@ -66,7 +69,7 @@ class UserForm extends Component {
                 isEmail: true
               }}
               validationError="This is not a valid email"
-              onChange={this.handleEmailChange.bind(this)}
+              onChange={this.handleEmailChange}
               value={this.state.user_email}
               className={css(style.textfieldFullSize)}
               hintText="Email"
@@ -82,7 +85,7 @@ class UserForm extends Component {
                 minLength: 6
               }}
               validationError="Password must be at least 6 chars"
-              // onChange={this.changeValue.bind(this)}
+              onChange={this.handlePasswordChange}
               className={css(style.textfieldFullSize)}
               hintText="Create Password"
               floatingLabelText="Create Password"
@@ -103,7 +106,7 @@ class UserForm extends Component {
             />
           </div>
         </div>
-      </fieldset>
+      </div>
     )
   }
 }

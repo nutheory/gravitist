@@ -3,7 +3,6 @@ import { graphql } from 'react-apollo'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { StyleSheet, css } from 'aphrodite'
-import loginMutation from '../../mutations/auth/login'
 
 class Login extends Component {
 
@@ -18,16 +17,16 @@ class Login extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.mutate({
-      variables: ({ email: this.state.email, password: this.state.password})
-    }).catch((res) => {
-      console.log("Error ", res.graphQLErrors[0].message)
-    }).then((res) => {
-      if (res){
-        console.log("res.data.login.token", res.data.login.token)
-        localStorage.setItem('hf_auth_header_token', res.data.login.token)
-      }
-    })
+    // this.props.mutate({
+    //   variables: ({ email: this.state.email, password: this.state.password})
+    // }).catch((res) => {
+    //   console.log("Error ", res.graphQLErrors[0].message)
+    // }).then((res) => {
+    //   if (res){
+    //     console.log("res.data.login.token", res.data.login.token)
+    //     localStorage.setItem('hf_auth_header_token', res.data.login.token)
+    //   }
+    // })
   }
 
   render(){
@@ -65,4 +64,4 @@ class Login extends Component {
   }
 }
 
-export default graphql(loginMutation)(Login)
+export default Login

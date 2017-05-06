@@ -14,7 +14,7 @@ class Content extends Component {
           <Pricing />
         </div>
         <Route exact path='/login' component={Login} />
-        <Route exact path='/signup/:plan' render={props => (
+        <Route path='/signup/:type/:plan?' render={props => (
           <div>
             <Signup {...props} key={props.match.params.plan} />
           </div>

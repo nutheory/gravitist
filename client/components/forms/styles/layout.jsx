@@ -3,7 +3,7 @@ import { screenSize } from '../../../styles/cssFunc'
 
 const layout = StyleSheet.create({
   container: {
-    width: '920px',
+    width: '640px',
     margin: 'auto',
   },
   fieldPadding: {
