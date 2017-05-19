@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
-import Login from '../forms/login'
-import Signup from '../forms/signup'
-import Pricing from '../views/pricing'
+import OrderWalkthrough from '../views/orderWalkthrough'
 import styles from '../../styles/cssUtils'
 
 class Content extends Component {
@@ -11,14 +9,12 @@ class Content extends Component {
     return(
       <div>
         <div className={css(styles.centerFlexContent)}>
-          <Pricing />
+          {/* <Route path='/signup/:type?/:plan?/:idx?' render={props => ( */}
+            <div>
+              <OrderWalkthrough  />
+            </div>
+          {/* )} /> */}
         </div>
-        <Route exact path='/login' component={Login} />
-        <Route path='/signup/:type/:plan?' render={props => (
-          <div>
-            <Signup {...props} key={props.match.params.plan} />
-          </div>
-        )} />
       </div>
     )
   }

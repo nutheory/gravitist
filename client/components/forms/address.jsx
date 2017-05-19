@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
+import Formsy from 'formsy-react'
 import { FormsyText, FormsySelect } from 'formsy-material-ui/lib'
 import MenuItem from 'material-ui/MenuItem'
 import _ from 'lodash'
@@ -32,32 +33,32 @@ class Address extends Component {
     this.handleZipChange = this.handleZipChange.bind(this)
   }
 
-  componentDidMount(){
-    this.addressCollection = this.props.addressCollection
-  }
-
   handleAddressChange(evt){
     this.setState({address: evt.target.value}, (res) => {
-      this.addressCollection(this.state)
+      this.props.addressState(this.state)
     })
   }
 
-  handleAddress2Change(){
+  handleAddress2Change(evt){
     this.setState({address2: evt.target.value}, (res) => {
-      this.addressCollection(this.state)
+      this.props.addressState(this.state)
     })
   }
 
-  handleCityChange(){
-
+  handleCityChange(evt){
+    this.setState({city: evt.target.value}, (res) => {
+      this.props.addressState(this.state)
+    })
   }
 
-  handleZipChange(){
-
+  handleZipChange(evt){
+    this.setState({zip: evt.target.value}, (res) => {
+      this.props.addressState(this.state)
+    })
   }
 
-  handleStateSelect(evt, i){
-    this.setState({ state: evt.target.value })
+  handleStateSelect(evt, key, payload){
+    this.setState({ state: key })
   }
 
   render(){
@@ -67,6 +68,11 @@ class Address extends Component {
           <div className={css(layout.multiColumnEvenSize)}>
             <FormsyText
               name="address.address1"
+              validations={{
+                minLength: 2
+              }}
+              required={true}
+              validationError="Required field"
               className={css(style.textfieldFullSize)}
               onChange={this.handleAddressChange}
               hintText="Address"
@@ -76,6 +82,11 @@ class Address extends Component {
           <div className={css(layout.multiColumnEvenSize)}>
             <FormsyText
               name="address.city"
+              validations={{
+                minLength: 2
+              }}
+              required={true}
+              validationError="Required field"
               className={css(style.textfieldFullSize)}
               onChange={this.handleCityChange}
               hintText="City"
@@ -97,6 +108,11 @@ class Address extends Component {
             <div className={css(style.addressState)}>
               <FormsySelect
                 name="address.state"
+                validations={{
+                  minLength: 2
+                }}
+                required={true}
+                validationError="Required field"
                 value={this.state.state}
                 onChange={this.handleStateSelect}
                 className={css(style.addressSelect)}
@@ -110,6 +126,11 @@ class Address extends Component {
             <div className={css(style.addressZip)}>
               <FormsyText
                 name="address.zip"
+                validations={{
+                  minLength: 5
+                }}
+                required={true}
+                validationError="Required field"
                 hintText="Zip Code"
                 className={css(style.textfieldFullSize)}
                 onChange={this.handleZipChange}

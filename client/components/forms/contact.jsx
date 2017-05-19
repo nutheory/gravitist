@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { unmountComponentAtNode } from 'react-dom'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
+import Formsy from 'formsy-react'
 import { FormsyText, FormsySelect } from 'formsy-material-ui/lib'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import MenuItem from 'material-ui/MenuItem'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import ContentRemove from 'material-ui/svg-icons/content/remove'
 import { StyleSheet, css } from 'aphrodite'
 import layout from './styles/layout'
 import style from './styles/styling'
@@ -14,8 +16,6 @@ import ContactTypes from '../../utils/contactTypes.json'
 
 const contactTypes = []
 _.each(ContactTypes, (type, i) => {
-  // console.log('type', type)
-  // console.log('type', type)
   contactTypes.push(<MenuItem value={type.name} key={`${type.name}_${i}`} primaryText={type.humanized} />)
 })
 
@@ -38,30 +38,62 @@ class Contact extends Component {
     this.setState({ indexId: this.props.indexId })
   }
 
+  componentWillUnmount(){
+
+  }
+
   handleAddContact(evt){
     this.props.newContact()
   }
 
   handleRemoveContact(evt){
-    this.props.removeContact()
+    console.log('this.state', this.state.indexId)
+    this.props.removeContact(this.state.indexId)
   }
 
   handleNameChange(evt, key, payload){
-    console.log('evt', evt)
-    console.log('key', key.name)
-    console.log('payload', payload)
-    // this.setState({ name: key.name }, (res) => {
-    //   evt.target.value = key.name
-    //   console.log('payload', payload)
-    //   this.props.buildContact(this.state)
-    //   }
-    // )
+    this.setState({ name: key}, (res) => {
+      this.props.buildContact(this.state)
+    })
   }
 
   handleContentChange(evt){
     this.setState({ content: evt.target.value }, (res) => {
       this.props.buildContact(this.state)
     })
+  }
+
+  renderAddButton(){
+    return(
+      <div className={css(style.contactButton)}>
+        <FloatingActionButton
+          mini={true}
+          onTouchTap={this.handleAddContact}
+        >
+          <ContentAdd />
+        </FloatingActionButton>
+      </div>
+    )
+  }
+
+  renderRemoveButton(){
+    return(
+      <div className={css(style.contactButton)}>
+        <FloatingActionButton
+          mini={true}
+          backgroundColor="#900"
+          onTouchTap={this.handleRemoveContact}
+        >
+          <ContentRemove />
+        </FloatingActionButton>
+      </div>
+    )
+  }
+
+  renderRemove(render){
+    if(render){
+      return this.renderRemoveButton()
+    }
   }
 
   render(){
@@ -92,14 +124,9 @@ class Contact extends Component {
                 floatingLabelText="Contact info"
               />
             </div>
-            <div className={css(style.contactAdd)}>
-              <FloatingActionButton
-                mini={true}
-                onTouchTap={this.handleAddContact}
-              >
-                <ContentAdd />
-              </FloatingActionButton>
-            </div>
+
+            {this.renderRemove(this.props.renderRemove)}
+
           </div>
         </div>
       </div>

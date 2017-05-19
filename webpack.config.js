@@ -12,7 +12,8 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: [".js", ".jsx", ".es6"]
@@ -35,15 +36,18 @@ module.exports = {
           }, {
             loader: 'css-loader',
             query: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+
             }
           }
         ])
       }, {
-        test: /.*\.(gif|png|jpe?g|svg|mp4|m4v)$/i,
+        test: /.*\.(gif|png|jpe?g|svg|mp4|m4v|)$/i,
         use: "file-loader?name=[hash].[ext]&publicPath=assets/&outputPath=assets/"
+      }, {
+        test: /.*\.(eot|ttf|woff|woff2|)$/i,
+        loader: "file-loader?name=[hash].[ext]&publicPath=/assets/fonts/&outputPath=/assets/fonts/"
       }
+
     ]
   },
   plugins: [

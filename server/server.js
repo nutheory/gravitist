@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 const path = require('path')
 const passport = require('passport')
+const corsPrefetch = require('cors-prefetch-middleware')
+const imagesUpload = require('images-upload-middleware')
 const morgan = require('morgan')
 const models = require('./models')
 const schema = require('./schema')
@@ -15,6 +17,7 @@ const router = express.Router()
 app.set('port', (process.env.PORT || 5000))
 app.set('is_dev', (app.settings.env === 'development'))
 app.use(bodyParser.json())
+// app.use(corsPrefetch)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'))
 app.use(passport.initialize())
@@ -27,8 +30,10 @@ if (app.get('is_dev')) {
   app.use(webpackMiddleware(webpack(webpackConfig)))
 }
 
-app.all('*', (req, res) => {
-  res.sendFile(path.resolve() + "/dist/index.html")
+app.get('*', (req, res) => {
+  console.log(path.resolve())
+  res.sendFile(path.resolve() + '/dist/index.html')
 })
+
 
 module.exports = app

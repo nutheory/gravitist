@@ -7,5 +7,8 @@ module.exports = {
       'secret_key': 'sk_test_HM15yF18LUMKio0i22JAGbs0',
       'publishable_key': 'pk_test_DJiUvm4lb38U5aND8yARtaNc'
     }
+  },
+  'google': {
+    'key': 'AIzaSyCCyCNurvw6qHEi_KQme7LdQ-prmw_4Rgk'
   }
 }

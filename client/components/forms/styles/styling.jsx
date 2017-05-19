@@ -16,11 +16,14 @@ const styling = StyleSheet.create({
   contactContent: {
     flex: '1'
   },
-  contactAdd: {
+  contactButton: {
     flex: '0',
     marginLeft: '20px',
     alignSelf: 'flex-end',
     paddingBottom: '10px',
+  },
+  removeButton: {
+    backgroundColor: 'rgba(212,0,88,1)'
   },
   addressSplitSection: {
     display: 'flex',
@@ -34,7 +37,31 @@ const styling = StyleSheet.create({
   addressZip: {
     flex: '3',
     marginLeft: '20px',
-  }
+  },
+  addressAutocompleteForm: {
+    display: 'flex',
+    width: '100%',
+    marginLeft: '1em',
+    marginRight: '1em',
+  },
+  addressAutocomplete: {
+
+    flexGrow: '8',
+    marginLeft: '1em',
+    marginRight: '1em',
+  },
+  addressAutocompleteSubmit: {
+    flexGrow: '1',
+    marginLeft: '1em',
+    marginRight: '1em',
+  },
+  mapContainer: {
+    width: '100%',
+    height: '360px',
+    marginLeft: '1em',
+    marginRight: '1em',
+  },
+
 })
 
 export default styling

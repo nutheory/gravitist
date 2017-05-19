@@ -22,31 +22,31 @@ class UserForm extends Component {
   }
 
   componentDidMount(){
-    this.userCollection = this.props.userCollection
     this.setState({ type: this.props.type})
   }
 
   handleNameChange(evt){
     this.setState({ name: evt.target.value }, (res) => {
-      this.userCollection(this.state)
+      this.props.userState(this.state)
     })
   }
 
   handleEmailChange(evt){
     this.setState({ email: evt.target.value }, (res) => {
-      this.userCollection(this.state)
+      this.props.userState(this.state)
     })
   }
 
   handlePasswordChange(evt){
     this.setState({ password: evt.target.value }, (res) => {
-      this.userCollection(this.state)
+      this.props.userState(this.state)
     })
   }
 
   render(){
     return (
       <div>
+
         <div className={css(layout.fieldRow)}>
           <div className={css(layout.multiColumnEvenSize)}>
             <FormsyText
@@ -54,6 +54,7 @@ class UserForm extends Component {
               validations={{
                 minLength: 2
               }}
+              required={true}
               validationError="Required field"
               onChange={this.handleNameChange}
               value={this.state.name}
@@ -68,6 +69,7 @@ class UserForm extends Component {
               validations={{
                 isEmail: true
               }}
+              required={true}
               validationError="This is not a valid email"
               onChange={this.handleEmailChange}
               value={this.state.user_email}
@@ -84,6 +86,7 @@ class UserForm extends Component {
               validations={{
                 minLength: 6
               }}
+              required={true}
               validationError="Password must be at least 6 chars"
               onChange={this.handlePasswordChange}
               className={css(style.textfieldFullSize)}

@@ -1,7 +1,32 @@
+@font-face {
+  font-family: poppins-regular;
+  src: url(../assets/fonts/Poppins-Regular.ttf)  format('truetype');
+}
+
+@font-face {
+  font-family: poppins-light;
+  src: url(../assets/fonts/Poppins-Light.ttf)  format('truetype');
+}
+
+@font-face {
+  font-family: poppins-medium;
+  src: url(../assets/fonts/Poppins-Medium.ttf)  format('truetype');
+}
+
+@font-face {
+  font-family: poppins-semibold;
+  src: url(../assets/fonts/Poppins-SemiBold.ttf)  format('truetype');
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url(../assets/fonts/Poppins-Bold.ttf)  format('truetype');
+}
+
+
 html,body{
   background-color: #fff !important;
-  height:100vh;
-  font-family: 'helvetica neue', 'helvetica', cursive, serif;
+  font-family: 'poppins-regular', 'helvetica neue', 'helvetica', cursive, sans-serif, serif;
 }
 
 h1, h2, h3{

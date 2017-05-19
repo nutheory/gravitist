@@ -1,0 +1,41 @@
+[
+  {
+    "order": 1,
+    "price": "199",
+    "name": "basic",
+    "title": "Basic",
+    "desc": "PHOTO PACKAGE",
+    "color": "blue",
+    "features": [
+      { "icon": "check", "desc": "48 Hour Delivery" },
+      { "icon": "check", "desc": "12 High Res Photos" }
+    ]
+  },
+  {
+    "order": 2,
+    "price": "249",
+    "name": "standard",
+    "title": "Standard",
+    "desc": "PHOTO AND VIDEO CLIPS PACKAGE",
+    "color": "blue",
+    "features": [
+      { "icon": "check", "desc": "48 Hour Delivery" },
+      { "icon": "check", "desc": "12 High Res Photos" },
+      { "icon": "plus", "desc": "6 Video Clips" }
+    ]
+  },
+  {
+    "order": 3,
+    "price": "399",
+    "name": "premium",
+    "title": "Premuim",
+    "desc": "PHOTO AND VIDEO CLIPS WITH FULLY EDITED VIDEO PACKAGE",
+    "color": "red",
+    "features": [
+      { "icon": "check", "desc": "48 Hour Delivery" },
+      { "icon": "check", "desc": "12 High Res Photos" },
+      { "icon": "check", "desc": "6 Video Clips" },
+      { "icon": "plus", "desc": "30 second, fully produced video with the listing address, contact info and music." }
+    ]
+  }
+]

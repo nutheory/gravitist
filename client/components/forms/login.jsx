@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import TextField from 'material-ui/TextField'
+import Formsy from 'formsy-react'
+import { FormsyText } from 'formsy-material-ui/lib'
 import RaisedButton from 'material-ui/RaisedButton'
 import { StyleSheet, css } from 'aphrodite'
+import layout from './styles/layout'
+import style from './styles/styling'
 
 class Login extends Component {
 
   constructor(){
     super()
-    this.state = {email: '', password: ''}
+    this.state = {
+      email: "",
+      password: ""
+    }
   }
 
   componentDidMount(){
@@ -32,11 +39,13 @@ class Login extends Component {
   render(){
     return(
       <div id="LoginComponent">
-        <h2>Login</h2>
-        <form id="AuthForm" onSubmit={this.handleSubmit.bind(this)}>
-          <fieldset>
-            <div>
-              <TextField
+        <Formsy.Form
+          onSubmit={this.handleSubmit.bind(this)}
+        >
+          <fieldset className={css(layout.fieldPadding)}>
+            <h4 className={css(style.sectionTitle)}>Login</h4>
+            <div className={css(layout.singleColumn)}>
+              <FormsyText
                 hintText="Email"
                 floatingLabelText="Email"
                 name="email"
@@ -44,8 +53,8 @@ class Login extends Component {
                 onChange={e => this.setState({email: e.currentTarget.value})}
               />
             </div>
-            <div>
-              <TextField
+            <div className={css(layout.singleColumn)}>
+              <FormsyText
                 hintText="Password"
                 floatingLabelText="Password"
                 type="password"
@@ -56,9 +65,14 @@ class Login extends Component {
             </div>
           </fieldset>
           <fieldset>
-            <RaisedButton type="submit" label="Login" fullWidth={true} />
+            <RaisedButton
+              type="submit"
+              primary={ true }
+              label="Login"
+              fullWidth={true}
+            />
           </fieldset>
-        </form>
+        </Formsy.Form>
       </div>
     )
   }

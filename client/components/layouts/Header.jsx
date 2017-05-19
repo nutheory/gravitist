@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-
-import AppBar from 'material-ui/AppBar'
-import RaisedButton from 'material-ui/RaisedButton'
-import Popover from 'material-ui/Popover'
+import { NavLink, Link } from 'react-router-dom'
+import FlatButton from 'material-ui/FlatButton'
+import IconButton from 'material-ui/IconButton'
+import Drawer from 'material-ui/Drawer'
+import Divider from 'material-ui/Divider'
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover'
+import Menu from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
 import { graphql } from 'react-apollo'
-// import query from '../../queries/current_user'
 import { StyleSheet, css } from 'aphrodite'
-import layoutCss from '../../styles/layout'
-import formsCss from '../../styles/forms'
-import logo from '../../assets/logo.png'
+import header from './styles/header'
+import Colors from '../../styles/colors'
+import mobileHeader from './styles/mobileHeader'
+import logo from '../../assets/svg/logo.svg'
+import phoneIcon from '../../assets/svg/phoneIcon.svg'
+import Hamburger from 'material-ui/svg-icons/navigation/menu'
+import Close from 'material-ui/svg-icons/navigation/close'
 
 class AppHeader extends Component {
   constructor(props){
@@ -18,49 +24,108 @@ class AppHeader extends Component {
     this.state = {
       open: false,
     }
+
+    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
   }
 
-  handleLogin(event){
-    event.preventDefault()
-
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    })
+  handleDrawerToggle(){
+    this.setState({open: !this.state.open})
   }
 
-  handleRequestClose(){
-    this.setState({
-      open: false,
-    })
-  }
 
   render(){
-    return(
-      <div>
-        <AppBar
-          zDepth={3}
-          className={css(layoutCss.headerBar)}
-          iconStyleLeft={{position: 'fixed', left: '10%', top: '8px', margin:'0'}}
-          iconStyleRight={{position: 'fixed', right: '10%', top: '8px', margin:'0'}}
-          iconElementLeft={
-            <NavLink to="/">
-              <img src={logo} className={css(layoutCss.logo)} />
-            </NavLink>
-          }
-          iconElementRight={
-            <div>
-              <NavLink to="/login">
-                Login
-              </NavLink> |
-              <NavLink to="/pilotSignup">
-                Pilot signup
-              </NavLink>
+    let width = window.innerWidth
+    if (width > 760){
+      return(
+        <header id="AppHeader" className={css(header.container)}>
+          <div className={css(header.logo)}>
+            <NavLink to="/"><img src={`/${logo}`} className={css(header.logoImg)} /></NavLink>
+          </div>
+          <div className={css(header.navigation)}>
+            <NavLink activeStyle={{color: Colors.blue}} className={css(header.navItem)} to="/pricing">PRICING</NavLink>
+            <NavLink className={css(header.navItem)} to="/">HOW IT WORKS</NavLink>
+            <NavLink className={css(header.navItem)} to="/">JOBS FOR PILOTS</NavLink>
+          </div>
+          <div className={css(header.callInfo)}>
+            <div className={css(header.callInfoInner)}>
+              <div className={css(header.callNumber)}>
+                <img src={`/${phoneIcon}`} alt="Phone Icon" className={css(header.phoneIcon)} /> 800 555 6767</div>
+              <div className={css(header.callText)}>Toll Free Number</div>
             </div>
-          }>
-        </AppBar>
-      </div>
-    )
+          </div>
+          <div className={css(header.pilotSignup)}>
+            <FlatButton
+              label="SIGNUP TO FLY"
+              className={css(header.pilotSignupButton)}
+            />
+          </div>
+          <div className={css(header.login)}>
+            <FlatButton
+              label="LOGIN"
+              className={css(header.loginButton)}
+              rippleColor="#fff"
+            />
+              <Popover
+                animation={PopoverAnimationVertical}
+              >
+                <Menu>
+                  <MenuItem primaryText="Customer Login" />
+                  <MenuItem primaryText="Pilot Login" />
+                </Menu>
+            </Popover>
+          </div>
+        </header>
+      )
+    } else {
+      return(
+
+        <div className={css(mobileHeader.container)}>
+          <div className={css(mobileHeader.title)}>
+            <NavLink to="/"><img src={`/${logo}`} className={css(mobileHeader.logoImg)} /></NavLink>
+          </div>
+          <div className={css(mobileHeader.menu)}>
+            <IconButton
+              onTouchTap={this.handleDrawerToggle}
+            >
+              <Hamburger />
+            </IconButton>
+          </div>
+          <Drawer width={320} openSecondary={true} open={this.state.open} >
+            <div className={css(mobileHeader.drawer)}>
+              <div className={css(mobileHeader.actions)}>
+                <IconButton
+                  onTouchTap={this.handleDrawerToggle}
+                >
+                  <Close />
+                </IconButton>
+              </div>
+              <Divider />
+              <div className={css(mobileHeader.mainLinks)}>
+                <MenuItem>PRICING</MenuItem>
+                <MenuItem>HOW IT WORKS</MenuItem>
+                <MenuItem>JOBS FOR PILOTS</MenuItem>
+                <MenuItem>SIGNUP TO FLY</MenuItem>
+              </div>
+              <Divider />
+              <div className={css(mobileHeader.loginLinks)}>
+                <MenuItem>CUSTOMER LOGIN</MenuItem>
+                <MenuItem>PILOT LOGIN</MenuItem>
+              </div>
+              <div className={css(mobileHeader.callInfo)}>
+                <div className={css(mobileHeader.callInfoInner)}>
+                  <div className={css(mobileHeader.callNumber)}>
+                    <img src={`/${phoneIcon}`} alt="Phone Icon" className={css(header.phoneIcon)} />
+                    <a href="tel:800 555 6767" className={css(mobileHeader.callLink)}>800 555 6767</a>
+                  </div>
+                  <div className={css(header.callText)}>Toll Free Number</div>
+                </div>
+              </div>
+            </div>
+          </Drawer>
+        </div>
+
+      )
+    }
   }
 }
 

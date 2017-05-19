@@ -1,14 +1,15 @@
 import { StyleSheet, css } from 'aphrodite'
 
-const generalUtils = StyleSheet.create({
+const GeneralUtils = StyleSheet.create({
   centerFlexContent: {
+    paddingTop: '30px',
     position: 'relative',
     zIndex: '100',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+    flexDirection: 'column',
+
+  },
 
 })
 
-module.exports = generalUtils
+export default GeneralUtils
