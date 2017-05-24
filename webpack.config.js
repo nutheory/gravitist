@@ -45,7 +45,7 @@ module.exports = {
         use: "file-loader?name=[hash].[ext]&publicPath=assets/&outputPath=assets/"
       }, {
         test: /.*\.(eot|ttf|woff|woff2|)$/i,
-        loader: "file-loader?name=[hash].[ext]&publicPath=/assets/fonts/&outputPath=/assets/fonts/"
+        loader: "file-loader?name=[hash].[ext]&publicPath=/assets/fonts/&outputPath=assets/fonts/"
       }
 
     ]

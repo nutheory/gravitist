@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { screenSize } from '../../../../styles/cssFunc'
+import { scrSize } from '../../../../styles/cssFunc'
 import Colors from '../../../../styles/colors'
 
 const section = {
@@ -7,7 +7,8 @@ const section = {
   borderRadius: '4px',
   border: '1px solid #e5e5e5',
   boxShadow: '1px 1px 2px #5e5e5e',
-  padding: '1rem 2.6rem 2rem 2.6rem',
+  padding: '1rem 2rem 2rem 2rem',
+  margin: '1rem'
 }
 
 const sectionHeader = {
@@ -24,30 +25,40 @@ const order = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    width: '70%',
     margin: '3rem auto 5rem auto',
+    [scrSize.desktop]: {
+      width: '70%',
+    },
+    [scrSize.smartphone]: {
+
+    }
   },
   sectionHeader: {
     ...sectionHeader
   },
   head: {
     display: 'flex',
+    flexWrap: 'wrap',
   },
-  plan:{
+  plan: {
     ...section,
-    background: 'red'
+    flex: '2'
   },
-  addressMapper:{
-
+  addressMapper: {
+    ...section,
+    flex: '5'
   },
   main: {
-
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   signup: {
-
+    ...section,
+    flex: '1'
   },
   payment: {
-
+    ...section,
+    flex: '1'
   },
   footer: {
 

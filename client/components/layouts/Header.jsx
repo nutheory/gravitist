@@ -35,7 +35,7 @@ class AppHeader extends Component {
 
   render(){
     let width = window.innerWidth
-    if (width > 760){
+    if (width > 960){
       return(
         <header id="AppHeader" className={css(header.container)}>
           <div className={css(header.logo)}>
@@ -44,7 +44,7 @@ class AppHeader extends Component {
           <div className={css(header.navigation)}>
             <NavLink activeStyle={{color: Colors.blue}} className={css(header.navItem)} to="/pricing">PRICING</NavLink>
             <NavLink className={css(header.navItem)} to="/">HOW IT WORKS</NavLink>
-            <NavLink className={css(header.navItem)} to="/">JOBS FOR PILOTS</NavLink>
+            <NavLink className={css(header.navItem)} to="/pilots">JOBS FOR PILOTS</NavLink>
           </div>
           <div className={css(header.callInfo)}>
             <div className={css(header.callInfoInner)}>
@@ -78,7 +78,6 @@ class AppHeader extends Component {
       )
     } else {
       return(
-
         <div className={css(mobileHeader.container)}>
           <div className={css(mobileHeader.title)}>
             <NavLink to="/"><img src={`/${logo}`} className={css(mobileHeader.logoImg)} /></NavLink>
@@ -123,7 +122,6 @@ class AppHeader extends Component {
             </div>
           </Drawer>
         </div>
-
       )
     }
   }

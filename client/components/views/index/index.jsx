@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 import styles from '../../../styles/cssUtils'
-import HomeHero from './homeHero'
+import Hero from './hero'
 import AerialImagerySells from './aerialImagerySells'
 import BirdsEyeView from './birdsEyeView'
 import Photos from './photos'
@@ -19,7 +18,7 @@ class Index extends Component {
       <div>
         <div className={css(styles.centerFlexContent)}>
           <div>
-            <HomeHero />
+            <Hero />
             <AerialImagerySells />
             <BirdsEyeView />
             <Photos />

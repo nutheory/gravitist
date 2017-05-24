@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import sv from './styles/sampleVideo'
-import general from './styles/general'
 import sampleVideo from '../../../assets/sampleVideo.m4v'
 import sampleImage from '../../../assets/images/sample@2x.jpg'
 

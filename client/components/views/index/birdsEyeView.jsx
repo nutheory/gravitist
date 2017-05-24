@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import bev from './styles/birdsEyeView'
-import general from './styles/general'
 import drone from '../../../assets/images/drone@2x.png'
 import clouds from '../../../assets/images/cloudsBg.png'
 import trulia from '../../../assets/images/trulia@2x.png'
@@ -24,7 +23,7 @@ const BirdsEyeView = () => {
               <div className={css(bev.logo)} style={{ background: `url(/${zillow}) no-repeat`, width: '116px', height: '26px', backgroundSize: '116px 26px' }}></div>
               <div className={css(bev.logo)} style={{ background: `url(/${trulia}) no-repeat`, width: '82px', height: '28px', backgroundSize: '82px 28px' }}></div>
               <div className={css(bev.logo)} style={{ background: `url(/${realtor}) no-repeat`, width: '142px', height: '30px', backgroundSize: '142px 30px'}}></div>
-              <div className={css(bev.logo)} style={{ background: `url(/${youtube}) no-repeat`, width: '94px', height: '38px', backgroundSize: '94px 38px'}}></div>
+              <div className={css(bev.logo)} style={{ background: `url(/${youtube}) no-repeat`, width: '94px', height: '38px', backgroundSize: '94px 38px', }}></div>
             </div>
           </div>
         </div>

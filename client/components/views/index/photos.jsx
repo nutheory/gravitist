@@ -7,14 +7,33 @@ import photo2 from '../../../assets/images/home2@2x.jpg'
 import photo3 from '../../../assets/images/home3@2x.jpg'
 
 const Photos = () => {
-
-  return (
-    <div className={css(styles.container)}>
-      <div className={css(styles.photo)} style={{ background: `url(/${photo1}) no-repeat` }}></div>
-      <div className={css(styles.photo)} style={{ background: `url(/${photo2}) no-repeat` }}></div>
-      <div className={css(styles.photo)} style={{ background: `url(/${photo3}) no-repeat` }}></div>
-    </div>
-  )
+  let width = window.innerWidth
+  if (width > 960) {
+    return (
+      <div className={css(styles.container)}>
+        <div className={css(styles.photo)}><img src={photo1} alt="photo 1" className={css(styles.photoImg)} /></div>
+        <div className={css(styles.photo)}><img src={photo2} alt="photo 2" className={css(styles.photoImg)} /></div>
+        <div className={css(styles.photo)}><img src={photo3} alt="photo 3" className={css(styles.photoImg)} /></div>
+      </div>
+    )
+  } else {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+    return (
+      <div className={css(styles.container)}>
+        <Slider {...settings}>
+          <div className={css(styles.photo)}><img src={photo1} alt="photo 1" className={css(styles.photoImg)} /></div>
+          <div className={css(styles.photo)}><img src={photo2} alt="photo 2" className={css(styles.photoImg)} /></div>
+          <div className={css(styles.photo)}><img src={photo3} alt="photo 3" className={css(styles.photoImg)} /></div>
+        </Slider>
+      </div>
+    )
+  }
 
 }
 

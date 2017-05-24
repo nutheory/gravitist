@@ -2,7 +2,7 @@ import { StyleSheet, css } from 'aphrodite'
 import { scrSize } from '../../../../styles/cssFunc'
 import Colors from '../../../../styles/colors'
 
-const homeHero = StyleSheet.create({
+const hero = StyleSheet.create({
   container: {
     display: 'block',
     height: '95vh',
@@ -77,44 +77,6 @@ const homeHero = StyleSheet.create({
   point: {
     margin: '10px 40px',
   },
-  ctaButtons: {
-    display: 'flex',
-    justifyContent: 'center',
-    width:'80%',
-    flexWrap: 'wrap',
-  },
-  cta: {
-    fontFamily: 'poppins-semibold',
-    borderRadius: '32px',
-    width: '260px',
-    height: '64px',
-    margin: '20px',
-    color: Colors.white,
-    position: 'relative',
-    zIndex: '10',
-    textDecoration: 'none',
-    textTransform: 'uppercase',
-    boxShadow: '1px 1px 2px #0a0a0a',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    [scrSize.desktop]: {
-      margin: '20px',
-      width: '260px',
-      height: '64px',
-    },
-    [scrSize.smartphone]: {
-      margin: '6px 0px',
-      width: '260px',
-      height: '44px',
-    }
-  },
-  redButton: {
-    backgroundColor: Colors.red,
-  },
-  blueButton: {
-    backgroundColor: Colors.blue,
-  },
   playIcon: {
     width: '22px',
     height: '22px',
@@ -158,4 +120,4 @@ const homeHero = StyleSheet.create({
   },
 })
 
-export default homeHero
+export default hero

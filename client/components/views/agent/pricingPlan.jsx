@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite'
 import styles from './styles/pricing'
 import layout from '../../../styles/layout'
 import Colors from '../../../styles/colors'
-import general from '../index/styles/general'
+import cE from '../../../styles/commonElements'
 import PricingRender from './pricingRender'
 
 
@@ -36,7 +36,7 @@ class PricingPlan extends Component {
           <Link
             to={`/order/${this.props.planSpecifics.name}`}
             style={{ backgroundColor: this.getButtonColor(this.props.planSpecifics.color), alignSelf: 'flex-end' }}
-            className={css(general.callToAction)}
+            className={css(cE.callToAction)}
             onClick={ this.handleSelectedPlan.bind(this, this.props.planSpecifics.name) }
           >Order Now</Link>
       </div>

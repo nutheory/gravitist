@@ -13,9 +13,15 @@ const sampleVideo = StyleSheet.create({
     backgroundPosition: 'center center',
     backgroundSize: 'cover',
     width: '100%',
-    height: '600px',
     ':hover': {
       cursor: 'pointer',
+    },
+    [scrSize.desktop]: {
+      height: '600px',
+    },
+    [scrSize.smartphone]: {
+      // width: '100%',
+      height: '360px',
     }
   }
 })

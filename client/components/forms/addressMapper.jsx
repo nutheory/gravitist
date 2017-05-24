@@ -73,24 +73,13 @@ class AddressMapper extends Component {
         <Formsy.Form>
           <div className={css(style.addressAutocompleteForm)}>
             <div className={css(style.addressAutocomplete)}>
-              <h4 className={css(style.sectionTitle)}>The home you would like to film</h4>
+              <h4 className={css(style.sectionTitle)}>Subject Address</h4>
               <FormsyText
                 id="addressToFilm"
                 validations={{
                   minLength: 2
                 }}
-                validationError="hi"
                 name={'location'}
-                // hintText="Enter the address of the home you would like to film"
-                // floatingLabelText="Enter the address of the home you would like to film"
-              />
-            </div>
-            <div className={css(style.addressAutocompleteSubmit)}>
-              <RaisedButton
-                type="submit"
-                label="Signup"
-                secondary={ true }
-                fullWidth={ true }
               />
             </div>
           </div>

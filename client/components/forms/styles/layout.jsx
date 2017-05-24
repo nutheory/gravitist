@@ -3,17 +3,20 @@ import { screenSize } from '../../../styles/cssFunc'
 
 const layout = StyleSheet.create({
   container: {
-    width: '600px',
+    display: 'flex',
+    flexWrap: 'wrap',
     margin: 'auto',
   },
   fieldPadding: {
     padding: '0'
   },
   fieldRow: {
-    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   multiColumnEvenSize: {
     flex: '1',
+    flexWrap: 'wrap',
     margin: '0 1em',
   },
   singleColumn: {

@@ -3,6 +3,7 @@ import 'normalize.css'
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import IndexPage from '../views/index/index'
+import PilotPage from '../views/pilots/index'
 import Pricing from '../views/agent/pricingList'
 import Order from '../views/agent/order'
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -13,6 +14,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import AppHeader from './Header'
+import AppFooter from './Footer'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -60,9 +62,10 @@ class App extends Component {
           <MuiThemeProvider muiTheme={muiTheme}>
             <div>
               <AppHeader />
-              <Route path='/' component={IndexPage} />
-              {/* <Route path='/pricing' component={Pricing} />
-              <Route path="/order" component={Order} /> */}
+              <Route exact path='/' component={IndexPage} />
+              <Route path='/pilots' component={PilotPage} />
+
+              <AppFooter />
             </div>
           </MuiThemeProvider>
         </Router>

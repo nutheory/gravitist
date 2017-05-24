@@ -91,19 +91,19 @@ class OrderSignup extends Component {
             <h4 className={css(style.sectionTitle)}>Contact info</h4>
             <ContactList contactsCollection={this.contactsCollection} />
           </fieldset>
-          <fieldset className={css(layout.fieldPadding)}>
+          {/* <fieldset className={css(layout.fieldPadding)}>
             <h4 className={css(style.sectionTitle)}>Address</h4>
             <Address addressState={this.addressState} />
           </fieldset>
-          <fieldset>
-            <RaisedButton
+          <fieldset> */}
+            {/* <RaisedButton
               type="submit"
               label="Signup"
               primary={ true }
               fullWidth={ true }
               disabled={ !this.state.canSubmit }
             />
-          </fieldset>
+          </fieldset> */}
         </Formsy.Form>
       </div>
     )

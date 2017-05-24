@@ -11,14 +11,15 @@ const mobileHeader = StyleSheet.create({
     height: '52px',
     width: '100%',
     display: 'flex',
-    alignItems: 'center'
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
-    flex: 5,
+    flex: '1',
     paddingTop: '8px'
   },
   menu: {
-    flex: 1,
+    flex: '1',
     textAlign: 'right'
   },
   logoImg: {
@@ -37,7 +38,7 @@ const mobileHeader = StyleSheet.create({
   },
   callInfoInner: {
     textAlign: 'right',
-    margin: '16px'
+    // margin: '16px'
   },
   callNumber: {
     textAlign: 'right',

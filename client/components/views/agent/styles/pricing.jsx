@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { screenSize } from '../../../../styles/cssFunc'
+import { scrSize } from '../../../../styles/cssFunc'
 import Colors from '../../../../styles/colors'
 
 const pricing = StyleSheet.create({
@@ -9,16 +9,28 @@ const pricing = StyleSheet.create({
     justifyContent: 'center',
   },
   planList: {
-    width: '70%',
     margin: '40px auto',
     display: 'flex',
+    flexWrap: 'wrap',
+    [scrSize.desktop]: {
+      width: '70%',
+    },
+    [scrSize.smartphoneLandscape]: {
+      width: '100%',
+    },
+    [scrSize.tablet]: {
+      width: '100%',
+    },
+    [scrSize.smartphone]: {
+      width: '100%',
+    }
   },
   plan: {
     display: 'flex',
     flexDirection: 'column',
     alignContent: 'flex-start',
     width: 'calc(33.3333% - 1rem)',
-    minHeight: '520px',
+    // minHeight: '520px',
     margin: '0rem 0.6rem',
     flex: '1',
     flexWrap: 'wrap',
@@ -27,10 +39,22 @@ const pricing = StyleSheet.create({
     border: '1px solid #e5e5e5',
     boxShadow: '1px 1px 2px #5e5e5e',
     padding: '1rem 2.6rem 2rem 2.6rem',
+    [scrSize.desktop]: {
+      margin: '0rem 0.6rem',
+      minHeight: '520px',
+    },
+    [scrSize.smartphone]: {
+      margin: '1rem 2rem',
+      minHeight: '320px',
+    }
   },
   planTitle: {
     fontFamily: 'poppins-semibold',
     fontSize: '1.5rem',
+  },
+  changeLink: {
+    fontFamily: 'poppins-regular',
+    fontSize: '0.875rem',
   },
   details: {
     alignSelf: 'flex-start',
@@ -83,6 +107,10 @@ const pricing = StyleSheet.create({
     display: 'flex',
     flexGrow: '8',
     alignItems: 'flex-end'
+  },
+  contactFooter: {
+    textAlign: 'center',
+    margin: '2rem'
   }
 })
 

@@ -31,7 +31,7 @@ class AgentOrder extends Component {
     if (this.state.selectedPlan){
       return (
         <div className={css(order.container)}>
-          <h1 className={css(order.sectionHeader)}>Let get started...</h1>
+          <h1 className={css(order.sectionHeader)}>Lets get started...</h1>
           <div className={css(order.head)}>
             <div className={css(order.plan)}>
               <PricingRender planSpecifics={this.state.selectedPlan} selected={true} />

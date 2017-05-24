@@ -4,16 +4,37 @@ import Colors from '../../../../styles/colors'
 
 const photos = StyleSheet.create({
   container: {
-    overflow: 'hidden',
-    display: 'flex',
+    [scrSize.desktop]: {
+      display: 'flex',
+      width: '100%',
+      height: '540px',
+    },
+    [scrSize.smartphone]: {
+      width: '100%',
+      height: '440px',
+    }
   },
   photo: {
-    flex: '1',
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover',
-    width: '33%',
-    height: '600px',
-    margin: '0 2px',
+    [scrSize.desktop]: {
+      flex: '1',
+      width: 'calc(33% - 8px)',
+      height: '540px',
+      margin: '0 2px',
+    },
+    [scrSize.smartphone]: {
+      // width: '100%',
+      height: '400px',
+    }
+  },
+  photoImg: {
+    [scrSize.desktop]: {
+      width: '100%',
+      height: '540px',
+    },
+    [scrSize.smartphone]: {
+      width: '100%',
+      height: '400px',
+    }
   }
 })
 

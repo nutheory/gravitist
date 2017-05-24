@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { screenSize } from '../../../styles/cssFunc'
+import { scrSize } from '../../../styles/cssFunc'
 import Colors from '../../../styles/colors'
 
 const header = StyleSheet.create({

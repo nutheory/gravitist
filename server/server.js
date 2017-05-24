@@ -31,7 +31,6 @@ if (app.get('is_dev')) {
 }
 
 app.get('*', (req, res) => {
-  console.log(path.resolve())
   res.sendFile(path.resolve() + '/dist/index.html')
 })
 

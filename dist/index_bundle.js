@@ -49610,13 +49610,11 @@ var order = _aphrodite.StyleSheet.create({
   head: {
     display: 'flex'
   },
-  plan: _extends({}, section, {
-    background: 'red'
-  }),
-  addressMapper: {},
+  plan: _extends({}, section),
+  addressMapper: _extends({}, section),
   main: {},
-  signup: {},
-  payment: {},
+  signup: _extends({}, section),
+  payment: _extends({}, section),
   footer: {},
   terms: {},
   submit: {}
