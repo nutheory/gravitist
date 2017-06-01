@@ -52276,6 +52276,7 @@ var Photos = function Photos() {
       dots: true,
       infinite: true,
       speed: 500,
+      arrows: false,
       slidesToShow: 1,
       slidesToScroll: 1
     };
@@ -52690,7 +52691,9 @@ var hero = _aphrodite.StyleSheet.create({
     maxWidth: '80%',
     margin: 'auto',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    left: '50%',
+    marginLeft: '-90px'
   }, _defineProperty(_scrollDown, _helpers.scrSize.small, {
     bottom: '20px'
   }), _defineProperty(_scrollDown, _helpers.scrSize.medium, {
@@ -52945,11 +52948,11 @@ var share = _aphrodite.StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    margin: '1rem',
+    margin: '0.6rem',
     border: '2px solid ' + _helpers.colors.midGrey,
     borderRadius: '24px',
     padding: '6px 8px',
-    width: '160px'
+    width: '140px'
   },
   icon: {
     display: 'inline-block',
@@ -53812,7 +53815,7 @@ var Stories = function Stories() {
 
   var stories = function stories() {
     var width = window.innerWidth;
-    if (width > 1023) {
+    if (width > 639) {
       return storyList.map(function (sl, i) {
         return _react2.default.createElement(
           'div',
