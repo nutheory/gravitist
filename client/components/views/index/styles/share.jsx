@@ -30,11 +30,11 @@ const share = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    margin: '1rem',
+    margin: '0.6rem',
     border: `2px solid ${colors.midGrey}`,
     borderRadius: '24px',
     padding: '6px 8px',
-    width: '160px',
+    width: '140px',
   },
   icon: {
     display: 'inline-block',

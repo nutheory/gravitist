@@ -64,6 +64,8 @@ const hero = StyleSheet.create({
     margin: 'auto',
     display: 'flex',
     flexDirection: 'column',
+    left: '50%',
+    marginLeft: '-90px',
     [scrSize.small]: {
       bottom: '20px',
     },

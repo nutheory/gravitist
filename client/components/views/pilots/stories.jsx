@@ -33,7 +33,7 @@ const Stories = () => {
 
   const stories = () => {
     let width = window.innerWidth
-    if(width > 1023){
+    if(width > 639){
       return storyList.map((sl, i) => {
         return (
           <div className={css(st.storyFrame)}>
