@@ -8,7 +8,7 @@ import photo3 from '../../../assets/images/home3@2x.jpg'
 
 const Photos = () => {
   let width = window.innerWidth
-  if (width > 960) {
+  if (width > 1023) {
     return (
       <div className={css(styles.container)}>
         <div className={css(styles.photo)}><img src={photo1} alt="photo 1" className={css(styles.photoImg)} /></div>

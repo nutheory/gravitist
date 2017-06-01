@@ -1,0 +1,50 @@
+[
+  {
+    "question": "Do you work in my area?",
+    "answer": "Yes. We fly in all 50 states. Call (800) 208-8947 - or email us at info@homefilming.com for more information."
+  },
+  {
+    "question": "Where are you located?",
+    "answer": "Our corporate office is located at 1440 S. State College Blvd. Anaheim, CA 92806"
+  },
+  {
+    "question": "What if I’m not happy with the photos and videos?",
+    "answer": "If you are not completely satisfied with our service, then kindly let us know why and we either re-fly your property or will refund your payment in full."
+  },
+  {
+    "question": "What do you need from me?",
+    "answer": "Only the name of the homeowner, gate code (if there is one) and the address of the property you want us to film."
+  },
+  {
+    "question": "What images will you capture?",
+    "answer": "Every property is unique, but we typically take images and video of the front yard, back yard and surrounding neighborhood."
+  },
+  {
+    "question": "Do I have to be there when you film?",
+    "answer": "No."
+  },
+  {
+    "question": "How long does filming take?",
+    "answer": "Filming will take less than an hour."
+  },
+  {
+    "question": "How soon after filming do I receive my video and photos?",
+    "answer": "Usually within 48 hours, subject to bad weather."
+  },
+  {
+    "question": "How do you deliver my video and photos?",
+    "answer": "We will send a download link to your email address."
+  },
+  {
+    "question": "What if the weather is bad?",
+    "answer": "We only fly in good weather. Unfortunately, bad weather may delay our ability to fly and therefore send photos and video to you."
+  },
+  {
+    "question": "Are your pilots insured?",
+    "answer": "Yes."
+  },
+  {
+    "question": "Are your pilots licensed?",
+    "answer": "Yes, our pilots either FAA Section 333 exempt or have passed FAA Part 107 and are qualified to fly drones over residential real estate."
+  }  
+]

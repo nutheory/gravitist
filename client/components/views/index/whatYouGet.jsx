@@ -32,10 +32,12 @@ const WhatYouGet = () => {
   }
 
   return (
-    <div className={css(wyg.container, cL.wrapper)}>
-      <h1 className={css(cT.sectionHeader)}>What you get</h1>
-      <div className={css(wyg.featuresList)}>
-        {features.map((ft, i) => { return feature(ft, i)})}
+    <div className={css(cL.fourPointContainer)}>
+      <div className={css(cL.wrapper)}>
+        <h1 className={css(cT.sectionHeader)}>What you get</h1>
+        <div className={css(wyg.featuresList)}>
+          {features.map((ft, i) => { return feature(ft, i)})}
+        </div>
       </div>
     </div>
   )

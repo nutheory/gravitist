@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import pricing from './styles/pricing'
 import cT from '../../../styles/commonText'
+import cL from '../../../styles/commonLayout'
 import _ from 'lodash'
 import PricingPlan from './pricingPlan'
 import Plans from '../../../utils/pricingPlans.json'
@@ -29,7 +30,7 @@ class PricingList extends Component {
 
   render(){
     return(
-      <div id="pricingList" className={css(pricing.container)}>
+      <div id="pricingList" className={css(cL.wrapper, pricing.container)}>
         <h1 className={css(cT.sectionHeader)}>Our pricing</h1>
         <div className={css(pricing.planList)}>
           { plans.map( plan => <PricingPlan key={plan.name} planSpecifics={plan} selectedPlan={this.selectedPlan} /> )}

@@ -1,6 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../../styles/cssFunc'
-import Colors from '../../../../styles/colors'
+import { scrSize, colors } from '../../../../styles/helpers'
 
 const sampleVideo = StyleSheet.create({
   container: {
@@ -16,13 +15,15 @@ const sampleVideo = StyleSheet.create({
     ':hover': {
       cursor: 'pointer',
     },
-    [scrSize.desktop]: {
-      height: '600px',
-    },
-    [scrSize.smartphone]: {
-      // width: '100%',
+    [scrSize.small]: {
       height: '360px',
-    }
+    },
+    [scrSize.medium]: {
+      height: '400px',
+    },
+    [scrSize.large]: {
+      height: '500px',
+    },
   }
 })
 

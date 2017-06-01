@@ -4,6 +4,7 @@ import { StyleSheet, css } from 'aphrodite'
 import heroPhoto from '../../../assets/images/pilotHero.jpg'
 import scrollDownIcon from '../../../assets/svg/scrollDown.svg'
 import hero from './styles/hero'
+import cL from '../../../styles/commonLayout'
 import cE from '../../../styles/commonElements'
 import cT from '../../../styles/commonText'
 
@@ -15,9 +16,9 @@ class Hero extends Component{
 
   render(){
     return(
-      <div className={css(hero.container)}>
-        <div className={css(hero.bg)} style={{background: 'url(/' + heroPhoto + ') no-repeat'}}>
-          <div className={css(hero.overlay)}></div>
+      <div className={css(cL.heroContainer)}>
+        <div className={css(cL.heroBg)} style={{background: `url(/${heroPhoto}) no-repeat`}}>
+          <div className={css(cL.heroOverlay)}></div>
           <h1 className={css(cT.synopsis)}>Fly with Homefilming</h1>
           <p className={css(hero.subText)}>Earn money. Fly when you want.</p>
           <div className={css(cE.ctaButtons)}>

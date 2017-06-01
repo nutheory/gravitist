@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import bev from './styles/birdsEyeView'
+import cT from '../../../styles/commonText'
 import drone from '../../../assets/images/drone@2x.png'
 import clouds from '../../../assets/images/cloudsBg.png'
 import trulia from '../../../assets/images/trulia@2x.png'
@@ -12,10 +13,10 @@ const BirdsEyeView = () => {
 
   return (
     <div className={css(bev.container)} style={{background: `url(/${clouds}) no-repeat`}}>
-      <div className={css(bev.drone)} style={{background: `url(/${drone}) no-repeat`}}></div>
+      <div className={css(bev.drone)}></div>
       <div className={css(bev.info)}>
         <div className={css(bev.infoWrapper)}>
-          <h1 className={css(bev.sectionHeader)}>Birds Eye View</h1>
+          <h1 className={css(cT.sectionHeader, bev.sectionHeader)}>Birds Eye View</h1>
           <p className={css(bev.infoText)}>Aerial imagery shows off the home and neighborhood in ways that old fashioned street level photography can’t.</p>
           <div className={css(bev.worksWith)}>
             <h3 className={css(bev.worksWithHeader)}>Works with</h3>

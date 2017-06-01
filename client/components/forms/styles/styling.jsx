@@ -1,10 +1,8 @@
 import { StyleSheet, css } from 'aphrodite'
-import { screenSize } from '../../../styles/cssFunc'
+import { scrSize } from '../../../styles/helpers'
 
 const styling = StyleSheet.create({
   sectionTitle: {
-    marginLeft: '1em',
-    marginRight: '1em',
     marginBottom: '0'
   },
   textfieldFullSize: {

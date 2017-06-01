@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import Scroll from 'react-scroll'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import Drawer from 'material-ui/Drawer'
@@ -10,12 +11,18 @@ import MenuItem from 'material-ui/MenuItem'
 import { graphql } from 'react-apollo'
 import { StyleSheet, css } from 'aphrodite'
 import header from './styles/header'
-import Colors from '../../styles/colors'
+import { colors } from '../../styles/helpers'
 import mobileHeader from './styles/mobileHeader'
 import logo from '../../assets/svg/logo.svg'
 import phoneIcon from '../../assets/svg/phoneIcon.svg'
 import Hamburger from 'material-ui/svg-icons/navigation/menu'
 import Close from 'material-ui/svg-icons/navigation/close'
+
+const sLink = Scroll.Link
+const Element = Scroll.Element
+const Events = Scroll.Events
+const scroll = Scroll.animateScroll
+const scrollSpy = Scroll.scrollSpy
 
 class AppHeader extends Component {
   constructor(props){
@@ -32,6 +39,25 @@ class AppHeader extends Component {
     this.setState({open: !this.state.open})
   }
 
+  componentDidMount() {
+
+    Events.scrollEvent.register('begin', function(to, element) {
+      console.log("begin", arguments)
+    })
+
+    Events.scrollEvent.register('end', function(to, element) {
+      console.log("end", arguments)
+    })
+
+    scrollSpy.update()
+
+  }
+
+  componentWillUnmount() {
+   Events.scrollEvent.remove('begin');
+   Events.scrollEvent.remove('end');
+  }
+
 
   render(){
     let width = window.innerWidth
@@ -42,7 +68,7 @@ class AppHeader extends Component {
             <NavLink to="/"><img src={`/${logo}`} className={css(header.logoImg)} /></NavLink>
           </div>
           <div className={css(header.navigation)}>
-            <NavLink activeStyle={{color: Colors.blue}} className={css(header.navItem)} to="/pricing">PRICING</NavLink>
+            <sLink spy={true} smooth={true} offset={50} className={css(header.navItem)} to="ePricing">PRICING</sLink>
             <NavLink className={css(header.navItem)} to="/">HOW IT WORKS</NavLink>
             <NavLink className={css(header.navItem)} to="/pilots">JOBS FOR PILOTS</NavLink>
           </div>
@@ -89,7 +115,13 @@ class AppHeader extends Component {
               <Hamburger />
             </IconButton>
           </div>
-          <Drawer width={320} openSecondary={true} open={this.state.open} >
+          <Drawer
+            width={320}
+            docked={false}
+            openSecondary={true}
+            open={this.state.open}
+            onRequestChange={open => this.setState({open})}
+          >
             <div className={css(mobileHeader.drawer)}>
               <div className={css(mobileHeader.actions)}>
                 <IconButton
@@ -102,12 +134,12 @@ class AppHeader extends Component {
               <div className={css(mobileHeader.mainLinks)}>
                 <MenuItem>PRICING</MenuItem>
                 <MenuItem>HOW IT WORKS</MenuItem>
-                <MenuItem>JOBS FOR PILOTS</MenuItem>
+                <MenuItem onTouchTap={this.handleDrawerToggle}><NavLink to="/pilots">JOBS FOR PILOTS</NavLink></MenuItem>
                 <MenuItem>SIGNUP TO FLY</MenuItem>
               </div>
               <Divider />
               <div className={css(mobileHeader.loginLinks)}>
-                <MenuItem>CUSTOMER LOGIN</MenuItem>
+                <MenuItem >CUSTOMER LOGIN</MenuItem>
                 <MenuItem>PILOT LOGIN</MenuItem>
               </div>
               <div className={css(mobileHeader.callInfo)}>

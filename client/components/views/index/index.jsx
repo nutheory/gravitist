@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
-import styles from '../../../styles/cssUtils'
+import Scroll from 'react-scroll'
+import styles from '../../../styles/commonLayout'
 import Hero from './hero'
 import AerialImagerySells from './aerialImagerySells'
 import BirdsEyeView from './birdsEyeView'
@@ -10,13 +11,21 @@ import WhatYouGet from './whatYouGet'
 import SampleVideo from './sampleVideo'
 import Pricing from '../agent/pricingList'
 import Order from '../agent/order'
+import Share from './share'
+import OurClientsLoveUs from './ourClientsLoveUs'
 
+const sLink = Scroll.Link
+const Element = Scroll.Element
+const Events = Scroll.Events
+const scroll = Scroll.animateScroll
+const scrollSpy = Scroll.scrollSpy
 
 class Index extends Component {
+
   render(){
     return(
       <div>
-        <div className={css(styles.centerFlexContent)}>
+        <div className={css(styles.centerMainContent)}>
           <div>
             <Hero />
             <AerialImagerySells />
@@ -25,11 +34,13 @@ class Index extends Component {
             <WhatYouGet />
             <SampleVideo />
             <Router>
-              <div>
+              <Element name="ePricing">
                 <Route exact path="/" component={Pricing} />
                 <Route path="/order/:plan" component={Order} />
-              </div>
+              </Element>
             </Router>
+            <OurClientsLoveUs />
+            <Share />
           </div>
         </div>
       </div>

@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 import styles from './styles/pricing'
-import layout from '../../../styles/layout'
-import Colors from '../../../styles/colors'
+import { colors } from '../../../styles/helpers'
 import cE from '../../../styles/commonElements'
 import PricingRender from './pricingRender'
 
@@ -22,9 +21,9 @@ class PricingPlan extends Component {
 
   getButtonColor(color){
     if(color === "blue"){
-      return Colors.blue
+      return colors.blue
     } else {
-      return Colors.red
+      return colors.red
     }
   }
 

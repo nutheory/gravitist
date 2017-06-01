@@ -1,6 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../styles/cssFunc'
-import Colors from '../../../styles/colors'
+import { scrSize, colors } from '../../../styles/helpers'
 
 const header = StyleSheet.create({
   container: {
@@ -8,10 +7,10 @@ const header = StyleSheet.create({
     top: '0',
     left: '0',
     zIndex: '1000',
-    background: Colors.white,
+    background: colors.white,
     fontFamily: 'poppins-semibold',
     fontSize: '0.875rem',
-    color: Colors.black,
+    color: colors.black,
     width: '100%',
     height: '70px',
     display: 'flex',
@@ -19,7 +18,7 @@ const header = StyleSheet.create({
   },
   logo: {
     borderRight: '1px solid',
-    borderColor: Colors.lightGrey
+    borderColor: colors.lightGrey
   },
   logoImg: {
     height: '18px',
@@ -38,13 +37,13 @@ const header = StyleSheet.create({
     display: 'block',
     margin: '0 10px',
     ':visited': {
-      color: Colors.black
+      color: colors.black
     },
     ':link': {
-      color: Colors.black
+      color: colors.black
     },
     ':hover': {
-      color: Colors.blue
+      color: colors.blue
     },
   },
   callInfo: {
@@ -55,7 +54,7 @@ const header = StyleSheet.create({
     padding: '0 20px',
   },
   callNumber: {
-    color: Colors.blue,
+    color: colors.blue,
     fontSize: '1.250rem',
     display: 'flex',
     textAlign: 'right',
@@ -75,10 +74,10 @@ const header = StyleSheet.create({
   },
   pilotSignup: {
     display: 'flex',
-    backgroundColor: Colors.white,
-    color: Colors.blue,
+    backgroundColor: colors.white,
+    color: colors.blue,
     borderLeft: '1px solid',
-    borderColor: Colors.lightGrey,
+    borderColor: colors.lightGrey,
     alignItems: 'center',
   },
   pilotSignupButton: {
@@ -89,21 +88,21 @@ const header = StyleSheet.create({
   },
   login: {
     display: 'flex',
-    backgroundColor: Colors.blue,
+    backgroundColor: colors.blue,
     textDecoration: 'none',
     alignItems: 'center',
     ':visited': {
-      color: Colors.white
+      color: colors.white
     },
     ':link': {
-      color: Colors.white
+      color: colors.white
     },
   },
   loginButton: {
     fontFamily: 'poppins-semibold',
     fontSize: '0.875rem',
     textTransform: 'uppercase',
-    color: Colors.white,
+    color: colors.white,
     display: 'flex',
     height: '70px',
   }

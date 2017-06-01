@@ -1,29 +1,29 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../../styles/cssFunc'
-import Colors from '../../../../styles/colors'
+import { scrSize, colors } from '../../../../styles/helpers'
 
 const pricing = StyleSheet.create({
   container: {
     display: 'flex',
+    margin: '1rem',
     flexDirection: 'column',
     justifyContent: 'center',
   },
   planList: {
-    margin: '40px auto',
+    margin: '1rem auto 0 auto',
     display: 'flex',
     flexWrap: 'wrap',
-    [scrSize.desktop]: {
-      width: '70%',
+    [scrSize.large]: {
+      width: '98%',
     },
-    [scrSize.smartphoneLandscape]: {
-      width: '100%',
-    },
-    [scrSize.tablet]: {
-      width: '100%',
-    },
-    [scrSize.smartphone]: {
-      width: '100%',
-    }
+    // [scrSize.smartphoneLandscape]: {
+    //   width: '100%',
+    // },
+    // [scrSize.tablet]: {
+    //   width: '100%',
+    // },
+    // [scrSize.smartphone]: {
+    //   width: '100%',
+    // }
   },
   plan: {
     display: 'flex',
@@ -39,14 +39,14 @@ const pricing = StyleSheet.create({
     border: '1px solid #e5e5e5',
     boxShadow: '1px 1px 2px #5e5e5e',
     padding: '1rem 2.6rem 2rem 2.6rem',
-    [scrSize.desktop]: {
+    [scrSize.small]: {
+      margin: '1rem 0rem',
+      minHeight: '320px',
+    },
+    [scrSize.large]: {
       margin: '0rem 0.6rem',
       minHeight: '520px',
     },
-    [scrSize.smartphone]: {
-      margin: '1rem 2rem',
-      minHeight: '320px',
-    }
   },
   planTitle: {
     fontFamily: 'poppins-semibold',

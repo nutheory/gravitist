@@ -1,6 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../../styles/cssFunc'
-import Colors from '../../../../styles/colors'
+import { scrSize, colors } from '../../../../styles/helpers'
 
 const hero = StyleSheet.create({
   container: {
@@ -9,7 +8,7 @@ const hero = StyleSheet.create({
     position: 'relative',
   },
   bg: {
-    backgroundSize: 'cover',
+    backgroundSize: '100% 100%',
     display: 'flex',
     flexDirection: 'column',
     height: '70vh',
@@ -38,7 +37,7 @@ const hero = StyleSheet.create({
     position: 'relative',
     zIndex: '10',
     fontFamily: 'poppins-semibold',
-    color: Colors.white,
+    color: colors.white,
     textAlign: 'center',
     textShadow: '1px 1px 2px #0a0a0a',
     [scrSize.desktop]: {

@@ -1,40 +1,45 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../../styles/cssFunc'
-import Colors from '../../../../styles/colors'
+import { scrSize, colors } from '../../../../styles/helpers'
 
 const photos = StyleSheet.create({
   container: {
-    [scrSize.desktop]: {
-      display: 'flex',
-      width: '100%',
-      height: '540px',
-    },
-    [scrSize.smartphone]: {
-      width: '100%',
+    width: '100%',
+    [scrSize.small]: {
       height: '440px',
-    }
+    },
+    [scrSize.medium]: {
+      height: '600px',
+    },
+    [scrSize.large]: {
+      display: 'flex',
+      height: '400px',
+    },
   },
   photo: {
-    [scrSize.desktop]: {
+    overflow: 'hidden',
+    [scrSize.small]: {
+    },
+    [scrSize.medium]: {
+    },
+    [scrSize.large]: {
       flex: '1',
-      width: 'calc(33% - 8px)',
-      height: '540px',
+      width: 'calc(33.3333% - 1rem)',
+      height: '400px',
       margin: '0 2px',
     },
-    [scrSize.smartphone]: {
-      // width: '100%',
-      height: '400px',
-    }
   },
   photoImg: {
-    [scrSize.desktop]: {
-      width: '100%',
-      height: '540px',
-    },
-    [scrSize.smartphone]: {
-      width: '100%',
+    width: '100%',
+    height: '400px',
+    [scrSize.small]: {
       height: '400px',
-    }
+    },
+    [scrSize.medium]: {
+      height: '560px',
+    },
+    [scrSize.large]: {
+      height: '500px',
+    },
   }
 })
 

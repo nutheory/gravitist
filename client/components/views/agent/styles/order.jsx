@@ -1,13 +1,12 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../../styles/cssFunc'
-import Colors from '../../../../styles/colors'
+import { scrSize, colors } from '../../../../styles/helpers'
 
 const section = {
   fontFamily: 'poppins-semibold',
   borderRadius: '4px',
   border: '1px solid #e5e5e5',
   boxShadow: '1px 1px 2px #5e5e5e',
-  padding: '1rem 2rem 2rem 2rem',
+  // padding: '1rem 2rem 2rem 2rem',
   margin: '1rem'
 }
 
@@ -18,8 +17,6 @@ const sectionHeader = {
   width: '100%',
   textAlign: 'center',
 }
-
-
 
 const order = StyleSheet.create({
   container: {

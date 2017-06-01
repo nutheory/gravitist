@@ -4,10 +4,12 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import IndexPage from '../views/index/index'
 import PilotPage from '../views/pilots/index'
+import FaqPage from '../views/misc/faqIndex'
 import Pricing from '../views/agent/pricingList'
 import Order from '../views/agent/order'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import Colors from '../../styles/colors'
+import ReactResizeDetector from 'react-resize-detector'
+import Helpers from '../../styles/helpers'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -18,7 +20,7 @@ import AppFooter from './Footer'
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: Colors.blue,
+    primary1Color: Helpers.colors.blue,
   }
 })
 
@@ -47,12 +49,18 @@ class App extends Component {
     super()
     injectTapEventPlugin()
     this.state = {
-      user: {}
+      user: {},
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
     }
   }
 
-  componentDidMount(){
-
+  onResize(){
+    let width = window.innerWidth
+    let height = window.innerHeight
+    this.setState({ windowWidth: width, windowHeight: height }, (res) => {
+      console.log('window resized!')
+    })
   }
 
   render(){
@@ -61,10 +69,11 @@ class App extends Component {
         <Router>
           <MuiThemeProvider muiTheme={muiTheme}>
             <div>
+              <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
               <AppHeader />
               <Route exact path='/' component={IndexPage} />
               <Route path='/pilots' component={PilotPage} />
-
+              <Route path='/faq' component={FaqPage} />
               <AppFooter />
             </div>
           </MuiThemeProvider>

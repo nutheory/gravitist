@@ -5,9 +5,10 @@ import { StyleSheet, css } from 'aphrodite'
 import heroPhoto from '../../../assets/images/homeHero.jpg'
 import playIcon from '../../../assets/svg/playIcon.svg'
 import scrollDownIcon from '../../../assets/svg/scrollDown.svg'
-import hero from './styles/hero'
 import cE from '../../../styles/commonElements'
 import cT from '../../../styles/commonText'
+import cL from '../../../styles/commonLayout'
+import hero from './styles/hero'
 
 class Hero extends Component{
   constructor(){
@@ -16,9 +17,9 @@ class Hero extends Component{
 
   render(){
     return(
-      <div className={css(hero.container)}>
-        <div className={css(hero.bg)} style={{background: 'url(/' + heroPhoto + ') no-repeat'}}>
-          <div className={css(hero.overlay)}></div>
+      <div className={css(cL.heroContainer)}>
+        <div className={css(cL.heroBg)} style={{background: 'url(/' + heroPhoto + ') no-repeat'}}>
+          <div className={css(cL.heroOverlay)}></div>
           <h1 className={css(cT.synopsis)}>We make aerial videos for residential real estate agents</h1>
           <ul className={css(hero.bulletPoints)}>
             <li className={css(hero.point)}>Nationwide coverage</li>
@@ -41,7 +42,7 @@ class Hero extends Component{
               >
                 <img src={`/${scrollDownIcon}`} className={css(hero.scrollDownIcon)} alt="" /><br />
                 <span className={css(hero.scrollDownText)}>Scroll Down to Learn More</span>
-            </NavLink>
+                </NavLink>
             </div>
           </div>
         </div>

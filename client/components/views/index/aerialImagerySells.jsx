@@ -20,18 +20,20 @@ const AerialImagerySells = () => {
 
   const sellingPoint = (sp, i) => {
     return (
-      <div key={i} className={css(ais.sellingPoint)}>
-        <div className={css(ais.pointImgWrapper)}><img src={`/${sp.img}`} alt={sp.img} className={css(cE.iconImg)} /></div>
-        <div className={css(ais.pointText)}>{sp.text}</div>
+      <div key={i} className={css(cE.fourBoxSingle, ais.sellingPoint)}>
+        <div className={css(cE.imgIconWrapper)}><img src={`/${sp.img}`} alt={sp.img} className={css(cE.iconImg)} /></div>
+        <div className={css(cT.smallText)}>{sp.text}</div>
       </div>
     )
   }
 
   return (
-    <div className={css(ais.container, cL.wrapper)}>
-      <h1 className={css(cT.sectionHeader)}>Aerial imagery sells</h1>
-      <div className={css(ais.sellingPointList)}>
-        {points.map((pt, i) => { return sellingPoint(pt, i)})}
+    <div className={css(cL.fourContainer)}>
+      <div className={css(cL.wrapper)}>
+        <h1 className={css(cT.sectionHeader)}>Aerial imagery sells</h1>
+        <div className={css(cE.fourBoxArea)}>
+          {points.map((pt, i) => { return sellingPoint(pt, i)})}
+        </div>
       </div>
     </div>
   )

@@ -1,56 +1,28 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../../styles/cssFunc'
-import Colors from '../../../../styles/colors'
+import { scrSize, colors } from '../../../../styles/helpers'
 
 const hero = StyleSheet.create({
-  container: {
-    display: 'block',
-    height: '95vh',
-    position: 'relative',
-  },
-  bg: {
-    backgroundSize: 'cover',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '95vh',
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-    [scrSize.desktop]: {
-      backgroundPosition: 'center center',
-    },
-    [scrSize.smartphone]: {
-      backgroundPosition: 'center center',
-    }
-  },
-  overlay: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    background: '#16222a',
-    background: '-webkit-linear-gradient(to bottom, #16222a, #3a6073)',
-    background: 'linear-gradient(to bottom, #16222a, #3a6073)',
-    opacity: '0.7',
-  },
   synopsis: {
     fontFamily: 'poppins-bold',
     margin: '0',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    color: Colors.white,
+    color: colors.white,
     textTransform: 'uppercase',
     position: 'relative',
     textAlign: 'center',
     zIndex: '10',
     textShadow: '1px 1px 2px #0a0a0a',
-    [scrSize.desktop]: {
+    [scrSize.large]: {
       width: '75%',
       fontSize: '3.5rem',
     },
-    [scrSize.smartphone]: {
+    [scrSize.medium]: {
+      width: '75%',
+      fontSize: '3.5rem',
+    },
+    [scrSize.small]: {
       width: '90%',
       fontSize: '1.6rem',
     }
@@ -58,24 +30,27 @@ const hero = StyleSheet.create({
   bulletPoints: {
     display: 'flex',
     fontFamily: 'poppins-semibold',
-    color: Colors.white,
+    color: colors.white,
     position: 'relative',
     flexWrap: 'wrap',
     zIndex: '10',
     fontSize: '1.5rem',
+    justifyContent: 'center',
     textShadow: '1px 1px 2px #0a0a0a',
-    [scrSize.desktop]: {
+    [scrSize.large]: {
       fontSize: '1.5rem',
-      justifyContent: 'center',
     },
-    [scrSize.smartphone]: {
-      marginLeft: '10px',
+    [scrSize.small]: {
       fontSize: '1rem',
-      justifyContent: 'left',
+      paddingLeft: '10px'
     }
   },
   point: {
     margin: '10px 40px',
+    flexWrap: 'nowrap',
+    [scrSize.small]: {
+
+    }
   },
   playIcon: {
     width: '22px',
@@ -89,12 +64,15 @@ const hero = StyleSheet.create({
     margin: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    [scrSize.desktop]: {
+    [scrSize.small]: {
+      bottom: '20px',
+    },
+    [scrSize.medium]: {
+      bottom: '30px',
+    },
+    [scrSize.large]: {
       bottom: '40px',
     },
-    [scrSize.smartphone]: {
-      bottom: '20px',
-    }
   },
   scrollDownInner:{
     display: 'flex',
