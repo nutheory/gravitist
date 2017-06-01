@@ -58,46 +58,6 @@ const hero = StyleSheet.create({
     display: 'inline-block',
     marginRight: '10px',
   },
-  scrollDown: {
-    position: 'absolute',
-    maxWidth: '80%',
-    margin: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    left: '50%',
-    marginLeft: '-90px',
-    [scrSize.small]: {
-      bottom: '20px',
-    },
-    [scrSize.medium]: {
-      bottom: '30px',
-    },
-    [scrSize.large]: {
-      bottom: '40px',
-    },
-  },
-  scrollDownInner:{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    textAlign: 'center',
-    opacity: '0.7',
-    ':hover': {
-       opacity: '1'
-    }
-  },
-  scrollDownIcon: {
-    width: '26px',
-    height: '26px',
-  },
-  scrollDownText: {
-    display: 'inline-block',
-    marginTop: '10px',
-    fontSize: '0.75rem',
-    textTransform: 'uppercase',
-    color: '#fff',
-  },
 })
 
 export default hero

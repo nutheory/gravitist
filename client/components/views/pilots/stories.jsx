@@ -19,7 +19,7 @@ const Stories = () => {
 
   const story = (story, i) => {
     return (
-      <div className={css(st.innerContainer)}>
+      <div key={`story_${i}`} className={css(st.innerContainer)}>
         <div className={css(st.avatar)} style={{ background: `url(/${story.img}) no-repeat` }}>
         </div>
         <div className={css(st.nameLocation)}>
@@ -36,7 +36,7 @@ const Stories = () => {
     if(width > 639){
       return storyList.map((sl, i) => {
         return (
-          <div className={css(st.storyFrame)}>
+          <div key={`story_${i}`} className={css(st.storyFrame)}>
             {story(sl, i)}
           </div>
         )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
+import ScrollDown from '../misc/scrollDown'
 import heroPhoto from '../../../assets/images/pilotHero.jpg'
 import scrollDownIcon from '../../../assets/svg/scrollDown.svg'
 import hero from './styles/hero'
@@ -27,6 +28,7 @@ class Hero extends Component{
               to=""
             >Get Started Now</NavLink>
           </div>
+          <ScrollDown to="/" />
         </div>
       </div>
     )
