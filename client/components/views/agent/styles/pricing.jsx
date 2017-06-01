@@ -12,36 +12,27 @@ const pricing = StyleSheet.create({
     margin: '1rem auto 0 auto',
     display: 'flex',
     flexWrap: 'wrap',
-    [scrSize.large]: {
-      width: '98%',
-    },
-    // [scrSize.smartphoneLandscape]: {
-    //   width: '100%',
-    // },
-    // [scrSize.tablet]: {
-    //   width: '100%',
-    // },
-    // [scrSize.smartphone]: {
-    //   width: '100%',
-    // }
   },
   plan: {
     display: 'flex',
     flexDirection: 'column',
     alignContent: 'flex-start',
-    width: 'calc(33.3333% - 1rem)',
-    // minHeight: '520px',
-    margin: '0rem 0.6rem',
-    flex: '1',
     flexWrap: 'wrap',
     fontFamily: 'poppins-semibold',
     borderRadius: '4px',
     border: '1px solid #e5e5e5',
     boxShadow: '1px 1px 2px #5e5e5e',
-    padding: '1rem 2.6rem 2rem 2.6rem',
+    padding: '1rem 2rem 2rem 2rem',
     [scrSize.small]: {
-      margin: '1rem 0rem',
-      minHeight: '320px',
+      width: 'calc(100% - 6rem - 2px)',
+      margin: '1rem',
+    },
+    [scrSize.medium]: {
+      width: 'calc(50% - 6rem - 2px)',
+      margin: '1rem',
+      ':last-child': {
+        width: 'calc(100% - 4rem - 2px)'
+      }
     },
     [scrSize.large]: {
       margin: '0rem 0.6rem',

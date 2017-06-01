@@ -28868,30 +28868,30 @@ var pricing = _aphrodite.StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center'
   },
-  planList: _defineProperty({
+  planList: {
     margin: '1rem auto 0 auto',
     display: 'flex',
     flexWrap: 'wrap'
-  }, _helpers.scrSize.large, {
-    width: '98%'
-  }),
+  },
   plan: (_plan = {
     display: 'flex',
     flexDirection: 'column',
     alignContent: 'flex-start',
-    width: 'calc(33.3333% - 1rem)',
-    // minHeight: '520px',
-    margin: '0rem 0.6rem',
-    flex: '1',
     flexWrap: 'wrap',
     fontFamily: 'poppins-semibold',
     borderRadius: '4px',
     border: '1px solid #e5e5e5',
     boxShadow: '1px 1px 2px #5e5e5e',
-    padding: '1rem 2.6rem 2rem 2.6rem'
+    padding: '1rem 2rem 2rem 2rem'
   }, _defineProperty(_plan, _helpers.scrSize.small, {
-    margin: '1rem 0rem',
-    minHeight: '320px'
+    width: 'calc(100% - 6rem - 2px)',
+    margin: '1rem'
+  }), _defineProperty(_plan, _helpers.scrSize.medium, {
+    width: 'calc(50% - 6rem - 2px)',
+    margin: '1rem',
+    ':last-child': {
+      width: 'calc(100% - 4rem - 2px)'
+    }
   }), _defineProperty(_plan, _helpers.scrSize.large, {
     margin: '0rem 0.6rem',
     minHeight: '520px'
@@ -50316,7 +50316,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Footer = function Footer() {
   var width = window.innerWidth;
-  if (width > 960) {
+  if (width > 1023) {
     return _react2.default.createElement(
       'footer',
       { className: (0, _aphrodite.css)(_footer2.default.container), style: { background: 'url(/' + _cloudsBg2.default + ') no-repeat' } },
@@ -51037,7 +51037,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _container, _innerContainer, _logo, _location, _quickLinks;
+var _container, _innerContainer, _sectionTitle, _logo, _copyright, _termsPolicyLinks, _location, _quickLinks, _quickLink, _faqLink;
 
 var _aphrodite = __webpack_require__(8);
 
@@ -51055,6 +51055,10 @@ var footer = _aphrodite.StyleSheet.create({
     width: '100%',
     flexDirection: 'column',
     flexWrap: 'wrap'
+  }), _defineProperty(_container, _helpers.scrSize.medium, {
+    width: '100%',
+    flexDirection: 'column',
+    flexWrap: 'wrap'
   }), _defineProperty(_container, _helpers.scrSize.large, {
     width: '100%'
   }), _container),
@@ -51069,12 +51073,14 @@ var footer = _aphrodite.StyleSheet.create({
   }), _defineProperty(_innerContainer, _helpers.scrSize.large, {
     width: '90%'
   }), _innerContainer),
-  sectionTitle: _defineProperty({
+  sectionTitle: (_sectionTitle = {
     fontFamily: 'poppins-bold',
     fontSize: '1.25rem'
-  }, _helpers.scrSize.small, {
+  }, _defineProperty(_sectionTitle, _helpers.scrSize.small, {
     textAlign: 'center'
-  }),
+  }), _defineProperty(_sectionTitle, _helpers.scrSize.medium, {
+    textAlign: 'center'
+  }), _sectionTitle),
   contactUs: {
     display: 'flex',
     margin: '0 1rem 2rem 1rem',
@@ -51134,17 +51140,22 @@ var footer = _aphrodite.StyleSheet.create({
   }, _defineProperty(_logo, _helpers.scrSize.small, {
     margin: '0rem auto 1rem auto'
   }), _defineProperty(_logo, _helpers.scrSize.medium, {
-    margin: '2rem 0 1rem 0'
+    margin: '2rem auto 1rem auto'
   }), _logo),
-  copyright: _defineProperty({
+  copyright: (_copyright = {
     lineHeight: '2rem'
-  }, _helpers.scrSize.small, {
+  }, _defineProperty(_copyright, _helpers.scrSize.small, {
     padding: '1rem 2rem',
     textAlign: 'center'
-  }),
-  termsPolicyLinks: _defineProperty({}, _helpers.scrSize.small, {
+  }), _defineProperty(_copyright, _helpers.scrSize.medium, {
+    padding: '1rem 2rem',
     textAlign: 'center'
-  }),
+  }), _copyright),
+  termsPolicyLinks: (_termsPolicyLinks = {}, _defineProperty(_termsPolicyLinks, _helpers.scrSize.small, {
+    textAlign: 'center'
+  }), _defineProperty(_termsPolicyLinks, _helpers.scrSize.medium, {
+    textAlign: 'center'
+  }), _termsPolicyLinks),
   termsPolicy: {
     display: 'inline-block',
     color: _helpers.colors.blue,
@@ -51157,6 +51168,8 @@ var footer = _aphrodite.StyleSheet.create({
   location: (_location = {
     margin: '0 1rem 2rem 1rem'
   }, _defineProperty(_location, _helpers.scrSize.small, {
+    textAlign: 'center'
+  }), _defineProperty(_location, _helpers.scrSize.medium, {
     textAlign: 'center'
   }), _defineProperty(_location, _helpers.scrSize.large, {
     flex: '1'
@@ -51186,20 +51199,24 @@ var footer = _aphrodite.StyleSheet.create({
     marginTop: '1rem',
     display: 'block'
   },
-  quickLink: _defineProperty({
+  quickLink: (_quickLink = {
     marginBottom: '1rem'
-  }, _helpers.scrSize.small, {
+  }, _defineProperty(_quickLink, _helpers.scrSize.small, {
     textAlign: 'center'
-  }),
+  }), _defineProperty(_quickLink, _helpers.scrSize.medium, {
+    textAlign: 'center'
+  }), _quickLink),
   qLink: {
     color: _helpers.colors.black,
     textDecoration: 'none'
   },
-  faqLink: _defineProperty({
+  faqLink: (_faqLink = {
     marginBottom: '1.8rem'
-  }, _helpers.scrSize.small, {
+  }, _defineProperty(_faqLink, _helpers.scrSize.small, {
     textAlign: 'center'
-  })
+  }), _defineProperty(_faqLink, _helpers.scrSize.medium, {
+    textAlign: 'center'
+  }), _faqLink)
 });
 
 exports.default = footer;
@@ -52910,29 +52927,30 @@ var share = _aphrodite.StyleSheet.create({
   container: {},
   innerContainer: (_innerContainer = {
     display: 'flex',
+    flexGrow: '1',
+    overflow: 'auto',
+    flexDirection: 'row',
     flexWrap: 'wrap',
-    margin: 'auto',
-    justifyContent: 'space-between'
-  }, _defineProperty(_innerContainer, _helpers.scrSize.desktop, {
-    width: '70%'
-  }), _defineProperty(_innerContainer, _helpers.scrSize.smartphone, {
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    margin: 'auto'
+  }, _defineProperty(_innerContainer, _helpers.scrSize.small, {
+    width: '100%'
+  }), _defineProperty(_innerContainer, _helpers.scrSize.medium, {
     width: '100%'
   }), _innerContainer),
-  pill: _defineProperty({
-    flex: '1',
+  pill: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     margin: '1rem',
     border: '2px solid ' + _helpers.colors.midGrey,
     borderRadius: '24px',
     padding: '6px 8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    maxWidth: '160px'
-  }, _helpers.scrSize.small, {
-    ':last-child': {
-      margin: '1rem auto'
-    }
-  }),
+    width: '160px'
+  },
   icon: {
     display: 'inline-block',
     marginRight: '10px'

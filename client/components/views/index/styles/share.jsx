@@ -7,31 +7,34 @@ const share = StyleSheet.create({
   },
   innerContainer: {
     display: 'flex',
+    flexGrow: '1',
+    overflow: 'auto',
+    flexDirection: 'row',
     flexWrap: 'wrap',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
     margin: 'auto',
-    justifyContent: 'space-between',
-    [scrSize.desktop]: {
-      width: '70%',
-    },
-    [scrSize.smartphone]: {
+    [scrSize.small]: {
       width: '100%',
-    }
+    },
+    [scrSize.medium]: {
+      width: '100%',
+    },
+    // [scrSize.large]: {
+    //   width: '70%',
+    // }
   },
   pill: {
-    flex: '1',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     margin: '1rem',
     border: `2px solid ${colors.midGrey}`,
     borderRadius: '24px',
     padding: '6px 8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    maxWidth: '160px',
-    [scrSize.small]: {
-      ':last-child': {
-        margin: '1rem auto',
-      }
-    }
+    width: '160px',
   },
   icon: {
     display: 'inline-block',

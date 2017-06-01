@@ -12,6 +12,11 @@ const footer = StyleSheet.create({
       flexDirection: 'column',
       flexWrap: 'wrap',
     },
+    [scrSize.medium]: {
+      width: '100%',
+      flexDirection: 'column',
+      flexWrap: 'wrap',
+    },
     [scrSize.large]: {
       width: '100%',
     },
@@ -33,6 +38,9 @@ const footer = StyleSheet.create({
     fontFamily: 'poppins-bold',
     fontSize: '1.25rem',
     [scrSize.small]: {
+      textAlign: 'center'
+    },
+    [scrSize.medium]: {
       textAlign: 'center'
     },
   },
@@ -99,7 +107,7 @@ const footer = StyleSheet.create({
       margin: '0rem auto 1rem auto',
     },
     [scrSize.medium]: {
-      margin: '2rem 0 1rem 0',
+      margin: '2rem auto 1rem auto',
     }
   },
   copyright: {
@@ -107,10 +115,17 @@ const footer = StyleSheet.create({
     [scrSize.small]: {
       padding: '1rem 2rem',
       textAlign: 'center'
+    },
+    [scrSize.medium]: {
+      padding: '1rem 2rem',
+      textAlign: 'center'
     }
   },
   termsPolicyLinks: {
     [scrSize.small]: {
+      textAlign: 'center',
+    },
+    [scrSize.medium]: {
       textAlign: 'center',
     },
   },
@@ -126,6 +141,9 @@ const footer = StyleSheet.create({
   location: {
     margin: '0 1rem 2rem 1rem',
     [scrSize.small]: {
+      textAlign: 'center',
+    },
+    [scrSize.medium]: {
       textAlign: 'center',
     },
     [scrSize.large]: {
@@ -165,6 +183,9 @@ const footer = StyleSheet.create({
     marginBottom: '1rem',
     [scrSize.small]: {
       textAlign: 'center'
+    },
+    [scrSize.medium]: {
+      textAlign: 'center'
     }
   },
   qLink:{
@@ -174,6 +195,9 @@ const footer = StyleSheet.create({
   faqLink: {
     marginBottom: '1.8rem',
     [scrSize.small]: {
+      textAlign: 'center'
+    },
+    [scrSize.medium]: {
       textAlign: 'center'
     }
   }

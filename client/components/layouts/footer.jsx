@@ -11,7 +11,7 @@ import usa from '../../assets/svg/usa.svg'
 
 const Footer = () => {
   let width = window.innerWidth
-  if (width > 960){
+  if (width > 1023){
     return (
       <footer className={css(footer.container)} style={{background: `url(/${clouds}) no-repeat`}}>
         <div className={css(footer.innerContainer)}>
