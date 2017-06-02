@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const pricing = StyleSheet.create({
   container: {
@@ -7,6 +7,7 @@ const pricing = StyleSheet.create({
     margin: '1rem',
     flexDirection: 'column',
     justifyContent: 'center',
+
   },
   planList: {
     margin: '1rem auto 0 auto',
@@ -22,21 +23,23 @@ const pricing = StyleSheet.create({
     borderRadius: '4px',
     border: '1px solid #e5e5e5',
     boxShadow: '1px 1px 2px #5e5e5e',
+    margin: '1rem',
     padding: '1rem 2rem 2rem 2rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       width: 'calc(100% - 6rem - 2px)',
-      margin: '1rem',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: 'calc(50% - 6rem - 2px)',
-      margin: '1rem',
       ':last-child': {
         width: 'calc(100% - 4rem - 2px)'
       }
     },
-    [scrSize.large]: {
-      margin: '0rem 0.6rem',
-      minHeight: '520px',
+    [ss.lg]: {
+      maxWidth: '340px',
+      width: 'calc(33.33333% - 6rem - 2px)',
+      ':last-child': {
+        width: 'calc(33.33333% - 6rem - 2px)'
+      }
     },
   },
   planTitle: {

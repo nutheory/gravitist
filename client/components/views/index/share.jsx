@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import Header from '../misc/header'
 import share from './styles/share'
 import cL from '../../../styles/commonLayout'
+import cT from '../../../styles/commonText'
 import facebook from '../../../assets/svg/facebook.svg'
 import twitter from '../../../assets/svg/twitter.svg'
 import instagram from '../../../assets/svg/instagram.svg'
@@ -18,7 +20,7 @@ const Share = () => {
   ]
   return (
     <div className={css(cL.wrapper)}>
-      <h2></h2>
+      <Header title="Share Your Videos" />
       <div className={css(share.innerContainer)}>
       {social.map((s, i) => {
         return (

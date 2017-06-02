@@ -6,6 +6,7 @@ import cL from '../../../styles/commonLayout'
 import _ from 'lodash'
 import PricingPlan from './pricingPlan'
 import Plans from '../../../utils/pricingPlans.json'
+import Header from '../misc/header'
 
 const sortedPlans = _.sortBy(Plans, ['order'])
 const plans = []
@@ -29,9 +30,10 @@ class PricingList extends Component {
   }
 
   render(){
+    console.log('this.props', this.props)
     return(
       <div id="pricingList" className={css(cL.wrapper, pricing.container)}>
-        <h1 className={css(cT.sectionHeader)}>Our pricing</h1>
+        <Header {...this.props.header} />
         <div className={css(pricing.planList)}>
           { plans.map( plan => <PricingPlan key={plan.name} planSpecifics={plan} selectedPlan={this.selectedPlan} /> )}
         </div>

@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../styles/helpers'
+import { ss, c } from '../../../styles/helpers'
 
 const intro = StyleSheet.create({
   introContainer: {

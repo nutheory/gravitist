@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../styles/helpers'
+import { ss, c } from '../../../styles/helpers'
 
 const header = StyleSheet.create({
   container: {
@@ -7,10 +7,10 @@ const header = StyleSheet.create({
     top: '0',
     left: '0',
     zIndex: '1000',
-    background: colors.white,
+    background: c.white,
     fontFamily: 'poppins-semibold',
     fontSize: '0.875rem',
-    color: colors.black,
+    color: c.black,
     width: '100%',
     height: '70px',
     display: 'flex',
@@ -18,7 +18,7 @@ const header = StyleSheet.create({
   },
   logo: {
     borderRight: '1px solid',
-    borderColor: colors.lightGrey
+    borderColor: c.lightGrey
   },
   logoImg: {
     height: '18px',
@@ -37,13 +37,13 @@ const header = StyleSheet.create({
     display: 'block',
     margin: '0 10px',
     ':visited': {
-      color: colors.black
+      color: c.black
     },
     ':link': {
-      color: colors.black
+      color: c.black
     },
     ':hover': {
-      color: colors.blue
+      color: c.blue
     },
   },
   callInfo: {
@@ -54,7 +54,7 @@ const header = StyleSheet.create({
     padding: '0 20px',
   },
   callNumber: {
-    color: colors.blue,
+    color: c.blue,
     fontSize: '1.250rem',
     display: 'flex',
     textAlign: 'right',
@@ -74,10 +74,10 @@ const header = StyleSheet.create({
   },
   pilotSignup: {
     display: 'flex',
-    backgroundColor: colors.white,
-    color: colors.blue,
+    backgroundColor: c.white,
+    color: c.blue,
     borderLeft: '1px solid',
-    borderColor: colors.lightGrey,
+    borderColor: c.lightGrey,
     alignItems: 'center',
   },
   pilotSignupButton: {
@@ -88,21 +88,21 @@ const header = StyleSheet.create({
   },
   login: {
     display: 'flex',
-    backgroundColor: colors.blue,
+    backgroundColor: c.blue,
     textDecoration: 'none',
     alignItems: 'center',
     ':visited': {
-      color: colors.white
+      color: c.white
     },
     ':link': {
-      color: colors.white
+      color: c.white
     },
   },
   loginButton: {
     fontFamily: 'poppins-semibold',
     fontSize: '0.875rem',
     textTransform: 'uppercase',
-    color: colors.white,
+    color: c.white,
     display: 'flex',
     height: '70px',
   }

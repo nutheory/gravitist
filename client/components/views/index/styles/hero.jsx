@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const hero = StyleSheet.create({
   synopsis: {
@@ -8,21 +8,21 @@ const hero = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    color: colors.white,
+    color: c.white,
     textTransform: 'uppercase',
     position: 'relative',
     textAlign: 'center',
     zIndex: '10',
     textShadow: '1px 1px 2px #0a0a0a',
-    [scrSize.large]: {
+    [ss.lg]: {
       width: '75%',
       fontSize: '3.5rem',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '75%',
       fontSize: '3.5rem',
     },
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '90%',
       fontSize: '1.6rem',
     }
@@ -30,17 +30,17 @@ const hero = StyleSheet.create({
   bulletPoints: {
     display: 'flex',
     fontFamily: 'poppins-semibold',
-    color: colors.white,
+    color: c.white,
     position: 'relative',
     flexWrap: 'wrap',
     zIndex: '10',
     fontSize: '1.5rem',
     justifyContent: 'center',
     textShadow: '1px 1px 2px #0a0a0a',
-    [scrSize.large]: {
+    [ss.lg]: {
       fontSize: '1.5rem',
     },
-    [scrSize.small]: {
+    [ss.sm]: {
       fontSize: '1rem',
       paddingLeft: '10px'
     }
@@ -48,7 +48,7 @@ const hero = StyleSheet.create({
   point: {
     margin: '10px 40px',
     flexWrap: 'nowrap',
-    [scrSize.small]: {
+    [ss.sm]: {
 
     }
   },

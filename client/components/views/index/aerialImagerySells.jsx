@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import Header from '../misc/header'
 import ais from './styles/aerialImagerySells'
 import cE from '../../../styles/commonElements'
 import cL from '../../../styles/commonLayout'
@@ -30,7 +31,7 @@ const AerialImagerySells = () => {
   return (
     <div className={css(cL.fourContainer)}>
       <div className={css(cL.wrapper)}>
-        <h1 className={css(cT.sectionHeader)}>Aerial imagery sells</h1>
+        <Header title="Aerial imagery sells" />
         <div className={css(cE.fourBoxArea)}>
           {points.map((pt, i) => { return sellingPoint(pt, i)})}
         </div>

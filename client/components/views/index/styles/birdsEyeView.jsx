@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 import drone from '../../../../assets/images/drone@2x.png'
 
 const birdsEyeView = StyleSheet.create({
@@ -9,7 +9,7 @@ const birdsEyeView = StyleSheet.create({
     backgroundPosition: 'center center',
   },
   sectionHeader: {
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'left'
     },
   },
@@ -17,46 +17,46 @@ const birdsEyeView = StyleSheet.create({
     background: `url(/${drone})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '-60px 10px',
-    [scrSize.small]: {
+    [ss.sm]: {
       display: 'none'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       backgroundSize: '100%',
       flex: '5',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       flex: '5',
       backgroundSize: '110%',
     },
   },
   info: {
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
       width: '100%',
       flex: '5',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       margin: '3rem',
       flex: '5',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       flex: '6',
     },
   },
   infoWrapper: {
-    [scrSize.small]: {
+    [ss.sm]: {
       margin: '0 2rem',
       display: 'flex',
       flexDirection: 'column',
       width: 'calc(100% - 4rem)',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       display: 'flex',
       flexDirection: 'column',
       alignContent: 'flex-start',
       justifyContent: 'flex-start',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
     },
   },
   infoText: {
@@ -64,24 +64,24 @@ const birdsEyeView = StyleSheet.create({
     fontSize: '1.375rem',
     opacity: '0.8',
     lineHeight: '2.4rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '100%',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       width: '75%',
     },
   },
   worksWith: {
-    [scrSize.small]: {
+    [ss.sm]: {
       marginTop: '2rem',
       marginBottom: '2rem'
     },
-    [scrSize.small]: {
+    [ss.sm]: {
       marginTop: '3rem',
       marginBottom: '3rem'
     },
 
-    [scrSize.large]: {
+    [ss.lg]: {
       marginTop: '4rem',
       marginBottom: '4rem'
     },
@@ -93,28 +93,28 @@ const birdsEyeView = StyleSheet.create({
   worksWithLogos: {
     display: 'flex',
     alignItems: 'center',
-    [scrSize.small]: {
+    [ss.sm]: {
       flexWrap: 'wrap',
       textAlign:'center',
       justifyContent: 'center',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       flexWrap: 'wrap',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
     },
   },
   logo: {
     backgroundPosition: 'center center',
-    [scrSize.small]: {
+    [ss.sm]: {
       marginRight: '1.2rem',
       marginBottom: '1.5rem',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       marginRight: '1.2rem',
       marginBottom: '1.5rem',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       marginRight: '1.4rem',
     },
     ':last-child': {

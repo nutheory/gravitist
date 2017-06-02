@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 import styles from './styles/pricing'
-import { colors } from '../../../styles/helpers'
+import { c } from '../../../styles/helpers'
 import cE from '../../../styles/commonElements'
 import PricingRender from './pricingRender'
 
@@ -21,9 +21,9 @@ class PricingPlan extends Component {
 
   getButtonColor(color){
     if(color === "blue"){
-      return colors.blue
+      return c.blue
     } else {
-      return colors.red
+      return c.red
     }
   }
 
@@ -33,7 +33,7 @@ class PricingPlan extends Component {
         <PricingRender planSpecifics={this.props.planSpecifics} />
         <div className={css(styles.buttonWrapper)}>
           <Link
-            to={`/order/${this.props.planSpecifics.name}`}
+            to={`/pricing/order/${this.props.planSpecifics.name}`}
             style={{ backgroundColor: this.getButtonColor(this.props.planSpecifics.color), alignSelf: 'flex-end' }}
             className={css(cE.callToAction)}
             onClick={ this.handleSelectedPlan.bind(this, this.props.planSpecifics.name) }

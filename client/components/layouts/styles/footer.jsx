@@ -1,23 +1,23 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../styles/helpers'
+import { ss, c } from '../../../styles/helpers'
 
 const footer = StyleSheet.create({
   container: {
     display: 'flex',
-    borderTop: `1px solid ${colors.lightGrey}`,
+    borderTop: `1px solid ${c.lightGrey}`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '100%',
       flexDirection: 'column',
       flexWrap: 'wrap',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '100%',
       flexDirection: 'column',
       flexWrap: 'wrap',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       width: '100%',
     },
   },
@@ -27,21 +27,24 @@ const footer = StyleSheet.create({
     overflow: 'hidden',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '90%',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       width: '90%',
     }
   },
   sectionTitle: {
     fontFamily: 'poppins-bold',
     fontSize: '1.25rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'center'
+    },
+    [ss.lg]: {
+      textAlign: 'left'
     },
   },
   contactUs: {
@@ -63,13 +66,16 @@ const footer = StyleSheet.create({
   mailLink: {
     fontFamily: 'poppins-semibold',
     fontSize: '1.375rem',
-    color: colors.blue,
+    color: c.blue,
     textDecoration: 'none',
   },
   phone: {
     display: 'flex',
     marginTop: '2.2rem',
     justifyContent: 'center',
+    [ss.lg]: {
+      justifyContent: 'flex-start',
+    },
   },
   phoneLink: {
     fontFamily: 'poppins-semibold',
@@ -77,9 +83,9 @@ const footer = StyleSheet.create({
     display: 'inline-block',
     marginRight: '10px',
     marginTop: 'auto',
-    color: colors.black,
+    color: c.black,
     textDecoration: 'none',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
   },
@@ -103,35 +109,43 @@ const footer = StyleSheet.create({
   logo: {
     width: '148px',
     height: '20px',
-    [scrSize.small]: {
+    [ss.sm]: {
       margin: '0rem auto 1rem auto',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       margin: '2rem auto 1rem auto',
+    },
+    [ss.lg]: {
+      margin: '2rem 0 1rem 0',
     }
   },
   copyright: {
     lineHeight: '2rem',
-    [scrSize.small]: {
-      padding: '1rem 2rem',
+    padding: '1rem 2rem',
+    [ss.sm]: {
       textAlign: 'center'
     },
-    [scrSize.medium]: {
-      padding: '1rem 2rem',
+    [ss.md]: {
       textAlign: 'center'
+    },
+    [ss.lg]: {
+      textAlign: 'left'
     }
   },
   termsPolicyLinks: {
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'center',
     },
+    [ss.lg]: {
+      textAlign: 'left'
+    }
   },
   termsPolicy: {
     display: 'inline-block',
-    color: colors.blue,
+    color: c.blue,
     textDecoration: 'none',
     marginRight: '1rem',
     ':last-child': {
@@ -140,14 +154,15 @@ const footer = StyleSheet.create({
   },
   location: {
     margin: '0 1rem 2rem 1rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'center',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       flex: '1',
+      textAlign: 'left',
     },
   },
   flag: {
@@ -160,12 +175,12 @@ const footer = StyleSheet.create({
     marginTop: '2.2rem',
     justifyContent: 'center',
     margin: '0 1rem 2rem 1rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       justifyContent: 'center',
       display: 'flex',
       flexDirection: 'column'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       justifyContent: 'center',
       display: 'flex',
       flexDirection: 'column'
@@ -181,24 +196,30 @@ const footer = StyleSheet.create({
   },
   quickLink: {
     marginBottom: '1rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'center'
+    },
+    [ss.lg]: {
+      textAlign: 'left'
     }
   },
   qLink:{
-    color: colors.black,
+    color: c.black,
     textDecoration: 'none',
   },
   faqLink: {
     marginBottom: '1.8rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'center'
+    },
+    [ss.lg]: {
+      textAlign: 'left'
     }
   }
 })

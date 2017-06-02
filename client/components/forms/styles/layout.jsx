@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize } from '../../../styles/helpers'
+import { ss } from '../../../styles/helpers'
 
 const layout = StyleSheet.create({
   container: {

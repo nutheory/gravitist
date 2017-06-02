@@ -1,27 +1,27 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const photos = StyleSheet.create({
   container: {
     width: '100%',
-    [scrSize.small]: {
+    [ss.sm]: {
       height: '440px',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       height: '600px',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       display: 'flex',
       height: '400px',
     },
   },
   photo: {
     overflow: 'hidden',
-    [scrSize.small]: {
+    [ss.sm]: {
     },
-    [scrSize.medium]: {
+    [ss.md]: {
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       flex: '1',
       width: 'calc(33.3333% - 1rem)',
       height: '400px',
@@ -31,13 +31,13 @@ const photos = StyleSheet.create({
   photoImg: {
     width: '100%',
     height: '400px',
-    [scrSize.small]: {
+    [ss.sm]: {
       height: '400px',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       height: '560px',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       height: '500px',
     },
   }

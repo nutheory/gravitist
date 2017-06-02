@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import Slider from 'react-slick'
+import Header from '../misc/header'
 import love from './styles/loveUs'
 import cT from '../../../styles/commonText'
+import cL from '../../../styles/commonLayout'
 import star from '../../../assets/svg/star.svg'
 import photo1 from '../../../assets/images/1.jpg'
 import photo2 from '../../../assets/images/2.jpg'
@@ -77,9 +79,11 @@ const OurClientsLoveUs = () => {
 
   return (
     <div className={css(love.container)}>
-      <h2 className={css(cT.sectionHeader)}>Our Clients Love Us</h2>
-      <div className={css(love.innerContainer)}>
-        {testimonial()}
+      <div className={css(cL.wrapper)}>
+        <Header title="Our Clients Love Us" />
+        <div className={css(love.innerContainer)}>
+          {testimonial()}
+        </div>
       </div>
     </div>
   )

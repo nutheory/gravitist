@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const section = {
   fontFamily: 'poppins-semibold',
@@ -23,10 +23,10 @@ const order = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     margin: '3rem auto 5rem auto',
-    [scrSize.desktop]: {
+    [ss.desktop]: {
       width: '70%',
     },
-    [scrSize.smartphone]: {
+    [ss.smartphone]: {
 
     }
   },

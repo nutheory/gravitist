@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
+import Header from '../misc/header'
 import cL from '../../../styles/commonLayout'
 import cT from '../../../styles/commonText'
 import cE from '../../../styles/commonElements'
@@ -32,7 +33,7 @@ const HowItWorks = () => {
     <div>
       <div className={css(cL.fourContainer)}>
         <div className={css(cL.wrapper)}>
-          <h1 className={css(cT.sectionHeader)}>How it works</h1>
+          <Header title="How it works" />
           <div className={css(cE.fourBoxArea)}>
             {instructions.map((ins, i) => { return instruction(ins, i) } )}
           </div>

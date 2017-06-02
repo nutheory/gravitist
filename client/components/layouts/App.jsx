@@ -4,8 +4,11 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import IndexPage from '../views/index/index'
 import PilotPage from '../views/pilots/index'
+import PilotSignupPage from '../views/pilots/signup'
+import WorkPage from '../views/works/index'
 import FaqPage from '../views/misc/faqIndex'
-import Pricing from '../views/agent/pricingList'
+import PricingPage from '../views/agent/pricing'
+import SampleVideo from '../views/misc/sampleVideo'
 import Order from '../views/agent/order'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import ReactResizeDetector from 'react-resize-detector'
@@ -64,6 +67,7 @@ class App extends Component {
   }
 
   render(){
+    
     return (
       <ApolloProvider client={client}>
         <Router>
@@ -72,7 +76,11 @@ class App extends Component {
               <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
               <AppHeader />
               <Route exact path='/' component={IndexPage} />
-              <Route path='/pilots' component={PilotPage} />
+              <Route exact path='/pilots' component={PilotPage} />
+              <Route path='/pilots/signup' component={PilotSignupPage} />
+              <Route path='/pricing' component={PricingPage} />
+              <Route path='/how-it-works' component={WorkPage} />
+              <Route path='/sample-video' component={SampleVideo} />
               <Route path='/faq' component={FaqPage} />
               <AppFooter />
             </div>

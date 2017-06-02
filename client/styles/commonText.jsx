@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from './helpers'
+import { ss, c } from './helpers'
 
 const commonText = StyleSheet.create({
   synopsis: {
@@ -8,17 +8,17 @@ const commonText = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    color: colors.white,
+    color: c.white,
     textTransform: 'uppercase',
     position: 'relative',
     textAlign: 'center',
     zIndex: '10',
     textShadow: '1px 1px 2px #0a0a0a',
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '90%',
       fontSize: '1.6rem',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       width: '75%',
       fontSize: '3.5rem',
     },
@@ -28,10 +28,10 @@ const commonText = StyleSheet.create({
     textTransform: 'uppercase',
     width: '100%',
     textAlign: 'center',
-    [scrSize.small]: {
+    [ss.sm]: {
       fontSize: '1.4rem',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       fontSize: '2rem',
     }
   },

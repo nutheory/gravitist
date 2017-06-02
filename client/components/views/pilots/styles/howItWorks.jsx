@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const howItWorks = StyleSheet.create({
   instruction: {
@@ -15,8 +15,8 @@ const howItWorks = StyleSheet.create({
     width: '40px',
     height: '40px',
     borderRadius: '20px',
-    background: colors.blue,
-    color: colors.white
+    background: c.blue,
+    color: c.white
   },
 })
 

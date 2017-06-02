@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const hero = StyleSheet.create({
   container: {
@@ -15,10 +15,10 @@ const hero = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
-    [scrSize.desktop]: {
+    [ss.desktop]: {
       backgroundPosition: 'center center',
     },
-    [scrSize.smartphone]: {
+    [ss.smartphone]: {
       backgroundPosition: 'center center',
     }
   },
@@ -37,13 +37,13 @@ const hero = StyleSheet.create({
     position: 'relative',
     zIndex: '10',
     fontFamily: 'poppins-semibold',
-    color: colors.white,
+    color: c.white,
     textAlign: 'center',
     textShadow: '1px 1px 2px #0a0a0a',
-    [scrSize.desktop]: {
+    [ss.desktop]: {
       fontSize: '1.5rem',
     },
-    [scrSize.smartphone]: {
+    [ss.smartphone]: {
       fontSize: '1rem',
     }
   },

@@ -13,6 +13,7 @@ import Pricing from '../agent/pricingList'
 import Order from '../agent/order'
 import Share from './share'
 import OurClientsLoveUs from './ourClientsLoveUs'
+import Works from '../works/intro'
 
 const sLink = Scroll.Link
 const Element = Scroll.Element
@@ -27,18 +28,20 @@ class Index extends Component {
       <div>
         <div className={css(styles.centerMainContent)}>
           <div>
-            <Hero />
+            <Hero {...this.props} />
+            {/* <Works /> */}
             <AerialImagerySells />
             <BirdsEyeView />
             <Photos />
             <WhatYouGet />
             <SampleVideo />
-            <Router>
+            <Pricing header={{title: "Our Pricing"}} {...this.props} />
+            {/* <Router>
               <Element name="ePricing">
                 <Route exact path="/" component={Pricing} />
                 <Route path="/order/:plan" component={Order} />
               </Element>
-            </Router>
+            </Router> */}
             <OurClientsLoveUs />
             <Share />
           </div>

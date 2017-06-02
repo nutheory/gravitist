@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const share = StyleSheet.create({
   container: {
@@ -15,13 +15,13 @@ const share = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     margin: 'auto',
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '100%',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '100%',
     },
-    // [scrSize.large]: {
+    // [ss.lg]: {
     //   width: '70%',
     // }
   },
@@ -31,7 +31,7 @@ const share = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     margin: '0.6rem',
-    border: `2px solid ${colors.midGrey}`,
+    border: `2px solid ${c.midGrey}`,
     borderRadius: '24px',
     padding: '6px 8px',
     width: '140px',
@@ -47,7 +47,7 @@ const share = StyleSheet.create({
   text: {
     display: 'inline-block',
     fontFamily: 'poppins-semibold',
-    color: colors.midGrey,
+    color: c.midGrey,
   }
 })
 

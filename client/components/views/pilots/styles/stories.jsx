@@ -1,15 +1,15 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const stories = StyleSheet.create({
   container: {
 
   },
   storyList: {
-    [scrSize.small]: {
+    [ss.sm]: {
 
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       display: 'flex',
       flexGrow: '1',
       overflow: 'auto',
@@ -21,21 +21,21 @@ const stories = StyleSheet.create({
     },
   },
   storyFrame: {
-    background: colors.white,
+    background: c.white,
     borderRadius: '4px',
-    border: `1px solid ${colors.midGrey}`,
+    border: `1px solid ${c.midGrey}`,
     boxShadow: '5px 5px 8px #ccc',
-    [scrSize.small]: {
+    [ss.sm]: {
       padding: '2rem',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: 'calc(50% - 8rem - 2px)',
       padding: '2rem',
       margin: '2rem',
     },
   },
   innerContainer: {
-    [scrSize.small]: {
+    [ss.sm]: {
       display: 'flex',
       overflow: 'auto',
       textAlign: 'center',
@@ -43,7 +43,7 @@ const stories = StyleSheet.create({
       flexWrap: 'wrap',
       justifyContent: 'center',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -57,15 +57,15 @@ const stories = StyleSheet.create({
     width: '96px',
     height: '96px',
     borderRadius: '48px',
-    [scrSize.small]: {
+    [ss.sm]: {
       margin: 'auto',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
 
     },
   },
   nameLocation: {
-    [scrSize.medium]: {
+    [ss.md]: {
       flex: '3',
       marginLeft: '1.4rem',
     },
@@ -74,7 +74,7 @@ const stories = StyleSheet.create({
     fontFamily: 'poppins-semibold',
     fontSize: '1.4rem',
     margin: '0.4rem 0',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
   },
@@ -82,7 +82,7 @@ const stories = StyleSheet.create({
     fontFamily: 'poppins-semibold',
     fontSize: '1rem',
     margin: '0.4rem 0',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
   },
@@ -90,7 +90,7 @@ const stories = StyleSheet.create({
     fontFamily: 'poppins-light',
     fontSize: '1rem',
     lineHeight: '1.2rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
   },

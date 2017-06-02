@@ -1,34 +1,34 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const youreInCharge = StyleSheet.create({
   container: {
     width: '100%',
-    background: colors.blue,
+    background: c.blue,
     overflow: 'auto'
   },
   formatter: {
     justifyContent: 'space-between',
     display: 'flex',
-    [scrSize.small]: {
+    [ss.sm]: {
       flexDirection: 'column',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       flexDirection: 'row',
       width: '100%',
       margin: 'auto',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       maxWidth: '1100px',
     },
   },
   youreInCharge: {
     position: 'relative',
-    color: colors.white,
-    [scrSize.small]: {
+    color: c.white,
+    [ss.sm]: {
       width: '100%',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '45%',
     }
   },
@@ -38,7 +38,7 @@ const youreInCharge = StyleSheet.create({
     right: '-70px',
     width: '110px',
     height: '24px',
-    [scrSize.small]: {
+    [ss.sm]: {
       display: 'none',
     }
   },
@@ -47,12 +47,12 @@ const youreInCharge = StyleSheet.create({
     height: '24px',
   },
   signupOnline: {
-    background: colors.white,
+    background: c.white,
     overflow: 'auto',
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '100%',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '45%'
     }
   },
@@ -63,11 +63,11 @@ const youreInCharge = StyleSheet.create({
     margin: '3rem 1rem',
   },
   buttonWrapper: {
-    [scrSize.small]: {
+    [ss.sm]: {
       padding: '0 0.8rem',
       margin: '2rem auto 0.8rem auto',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       padding: '0 2rem',
       margin: '2rem auto 0.8rem auto',
     },
@@ -80,10 +80,10 @@ const youreInCharge = StyleSheet.create({
   },
   yicHeader: {
     fontSize: '1.6rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'left',
     },
   },
@@ -94,22 +94,22 @@ const youreInCharge = StyleSheet.create({
   },
   yicTitle: {
     fontSize: '1.4rem',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'left',
     },
   },
   yicText: {
     fontFamily: 'poppins-light',
-    [scrSize.small]: {
+    [ss.sm]: {
       textAlign: 'center',
       fontSize: '1rem',
       lineHeight: '1.6rem',
       marginBottom: '1.6rem',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'left',
       fontSize: '1.2rem',
       lineHeight: '2rem',
@@ -118,17 +118,17 @@ const youreInCharge = StyleSheet.create({
   },
   smallText:{
     padding: '0 1rem',
-    color: colors.grey,
+    color: c.grey,
   },
   blueText: {
     textTransform: 'uppercase',
-    color: colors.blue,
+    color: c.blue,
     textAlign: 'center',
-    [scrSize.small]: {
+    [ss.sm]: {
       fontSize: '1rem',
       lineHeight: '1.4rem'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       fontSize: '1.2rem',
       lineHeight: '1.6rem'
     },

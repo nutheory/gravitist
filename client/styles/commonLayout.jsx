@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from './helpers'
+import { ss, c } from './helpers'
 
 const commonLayout = StyleSheet.create({
   centerMainContent: {
@@ -53,13 +53,13 @@ const commonLayout = StyleSheet.create({
     justifyContent: 'center',
   },
   wrapper: {
-    [scrSize.small]: {
+    [ss.sm]: {
       margin: '2rem 1rem'
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       margin: '3rem 1rem'
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       margin: '4rem 4rem'
     }
   },

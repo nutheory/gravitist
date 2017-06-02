@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../styles/helpers'
+import { ss, c } from '../../../styles/helpers'
 
 const mobileHeader = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const mobileHeader = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    border: `1px solid ${colors.lightGrey}`
+    border: `1px solid ${c.lightGrey}`
   },
   title: {
     flex: '1',
@@ -49,7 +49,7 @@ const mobileHeader = StyleSheet.create({
   callLink: {
     marginBottom: '4px',
     display: 'inline-block',
-    color: colors.blue,
+    color: c.blue,
     textDecoration: 'none',
   }
 })

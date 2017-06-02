@@ -1,12 +1,12 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const whatYouGet = StyleSheet.create({
   featuresList: {
     display: 'flex',
-    margin: 'auto',
+    margin: '3rem auto 0 auto',
     flexWrap: 'wrap',
-    [scrSize.large]: {
+    [ss.lg]: {
       width: '96%',
     },
   },
@@ -14,12 +14,12 @@ const whatYouGet = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     margin: '1rem 2rem',
-    [scrSize.small]: {
+    [ss.sm]: {
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: 'calc(50% - 4rem)',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       width: 'calc(33.33333% - 4rem)',
     },
 

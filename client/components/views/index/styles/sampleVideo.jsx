@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const sampleVideo = StyleSheet.create({
   container: {
@@ -15,13 +15,13 @@ const sampleVideo = StyleSheet.create({
     ':hover': {
       cursor: 'pointer',
     },
-    [scrSize.small]: {
+    [ss.sm]: {
       height: '360px',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       height: '400px',
     },
-    [scrSize.large]: {
+    [ss.lg]: {
       height: '500px',
     },
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import Header from '../misc/header'
 import wyg from './styles/whatYouGet'
 import cE from '../../../styles/commonElements'
 import cL from '../../../styles/commonLayout'
@@ -34,7 +35,7 @@ const WhatYouGet = () => {
   return (
     <div className={css(cL.fourPointContainer)}>
       <div className={css(cL.wrapper)}>
-        <h1 className={css(cT.sectionHeader)}>What you get</h1>
+      <Header title="What you get" />
         <div className={css(wyg.featuresList)}>
           {features.map((ft, i) => { return feature(ft, i)})}
         </div>

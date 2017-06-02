@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import Slider from 'react-slick'
+import Header from '../misc/header'
 import st from './styles/stories'
 import cL from '../../../styles/commonLayout'
 import cT from '../../../styles/commonText'
@@ -62,7 +63,7 @@ const Stories = () => {
   return (
     <div className={css(cL.Container)}>
       <div className={css(cL.wrapper)}>
-        <h2 className={css(cT.sectionHeader)}>Pilot Stories</h2>
+        <Header title="Pilot Stories" />
         <div className={css(st.storyList)}>
           {stories()}
         </div>

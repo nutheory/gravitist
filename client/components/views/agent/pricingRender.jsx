@@ -25,7 +25,7 @@ const PlanRender = (props) => {
 
   const isSelected = (truthy) => {
     if(truthy){
-      return <Link to="/" className={css(styles.changeLink)}>Change Plan</Link>
+      return <Link to="/pricing" className={css(styles.changeLink)}>Change Plan</Link>
     }
   }
 

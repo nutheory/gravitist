@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { scrSize, colors } from '../../../../styles/helpers'
+import { ss, c } from '../../../../styles/helpers'
 
 const banner = StyleSheet.create({
   container: {
@@ -14,12 +14,12 @@ const banner = StyleSheet.create({
   },
   smallTitle: {
     margin: '0.4rem 0',
-    [scrSize.medium]: {
+    [ss.md]: {
       margin: '0'
     }
   },
   imgIconWrapper: {
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
@@ -27,13 +27,13 @@ const banner = StyleSheet.create({
       flexWrap: 'wrap',
       marginBottom: '0',
     },
-    [scrSize.medium]: {
+    [ss.md]: {
     }
   },
   banner: {
     display: 'flex',
 
-    [scrSize.small]: {
+    [ss.sm]: {
       width: '100%',
       flexWrap: 'wrap',
       marginBottom: '3rem',
@@ -41,7 +41,7 @@ const banner = StyleSheet.create({
         marginBottom: '0',
       }
     },
-    [scrSize.medium]: {
+    [ss.md]: {
       width: '40%',
     }
   },
@@ -50,7 +50,7 @@ const banner = StyleSheet.create({
     flex: '3'
   },
   textLeft: {
-    [scrSize.medium]: {
+    [ss.md]: {
       textAlign: 'left',
     }
   }

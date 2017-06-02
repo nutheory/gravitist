@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import Scroll from 'react-scroll'
+import { NavLink, withRouter } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import Drawer from 'material-ui/Drawer'
@@ -18,11 +17,15 @@ import phoneIcon from '../../assets/svg/phoneIcon.svg'
 import Hamburger from 'material-ui/svg-icons/navigation/menu'
 import Close from 'material-ui/svg-icons/navigation/close'
 
-const sLink = Scroll.Link
-const Element = Scroll.Element
-const Events = Scroll.Events
-const scroll = Scroll.animateScroll
-const scrollSpy = Scroll.scrollSpy
+const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
+
+  <FlatButton
+    onTouchTap={() => { history.push(href) }}
+    label={label}
+    className={classname}
+  />
+))
+
 
 class AppHeader extends Component {
   constructor(props){
@@ -41,21 +44,10 @@ class AppHeader extends Component {
 
   componentDidMount() {
 
-    Events.scrollEvent.register('begin', function(to, element) {
-      console.log("begin", arguments)
-    })
-
-    Events.scrollEvent.register('end', function(to, element) {
-      console.log("end", arguments)
-    })
-
-    scrollSpy.update()
-
   }
 
   componentWillUnmount() {
-   Events.scrollEvent.remove('begin');
-   Events.scrollEvent.remove('end');
+
   }
 
 
@@ -68,8 +60,8 @@ class AppHeader extends Component {
             <NavLink to="/"><img src={`/${logo}`} className={css(header.logoImg)} /></NavLink>
           </div>
           <div className={css(header.navigation)}>
-            <sLink spy={true} smooth={true} offset={50} className={css(header.navItem)} to="ePricing">PRICING</sLink>
-            <NavLink className={css(header.navItem)} to="/">HOW IT WORKS</NavLink>
+            <NavLink className={css(header.navItem)} to="/pricing">PRICING</NavLink>
+            <NavLink className={css(header.navItem)} to="/how-it-works">HOW IT WORKS</NavLink>
             <NavLink className={css(header.navItem)} to="/pilots">JOBS FOR PILOTS</NavLink>
           </div>
           <div className={css(header.callInfo)}>
@@ -80,9 +72,10 @@ class AppHeader extends Component {
             </div>
           </div>
           <div className={css(header.pilotSignup)}>
-            <FlatButton
+            <FlatButtonWithRouter
+              href="/pilots/signup"
               label="SIGNUP TO FLY"
-              className={css(header.pilotSignupButton)}
+              classname={css(header.pilotSignupButton)}
             />
           </div>
           <div className={css(header.login)}>
@@ -133,7 +126,7 @@ class AppHeader extends Component {
               <Divider />
               <div className={css(mobileHeader.mainLinks)}>
                 <MenuItem>PRICING</MenuItem>
-                <MenuItem>HOW IT WORKS</MenuItem>
+                <MenuItem><NavLink to="/how-it-works">HOW IT WORKS</NavLink></MenuItem>
                 <MenuItem onTouchTap={this.handleDrawerToggle}><NavLink to="/pilots">JOBS FOR PILOTS</NavLink></MenuItem>
                 <MenuItem>SIGNUP TO FLY</MenuItem>
               </div>

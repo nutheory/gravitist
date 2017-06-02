@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 import ScrollDown from '../misc/scrollDown'
 import heroPhoto from '../../../assets/images/homeHero.jpg'
@@ -15,6 +15,7 @@ class Hero extends Component{
   }
 
   render(){
+    console.log('this.props.', this.props)
     return(
       <div className={css(cL.heroContainer)}>
         <div className={css(cL.heroBg)} style={{background: 'url(/' + heroPhoto + ') no-repeat'}}>
@@ -27,12 +28,12 @@ class Hero extends Component{
           <div className={css(cE.ctaButtons)}>
             <NavLink
               className={css(cE.cta, cE.redButton)}
-              to=""
+              to="/pricing"
             >VIEW PRICING</NavLink>
-            <NavLink
+            <Link
               className={css(cE.cta, cE.blueButton)}
-              to=""
-            ><img src={`/${playIcon}`} className={css(hero.playIcon)} alt="play sample" /> VIEW SAMPLE VIDEO</NavLink>
+              to={{pathname: "/sample-video", state: { modal: true, returnTo: this.props.location.pathname } }}
+            ><img src={`/${playIcon}`} className={css(hero.playIcon)} alt="play sample" /> VIEW SAMPLE VIDEO</Link>
           </div>
           <ScrollDown to="/" />
         </div>
