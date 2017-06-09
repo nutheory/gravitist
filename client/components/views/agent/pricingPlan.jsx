@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite'
 import styles from './styles/pricing'
 import { c } from '../../../styles/helpers'
 import cE from '../../../styles/commonElements'
-import PricingRender from './pricingRender'
+import PricingDetails from './pricingDetails'
 
 
 class PricingPlan extends Component {
@@ -30,7 +30,7 @@ class PricingPlan extends Component {
   render(){
     return (
       <div className={css(styles.plan)}>
-        <PricingRender planSpecifics={this.props.planSpecifics} />
+        <PricingDetails planSpecifics={this.props.planSpecifics} />
         <div className={css(styles.buttonWrapper)}>
           <Link
             to={`/pricing/order/${this.props.planSpecifics.name}`}

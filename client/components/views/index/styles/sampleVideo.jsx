@@ -10,6 +10,7 @@ const sampleVideo = StyleSheet.create({
   },
   staticImage: {
     backgroundPosition: 'center center',
+    display: 'block',
     backgroundSize: 'cover',
     width: '100%',
     ':hover': {

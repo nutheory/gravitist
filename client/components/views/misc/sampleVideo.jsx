@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import { css } from 'aphrodite'
+import sv from './styles/sampleVideo'
 import Dialog from 'material-ui/Dialog'
 import RaisedButton from 'material-ui/RaisedButton'
 import sampleVideo from '../../../assets/sampleVideo.m4v'
+
+const styleModal = {
+  width: '80%',
+  maxWidth: '1080px',
+}
 
 class SampleVideo extends Component {
   constructor(){
@@ -16,14 +23,17 @@ class SampleVideo extends Component {
   componentDidMount(){
     console.log('SPROPS', this.props)
     this.setState({open: true}, () => {
-      document.getElementById('sampleVideo').play()
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'))
+        document.getElementById('sampleVideo').play()
+      }, 400)
     })
   }
 
-  handleClose(e){
-    e.stopPropagation()
-    this.props.history.goBack()
-    this.setState({open: false})
+  handleClose(){
+    this.setState({open: false}, (res) => {
+      this.props.history.goBack()
+    })
   }
 
   render(){
@@ -37,12 +47,14 @@ class SampleVideo extends Component {
 
     return (
       <Dialog
-        title="Dialog With Actions"
         actions={actions}
-        modal={true}
+        modal={false}
+        contentStyle={styleModal}
+        className={css(sv.modalInner)}
         open={this.state.open}
+        onRequestClose={this.handleClose}
       >
-        <video controls playsInline id="sampleVideo">
+        <video controls playsInline id="sampleVideo" style={{width:'100%'}}>
           <source src={sampleVideo} type="video/mp4" />
         </video>
       </Dialog>

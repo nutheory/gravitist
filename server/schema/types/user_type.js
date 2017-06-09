@@ -9,7 +9,7 @@ const {
 const Db = require('../../models/index')
 
 const UserType = new GraphQLObjectType({
-  name: 'User',
+  name: 'UserType',
   description: '...',
 
   fields: ({

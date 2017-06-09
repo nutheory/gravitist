@@ -9,11 +9,11 @@ const commonElements = StyleSheet.create({
   callToAction: {
     width: '100%',
     height: '64px',
-    color: c.white,
     borderRadius: '32px',
     textDecoration: 'none',
     textTransform: 'uppercase',
     display: 'flex',
+    color: c.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -50,6 +50,7 @@ const commonElements = StyleSheet.create({
     },
   },
   redButton: {
+    color: c.white,
     backgroundColor: c.red,
     [ss.sm]: {
       width: '260px',
@@ -61,7 +62,22 @@ const commonElements = StyleSheet.create({
     },
   },
   blueButton: {
+    color: c.white,
     backgroundColor: c.blue,
+    [ss.sm]: {
+      margin: '6px 0px',
+      width: '260px',
+      height: '44px',
+    },
+    [ss.md]: {
+      margin: '20px 20px 20px 0',
+      width: '260px',
+      height: '64px',
+    },
+  },
+  whiteButton: {
+    color: c.midnightBlue,
+    backgroundColor: c.white,
     [ss.sm]: {
       margin: '6px 0px',
       width: '260px',
@@ -90,6 +106,25 @@ const commonElements = StyleSheet.create({
       maxWidth: '1280px'
     },
   },
+  fiveBoxArea: {
+    display: 'flex',
+    margin: '4rem auto 0 auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    [ss.sm]: {
+      flexWrap: 'wrap',
+      width: '100%',
+    },
+    [ss.md]: {
+      flexWrap: 'wrap',
+      width: '90%',
+    },
+    [ss.lg]: {
+      width: '90%',
+      maxWidth: '1280px'
+    },
+  },
   fourBoxSingle: {
     padding: '2rem',
     background: '#fff',
@@ -105,6 +140,27 @@ const commonElements = StyleSheet.create({
     },
     [ss.lg]: {
       width: 'calc(25% - 6rem)',
+      margin: '0 1rem 2rem 1rem',
+    },
+  },
+  fiveBoxSingle: {
+    padding: '2rem',
+    background: '#fff',
+    boxShadow: '1px 1px 2px #5e5e5e',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    borderRadius: '4px',
+    [ss.sm]: {
+      margin: '1rem 1rem',
+      width: '100%',
+    },
+    [ss.md]: {
+      width: 'calc(40% - 3rem)',
+      margin: '0 1rem 2rem 1rem',
+    },
+    [ss.lg]: {
+      width: 'calc(33.3333% - 6rem)',
       margin: '0 1rem 2rem 1rem',
     },
   },

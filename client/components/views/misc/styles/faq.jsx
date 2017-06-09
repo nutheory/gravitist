@@ -4,7 +4,7 @@ import { ss, c } from '../../../../styles/helpers'
 const faq = StyleSheet.create({
   container: {
     width: '70%',
-    margin: 'auto',
+    margin: '80px auto',
   },
   card: {
     marginBottom: '1rem',

@@ -34,7 +34,7 @@ class Faq extends Component {
     }
     let collapsing = {
       overflowY: 'hidden',
-      maxHeight: '0px',
+      maxHeight: '48px',
       transitionProperty: 'all',
       transitionDuration: '2s',
       transitionTimingFunction: 'cubic-bezier(0, 1, 0.5, 1)'

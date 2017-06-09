@@ -1,15 +1,15 @@
 import '../../styles/globalOverrides.css'
 import 'normalize.css'
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import IndexPage from '../views/index/index'
 import PilotPage from '../views/pilots/index'
 import PilotSignupPage from '../views/pilots/signup'
 import WorkPage from '../views/works/index'
 import FaqPage from '../views/misc/faqIndex'
-import PricingPage from '../views/agent/pricing'
+import PricingPage from '../views/agent/pagePricing'
 import SampleVideo from '../views/misc/sampleVideo'
-import Order from '../views/agent/order'
+import MainOrder from '../views/agent/mainOrder'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import ReactResizeDetector from 'react-resize-detector'
 import Helpers from '../../styles/helpers'
@@ -56,6 +56,7 @@ class App extends Component {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
     }
+
   }
 
   onResize(){
@@ -67,7 +68,6 @@ class App extends Component {
   }
 
   render(){
-    
     return (
       <ApolloProvider client={client}>
         <Router>
@@ -75,13 +75,16 @@ class App extends Component {
             <div>
               <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
               <AppHeader />
-              <Route exact path='/' component={IndexPage} />
-              <Route exact path='/pilots' component={PilotPage} />
-              <Route path='/pilots/signup' component={PilotSignupPage} />
-              <Route path='/pricing' component={PricingPage} />
-              <Route path='/how-it-works' component={WorkPage} />
+              <Switch>
+                <Route path='/pilots' component={PilotPage} />
+                <Route path='/pilots/signup' component={PilotSignupPage} />
+                <Route path='/pricing' component={PricingPage} />
+                <Route path='/how-it-works' component={WorkPage} />
+                <Route path='/faq' component={FaqPage} />
+                <Route path='/pricing' component={PricingPage} />
+                <Route path='/' component={IndexPage} />
+              </Switch>
               <Route path='/sample-video' component={SampleVideo} />
-              <Route path='/faq' component={FaqPage} />
               <AppFooter />
             </div>
           </MuiThemeProvider>
@@ -89,6 +92,5 @@ class App extends Component {
       </ApolloProvider>
     )
   }
-
 }
 export default App

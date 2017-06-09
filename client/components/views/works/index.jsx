@@ -4,6 +4,9 @@ import { StyleSheet, css } from 'aphrodite'
 import Pricing from '../agent/pricingList'
 import styles from '../../../styles/commonLayout'
 import Intro from './intro'
+import HowItWorks from './howItWorks'
+import HardSell from './hardSell'
+import QuickStats from './quickStats'
 
 
 class Works extends Component {
@@ -15,10 +18,13 @@ class Works extends Component {
     return(
       <div className={css(styles.centerMainContent)}>
         <Intro />
+        <HowItWorks />
+        <HardSell />
         <Pricing header={{
           title: "Stay one step ahead of your competition and boost your business",
           text: "It’s easy—select the right package and get started!"
         }} />
+        <QuickStats />
       </div>
     )
   }

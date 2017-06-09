@@ -18,8 +18,13 @@ const commonLayout = StyleSheet.create({
   fourContainer: {
     width: '100%',
     display: 'flex',
+    flexGrow: 1,
+    overflow: 'auto',
+    flexWrap: 'wrap',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
     background: 'linear-gradient(top, rgba(192, 192, 170, 0.1), rgba(28, 239, 255, 0.1))',
   },
   heroBg: {

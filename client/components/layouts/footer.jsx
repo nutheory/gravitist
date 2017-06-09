@@ -40,7 +40,7 @@ const Footer = () => {
             </div>
             <div className={css(footer.logo)}>
               <Link to="/">
-                <img src={logo} alt="HOMEFILMING" />
+                <img src={`/${logo}`} alt="HOMEFILMING" />
               </Link>
             </div>
             <p className="copyright">Copyright © 2017 HomeFilming. All rights reserved.</p>
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
           <div className={css(footer.location)}>
             <h3 className={css(footer.sectionTitle)}>Anaheim, CA</h3>
-            <div className={css(footer.phone)}><a href="tel:800-208-8947" className={css(footer.phoneLink)}>800-208-8947</a><img src={usa} alt="US flag" className={css(footer.flag)} /></div>
+            <div className={css(footer.phone)}><a href="tel:800-208-8947" className={css(footer.phoneLink)}>800-208-8947</a><img src={`/${usa}`} alt="US flag" className={css(footer.flag)} /></div>
             <p className={css(footer.address)}>1440 S. State College Blvd.<br />Building 2B<br />Anaheim, CA, 92806<br />United States</p>
             <a
               href="https://www.google.com/maps/place/1440+S+State+College+Blvd,+Anaheim,+CA+92806/@33.812585,-117.8912877,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcd7a3592a1277:0xc23063dbd3431a50!8m2!3d33.812585!4d-117.8890937"

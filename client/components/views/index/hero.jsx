@@ -32,7 +32,7 @@ class Hero extends Component{
             >VIEW PRICING</NavLink>
             <Link
               className={css(cE.cta, cE.blueButton)}
-              to={{pathname: "/sample-video", state: { modal: true, returnTo: this.props.location.pathname } }}
+              to={{pathname: '/sample-video', state: { modal: true} }}
             ><img src={`/${playIcon}`} className={css(hero.playIcon)} alt="play sample" /> VIEW SAMPLE VIDEO</Link>
           </div>
           <ScrollDown to="/" />

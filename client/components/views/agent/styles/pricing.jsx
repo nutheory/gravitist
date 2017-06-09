@@ -54,20 +54,20 @@ const pricing = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'column'
   },
-  price: {
-    flex: '1 1 100%',
-    fontFamily: 'poppins-semibold',
-    fontSize: '2rem',
-  },
-  dollarSign: {
-    fontFamily: 'poppins-semibold',
-    fontSize: '1.2rem',
-    verticalAlign: 'top'
-  },
-  cents: {
-    fontFamily: 'poppins-semibold',
-    fontSize: '1.2rem',
-  },
+  // price: {
+  //   flex: '1 1 100%',
+  //   fontFamily: 'poppins-semibold',
+  //   fontSize: '2rem',
+  // },
+  // dollarSign: {
+  //   fontFamily: 'poppins-semibold',
+  //   fontSize: '1.2rem',
+  //   verticalAlign: 'top'
+  // },
+  // cents: {
+  //   fontFamily: 'poppins-semibold',
+  //   fontSize: '1.2rem',
+  // },
   desc: {
     flex: '1 1 100%',
     textTransform: 'uppercase',
