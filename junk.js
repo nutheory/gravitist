@@ -1,0 +1,5 @@
+"start": "nodemon index.babel.js webpack --config webpack.config.js",
+"flow": "flow",
+"start-local": "nodemon index.js --ignore client --exec babel-node",
+"start-dev": "node backend-dev.js",
+"build-dev": "webpack --config webpack.config.js --progress",

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="131px" height="67px" viewBox="0 0 131 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="1.64819834%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#1C81E3" offset="0%"></stop>
+            <stop stop-color="#1C81E3" stop-opacity="0" offset="98.7902583%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="1.64819834%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#E11825" offset="0%"></stop>
+            <stop stop-color="#E11825" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(1.000000, 1.000000)">
+            <polygon id="Path-2" fill="url(#linearGradient-1)" opacity="0.400000006" points="0 65 33 6.08056641 65 23.894043 97 17.3269043 130 0 130 65"></polygon>
+            <polyline id="Path-2" stroke="#1C81E3" stroke-linecap="round" stroke-linejoin="round" points="0 65 0 65 33 6.08056641 65 23.894043 97 17.3269043 130 0"></polyline>
+            <g transform="translate(0.000000, 49.000000)" id="Path-2">
+                <polygon fill="url(#linearGradient-2)" opacity="0.400000006" points="0 16 33.0878906 4.58984375 65 7.87890625 97.0917969 0.723632812 130 6 130 16"></polygon>
+                <polyline stroke="#E63A46" stroke-linecap="round" stroke-linejoin="round" points="0 16 33.0878906 4.58984375 65 7.87890625 97.0917969 0.723632812 130 6"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

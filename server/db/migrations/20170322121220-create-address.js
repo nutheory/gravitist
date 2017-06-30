@@ -9,12 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      streetOne: {
+      address1: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: false,
       },
-      streetTwo: Sequelize.STRING,
+      address2: Sequelize.STRING,
       city: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -39,10 +39,13 @@ module.exports = {
         }
       },
       orderId: Sequelize.INTEGER,
-      latlng: {
+      lat: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue:[],
-        type: Sequelize.ARRAY(Sequelize.FLOAT)
+      },
+      lng: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

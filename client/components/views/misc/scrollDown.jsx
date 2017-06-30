@@ -5,7 +5,6 @@ import scrollDownIcon from '../../../assets/svg/scrollDown.svg'
 import cE from '../../../styles/commonElements'
 
 const scrollDown = (props) => {
-  console.log('props', props)
   return (
     <div className={css(cE.scrollDown)}>
       <div className={css(cE.scrollDownInner)}>

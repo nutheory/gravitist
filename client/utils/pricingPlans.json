@@ -1,7 +1,8 @@
 [
   {
-    "order": 1,
+    "planId": 1,
     "price": "199",
+    "actualPrice": "19900",
     "name": "basic",
     "title": "Basic",
     "desc": "PHOTO PACKAGE",
@@ -12,8 +13,9 @@
     ]
   },
   {
-    "order": 2,
+    "planId": 2,
     "price": "249",
+    "actualPrice": "24900",
     "name": "standard",
     "title": "Standard",
     "desc": "PHOTO AND VIDEO CLIPS PACKAGE",
@@ -25,8 +27,9 @@
     ]
   },
   {
-    "order": 3,
+    "planId": 3,
     "price": "399",
+    "actualPrice": "39900",
     "name": "premium",
     "title": "Premuim",
     "desc": "PHOTO AND VIDEO CLIPS WITH FULLY EDITED VIDEO PACKAGE",

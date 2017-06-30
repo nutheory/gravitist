@@ -8,7 +8,7 @@ import PricingPlan from './pricingPlan'
 import Plans from '../../../utils/pricingPlans.json'
 import Header from '../misc/header'
 
-const sortedPlans = _.sortBy(Plans, ['order'])
+const sortedPlans = _.sortBy(Plans, ['planId'])
 const plans = []
 _.each(sortedPlans, (plan, i) => {
   plans.push(plan)
@@ -30,7 +30,6 @@ class PricingList extends Component {
   }
 
   render(){
-    console.log('this.props', this.props)
     return(
       <div id="pricingList" className={css(cL.wrapper, pricing.container)}>
         <Header {...this.props.header} />

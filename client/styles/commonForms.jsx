@@ -2,6 +2,10 @@ import { StyleSheet, css } from 'aphrodite'
 import { ss, c } from './helpers'
 
 const commonForms = StyleSheet.create({
+  mainContainer: {
+    maxWidth: '768px',
+    padding: '2rem',
+  },
   container: {
     paddingBottom: '2rem'
   },
@@ -36,12 +40,21 @@ const commonForms = StyleSheet.create({
       },
     }
   },
-
   element: {
     fontFamily: 'poppins-regular',
     fontSize: '1rem',
     width: '100%'
-  }
+  },
+  section: {
+    paddingBottom: '3rem',
+  },
+  sectionHeader: {
+    fontFamily: 'poppins-light',
+    fontSize: '2rem',
+    paddingBottom: '1rem',
+    borderBottom: `1px solid ${c.lightGrey}`
+  },
+
 })
 
 export default commonForms

@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     accountId: DataTypes.INTEGER,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    type: DataTypes.STRING,
+    type: {
+      type: DataTypes.STRING,
+      validate: {
+        isIn: [['agent', 'pilot', 'admin']]
+      }
+    },
     avatarId: DataTypes.INTEGER,
     bio: DataTypes.TEXT,
     workRadius: DataTypes.INTEGER,

@@ -104,6 +104,7 @@ const header = StyleSheet.create({
     textTransform: 'uppercase',
     color: c.white,
     display: 'flex',
+    minWidth: '0',
     height: '70px',
   }
 })

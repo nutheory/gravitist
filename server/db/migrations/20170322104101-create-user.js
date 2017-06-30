@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       accountId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       avatarId: {
         type: Sequelize.INTEGER
@@ -54,7 +54,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isIn: [['user', 'pilot', 'admin']]
+          isIn: [['agent', 'pilot', 'admin']]
         }
       },
       createdAt: {

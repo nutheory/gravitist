@@ -18,6 +18,11 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".es6"]
   },
+  node: {
+      net: 'empty',
+      tls: 'empty',
+      dns: 'empty'
+  },
   module: {
     rules: [
       {
@@ -34,13 +39,19 @@ module.exports = {
           {
             loader: 'style-loader'
           }, {
-            loader: 'css-loader',
-            query: {
-
-            }
-          }
+            loader: 'css-loader'
+          },
         ])
-      }, {
+      },
+      {
+        test: /\.sass$/,
+        // include: [
+        //         path.resolve(__dirname, 'node_modules'),
+        //         path.resolve(__dirname, 'node_modules/bulma'),
+        // ],
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
         test: /.*\.(gif|png|jpe?g|svg|mp4|m4v|)$/i,
         use: "file-loader?name=[hash].[ext]&publicPath=assets/&outputPath=assets/"
       }, {

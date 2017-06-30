@@ -4,6 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     pilotId: DataTypes.INTEGER,
     addressId: DataTypes.INTEGER,
     receiptId: DataTypes.STRING,
+    plan: {
+      type: DataTypes.STRING,
+      validate: {
+        isIn: [['basic', 'standard', 'premuim']]
+      }
+    },
     status: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     timeOfDay: DataTypes.STRING

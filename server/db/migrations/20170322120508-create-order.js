@@ -11,6 +11,7 @@ module.exports = {
       },
       pilotId: Sequelize.INTEGER,
       receiptId: Sequelize.STRING,
+      addressId: Sequelize.INTEGER,
       status: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -23,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isIn: [['basic', 'premuim', 'gold']]
+          isIn: [['basic', 'standard', 'premuim']]
         }
       },
       userId: {

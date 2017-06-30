@@ -1,3 +1,11 @@
 {
-    "presets":["es2015", "stage-3", "react"]
+    "presets":["es2015", "stage-3", "react", "flow"],
+    "plugins": [
+      "transform-async-to-generator",
+      "import-glob",
+      ["transform-runtime", {
+        "polyfill": false,
+        "regenerator": true
+      }]
+    ]
 }

@@ -19,7 +19,6 @@ const OurClientsLoveUs = () => {
   ]
 
   const mainLayout = (test, i) => {
-    console.log(i, test.name)
     return (
       <div key={`inner_${i}`}>
         <div className={css(love.head)}>

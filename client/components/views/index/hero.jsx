@@ -15,7 +15,6 @@ class Hero extends Component{
   }
 
   render(){
-    console.log('this.props.', this.props)
     return(
       <div className={css(cL.heroContainer)}>
         <div className={css(cL.heroBg)} style={{background: 'url(/' + heroPhoto + ') no-repeat'}}>

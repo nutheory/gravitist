@@ -3,10 +3,8 @@ module.exports = {
     'secret': 'fear1ess$peci@lis!woundedKnigh!287'
   },
   'stripe': {
-    'test': {
-      'secret_key': 'sk_test_HM15yF18LUMKio0i22JAGbs0',
-      'publishable_key': 'pk_test_DJiUvm4lb38U5aND8yARtaNc'
-    }
+    'secret_key': 'sk_test_5gYzjUmDaDh7pmO9ve5PU442',
+    'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
   },
   'google': {
     'key': 'AIzaSyCCyCNurvw6qHEi_KQme7LdQ-prmw_4Rgk'

@@ -1,13 +1,14 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define('address', {
-    streetOne: DataTypes.STRING,
-    streetTwo: DataTypes.STRING,
+    address1: DataTypes.STRING,
+    address2: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     zip: DataTypes.STRING,
     type: DataTypes.STRING,
-    latlng: DataTypes.ARRAY(DataTypes.FLOAT)
+    lat:  DataTypes.STRING,
+    lng:  DataTypes.STRING
   }, {
     classMethods: {
       associate(models) {
