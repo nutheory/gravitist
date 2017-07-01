@@ -79,7 +79,6 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-3": "^6.24.1",
-    "babel-register": "^6.24.1",
     "babel-runtime": "^6.23.0",
     "chai": "^3.5.0",
     "css-loader": "^0.27.1",
