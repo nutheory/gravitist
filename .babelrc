@@ -1,7 +1,6 @@
 {
     "presets":["es2015", "stage-3", "react", "flow"],
     "plugins": [
-      "import-glob",
       ["transform-runtime", {
         "polyfill": false,
         "regenerator": true
