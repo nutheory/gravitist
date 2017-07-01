@@ -9,7 +9,7 @@
     "npm": "4.1.2"
   },
   "scripts": {
-    "start": "nodemon \"./index.babel.js\"",
+    "start": "node \"./index.babel.js\"",
     "start-dev": "npm-run-all --parallel watch:server watch:build",
     "watch:build": "webpack --config webpack.config.js --watch",
     "watch:server": "nodemon \"./index.babel.js\" --watch \"./server\"",
