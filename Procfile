@@ -1,1 +1,1 @@
-web: node index.babel.js 
+web: node index.js 
