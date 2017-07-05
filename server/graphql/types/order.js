@@ -1,5 +1,5 @@
-const Address from './address'
-const User from './user'
+const Address = require('./address')
+const User = require('./user')
 
 const Order = `
 

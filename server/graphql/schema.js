@@ -1,8 +1,8 @@
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
-import resolvers from './resolvers'
-import Order from './types/order'
-import Address from './types/address'
-import User from './types/user'
+const { makeExecutableSchema, addMockFunctionsToSchema } = require('graphql-tools')
+const resolvers = require('./resolvers')
+const Order = require('./types/order')
+const Address = require('./types/address')
+const User = require('./types/user')
 
 const Query = `
   type Query {

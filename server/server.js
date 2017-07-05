@@ -1,5 +1,5 @@
 const express = require('express')
-const graphQLHTTP = require('express-graphql'
+const graphQLHTTP = require('express-graphql')
 const jwt = require('express-jwt')
 const bodyParser = require('body-parser')
 const path = require('path')

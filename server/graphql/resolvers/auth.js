@@ -1,11 +1,9 @@
-import Auth from '../../services/auth'
-import {getLoggedInUser} from './users'
+const Auth = require('../../services/auth')
+const getLoggedInUser = require('./users')
 const auth = new Auth
 
-export const authenticated =
-  (fn: GraphQLFieldResolver) =>
-  (parent, args, context, info) => {
-    console.log(fn)
+const authenticated = (parent, args, context, info) => {
+    // console.log(fn)
 
     if (context.user) {
       console.log('CCCCCCCONTEXT')
@@ -14,7 +12,7 @@ export const authenticated =
     throw new Error('User is not authenticated!!!')
   }
 
-export const login = (root, args, req) => {
+const login = (root, args, req) => {
   const loggedIn = auth.login({
     email: args.input.email,
     password: args.input.password,
@@ -23,7 +21,7 @@ export const login = (root, args, req) => {
   return loggedIn
 }
 
-export const logout = (root, args, req) => {
+const logout = (root, args, req) => {
   const loggedIn = auth.login({
     email: args.input.email,
     password: args.input.password,
@@ -35,4 +33,4 @@ export const logout = (root, args, req) => {
 
 // }
 
-// export default AuthResolver
+module.exports = {authenticated, login, logout}

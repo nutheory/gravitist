@@ -1,12 +1,13 @@
-import {compose} from 'recompose'
-import Order from './resolvers/orders'
-import Address from './resolvers/addresses'
-import {getLoggedInUser} from './resolvers/users'
-import {authenticated, login} from './resolvers/auth'
+const {compose} = require('recompose')
+const Order = require('./resolvers/orders')
+const Address = require('./resolvers/addresses')
+const getLoggedInUser = require('./resolvers/users')
+const authenticated = require('./resolvers/auth')
+const login = require('./resolvers/auth')
 
 const resolvers = {
   Query: {
-    user: compose(authenticated)(getLoggedInUser),
+    user: compose([authenticated, getLoggedInUser]),
       // console.log('context',context.user)
       // return context.user
     // },
@@ -18,4 +19,4 @@ const resolvers = {
     login: (login)
   }
 }
-export default resolvers
+module.exports = resolvers
