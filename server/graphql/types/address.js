@@ -32,4 +32,4 @@ const Address = `
     zip: String
   }
 `
-export default Address
+module.exports = Address

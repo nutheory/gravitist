@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import config from '../config'
-import Db from '../models'
+const _ = require('lodash')
+const config = require('../config')
+const Db = require('../models')
 const AddressDb = Db.sequelize.models.address
 
 class Address {
@@ -22,5 +22,4 @@ class Address {
   }
 }
 
-export default Address
-// module.exports = Address
+module.exports = Address

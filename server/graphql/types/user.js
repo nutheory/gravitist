@@ -1,5 +1,4 @@
 const User = `
-
   type User {
     id: ID
     name: String
@@ -42,4 +41,4 @@ const User = `
   }
 `
 
-export default User
+module.exports = User

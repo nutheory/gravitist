@@ -1,9 +1,8 @@
-import express from 'express'
-import graphQLHTTP from 'express-graphql'
-import jwt from 'express-jwt'
-import bodyParser from 'body-parser'
-import path from 'path'
-// const passport = require('passport')
+const express = require('express')
+const graphQLHTTP = require('express-graphql'
+const jwt = require('express-jwt')
+const bodyParser = require('body-parser')
+const path = require('path')
 const corsPrefetch = require('cors-prefetch-middleware')
 const imagesUpload = require('images-upload-middleware')
 const morgan = require('morgan')

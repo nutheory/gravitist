@@ -3,6 +3,7 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 const Db = require('../models')
+const uuid = require('uuid') 
 // const ExtractJwt = passportJWT.ExtractJwt
 // const JwtStrategy = passportJWT.Strategy
 const UserDB = Db.sequelize.models.user
@@ -45,7 +46,8 @@ class Auth {
           if (isMatch && !err){
             let token = jwt.sign(user_token_info, config.jwt.secret, {
               expiresIn: "20 days",
-              subject: JSON.stringify(user_token_info)
+               jwtid:
+              // subject: JSON.stringify(user_token_info)
             })
             const returnUser = {
               id: user.dataValues.id,

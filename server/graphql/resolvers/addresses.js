@@ -2,4 +2,4 @@ class AddressResolver {
 
 }
 
-export default AddressResolver
+module.exports = AddressResolver

@@ -12,7 +12,7 @@ class AgentHeader extends Component {
         <div className="container">
           <div className="nav-left">
             <a className="nav-item">
-              <img src={logo} style={{ width: '180px', height: '40px'}} alt="Homefilming logo" />
+              <img src={`/${logo}`} style={{ width: '180px', height: '40px'}} alt="Homefilming logo" />
             </a>
             <a className="nav-item is-tab is-hidden-mobile is-active">Dashboard</a>
             <a className="nav-item is-tab is-hidden-mobile">New Order</a>

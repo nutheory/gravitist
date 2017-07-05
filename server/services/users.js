@@ -1,8 +1,7 @@
-import Auth from './auth'
-import _ from 'lodash'
-import config from '../config'
-import Db from '../models'
-
+const Auth = require('./auth')
+const _ = require('lodash')
+const config = require('../config')
+const Db = require('../models')
 const UserDB = Db.sequelize.models.user
 const auth = new Auth
 const stripe = require("stripe")(config.stripe.secret_key)
@@ -63,4 +62,4 @@ class User {
 
 }
 
-export default User
+module.exports = User

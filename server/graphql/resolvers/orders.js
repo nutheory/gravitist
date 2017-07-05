@@ -1,6 +1,6 @@
-import Order from '../../services/orders'
-import Address from '../../services/address'
-import User from '../../services/users'
+const Order = require('../../services/orders')
+const Address = require('../../services/address')
+const User = require('../../services/users')
 
 class OrderResolver{
 
@@ -41,4 +41,4 @@ class OrderResolver{
   }
 }
 
-export default OrderResolver
+module.exports = OrderResolver

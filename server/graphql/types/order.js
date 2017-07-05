@@ -1,5 +1,5 @@
-import Address from './address'
-import User from './user'
+const Address from './address'
+const User from './user'
 
 const Order = `
 
@@ -32,4 +32,4 @@ const Order = `
   }
 `
 
-export default [Order, Address, User]
+module.exports = [Order, Address, User]

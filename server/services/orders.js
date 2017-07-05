@@ -1,7 +1,7 @@
-import _ from 'lodash'
-import config from '../config'
-import Address from './address'
-import Db from '../models'
+const _ = require('lodash')
+const config = require('../config')
+const Address = require('./address')
+const Db = require('../models')
 const OrderDb = Db.sequelize.models.order
 const stripe = require("stripe")(config.stripe.secret_key)
 
@@ -40,4 +40,4 @@ class Order {
   }
 }
 
-export default Order
+module.exports = Order
