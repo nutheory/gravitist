@@ -44,7 +44,7 @@ class Login extends Component {
         type: this.state.selectedType
       }
     }})
-    console.log('resolved', jwt.decode(resolved.data.login.token))
+    console.log('resolved', resolved)
     if(resolved.data.login.token){localStorage.setItem('hf_auth_header_token', resolved.data.login.token)}
   }
 

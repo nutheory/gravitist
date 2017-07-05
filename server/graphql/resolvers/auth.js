@@ -3,7 +3,7 @@ const getLoggedInUser = require('./users')
 const auth = new Auth
 
 const authenticated = (parent, args, context, info) => {
-    // console.log(fn)
+    console.log('context', context)
 
     if (context.user) {
       console.log('CCCCCCCONTEXT')
@@ -13,11 +13,13 @@ const authenticated = (parent, args, context, info) => {
   }
 
 const login = (root, args, req) => {
+  console.log('found', args)
   const loggedIn = auth.login({
     email: args.input.email,
     password: args.input.password,
     req
   })
+  console.log('loggedIn', loggedIn)
   return loggedIn
 }
 

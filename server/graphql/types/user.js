@@ -21,10 +21,10 @@ const User = `
   }
 
   type LoginPayload {
-    name: String
-    email: String
-    type: String
-    token: String
+    id: ID!
+    name: String!
+    email: String!
+    type: String!
   }
 
   input CreateOrderUserInput {
@@ -37,7 +37,6 @@ const User = `
   type CreateOrderUserPayload {
     name: String
     email: String!
-    token: String!
   }
 `
 
