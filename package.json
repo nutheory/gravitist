@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node \"./index.js\"",
-    "postinstall": "npm run build-dev",
+    "preinstall": "npm rebuild bcrypt --build-from-source",
     "start-dev": "npm-run-all --parallel watch:server watch:build",
     "watch:build": "webpack --config webpack.config.js --watch",
     "watch:server": "nodemon \"./index.js\" --watch \"./server\"",
