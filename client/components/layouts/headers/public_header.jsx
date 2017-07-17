@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
-import queryCurrentUser from '../../../queries/currentUser'
 import { graphql } from 'react-apollo'
 import Drawer from 'material-ui/Drawer'
 import Divider from 'material-ui/Divider'
@@ -15,13 +14,12 @@ import Close from 'material-ui/svg-icons/navigation/close'
 import { StyleSheet, css } from 'aphrodite'
 import header from '../styles/header'
 import { colors } from '../../../styles/helpers'
-import mobileHeader from '../styles/mobileHeader'
+import mobileHeader from '../styles/mobile_header'
 import logo from '../../../assets/svg/logo.svg'
 import phoneIcon from '../../../assets/svg/phoneIcon.svg'
 
 
 const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
-
   <FlatButton
     onTouchTap={() => { history.push(href) }}
     label={label}
@@ -105,7 +103,7 @@ class PublicHeader extends Component {
           </div>
           <div className={css(header.pilotSignup)}>
             <FlatButtonWithRouter
-              href="/pilots/signup"
+              href="/pilots/register"
               label="SIGNUP TO FLY"
               classname={css(header.pilotSignupButton)}
             />
@@ -160,7 +158,7 @@ class PublicHeader extends Component {
               <div className={css(mobileHeader.mainLinks)}>
                 <MenuItem>PRICING</MenuItem>
                 <MenuItem><NavLink to="/how-it-works">HOW IT WORKS</NavLink></MenuItem>
-                <MenuItem onTouchTap={this.handleDrawerToggle}><NavLink to="/pilots">JOBS FOR PILOTS</NavLink></MenuItem>
+                <MenuItem onTouchTap={this.handleDrawerToggle}><NavLink to="/pilots/register">JOBS FOR PILOTS</NavLink></MenuItem>
                 <MenuItem>SIGNUP TO FLY</MenuItem>
               </div>
               <Divider />
@@ -185,4 +183,4 @@ class PublicHeader extends Component {
   }
 }
 
-export default graphql(queryCurrentUser)(PublicHeader)
+export default PublicHeader

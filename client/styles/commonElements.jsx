@@ -139,7 +139,7 @@ const commonElements = StyleSheet.create({
       margin: '0 1rem 2rem 1rem',
     },
     [ss.lg]: {
-      width: 'calc(25% - 6rem)',
+      width: 'calc(25% - 2rem)',
       margin: '0 1rem 2rem 1rem',
     },
   },

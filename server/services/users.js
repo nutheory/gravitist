@@ -3,7 +3,6 @@ const _ = require('lodash')
 const config = require('../config')
 const Db = require('../models')
 const UserDB = Db.sequelize.models.user
-const auth = new Auth
 const stripe = require("stripe")(config.stripe.secret_key)
 
 class User {
@@ -23,7 +22,7 @@ class User {
 
     const lowerEmail = email.toLowerCase()
     const user = await UserDB.create({ email: lowerEmail, password, name, type, accountId: customerId.id })
-    const logInUser = await auth.login({email: lowerEmail, password, req})
+    const logInUser = await Auth.login({email: lowerEmail, password, req})
     return new Promise((resolve, reject) => {
       const returnUser = {id: logInUser.id, name: logInUser.name, email: logInUser.email, accountId: customerId.id }
       resolve(returnUser)

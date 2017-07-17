@@ -3,7 +3,6 @@ import { graphql } from 'react-apollo'
 import TextField from 'material-ui/TextField'
 import {Tabs, Tab} from 'material-ui/Tabs'
 import Formsy from 'formsy-react'
-import jwt from 'jsonwebtoken'
 import { FormsyText } from 'formsy-material-ui/lib'
 import RaisedButton from 'material-ui/RaisedButton'
 import LoginUser from '../../../mutations/login'
@@ -34,9 +33,6 @@ class Login extends Component {
   }
 
   async runMutation(){
-    // console.log('email', this.state.email)
-    // console.log('password', this.state.password)
-    // console.log('selectedType', this.state.selectedType)
     const resolved = await this.props.loginUser({ variables: {
       input: {
         email: this.state.email,
@@ -45,7 +41,7 @@ class Login extends Component {
       }
     }})
     console.log('resolved', resolved)
-    if(resolved.data.login.token){localStorage.setItem('hf_auth_header_token', resolved.data.login.token)}
+    if(resolved.data.login){localStorage.setItem('hf_auth_header_token', resolved.data.login.token)}
   }
 
   handleSubmit(e){

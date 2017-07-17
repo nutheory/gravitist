@@ -6,6 +6,7 @@ const pricing = StyleSheet.create({
     display: 'flex',
     margin: '1rem',
     flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
 
   },
@@ -13,6 +14,7 @@ const pricing = StyleSheet.create({
     margin: '1rem auto 0 auto',
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   plan: {
     display: 'flex',
@@ -26,19 +28,19 @@ const pricing = StyleSheet.create({
     margin: '1rem',
     padding: '1rem 2rem 2rem 2rem',
     [ss.sm]: {
-      width: 'calc(100% - 6rem - 2px)',
+      width: 'calc(100% - 4rem - 2px)',
     },
     [ss.md]: {
-      width: 'calc(50% - 6rem - 2px)',
+      width: 'calc(50% - 4rem - 2px)',
       ':last-child': {
         width: 'calc(100% - 4rem - 2px)'
       }
     },
     [ss.lg]: {
-      maxWidth: '340px',
-      width: 'calc(33.33333% - 6rem - 2px)',
+      maxWidth: '440px',
+      width: 'calc(33.33333% - 4rem - 2px)',
       ':last-child': {
-        width: 'calc(33.33333% - 6rem - 2px)'
+        width: 'calc(33.33333% - 4rem - 2px)'
       }
     },
   },

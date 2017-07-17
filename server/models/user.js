@@ -41,22 +41,15 @@ module.exports = (sequelize, DataTypes) => {
         User.hasOne(models.address, {
           foreignKey: 'userId'
         })
-        User.hasOne(models.asset, {
-          foreignKey: 'avatarId'
+        User.hasMany(models.asset, {
+          foreignKey: 'assetableId',
+          constraints: false,
+          scope: {
+            assetable: 'user'
+          }
         })
         User.belongsTo(models.account)
       },
-
-      findByToken(token, cb) {
-        process.nextTick(() => {
-          this.findOne({ where: { token } }).then((user) => {
-            if (user){
-              return cb(null, user)
-            }
-          })
-          return cb(null, null)
-        })
-      }
     },
 
     instanceMethods: {

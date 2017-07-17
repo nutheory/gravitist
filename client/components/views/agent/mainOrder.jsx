@@ -79,10 +79,10 @@ class MainOrder extends Component {
 
   checkUserVerified(){
     if (this.state.name && this.state.email && this.state.password){
-        this.setState({ userVerified: true})
-      } else {
-        this.setState({ userVerified: false})
-      }
+      this.setState({ userVerified: true})
+    } else {
+      this.setState({ userVerified: false})
+    }
   }
 
   paymentInfo(payment){

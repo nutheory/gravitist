@@ -9,21 +9,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      orderId: Sequelize.INTEGER,
-      acceptedAt: Sequelize.DATE,
-      assigned: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+      licenseId: {
         allowNull: false,
+        type: Sequelize.INTEGER
       },
-      createdAt: {
+      insuranceId: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER
       },
-      updatedAt: {
+      bankAccount: {
+        type: Sequelize.STRING
+      },
+      bankRouting: {
+        type: Sequelize.STRING
+      },
+      zipcode: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.STRING
+      },
+      workRadius: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      payRate: Sequelize.DECIMAL,
     })
   },
 

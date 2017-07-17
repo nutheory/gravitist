@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      accountId: {
+      customerId: {
         type: Sequelize.STRING
       },
       avatarId: {
@@ -34,27 +34,17 @@ module.exports = {
           is: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
         }
       },
-      superAdmin: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
-      },
-      isVerified: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
-      },
       bio: Sequelize.TEXT,
-      companyName: Sequelize.STRING,
-      workRadius: Sequelize.INTEGER,
-      rating: Sequelize.DECIMAL,
-      ratingCount: Sequelize.INTEGER,
-      payRate: Sequelize.DECIMAL,
-      type: {
+      companyId: Sequelize.INTEGER,
+      profileId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      }
+      profileType: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isIn: [['agent', 'pilot', 'admin']]
+          isIn: [['agent', 'pilot', 'editor', 'admin']]
         }
       },
       createdAt: {

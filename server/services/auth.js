@@ -11,18 +11,25 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user)
+  return UserDB.findById(id).then((user) => {
+    if (user) {
+      console.log('user.get()', user.get())
+      done(null, user.get())
+    } else {
+      done(user.errors, null)
+    }
   })
 })
 
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-  User.findOne({ email: email.toLowerCase() }, (err, user) => {
-    if (err) { return done(err) }
-    if (!user) { return done(null, false, 'Invalid Credentials'); }
+  console.log('start')
+  UserDB.findOne({ where: {email: email.toLowerCase()} }).then(user => {
+    console.log('user', user)
+    if (!user) { return done(null, false, 'Invalid Credentials') }
     user.comparePassword(password, (err, isMatch) => {
       if (err) { return done(err) }
       if (isMatch) {
+        console.log('match', isMatch)
         return done(null, user)
       }
       return done(null, false, 'Invalid credentials.')
@@ -31,6 +38,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 }))
 
 function login({ email, password, req }) {
+  console.log('email', email)
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
       if (!user) { reject('Invalid credentials.') }
@@ -40,5 +48,11 @@ function login({ email, password, req }) {
   })
 }
 
+function logout({ req }) {
+  const { user } = req
+  req.logout()
+  return user
+}
 
-module.exports = { login }
+
+module.exports = { login, logout }

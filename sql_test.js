@@ -34,20 +34,28 @@
 //     })
 //   })
 
-
-const Db = require('./models'
-const Faker = require('faker'
-const _ = require('lodash'
-
-console.log(Faker.internet.email())
-let list = []
-Db.sequelize.models.user.findAll().then(function(userlist){
-  _.each(userlist, (user) => {
-    list.push(user.name)
-  })
-
-  console.log("err", list)
-  // console.log("res", res)
-})
+// models.sequelize.sync().then(function() {
+//
+//     console.log('Nice! Database looks fine')
+//
+// }).catch(function(err) {
+//
+//     console.log(err, "Something went wrong with the Database Update!")
+//
+// })
+// const Db = require('./models')
+// const Faker = require('faker')
+// const _ = require('lodash')
+//
+// console.log(Faker.internet.email())
+// let list = []
+// Db.sequelize.models.user.findAll().then(function(userlist){
+//   _.each(userlist, (user) => {
+//     list.push(user.name)
+//   })
+//
+//   console.log("err", list)
+//   // console.log("res", res)
+// })
 
 // console.log("DB", Db.sequelize.models.user.findAll())

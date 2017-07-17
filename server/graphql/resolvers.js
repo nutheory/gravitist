@@ -1,13 +1,14 @@
 const {compose} = require('recompose')
 const Order = require('./resolvers/orders')
+const { fileResolver } = require('./resolvers/assets')
 const Address = require('./resolvers/addresses')
 const getLoggedInUser = require('./resolvers/users')
-const authenticated = require('./resolvers/auth')
-const {login} = require('./resolvers/auth')
+const {authenticated, login, logout} = require('./resolvers/auth')
 
 const resolvers = {
   Query: {
-    user: compose([authenticated, getLoggedInUser]),
+    current_user: ( authenticated ),
+
       // console.log('context',context.user)
       // return context.user
     // },
@@ -16,7 +17,9 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: (login)
+    login: ( login ),
+    logout: ( logout ),
+    fileUpload: ( fileResolver )
   }
 }
 module.exports = resolvers

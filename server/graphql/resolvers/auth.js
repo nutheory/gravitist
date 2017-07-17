@@ -1,38 +1,22 @@
 const Auth = require('../../services/auth')
 const getLoggedInUser = require('./users')
-const auth = new Auth
 
-const authenticated = (parent, args, context, info) => {
-    console.log('context', context)
-
-    if (context.user) {
-      console.log('CCCCCCCONTEXT')
-      return fn(parent, args, context, info)
-    }
-    throw new Error('User is not authenticated!!!')
+const authenticated = (parent, args, req, info) => {
+  if (req.user) {
+    return req.user
   }
-
-const login = (root, args, req) => {
-  console.log('found', args)
-  const loggedIn = auth.login({
-    email: args.input.email,
-    password: args.input.password,
-    req
-  })
-  console.log('loggedIn', loggedIn)
-  return loggedIn
+  return false
 }
 
-const logout = (root, args, req) => {
-  const loggedIn = auth.login({
-    email: args.input.email,
-    password: args.input.password,
-    req
-  })
-  return loggedIn
+const login = async (root, args, req) => {
+  const loggedIn = await Auth.login({
+    email: args.input.email, password: args.input.password, req })
+  return loggedIn.dataValues
 }
 
-
-// }
+const logout = async (root, args, req) => {
+  const loggedOut = await Auth.logout({req})
+  return {email: loggedOut.email}
+}
 
 module.exports = {authenticated, login, logout}

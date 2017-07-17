@@ -16,26 +16,28 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      filename: {
+      publicId: {
+        type: Sequelize.STRING,
+        allowNull: false
+      }
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      filesize: {
+      size: {
         type: Sequelize.STRING
       },
       type: {
         type: Sequelize.STRING
       },
-      status: {
-        type: Sequelize.STRING,
-        validate: {
-          isIn: [[]]
-        }
-      },
-      url: {
+      path: {
         type: Sequelize.STRING,
         allowNull: false
       },
+      meta: {
+        type: Sequelize.STRING,
+        allowNull: false
+      }
       notes: Sequelize.TEXT,
       createdAt: {
         allowNull: false,

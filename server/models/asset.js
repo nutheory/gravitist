@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
           as: 'logo'
         })
         Asset.belongsTo(models.user, {
-          foreignKey: 'avatarId',
+          foreignKey: 'assetableId',
           constraints: false,
-          as: 'avatar'
+          as: 'asset'
         })
         Asset.belongsTo(models.order, {
           foreignKey: 'assetableId',

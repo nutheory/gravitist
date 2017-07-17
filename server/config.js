@@ -1,5 +1,5 @@
 module.exports = {
-  'jwt': {
+  'sequelize': {
     'secret': 'fear1ess$peci@lis!woundedKnigh!287'
   },
   'stripe': {

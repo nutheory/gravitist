@@ -7,6 +7,7 @@ const quickStats = StyleSheet.create({
     flexWrap: 'wrap',
     maxWidth: '1080px',
     margin: 'auto',
+    justifyContent: 'center',
   },
   chart: {
     padding: '2rem',

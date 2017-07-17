@@ -17,14 +17,22 @@ const User = `
   input LoginInput {
     email: String!
     password: String!
-    type: String!
+    type: String
   }
 
   type LoginPayload {
-    id: ID!
-    name: String!
-    email: String!
-    type: String!
+    id: ID
+    name: String
+    email: String
+    type: String
+  }
+
+  input LogoutInput {
+    email: String
+  }
+
+  type LogoutPayload {
+    email: String
   }
 
   input CreateOrderUserInput {

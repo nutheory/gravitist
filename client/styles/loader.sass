@@ -1,0 +1,44 @@
+$ncirc: 3
+$color: #FF2366
+
+.load-spinner-main
+  width: 100px
+  height: 102px
+  border-radius: 100%
+  position: absolute
+  top: 45%
+  left: calc(50% - 50px)
+  .logo-spinner
+    width: 32px
+    height: 32px
+    top: 10px
+    z-index: 10
+    position: absolute
+  .circle-spinner
+    width: 100%
+    height: 100%
+    position: absolute
+    .inner-spinner
+      width: 114%
+      height: 100%
+      border-radius: 100%
+      border: 8px solid transparentize($color, 0.6)
+      border-right: none
+      border-top: none
+      background-clip: padding
+      box-shadow: inset 0px 0px 10px transparentize($color, 0.85)
+
+@keyframes spinner
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+@for $i from 0 through $ncirc
+  .circle-spinner:nth-of-type(#{$i})
+    transform: rotate($i * 70deg)
+    .inner-spinner
+      animation: spinner 2s infinite linear
+
+.load-spinner-main
+  animation: spinner 5s infinite linear
