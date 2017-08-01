@@ -5,24 +5,33 @@ var bcrypt = require('bcrypt')
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     name: DataTypes.STRING,
-    accountId: DataTypes.INTEGER,
+    customerId: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     type: {
       type: DataTypes.STRING,
       validate: {
-        isIn: [['agent', 'pilot', 'admin']]
+        isIn: [['agent', 'pilot', 'editor', 'admin']]
       }
     },
     avatarId: DataTypes.INTEGER,
     bio: DataTypes.TEXT,
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
+    licenseId: DataTypes.INTEGER,
+    insuranceId: DataTypes.INTEGER,
+    bankAccount: DataTypes.STRING,
+    bankRouting: DataTypes.STRING,
+    zipcode: DataTypes.STRING,
     workRadius: DataTypes.INTEGER,
-    ratingCount: DataTypes.INTEGER,
-    rating: DataTypes.DECIMAL,
     payRate: DataTypes.DECIMAL,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     classMethods: {
-
       associate(models) {
         User.hasMany(models.order, {
           foreignKey: 'userId'
@@ -48,7 +57,6 @@ module.exports = (sequelize, DataTypes) => {
             assetable: 'user'
           }
         })
-        User.belongsTo(models.account)
       },
     },
 

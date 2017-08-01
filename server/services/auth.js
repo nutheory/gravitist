@@ -13,7 +13,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   return UserDB.findById(id).then((user) => {
     if (user) {
-      console.log('user.get()', user.get())
       done(null, user.get())
     } else {
       done(user.errors, null)
@@ -49,8 +48,11 @@ function login({ email, password, req }) {
 }
 
 function logout({ req }) {
+
+  console.log('@@@@@@@@@@@@@@@@REQ', req.user)
   const { user } = req
   req.logout()
+  console.log('@@@@@@@@@@@@@@@@', user)
   return user
 }
 

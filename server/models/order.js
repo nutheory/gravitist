@@ -12,15 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    timeOfDay: DataTypes.STRING
+    timeOfDay: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     classMethods: {
       associate(models) {
         Order.belongsTo(models.user)
-        Order.belongsToMany(models.pilot, {
-          through: 'pilotOrder',
-          foriegnKey: 'orderId'
-        })
         Order.hasOne(models.address, {
           foreignKey: 'orderId'
         })

@@ -17,7 +17,7 @@ namespace('db', function() {
 		var pg         = require('pg');
     var pool       = new pg.Pool(config);
 		var connection = pool.connect( function (err, client, done){
-      client.query('DROP DATABASE homefilming', function(err, result) {
+      client.query('DROP DATABASE homefilming', (err, result) => {
         done(err);
 
         if(err) {
@@ -26,6 +26,7 @@ namespace('db', function() {
         console.log(result);
 		  });
 	  });
+    pool.end()
 	});
 
   desc('create database');
@@ -43,7 +44,7 @@ namespace('db', function() {
 		var pg         = require('pg');
     var pool       = new pg.Pool(config);
 		var connection = pool.connect( function (err, client, done){
-      client.query('CREATE DATABASE homefilming', function(err, result) {
+      client.query('CREATE DATABASE homefilming', (err, result) => {
         done(err);
 
         if(err) {
@@ -52,5 +53,6 @@ namespace('db', function() {
         console.log(result);
 		  });
 	  });
+    pool.end()
 	});
 });

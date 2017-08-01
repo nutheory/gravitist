@@ -2,7 +2,7 @@ const User = `
   type User {
     id: ID
     name: String
-    accountId: String
+    customerId: String
     email: String
     password: String
     type: String
@@ -27,11 +27,8 @@ const User = `
     type: String
   }
 
-  input LogoutInput {
-    email: String
-  }
-
   type LogoutPayload {
+    id: ID
     email: String
   }
 

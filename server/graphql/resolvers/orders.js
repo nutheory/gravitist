@@ -2,16 +2,21 @@ const Order = require('../../services/orders')
 const Address = require('../../services/address')
 const User = require('../../services/users')
 
-async function createOrder(root, args, req){
-  console.log(req.headers.authorization)
+const agentOrder = async (root, args, req) => {
+  console.log('req.reqreqreqreqreqreqreqreq', req.user)
+  console.log('args', args)
+  return Order.agentOrder(req.user, args)
+}
+
+const agentOrders = async (root, args, req) => {
+  console.log('req.user', req.user)
+  return Order.agentOrders(req.user)
+}
+
+const createOrder = async (root, args, req) => {
   const payment =JSON.parse(args.input.stripeInfo)
   const plan = JSON.parse(args.input.plan)
-  // Check for token
-  // Has token
-    // Is token Valid
-      // No. return to login
-      // Yes. store in const
-  // No token
+
   const agent = await User.createAgent(
     args.input.user,
     args.input.stripeInfo.id,
@@ -23,19 +28,21 @@ async function createOrder(root, args, req){
   )
 
   const order = await Order.createOrder(
-    agent.accountId,
+    agent.customerId,
     payment,
     args.input.saveCard,
     plan,
     agent.id,
     address.id
   )
+
+  console.log('agent', agent)
   return {
     id: order.id, plan: order.plan, receiptId: order.receiptId, status: order.status,
     address: { id: address.id, address1: address.address1, address2: address.address2,
       city: address.city, state: address.state, zip: address.zip },
-    user: { name: agent.name, email: agent.email, token: agent.token }
+    user: { name: agent.name, email: agent.email }
   }
 }
 
-module.exports = createOrder
+module.exports = { createOrder, agentOrders, agentOrder }

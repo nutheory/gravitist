@@ -11,6 +11,13 @@ const Order = `
     status: String
     userId: String
     timeOfDay: String
+    address: Address
+    createdAt: String
+    updatedAt: String
+  }
+
+  input AgentOrder {
+    id: ID
   }
 
   input CreateOrderInput {
@@ -22,14 +29,17 @@ const Order = `
     user: CreateOrderUserInput
   }
 
-  type CreateOrderPayload {
+  type OrderPayload {
     id: ID
     plan: String
     receiptId: String
     status: String
     address: CreateOrderAddressPayload
     user: CreateOrderUserPayload
+    createdAt: String
+    updatedAt: String
   }
+
 `
 
 module.exports = [Order, Address, User]

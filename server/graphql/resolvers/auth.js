@@ -5,7 +5,6 @@ const authenticated = (parent, args, req, info) => {
   if (req.user) {
     return req.user
   }
-  return false
 }
 
 const login = async (root, args, req) => {

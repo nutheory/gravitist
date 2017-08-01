@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate(models) {
-        Company.hasOne(models.address)
         Company.hasOne(models.asset)
         Company.hasMany(models.contact, {
           foreignKey: 'contactableId',

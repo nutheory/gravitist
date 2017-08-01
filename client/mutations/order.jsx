@@ -5,7 +5,6 @@ const createOrderWithUser = gql`
     createOrder(input: $input){
       id
       plan
-      saveCard
       address {
         address1
         address2
@@ -16,7 +15,6 @@ const createOrderWithUser = gql`
       user {
         name
         email
-        token
       }
     }
   }

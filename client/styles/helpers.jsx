@@ -1,15 +1,15 @@
 const helpers = {
   ss: {
-    /* Small only 639- */
-    sm: '@media only screen and (max-width: 39.9375rem)',
-    /* Medium and up 640+ */
-    md: '@media screen and (min-width: 40rem)',
-    /* Medium only 640-1023 */
-    mdo: '@media screen and (min-width: 40rem) and (max-width: 63.9375rem)',
-    /* Large and up 1024+ */
-    lg: '@media screen and (min-width: 64rem)',
-    /* Large only 1024-1199 */
-    lgo: '@media screen and (min-width: 64rem) and (max-width: 74.9375rem)'
+    /* Small only 768- */
+    sm: '@media only screen and (max-width: 48rem)',
+    /* Medium and up 768+ */
+    md: '@media screen and (min-width: 48rem)',
+    /* Medium only 768-980 */
+    mdo: '@media screen and (min-width: 48rem) and (max-width: 61.250rem)',
+    /* Large and up 980+ */
+    lg: '@media screen and (min-width: 61.250rem)',
+    /* Large only 980-1199 */
+    lgo: '@media screen and (min-width: 61.250rem) and (max-width: 74.9375rem)'
   },
   c: {
      blue: '#1c81e3',

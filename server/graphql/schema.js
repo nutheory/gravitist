@@ -8,7 +8,8 @@ const Asset = require('./types/asset')
 
 const Query = `
   type Query {
-    orders: [Order]
+    agentOrders: [Order]
+    agentOrder(id: ID): OrderPayload
     current_user: User
   }
 `
@@ -16,8 +17,8 @@ const Query = `
 const Mutation = `
   type Mutation {
     login( input: LoginInput! ): LoginPayload
-    logout( input: LogoutInput ): LogoutPayload
-    createOrder( input: CreateOrderInput! ): CreateOrderPayload
+    logout: LogoutPayload
+    createOrder( input: CreateOrderInput! ): OrderPayload
     fileUpload( input: AssetInput ): AssetPayload
   }
 `

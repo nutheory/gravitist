@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     filename: DataTypes.STRING,
     filetype: DataTypes.STRING,
     url: DataTypes.STRING,
-    filesize: DataTypes.STRING
+    filesize: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     classMethods: {
       associate(models) {

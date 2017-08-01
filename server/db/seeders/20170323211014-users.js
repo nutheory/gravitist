@@ -3,8 +3,9 @@
 var Faker = require('faker')
 var _ = require('lodash')
 
-const typeOptions = ['user', 'pilot', 'admin']
+const typeOptions = ['agent', 'pilot', 'editor', 'admin']
 const radiusOptions = [10, 20, 30, 40, 50]
+
 
 module.exports = {
   up: function (queryInterface, Sequelize) {

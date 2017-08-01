@@ -106,7 +106,18 @@ const header = StyleSheet.create({
     display: 'flex',
     minWidth: '0',
     height: '70px',
+  },
+  privateIcons: {
+    marginRight: '0',
+    marginLeft: '0',
+  },
+  iconMarginRight: {
+    marginRight: '0px',
+    [ss.lg]: {
+      marginRight: '8px',
+    }
   }
+
 })
 
 export default header

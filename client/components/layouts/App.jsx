@@ -7,16 +7,17 @@ import { graphql } from 'react-apollo'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import ReactResizeDetector from 'react-resize-detector'
 import Helpers from '../../styles/helpers'
-import { PublicRoutes, AgentRoutes, PilotRoutes, AdminRoutes } from './routes'
+import { Routes } from './routes'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import Loader from '../views/misc/loader'
+import Loader from '../misc/loader'
 
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: Helpers.colors.blue,
+    primary1Color: Helpers.c.blue,
+    accent1Color: Helpers.c.teal,
   }
 })
 
@@ -32,13 +33,16 @@ class App extends Component {
     this.getCurrentUser = this.getCurrentUser.bind(this)
   }
 
-  async getCurrentUser(){
-    const cu = await this.props.data
-    console.log('currentUser', cu)
+  getCurrentUser(){
+
+    const user  = this.props.data
+    // setTimeout(() => {
+      console.log('getCurrentUser', user)
+    // }, 10000)
   }
 
   componentDidMount(){
-    this.getCurrentUser()
+
   }
 
   onResize(){
@@ -51,21 +55,31 @@ class App extends Component {
     }
   }
 
+  // renderRelevantRoutes(current_user){
+  //   if(current_user){
+  //     if(current_user.type === "agent"){ return <AgentRoutes {...this.props} />}
+  //     if(current_user.type === "pilot"){ return <PilotRoutes {...this.props} />}
+  //     if(current_user.type === "editor"){ return <EditorRoutes {...this.props} />}
+  //     if(current_user.type === "admin"){ return <AdminRoutes {...this.props} />}
+  //   }
+  //   return <PublicRoutes user />
+  // }
+  // AuthRoutes(){
+  //   const { loading, current_user }  = this.props.data
+  //   console.log('current_user', this.props.data)
+  //   if(loading === true){ return (<Loader />) }
+  //   return <Routes current_user={current_user} />
+  // }
+
   render(){
-    if(this.props.data.loading === true){ return (<Loader />) }
+    const { loading }  = this.props.data
+    if(loading === true){ return (<Loader />) }
     return (
       <BrowserRouter>
         <MuiThemeProvider muiTheme={muiTheme}>
           <div>
             <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
-            <Switch>
-              <Route path="/agent" render={({match}) => (
-                this.state.current_user && this.state.current_user.type === "agent"
-                ? <AgentRoutes {...this.props} />
-                : <Redirect to="/" />
-              )} />
-              <Route component={PublicRoutes} />
-            </Switch>
+            <Routes {...this.props} />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

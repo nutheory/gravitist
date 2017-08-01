@@ -19,7 +19,7 @@ module.exports = {
       publicId: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -37,7 +37,7 @@ module.exports = {
       meta: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
       notes: Sequelize.TEXT,
       createdAt: {
         allowNull: false,
