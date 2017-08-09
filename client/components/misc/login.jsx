@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { browserHistory, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField'
-import {Tabs, Tab} from 'material-ui/Tabs'
+// import {Tabs, Tab} from 'material-ui/Tabs'
 import Formsy from 'formsy-react'
 import { FormsyText } from 'formsy-material-ui/lib'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -23,10 +24,9 @@ class Login extends Component {
       email: "",
       password: "",
       loggedIn: false,
-      selectedType: "agent"
     }
 
-    this.handleTypeChange = this.handleTypeChange.bind(this)
+    // this.handleTypeChange = this.handleTypeChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.runMutation = this.runMutation.bind(this)
   }
@@ -35,16 +35,15 @@ class Login extends Component {
   //
   // }
 
-  handleTypeChange(){
-    this.setState({ selectedType: (this.state.selectedType === "agent" ? "pilot" : "agent")})
-  }
+  // handleTypeChange(){
+  //   this.setState({ selectedType: (this.state.selectedType === "agent" ? "pilot" : "agent")})
+  // }
 
   async runMutation(){
     const resolved = await this.props.loginUser({ variables: {
       input: {
         email: this.state.email,
-        password: this.state.password,
-        type: this.state.selectedType
+        password: this.state.password
         }
       }, refetchQueries: [{ query: CurrentUserQuery }]
     })
@@ -64,11 +63,11 @@ class Login extends Component {
   }
 
   render(){
-    console.log(this.state.selectedType)
+    // console.log(this.state.selectedType)
     return(
       <div className={css(lg.container)}>
         <Formsy.Form>
-          <Tabs
+          {/* <Tabs
             value={this.state.selectedType}
             onChange={this.handleTypeChange}
           >
@@ -78,7 +77,7 @@ class Login extends Component {
             <Tab label="Pilots" value="pilot">
               <h3 className={css(lg.header)}>Pilot Login</h3>
             </Tab>
-          </Tabs>
+          </Tabs> */}
           <div className={css(lg.innerContainer)}>
             <p className={css(lg.text)}>Please login with your email and password.</p>
             <div className={css(lg.row)}>

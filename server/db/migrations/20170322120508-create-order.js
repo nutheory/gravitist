@@ -10,24 +10,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       pilotId: Sequelize.INTEGER,
+      editorId: Sequelize.INTEGER,
       receiptId: Sequelize.STRING,
-      addressId: Sequelize.INTEGER,
+      acceptedAt: Sequelize.DATE,
+      rejectedAt: Sequelize.DATE,
       status: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'pending',
         validate: {
-          isIn: [['pending', 'dispatching', 'processing', 'done']]
+          isIn: [['pending', 'filming', 'processing', 'delivered', 'accepted', 'rejected']]
         }
       },
       plan: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isIn: [['basic', 'standard', 'premuim']]
+          isIn: [['basic', 'standard', 'premium']]
         }
       },
-      userId: {
+      agentId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       timeOfDay: {

@@ -120,7 +120,6 @@ class MainOrder extends Component {
     const resolved = await this.props.createOrderWithUserMutation({ variables: {
       input: {
         stripeInfo: paymentToken,
-        saveCard: this.state.saveCard,
         plan: JSON.stringify(this.state.selectedPlan),
         address: {
           address1: this.state.address1,
@@ -135,6 +134,7 @@ class MainOrder extends Component {
           name: this.state.name,
           email: this.state.email,
           password: this.state.password,
+          saveCard: this.state.saveCard,
           type: this.state.uType
         }
       }

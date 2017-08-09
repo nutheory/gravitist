@@ -6,7 +6,7 @@ const Address = `
     address2: String
     city: String
     state: String
-    zip: String
+    zipCode: String
     type: String
     lat: String
     lng: String
@@ -18,7 +18,7 @@ const Address = `
     address2: String
     city: String
     state: String
-    zip: String
+    zipCode: String
     lat: String!
     lng: String!
   }
@@ -29,7 +29,12 @@ const Address = `
     address2: String
     city: String
     state: String
-    zip: String
+    zipCode: String
+    type: String
+    createdAt: String
+    updatedAt: String
+    lat: String
+    lng: String
   }
 `
 module.exports = Address

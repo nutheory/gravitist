@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client/components/index/addressMapper.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">client/components/index</a> addressMapper.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/34</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React,<span class="cstat-no" title="statement not covered" > { Component } from 'react'<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span></span></span></span></span></span></span></span></span>
+import Formsy from <span class="cstat-no" title="statement not covered" >'formsy-react'<span class="cstat-no" title="statement not covered" ></span></span>
+import TextField <span class="cstat-no" title="statement not covered" >from 'material-ui/TextField'<span class="cstat-no" title="statement not covered" ></span></span>
+import RaisedButton <span class="cstat-no" title="statement not covered" >from 'material-ui/RaisedButton'<span class="cstat-no" title="statement not covered" ></span></span>
+import { Fo<span class="cstat-no" title="statement not covered" >rmsyText } from 'formsy-material-u</span>i/lib'
+import { StyleShe<span class="cstat-no" title="statement not covered" >et, css } from 'aphro</span>dite'
+import layout <span class="cstat-no" title="statement not covered" >from './styles/layout'<span class="cstat-no" title="statement not covered" ></span></span>
+import style fr<span class="cstat-no" title="statement not covered" >om './styles/styling'<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span>
+&nbsp;
+class AddressMap<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >pe</span>r extends Component {<span class="cstat-no" title="statement not covered" ></span></span>
+  construct<span class="fstat-no" title="function not covered" >or(){<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span>
+    super()
+<span class="cstat-no" title="statement not covered" >    this.state = {</span>
+      address1: "",
+      address2: "",
+      city: "",
+      state: "",
+      zip: "",
+      lat: "",
+      lng: ""
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.fetchAssociatedMap = this.fetchAssociatedMap.bind(this)</span>
+<span class="cstat-no" title="statement not covered" >    this.deconstructPlaceIntoState = this.deconstructPlaceIntoState.bind(this)<span class="cstat-no" title="statement not covered" ></span></span>
+  }<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+&nbsp;
+  componentDidMoun<span class="cstat-no" title="statement not covered" >t(){</span>
+    let placeInput = do<span class="cstat-no" title="statement not covered" >cument.getElementById('addressToFilm')</span>
+    let placeOptions = {<span class="cstat-no" title="statement not covered" ></span>
+      componentRestrictions: {
+        country: 'us',
+      },
+    }
+    let autocomplete = ne<span class="cstat-no" title="statement not covered" >w google.maps.places.Autocomplete(placeInput, placeOptions)</span>
+&nbsp;
+    go<span class="cstat-no" title="statement not covered" >ogle.maps.event.addListener(autocomplete, 'place_changed',  (<span class="fstat-no" title="function not covered" >) </span>=&gt; {</span>
+      let place = au<span class="cstat-no" title="statement not covered" >tocomplete.getPlace()</span>
+      if<span class="cstat-no" title="statement not covered" >(place){</span>
+        const lat = <span class="cstat-no" title="statement not covered" >place.geometry.location.lat()</span>
+        const lng = <span class="cstat-no" title="statement not covered" >place.geometry.location.lng()</span>
+        th<span class="cstat-no" title="statement not covered" >is.deconstructPlaceIntoState(place)</span>
+        th<span class="cstat-no" title="statement not covered" >is.fetchAssociatedMap({lat, lng})</span>
+      }
+    })
+  }<span class="fstat-no" title="function not covered" ></span>
+&nbsp;
+  fetchAssociatedMap(latLng){
+    let mapContainer = do<span class="cstat-no" title="statement not covered" >cument.getElementById('mapContainer')</span>
+    let mapOptions = {<span class="cstat-no" title="statement not covered" ></span>
+      center: {lat: latLng.lat, lng: latLng.lng},
+      zoom: 20,
+      mapTypeId: 'satellite',
+      scrollwheel: false
+    }
+&nbsp;
+    let map = ne<span class="cstat-no" title="statement not covered" >w google.maps.Map(mapContainer, mapOptions)</span>
+  }<span class="fstat-no" title="function not covered" ></span>
+&nbsp;
+  deconstructPlaceIntoState(place){
+    co<span class="cstat-no" title="statement not covered" >nsole.log(place)</span>
+&nbsp;
+    const address = <span class="cstat-no" title="statement not covered" >place.address_components</span>
+&nbsp;
+    const lat = <span class="cstat-no" title="statement not covered" >place.geometry.location.lat()</span>
+    const lng = <span class="cstat-no" title="statement not covered" >place.geometry.location.lng()</span>
+&nbsp;
+  }<span class="fstat-no" title="function not covered" ></span>
+&nbsp;
+&nbsp;
+  render(){
+    re<span class="cstat-no" title="statement not covered" >turn(</span>
+      &lt;div className={css(layout.fieldRow)}&gt;
+        &lt;Formsy.Form&gt;
+          &lt;div className={css(style.addressAutocompleteForm)}&gt;
+            &lt;div className={css(style.addressAutocomplete)}&gt;
+              &lt;h4 className={css(style.sectionTitle)}&gt;The home you would like to film&lt;/h4&gt;
+              &lt;FormsyText
+                id="addressToFilm"
+                validations={{
+                  minLength: 2
+                }}
+                validationError="hi"
+                name={'location'}
+                // hintText="Enter the address of the home you would like to film"
+                // floatingLabelText="Enter the address of the home you would like to film"
+              /&gt;
+            &lt;/div&gt;
+            &lt;div className={css(style.addressAutocompleteSubmit)}&gt;
+              &lt;RaisedButton
+                type="submit"
+                label="Signup"
+                backgroundColor="#58B8E5"
+                labelColor="#fff"
+                fullWidth={ true }
+              /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/Formsy.Form&gt;
+        &lt;div className={css(layout.fieldRow)}&gt;
+          &lt;div id="mapContainer" className={css(style.mapContainer)}&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    )
+  }<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
+}
+&nbsp;
+export default AddressMapper
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 09 2017 15:50:35 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

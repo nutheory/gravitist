@@ -16,6 +16,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      authorId: {
+        type: Sequelize.INTEGER
+      },
+      body: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

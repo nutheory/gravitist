@@ -5,6 +5,7 @@ const createOrderWithUser = gql`
     createOrder(input: $input){
       id
       plan
+      saveCard
       address {
         address1
         address2

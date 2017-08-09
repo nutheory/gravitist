@@ -13,7 +13,7 @@ class Address {
       address2: address.address2,
       city: address.city,
       state: address.state,
-      zip: address.zip,
+      zipCode: address.zipCode,
       lat: address.lat,
       lng: address.lng
     })

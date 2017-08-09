@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import ProtectedRoute from './protected_route'
 // Public
 import PublicHeader from './headers/public_header'
 import IndexPage from '../index/index'
@@ -15,33 +16,25 @@ import PublicFooter from './footers/public_footer'
 import PrivateHeader from './headers/private_header'
 import AgentDashboard from '../dashboard/agent_index'
 // Pilot
-
+// import PrivateHeader from './headers/private_header'
+import PilotDashboard from '../dashboard/pilot_index'
 // Admin
 
 
 const authenticated = (props) => {
-  console.log('loggedIn', props.current_user)
-  return props.current_user ? true : false
-}
-
-const ProtectedAgentRoute = ({ component: Component, current_user, ...rest }) => {
-  console.log("current_user", current_user)
-  return (
-    <Route {...rest} render={ props => (
-      current_user ? (<Component current_user={current_user} {...props} />) : (<Redirect to="/" />)
-    )} />
-  )
+  console.log('loggedIn', props.user)
+  return props.user ? true : false
 }
 
 const RenderHeader = (props) => {
-  if (props.data.current_user){
+  if (props.user){
     return <PrivateHeader {...props} />
   }
   return <PublicHeader {...props} />
 }
 
 const RenderFooter = (props) => {
-  if (props.current_user){
+  if (props.user){
     return null
   }
   return <PublicFooter {...props} />
@@ -52,7 +45,8 @@ const Routes = (props) => {
     <div>
       {RenderHeader(props)}
       <Switch>
-        <ProtectedAgentRoute path='/dashboard' component={AgentDashboard} current_user={props.data.current_user} />
+        <ProtectedRoute path='/dashboard' component={AgentDashboard} user={props.user} auth="agent" />
+        <ProtectedRoute path='/open-missions' component={PilotDashboard} user={props.user} auth="pilot" />
         <Route path='/pilots/register' component={PilotRegistrationPage} />
         <Route path='/pilots' component={PilotPage} />
         <Route path='/pricing' component={PricingPage} />

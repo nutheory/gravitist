@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { graphql } from 'react-apollo'
 import logo from '../../../assets/svg/logoGreen.svg'
@@ -11,8 +12,8 @@ import _ from 'lodash'
 const agentLinks = [['tachometer', 'dashboard', 'Dashboard'], ['rocket', 'order', 'New Order'],
   ['address-card-o', 'contact', 'Contact'], ['cog', 'settings', 'Settings']]
 
-const pilotLinks = [['tachometer', 'Dashboard'], ['rocket', 'New Order'],
-    ['address-card-o', 'Contact'], ['cog', 'Settings']]
+const pilotLinks = [['tachometer', 'dashboard', 'Dashboard'], ['rocket', 'missions', 'Missions'],
+  ['address-card-o', 'contact', 'Contact'], ['cog', 'settings', 'Settings']]
 
 class PrivateHeader extends Component {
 
@@ -94,7 +95,7 @@ class PrivateHeader extends Component {
         </a>
         <div className="tabs block is-toggle is-centered ">
           <ul>
-            { this.renderLinks(this.props.data.current_user.type) }
+            { this.renderLinks(this.props.data.currentUser.type) }
             <li>
               <a href='#' onClick={this.logoutHandler.bind(this)}>
                 <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-sign-out`} aria-hidden="true"></i></span>

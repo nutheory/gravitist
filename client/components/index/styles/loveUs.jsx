@@ -11,6 +11,7 @@ const loveUs = StyleSheet.create({
   innerContainer: {
     width: '80%',
     display: 'flex',
+    justifyContent: 'center',
     margin: 'auto',
     padding: '2rem 0',
     overflow: 'auto',

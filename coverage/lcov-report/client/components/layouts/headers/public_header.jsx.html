@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client/components/layouts/headers/public_header.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">All files</a> / <a href="index.html">client/components/layouts/headers</a> public_header.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.89% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.89% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react'
+import { NavLink, withRouter } from 'react-router-dom'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import FlatButton from 'material-ui/FlatButton'
+import IconButton from 'material-ui/IconButton'
+import { graphql } from 'react-apollo'
+import Drawer from 'material-ui/Drawer'
+import Divider from 'material-ui/Divider'
+import Login from '../../misc/login'
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover'
+import Menu from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
+import Hamburger from 'material-ui/svg-icons/navigation/menu'
+import Close from 'material-ui/svg-icons/navigation/close'
+import { StyleSheet, css } from 'aphrodite'
+import header from '../styles/header'
+import { colors } from '../../../styles/helpers'
+import mobileHeader from '../styles/mobile_header'
+import logo from '../../../assets/svg/logo.svg'
+import phoneIcon from '../../../assets/svg/phoneIcon.svg'
+injectTapEventPlugin()
+&nbsp;
+const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) =&gt; (
+  &lt;FlatButton
+    onTouchTap={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >history.push(href) </span>}}
+    label={label}
+    className={classname}
+  /&gt;
+))
+&nbsp;
+&nbsp;
+class PublicHeader extends Component {
+  constructor(){
+    super()
+&nbsp;
+    this.state = {
+      currentUser: "",
+      drawerOpen: false,
+      popoverOpen: false
+    }
+&nbsp;
+    this.handlePopoverClose = this.handlePopoverClose.bind(this)
+    this.handlePopoverToggle = this.handlePopoverToggle.bind(this)
+    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
+    // this.QueryCurrentUser = this.QueryCurrentUser.bind(this)
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndleDrawerToggle(){
+<span class="cstat-no" title="statement not covered" >    this.setState({drawerOpen: !this.state.drawerOpen})</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndlePopoverToggle(evt){
+<span class="cstat-no" title="statement not covered" >    evt.preventDefault()</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({</span>
+      anchorEl: evt.currentTarget,
+      popoverOpen: !this.state.popoverOpen
+    })
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndlePopoverClose(){
+<span class="cstat-no" title="statement not covered" >    this.setState({</span>
+      popoverOpen: false
+    })
+  }
+&nbsp;
+  // async QueryCurrentUser(){
+  //   const res = await this.props.data.user
+  //   console.log('trytrffruy',res)
+  //   return res
+  // }
+  //
+  // componentDidMount() {
+  //   const res = await this.QueryCurrentUser()
+  //   console.log('ressssss',res)
+  // }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentDidUpdate(){
+<span class="cstat-no" title="statement not covered" >    console.log('booooooo',this.props.data)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillUnmount() {
+  }
+&nbsp;
+  render(){
+    // console.log(this.props.data)
+    let width = window.innerWidth
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (width &gt; 960){
+      return(
+        &lt;header id="AppHeader" className={css(header.container)}&gt;
+          &lt;div className={css(header.logo)}&gt;
+            &lt;NavLink to="/"&gt;&lt;img src={`/${logo}`} className={css(header.logoImg)} /&gt;&lt;/NavLink&gt;
+          &lt;/div&gt;
+          &lt;div className={css(header.navigation)}&gt;
+            &lt;NavLink className={css(header.navItem)} to="/pricing"&gt;PRICING&lt;/NavLink&gt;
+            &lt;NavLink className={css(header.navItem)} to="/how-it-works"&gt;HOW IT WORKS&lt;/NavLink&gt;
+            &lt;NavLink className={css(header.navItem)} to="/pilots"&gt;JOBS FOR PILOTS&lt;/NavLink&gt;
+          &lt;/div&gt;
+          &lt;div className={css(header.callInfo)}&gt;
+            &lt;div className={css(header.callInfoInner)}&gt;
+              &lt;div className={css(header.callNumber)}&gt;
+                &lt;img src={`/${phoneIcon}`} alt="Phone Icon" className={css(header.phoneIcon)} /&gt; 800 555 6767&lt;/div&gt;
+              &lt;div className={css(header.callText)}&gt;Toll Free Number&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div className={css(header.pilotSignup)}&gt;
+            &lt;FlatButtonWithRouter
+              href="/pilots/register"
+              label="SIGNUP TO FLY"
+              classname={css(header.pilotSignupButton)}
+            /&gt;
+          &lt;/div&gt;
+          &lt;div className={css(header.login)}&gt;
+            &lt;FlatButton
+              onTouchTap={this.handlePopoverToggle}
+              label="LOGIN"
+              className={css(header.loginButton)}
+              rippleColor="#fff"
+            /&gt;
+            &lt;Popover
+              open={this.state.popoverOpen}
+              onRequestClose={this.handlePopoverClose}
+              anchorEl={this.state.anchorEl}
+              animation={PopoverAnimationVertical}
+            &gt;
+                &lt;Login /&gt;
+            &lt;/Popover&gt;
+          &lt;/div&gt;
+        &lt;/header&gt;
+      )
+    } else {
+<span class="cstat-no" title="statement not covered" >      return(</span>
+        &lt;div className={css(mobileHeader.container)}&gt;
+          &lt;div className={css(mobileHeader.title)}&gt;
+            &lt;NavLink to="/"&gt;&lt;img src={`/${logo}`} className={css(mobileHeader.logoImg)} /&gt;&lt;/NavLink&gt;
+          &lt;/div&gt;
+          &lt;div className={css(mobileHeader.menu)}&gt;
+            &lt;IconButton
+              onTouchTap={this.handleDrawerToggle}
+            &gt;
+              &lt;Hamburger /&gt;
+            &lt;/IconButton&gt;
+          &lt;/div&gt;
+          &lt;Drawer
+            width={320}
+            docked={false}
+            openSecondary={true}
+            open={this.state.drawerOpen}
+            onRequestChange={<span class="fstat-no" title="function not covered" >op</span>en =&gt; <span class="cstat-no" title="statement not covered" >this.setState({open})}</span>
+          &gt;
+            &lt;div className={css(mobileHeader.drawer)}&gt;
+              &lt;div className={css(mobileHeader.actions)}&gt;
+                &lt;IconButton
+                  onTouchTap={this.handleDrawerToggle}
+                &gt;
+                  &lt;Close /&gt;
+                &lt;/IconButton&gt;
+              &lt;/div&gt;
+              &lt;Divider /&gt;
+              &lt;div className={css(mobileHeader.mainLinks)}&gt;
+                &lt;MenuItem&gt;PRICING&lt;/MenuItem&gt;
+                &lt;MenuItem&gt;&lt;NavLink to="/how-it-works"&gt;HOW IT WORKS&lt;/NavLink&gt;&lt;/MenuItem&gt;
+                &lt;MenuItem onTouchTap={this.handleDrawerToggle}&gt;&lt;NavLink to="/pilots/register"&gt;JOBS FOR PILOTS&lt;/NavLink&gt;&lt;/MenuItem&gt;
+                &lt;MenuItem&gt;SIGNUP TO FLY&lt;/MenuItem&gt;
+              &lt;/div&gt;
+              &lt;Divider /&gt;
+              &lt;div className={css(mobileHeader.loginLinks)}&gt;
+                &lt;MenuItem &gt;CUSTOMER LOGIN&lt;/MenuItem&gt;
+                &lt;MenuItem&gt;PILOT LOGIN&lt;/MenuItem&gt;
+              &lt;/div&gt;
+              &lt;div className={css(mobileHeader.callInfo)}&gt;
+                &lt;div className={css(mobileHeader.callInfoInner)}&gt;
+                  &lt;div className={css(mobileHeader.callNumber)}&gt;
+                    &lt;img src={`/${phoneIcon}`} alt="Phone Icon" className={css(header.phoneIcon)} /&gt;
+                    &lt;a href="tel:800 555 6767" className={css(mobileHeader.callLink)}&gt;800 555 6767&lt;/a&gt;
+                  &lt;/div&gt;
+                  &lt;div className={css(header.callText)}&gt;Toll Free Number&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/Drawer&gt;
+        &lt;/div&gt;
+      )
+    }
+  }
+}
+&nbsp;
+export default PublicHeader
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 09 2017 15:50:35 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

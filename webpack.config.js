@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const combineLoaders = require('webpack-combine-loaders')
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './client/index.pug',
@@ -45,10 +45,6 @@ module.exports = {
       },
       {
         test: /\.sass$/,
-        // include: [
-        //         path.resolve(__dirname, 'node_modules'),
-        //         path.resolve(__dirname, 'node_modules/bulma'),
-        // ],
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
@@ -65,7 +61,9 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
+    new DashboardPlugin(),
     HtmlWebpackPluginConfig
     // extractHtml
   ]
+
 }
