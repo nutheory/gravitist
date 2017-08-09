@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     insuranceId: DataTypes.INTEGER,
     bankAccount: DataTypes.STRING,
     bankRouting: DataTypes.STRING,
-    zipcode: DataTypes.STRING,
     workRadius: DataTypes.INTEGER,
     payRate: DataTypes.DECIMAL,
     createdAt: DataTypes.DATE,
@@ -34,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate(models) {
         User.hasMany(models.order, {
-          foreignKey: 'userId'
+          foreignKey: 'agentId'
         })
         User.hasMany(models.contact, {
           foreignKey: 'contactableId',
@@ -45,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'userId'
         })
         User.hasMany(models.notification, {
-          foreignKey: 'userId'
+          foreignKey: 'authorId'
         })
         User.hasOne(models.address, {
           foreignKey: 'userId'

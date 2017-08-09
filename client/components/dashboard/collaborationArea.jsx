@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { css } from 'aphrodite'
 import styles from './styles/collaboration'
-import 'bulma'
+import 'bulma/css/bulma.css'
 import moment from 'moment'
 import { graphql } from 'react-apollo'
 import OrderQuery from '../../queries/agent_order'
@@ -36,7 +36,7 @@ class CollaborationArea extends Component{
             <span className={`tag is-primary ${css(styles.tagRight)}`}>Address</span>
             <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.address1}</span>
             <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.city}</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.zip}</span>
+            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.zipCode}</span>
           </p>
           <p className={`${css(styles.headerTags)}`}>
             <span className={`tag is-warning ${css(styles.tagRight)}`}>Status</span>

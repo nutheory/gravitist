@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import 'bulma'
+import 'bulma/css/bulma.css'
 import { css } from 'aphrodite'
 import Orders from './orders'
 import Reorder from './reorder'
@@ -16,7 +16,7 @@ class AgentDashboard extends Component{
   render(){
     return (
       <div className={`section ${css(styles.paddingTopBottom)}`}>
-        <p className={`is-success ${css(styles.infoAlert)}`}>Welcome, {this.props.current_user.name}</p>
+        <p className={`is-success ${css(styles.infoAlert)}`}>Welcome, {this.props.user.name}</p>
         <div className="tile is-ancestor">
           <div className="tile is-vertical is-parent">
             {/* <div className="tile is-child">

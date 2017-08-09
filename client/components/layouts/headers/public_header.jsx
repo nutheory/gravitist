@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import { graphql } from 'react-apollo'
@@ -17,7 +18,7 @@ import { colors } from '../../../styles/helpers'
 import mobileHeader from '../styles/mobile_header'
 import logo from '../../../assets/svg/logo.svg'
 import phoneIcon from '../../../assets/svg/phoneIcon.svg'
-
+injectTapEventPlugin()
 
 const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
   <FlatButton

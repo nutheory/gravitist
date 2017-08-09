@@ -79,7 +79,7 @@ class App extends Component {
         <MuiThemeProvider muiTheme={muiTheme}>
           <div>
             <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
-            <Routes {...this.props} />
+            <Routes {...this.props.data} />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

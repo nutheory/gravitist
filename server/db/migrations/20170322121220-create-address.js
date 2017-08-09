@@ -11,20 +11,15 @@ module.exports = {
       },
       address1: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: false,
       },
       address2: Sequelize.STRING,
       city: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       state: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
-      apt: Sequelize.STRING,
-      zip: {
+      zipCode: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -32,7 +27,6 @@ module.exports = {
       userId: Sequelize.INTEGER,
       type: {
         type: Sequelize.STRING,
-        allowNull: false,
         defaultValue: 'residence',
         validate:{
           isIn: [['residence', 'commercial']]
@@ -40,11 +34,11 @@ module.exports = {
       },
       orderId: Sequelize.INTEGER,
       lat: {
-        type: Sequelize.STRING,
+        type: Sequelize.DOUBLE,
         allowNull: false,
       },
       lng: {
-        type: Sequelize.STRING,
+        type: Sequelize.DOUBLE,
         allowNull: false,
       },
       createdAt: {

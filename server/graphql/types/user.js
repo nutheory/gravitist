@@ -41,7 +41,7 @@ const User = `
 
   type CreateOrderUserPayload {
     name: String
-    email: String!
+    email: String
   }
 `
 

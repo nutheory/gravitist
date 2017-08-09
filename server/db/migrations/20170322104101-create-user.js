@@ -34,10 +34,13 @@ module.exports = {
           is: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
         }
       },
+      saveCard: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       isVerified: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
-        allowNull: false,
       },
       licenseId: {
         type: Sequelize.INTEGER
@@ -49,9 +52,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       bankRouting: {
-        type: Sequelize.STRING
-      },
-      zipcode: {
         type: Sequelize.STRING
       },
       workRadius: {
@@ -70,7 +70,6 @@ module.exports = {
       superAdmin: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,

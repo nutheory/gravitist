@@ -10,7 +10,6 @@ import youtube from '../../../assets/svg/youtubeIconBlue.svg'
 import usa from '../../../assets/svg/usa.svg'
 
 const Footer = (props) => {
-  console.log('resolvedFooter', props.data)
   let width = window.innerWidth
   if (width > 1023){
     return (

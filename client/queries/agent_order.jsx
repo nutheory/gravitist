@@ -10,7 +10,7 @@ const AgentOrder = gql`
       address {
         address1
         city
-        zip
+        zipCode
       }
       user {
         name

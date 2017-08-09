@@ -1,24 +1,27 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('order', {
+    agentId: DataTypes.INTEGER,
     pilotId: DataTypes.INTEGER,
-    addressId: DataTypes.INTEGER,
+    editorId: DataTypes.INTEGER,
+    receiptId: DataTypes.STRING,
+    acceptedAt: DataTypes.DATE,
+    rejectedAt: DataTypes.DATE,
     receiptId: DataTypes.STRING,
     plan: {
       type: DataTypes.STRING,
-      validate: {
-        isIn: [['basic', 'standard', 'premuim']]
-      }
+      // validate: {
+      //   isIn: [['basic', 'standard', 'premuim']]
+      // }
     },
     status: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
     timeOfDay: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {
     classMethods: {
       associate(models) {
-        Order.belongsTo(models.user)
+        Order.belongsTo(models.user, {as: 'agent'})
         Order.hasOne(models.address, {
           foreignKey: 'orderId'
         })

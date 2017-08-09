@@ -10,7 +10,8 @@ const Query = `
   type Query {
     agentOrders: [Order]
     agentOrder(id: ID): OrderPayload
-    current_user: User
+    openMissions: [Order] 
+    currentUser: User
   }
 `
 

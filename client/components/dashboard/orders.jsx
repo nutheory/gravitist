@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import 'bulma'
+import 'bulma/css/bulma.css'
 import { graphql } from 'react-apollo'
 import OrdersQuery from '../../queries/agent_orders'
 
