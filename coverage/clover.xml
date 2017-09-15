@@ -1,1684 +1,355 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1502319036294" clover="3.2.0">
-  <project timestamp="1502319036294" name="All files">
-    <metrics statements="1162" coveredstatements="183" conditionals="373" coveredconditionals="25" methods="463" coveredmethods="45" elements="1998" coveredelements="253" complexity="0" loc="1162" ncloc="1162" packages="30" files="159" classes="159">
-      <package name="client.components.agent">
-        <metrics statements="112" coveredstatements="30" conditionals="49" coveredconditionals="15" methods="47" coveredmethods="12"/>
-        <file name="mainOrder.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/mainOrder.jsx">
-          <metrics statements="53" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="21" coveredmethods="0"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="45" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="66" count="0" type="cond" truecount="0" falsecount="8"/>
-          <line num="68" count="0" type="stmt"/>
-          <line num="70" count="0" type="stmt"/>
-          <line num="75" count="0" type="stmt"/>
-          <line num="76" count="0" type="stmt"/>
-          <line num="81" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="82" count="0" type="stmt"/>
-          <line num="84" count="0" type="stmt"/>
-          <line num="89" count="0" type="stmt"/>
-          <line num="90" count="0" type="stmt"/>
-          <line num="95" count="0" type="stmt"/>
-          <line num="110" count="0" type="stmt"/>
-          <line num="111" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="112" count="0" type="stmt"/>
-          <line num="115" count="0" type="stmt"/>
-          <line num="120" count="0" type="stmt"/>
-          <line num="142" count="0" type="stmt"/>
-          <line num="146" count="0" type="stmt"/>
-          <line num="150" count="0" type="stmt"/>
-          <line num="151" count="0" type="stmt"/>
-          <line num="155" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="156" count="0" type="stmt"/>
-          <line num="158" count="0" type="stmt"/>
-          <line num="163" count="0" type="stmt"/>
-          <line num="167" count="0" type="stmt"/>
-          <line num="171" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="172" count="0" type="stmt"/>
-          <line num="217" count="0" type="stmt"/>
+<coverage generated="1504291857709" clover="3.2.0">
+  <project timestamp="1504291857709" name="All files">
+    <metrics statements="369" coveredstatements="290" conditionals="79" coveredconditionals="36" methods="72" coveredmethods="47" elements="520" coveredelements="373" complexity="0" loc="369" ncloc="369" packages="8" files="28" classes="28">
+      <package name="api">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="config.js" path="/Users/derekrush/sites/homefilming/api/config.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
         </file>
-        <file name="pagePricing.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/pagePricing.jsx">
-          <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-          <line num="8" count="1" type="stmt"/>
-          <line num="9" count="1" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
+      </package>
+      <package name="api.graphql">
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="resolvers.js" path="/Users/derekrush/sites/homefilming/api/graphql/resolvers.js">
+          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="28" count="3" type="stmt"/>
         </file>
-        <file name="planSummary.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/planSummary.jsx">
-          <metrics statements="14" coveredstatements="1" conditionals="14" coveredconditionals="0" methods="4" coveredmethods="0"/>
-          <line num="11" count="1" type="stmt"/>
+        <file name="schema.js" path="/Users/derekrush/sites/homefilming/api/graphql/schema.js">
+          <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="18" count="3" type="stmt"/>
+          <line num="32" count="3" type="stmt"/>
+          <line num="39" count="3" type="stmt"/>
+          <line num="51" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="api.graphql.resolvers">
+        <metrics statements="76" coveredstatements="60" conditionals="4" coveredconditionals="1" methods="12" coveredmethods="6"/>
+        <file name="addresses.js" path="/Users/derekrush/sites/homefilming/api/graphql/resolvers/addresses.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="5" count="3" type="stmt"/>
+        </file>
+        <file name="auth.js" path="/Users/derekrush/sites/homefilming/api/graphql/resolvers/auth.js">
+          <metrics statements="9" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
           <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="16" count="3" type="stmt"/>
+        </file>
+        <file name="orders.js" path="/Users/derekrush/sites/homefilming/api/graphql/resolvers/orders.js">
+          <metrics statements="18" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="13" count="3" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
           <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="16" count="0" type="stmt"/>
           <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
           <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-        </file>
-        <file name="pricingDetails.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/pricingDetails.jsx">
-          <metrics statements="14" coveredstatements="13" conditionals="14" coveredconditionals="13" methods="4" coveredmethods="4"/>
-          <line num="10" count="1" type="stmt"/>
-          <line num="11" count="3" type="stmt"/>
-          <line num="12" count="9" type="cond" truecount="4" falsecount="0"/>
-          <line num="13" count="4" type="stmt"/>
-          <line num="14" count="5" type="cond" truecount="4" falsecount="0"/>
-          <line num="15" count="3" type="stmt"/>
-          <line num="16" count="2" type="cond" truecount="4" falsecount="0"/>
-          <line num="17" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="23" count="3" type="stmt"/>
-          <line num="24" count="3" type="cond" truecount="1" falsecount="1"/>
-          <line num="25" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
           <line num="29" count="3" type="stmt"/>
-          <line num="41" count="9" type="stmt"/>
         </file>
-        <file name="pricingList.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/pricingList.jsx">
-          <metrics statements="11" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-          <line num="11" count="1" type="stmt"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="14" count="3" type="stmt"/>
+        <file name="users.js" path="/Users/derekrush/sites/homefilming/api/graphql/resolvers/users.js">
+          <metrics statements="48" coveredstatements="46" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="6"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="4" type="stmt"/>
+          <line num="9" count="4" type="stmt"/>
+          <line num="10" count="4" type="stmt"/>
+          <line num="11" count="4" type="stmt"/>
+          <line num="12" count="4" type="stmt"/>
+          <line num="13" count="4" type="stmt"/>
+          <line num="16" count="3" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
           <line num="19" count="1" type="stmt"/>
           <line num="20" count="1" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="33" count="1" type="stmt"/>
-          <line num="37" count="3" type="stmt"/>
-        </file>
-        <file name="pricingPlan.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/pricingPlan.jsx">
-          <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
-          <line num="12" count="3" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="23" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="24" count="2" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
-          <line num="31" count="3" type="stmt"/>
-        </file>
-        <file name="signup.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/signup.jsx">
-          <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.agent.styles">
-        <metrics statements="12" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <file name="order.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/styles/order.jsx">
-          <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="66" count="0" type="stmt"/>
-        </file>
-        <file name="orderNew.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/styles/orderNew.jsx">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-        </file>
-        <file name="pricing.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/styles/pricing.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="signup.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/styles/signup.jsx">
-          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        </file>
-        <file name="summary.jsx" path="/Users/derekrush/sites/homefilming/client/components/agent/styles/summary.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.dashboard">
-        <metrics statements="36" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="25" coveredmethods="0"/>
-        <file name="agent_index.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/agent_index.jsx">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-        </file>
-        <file name="collaborationArea.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/collaborationArea.jsx">
-          <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="66" count="0" type="stmt"/>
-        </file>
-        <file name="missions.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/missions.jsx">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-        </file>
-        <file name="orders.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/orders.jsx">
-          <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-        </file>
-        <file name="pilot_index.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/pilot_index.jsx">
-          <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="10" count="0" type="stmt"/>
-        </file>
-        <file name="reorder.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/reorder.jsx">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-        </file>
-        <file name="settings.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/settings.jsx">
-          <metrics statements="5" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-        </file>
-        <file name="uploads.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/uploads.jsx">
-          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.dashboard.styles">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="collaboration.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/styles/collaboration.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="dashboard.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/styles/dashboard.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="uploads.jsx" path="/Users/derekrush/sites/homefilming/client/components/dashboard/styles/uploads.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.index">
-        <metrics statements="80" coveredstatements="41" conditionals="14" coveredconditionals="4" methods="29" coveredmethods="20"/>
-        <file name="addressMapper.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/addressMapper.jsx">
-          <metrics statements="34" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="8" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="62" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
-          <line num="71" count="0" type="stmt"/>
-          <line num="104" count="0" type="stmt"/>
-        </file>
-        <file name="aerialImagerySells.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/aerialImagerySells.jsx">
-          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
           <line num="22" count="1" type="stmt"/>
-          <line num="23" count="4" type="stmt"/>
-          <line num="31" count="1" type="stmt"/>
-          <line num="36" count="4" type="stmt"/>
-        </file>
-        <file name="birdsEyeView.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/birdsEyeView.jsx">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
-        </file>
-        <file name="hero.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/hero.jsx">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="18" count="1" type="stmt"/>
-        </file>
-        <file name="index.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/index.jsx">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="16" count="1" type="stmt"/>
-        </file>
-        <file name="ourClientsLoveUs.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/ourClientsLoveUs.jsx">
-          <metrics statements="16" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="5"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="21" count="1" type="stmt"/>
-          <line num="22" count="3" type="stmt"/>
-          <line num="29" count="14" type="stmt"/>
-          <line num="41" count="1" type="stmt"/>
-          <line num="42" count="1" type="stmt"/>
-          <line num="43" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="44" count="1" type="stmt"/>
-          <line num="45" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="46" count="1" type="stmt"/>
-          <line num="52" count="2" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="67" count="0" type="stmt"/>
-          <line num="71" count="0" type="stmt"/>
-          <line num="79" count="1" type="stmt"/>
-        </file>
-        <file name="photos.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/photos.jsx">
-          <metrics statements="6" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-          <line num="9" count="1" type="stmt"/>
-          <line num="10" count="1" type="stmt"/>
-          <line num="11" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-        </file>
-        <file name="plans.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/plans.jsx">
-          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        </file>
-        <file name="sampleVideo.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/sampleVideo.jsx">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-          <line num="10" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
-        </file>
-        <file name="share.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/share.jsx">
-          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="21" count="1" type="stmt"/>
-          <line num="26" count="5" type="stmt"/>
-        </file>
-        <file name="whatYouGet.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/whatYouGet.jsx">
-          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="17" count="1" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
-          <line num="27" count="6" type="stmt"/>
-          <line num="35" count="1" type="stmt"/>
-          <line num="40" count="6" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.index.styles">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="aerialImagerySells.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/aerialImagerySells.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="birdsEyeView.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/birdsEyeView.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="5" count="1" type="stmt"/>
-        </file>
-        <file name="hero.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/hero.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="loveUs.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/loveUs.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="photos.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/photos.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="sampleVideo.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/sampleVideo.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="share.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/share.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="whatYouGet.jsx" path="/Users/derekrush/sites/homefilming/client/components/index/styles/whatYouGet.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.layouts">
-        <metrics statements="49" coveredstatements="11" conditionals="22" coveredconditionals="2" methods="14" coveredmethods="3"/>
-        <file name="App.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/App.jsx">
-          <metrics statements="32" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="8" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="51" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="75" count="0" type="stmt"/>
-          <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="77" count="0" type="stmt"/>
-          <line num="87" count="0" type="stmt"/>
-        </file>
-        <file name="protected_route.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/protected_route.jsx">
-          <metrics statements="3" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="cond" truecount="0" falsecount="4"/>
-        </file>
-        <file name="routes.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/routes.jsx">
-          <metrics statements="14" coveredstatements="10" conditionals="6" coveredconditionals="2" methods="4" coveredmethods="3"/>
+          <line num="23" count="1" type="stmt"/>
           <line num="24" count="1" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="27" count="3" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
           <line num="29" count="1" type="stmt"/>
-          <line num="30" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="33" count="2" type="stmt"/>
-          <line num="36" count="1" type="stmt"/>
-          <line num="37" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="40" count="2" type="stmt"/>
-          <line num="43" count="1" type="stmt"/>
-          <line num="44" count="2" type="stmt"/>
-          <line num="66" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.layouts.footers">
-        <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <file name="public_footer.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/footers/public_footer.jsx">
-          <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="13" count="2" type="stmt"/>
-          <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="15" count="2" type="stmt"/>
-          <line num="76" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.layouts.headers">
-        <metrics statements="38" coveredstatements="13" conditionals="6" coveredconditionals="1" methods="17" coveredmethods="3"/>
-        <file name="private_header.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/headers/private_header.jsx">
-          <metrics statements="19" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="59" count="0" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
-          <line num="66" count="0" type="stmt"/>
-        </file>
-        <file name="public_header.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/headers/public_header.jsx">
-          <metrics statements="19" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="3"/>
-          <line num="21" count="1" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="24" count="2" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="34" count="2" type="stmt"/>
-          <line num="36" count="2" type="stmt"/>
-          <line num="42" count="2" type="stmt"/>
-          <line num="43" count="2" type="stmt"/>
-          <line num="44" count="2" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="78" count="0" type="stmt"/>
-          <line num="86" count="2" type="stmt"/>
-          <line num="87" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="88" count="2" type="stmt"/>
-          <line num="131" count="0" type="stmt"/>
-          <line num="148" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.layouts.styles">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="footer.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/styles/footer.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="header.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/styles/header.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="mobile_header.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/styles/mobile_header.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="private_header.jsx" path="/Users/derekrush/sites/homefilming/client/components/layouts/styles/private_header.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.misc">
-        <metrics statements="213" coveredstatements="15" conditionals="44" coveredconditionals="2" methods="94" coveredmethods="5"/>
-        <file name="404.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/404.jsx">
-          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        </file>
-        <file name="address.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/address.jsx">
-          <metrics statements="38" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="14" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
-          <line num="144" count="0" type="stmt"/>
-        </file>
-        <file name="addressMapper.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/addressMapper.jsx">
-          <metrics statements="31" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="10" coveredmethods="0"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="66" count="0" type="stmt"/>
-          <line num="67" count="0" type="cond" truecount="0" falsecount="6"/>
-          <line num="68" count="0" type="stmt"/>
-          <line num="69" count="0" type="stmt"/>
-          <line num="70" count="0" type="stmt"/>
-          <line num="71" count="0" type="stmt"/>
-          <line num="72" count="0" type="stmt"/>
-          <line num="73" count="0" type="stmt"/>
-          <line num="77" count="0" type="stmt"/>
-          <line num="82" count="0" type="stmt"/>
-          <line num="91" count="0" type="stmt"/>
-          <line num="97" count="0" type="stmt"/>
-          <line num="101" count="0" type="stmt"/>
-        </file>
-        <file name="contact.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/contact.jsx">
-          <metrics statements="22" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="14" coveredmethods="1"/>
-          <line num="18" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="20" count="13" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
-          <line num="62" count="0" type="stmt"/>
-          <line num="63" count="0" type="stmt"/>
-          <line num="68" count="0" type="stmt"/>
-          <line num="81" count="0" type="stmt"/>
-          <line num="95" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="96" count="0" type="stmt"/>
-          <line num="101" count="0" type="stmt"/>
-        </file>
-        <file name="contactList.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/contactList.jsx">
-          <metrics statements="37" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="14" coveredmethods="0"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
-          <line num="58" count="0" type="stmt"/>
-          <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="63" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="69" count="0" type="stmt"/>
-          <line num="70" count="0" type="stmt"/>
-          <line num="71" count="0" type="stmt"/>
-          <line num="72" count="0" type="stmt"/>
-          <line num="73" count="0" type="stmt"/>
-          <line num="74" count="0" type="stmt"/>
-          <line num="75" count="0" type="stmt"/>
-          <line num="76" count="0" type="stmt"/>
-          <line num="81" count="0" type="stmt"/>
-          <line num="84" count="0" type="stmt"/>
-        </file>
-        <file name="faq.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/faq.jsx">
-          <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-        </file>
-        <file name="faqIndex.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/faqIndex.jsx">
-          <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="11" count="1" type="stmt"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-        </file>
-        <file name="header.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/header.jsx">
-          <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
-          <line num="7" count="1" type="stmt"/>
-          <line num="9" count="5" type="stmt"/>
-          <line num="10" count="5" type="cond" truecount="1" falsecount="1"/>
-          <line num="13" count="5" type="stmt"/>
-          <line num="14" count="5" type="cond" truecount="1" falsecount="1"/>
-          <line num="18" count="5" type="stmt"/>
-          <line num="27" count="1" type="stmt"/>
-        </file>
-        <file name="li_navlink.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/li_navlink.jsx">
-          <metrics statements="4" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="16" count="0" type="stmt"/>
-        </file>
-        <file name="loader.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/loader.jsx">
-          <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-        </file>
-        <file name="login.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/login.jsx">
-          <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="58" count="0" type="stmt"/>
-          <line num="59" count="0" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="67" count="0" type="stmt"/>
-          <line num="88" count="0" type="stmt"/>
-          <line num="97" count="0" type="stmt"/>
-        </file>
-        <file name="payment.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/payment.jsx">
-          <metrics statements="15" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-          <line num="72" count="0" type="stmt"/>
-        </file>
-        <file name="sampleVideo.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/sampleVideo.jsx">
-          <metrics statements="13" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-          <line num="8" count="1" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-        </file>
-        <file name="scrollDown.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/scrollDown.jsx">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-          <line num="7" count="1" type="stmt"/>
-          <line num="8" count="1" type="stmt"/>
-        </file>
-        <file name="user.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/user.jsx">
-          <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.misc.styles">
-        <metrics statements="10" coveredstatements="6" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <file name="contact.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/contact.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="faq.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/faq.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="header.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/header.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="login.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/login.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="mapper.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/mapper.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="payment.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/payment.jsx">
-          <metrics statements="4" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-        </file>
-        <file name="sampleVideo.jsx" path="/Users/derekrush/sites/homefilming/client/components/misc/styles/sampleVideo.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.pilots">
-        <metrics statements="33" coveredstatements="9" conditionals="2" coveredconditionals="0" methods="17" coveredmethods="0"/>
-        <file name="banner.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/banner.jsx">
-          <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="9" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-        </file>
-        <file name="hero.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/hero.jsx">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-        </file>
-        <file name="howItWorks.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/howItWorks.jsx">
-          <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="21" count="1" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="31" count="1" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-        </file>
-        <file name="index.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/index.jsx">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-        </file>
-        <file name="photos.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/photos.jsx">
-          <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="7" count="1" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-        </file>
-        <file name="stories.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/stories.jsx">
-          <metrics statements="13" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="63" count="0" type="stmt"/>
-        </file>
-        <file name="youreInCharge.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/youreInCharge.jsx">
-          <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="11" count="1" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.pilots.register">
-        <metrics statements="39" coveredstatements="3" conditionals="7" coveredconditionals="0" methods="22" coveredmethods="1"/>
-        <file name="index.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/register/index.jsx">
-          <metrics statements="10" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="24" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-        </file>
-        <file name="pilot_info.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/register/pilot_info.jsx">
-          <metrics statements="10" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="1"/>
-          <line num="11" count="1" type="stmt"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="13" count="5" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-        </file>
-        <file name="uploads.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/register/uploads.jsx">
-          <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="62" count="0" type="stmt"/>
-          <line num="83" count="0" type="stmt"/>
-          <line num="84" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.pilots.styles">
-        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="banner.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/banner.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="hero.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/hero.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="howItWorks.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/howItWorks.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="photos.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/photos.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="register.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/register.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="stories.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/stories.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="youreInCharge.jsx" path="/Users/derekrush/sites/homefilming/client/components/pilots/styles/youreInCharge.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.works">
-        <metrics statements="28" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="14" coveredmethods="0"/>
-        <file name="hardSell.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/hardSell.jsx">
-          <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="7" count="1" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-        </file>
-        <file name="howItWorks.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/howItWorks.jsx">
-          <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="33" count="1" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-        </file>
-        <file name="index.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/index.jsx">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-        </file>
-        <file name="intro.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/intro.jsx">
-          <metrics statements="12" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-        </file>
-        <file name="quickStats.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/quickStats.jsx">
-          <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
           <line num="30" count="1" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.components.works.styles">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="hardSell.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/styles/hardSell.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="howItWorks.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/styles/howItWorks.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="intro.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/styles/intro.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="quickStats.jsx" path="/Users/derekrush/sites/homefilming/client/components/works/styles/quickStats.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.mutations">
-        <metrics statements="5" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <file name="file_upload.jsx" path="/Users/derekrush/sites/homefilming/client/mutations/file_upload.jsx">
-          <metrics statements="2" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="3" count="0" type="stmt"/>
-        </file>
-        <file name="login.jsx" path="/Users/derekrush/sites/homefilming/client/mutations/login.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-        <file name="logout.jsx" path="/Users/derekrush/sites/homefilming/client/mutations/logout.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-        <file name="order.jsx" path="/Users/derekrush/sites/homefilming/client/mutations/order.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.queries">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="agent_order.jsx" path="/Users/derekrush/sites/homefilming/client/queries/agent_order.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-        <file name="agent_orders.jsx" path="/Users/derekrush/sites/homefilming/client/queries/agent_orders.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-        <file name="current_user.jsx" path="/Users/derekrush/sites/homefilming/client/queries/current_user.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-        <file name="open_missions.jsx" path="/Users/derekrush/sites/homefilming/client/queries/open_missions.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="3" count="1" type="stmt"/>
-        </file>
-      </package>
-      <package name="client.styles">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="commonElements.jsx" path="/Users/derekrush/sites/homefilming/client/styles/commonElements.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="commonForms.jsx" path="/Users/derekrush/sites/homefilming/client/styles/commonForms.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="commonLayout.jsx" path="/Users/derekrush/sites/homefilming/client/styles/commonLayout.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="commonText.jsx" path="/Users/derekrush/sites/homefilming/client/styles/commonText.jsx">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-        </file>
-        <file name="helpers.jsx" path="/Users/derekrush/sites/homefilming/client/styles/helpers.jsx">
-          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="36" count="3" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
           <line num="39" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="44" count="3" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="46" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="51" count="1" type="stmt"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="57" count="3" type="stmt"/>
+          <line num="58" count="7" type="stmt"/>
+          <line num="59" count="7" type="stmt"/>
+          <line num="60" count="7" type="stmt"/>
+          <line num="64" count="3" type="stmt"/>
         </file>
       </package>
-      <package name="client.utils">
-        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <file name="asset_uploader.jsx" path="/Users/derekrush/sites/homefilming/client/utils/asset_uploader.jsx">
-          <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+      <package name="api.graphql.types">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="address.js" path="/Users/derekrush/sites/homefilming/api/graphql/types/address.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="59" count="3" type="stmt"/>
+        </file>
+        <file name="order.js" path="/Users/derekrush/sites/homefilming/api/graphql/types/order.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="50" count="3" type="stmt"/>
+        </file>
+        <file name="plan.js" path="/Users/derekrush/sites/homefilming/api/graphql/types/plan.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="17" count="3" type="stmt"/>
+        </file>
+        <file name="user.js" path="/Users/derekrush/sites/homefilming/api/graphql/types/user.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="109" count="3" type="stmt"/>
         </file>
       </package>
-      <package name="server">
-        <metrics statements="40" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <file name="config.js" path="/Users/derekrush/sites/homefilming/server/config.js">
-          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="1" type="stmt"/>
+      <package name="api.models">
+        <metrics statements="83" coveredstatements="81" conditionals="13" coveredconditionals="9" methods="18" coveredmethods="18"/>
+        <file name="address.js" path="/Users/derekrush/sites/homefilming/api/models/address.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="17" count="3" type="stmt"/>
+          <line num="18" count="3" type="stmt"/>
+          <line num="22" count="3" type="stmt"/>
         </file>
-        <file name="server.js" path="/Users/derekrush/sites/homefilming/server/server.js">
-          <metrics statements="39" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
+        <file name="asset.js" path="/Users/derekrush/sites/homefilming/api/models/asset.js">
+          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+          <line num="20" count="3" type="stmt"/>
+          <line num="25" count="3" type="stmt"/>
+          <line num="33" count="3" type="stmt"/>
+        </file>
+        <file name="company.js" path="/Users/derekrush/sites/homefilming/api/models/company.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="13" count="3" type="stmt"/>
+          <line num="14" count="3" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+        </file>
+        <file name="contact.js" path="/Users/derekrush/sites/homefilming/api/models/contact.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="11" count="3" type="stmt"/>
+          <line num="12" count="3" type="stmt"/>
+          <line num="16" count="3" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/derekrush/sites/homefilming/api/models/index.js">
+          <metrics statements="20" coveredstatements="19" conditionals="9" coveredconditionals="7" methods="3" coveredmethods="3"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="10" count="3" type="cond" truecount="1" falsecount="1"/>
           <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="59" count="0" type="stmt"/>
+          <line num="13" count="3" type="stmt"/>
+          <line num="16" count="3" type="stmt"/>
+          <line num="19" count="33" type="cond" truecount="3" falsecount="0"/>
+          <line num="22" count="30" type="stmt"/>
+          <line num="23" count="30" type="stmt"/>
+          <line num="26" count="3" type="stmt"/>
+          <line num="27" count="30" type="cond" truecount="2" falsecount="0"/>
+          <line num="28" count="27" type="stmt"/>
+          <line num="32" count="3" type="stmt"/>
+          <line num="33" count="3" type="stmt"/>
+          <line num="35" count="3" type="stmt"/>
+        </file>
+        <file name="invitation.js" path="/Users/derekrush/sites/homefilming/api/models/invitation.js">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="14" count="3" type="stmt"/>
+        </file>
+        <file name="note.js" path="/Users/derekrush/sites/homefilming/api/models/note.js">
+          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="11" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+        </file>
+        <file name="notification.js" path="/Users/derekrush/sites/homefilming/api/models/notification.js">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="11" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+        </file>
+        <file name="order.js" path="/Users/derekrush/sites/homefilming/api/models/order.js">
+          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+          <line num="25" count="3" type="stmt"/>
+          <line num="28" count="3" type="stmt"/>
+          <line num="38" count="3" type="stmt"/>
+        </file>
+        <file name="rating.js" path="/Users/derekrush/sites/homefilming/api/models/rating.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+        </file>
+        <file name="user.js" path="/Users/derekrush/sites/homefilming/api/models/user.js">
+          <metrics statements="19" coveredstatements="18" conditionals="4" coveredconditionals="2" methods="6" coveredmethods="6"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+          <line num="35" count="3" type="stmt"/>
+          <line num="38" count="3" type="stmt"/>
+          <line num="43" count="3" type="stmt"/>
+          <line num="46" count="3" type="stmt"/>
+          <line num="49" count="3" type="stmt"/>
+          <line num="52" count="3" type="stmt"/>
+          <line num="64" count="7" type="stmt"/>
+          <line num="65" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="68" count="7" type="stmt"/>
+          <line num="75" count="7" type="stmt"/>
+          <line num="76" count="7" type="stmt"/>
+          <line num="80" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="81" count="1" type="stmt"/>
+          <line num="82" count="1" type="stmt"/>
+          <line num="88" count="3" type="stmt"/>
         </file>
       </package>
-      <package name="server.db.migrations">
-        <metrics statements="51" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="22" coveredmethods="0"/>
-        <file name="20170322104101-create-user.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170322104101-create-user.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="85" count="0" type="stmt"/>
-        </file>
-        <file name="20170322120508-create-order.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170322120508-create-order.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-        </file>
-        <file name="20170322121220-create-address.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170322121220-create-address.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-        </file>
-        <file name="20170323114209-create-invitation.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170323114209-create-invitation.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-        </file>
-        <file name="20170323114249-create-assets.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170323114249-create-assets.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-        </file>
-        <file name="20170330072553-create-ratings.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170330072553-create-ratings.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-        </file>
-        <file name="20170330103307-create-notes.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170330103307-create-notes.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-        </file>
-        <file name="20170331064759-create-notifications.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170331064759-create-notifications.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-        </file>
-        <file name="20170406173824-create-phones.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170406173824-create-phones.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-        </file>
-        <file name="20170406173833-create-companies.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170406173833-create-companies.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-        </file>
-        <file name="20170407000200-create-indexes.js" path="/Users/derekrush/sites/homefilming/server/db/migrations/20170407000200-create-indexes.js">
-          <metrics statements="21" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
+      <package name="api.services">
+        <metrics statements="161" coveredstatements="112" conditionals="48" coveredconditionals="25" methods="39" coveredmethods="22"/>
+        <file name="addresses.js" path="/Users/derekrush/sites/homefilming/api/services/addresses.js">
+          <metrics statements="17" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="2"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="6" type="cond" truecount="1" falsecount="1"/>
           <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
           <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="server.db.seeders">
-        <metrics statements="64" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="22" coveredmethods="0"/>
-        <file name="20170323211014-users.js" path="/Users/derekrush/sites/homefilming/server/db/seeders/20170323211014-users.js">
-          <metrics statements="26" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
-          <line num="69" count="0" type="stmt"/>
-          <line num="82" count="0" type="stmt"/>
-          <line num="83" count="0" type="stmt"/>
-          <line num="94" count="0" type="stmt"/>
-          <line num="95" count="0" type="stmt"/>
-          <line num="96" count="0" type="stmt"/>
-          <line num="109" count="0" type="stmt"/>
-          <line num="111" count="0" type="stmt"/>
-          <line num="115" count="0" type="stmt"/>
-        </file>
-        <file name="20170331034936-address.js" path="/Users/derekrush/sites/homefilming/server/db/seeders/20170331034936-address.js">
-          <metrics statements="19" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="8" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-        </file>
-        <file name="20170801105049-orders.js" path="/Users/derekrush/sites/homefilming/server/db/seeders/20170801105049-orders.js">
-          <metrics statements="19" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
           <line num="27" count="0" type="stmt"/>
           <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="server.graphql">
-        <metrics statements="18" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <file name="resolvers.js" path="/Users/derekrush/sites/homefilming/server/graphql/resolvers.js">
-          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-        </file>
-        <file name="schema.js" path="/Users/derekrush/sites/homefilming/server/graphql/schema.js">
-          <metrics statements="12" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="server.graphql.resolvers">
-        <metrics statements="46" coveredstatements="0" conditionals="64" coveredconditionals="0" methods="35" coveredmethods="0"/>
-        <file name="addresses.js" path="/Users/derekrush/sites/homefilming/server/graphql/resolvers/addresses.js">
-          <metrics statements="2" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="5" count="0" type="stmt"/>
-        </file>
-        <file name="assets.js" path="/Users/derekrush/sites/homefilming/server/graphql/resolvers/assets.js">
-          <metrics statements="10" coveredstatements="0" conditionals="26" coveredconditionals="0" methods="5" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="8" count="0" type="cond" truecount="0" falsecount="8"/>
-          <line num="9" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="16" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="18" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="21" count="0" type="stmt"/>
-        </file>
-        <file name="auth.js" path="/Users/derekrush/sites/homefilming/server/graphql/resolvers/auth.js">
-          <metrics statements="12" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="10" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="10" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="16" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-        </file>
-        <file name="orders.js" path="/Users/derekrush/sites/homefilming/server/graphql/resolvers/orders.js">
-          <metrics statements="19" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="17" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="cond" truecount="0" falsecount="3"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="cond" truecount="0" falsecount="3"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="13" count="0" type="cond" truecount="0" falsecount="6"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="25" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
           <line num="32" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="39" count="3" type="stmt"/>
         </file>
-        <file name="users.js" path="/Users/derekrush/sites/homefilming/server/graphql/resolvers/users.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
+        <file name="auth.js" path="/Users/derekrush/sites/homefilming/api/services/auth.js">
+          <metrics statements="27" coveredstatements="26" conditionals="8" coveredconditionals="5" methods="8" coveredmethods="8"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="12" count="3" type="stmt"/>
+          <line num="13" count="7" type="stmt"/>
+          <line num="14" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="7" type="stmt"/>
+          <line num="16" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="21" count="7" type="stmt"/>
+          <line num="31" count="7" type="stmt"/>
+          <line num="32" count="7" type="stmt"/>
+          <line num="33" count="7" type="stmt"/>
+          <line num="34" count="7" type="stmt"/>
+          <line num="35" count="7" type="stmt"/>
+          <line num="36" count="7" type="cond" truecount="3" falsecount="1"/>
+          <line num="37" count="7" type="stmt"/>
+          <line num="40" count="7" type="stmt"/>
+          <line num="41" count="7" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="51" count="3" type="stmt"/>
         </file>
-      </package>
-      <package name="server.graphql.types">
-        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="address.js" path="/Users/derekrush/sites/homefilming/server/graphql/types/address.js">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-        </file>
-        <file name="asset.js" path="/Users/derekrush/sites/homefilming/server/graphql/types/asset.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
-        </file>
-        <file name="order.js" path="/Users/derekrush/sites/homefilming/server/graphql/types/order.js">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="45" count="0" type="stmt"/>
-        </file>
-        <file name="upload.js" path="/Users/derekrush/sites/homefilming/server/graphql/types/upload.js">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-        </file>
-        <file name="user.js" path="/Users/derekrush/sites/homefilming/server/graphql/types/user.js">
-          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="48" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="server.mailers">
-        <metrics statements="15" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <file name="order.js" path="/Users/derekrush/sites/homefilming/server/mailers/order.js">
-          <metrics statements="15" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
+        <file name="orders.js" path="/Users/derekrush/sites/homefilming/api/services/orders.js">
+          <metrics statements="40" coveredstatements="13" conditionals="11" coveredconditionals="0" methods="10" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
           <line num="12" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
           <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="20" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="server.models">
-        <metrics statements="84" coveredstatements="0" conditionals="17" coveredconditionals="0" methods="29" coveredmethods="0"/>
-        <file name="address.js" path="/Users/derekrush/sites/homefilming/server/models/address.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-        </file>
-        <file name="asset.js" path="/Users/derekrush/sites/homefilming/server/models/asset.js">
-          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-        </file>
-        <file name="company.js" path="/Users/derekrush/sites/homefilming/server/models/company.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-        </file>
-        <file name="contact.js" path="/Users/derekrush/sites/homefilming/server/models/contact.js">
-          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-        </file>
-        <file name="index.js" path="/Users/derekrush/sites/homefilming/server/models/index.js">
-          <metrics statements="20" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="20" count="0" type="cond" truecount="0" falsecount="3"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-        </file>
-        <file name="invitation.js" path="/Users/derekrush/sites/homefilming/server/models/invitation.js">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-        </file>
-        <file name="note.js" path="/Users/derekrush/sites/homefilming/server/models/note.js">
-          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-        </file>
-        <file name="notification.js" path="/Users/derekrush/sites/homefilming/server/models/notification.js">
-          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-        </file>
-        <file name="order.js" path="/Users/derekrush/sites/homefilming/server/models/order.js">
-          <metrics statements="7" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-        </file>
-        <file name="rating.js" path="/Users/derekrush/sites/homefilming/server/models/rating.js">
-          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-        </file>
-        <file name="user.js" path="/Users/derekrush/sites/homefilming/server/models/user.js">
-          <metrics statements="19" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="66" count="0" type="stmt"/>
-          <line num="68" count="0" type="stmt"/>
-          <line num="75" count="0" type="stmt"/>
-          <line num="76" count="0" type="stmt"/>
-          <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="81" count="0" type="stmt"/>
-          <line num="82" count="0" type="stmt"/>
-          <line num="88" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="server.services">
-        <metrics statements="132" coveredstatements="0" conditionals="90" coveredconditionals="0" methods="63" coveredmethods="0"/>
-        <file name="address.js" path="/Users/derekrush/sites/homefilming/server/services/address.js">
-          <metrics statements="11" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="7" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="cond" truecount="0" falsecount="3"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-        </file>
-        <file name="assets.js" path="/Users/derekrush/sites/homefilming/server/services/assets.js">
-          <metrics statements="11" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="10" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="7" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="17" count="0" type="cond" truecount="0" falsecount="3"/>
-          <line num="23" count="0" type="stmt"/>
-        </file>
-        <file name="auth.js" path="/Users/derekrush/sites/homefilming/server/services/auth.js">
-          <metrics statements="37" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="11" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="10" count="0" type="stmt"/>
-          <line num="13" count="0" type="stmt"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="28" count="0" type="stmt"/>
-          <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="34" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="45" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="56" count="0" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-        </file>
-        <file name="orders.js" path="/Users/derekrush/sites/homefilming/server/services/orders.js">
-          <metrics statements="42" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="18" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="7" count="0" type="stmt"/>
-          <line num="8" count="0" type="stmt"/>
-          <line num="10" count="0" type="cond" truecount="0" falsecount="7"/>
-          <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
           <line num="28" count="0" type="stmt"/>
           <line num="30" count="0" type="stmt"/>
-          <line num="33" count="0" type="stmt"/>
+          <line num="33" count="3" type="stmt"/>
           <line num="34" count="0" type="stmt"/>
           <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="44" count="0" type="stmt"/>
-          <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="58" count="0" type="stmt"/>
-          <line num="63" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="65" count="0" type="stmt"/>
+          <line num="43" count="3" type="stmt"/>
+          <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="62" count="3" type="cond" truecount="0" falsecount="1"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
           <line num="80" count="0" type="stmt"/>
           <line num="81" count="0" type="stmt"/>
           <line num="82" count="0" type="stmt"/>
@@ -1691,44 +362,121 @@
           <line num="92" count="0" type="stmt"/>
           <line num="93" count="0" type="stmt"/>
           <line num="95" count="0" type="stmt"/>
-          <line num="96" count="0" type="stmt"/>
           <line num="97" count="0" type="stmt"/>
-          <line num="98" count="0" type="stmt"/>
-          <line num="101" count="0" type="stmt"/>
+          <line num="100" count="3" type="stmt"/>
         </file>
-        <file name="users.js" path="/Users/derekrush/sites/homefilming/server/services/users.js">
-          <metrics statements="31" coveredstatements="0" conditionals="38" coveredconditionals="0" methods="17" coveredmethods="0"/>
-          <line num="1" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="3" count="0" type="stmt"/>
-          <line num="4" count="0" type="stmt"/>
-          <line num="5" count="0" type="stmt"/>
-          <line num="6" count="0" type="stmt"/>
-          <line num="8" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="23" count="0" type="cond" truecount="0" falsecount="8"/>
-          <line num="24" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="26" count="0" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
-          <line num="28" count="0" type="stmt"/>
+        <file name="users.js" path="/Users/derekrush/sites/homefilming/api/services/users.js">
+          <metrics statements="77" coveredstatements="62" conditionals="27" coveredconditionals="19" methods="16" coveredmethods="12"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="2" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="11" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="12" count="7" type="stmt"/>
+          <line num="13" count="7" type="stmt"/>
+          <line num="14" count="7" type="stmt"/>
+          <line num="15" count="7" type="stmt"/>
+          <line num="16" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="cond" truecount="3" falsecount="1"/>
+          <line num="23" count="0" type="stmt"/>
           <line num="30" count="0" type="stmt"/>
-          <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="32" count="0" type="stmt"/>
-          <line num="36" count="0" type="cond" truecount="0" falsecount="8"/>
-          <line num="37" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="45" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="36" count="10" type="cond" truecount="2" falsecount="0"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="44" count="7" type="stmt"/>
+          <line num="45" count="7" type="cond" truecount="3" falsecount="1"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="55" count="6" type="stmt"/>
+          <line num="57" count="6" type="stmt"/>
+          <line num="61" count="7" type="stmt"/>
+          <line num="62" count="7" type="stmt"/>
+          <line num="63" count="7" type="stmt"/>
+          <line num="64" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="75" count="7" type="stmt"/>
+          <line num="78" count="3" type="stmt"/>
+          <line num="79" count="6" type="stmt"/>
+          <line num="84" count="6" type="stmt"/>
+          <line num="86" count="6" type="stmt"/>
+          <line num="90" count="8" type="stmt"/>
+          <line num="91" count="8" type="stmt"/>
+          <line num="92" count="8" type="cond" truecount="4" falsecount="0"/>
+          <line num="94" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="95" count="5" type="stmt"/>
+          <line num="96" count="5" type="stmt"/>
+          <line num="98" count="1" type="stmt"/>
+          <line num="99" count="1" type="stmt"/>
+          <line num="101" count="1" type="stmt"/>
+          <line num="103" count="1" type="stmt"/>
+          <line num="104" count="1" type="stmt"/>
+          <line num="105" count="1" type="stmt"/>
+          <line num="107" count="1" type="stmt"/>
+          <line num="108" count="1" type="stmt"/>
+          <line num="109" count="1" type="stmt"/>
+          <line num="112" count="8" type="stmt"/>
+          <line num="113" count="8" type="stmt"/>
+          <line num="114" count="31" type="cond" truecount="1" falsecount="1"/>
+          <line num="115" count="0" type="stmt"/>
+          <line num="121" count="8" type="stmt"/>
+          <line num="122" count="68" type="stmt"/>
+          <line num="126" count="0" type="stmt"/>
+          <line num="128" count="8" type="stmt"/>
+          <line num="129" count="8" type="stmt"/>
+          <line num="132" count="3" type="stmt"/>
+          <line num="133" count="0" type="stmt"/>
+          <line num="134" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="135" count="0" type="stmt"/>
+          <line num="142" count="0" type="stmt"/>
+          <line num="144" count="0" type="stmt"/>
+          <line num="147" count="3" type="stmt"/>
+          <line num="148" count="0" type="stmt"/>
+          <line num="151" count="3" type="cond" truecount="0" falsecount="1"/>
+          <line num="152" count="0" type="stmt"/>
+          <line num="153" count="0" type="stmt"/>
+          <line num="156" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="api.utils">
+        <metrics statements="8" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <file name="helpers.js" path="/Users/derekrush/sites/homefilming/api/utils/helpers.js">
+          <metrics statements="8" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="4" count="8" type="stmt"/>
+          <line num="5" count="8" type="cond" truecount="1" falsecount="1"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="15" count="8" type="stmt"/>
+          <line num="18" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="utils">
+        <metrics statements="13" coveredstatements="3" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <file name="appErrors.js" path="/Users/derekrush/sites/homefilming/utils/appErrors.js">
+          <metrics statements="13" coveredstatements="3" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="3" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="22" count="3" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
         </file>
       </package>
     </metrics>

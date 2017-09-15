@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import cT from '../../styles/commonText'
+import cT from '../../styles/common_text'
 import header from './styles/header'
 
 const Header = (props) => {

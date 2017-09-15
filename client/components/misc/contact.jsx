@@ -10,10 +10,10 @@ import MenuItem from 'material-ui/MenuItem'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import ContentRemove from 'material-ui/svg-icons/content/remove'
 import { css } from 'aphrodite'
-import cF from '../../styles/commonForms'
+import cF from '../../styles/common_forms'
 import style from './styles/contact'
 import gql from 'graphql-tag'
-import ContactTypes from '../../utils/contactTypes.json'
+import ContactTypes from '../../utils/contact_types.json'
 
 const contactTypes = []
 _.each(ContactTypes, (type, i) => {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import { graphql } from 'react-apollo'
@@ -16,9 +15,7 @@ import { StyleSheet, css } from 'aphrodite'
 import header from '../styles/header'
 import { colors } from '../../../styles/helpers'
 import mobileHeader from '../styles/mobile_header'
-import logo from '../../../assets/svg/logo.svg'
-import phoneIcon from '../../../assets/svg/phoneIcon.svg'
-injectTapEventPlugin()
+
 
 const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
   <FlatButton
@@ -66,29 +63,30 @@ class PublicHeader extends Component {
   // async QueryCurrentUser(){
   //   const res = await this.props.data.user
   //   console.log('trytrffruy',res)
-  //   return res
-  // }
-  //
-  // componentDidMount() {
-  //   const res = await this.QueryCurrentUser()
-  //   console.log('ressssss',res)
+  //   if(this.props.data){return res}
   // }
 
-  componentDidUpdate(){
-    console.log('booooooo',this.props.data)
+  componentDidMount() {
+    // const res = this.QueryCurrentUser()
+    // console.log('ressssss',res)
   }
+
+  // componentDidUpdate(){
+  //   console.log('booooooo',this.props.data)
+  // }
 
   componentWillUnmount() {
   }
 
   render(){
-    // console.log(this.props.data)
+    // const res = this.props.data.user
+    console.log(this.props.data)
     let width = window.innerWidth
     if (width > 960){
       return(
         <header id="AppHeader" className={css(header.container)}>
           <div className={css(header.logo)}>
-            <NavLink to="/"><img src={`/${logo}`} className={css(header.logoImg)} /></NavLink>
+            <NavLink to="/"><img src={require('../../../assets/svg/logo.svg')} className={css(header.logoImg)} /></NavLink>
           </div>
           <div className={css(header.navigation)}>
             <NavLink className={css(header.navItem)} to="/pricing">PRICING</NavLink>
@@ -98,7 +96,7 @@ class PublicHeader extends Component {
           <div className={css(header.callInfo)}>
             <div className={css(header.callInfoInner)}>
               <div className={css(header.callNumber)}>
-                <img src={`/${phoneIcon}`} alt="Phone Icon" className={css(header.phoneIcon)} /> 800 555 6767</div>
+                <img src={require('../../../assets/svg/phoneIcon.svg')} alt="Phone Icon" className={css(header.phoneIcon)} /> 800 555 6767</div>
               <div className={css(header.callText)}>Toll Free Number</div>
             </div>
           </div>
@@ -131,7 +129,7 @@ class PublicHeader extends Component {
       return(
         <div className={css(mobileHeader.container)}>
           <div className={css(mobileHeader.title)}>
-            <NavLink to="/"><img src={`/${logo}`} className={css(mobileHeader.logoImg)} /></NavLink>
+            <NavLink to="/"><img src={require('../../../assets/svg/logo.svg')} className={css(mobileHeader.logoImg)} /></NavLink>
           </div>
           <div className={css(mobileHeader.menu)}>
             <IconButton
@@ -170,7 +168,7 @@ class PublicHeader extends Component {
               <div className={css(mobileHeader.callInfo)}>
                 <div className={css(mobileHeader.callInfoInner)}>
                   <div className={css(mobileHeader.callNumber)}>
-                    <img src={`/${phoneIcon}`} alt="Phone Icon" className={css(header.phoneIcon)} />
+                    <img src={'../../../assets/svg/phoneIcon.svg'} alt="Phone Icon" className={css(header.phoneIcon)} />
                     <a href="tel:800 555 6767" className={css(mobileHeader.callLink)}>800 555 6767</a>
                   </div>
                   <div className={css(header.callText)}>Toll Free Number</div>

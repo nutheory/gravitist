@@ -18,11 +18,6 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".es6"]
   },
-  node: {
-      net: 'empty',
-      tls: 'empty',
-      dns: 'empty'
-  },
   module: {
     rules: [
       {

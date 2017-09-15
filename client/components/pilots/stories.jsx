@@ -3,19 +3,16 @@ import { StyleSheet, css } from 'aphrodite'
 import Slider from 'react-slick'
 import Header from '../misc/header'
 import st from './styles/stories'
-import cL from '../../styles/commonLayout'
-import cT from '../../styles/commonText'
-import cE from '../../styles/commonElements'
-import photo1 from '../../assets/images/1.jpg'
-import photo2 from '../../assets/images/2.jpg'
-import photo4 from '../../assets/images/4.jpg'
+import cL from '../../styles/common_layout'
+import cT from '../../styles/common_text'
+import cE from '../../styles/common_elements'
 
 const Stories = () => {
   const storyList = [
-    {img: photo1, name: "Kevin Parks", location: "Los Angels, CA", qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices at felis eu sollicitudin. Fusce ac arcu et eros" },
-    {img: photo2, name: "Glenn Arnold", location: "New York, NY", qoute: "Sed id tempus sapien. Sed pulvinar ipsum vel diam maximus, ac pretium nulla condimentum. Suspendisse rhoncus pellentesque libero." },
-    {img: photo4, name: "Jose Cole", location: "Los Angels, CA", qoute: "Pellentesque condimentum, nunc ut dapibus ultricies, eros metus dictum arcu, vel bibendum lectus mi eget magna. Etiam sit amet." },
-    {img: photo1, name: "Darrell Tran", location: "Miami, FL", qoute: "Nulla imperdiet mi ut nunc tincidunt cursus. Mauris ultrices purus quis ligula ultrices, cursus tristique tortor iaculis." }
+    {img: require('../../assets/images/1.jpg'), name: "Kevin Parks", location: "Los Angels, CA", qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices at felis eu sollicitudin. Fusce ac arcu et eros" },
+    {img: require('../../assets/images/2.jpg'), name: "Glenn Arnold", location: "New York, NY", qoute: "Sed id tempus sapien. Sed pulvinar ipsum vel diam maximus, ac pretium nulla condimentum. Suspendisse rhoncus pellentesque libero." },
+    {img: require('../../assets/images/4.jpg'), name: "Jose Cole", location: "Los Angels, CA", qoute: "Pellentesque condimentum, nunc ut dapibus ultricies, eros metus dictum arcu, vel bibendum lectus mi eget magna. Etiam sit amet." },
+    {img: require('../../assets/images/1.jpg'), name: "Darrell Tran", location: "Miami, FL", qoute: "Nulla imperdiet mi ut nunc tincidunt cursus. Mauris ultrices purus quis ligula ultrices, cursus tristique tortor iaculis." }
   ]
 
   const story = (story, i) => {

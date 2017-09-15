@@ -1,0 +1,14 @@
+{
+  "testEnvironment": "jest-environment-node",
+  "rootDir": "../",
+  "roots": [ "__tests__/integration" ],
+  "coverageReporters": [
+    "html",
+    "text"
+  ],
+  "collectCoverage": true,
+  "collectCoverageFrom": ["**/*.js", "!**/node_modules/**", "!**/vendor/**"],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/"
+  ]
+}

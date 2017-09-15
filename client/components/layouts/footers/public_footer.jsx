@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { StyleSheet, css } from 'aphrodite'
+import { css } from 'aphrodite'
 import footer from '../styles/footer'
-import clouds from '../../../assets/images/cloudsBg.jpg'
-import logo from '../../../assets/svg/logoGrey.svg'
-import facebook from '../../../assets/svg/facebookIconBlue.svg'
-import instagram from '../../../assets/svg/instagramIconBlue.svg'
-import youtube from '../../../assets/svg/youtubeIconBlue.svg'
-import usa from '../../../assets/svg/usa.svg'
 
 const Footer = (props) => {
   let width = window.innerWidth
   if (width > 1023){
     return (
-      <footer className={css(footer.container)} style={{background: `url(/${clouds}) no-repeat`}}>
+      <footer className={css(footer.container)} style={{background: `url(${require('../../../assets/images/cloudsBg.jpg')}) no-repeat`}}>
         <div className={css(footer.innerContainer)}>
           <div className={css(footer.contactUs)}>
             <h3 className={css(footer.sectionTitle)}>Contact Us</h3>
@@ -22,25 +16,25 @@ const Footer = (props) => {
               <a
                 href=""
                 className={css(footer.socialIcon)}
-                style={{ background: `url(/${facebook}) no-repeat`, width: '12px' }}
+                style={{ background: `url(${require('../../../assets/svg/facebookIconBlue.svg')}) no-repeat`, width: '12px' }}
                 target="_blank">
               </a>
               <a
                 href=""
                 className={css(footer.socialIcon)}
-                style={{ background: `url(/${instagram}) no-repeat`, width: '24px' }}
+                style={{ background: `url(${require('../../../assets/svg/instagramIconBlue.svg')}) no-repeat`, width: '24px' }}
                 target="_blank">
               </a>
               <a
                 href=""
                 className={css(footer.socialIcon)}
-                style={{ background: `url(/${youtube}) no-repeat`, width: '24px' }}
+                style={{ background: `url(${require('../../../assets/svg/youtubeIconBlue.svg')}) no-repeat`, width: '24px' }}
                 target="_blank">
               </a>
             </div>
             <div className={css(footer.logo)}>
               <Link to="/">
-                <img src={`/${logo}`} alt="HOMEFILMING" />
+                <img src={require('../../../assets/svg/logoGrey.svg')} alt="HOMEFILMING" />
               </Link>
             </div>
             <p className="copyright">Copyright © 2017 HomeFilming. All rights reserved.</p>
@@ -51,7 +45,8 @@ const Footer = (props) => {
           </div>
           <div className={css(footer.location)}>
             <h3 className={css(footer.sectionTitle)}>Anaheim, CA</h3>
-            <div className={css(footer.phone)}><a href="tel:800-208-8947" className={css(footer.phoneLink)}>800-208-8947</a><img src={`/${usa}`} alt="US flag" className={css(footer.flag)} /></div>
+            <div className={css(footer.phone)}><a href="tel:800-208-8947" className={css(footer.phoneLink)}>800-208-8947</a>
+            <img src={require('../../../assets/svg/usa.svg')} alt="US flag" className={css(footer.flag)} /></div>
             <p className={css(footer.address)}>1440 S. State College Blvd.<br />Building 2B<br />Anaheim, CA, 92806<br />United States</p>
             <a
               href="https://www.google.com/maps/place/1440+S+State+College+Blvd,+Anaheim,+CA+92806/@33.812585,-117.8912877,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcd7a3592a1277:0xc23063dbd3431a50!8m2!3d33.812585!4d-117.8890937"
@@ -82,26 +77,27 @@ const Footer = (props) => {
             <a
               href=""
               className={css(footer.socialIcon)}
-              style={{ background: `url(/${facebook}) no-repeat`, width: '12px' }}
+              style={{ background: `url(${require('../../../assets/svg/facebookIconBlue.svg')}) no-repeat`, width: '12px' }}
               target="_blank">
             </a>
             <a
               href=""
               className={css(footer.socialIcon)}
-              style={{ background: `url(/${instagram}) no-repeat`, width: '24px' }}
+              style={{ background: `url(${require('../../../assets/svg/instagramIconBlue.svg')}) no-repeat`, width: '24px' }}
               target="_blank">
             </a>
             <a
               href=""
               className={css(footer.socialIcon)}
-              style={{ background: `url(/${youtube}) no-repeat`, width: '24px' }}
+              style={{ background: `url(${require('../../../assets/svg/youtubeIconBlue.svg')}) no-repeat`, width: '24px' }}
               target="_blank">
             </a>
           </div>
         </div>
         <div className={css(footer.location)}>
           <h3 className={css(footer.sectionTitle)}>Anaheim, CA</h3>
-          <div className={css(footer.phone)}><a href="tel:800-208-8947" className={css(footer.phoneLink)}>800-208-8947</a><img src={`/${usa}`} alt="US flag" className={css(footer.flag)} /></div>
+          <div className={css(footer.phone)}><a href="tel:800-208-8947" className={css(footer.phoneLink)}>800-208-8947</a>
+          <img src={require('../../../assets/svg/usa.svg')} alt="US flag" className={css(footer.flag)} /></div>
           <p className={css(footer.address)}>1440 S. State College Blvd.<br />Building 2B<br />Anaheim, CA, 92806<br />United States</p>
           <a
             href="https://www.google.com/maps/place/1440+S+State+College+Blvd,+Anaheim,+CA+92806/@33.812585,-117.8912877,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcd7a3592a1277:0xc23063dbd3431a50!8m2!3d33.812585!4d-117.8890937"
@@ -121,7 +117,7 @@ const Footer = (props) => {
         </div>
         <div className={css(footer.logo)}>
           <Link to="/">
-            <img src={`/${logo}`} alt="HOMEFILMING" />
+            <img src={require('../../../assets/svg/logoGrey.svg')} alt="HOMEFILMING" />
           </Link>
         </div>
         <div className={css(footer.termsPolicyLinks)}>

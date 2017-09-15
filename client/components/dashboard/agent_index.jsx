@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import 'bulma/css/bulma.css'
+// import 'bulma/css/bulma.css'
 import { css } from 'aphrodite'
 import Orders from './orders'
 import Reorder from './reorder'
-import CollaborationArea from './collaborationArea'
+import CollaborationArea from './collaboration_area'
 import styles from './styles/dashboard'
 
 

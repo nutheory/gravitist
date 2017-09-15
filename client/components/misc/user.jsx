@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField'
 import Formsy from 'formsy-react'
 import { FormsyText } from 'formsy-material-ui/lib'
 import { StyleSheet, css } from 'aphrodite'
-import cF from '../../styles/commonForms'
+import cF from '../../styles/common_forms'
 // import style from './styles/user'
 
 class UserCreate extends Component {

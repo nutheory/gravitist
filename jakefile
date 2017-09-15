@@ -44,14 +44,68 @@ namespace('db', function() {
 		var pg         = require('pg');
     var pool       = new pg.Pool(config);
 		var connection = pool.connect( function (err, client, done){
-      client.query('CREATE DATABASE homefilming', (err, result) => {
+      client.query('CREATE DATABASE homefilming;', (err, result) => {
+        done(err);
+        if(err) {
+          return console.error('error running query', err);
+        }
+        console.log(result);
+		  });
+      client.query('create extension cube;create extension earthdistance;', (err, result) => {
+      })
+	  });
+    pool.end()
+	});
+
+  desc('drop test database');
+  task('drop_test', function (params){
+    var config  = {
+      user: 'derekrush',
+      database: 'template1',
+      password: '',
+      host: 'localhost',
+      port: 5432
+    };
+
+    var pg         = require('pg');
+    var pool       = new pg.Pool(config);
+    var connection = pool.connect( function (err, client, done){
+      client.query('DROP DATABASE homefilming_test', (err, result) => {
         done(err);
 
         if(err) {
           return console.error('error running query', err);
         }
         console.log(result);
+      });
+    });
+    pool.end()
+  });
+
+  desc('create test database');
+	task('create_test', function (params){
+    var config  = {
+      user: 'derekrush',
+      database: 'template1',
+      password: '',
+      host: 'localhost',
+      port: 5432,
+      max: 10,
+      idleTimeoutMillis: 30000,
+    };
+
+		var pg         = require('pg');
+    var pool       = new pg.Pool(config);
+		var connection = pool.connect( function (err, client, done){
+      client.query('CREATE DATABASE homefilming_test;', (err, result) => {
+        done(err);
+        if(err) {
+          return console.error('error running query', err);
+        }
+        console.log(result);
 		  });
+      client.query('create extension cube;create extension earthdistance;', (err, result) => {
+      })
 	  });
     pool.end()
 	});

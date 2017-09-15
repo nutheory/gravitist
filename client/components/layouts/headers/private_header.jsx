@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
 import { graphql } from 'react-apollo'
-import logo from '../../../assets/svg/logoGreen.svg'
 import LiNavLink from '../../misc/li_navlink'
 import LogoutUser from '../../../mutations/logout'
 import CurrentUserQuery from '../../../queries/current_user'
@@ -45,14 +44,9 @@ class PrivateHeader extends Component {
   }
 
   async logoutMutation(){
-    const resolved = await this.props.mutate({
-      refetchQueries: [{ query: CurrentUserQuery}]
-    })
-    const { data } = resolved
-    console.log('data.log', data)
-    // if(!data.login.email){
-      this.context.router.history.replace('/')
-    // }
+    console.log('logging out', this.props)
+    localStorage.setItem('hf_auth_header_token', undefined)
+    this.context.router.history.replace('/')
   }
 
   logoutHandler(e){
@@ -91,11 +85,11 @@ class PrivateHeader extends Component {
       // MOBILE
       <nav className="block is-block-mobile">
         <a className={`${css(styles.marginTopBottom)} nav-center`}>
-          <img src={`/${logo}`} className={`${css(styles.logo)}`} alt="Homefilming logo" />
+          <img src={require('../../../assets/svg/logoGreen.svg')} className={`${css(styles.logo)}`} alt="Homefilming logo" />
         </a>
         <div className="tabs block is-toggle is-centered ">
           <ul>
-            { this.renderLinks(this.props.data.currentUser.type) }
+            { this.renderLinks(this.props.currentUser.type) }
             <li>
               <a href='#' onClick={this.logoutHandler.bind(this)}>
                 <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-sign-out`} aria-hidden="true"></i></span>

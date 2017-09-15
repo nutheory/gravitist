@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "derekrush",
+    "password": null,
+    "database": "homefilming",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "derekrush",
+    "password": null,
+    "database": "homefilming_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres"
+  }
+}

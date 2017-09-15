@@ -8,9 +8,9 @@ import Login from '../misc/login'
 import PilotPage from '../pilots/index'
 import PilotRegistrationPage from '../pilots/register/index'
 import WorkPage from '../works/index'
-import FaqPage from '../misc/faqIndex'
-import PricingPage from '../agent/pagePricing'
-import SampleVideo from '../misc/sampleVideo'
+import FaqPage from '../misc/faq_index'
+import PricingPage from '../agent/page_pricing'
+import SampleVideo from '../misc/sample_video'
 import PublicFooter from './footers/public_footer'
 // Agent
 import PrivateHeader from './headers/private_header'
@@ -22,19 +22,19 @@ import PilotDashboard from '../dashboard/pilot_index'
 
 
 const authenticated = (props) => {
-  console.log('loggedIn', props.user)
+  console.log('loggedIn', props.currentUser)
   return props.user ? true : false
 }
 
 const RenderHeader = (props) => {
-  if (props.user){
+  if (props.currentUser){
     return <PrivateHeader {...props} />
   }
   return <PublicHeader {...props} />
 }
 
 const RenderFooter = (props) => {
-  if (props.user){
+  if (props.currentUser){
     return null
   }
   return <PublicFooter {...props} />
@@ -45,8 +45,8 @@ const Routes = (props) => {
     <div>
       {RenderHeader(props)}
       <Switch>
-        <ProtectedRoute path='/dashboard' component={AgentDashboard} user={props.user} auth="agent" />
-        <ProtectedRoute path='/open-missions' component={PilotDashboard} user={props.user} auth="pilot" />
+        <ProtectedRoute path='/dashboard' component={AgentDashboard} user={props.currentUser} auth="agent" />
+        <ProtectedRoute path='/missions' component={PilotDashboard} user={props.currentUser} auth="pilot" />
         <Route path='/pilots/register' component={PilotRegistrationPage} />
         <Route path='/pilots' component={PilotPage} />
         <Route path='/pricing' component={PricingPage} />

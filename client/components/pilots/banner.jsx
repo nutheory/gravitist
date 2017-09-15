@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import bnr from './styles/banner'
-import cT from '../../styles/commonText'
-import cE from '../../styles/commonElements'
-import calendar from '../../assets/svg/calendar-when-you-want.svg'
-import money from '../../assets/svg/make-money.svg'
+import cT from '../../styles/common_text'
+import cE from '../../styles/common_elements'
 
 const bannerItems = [
-  {img: money, title: "Make great money", text: "You can fly and earn as much as you want. The more you fly, the more you’ll make."},
-  {img: calendar, title: "Fly when you want", text: "Only fly when it works for you. Its your business."}
+  {img: require('../../assets/svg/make-money.svg'), title: "Make great money", text: "You can fly and earn as much as you want. The more you fly, the more you’ll make."},
+  {img: require('../../assets/svg/calendar-when-you-want.svg'), title: "Fly when you want", text: "Only fly when it works for you. Its your business."}
 ]
 
 const banner = (bi, i) => {

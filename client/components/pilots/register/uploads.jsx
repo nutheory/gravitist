@@ -10,7 +10,7 @@ import Person from 'material-ui/svg-icons/action/account-circle'
 import Upload from 'material-ui/svg-icons/file/cloud-upload'
 import AssetUpload from '../../../utils/asset_uploader'
 import reg from '../styles/register'
-import cL from '../../../styles/commonLayout'
+import cL from '../../../styles/common_layout'
 
 class Uploads extends Component {
   constructor(){

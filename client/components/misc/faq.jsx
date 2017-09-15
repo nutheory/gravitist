@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import faq from './styles/faq'
-import cT from '../../styles/commonText'
+import cT from '../../styles/common_text'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 import Add from 'material-ui/svg-icons/content/add'
 import Remove from 'material-ui/svg-icons/content/remove'

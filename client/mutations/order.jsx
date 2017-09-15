@@ -13,10 +13,7 @@ const createOrderWithUser = gql`
         state
         zip
       }
-      user {
-        name
-        email
-      }
+      BasicUserPayload
     }
   }
 

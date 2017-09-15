@@ -1,4 +1,4 @@
-import '../../styles/globalOverrides.css'
+import '../../styles/global_overrides.css'
 import 'normalize.css'
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'

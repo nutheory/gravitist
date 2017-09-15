@@ -2,21 +2,16 @@ import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import Header from '../misc/header'
 import share from './styles/share'
-import cL from '../../styles/commonLayout'
-import cT from '../../styles/commonText'
-import facebook from '../../assets/svg/facebook.svg'
-import twitter from '../../assets/svg/twitter.svg'
-import instagram from '../../assets/svg/instagram.svg'
-import tumblr from '../../assets/svg/tumblr.svg'
-import snapchat from '../../assets/svg/snapchat.svg'
+import cL from '../../styles/common_layout'
+import cT from '../../styles/common_text'
 
 const Share = () => {
   const social = [
-    {src: facebook, name: "Facebook"},
-    {src: twitter, name: "Twitter"},
-    {src: instagram, name: "Instagram"},
-    {src: tumblr, name: "Tumbler"},
-    {src: snapchat, name: "Snapchat"}
+    {src: require('../../assets/svg/facebook.svg'), name: "Facebook"},
+    {src: require('../../assets/svg/twitter.svg'), name: "Twitter"},
+    {src: require('../../assets/svg/instagram.svg'), name: "Instagram"},
+    {src: require('../../assets/svg/tumblr.svg'), name: "Tumbler"},
+    {src: require('../../assets/svg/snapchat.svg'), name: "Snapchat"}
   ]
   return (
     <div className={css(cL.wrapper)}>

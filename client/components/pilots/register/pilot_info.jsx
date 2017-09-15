@@ -6,7 +6,7 @@ import Formsy from 'formsy-react'
 import _ from 'lodash'
 import { FormsyText, FormsySelect } from 'formsy-material-ui/lib'
 import { StyleSheet, css } from 'aphrodite'
-import cF from '../../../styles/commonForms'
+import cF from '../../../styles/common_forms'
 
 const radiuses = []
 _.each([10, 20, 30, 40, 50], (rad, i) => {

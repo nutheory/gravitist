@@ -7,6 +7,7 @@ const Login = gql`
       name
       email
       type
+      token
     }
   }
 `

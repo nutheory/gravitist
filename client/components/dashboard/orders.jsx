@@ -33,7 +33,6 @@ class Orders extends Component{
     const {loading, agentOrders} = this.props.orders
 
     if (loading === true) {return <div></div>}
-    console.log('agentOrders', agentOrders)
     return (
       <div>
         <nav className="panel">

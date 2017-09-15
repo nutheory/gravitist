@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
-import ScrollDown from '../misc/scrollDown'
-import heroPhoto from '../../assets/images/pilotHero.jpg'
-import scrollDownIcon from '../../assets/svg/scrollDown.svg'
+import ScrollDown from '../misc/scroll_down'
 import hero from './styles/hero'
-import cL from '../../styles/commonLayout'
-import cE from '../../styles/commonElements'
-import cT from '../../styles/commonText'
+import cL from '../../styles/common_layout'
+import cE from '../../styles/common_elements'
+import cT from '../../styles/common_text'
 
 
 class Hero extends Component{
@@ -18,7 +16,7 @@ class Hero extends Component{
   render(){
     return(
       <div className={css(cL.heroContainer)}>
-        <div className={css(cL.heroBg)} style={{background: `url(/${heroPhoto}) no-repeat`}}>
+        <div className={css(cL.heroBg)} style={{background: `url(${require('../../assets/images/pilotHero.jpg')}}) no-repeat`}}>
           <div className={css(cL.heroOverlay)}></div>
           <h1 className={css(cT.synopsis)}>Fly with Homefilming</h1>
           <p className={css(hero.subText)}>Earn money. Fly when you want.</p>

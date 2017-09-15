@@ -1,6 +1,12 @@
 require('dotenv').config()
-const app = require('./server/server')
+const { serverStart } = require('./api/server')
 
-app.listen(app.get('port'), () => {
-  console.log('Node app is running on port', app.get('port'))
-})
+let server
+
+const Init = async () => {
+  return serverStart().then(s => {
+    server = s
+  })
+}
+
+Init()
