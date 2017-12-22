@@ -45,8 +45,9 @@ module.exports = {
 
     },
     build: {
-      script: 'webpack --config webpack.config.js --watch',
-    },
-
+      default: {
+        script: 'webpack --config webpack.config.js --watch',
+      },
+    }
   }
 }

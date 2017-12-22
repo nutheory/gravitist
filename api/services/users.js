@@ -1,140 +1,139 @@
-const _ = require('lodash')
-const config = require('../config')
-const Db = require('../models')
-const User = Db.sequelize.models.user
-const Address = Db.sequelize.models.address
-const { login } = require('./auth')
-const stripe = require("stripe")(config.stripe_test.secret_key)
-const AppError = require('../utils/appErrors').createAppError
+const { task, of, waitAll } = require('folktale/concurrency/task')
+const Result = require('folktale/result')
+const compose = require('folktale/core/lambda/compose')
+const { chain, map } = require('folktale/fantasy-land')
+const R = require('ramda')
+const db = require('../models')
+const { createError } = require('../utils/appErrors')
+const { retrieveCustomer, addCustomerSource } = require('../services/payments')
+const { FailFastError } = require('../utils/errors')
 const chalk = require('chalk')
 
-async function CreateUser(userAttributes, req){
-  const includeAssociated = userAttributes.address ? { include: [ Address ] } : {}
-  const user = await User.create( userAttributes, includeAssociated )
-    .catch(err => { throw( AppError( { type: `User.Create`, message: `${err}` } ) ) })
-  const loginResponse = await login({ email: userAttributes.email, password: userAttributes.password }, req)
-  return new Promise((resolve, reject) => {
-    loginResponse ? resolve(loginResponse) : reject('Something went wrong with creating a agent, nothing will be billed.')
-  })
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+const log = data => R.tap(() => console.log(chalk.blue.bold('DATA'), data), data)
+
+const getFullUser = findBy =>
+  task(resolver =>
+    db.User.findOne({ where: (findBy.id ? { id: findBy.id  } : { email: findBy.email.toLowerCase() } ),
+      rejectOnEmpty: true, include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatar' },
+      { model: db.Asset, as: 'insurance' }, { model: db.Asset, as: 'license' },
+      { model: db.Contact, as: 'contacts' }] })
+    .then(res => resolver.resolve({ usr: res, auth: findBy }) )
+    .catch(err => resolver.reject(FailFastError(err.name, { args: findBy, loc: 'Service: User.getFullUser' }))) )
+  .run().promise()
+
+const getUser = attrs =>
+  task(resolver =>
+    db.User.find({ where: { id: attrs.id }, rejectOnEmpty: true, include: [{ model: db.Contact, as: 'contacts' }] })
+      .then(usr => resolver.resolve({usr, attrs}))
+      .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getUser' }))) )
+  .run().promise()
+
+const getAsscAccessorName = asscName =>
+  'create' + asscName.charAt(0).toUpperCase() + asscName.slice(1)
+
+const buildContactAssociations = async (asscConts) => {
+  const contacts = []
+  asscConts.contacts.map(contact =>
+    contacts.push( task(resolver =>
+      asscConts.usr.createContact(contact, { transaction: asscConts.tx })
+      .then(res => resolver.resolve(res.dataValues)))))
+  const result = await waitAll(contacts).run().promise()
+  return { contacts: result }
 }
 
-async function UpdateUser( userAttributes, req ){
-  if ( !isAdmin || req.user.id != userAttributes.id ){
-    throw( AppError( {
-      type: `User.Auth`,
-      message: `You cannot update ${req.user.type} ${req.user.name}.`
-    } ) )
-  }
-  console.log("UPDATES-BE ======= ", userAttributes)
-  let updates = [Object.keys(userAttributes).forEach((key) =>
-    (userAttributes[key] == null) && delete userAttributes[key]), userAttributes][1]
-  console.log("UPDATES-AF ======= ", updates)
-  const fields = ['password', 'bio', 'avatarId', 'name', 'address', 'payrate', 'workRadius', 'licenseId', 'insuranceId', 'customerId']
-  const user = await User.findById( userAttributes.id )
-  const updatedUser = await user.update(updates, { fields: fields, req } )
-  return updatedUser
+const buildAssociations = async (assc) => {
+  const tasks = []
+  R.keys(assc.attrs).map(attr =>
+    tasks.push( task(resolver =>
+      assc.usr[getAsscAccessorName(attr)](assc.attrs[attr], { transaction: assc.tx })
+      .then(res => resolver.resolve({ [attr]: res.dataValues })))))
+  return await waitAll(tasks).run().promise()
 }
 
-async function DestroyUser( userId, req ){
-  if ( !isAdmin || !req.user.id == parseInt(userId) ){
-    throw( AppError( {
-      type: `User.Destroy`,
-      message: `You cannot delete ${req.user.type} ${req.user.name}.`
-    } ) )
-  }
-  const result = await User.findById( userId ).then(res => {
-    const user = res
-    res.destroy().catch(err => {
-      throw( AppError( {
-        type: `User.Destroy`,
-        message: `${err}`,
-        detail: `Input: { userId: ${userId}, req: ${req} }`
-      } ) )
-    })
-    return user
-  })
+const createUserWithAssociations = attrs =>
+  db.sequelize.transaction(tx =>
+    task(resolver =>
+      db.User.create(attrs, { stripeToken: attrs.stripeToken, transaction: tx })
+      .then(async (usr) =>
+        ({ usr, assc: await buildAssociations({usr, attrs: R.pick(['avatar', 'address', 'insurance', 'license'], attrs), tx })}))
+      .then(async ({ usr, assc }) =>
+        ({ usr, assc: await assc.concat(buildContactAssociations({usr, contacts: R.pathOr([], ['user', 'contacts'], attrs), tx}))}))
+      .then(res => resolver.resolve(res)))
+    .orElse(reason => reason ).run().promise() ).catch(err => { throw err })
 
-  return result
+const updateUserWithAssociations = ({ usr, attrs }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver =>
+      usr.update(attrs.user, { fields: db.User.updateFields(attrs.user.type), tx })
+      .then(async (usr) =>
+        ({usr, assc: await buildAssociations({usr, attrs: R.pick(['avatar', 'address', 'insurance', 'license'], attrs.user), tx})}))
+      .then(async ({usr, assc}) => {
+        await usr.contacts.map((ct) => ct.destroy())
+        return { usr, assc: await assc.concat(buildContactAssociations({usr, contacts: R.pathOr([], ['user', 'contacts'], attrs), tx}))}})
+      .then(res => resolver.resolve(res)).catch(err => { throw err }))
+    .orElse(reason => reason ).run().promise() ).catch(err => { throw err })
+
+const validateIncomingPassword = async ({ usr, auth }) =>
+  await usr.comparePassword(auth.password).then(res => (res ? usr.dataValues : AuthenticationFailed))
+    .catch(err => { throw err })
+
+const mergeAllUserInfo = ({ usr, assc }) =>
+  R.merge(usr.dataValues, R.mergeAll(assc))
+
+// const sendEmailConfirmationToUser = (userObj) =>
+//   userObj
+
+const returnTokenAndUserInfo = userObj =>
+  db.User.createAndReturnToken(userObj)
+
+const destroyUser = ({ usr }) => {
+  const cl = R.clone(usr)
+  return task(resolver =>
+    usr.destroy()
+    .then(res => resolver.resolve({ usr: cl }))
+    .catch(err => resolver.reject(FailFastError(err.name, { args: cl, loc: 'Service: User.destroyUser' }))) )
+  .run().promise()
 }
 
-async function uniqueEmail(email){
-  const lowercaseEmail = email.toLowerCase()
-  const existingUser = await User.findOne({ where: { email: lowercaseEmail } }).then(res => { return res })
-  if (existingUser) {
-    throw AppError( { type: `User.NotUnique`, message: `${existingUser.email} is taken, Please login instead.` } )
-  }
-  return lowercaseEmail
-}
+const returnUser = ({ usr }) => {
+  // console.log(chalk.blue.bold('hgkgk'), usr)
+  return { user: usr.dataValues }}
 
-const createStripeCustomer = (customerInput) => {
-  const result = stripe.customers.create({
-    email: customerInput.email,
-    description: `Customer for ${customerInput.email}`,
-    source: customerInput.stripeInfo
-  }).then((res) => {
-    return res
-  })
-  return result
-}
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-function validateUserInput(input){
-  let expectedKeys, acceptedKeys = []
-  let output = {}
-  switch(input.type){
-    case "agent":
-      expectedKeys = !input.id ? [ "email", "name", "password", "customerId" ] : []
-      acceptedKeys = [ "email", "name", "password", "customerId", "bio", "avatarId", "address", "contacts" ]
-      break
-    case "pilot":
-      expectedKeys = [ "licenseId", "insuranceId", "email", "name", "password", "address", "workRadius", "customerId" ]
-      acceptedKeys = [ "licenseId", "insuranceId", "email", "name", "password", "address", "workRadius", "customerId",
-        "bio", "avatarId", "contacts", "isVerified", "payRate" ]
-      break
-    case "editor":
-      expectedKeys = [ "email", "name", "password", "customerId" ]
-      acceptedKeys = [ "email", "name", "password", "customerId", "bio", "avatarId", "contacts", "isVerified", "payRate" ]
-      break
-    case "admin":
-      expectedKeys = [ "email", "name", "password" ]
-      acceptedKeys = [ "email", "name", "password", "bio", "avatarId", "contacts" ]
-      break
-  }
+const profile = R.pipeP(
+  getFullUser,
+  returnUser
+)
 
-  try{
-    _.forIn(expectedKeys, (key, idx) => {
-      if (!input[key]){
-        throw( AppError( {
-          type: `User.Create`,
-          message: `Missing required field ${key}.`,
-          detail: `Input....
-                  ${input}`
-        } ) )
-      }
-    })
-    _.forIn(acceptedKeys, (key, idx) => {
-      output[key] = input[key]
-    })
-  }
-  catch(e){
-    return e
-  }
-  output.type = input.type
-  return output
-}
+const login = R.pipeP(
+  getFullUser,
+  validateIncomingPassword,
+  returnTokenAndUserInfo
+)
 
-const isAdmin = (req) => {
-  req.user.type == "admin"
-}
+const create = R.pipeP(
+  createUserWithAssociations,
+  mergeAllUserInfo,
+  returnTokenAndUserInfo
+)
 
-const getUserWith = ( user, withAttr = [] ) => {
-  return User.findOne({ where: { id: currentUser.id }, include: withAttr })
-    .then(( res ) => { return res })
-}
+const update = R.pipeP(
+  getUser,
+  updateUserWithAssociations,
+  mergeAllUserInfo,
+  returnTokenAndUserInfo
+)
 
-async function UserProfile(id){
- const user = await User.findOne({ where: { id: id }, include: [Address] })
- return user
-}
+const destroy = R.pipeP(
+  getUser,
+  destroyUser,
+  log,
+  returnUser
+)
 
-module.exports = { CreateUser, UpdateUser, DestroyUser, UserProfile, uniqueEmail,
-                   createStripeCustomer, validateUserInput, getUserWith }
+module.exports = { create, update, destroy, profile, login }

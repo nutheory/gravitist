@@ -3,17 +3,19 @@ import { ss, c } from '../../../styles/helpers'
 
 const header = StyleSheet.create({
   marginTopBottom: {
-    margin: '1rem 0',
-
-    // [ss.lg]: {
-    //   marginRight: '8px',
-    // }
+    margin: '0.2rem 0',
+    display: 'block'
   },
   paddingTopBottom: {
-    padding: '1rem 1.5rem',
+    paddingBottom: '2rem',
   },
   logo: {
-    width: '12rem',
+    padding: '1rem',
+    textTransform: 'uppercase',
+    color: '#666',
+    fontSize: '2.4rem',
+    fontWeight: '100',
+    textAlign: 'center'
   },
   icon_only: {
     marginRight: '0',

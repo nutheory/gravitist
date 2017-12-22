@@ -1,45 +1,27 @@
-import '../../styles/global_overrides.css'
-import 'normalize.css'
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import CurrentUserQuery from '../../queries/current_user'
 import { graphql } from 'react-apollo'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 import ReactResizeDetector from 'react-resize-detector'
 import Helpers from '../../styles/helpers'
-import { Routes } from './routes'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import Loader from '../misc/loader'
+import Routes from './routes'
 
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: Helpers.c.blue,
-    accent1Color: Helpers.c.teal,
-  }
-})
 
 class App extends Component {
   constructor(){
     super()
-    injectTapEventPlugin()
     this.state = {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
     }
 
-    this.getCurrentUser = this.getCurrentUser.bind(this)
+    // this.getCurrentUser = this.getCurrentUser.bind(this)
   }
 
-  getCurrentUser(){
-
-    const user  = this.props.data
-    // setTimeout(() => {
-      console.log('getCurrentUser', user)
-    // }, 10000)
-  }
+  // getCurrentUser(){
+  //   const user  = this.props.data
+  // }
 
   componentDidMount(){
 
@@ -72,19 +54,17 @@ class App extends Component {
   // }
 
   render(){
-    const { loading }  = this.props.data
-    if(loading === true){ return (<Loader />) }
+    // const { loading }  = this.props.data
+    // if(loading === true){ return (<Loader />) }
     return (
       <BrowserRouter>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <div>
-            <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
-            <Routes {...this.props.data} />
-          </div>
-        </MuiThemeProvider>
+        <div>
+          <ReactResizeDetector handleWidth handleHeight onResize={this.onResize.bind(this)} />
+          <Routes />
+        </div>
       </BrowserRouter>
     )
   }
 }
 
-export default graphql(CurrentUserQuery)(App)
+export default App

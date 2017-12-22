@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField'
-import Formsy from 'formsy-react'
-import { FormsyText, FormsySelect } from 'formsy-material-ui/lib'
-import MenuItem from 'material-ui/MenuItem'
-import _ from 'lodash'
+import Select from 'material-ui/Select'
+
+import { MenuItem } from 'material-ui/Menu'
 import { StyleSheet, css } from 'aphrodite'
 import layout from './styles/layout'
 import style from './styles/styling'
 import States from '../../utils/states.json'
+import { TextValidator, SelectValidator } from 'react-material-ui-form-validator'
 
 const states = []
-_.each(States, (state, i) => {
+States.map((state, i) => {
   states.push(<MenuItem value={state.abbreviation} key={`${state.abbreviation}_${i}`} primaryText={state.abbreviation} />)
 })
 
@@ -66,75 +65,75 @@ class Address extends Component {
       <div>
         <div className={css(layout.fieldRow)}>
           <div className={css(layout.multiColumnEvenSize)}>
-            <FormsyText
+            <TextValidator
               name="address.address1"
               validations={{
                 minLength: 2
               }}
               required={true}
-              validationError="Required field"
+              // validationError="Required field"
               className={css(style.textfieldFullSize)}
               onChange={this.handleAddressChange}
               hintText="Address"
-              floatingLabelText="Address"
+              label="Address"
             />
           </div>
           <div className={css(layout.multiColumnEvenSize)}>
-            <FormsyText
+            <TextValidator
               name="address.city"
               validations={{
                 minLength: 2
               }}
               required={true}
-              validationError="Required field"
+              // validationError="Required field"
               className={css(style.textfieldFullSize)}
               onChange={this.handleCityChange}
               hintText="City"
-              floatingLabelText="City"
+              label="City"
             />
           </div>
         </div>
         <div className={css(layout.fieldRow)}>
           <div className={css(layout.multiColumnEvenSize)}>
-            <FormsyText
+            <TextValidator
               name="address.address2"
               className={css(style.textfieldFullSize)}
               onChange={this.handleAddress2Change}
               hintText="Address 2"
-              floatingLabelText="Address 2"
+              label="Address 2"
             />
           </div>
           <div className={css(layout.multiColumnEvenSize, style.addressSplitSection)}>
             <div className={css(style.addressState)}>
-              <FormsySelect
+              <SelectValidator
                 name="address.state"
                 validations={{
                   minLength: 2
                 }}
                 required={true}
-                validationError="Required field"
+                // validationError="Required field"
                 value={this.state.state}
                 onChange={this.handleStateSelect}
                 className={css(style.addressSelect)}
                 hintText="State"
-                floatingLabelText="State"
+                label="State"
                 maxHeight={200}
               >
                 {states}
-              </FormsySelect>
+              </SelectValidator>
             </div>
             <div className={css(style.addressZip)}>
-              <FormsyText
+              <TextValidator
                 name="address.zip"
                 validations={{
                   minLength: 5
                 }}
                 required={true}
-                validationError="Required field"
+                // validationError="Required field"
                 hintText="Zip Code"
                 className={css(style.textfieldFullSize)}
                 onChange={this.handleZipChange}
-                floatingLabelText="Zip Code"
+                label="Zip Code"
               />
             </div>
           </div>

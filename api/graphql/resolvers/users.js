@@ -1,76 +1,106 @@
-const { validateUserInput, uniqueEmail, createStripeCustomer, UserProfile,
-  CreateUser, UpdateUser, DestroyUser } = require('../../services/users')
-const { validateAddressInput, createAdress, destroyAddress } = require('../../services/addresses')
-const AppError = require('../../utils/appErrors').createAppError
-const { mustHaveId } = require('../../utils/helpers')
-const _ = require('lodash')
+const { createResolver } = require('apollo-resolvers')
+const { baseResolver, isAuthenticated, isAuthorized } = require('./auth')
+const { Validate } = require('../../utils/validation')
+const { RequiredFieldsError, UniqueEmailError } = require("../../utils/errors")
+const { create, update, destroy, profile, login } = require('../../services/users')
 const chalk = require('chalk')
 
-async function createAgent( root, args, req ){
-  const email = await uniqueEmail( args.input.user.email )
-    .catch(err => { throw err })
-  const customer = await createStripeCustomer( args.input.user )
-  const inputs = _.merge(args.input.user, { email: email, customerId: customer.id, type: "agent" })
-  const validatedUser = await validateUserInput( inputs )
-  const result = await CreateUser( validatedUser, req )
-  return result
-}
-
-async function createPilot( root, args, req ){
-  const email = await uniqueEmail( args.input.user.email )
-    .catch(err => { throw err })
-  const customer = await createStripeCustomer( args.input.user )
-  const inputs = _.merge(args.input.user, { email: email, customerId: customer.id, type: "pilot" })
-  const validatedUser = await validateUserInput( inputs )
-  const validatedAddress = await validateAddressInput( args.input.user.address )
-  validatedUser.address = validatedAddress
-  const result = await CreateUser( validatedUser, req )
-  return result
-}
-
-async function createEditor(root, args, req){
-  const email = await uniqueEmail( args.input.user.email )
-    .catch(err => { throw err })
-  const customer = await createStripeCustomer( args.input.user )
-  const inputs = _.merge( args.input.user, { email: email, customerId: customer.id, type: "editor" } )
-  const validatedUser = await validateUserInput( inputs )
-  const result = await CreateUser( validatedUser, req )
-  return result
-}
-
-async function createAdmin(root, args, req){
-  const email = await uniqueEmail( args.input.user.email )
-    .catch(err => { throw err })
-  const inputs = _.merge(args.input.user, { email: email, type: "admin" })
-  const validatedUser = await validateUserInput( inputs )
-  const result = await CreateUser( validatedUser, req )
-  return result
-}
-
-async function updateUser( root, args, req ){
-  const id = await mustHaveId(args.input.id)
-  if (args.input.stripeToken){
-    const customer = await createStripeCustomer( args.input )
-    args.input.customerId = customer.id
+const currentUser = baseResolver.createResolver(
+  ( root, { input }, { user }) => {
+    console.log(chalk.blue.bold("USER"),user)
+    return { user }
   }
-  args.input.type = req.user.type
-  let validatedUser = await validateUserInput( args.input )
-  validatedUser.id = id
-  const result = await UpdateUser( validatedUser, req )
-  return result
+)
+
+const getProfile = isAuthorized.createResolver(
+  async ( root, { input }, { user } ) => {
+    const result = await profile({ id: input.id })
+    return result
+  }
+)
+
+const createAgent = baseResolver.createResolver(
+  async ( root, { input }, req ) => {
+    input.user.type = "agent"
+    const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
+    if( !valid ){ throw new Error('hjfjhfjhfjj', '0898978787878') }
+    const result = await create( input.user )
+    return result
+  }
+)
+
+const createPilot = baseResolver.createResolver(
+  async ( root, { input }, req ) => {
+    input.user.type = "pilot"
+    const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
+    if( !valid ){ return valid }
+    const result = await create( input.user )
+    return result
+  }
+)
+
+const createEditor = baseResolver.createResolver(
+  async ( root, { input }, req ) => {
+    input.user.type = "editor"
+    const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
+    if( !valid ){ return valid }
+    const result = await create( input.user )
+    return result
+  }
+)
+
+const createAdmin = baseResolver.createResolver(
+  async ( root, { input }, req ) => {
+    input.user.type = "admin"
+    const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
+    if( !valid ){ return valid }
+    const result = await create( input.user )
+    return result
+  }
+)
+
+const updateUser = isAuthorized.createResolver(
+  async ( root, { input }, req ) => {
+    const valid = await Validate(input, [ 'id' ])
+    if( !valid ){ return valid }
+    const result = await update( input )
+    return result
+  }
+)
+
+const destroyUser = isAuthorized.createResolver(
+  async ( root, { input }, req ) => {
+    const result = await destroy( input )
+    return result
+  }
+)
+
+const loginUser = baseResolver.createResolver(
+  async (root, { input }, req) => {
+    const { email, password } = input
+    const result = await login({ email, password })
+    return result
+  }
+)
+
+
+const userResolvers = {
+
+  Query: {
+    getProfile,
+    currentUser
+  },
+
+  Mutation: {
+    loginUser,
+    createAgent,
+    createPilot,
+    createEditor,
+    createAdmin,
+    updateUser,
+    destroyUser
+  }
+
 }
 
-async function destroyUser( root, args, req ){
-  const id = await mustHaveId(args.input.itemId)
-  const result = await DestroyUser( id, req )
-  return result
-}
-
-async function userProfile( root, args, req ){
-  const result = await UserProfile(args.id).then( res => {
-    return { user: res.dataValues }
-  })
-  return result
-}
-
-module.exports = { createAgent, createPilot, createEditor, createAdmin, updateUser, destroyUser, userProfile }
+module.exports = { userResolvers, createAgent }

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('ratings', {
+    return queryInterface.createTable('Ratings', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,11 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ratableId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      ratableType: {
+      ratable: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      rating: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +33,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('ratings')
+    return queryInterface.dropTable('Ratings')
   }
 };

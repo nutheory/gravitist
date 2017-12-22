@@ -1,30 +1,46 @@
-const Upload = require('./upload')
-
 const Asset = `
   type Asset {
     id: ID
     assetableId: ID
     assetableType: String
-    filename: String
-    filetype: String
+    name: String
+    type: String
     url: String
-    filesize: String
+    size: String
+    meme: String
+    awsId: String
+    uploaderId: ID
+    meta: String
+    verified: Boolean
+    active: Boolean
   }
 
   input AssetInput {
-    assetableId: ID
-    assetableType: String
-    asset: UploadInput
+    id: ID
+    name: String
+    type: String
+    url: String
+    size: String
+    meme: String
+    awsId: String
+    uploaderId: ID
+    meta: String
+    verified: Boolean
+    active: Boolean
   }
 
   type AssetPayload {
     id: ID
-    assetableId: ID
-    assetableType: String
-    filename: String
-    filetype: String
+    name: String
+    type: String
     url: String
-    filesize: String
+    size: String
+    meme: String
+    awsId: String
+    uploaderId: ID
+    meta: String
+    verified: Boolean
+    active: Boolean
   }
 `
 module.exports = Asset

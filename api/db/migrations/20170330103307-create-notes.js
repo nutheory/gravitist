@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('notes', {
+    return queryInterface.createTable('Notes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,19 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       notableId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      notableType: {
+      notable: {
         allowNull: false,
         type: Sequelize.STRING
       },
       authorId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       body: {
         allowNull: false,
         type: Sequelize.STRING
       },
+      visibility: Sequelize.JSONB,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -35,6 +38,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('notes')
+    return queryInterface.dropTable('Notes')
   }
 };

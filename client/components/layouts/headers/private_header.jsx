@@ -4,7 +4,7 @@ import { css } from 'aphrodite'
 import { graphql } from 'react-apollo'
 import LiNavLink from '../../misc/li_navlink'
 import LogoutUser from '../../../mutations/logout'
-import CurrentUserQuery from '../../../queries/current_user'
+import jwtDecode from 'jwt-decode'
 import styles from '../styles/private_header'
 import _ from 'lodash'
 
@@ -17,11 +17,14 @@ const pilotLinks = [['tachometer', 'dashboard', 'Dashboard'], ['rocket', 'missio
 class PrivateHeader extends Component {
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: PropTypes.object
   }
 
   constructor(){
     super()
+    this.state = {
+      currentUser: jwtDecode(localStorage.getItem('hf_auth_header_token'))
+    }
 
     this.renderLinks = this.renderLinks.bind(this)
     this.userTypeLinks = this.userTypeLinks.bind(this)
@@ -43,66 +46,62 @@ class PrivateHeader extends Component {
     return links
   }
 
-  async logoutMutation(){
-    console.log('logging out', this.props)
-    localStorage.setItem('hf_auth_header_token', undefined)
-    this.context.router.history.replace('/')
-  }
-
   logoutHandler(e){
     e.preventDefault()
-    console.log('E', e)
-    this.logoutMutation()
+    localStorage.removeItem('hf_auth_header_token')
+    this.context.router.history.replace('/')
   }
 
   render(){
     console.log('Private', this.props)
     return (
-      // <nav className="columns section has-shadow" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-      //   <div className="column is-3">
-      //     <a className="nav-item is-pulled-left">
-      //       <img src={`/${logo}`} style={{ width: '180px', height: '40px'}} alt="Homefilming logo" />
-      //     </a>
-      //   </div>
-      //   <div className="column tabs is-centered is-toggle is-hidden-touch">
-      //     <ul class="is-pulled-right">
-      //       { this.renderLinks(this.props.current_user.type) }
-      //     </ul>
-      //   </div>
-      //   <div className="column is-2 nav-menu is-hidden-touch">
-      //     <a className="nav-item is-pulled-right">Logout</a>
-      //   </div>
-      //   <div className="column tabs is-centered is-toggle is-hidden-desktop">
-      //     <ul>
-      //       { this.renderLinks(this.props.current_user.type) }
-            // <LiNavLink activeClassName='is-active' exact={true} strict to={`/logout`}>
-            //   <span className={`icon is-small ${css(styles.privateIcons)}`}><i className={`fa fa-sign-out ${css(styles.iconMarginRight)}`} aria-hidden="true"></i></span>
-            // </LiNavLink>
-      //     </ul>
-      //   </div>
-      // </nav>
+      <div>
+        {/* <nav className="columns section has-shadow" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
+          <div className="column is-3">
+            <a className="nav-item is-pulled-left">
 
-      // MOBILE
-      <nav className="block is-block-mobile">
-        <a className={`${css(styles.marginTopBottom)} nav-center`}>
-          <img src={require('../../../assets/svg/logoGreen.svg')} className={`${css(styles.logo)}`} alt="Homefilming logo" />
-        </a>
-        <div className="tabs block is-toggle is-centered ">
-          <ul>
-            { this.renderLinks(this.props.currentUser.type) }
-            <li>
-              <a href='#' onClick={this.logoutHandler.bind(this)}>
-                <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-sign-out`} aria-hidden="true"></i></span>
-                <span className={`is-hidden-touch ${css(styles.icon_with_text)}`}>Logout</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      // TABLET
+            </a>
+          </div>
+          <div className="column tabs is-centered is-toggle is-hidden-touch">
+            <ul className="is-pulled-right">
+              { this.renderLinks(this.state.currentUser.type) }
+            </ul>
+          </div>
+          <div className="column is-2 nav-menu is-hidden-touch">
+            <a className="nav-item is-pulled-right">Logout</a>
+          </div>
+          <div className="column tabs is-centered is-toggle is-hidden-desktop">
+            <ul>
+              { this.renderLinks(this.state.currentUser.type) }
+              <LiNavLink activeClassName='is-active' exact={true} strict to={`/logout`}>
+                <span className={`icon is-small ${css(styles.privateIcons)}`}><i className={`fa fa-sign-out ${css(styles.iconMarginRight)}`} aria-hidden="true"></i></span>
+              </LiNavLink>
+            </ul>
+          </div>
+        </nav> */}
 
+        {/* MOBILE */}
+        <nav className={`${css(styles.paddingTopBottom)} block is-block-mobile`}>
+          <a className={`${css(styles.marginTopBottom)} nav-center`}>
+            <h1 className={`${css(styles.logo)}`}>Homefilming</h1>
+            {/* <img src={require('../../../assets/svg/logoGreen.svg')} className={`${css(styles.logo)}`} alt="Homefilming logo" /> */}
+          </a>
+          <div className="tabs block is-toggle is-centered ">
+            <ul>
+              { this.renderLinks(this.state.currentUser.type) }
+              <li>
+                <a href='#' onClick={this.logoutHandler.bind(this)}>
+                  <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-sign-out`} aria-hidden="true"></i></span>
+                  <span className={`is-hidden-touch ${css(styles.icon_with_text)}`}>Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        {/* TABLET */}
+      </div>
     )
   }
 }
 
-export default graphql(LogoutUser)(PrivateHeader)
+export default PrivateHeader

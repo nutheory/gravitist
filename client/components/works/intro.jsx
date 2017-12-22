@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { css } from 'aphrodite'
-import Slider from 'react-slick'
 import intro from './styles/intro'
 import cE from '../../styles/common_elements'
 
@@ -36,10 +35,10 @@ const Intro = () => {
         slidesToScroll: 1
       }
 
-      return (
-        <Slider {...settings}>
-          {photos.map((ph, i) => { return photo(ph,i) })}
-        </Slider>
+      return ("hey"
+        // <Slider {...settings}>
+        //   {photos.map((ph, i) => { return photo(ph,i) })}
+        // </Slider>
       )
     }
   }

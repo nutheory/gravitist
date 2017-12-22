@@ -4,43 +4,105 @@ const chalk = require('chalk')
 const faker = require('faker')
 const axios = require('axios')
 const Addresses = require('../../db/utils/Addresses.json')
-
-const randSix = () => {
-  return Math.floor(100000 + Math.random() * 900000)
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+const randSix = () => Math.floor(100000 + Math.random() * 900000)
+const gQL = axios.create({ baseURL: 'http://localhost:9000/' })
+const DistAddresses = {
+  silveradoHighSchool: {
+    address1: '25632 Peter A. Hartman Way',
+    city: 'Mission Viejo',
+    state: 'CA',
+    zipCode: '92691',
+    lat: 33.6211337,
+    lng: -117.6828289
+  },
+  //6.1 miles from silvy
+  missionViejoMall: {
+    address1: '555 The Shops at Mission Viejo',
+    city: 'Mission Viejo',
+    state: 'CA',
+    zipCode: '92691',
+    lat: 33.5589135,
+    lng: -117.6681064
+  },
+  //33.4 miles from silvy
+  longBeachAirport: {
+    address1: '4100 Donald Douglas Dr',
+    city: 'Long Beach',
+    state: 'CA',
+    zipCode: '90808',
+    lat: 33.81778,
+    lng: -118.15167
+  },
+  //75.8 miles from silvy
+  sanDiegoInternationalAirport: {
+    address1: '3225 N Harbor Dr',
+    city: 'San Diego',
+    state: 'CA',
+    zipCode: '92101',
+    lat: 32.732346,
+    lng: -117.196053
+  }
 }
 
-const gQL = axios.create({
-  baseURL: 'http://localhost:9000/'
+const LogIn = ({
+  query: () => `
+    mutation($input: LoginInput!) {
+      loginUser(input: $input){
+        user {
+          id
+          name
+          email
+          companyId
+          companyOwner
+          customerId
+          type
+          address {
+            address1
+            address2
+            type
+            city
+            state
+            zipCode
+            lat
+            lng
+          }
+        }
+        auth {
+          token
+        }
+      }
+    }
+  `,
+  user: async ({ email, password }) => await gQLpost({ query: LogIn.query(),
+    variables: { input: { email, password } }}).catch(err => { throw err }),
+  agent: async () => await LogIn.user({ email: "drush81+agent@gmail.com", password: "Letmein@1" }),
+  pilot: () => LogIn.user({ email: "drush81+pilot@gmail.com", password: "Letmein@1" }),
+  editor: () => LogIn.user({ email: "drush81+editor@gmail.com", password: "Letmein@1" }),
+  admin: () => LogIn.user({ email: "drush81+admin@gmail.com", password: "Letmein@1" }),
+  super: () => LogIn.user({ email: "drush81+super@gmail.com", password: "Letmein@1" })
 })
 
-async function gQLget({ query, variables }){
-  const result = await gQL.get( '/graphql', { query, variables })
-    .then(res => {
-      return responseFactory(res)})
-    .catch((e) => {
-      throw `gQLget - ${chalk.red.bold(e)}`
-    })
-  return result
-}
-
-async function gQLpost({ query, variables }){
+const gQLpost = async ({ query, variables }) => {
   const result = await gQL.post( '/graphql', { query, variables })
     .then(res => {
       return responseFactory(res)})
     .catch((e) => {
-      throw `gQLpost - ${chalk.red.bold(e)}`
+      // if(e.data && e.data.errors){ console.log("EEEEEEEEEEEEEE", e.data.errors) }
+      // else { console.log("EEEEEEEEEEEEEE - NO ERR", e) }
+      return e
     })
   return result
 }
 
-async function generateUserData(overrides = {}){
-  const password = faker.internet.password()
+const generateUserData = (overrides = {}) => {
+  const password = "Letmein@1"
   const name = `${faker.name.firstName()} ${faker.name.lastName()}`
   const email = overrides.email || faker.internet.email()
   return { name, email, password }
 }
 
-async function generateAddressData(overrides = {}){
+const generateAddressData = (overrides = {}) => {
   const address = _.sample(Addresses)
   return {
     address1: overrides.address1 || address.address1,
@@ -53,53 +115,7 @@ async function generateAddressData(overrides = {}){
   }
 }
 
-function logInAgent(){
-  const user = logInUser({ email: "drush81+agent@gmail.com", password: "Letmein@1" })
-  return user
-}
-
-async function logInPilot(){
-  const user = await logInUser({ email: "drush81+pilot@gmail.com", password: "Letmein@1" })
-  return user
-}
-
-async function logInEditor(){
-  const user = await logInUser({ email: "drush81+editor@gmail.com", password: "Letmein@1" })
-  return user
-}
-
-async function logInAdmin(){
-  const user = await logInUser({ email: "drush81+admin@gmail.com", password: "Letmein@1" })
-  return user
-}
-
-async function logInSuper(){
-  const user = await logInUser({ email: "drush81+super@gmail.com", password: "Letmein@1" })
-  return user
-}
-
-async function logInUser({ email, password }){
-  const variables = { input: { email, password } }
-  const query = `
-    mutation($input: LoginInput!) {
-      login(input: $input){
-        user {
-          id
-          name
-          email
-        }
-        auth {
-          token
-        }
-      }
-    }
-  `
-  const result = await gQLpost({query, variables})
-  return result
-}
-
-
-async function responseFactory(res){
+const responseFactory = (res) => {
   if( res == undefined ){
     throw( AppError( {
       type: `Testing.responseFactory`,
@@ -119,21 +135,21 @@ async function responseFactory(res){
   response.rawQuery = res.config.data
   _.each(res.data.data, (val, key) => {
     if( res && res.data.errors ){
-      throw( AppError( {
-        type: `Testing.${key}.responseFactory (${res.data.errors.length})`,
-        message: res.data.errors[0].message
-      } ) )
+      // console.log("RF",res.data)
+      throw res
     }
     response[key] = res.data.data[key]
   })
   return response
 }
 
-async function cleanUpTestItem(mutationName, variables){
+const cleanUpTestItem = async (mutationName, variables) => {
   const query = `
-    mutation($input: ${capitalizeFirstLetter(mutationName)}Input){
-      ${mutationName}(input: $input){
-        id
+    mutation($input: Destroy${capitalizeFirstLetter(mutationName)}Input){
+      destroy${capitalizeFirstLetter(mutationName)}(input: $input){
+        ${mutationName} {
+          id
+        }
       }
     }
   `
@@ -145,16 +161,18 @@ async function cleanUpTestItem(mutationName, variables){
 }
 
 
-async function cleanUpTestItemAsAdmin(mutationName, variables){
+const cleanUpTestItemAsAdmin = async (mutationName, variables) => {
   const query = `
-    mutation($input: ${capitalizeFirstLetter(mutationName)}Input){
-      ${mutationName}(input: $input){
-        id
+    mutation($input: Destroy${capitalizeFirstLetter(mutationName)}Input){
+      destroy${capitalizeFirstLetter(mutationName)}(input: $input){
+        ${mutationName} {
+          id
+        }
       }
     }
   `
-  const admin = await logInAdmin()
-  gQL.defaults.headers.common.authorization = admin.login.auth.token
+  const admin = await LogIn.admin
+  gQL.defaults.headers.common.authorization = admin.loginUser.auth.token
   const result = await gQLpost({query, variables})
     .catch(e => {
       console.log(chalk.yellow.bold(e))
@@ -164,10 +182,5 @@ async function cleanUpTestItemAsAdmin(mutationName, variables){
   return result
 }
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-module.exports = { randSix, gQL, gQLpost, gQLget, generateUserData, generateAddressData,
-  cleanUpTestItem, cleanUpTestItemAsAdmin, responseFactory, logInAgent, logInPilot,
-  logInEditor, logInAdmin, logInUser }
+module.exports = { randSix, gQL, gQLpost, generateUserData, generateAddressData,
+  cleanUpTestItem, cleanUpTestItemAsAdmin, responseFactory, LogIn }

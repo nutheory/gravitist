@@ -1,23 +1,28 @@
+// @flow
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { css } from 'aphrodite'
-import styles from '../../styles/common_layout'
+import cL from '../../styles/common_layout'
 import PricingList from './pricing_list'
-import MainOrder from './main_order'
+import Order from './order'
 
-const Pricing = (props) => {
+type Props = {
+
+}
+
+const Pricing = (props: Props) => {
   return (
-    <div className={css(styles.centerMainContent)}>
-      <Router>
-        <div>
-          <Route exact path="/pricing" render={({match}) => (
-            <div>
-              <PricingList header={{ title: "Get Started by Choosing a Plan!" }} />
-            </div>
-          )} />
-          <Route path="/pricing/order/:plan" component={MainOrder} />
+    <div>
+      <div className={css(cL.pricingContainer)}>
+        <div className={css(cL.heroBg, cL.heroBgFull)} style={{background: `url(${require('../../assets/images/pricingBg2.jpg')}) no-repeat`}}>
+          <div className={css(cL.pricingOverlay)}></div>
+          <div className={css(cL.centerMainContent)}>
+            <Route exact path="/pricing" render={({match}) => (
+              <PricingList />
+            )} />
+          </div>
         </div>
-      </Router>
+      </div>
     </div>
   )
 }

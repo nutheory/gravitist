@@ -3,8 +3,10 @@ import { ss, c } from '../../../styles/helpers'
 
 const birdsEyeView = StyleSheet.create({
   container: {
-    display: 'flex',
+    position: 'relative',
+    background: `url(${require('../../../assets/images/phone.jpg')})`,
     backgroundSize: 'cover',
+    height: '900px',
     backgroundPosition: 'center center',
   },
   sectionHeader: {
@@ -56,18 +58,10 @@ const birdsEyeView = StyleSheet.create({
       justifyContent: 'flex-start',
     },
     [ss.lg]: {
-    },
-  },
-  infoText: {
-    fontFamily: 'poppins-light',
-    fontSize: '1.375rem',
-    opacity: '0.8',
-    lineHeight: '2.4rem',
-    [ss.sm]: {
-      width: '100%',
-    },
-    [ss.lg]: {
-      width: '75%',
+      position: 'absolute',
+      bottom: '3rem',
+      width: '45%',
+      marginLeft: '35%'
     },
   },
   worksWith: {

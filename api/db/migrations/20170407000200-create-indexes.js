@@ -2,28 +2,28 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    queryInterface.addIndex('users', ['email'])
-    queryInterface.addIndex('orders', ['pilotId', 'receiptId', 'agentId'])
-    queryInterface.addIndex('addresses', ['userId', 'orderId'])
-    queryInterface.addIndex('companies', ['accountId', 'addressId', 'logoId'])
-    queryInterface.addIndex('contacts', ['contactableId', 'contactableType'])
-    queryInterface.addIndex('invitations', ['userId', 'mailId'])
-    queryInterface.addIndex('assets', ['assetableId', 'assetableType'])
-    queryInterface.addIndex('ratings', ['ratableId', 'ratableType'])
-    queryInterface.addIndex('notes', ['notableId', 'authorId'])
-    queryInterface.addIndex('notifications', ['userId'])
+    queryInterface.addIndex('Users', ['email', 'companyId'])
+    queryInterface.addIndex('Orders', ['pilotId', 'receiptId', 'agentId', 'editorId'])
+    queryInterface.addIndex('Addresses', ['addressableId', 'addressable'])
+    queryInterface.addIndex('Companies', ['name'])
+    queryInterface.addIndex('Contacts', ['contactableId', 'contactable'])
+    queryInterface.addIndex('Invitations', ['userId', 'mailId'])
+    queryInterface.addIndex('Assets', ['assetableId', 'assetable', 'awsId'])
+    queryInterface.addIndex('Ratings', ['ratableId', 'ratable'])
+    queryInterface.addIndex('Notes', ['notableId', 'notable', 'authorId'])
+    queryInterface.addIndex('Notifications', ['userId'])
   },
 
   down: function (queryInterface, Sequelize) {
-    queryInterface.removeIndex('users', ['email'])
-    queryInterface.removeIndex('orders', ['pilotId', 'receiptId', 'agentId'])
-    queryInterface.removeIndex('addresses', ['userId', 'orderId'])
-    queryInterface.removeIndex('companies', ['accountId', 'addressId', 'logoId'])
-    queryInterface.removeIndex('contacts', ['contactableId', 'contactableType'])
-    queryInterface.removeIndex('invitations', ['userId', 'mailId'])
-    queryInterface.removeIndex('assets', ['assetableId', 'assetableType'])
-    queryInterface.removeIndex('ratings', ['ratableId', 'ratableType'])
-    queryInterface.removeIndex('notes', ['notableId', 'authorId'])
-    queryInterface.removeIndex('notifications', ['userId'])
+    queryInterface.removeIndex('Users', ['email', 'companyId'])
+    queryInterface.removeIndex('Orders', ['pilotId', 'receiptId', 'agentId', 'editorId'])
+    queryInterface.removeIndex('Addresses', ['addressableId', 'addressable'])
+    queryInterface.removeIndex('Companies', ['name'])
+    queryInterface.removeIndex('Contacts', ['contactableId', 'contactable'])
+    queryInterface.removeIndex('Invitations', ['userId', 'mailId'])
+    queryInterface.removeIndex('Assets', ['assetableId', 'assetable', 'awsId'])
+    queryInterface.removeIndex('Ratings', ['ratableId', 'ratable'])
+    queryInterface.removeIndex('Notes', ['notableId', 'notable', 'authorId'])
+    queryInterface.removeIndex('Notifications', ['userId'])
   }
 }

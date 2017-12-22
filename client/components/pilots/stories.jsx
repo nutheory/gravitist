@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
-import Slider from 'react-slick'
 import Header from '../misc/header'
 import st from './styles/stories'
 import cL from '../../styles/common_layout'
@@ -49,9 +48,9 @@ const Stories = () => {
       }
       return (
         <div className={css(st.storyFrame)}>
-          <Slider {...settings}>
+          {/* <Slider {...settings}>
             {storyList.map((sl, i) => {return story(sl, i)})}
-          </Slider>
+          </Slider> */}
         </div>
       )
     }

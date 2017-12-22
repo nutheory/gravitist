@@ -18,7 +18,7 @@ _.each(filteredAddresses, (address) => {
       newAddress.zipCode = val
     } else if ( key == 'coordinates' ){
       _.each(val, ( value, coordKey ) => {
-        newAddress[coordKey] = `${value}`
+        newAddress[coordKey] = value
       })
     } else {
       newAddress[key] = val

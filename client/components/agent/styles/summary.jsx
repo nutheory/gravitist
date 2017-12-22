@@ -3,49 +3,48 @@ import { ss, c } from '../../../styles/helpers'
 
 const summary = StyleSheet.create({
   container: {
+    borderRadius: '4px 0 0 4px',
     display: 'flex',
-    // padding: '1rem',
-    alignItems: 'flex-start',
-    width: '600px',
-    background: c.lightGrey,
+    flexDirection: 'column',
+    flexGrow: '1',
+    color: c.white,
+    background: '#141E30',
+    background: '-webkit-linear-gradient(to bottom, #243B55, #141E30)',
+    background: 'linear-gradient(to bottom, #243B55, #141E30)',
   },
   mainInfo: {
     margin: '1rem',
     // flex: '1',
-    width: 'calc(50% - 2rem)',
+    // width: 'calc(50% - 2rem)',
   },
   features: {
     margin: '1rem',
     // flex: '1',
-    width: 'calc(50% - 2rem)',
+    // width: 'calc(50% - 2rem)',
   },
   featuresList: {
-    margin: '0'
+    margin: '0 0.8rem'
   },
   planTitle: {
-    fontFamily: 'poppins-semibold',
     fontSize: '1.6rem',
     margin: '0',
   },
   planDesc: {
-    fontFamily: 'poppins-light',
     fontSize: '0.8rem',
     margin: '0.6rem 0',
   },
   priceArea: {
-    display: 'inline-block',
+    display: 'block',
+    float: 'right'
   },
   price: {
-    fontFamily: 'poppins-semibold',
-    fontSize: '1.4rem',
+    fontSize: '2.4rem',
   },
   dollarSign: {
-    fontFamily: 'poppins-semibold',
     fontSize: '1.0rem',
     verticalAlign: 'top',
   },
   cents: {
-    fontFamily: 'poppins-semibold',
     fontSize: '1.0rem',
   },
   change: {
@@ -60,14 +59,29 @@ const summary = StyleSheet.create({
     display: 'block'
   },
   featureDesc: {
-    fontFamily: 'poppins-light',
     margin: '0',
     float: 'left',
     paddingBottom: '0px',
     width: '80%',
   },
+  previewArea:{
+    width: '100%',
+    height: '100%',
+    fontSize: '2.0rem',
+    zIndex: '200',
+    opacity: '1',
+    display: 'flex',
+    flex: '1 0 auto',
+    flexDirection: 'column'
+  },
+  priceText: {
+    display: 'block',
+  },
   footer: {
-
+    display: 'flex',
+    marginRight: '0.5rem',
+    padding: '1rem',
+    borderTop: '1px solid #fff'
   }
 })
 

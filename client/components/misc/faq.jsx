@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import faq from './styles/faq'
 import cT from '../../styles/common_text'
-import {Card, CardHeader, CardText} from 'material-ui/Card'
-import Add from 'material-ui/svg-icons/content/add'
-import Remove from 'material-ui/svg-icons/content/remove'
 
 class Faq extends Component {
   constructor(){
@@ -40,26 +37,26 @@ class Faq extends Component {
       transitionTimingFunction: 'cubic-bezier(0, 1, 0.5, 1)'
     }
 
-    return (
-      <Card
-        containerStyle={{marginBottom: '1rem'}}
-        onExpandChange={ this.expandToggle.bind(this) }
-        style={this.state.expanded ? expanding : collapsing}
-      >
-        <CardHeader
-          title={`${this.props.faq.question} - ${this.state.expanded}`}
-          titleStyle={{fontFamily: 'poppins-semibold'}}
-          closeIcon={<Add />}
-          openIcon={<Remove />}
-          actAsExpander={true}
-          showExpandableButton={true}
-        />
-        <CardText
-          expandable={true}
-        >
-          {this.props.faq.answer}
-        </CardText>
-      </Card>
+    return ("hey"
+      // <Card
+      //   containerStyle={{marginBottom: '1rem'}}
+      //   onExpandChange={ this.expandToggle.bind(this) }
+      //   style={this.state.expanded ? expanding : collapsing}
+      // >
+      //   <CardHeader
+      //     title={`${this.props.faq.question} - ${this.state.expanded}`}
+      //     titleStyle={{fontFamily: 'poppins-semibold'}}
+      //     closeIcon={<Add />}
+      //     openIcon={<Remove />}
+      //     actAsExpander={true}
+      //     showExpandableButton={true}
+      //   />
+      //   <CardText
+      //     expandable={true}
+      //   >
+      //     {this.props.faq.answer}
+      //   </CardText>
+      // </Card>
     )
   }
 }

@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { browserHistory, withRouter } from 'react-router-dom'
-import TextField from 'material-ui/TextField'
-import Formsy from 'formsy-react'
-import { FormsyText } from 'formsy-material-ui/lib'
-import RaisedButton from 'material-ui/RaisedButton'
+import { Input, Button, Form } from 'semantic-ui-react'
+import { browserHistory, withRouter, Link } from 'react-router-dom'
 import LoginUser from '../../mutations/login'
-import CurrentUserQuery from '../../queries/current_user'
+// import CurrentUserQuery from '../../queries/current_user'
 import { StyleSheet, css } from 'aphrodite'
 import lg from './styles/login'
+
 
 class Login extends Component {
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: PropTypes.object
   }
 
   constructor(props, context){
@@ -25,6 +23,7 @@ class Login extends Component {
       loggedIn: false,
     }
 
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.runMutation = this.runMutation.bind(this)
   }
@@ -35,17 +34,17 @@ class Login extends Component {
         email: this.state.email,
         password: this.state.password
         }
-      }, refetchQueries: [{ query: CurrentUserQuery }]
+      }
     })
-    console.log("RUN", resolved)
     const { data } = resolved
-    data.login.email ? this.redirectOnSuccess(data.login) : this.displayErrorMessage()
+    data.loginUser.user ? this.redirectOnSuccess(data.loginUser) : this.displayErrorMessage()
   }
 
-  redirectOnSuccess(user){
-    console.log("USER", user)
-    localStorage.setItem('hf_auth_header_token', user.token)
-    switch(user.type) {
+  redirectOnSuccess(res){
+    console.log("USER", res.auth.token)
+    localStorage.setItem('hf_auth_header_token', res.auth.token)
+    console.log("LOC", localStorage.getItem('hf_auth_header_token'))
+    switch(res.user.type) {
     case "agent": this.context.router.history.push('/dashboard'); break;
     case "pilot": this.context.router.history.push('/open-missions'); break;
     case "editor": this.context.router.history.push('/open-missions'); break;
@@ -58,44 +57,58 @@ class Login extends Component {
 
   }
 
+  handleChange(e){
+    const {name, value} = e.target
+    this.setState({ [name]: value })
+  }
+
   handleSubmit(e){
     e.preventDefault()
+    console.log("go")
     this.runMutation()
   }
 
   render(){
+    const { email, password } = this.state
     return(
-      <div className={css(lg.container)}>
-        <Formsy.Form>
-          <div className={css(lg.innerContainer)}>
-            <p className={css(lg.text)}>Please login with your email and password.</p>
-            <div className={css(lg.row)}>
-              <FormsyText
-                floatingLabelText="Email"
-                name="email"
-                value={this.state.email}
-                onChange={e => this.setState({email: e.currentTarget.value})}
-              />
+      <div className={css(lg.innerContainer)}>
+        <div>
+          <Link className={css(lg.logo)} to="/">HOMEFILMING</Link>
+        </div>
+        <div className={css(lg.formArea)}>
+          <p>Log in to HomeFilming</p>
+          <form onSubmit={this.handleSubmit}>
+            <div className="field">
+              <div className="control has-icons-left">
+                <input
+                  className="input is-medium"
+                  name="email"
+                  value={email}
+                  type="text"
+                  onChange={this.handleChange}
+                  placeholder="Email" />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-envelope"></i>
+                  </span>
+              </div>
             </div>
-            <div className={css(lg.row)}>
-              <FormsyText
-                floatingLabelText="Password"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={e => this.setState({password: e.currentTarget.value})}
-              />
+            <div className="field">
+              <div className="control has-icons-left">
+                <input
+                  className="input is-medium"
+                  name="password"
+                  value={password}
+                  type="password"
+                  onChange={this.handleChange}
+                  placeholder="Password" />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-lock"></i>
+                  </span>
+              </div>
             </div>
-          </div>
-          <div className={css(lg.row)}>
-            <RaisedButton
-              label="Login"
-              fullWidth={true}
-              primary={true}
-              onClick={this.handleSubmit}
-            />
-          </div>
-        </Formsy.Form>
+            <button className={`${css(lg.button)} button`}>Login</button>
+          </form>
+        </div>
       </div>
     )
   }

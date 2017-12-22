@@ -3,10 +3,12 @@ import gql from 'graphql-tag'
 const User = gql`
   query currentUser{
     currentUser{
-      id
-      name
-      email
-      type
+      user{
+        id
+        name
+        email
+        type
+      }
     }
   }
 `

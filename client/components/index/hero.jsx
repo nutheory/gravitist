@@ -17,20 +17,23 @@ class Hero extends Component{
       <div className={css(cL.heroContainer)}>
         <div className={css(cL.heroBg)} style={{background: `url(${require('../../assets/images/homeHero.jpg')}) no-repeat`}}>
           <div className={css(cL.heroOverlay)}></div>
-          <h1 className={css(cT.synopsis)}>We make aerial videos for residential real estate agents</h1>
-          <ul className={css(hero.bulletPoints)}>
-            <li className={css(hero.point)}>Nationwide coverage</li>
-            <li className={css(hero.point)}>48-hour turnaround</li>
-          </ul>
-          <div className={css(cE.ctaButtons)}>
-            <NavLink
-              className={css(cE.cta, cE.redButton)}
-              to="/pricing"
-            >VIEW PRICING</NavLink>
-            <Link
-              className={css(cE.cta, cE.blueButton)}
-              to={{pathname: '/sample-video', state: { modal: true} }}
-            ><img src={require('../../assets/svg/playIcon.svg')} className={css(hero.playIcon)} alt="play sample" /> VIEW SAMPLE VIDEO</Link>
+          <div className={css(hero.wrapper)}>
+            <div className={css(cT.synopsis)}>We make aerial videos for residential real estate agents</div>
+
+            <div className={css(hero.ctaButtons)}>
+              <div className={css(hero.ctaButtonLeft)}>
+                <NavLink className={css(cE.ctaButton, cE.ctaGreen)} to="/pricing">
+                  <span className={css(cE.ctaButtonOverlay)}></span>
+                  View Pricing
+                </NavLink>
+              </div>
+              <div className={css(hero.ctaButtonRight)}>
+                <Link className={css(cE.ctaButton, cE.ctaPurple)} to={{pathname: '/sample-video', state: { modal: true} }}>
+                  <span className={css(cE.ctaButtonOverlay)}></span>
+                  View Sample Video
+                </Link>
+              </div>
+            </div>
           </div>
           <ScrollDown to="/" />
         </div>

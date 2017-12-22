@@ -6,11 +6,27 @@ const contact = StyleSheet.create({
     display: 'flex'
   },
   contactContent: {
-    flex: '1'
+    flex: '2 0 300px'
+  },
+  contactButtonArea: {
+    flexGrow: 0,
+    display: 'flex'
   },
   contactButton: {
-    flex: '0',
-    textAlign: 'right',
+    color: '#fff',
+  },
+  contactButtonMinus: {
+    marginRight: '0.75rem'
+  },
+  contactDropdown: {
+    width: '30rem',
+    overflow: 'auto'
+  },
+  contactDropdownItem: {
+    width: '10rem',
+    float: 'left',
+    padding: '0.25rem 0.75rem',
+    display: 'block'
   },
   removeButton: {
     backgroundColor: 'rgba(212,0,88,1)'

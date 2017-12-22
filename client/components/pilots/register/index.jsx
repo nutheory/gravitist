@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../../misc/header'
 import { css } from 'aphrodite'
-import RaisedButton from 'material-ui/RaisedButton'
 import cL from '../../../styles/common_layout'
 import cF from '../../../styles/common_forms'
 import Uploads from './uploads'
@@ -37,26 +36,22 @@ class PilotRegister extends Component {
   render(){
     return(
       <div className={css(cL.centerMainContent)}>
-        <Formsy.Form
-          onValid={this.enableSubmitButton}
-          onInvalid={this.disableSubmitButton}
-        >
+        {/* <ValidatorForm onSubmit={this.checkUserVerified}> */}
           <div className={css(cF.mainContainer)}>
             <Uploads />
             <UserForm setUserInfo={this.setUserInfo} />
             <ContactList contactsCollection={this.contactsCollection} />
             <PilotInfo />
             <div>
-              <RaisedButton
-                label="Signup"
-                secondary={ true }
-                fullWidth={ true }
+              {/* <Button
+                raised
+                color="primary"
                 onClick={this.handleSubmit}
                 // disabled={ !this.state.canSubmit }
-              />
+              >Signup</Button> */}
             </div>
           </div>
-        </Formsy.Form>
+        {/* </ValidatorForm> */}
       </div>
     )
   }

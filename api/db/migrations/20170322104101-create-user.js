@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,6 +11,11 @@ module.exports = {
       },
       customerId: {
         type: Sequelize.STRING
+      },
+      companyId: Sequelize.INTEGER,
+      companyOwner: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       name: {
         type: Sequelize.STRING,
@@ -40,12 +45,9 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      workRadius: {
-        type: Sequelize.INTEGER
-      },
+      workRadius: Sequelize.INTEGER,
       payRate: Sequelize.DECIMAL,
       bio: Sequelize.TEXT,
-      companyId: Sequelize.INTEGER,
       type: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -71,6 +73,6 @@ module.exports = {
     })
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('users')
+    return queryInterface.dropTable('Users')
   }
 }

@@ -1,26 +1,12 @@
-import React from 'react'
-import '../../styles/loader.sass'
-import qlLogo from '../../assets/svg/GraphQL_Logo.svg'
-
+// @flow
+import React, { Component } from 'react'
 
 const Loader = () => {
-  return (
-    <div className="load-spinner-main">
-      <div className="circle-spinner">
-        <div className="inner-spinner"></div>
-      </div>
-      <div className="circle-spinner">
-        <div className="inner-spinner"></div>
-      </div>
-      <div className="circle-spinner">
-        <div className="inner-spinner"></div>
-      </div>
-      <div className="circle-spinner">
-        <div className="inner-spinner"></div>
-      </div>
-      <div className="circle-spinner">
-        <div className="inner-spinner"></div>
-      </div>
+  return(
+    <div className="ldr-loader">
+      <div className="ldr-dot"></div>
+      <div className="ldr-dot"></div>
+      <div className="ldr-dot"></div>
     </div>
   )
 }

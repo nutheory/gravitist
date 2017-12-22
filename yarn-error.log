@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/derekrush/.yarn/bin/yarn.js add passport-jwt
+  /usr/local/bin/node /Users/derekrush/.yarn/bin/yarn.js install
 
 PATH: 
   /Users/derekrush/.yarn/bin:/Users/derekrush/.rvm/gems/ruby-2.3.1/bin:/Users/derekrush/.rvm/gems/ruby-2.3.1@global/bin:/Users/derekrush/.rvm/rubies/ruby-2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:./node_modules/.bin:/Applications/Postgres.app/Contents/Versions/9.6/bin:/Users/derekrush/.rvm/bin
@@ -8,7 +8,7 @@ Yarn version:
   0.22.0
 
 Node version: 
-  8.1.3
+  8.8.0
 
 Platform: 
   darwin x64
@@ -29,6 +29,7 @@ npm manifest:
     },
     "scripts": {
       "start": "nps",
+      "dev": "nps dev",
       "test": "nps test",
       "lint": "nps lint"
     },
@@ -37,72 +38,79 @@ npm manifest:
     "dependencies": {
       "aphrodite": "^1.2.0",
       "apollo-client": "^1.0.2",
+      "apollo-resolvers": "1.0.3",
       "apollo-upload-client": "5.0.0",
       "apollo-upload-server": "2.0.3",
+      "assert": "1.4.1",
+      "aws-sdk": "2.131.0",
       "axios": "0.16.2",
       "bcrypt": "^1.0.2",
       "body-parser": "^1.17.1",
       "bulma": "^0.4.2",
-      "cloudinary": "1.9.0",
-      "cloudinary-react": "^1.0.4",
       "cookie-parser": "1.4.3",
       "cors": "2.8.4",
       "email-templates": "2.6.0",
+      "es6-error": "4.0.2",
       "express": "^4.15.2",
-      "express-graphql": "^0.6.3",
+      "express-graphql": "0.6.11",
       "express-session": "1.15.3",
       "faker": "^4.1.0",
+      "folktale": "2.0.1",
       "foreman": "2.0.0",
-      "formik": "0.8.9",
-      "formsy-material-ui": "^0.6.0",
-      "formsy-react": "^0.19.2",
-      "graphql": "^0.9.6",
-      "graphql-helpers": "0.0.11",
-      "graphql-server-express": "1.0.0",
-      "graphql-tag": "^2.0.0",
-      "graphql-tools": "1.0.0",
+      "graphql": "^0.11.7",
+      "graphql-tag": "^2.5.0",
+      "graphql-tools": "2.11.0",
       "helmet": "^3.5.0",
       "hpp": "^0.2.1",
       "images-upload-middleware": "^1.1.1",
+      "jest-cli": "20.0.4",
       "lodash": "^4.17.4",
-      "material-ui": "^0.17.0",
+      "material-ui": "^1.0.0-beta.22",
+      "material-ui-icons": "1.0.0-beta.17",
       "mjml": "3.3.3",
       "moment": "2.18.1",
       "morgan": "^1.8.1",
-      "multer": "1.3.0",
+      "multer": "2.0.0-alpha.6",
+      "mz": "2.7.0",
       "normalize.css": "^5.0.0",
       "object-path": "0.11.4",
+      "opbeat": "4.16.0",
       "passport": "0.3.2",
+      "passport-http-bearer": "1.0.1",
+      "passport-jwt": "3.0.0",
       "passport-local": "1.0.0",
       "path": "^0.12.7",
       "pg": "^6.1.4",
       "pg-hstore": "^2.3.2",
       "prop-types": "15.5.10",
-      "react": "15.6.1",
+      "ramda": "0.25.0",
+      "react": "16.2.0",
       "react-apollo": "^1.0.1",
-      "react-dom": "15.6.1",
-      "react-dropzone": "^3.13.1",
-      "react-resize-detector": "^0.5.0",
-      "react-router": "^4.0.0",
-      "react-router-dom": "^4.0.0",
-      "react-scroll": "^1.5.2",
-      "react-slick": "^0.14.11",
-      "react-stripe-elements": "0.0.2",
-      "react-tap-event-plugin": "^2.0.1",
-      "recompose": "^0.23.5",
+      "react-autosuggest": "9.3.2",
+      "react-dom": "16.2.0",
+      "react-material-ui-form-validator": "2.0.0-beta.2",
+      "react-resize-detector": "^1.1.0",
+      "react-router": "^4.2.0",
+      "react-router-dom": "^4.2.0",
+      "react-slick": "^0.15.0",
+      "react-stripe-elements": "^1.2.1",
+      "recompose": "^0.26.0",
       "recursive-iterator": "2.0.3",
       "request": "2.81.0",
       "request-promise": "4.2.1",
       "sendgrid": "^5.1.1",
-      "sequelize": "^3.30.2",
+      "sequelize": "4.15.1",
       "sequelize-cli": "^2.7.0",
       "stripe": "^4.22.0",
+      "transloadit": "1.10.1",
       "uuid": "3.1.0",
+      "validate.js": "0.11.1",
       "yup": "0.21.3"
     },
     "devDependencies": {
       "babel-cli": "^6.24.1",
       "babel-core": "^6.23.1",
+      "babel-eslint": "8.0.3",
       "babel-jest": "20.0.3",
       "babel-loader": "^6.4.0",
       "babel-plugin-import-glob": "2.0.0",
@@ -116,29 +124,25 @@ npm manifest:
       "babel-preset-stage-3": "^6.24.1",
       "babel-runtime": "^6.23.0",
       "chai": "^3.5.0",
+      "chalk": "2.1.0",
       "css-loader": "^0.27.1",
       "dotenv": "4.0.0",
-      "enzyme": "2.9.1",
+      "enzyme": "3.2.0",
+      "enzyme-adapter-react-16": "1.1.0",
       "errorhandler": "1.5.0",
       "eslint": "^3.19.0",
-      "eslint-config-react-app": "^0.6.2",
-      "eslint-plugin-flowtype": "^2.30.4",
-      "eslint-plugin-import": "^2.2.0",
-      "eslint-plugin-jsx-a11y": "^4.0.0",
-      "eslint-plugin-react": "^6.10.3",
       "file-loader": "^0.10.1",
       "flow-bin": "^0.48.0",
       "html-loader": "^0.4.5",
       "html-webpack-plugin": "^2.28.0",
       "identity-obj-proxy": "3.0.0",
       "jake": "latest",
-      "jest": "20.0.4",
+      "jest": "21.0.1",
       "node-sass": "^4.5.3",
       "npm-run-all": "4.0.2",
       "nps": "5.7.0",
       "nps-utils": "1.3.0",
       "pug-html-loader": "^1.1.1",
-      "react-test-renderer": "15.6.1",
       "sass-loader": "^6.0.6",
       "style-loader": "^0.13.2",
       "supertest": "3.0.0",
@@ -153,17 +157,10 @@ npm manifest:
         "html",
         "text"
       ],
-      "coveragePathIgnorePatterns": [
-        "/node_modules/",
-        "/api/db/"
-      ],
       "moduleNameMapper": {
         "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|m4v|aac|oga)$": "<rootDir>/__mocks__/asset_transformer.js",
         "\\.(css|less|sass)$": "<rootDir>/__mocks__/style_mock.js"
-      },
-      "setupFiles": [
-        "./test-setup.js"
-      ]
+      }
     },
     "bugs": {
       "url": "https://github.com/nutheory/homefilming/issues"
@@ -5206,8 +5203,7 @@ Trace:
       at Request.onRequestResponse (/Users/derekrush/.yarn/node_modules/request/request.js:1029:10)
       at emitOne (events.js:115:13)
       at ClientRequest.emit (events.js:210:7)
-      at HTTPParser.parserOnIncomingClient (_http_client.js:564:21)
+      at HTTPParser.parserOnIncomingClient [as onIncoming] (_http_client.js:549:21)
       at HTTPParser.parserOnHeadersComplete (_http_common.js:116:23)
-      at TLSSocket.socketOnData (_http_client.js:453:20)
+      at TLSSocket.socketOnData (_http_client.js:438:20)
       at emitOne (events.js:115:13)
-      at TLSSocket.emit (events.js:210:7)

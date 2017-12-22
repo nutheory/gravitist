@@ -3,10 +3,9 @@ import { ss, c } from '../../../styles/helpers'
 
 const footer = StyleSheet.create({
   container: {
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
     display: 'flex',
-    borderTop: `1px solid ${c.lightGrey}`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
+    background: '#333',
     [ss.sm]: {
       width: '100%',
       flexDirection: 'column',
@@ -35,7 +34,7 @@ const footer = StyleSheet.create({
     }
   },
   sectionTitle: {
-    fontFamily: 'poppins-bold',
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
     fontSize: '1.25rem',
     [ss.sm]: {
       textAlign: 'center'
@@ -64,9 +63,9 @@ const footer = StyleSheet.create({
     textAlign: 'center',
   },
   mailLink: {
-    fontFamily: 'poppins-semibold',
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
     fontSize: '1.375rem',
-    color: c.blue,
+    color: c.white,
     textDecoration: 'none',
   },
   phone: {
@@ -78,12 +77,12 @@ const footer = StyleSheet.create({
     },
   },
   phoneLink: {
-    fontFamily: 'poppins-semibold',
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
     fontSize: '1.375rem',
     display: 'inline-block',
     marginRight: '10px',
     marginTop: 'auto',
-    color: c.black,
+    color: c.white,
     textDecoration: 'none',
     [ss.sm]: {
       textAlign: 'center',
@@ -145,7 +144,7 @@ const footer = StyleSheet.create({
   },
   termsPolicy: {
     display: 'inline-block',
-    color: c.blue,
+    color: c.white,
     textDecoration: 'none',
     marginRight: '1rem',
     ':last-child': {
@@ -207,7 +206,7 @@ const footer = StyleSheet.create({
     }
   },
   qLink:{
-    color: c.black,
+    color: c.white,
     textDecoration: 'none',
   },
   faqLink: {

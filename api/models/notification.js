@@ -1,16 +1,15 @@
 'use strict'
-module.exports = (sequelize, DataTypes) => {
-  const Notification = sequelize.define('notification', {
-    userId: DataTypes.INTEGER,
-    type: DataTypes.STRING,
-    title: DataTypes.STRING,
-    body: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate(models) {
-        Notification.belongsTo(models.user)
-      }
-    }
+module.exports = (sequelize, Sequelize) => {
+  const Notification = sequelize.define('Notification', {
+    userId: Sequelize.INTEGER,
+    type: Sequelize.STRING,
+    title: Sequelize.STRING,
+    body: Sequelize.STRING
   })
+
+  Notification.associate = function (models) {
+    Notification.belongsTo(models.User)
+  }
+
   return Notification
 }

@@ -2,46 +2,50 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('addresses', {
+    return queryInterface.createTable('Addresses', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
+      addressableId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      addressable: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      addressableName: Sequelize.STRING,
+      name: Sequelize.STRING,
       address1: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       address2: Sequelize.STRING,
-      city: {
-        type: Sequelize.STRING,
-      },
-      state: {
-        type: Sequelize.STRING,
-      },
+      city: Sequelize.STRING,
+      state: Sequelize.STRING,
       zipCode: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      notes: Sequelize.TEXT,
-      userId: Sequelize.INTEGER,
       type: {
         type: Sequelize.STRING,
         defaultValue: 'residence',
         validate:{
           isIn: {
             args: [['residence', 'commercial']],
-            msg: 'Address type is invalid'  
+            msg: 'Address type is invalid'
           }
         }
       },
-      orderId: Sequelize.INTEGER,
       lat: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       lng: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
       createdAt: {
@@ -56,6 +60,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('addresses')
+    return queryInterface.dropTable('Addresses')
   }
 }

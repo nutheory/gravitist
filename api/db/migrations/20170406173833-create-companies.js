@@ -2,23 +2,31 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('companies', {
+    return queryInterface.createTable('Companies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: Sequelize.STRING,
-      display: {
+      ownerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      key: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      subtitle: Sequelize.STRING,
+      visible: {
         type: Sequelize.BOOLEAN,
         default: false
       },
-      accountId: Sequelize.INTEGER,
-      addressId: Sequelize.INTEGER,
-      logoId: Sequelize.INTEGER,
-      colors: Sequelize.ARRAY(Sequelize.STRING),
-      font: Sequelize.STRING,
+      styles: Sequelize.JSONB,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -32,6 +40,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('companies')
+    return queryInterface.dropTable('Companies')
   }
 };

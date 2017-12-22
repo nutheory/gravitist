@@ -3,20 +3,18 @@ const User = `
     id: ID
     name: String
     customerId: String
-    stripeInfo: String
+    stripeToken: String
     email: String
     password: String
     type: String
-    avatarId: ID
     bio: String
     isVerified: Boolean
-    licenseId: ID
-    insuranceId: ID
     workRadius: Int
     ratingCount: Int
     rating: String
     payRate: String
     address: Address
+    contacts: [Contact]
   }
 
   type AuthPayload {
@@ -25,19 +23,25 @@ const User = `
 
   input UpdateUserInput {
     id: ID
+    authorizedId: ID
+    user: UpdateUserInputFields
+  }
+
+  input UpdateUserInputFields {
     name: String
-    email: String
     password: String
-    avatarId: ID
     bio: String
-    stripeInfo: String
+    stripeToken: String
     isVerified: Boolean
-    licenseId: Int
-    insuranceId: Int
     workRadius: Int
     ratingCount: Int
     rating: String
     payRate: String
+    address: AddressInput
+    avatar: AssetInput
+    license: AssetInput
+    insurance: AssetInput
+    contacts: [ContactInput]
   }
 
   input LoginInput {
@@ -46,8 +50,8 @@ const User = `
   }
 
   input DestroyUserInput {
-    itemId: ID!
-    ownerId: ID!
+    id: ID!
+    authorizedId: ID!
   }
 
   type LogoutPayload {
@@ -75,31 +79,35 @@ const User = `
     name: String
     email: String
     password: String
-    stripeInfo: String
+    stripeToken: String
     bio: String
-    avatarId: ID
+    address: AddressInput
+    contacts: [ContactInput]
   }
 
   input PilotInputFields {
     name: String
     email: String
     password: String
-    stripeInfo: String
-    licenseId: ID
-    insuranceId: ID
+    stripeToken: String
     workRadius: Int
-    address: AddressInputFields
     bio: String
-    avatarId: ID
+    address: AddressInput
+    avatar: AssetInput
+    license: AssetInput
+    insurance: AssetInput
+    contacts: [ContactInput]
   }
 
   input EditorInputFields {
     name: String
     email: String
     password: String
-    stripeInfo: String
+    stripeToken: String
     bio: String
-    avatarId: ID
+    address: AddressInput
+    avatar: AssetInput
+    contacts: [ContactInput]
   }
 
   input AdminInputFields {
@@ -107,7 +115,9 @@ const User = `
     email: String
     password: String
     bio: String
-    avatarId: ID
+    address: AddressInput
+    avatar: AssetInput
+    contacts: [ContactInput]
   }
 
   type UserPayload {
@@ -119,13 +129,34 @@ const User = `
     auth: AuthPayload
   }
 
+  type GetProfilePayload {
+    user: UserPayloadFields
+  }
+
+  type GetProfileFields {
+    id: ID
+    name: String
+    email: String
+    customerId: String
+    companyId: ID
+    companyOwner: Boolean
+    address: AddressPayloadFields
+    type: String
+  }
+
   type UserPayloadFields {
     id: ID
     name: String
     email: String
     customerId: String
+    companyId: ID
+    companyOwner: Boolean
     address: AddressPayloadFields
+    insurance: AssetPayload
+    license: AssetPayload
+    avatar: AssetPayload
     type: String
+    contacts: [Contact]
   }
 `
 

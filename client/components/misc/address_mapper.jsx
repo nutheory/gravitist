@@ -1,27 +1,36 @@
+// @flow
 import React, { Component } from 'react'
-import Formsy from 'formsy-react'
-import TextField from 'material-ui/TextField'
 import _ from 'lodash'
-import RaisedButton from 'material-ui/RaisedButton'
-import { FormsyText } from 'formsy-material-ui/lib'
 import { css } from 'aphrodite'
 import mapper from './styles/mapper'
+import cF from '../../styles/common_forms'
 
-class AddressMapper extends Component {
+type Props = {
+  setAddressVerified: Function
+}
+
+type State = {
+  addressVerified: boolean,
+  fullAddress?: string,
+  address1?: string,
+  address2?: string,
+  city?: string,
+  state?: string,
+  zip?: string,
+  lat?: string,
+  lng?: string
+}
+
+class AddressMapper extends Component<Props, State> {
+
+  deconstructPlaceIntoState: Function
+
   constructor(){
     super()
     this.state = {
-      fullAddress: "",
-      address1: "",
-      address2: "",
-      city: "",
-      state: "",
-      zip: "",
-      lat: "",
-      lng: ""
+      addressVerified: false
     }
 
-    this.fetchAssociatedMap = this.fetchAssociatedMap.bind(this)
     this.deconstructPlaceIntoState = this.deconstructPlaceIntoState.bind(this)
   }
 
@@ -39,26 +48,14 @@ class AddressMapper extends Component {
       if(place){
         const lat = place.geometry.location.lat()
         const lng = place.geometry.location.lng()
+
         this.normalizeGooglePlace(place)
-        this.fetchAssociatedMap({lat, lng})
       }
     })
   }
 
-  fetchAssociatedMap(latLng){
-    let mapContainer = document.getElementById('mapContainer')
-    let mapOptions = {
-      center: {lat: latLng.lat, lng: latLng.lng},
-      zoom: 20,
-      mapTypeId: 'satellite',
-      scrollwheel: false
-    }
-
-    let map = new google.maps.Map(mapContainer, mapOptions)
-  }
-
-  normalizeGooglePlace(place){
-    let normalized = {
+  normalizeGooglePlace(place: Object){
+    let normalized: Object = {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     }
@@ -77,8 +74,7 @@ class AddressMapper extends Component {
     this.deconstructPlaceIntoState(normalized)
   }
 
-  deconstructPlaceIntoState(np){
-
+  deconstructPlaceIntoState(np: Object){
     this.setState({
       address1: `${np.street_number} ${np.street}`,
       address2: "",
@@ -87,22 +83,20 @@ class AddressMapper extends Component {
       zip: np.zip,
       lat: np.lat,
       lng: np.lng
-    }, () => {
-      this.props.setTargetAddress(this.state)
+    }, async () => {
+      this.setState({addressVerified: true})
+      this.props.setAddressVerified(this.state)
     })
-
-  }
-
-  shouldComponentUpdate(nextProps, nextState){
-    return false
   }
 
   render(){
     return(
-      <div className={css(mapper.mapForm)}>
-        <input type="textfield" className={css(mapper.locationField)} id="addressToFilm" />
-        <div className={css(mapper.mapArea)}>
-          <div id="mapContainer"  className={css(mapper.mapContainer)}></div>
+      <div className="field">
+        <div className={`${css(mapper.mapForm)} control has-icons-left has-icons-right`}>
+          <input type="textfield" className={`${css(mapper.locationField)} input is-medium`} id="addressToFilm" />
+          <span className="icon is-small is-left">
+            <i className="fa fa-home"></i>
+          </span>
         </div>
       </div>
     )

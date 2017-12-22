@@ -1,40 +1,121 @@
 'use strict'
-module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define('order', {
-    agentId: DataTypes.INTEGER,
-    pilotId: DataTypes.INTEGER,
-    editorId: DataTypes.INTEGER,
-    receiptId: DataTypes.STRING,
-    acceptedAt: DataTypes.DATE,
-    rejectedAt: DataTypes.DATE,
-    plan: {
-      type: DataTypes.STRING,
+
+const { createStripeCharge } = require('../services/payments')
+
+module.exports = (sequelize, Sequelize) => {
+  const Order = sequelize.define('Order', {
+    agentId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+    },
+    pilotId: Sequelize.INTEGER,
+    editorId: Sequelize.INTEGER,
+    receiptId: Sequelize.STRING,
+    pilotAcceptedAt: Sequelize.DATE,
+    editorAcceptedAt: Sequelize.DATE,
+    completedAt: Sequelize.DATE,
+    rejectedAt: Sequelize.DATE,
+    rejectedBy: Sequelize.DATE,
+    status: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: 'pending',
       validate: {
-        isIn: [['basic', 'standard', 'premuim']]
+        isIn: {
+          args: [['recruiting', 'pending', 'filming', 'processing', 'delivered', 'accepted', 'rejected']],
+          msg: 'Order status is invalid'
+        }
       }
     },
-    status: DataTypes.STRING,
-    timeOfDay: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
-  }, {
-    classMethods: {
-      associate(models) {
-        Order.belongsTo(models.user, {as: 'agent'})
-        Order.hasOne(models.address, {
-          foreignKey: 'orderId',
-          onDelete: 'cascade',
-          hooks: true
-        })
-        Order.hasMany(models.asset, {
-          foreignKey: 'assetableId',
-          constraints: false,
-          scope: {
-            assetableType: 'order'
-          }
-        })
+    plan: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        isIn: {
+          args: [['basic', 'standard', 'premium']],
+          msg: 'Plan is Invalid'
+        }
       }
+    },
+    timeOfDay: {
+      type: Sequelize.STRING,
+      defaultValue: 'mid-day',
+      validate: {
+        isIn: {
+          args: [['any', 'dawn', 'mid-day', 'dusk']],
+          msg: 'Time of day is invalid'
+        }
+      }
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
     }
   })
+
+  Order.updateFields = (type) => {
+    let fields
+    switch(type) {
+    case "agent": fields = [ 'status', 'agentAcceptedAt', 'rejectedAt', 'pilotId',
+      'editorId', 'updatedAt', 'rejectedBy', 'rejectedAt', 'updatedAt' ]; break;
+    case "pilot": fields = [ 'pilotId', 'pilotAcceptedAt', 'rejectedBy', 'status',
+      'rejectedAt', 'updatedAt' ]; break;
+    case "editor": fields = [ 'editorId', 'editorAcceptedAt', 'rejectedBy', 'status',
+      'rejectedAt', 'updatedAt' ]; break;
+    // case "admin": fields = [ 'password', 'bio', 'avatarId', 'name', 'payrate',
+    //   'workRadius', 'licenseId', 'insuranceId' ]; break;
+    }
+    return fields
+  }
+
+  Order.associate = function (models) {
+    Order.belongsTo(models.User, {
+      foreignKey: 'agentId',
+      as: 'agent'
+    })
+    Order.belongsTo(models.User, {
+      foreignKey: 'pilotId',
+      as: 'pilot'
+    })
+    Order.belongsTo(models.User, {
+      foreignKey: 'editorId',
+      as: 'editor'
+    })
+    Order.hasOne(models.Address, {
+      foreignKey: 'addressableId',
+      onDelete: 'CASCADE',
+      scope: {
+        addressable: 'order'
+      },
+      as: 'address',
+      hooks: true
+    })
+    Order.hasMany(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'order'
+      },
+      as: 'assets'
+    })
+    Order.hasMany(models.Rating, {
+      foreignKey: 'ratableId',
+      constraints: false,
+      scope: {
+        ratable: 'order'
+      },
+      as: 'rating'
+    })
+  }
+
+  Order.beforeCreate( async ( order, {pln, customer} ) => {
+    const stripeCharge = await createStripeCharge({ pln, customer })
+    return Object.assign(order, { receiptId: stripeCharge.id })
+  })
+
   return Order
 }

@@ -1,29 +1,21 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
-import FlatButton from 'material-ui/FlatButton'
-import IconButton from 'material-ui/IconButton'
 import { graphql } from 'react-apollo'
-import Drawer from 'material-ui/Drawer'
-import Divider from 'material-ui/Divider'
 import Login from '../../misc/login'
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover'
-import Menu from 'material-ui/Menu'
-import MenuItem from 'material-ui/MenuItem'
-import Hamburger from 'material-ui/svg-icons/navigation/menu'
-import Close from 'material-ui/svg-icons/navigation/close'
 import { StyleSheet, css } from 'aphrodite'
-import header from '../styles/header'
+import cE from '../../../styles/common_elements'
+import hdr from '../styles/public_header'
 import { colors } from '../../../styles/helpers'
 import mobileHeader from '../styles/mobile_header'
+import { scrollSpy } from 'react-scroll'
+import { Button, Grid, Segment, Header } from 'semantic-ui-react'
 
-
-const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
-  <FlatButton
-    onTouchTap={() => { history.push(href) }}
-    label={label}
-    className={classname}
-  />
-))
+// const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
+//   // <Button
+//   //   onClick={() => { history.push(href) }}
+//   //   className={classname}
+//   // >{label}</Button>
+// ))
 
 
 class PublicHeader extends Component {
@@ -32,10 +24,12 @@ class PublicHeader extends Component {
 
     this.state = {
       currentUser: "",
+      bgPinned: false,
       drawerOpen: false,
       popoverOpen: false
     }
 
+    this.handleScroll = this.handleScroll.bind(this)
     this.handlePopoverClose = this.handlePopoverClose.bind(this)
     this.handlePopoverToggle = this.handlePopoverToggle.bind(this)
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
@@ -60,6 +54,17 @@ class PublicHeader extends Component {
     })
   }
 
+  handleScroll(ev) {
+    console.log('hey', window.pageYOffset)
+    // window.pageYOffset > 300 ? console.log('true') : console.log('false')
+    if (window.pageYOffset > 300 && this.state.bgPinned === false ) {
+      this.setState({ bgPinned: true })
+    }
+    if (window.pageYOffset < 300 && this.state.bgPinned === true ) {
+      this.setState({ bgPinned: false })
+    }
+  }
+
   // async QueryCurrentUser(){
   //   const res = await this.props.data.user
   //   console.log('trytrffruy',res)
@@ -67,6 +72,7 @@ class PublicHeader extends Component {
   // }
 
   componentDidMount() {
+    addEventListener('scroll', this.handleScroll)
     // const res = this.QueryCurrentUser()
     // console.log('ressssss',res)
   }
@@ -76,54 +82,67 @@ class PublicHeader extends Component {
   // }
 
   componentWillUnmount() {
+    removeEventListener('scroll', this.handleScroll)
   }
 
   render(){
     // const res = this.props.data.user
-    console.log(this.props.data)
+    // console.log(this.props.data)
     let width = window.innerWidth
     if (width > 960){
       return(
-        <header id="AppHeader" className={css(header.container)}>
-          <div className={css(header.logo)}>
-            <NavLink to="/"><img src={require('../../../assets/svg/logo.svg')} className={css(header.logoImg)} /></NavLink>
-          </div>
-          <div className={css(header.navigation)}>
-            <NavLink className={css(header.navItem)} to="/pricing">PRICING</NavLink>
-            <NavLink className={css(header.navItem)} to="/how-it-works">HOW IT WORKS</NavLink>
-            <NavLink className={css(header.navItem)} to="/pilots">JOBS FOR PILOTS</NavLink>
-          </div>
-          <div className={css(header.callInfo)}>
-            <div className={css(header.callInfoInner)}>
-              <div className={css(header.callNumber)}>
-                <img src={require('../../../assets/svg/phoneIcon.svg')} alt="Phone Icon" className={css(header.phoneIcon)} /> 800 555 6767</div>
-              <div className={css(header.callText)}>Toll Free Number</div>
+        <div className={css(hdr.absoluteHeader)}>
+          <div className={`${css(hdr.bg)} ${this.state.bgPinned === true ? css(hdr.bgPin) : ''}`} style={{background: `url(${require('../../../assets/images/header.jpg')})`}}></div>
+          <header id="AppHeader" className={`${css(hdr.container)} columns`}>
+            <div className={`${css(hdr.logoArea)} column is-half`}>
+              <div className={css(hdr.logoArea)}>
+                <NavLink className={css(hdr.logo)} to="/">HOMEFILMING</NavLink>
+              </div>
+              <div className={css(hdr.navArea)}>
+                <NavLink className={css(hdr.navItem)} to="/pricing">PRICING</NavLink>
+                <NavLink className={css(hdr.navItem)} to="/how-it-works">HOW IT WORKS</NavLink>
+                <NavLink className={css(hdr.navItem)} to="/pilots">JOBS FOR PILOTS</NavLink>
+              </div>
             </div>
-          </div>
-          <div className={css(header.pilotSignup)}>
-            <FlatButtonWithRouter
-              href="/pilots/register"
-              label="SIGNUP TO FLY"
-              classname={css(header.pilotSignupButton)}
-            />
-          </div>
-          <div className={css(header.login)}>
-            <FlatButton
-              onTouchTap={this.handlePopoverToggle}
-              label="LOGIN"
-              className={css(header.loginButton)}
-              rippleColor="#fff"
-            />
-            <Popover
-              open={this.state.popoverOpen}
-              onRequestClose={this.handlePopoverClose}
-              anchorEl={this.state.anchorEl}
-              animation={PopoverAnimationVertical}
-            >
-                <Login />
-            </Popover>
-          </div>
-        </header>
+            <div className={`${css(hdr.phoneButtonArea)} column is-half`}>
+              <div className={css(hdr.buttonArea)}>
+                <NavLink className={css(cE.buttonWithOutline)} to="/signup">SIGNUP TO FLY</NavLink>
+                <NavLink className={css(cE.buttonWithOutline)} to="/login">LOGIN</NavLink>
+              </div>
+              <div className={css(hdr.phoneArea)}>
+                <div className={css(hdr.callInfo)}>
+                  <div className={css(hdr.callNumber)}>800 555 6767</div>
+                  <div className={css(hdr.callText)}>Toll Free Number</div>
+                </div>
+                <div className={css(hdr.phoneIconWrapper)}>
+                  <img src={require('../../../assets/svg/phoneIcon.svg')} alt="Phone Icon" className={css(hdr.phoneIcon)} />
+                </div>
+              </div>
+            </div>
+            {/* <div className={css(header.pilotSignup)}>
+              <Button basic>SIGNUP TO FLY</Button> */}
+              {/* <FlatButtonWithRouter
+                href="/pilots/register"
+                label="SIGNUP TO FLY"
+                classname={css(header.pilotSignupButton)}
+              /> */}
+            {/* </div>
+            <div className={css(header.login)}> */}
+              {/* <Button
+                onClick={this.handlePopoverToggle}
+                className={css(header.loginButton)}
+              >LOGIN</Button>
+              <Popover
+                open={this.state.popoverOpen}
+                onRequestClose={this.handlePopoverClose}
+                anchorEl={this.state.anchorEl}
+                animation={PopoverAnimationVertical}
+              >
+                  <Login />
+              </Popover> */}
+            {/* </div> */}
+          </header>
+        </div>
       )
     } else {
       return(
@@ -132,38 +151,38 @@ class PublicHeader extends Component {
             <NavLink to="/"><img src={require('../../../assets/svg/logo.svg')} className={css(mobileHeader.logoImg)} /></NavLink>
           </div>
           <div className={css(mobileHeader.menu)}>
-            <IconButton
-              onTouchTap={this.handleDrawerToggle}
+            {/* <IconButton
+              onClick={this.handleDrawerToggle}
             >
               <Hamburger />
-            </IconButton>
+            </IconButton> */}
           </div>
-          <Drawer
+          {/* <Drawer
             width={320}
             docked={false}
             openSecondary={true}
             open={this.state.drawerOpen}
             onRequestChange={open => this.setState({open})}
-          >
+          > */}
             <div className={css(mobileHeader.drawer)}>
               <div className={css(mobileHeader.actions)}>
-                <IconButton
-                  onTouchTap={this.handleDrawerToggle}
+                {/* <IconButton
+                  onClick={this.handleDrawerToggle}
                 >
                   <Close />
-                </IconButton>
+                </IconButton> */}
               </div>
-              <Divider />
+              {/* <Divider /> */}
               <div className={css(mobileHeader.mainLinks)}>
-                <MenuItem>PRICING</MenuItem>
+                {/* <MenuItem>PRICING</MenuItem>
                 <MenuItem><NavLink to="/how-it-works">HOW IT WORKS</NavLink></MenuItem>
-                <MenuItem onTouchTap={this.handleDrawerToggle}><NavLink to="/pilots/register">JOBS FOR PILOTS</NavLink></MenuItem>
-                <MenuItem>SIGNUP TO FLY</MenuItem>
+                <MenuItem onClick={this.handleDrawerToggle}><NavLink to="/pilots/register">JOBS FOR PILOTS</NavLink></MenuItem>
+                <MenuItem>SIGNUP TO FLY</MenuItem> */}
               </div>
-              <Divider />
+              {/* <Divider /> */}
               <div className={css(mobileHeader.loginLinks)}>
-                <MenuItem >CUSTOMER LOGIN</MenuItem>
-                <MenuItem>PILOT LOGIN</MenuItem>
+                {/* <MenuItem >CUSTOMER LOGIN</MenuItem>
+                <MenuItem>PILOT LOGIN</MenuItem> */}
               </div>
               <div className={css(mobileHeader.callInfo)}>
                 <div className={css(mobileHeader.callInfoInner)}>
@@ -175,7 +194,7 @@ class PublicHeader extends Component {
                 </div>
               </div>
             </div>
-          </Drawer>
+          {/* </Drawer> */}
         </div>
       )
     }

@@ -1,135 +1,158 @@
+// @flow
 import React, { Component } from 'react'
-import { unmountComponentAtNode } from 'react-dom'
-import _ from 'lodash'
-import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField'
-import Formsy from 'formsy-react'
-import { FormsyText, FormsySelect } from 'formsy-material-ui/lib'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import MenuItem from 'material-ui/MenuItem'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-import ContentRemove from 'material-ui/svg-icons/content/remove'
-import { css } from 'aphrodite'
-import cF from '../../styles/common_forms'
-import style from './styles/contact'
 import gql from 'graphql-tag'
-import ContactTypes from '../../utils/contact_types.json'
+import { css } from 'aphrodite'
+import { find, propEq } from 'ramda'
+import cE from '../../styles/common_elements'
+import style from './styles/contact'
+import ContactTypes from '../../utils/contact_types.js'
 
-const contactTypes = []
-_.each(ContactTypes, (type, i) => {
-  contactTypes.push(<MenuItem value={type.name} key={`${type.name}_${i}`} primaryText={type.humanized} />)
-})
+type Props = {
+  newContact: Function,
+  removeContact: Function,
+  updateContact: Function,
+  cId: string,
+  content?: string,
+  order: number,
+  contact: Object
+}
 
-class Contact extends Component {
+type State = {
+  typesOpen: boolean,
+  type?: string,
+  icon?: string,
+  properName?: string,
+  holder?: string,
+  content?: string
+}
+
+class Contact extends Component<Props, State> {
+
+  handleAddContact: Function
+  handleRemoveContact: Function
+  toggleDropdownHandler: Function
+  handleTypeChange: Function
+  handleContentChange: Function
+
   constructor(){
     super()
     this.state = {
-      indexId: "",
-      name: "",
-      content: ""
+      typesOpen: false,
     }
 
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleContentChange = this.handleContentChange.bind(this)
     this.handleAddContact = this.handleAddContact.bind(this)
     this.handleRemoveContact = this.handleRemoveContact.bind(this)
+    this.toggleDropdownHandler = this.toggleDropdownHandler.bind(this)
+    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handleContentChange = this.handleContentChange.bind(this)
   }
 
-  componentDidMount(){
-    this.setState({ indexId: this.props.indexId })
-  }
-
-  componentWillUnmount(){
-
-  }
-
-  handleAddContact(evt){
+  handleAddContact(e: SyntheticEvent<HTMLButtonElement>){
     this.props.newContact()
   }
 
-  handleRemoveContact(evt){
-    console.log('this.state', this.state.indexId)
-    this.props.removeContact(this.state.indexId)
+  handleRemoveContact(e: SyntheticEvent<HTMLButtonElement>){
+    this.props.removeContact(e.currentTarget.getAttribute('cid'))
   }
 
-  handleNameChange(evt, key, payload){
-    this.setState({ name: key}, (res) => {
-      this.props.buildContact(this.state)
+  handleTypeChange(e: SyntheticEvent<*>){
+    this.setState({
+      type: e.currentTarget.getAttribute('name'),
+      icon: e.currentTarget.getAttribute('icon'),
+      properName: e.currentTarget.getAttribute('proper'),
+      holder: e.currentTarget.getAttribute('holder'),
+      typesOpen: false
+    }, function(){
+      this.props.updateContact({
+        id: this.props.cId,
+        type: this.state.type,
+        content: this.state.content
+      })
     })
   }
 
-  handleContentChange(evt){
-    this.setState({ content: evt.target.value }, (res) => {
-      this.props.buildContact(this.state)
+  handleContentChange(e: SyntheticEvent<HTMLInputElement>){
+    this.setState({
+      content: e.currentTarget.value
+    }, function(){
+      this.props.updateContact({
+        id: this.props.cId,
+        type: this.state.type,
+        content: this.state.content
+      })
     })
   }
 
-  renderAddButton(){
-    return(
-      <div className={css(style.contactButton)}>
-        <FloatingActionButton
-          mini={true}
-          onTouchTap={this.handleAddContact}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
-      </div>
-    )
+  toggleDropdownHandler(){
+    this.setState({ typesOpen: !this.state.typesOpen })
   }
 
-  renderRemoveButton(){
+  renderButton(i: number, method: Function, cssInjection: Object, icon: string){
     return(
-      <div className={css(style.contactButton)}>
-        <FloatingActionButton
-          mini={true}
-          backgroundColor="#900"
-          onTouchTap={this.handleRemoveContact}
-        >
-          <ContentRemove />
-        </FloatingActionButton>
-      </div>
+      <button
+        className="field column"
+        onClick={method}
+        cid={`${i}`}
+        className={`${css(cssInjection, style.contactButton)} button`}>
+        <span className="icon is-small">
+          <i className={`fa fa-${icon}`}></i>
+        </span>
+      </button>
     )
-  }
-
-  renderRemove(render){
-    if(render){
-      return this.renderRemoveButton()
-    }
   }
 
   render(){
     return (
-      <div>
-        <div className={css(cF.row)}>
-          <div className={css(cF.area)}>
-            <FormsySelect
-              name="contact.name"
-              onChange={this.handleNameChange}
-              value={this.state.name}
-              className={css(cF.element)}
-              floatingLabelText="Contact label"
-              maxHeight={200}
-            >
-            {contactTypes}
-            </FormsySelect>
-          </div>
-          <div className={css(cF.area, style.contactSplitSection)}>
-            <div className={css(style.contactContent)}>
-              <FormsyText
-                name="contact.content"
-                onChange={this.handleContentChange}
-                value={this.state.content}
-                className={css(cF.element)}
-                hintText="Phone #, Username, URL"
-                floatingLabelText="Contact info"
-              />
+      <li className="columns">
+        <div className="column">
+          <div className={`dropdown ${this.state.typesOpen ? 'is-active' : ''}`}>
+            <div className="dropdown-trigger">
+              <button
+                onClick={this.toggleDropdownHandler}
+                className="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu">
+                  <span>{ `${this.state.properName ? this.state.properName : 'Contact type'}` }</span>
+                  <span className="icon is-small">
+                    <i className="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+              </button>
             </div>
-
-            {this.renderRemove(this.props.renderRemove)}
-
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className={`dropdown-content rows ${css(style.contactDropdown)}`} >
+                { ContactTypes.map((cType, i) =>
+                  <a
+                    icon={cType.icon}
+                    proper={cType.humanized}
+                    name={cType.type}
+                    holder={cType.placeholder}
+                    onClick={this.handleTypeChange}
+                    className={`dropdown-item column ${css(style.contactDropdownItem)}`}
+                    key={`${cType.type}_${i}`}>
+                    <i className={`fa fa-${cType.icon}`} /> {cType.humanized}</a>)
+                }
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        <div className={`${css(style.contactContent)} column`}>
+          <div className="control has-icons-left">
+            <input
+              onChange={this.handleContentChange}
+              className="input "
+              type="text"
+              value={this.props.content}
+              placeholder={`${this.state.holder ? this.state.holder : 'select type...' }`} />
+            <span className="icon is-left">
+              <i className={`fa fa-${this.state.icon ? this.state.icon :'address-card-o'}`}></i>
+            </span>
+          </div>
+        </div>
+        <div className={`${css(style.contactButtonArea)} field column`}>
+          {this.props.order >= 1 ? this.renderButton(this.props.order, this.handleRemoveContact, cE.ctaRed, 'minus') : ""}
+          {this.renderButton(this.props.order, this.handleAddContact, cE.ctaPurple, 'plus')}
+        </div>
+      </li>
     )
   }
 }

@@ -1,0 +1,41 @@
+{
+  "development": {
+    "username": "derekrush",
+    "password": null,
+    "database": "homefilming",
+    "operatorsAliases": false,
+    "host": "localhost",
+    "dialect": "postgres",
+    "pool": {
+      "max": 55,
+      "min": 0,
+      "idle": 10000,
+      "acquire": 50000
+    }
+  },
+  "test": {
+    "username": "derekrush",
+    "password": null,
+    "database": "homefilming_test",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false,
+    "pool": {
+      "max": 55,
+      "min": 0,
+      "idle": 10000,
+      "acquire": 50000
+    }
+  },
+  "production": {
+    "operatorsAliases": false,
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "pool": {
+      "max": 55,
+      "min": 0,
+      "idle": 10000,
+      "acquire": 50000
+    }
+  }
+}

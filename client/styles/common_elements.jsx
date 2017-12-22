@@ -18,13 +18,48 @@ const commonElements = StyleSheet.create({
     justifyContent: 'center',
   },
   ctaButtons: {
-    display: 'flex',
-    justifyContent: 'center',
-    width:'80%',
-    flexWrap: 'wrap',
+    width: '100%',
+  },
+  ctaButtonOverlay: {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    background: 'rgba(0,0,0,0.1)',
+    borderRadius: '6px',
+    transition: 'all .3s ease-out',
+    opacity: '0',
+    ':hover': {
+      opacity: '1'
+    }
+  },
+  ctaButton: {
+    display: 'inline-block',
+    lineHeight: '54px',
+    color: '#fff',
+    boxShadow: '1px 1px 2px #0a0a0a',
+    fontWeight: '500',
+    fontSize: '1.125em',
+    border: 0,
+    borderRadius: '6px',
+    height: '54px',
+    position: 'relative',
+    textAlign: 'center',
+    width: '100%'
+  },
+  ctaGreen: {
+    backgroundImage: 'linear-gradient(-180deg,#74c947 0,#4bc459 100%)',
+  },
+  ctaPurple: {
+    backgroundImage: 'linear-gradient(-180deg, #644985 0, #534192 100%)',
+  },
+  ctaRed: {
+    backgroundImage: 'linear-gradient(-180deg, #e52d27 0, #b31217 100%)',
   },
   cta: {
-    fontFamily: 'poppins-semibold',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     borderRadius: '32px',
     width: '260px',
     height: '64px',
@@ -143,6 +178,11 @@ const commonElements = StyleSheet.create({
       margin: '0 1rem 2rem 1rem',
     },
   },
+  twoColumnLists: {
+    display: 'flex',
+    width: '70%',
+    margin: 'auto',
+  },
   fiveBoxSingle: {
     padding: '2rem',
     background: '#fff',
@@ -165,8 +205,7 @@ const commonElements = StyleSheet.create({
     },
   },
   imgIconWrapper: {
-    width: '64px',
-    margin: '0px auto 20px auto',
+    float: 'left',
   },
   scrollDown: {
     position: 'absolute',
@@ -208,6 +247,95 @@ const commonElements = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#fff',
   },
+  buttonWithOutline: {
+    border: '1px solid #FFF !important',
+    textShadow: '1px 1px 2px #0a0a0a',
+    color: c.white,
+    padding: '10px 14px',
+    borderRadius: '.33rem',
+    margin: '6px 0 0 10px',
+    display: 'inline-block',
+    ':visited': {
+      color: c.white
+    },
+    ':link': {
+      color: c.white
+    },
+    ':hover': {
+      backgroundColor: 'rgba(47, 170, 193, 0.4)',
+    }
+  },
+  gradButton: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '4rem',
+    height: '4rem',
+    borderRadius: '4px',
+    boxShadow: '1px 1px 2px #0a0a0a',
+  },
+  iconFix: {
+    marginRight: 0,
+    color: '#fff'
+  },
+  gradRed: {
+    background: '#c94b4b',
+    background: '-webkit-linear-gradient(to bottom, #4b134f, #c94b4b)',
+    background: 'linear-gradient(to bottom, #4b134f, #c94b4b)'
+  },
+  gradBlue: {
+    background: '#43C6AC',
+    background: '-webkit-linear-gradient(to bottom, #191654, #43C6AC)',
+    background: 'linear-gradient(to bottom, #191654, #43C6AC)'
+  },
+  gradGreen: {
+    background: '#DCE35B',
+    background: '-webkit-linear-gradient(to bottom, #45B649, #DCE35B)',
+    background: 'linear-gradient(to bottom, #45B649, #DCE35B)'
+  },
+  gradOrange: {
+    background: '#c21500',
+    background: '-webkit-linear-gradient(to top, #ffc500, #c21500)',
+    background: 'linear-gradient(to top, #ffc500, #c21500)'
+  },
+  gradVice: {
+    background: '#3494E6',
+    background: '-webkit-linear-gradient(to bottom, #EC6EAD, #3494E6)',
+    background: 'linear-gradient(to bottom, #EC6EAD, #3494E6)'
+  },
+  gradPeach: {
+    background: '#ED4264',
+    background: '-webkit-linear-gradient(to bottom, #FFEDBC, #ED4264)',
+    background: 'linear-gradient(to bottom, #FFEDBC, #ED4264)'
+  },
+  gradIntuitive: {
+    background: '#da22ff',
+    background: '-webkit-linear-gradient(to bottom, #da22ff, #9733ee)',
+    background: 'linear-gradient(to bottom, #da22ff, #9733ee)'
+  },
+  gradMirage: {
+    background: '#16222A',
+    background: '-webkit-linear-gradient(to bottom, #3A6073, #16222A)',
+    background: 'linear-gradient(to bottom, #3A6073, #16222A)'
+  },
+  gradStrain: {
+    background: '#870000',
+    background: '-webkit-linear-gradient(to bottom, #870000, #190A05)',
+    background: 'linear-gradient(to bottom, #870000, #190A05)'
+  },
+  gradMango: {
+    background: '#ffe259',
+    background: '-webkit-linear-gradient(to bottom, #ffa751, #ffe259)',
+    background: 'linear-gradient(to bottom, #ffa751, #ffe259)'
+  },
+  bulletList: {
+    width: '50%',
+    margin: '2rem 0'
+  },
+  bullet: {
+    position: 'relative',
+    margin: '20px 0',
+  }
 })
 
 export default commonElements

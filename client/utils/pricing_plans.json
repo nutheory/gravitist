@@ -1,44 +1,32 @@
 [
   {
     "planId": 1,
-    "price": "199",
-    "actualPrice": "19900",
-    "name": "basic",
-    "title": "Basic",
-    "desc": "PHOTO PACKAGE",
-    "color": "blue",
+    "price": "349",
+    "actualPrice": "24900",
+    "name": "standard",
+    "title": "Standard",
+    "desc": "Photo and video clips package",
+    "color": "Green",
     "features": [
-      { "icon": "check", "desc": "48 Hour Delivery" },
-      { "icon": "check", "desc": "12 High Res Photos" }
+      { "icon": "clock-o", "desc": "48 Hour Delivery" },
+      { "icon": "camera", "desc": "12 High Res Photos" },
+      { "icon": "film", "desc": "6 Video Clips" }
     ]
   },
   {
     "planId": 2,
-    "price": "249",
-    "actualPrice": "24900",
-    "name": "standard",
-    "title": "Standard",
-    "desc": "PHOTO AND VIDEO CLIPS PACKAGE",
-    "color": "blue",
-    "features": [
-      { "icon": "check", "desc": "48 Hour Delivery" },
-      { "icon": "check", "desc": "12 High Res Photos" },
-      { "icon": "plus", "desc": "6 Video Clips" }
-    ]
-  },
-  {
-    "planId": 3,
-    "price": "399",
+    "price": "499",
     "actualPrice": "39900",
     "name": "premium",
     "title": "Premuim",
-    "desc": "PHOTO AND VIDEO CLIPS WITH FULLY EDITED VIDEO PACKAGE",
-    "color": "red",
+    "desc": "Photo and video clips with fully edited video package",
+    "color": "Purple",
     "features": [
-      { "icon": "check", "desc": "48 Hour Delivery" },
-      { "icon": "check", "desc": "12 High Res Photos" },
-      { "icon": "check", "desc": "6 Video Clips" },
-      { "icon": "plus", "desc": "30 second, fully produced video with the listing address, contact info and music." }
+      { "icon": "clock-o", "desc": "48 Hour Delivery" },
+      { "icon": "camera", "desc": "12 High Res Photos" },
+      { "icon": "film", "desc": "6 Video Clips" },
+      { "icon": "id-badge", "desc": "6 Video Clips" },
+      { "icon": "desktop", "desc": "30 second, fully produced video with the listing address, contact info and music." }
     ]
   }
 ]

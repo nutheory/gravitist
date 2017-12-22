@@ -13,15 +13,12 @@ const Address = `
   }
 
   input AddressInput {
-    address: AddressInputFields
-  }
-
-  input AddressInputFields {
     address1: String
     address2: String
     city: String
     state: String
     zipCode: String
+    type: String
     lat: String
     lng: String
   }

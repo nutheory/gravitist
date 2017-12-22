@@ -10,7 +10,7 @@ const commonForms = StyleSheet.create({
     paddingBottom: '2rem'
   },
   subtitle: {
-    fontFamily: 'poppins-light',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     fontSize: '1.2rem',
     color: c.grey,
     marginBottom: '0px',
@@ -41,15 +41,20 @@ const commonForms = StyleSheet.create({
     }
   },
   element: {
-    fontFamily: 'poppins-regular',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     fontSize: '1rem',
     width: '100%'
   },
   section: {
     paddingBottom: '3rem',
   },
+  check: {
+    color: c.green,
+    paddingLeft: '20px',
+    transition: 'all .5s ease-in-out'
+  },
   sectionHeader: {
-    fontFamily: 'poppins-light',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     fontSize: '2rem',
     paddingBottom: '1rem',
     borderBottom: `1px solid ${c.lightGrey}`

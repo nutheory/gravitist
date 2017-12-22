@@ -3,28 +3,34 @@ import { ss, c} from '../../../styles/helpers'
 
 const Header = StyleSheet.create({
   container: {
-    width: '70%',
-    margin: 'auto',
-    textAlign: 'center',
+    width: '100%',
+    margin: '2rem auto',
+    textAlign: 'left',
   },
   title: {
-    fontFamily: 'poppins-bold',
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
     textTransform: 'uppercase',
+    fontWeight: '100',
+    textShadow: '1px 1px 2px #0a0a0a',
     padding: '0',
     margin: '0',
+    color: c.grey,
     [ss.sm]: {
       fontSize: '1.4rem',
       lineHeight: '2rem'
     },
     [ss.md]: {
-      fontSize: '2rem',
-      lineHeight: '2.6rem'
+      fontSize: '2.4rem',
+      lineHeight: '3rem'
     }
   },
   subtitle: {
-    fontFamily: 'poppins-semibold',
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
+    textShadow: '1px 1px 2px #0a0a0a',
+    fontWeight: '100',
     padding: '0',
     margin: '0',
+    color: c.grey,
     [ss.sm]: {
       fontSize: '1.2rem',
       lineHeight: '1.6rem'

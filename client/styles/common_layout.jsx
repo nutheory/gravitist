@@ -3,16 +3,22 @@ import { ss, c } from './helpers'
 
 const commonLayout = StyleSheet.create({
   centerMainContent: {
-    paddingTop: '50px',
     position: 'relative',
-    zIndex: '100',
+    zIndex: '8',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%'
   },
   heroContainer: {
     display: 'block',
     height: '95vh',
+    position: 'relative',
+  },
+  pricingContainer: {
+    display: 'block',
+    height: '100vh',
     position: 'relative',
   },
   fourContainer: {
@@ -25,7 +31,6 @@ const commonLayout = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    background: 'linear-gradient(top, rgba(192, 192, 170, 0.1), rgba(28, 239, 255, 0.1))',
   },
   heroBg: {
     backgroundSize: 'cover',
@@ -36,6 +41,9 @@ const commonLayout = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundPosition: 'center center',
+  },
+  heroBgFull: {
+    height: '100vh'
   },
   heroOverlay: {
     width: '100%',
@@ -49,6 +57,19 @@ const commonLayout = StyleSheet.create({
     background: '-webkit-linear-gradient(to bottom, #16222a, #3a6073)',
     background: 'linear-gradient(to bottom, #16222a, #3a6073)',
     opacity: '0.7',
+  },
+  pricingOverlay: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    background: '#6441A5',
+    background: '-webkit-linear-gradient(to bottom, #2a0845, #000)',
+    background: 'linear-gradient(to bottom, #2a0845, #000)',
+    opacity: '0.8',
   },
   commonMarketingArea: {
 
@@ -65,7 +86,7 @@ const commonLayout = StyleSheet.create({
       margin: '3rem 1rem'
     },
     [ss.lg]: {
-      margin: '4rem 4rem'
+      margin: '4rem 1rem'
     }
   },
 })

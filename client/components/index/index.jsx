@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 import styles from '../../styles/common_layout'
 import Hero from './hero'
-import AerialImagerySells from './aerial_imagery_sells'
+import FeaturesBenefits from './features_benefits'
 import BirdsEyeView from './birds_eye_view'
 import Photos from './photos'
 import WhatYouGet from './what_you_get'
@@ -17,14 +17,11 @@ const Index = (props) => {
     <div className={css(styles.centerMainContent)}>
       <div>
         <Hero {...props} />
-        <AerialImagerySells />
+        <FeaturesBenefits />
         <BirdsEyeView />
-        <Photos />
-        <WhatYouGet />
-        <SampleVideo />
-        <PricingList header={{title: "Our Pricing"}} {...props} />
-        <OurClientsLoveUs />
-        <Share />
+        {/* <Photos /> */}
+        {/* <OurClientsLoveUs />
+        <Share /> */}
       </div>
     </div>
   )

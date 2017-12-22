@@ -1,67 +1,111 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { css } from 'aphrodite'
-import styles from './styles/collaboration'
-import 'bulma/css/bulma.css'
+import cl from './styles/collaboration'
 import moment from 'moment'
 import { graphql } from 'react-apollo'
-import OrderQuery from '../../queries/agent_order'
-import Upload from './uploads'
+import OrderQuery from '../../queries/order'
+// import Upload from '../misc/uploads'
+import jwtDecode from 'jwt-decode'
+
 
 
 class CollaborationArea extends Component{
   constructor(){
     super()
-
+    this.state = {
+      order: {}
+    }
   }
 
-  // componentDidMount(){
+  componentDidMount(){
+    const user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
+    console.log('USER', user)
+  }
+
+  // runOrderQuery(){
+  //   const { loading, order } = this.props.getOrder({
+  //     variables: {
+  //       input: {
+  //         id: props.order,
+  //         authorizedId: user.id
+  //       }
+  //     }
+  //   })
+  // }
+
+  // ,
+  // options: (props) => {
+  //   const user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
+  //   props.order.id ? return props.order.getOrder = props.order :
+  //   return { variables: { input: { id: props.order, authorizedId: user.id } } }
+  // }
   //   console.log('match', this.props)
   // }
 
   render(){
-    const { loading, agentOrder } = this.props.data
-    if (loading === true) {return <div></div>}
-    return (
-      <div>
-        <article>
-          <h1 className="title">Order placed on {moment(agentOrder.createdAt).format('MMMM Do YYYY, h:mma')}</h1>
-          <p className={`${css(styles.headerTags)}`}>
-            <span className={`tag is-primary ${css(styles.tagRight)}`}>Plan</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.plan}</span>
-            <span className={`tag is-primary ${css(styles.tagRight)}`}>Receipt</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.receiptId}</span>
-          </p>
-          <p className={`${css(styles.headerTags)}`}>
-            <span className={`tag is-primary ${css(styles.tagRight)}`}>Address</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.address1}</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.city}</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.address.zipCode}</span>
-          </p>
-          <p className={`${css(styles.headerTags)}`}>
-            <span className={`tag is-warning ${css(styles.tagRight)}`}>Status</span>
-            <span className={`tag is-light ${css(styles.tagRight)}`}>{agentOrder.status}</span>
-          </p>
-          <h2 className="subtitle">Videos</h2>
-          <ul>
-            {/* map videos */}
-            <li>
-
-            </li>
-          </ul>
-          <h2 className="subtitle">Photos</h2>
-          <ul>
-            {/* map photos */}
-            <li>
-              <Upload />
-            </li>
-          </ul>
-        </article>
-      </div>
-    )
+    const { result, loading, error } = this.props.order
+    if (loading) {
+      return <p>Loading...</p>
+    } else if (error) {
+      return <p>Error!</p>
+    } else {
+      const details = result.order
+      return (
+        <div className={css(cl.container)}>
+          <article>
+            <h1 className="title">Order placed on {moment(details.createdAt).format('MMMM Do YYYY, h:mma')}</h1>
+            <p className={`${css(cl.headerTags)}`}>
+              <span className={`tag is-primary ${css(cl.tagRight)}`}>Plan</span>
+              <span className={`tag is-light ${css(cl.tagRight)}`}>{details.plan}</span>
+              <span className={`tag is-primary ${css(cl.tagRight)}`}>Receipt</span>
+              <span className={`tag is-light ${css(cl.tagRight)}`}>{details.receiptId}</span>
+            </p>
+            <p className={`${css(cl.headerTags)}`}>
+              <span className={`tag is-primary ${css(cl.tagRight)}`}>Address</span>
+              <span className={`tag is-light ${css(cl.tagRight)}`}>{details.address.address1}</span>
+              <span className={`tag is-light ${css(cl.tagRight)}`}>{details.address.city}</span>
+              <span className={`tag is-light ${css(cl.tagRight)}`}>{details.address.zipCode}</span>
+            </p>
+            <p className={`${css(cl.headerTags)}`}>
+              <span className={`tag is-warning ${css(cl.tagRight)}`}>Status</span>
+              <span className={`tag is-light ${css(cl.tagRight)}`}>{details.status}</span>
+            </p>
+            <h2 className="subtitle">Videos</h2>
+            <ul className="columns is-multiline">
+              {details.assets.map(ph => {
+                return <li key={ph.id} className={`column is-one-quarter`}><img src={ph.url} className={css(cl.imgTweak)} /></li>
+              })}
+              <li className="DashboardContainer">
+                {/* <Upload /> */}
+              </li>
+            </ul>
+            <h2 className="subtitle">Photos</h2>
+            <ul className="columns is-multiline">
+              {details.assets.map(ph => {
+                return <li key={ph.id} className={`column is-one-quarter`}><img src={ph.url} className={css(cl.imgTweak)} /></li>
+              })}
+              <li className="DashboardContainer">
+                {/* <Upload /> */}
+              </li>
+            </ul>
+          </article>
+        </div>
+      )
+    }
   }
 }
 
 export default graphql(OrderQuery, {
-  options: (props) => { return { variables: { id: props.match.params.orderId } } }
+  options: (props) => ({variables: { input: {
+    id: props.orderId,
+    authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id } }
+  }),
+  props: ({ ownProps,  data: { getOrder, loading, error } }) => ({
+    order: {
+      error,
+      loading,
+      result: getOrder
+    }
+  })
 })(CollaborationArea)

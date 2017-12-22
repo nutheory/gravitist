@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'aphrodite'
-import Slider from 'react-slick'
+// import Slider from 'react-slick'
 import Header from '../misc/header'
 import love from './styles/our_clients_love_us'
 import cT from '../../styles/common_text'
@@ -62,11 +62,11 @@ const OurClientsLoveUs = () => {
       }
       return (
         <div className={css(love.outerBoxTall)}>
-          <Slider {...settings}>
+          {/* <Slider {...settings}>
             {testimonials.map((test, i) => {
               return mainLayout(test, i)
             })}
-          </Slider>
+          </Slider> */}
         </div>
       )
     }

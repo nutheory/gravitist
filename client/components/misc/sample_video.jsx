@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'aphrodite'
 import sv from './styles/sample_video'
-import Dialog from 'material-ui/Dialog'
-import RaisedButton from 'material-ui/RaisedButton'
 
 const styleModal = {
   width: '80%',
@@ -37,26 +35,27 @@ class SampleVideo extends Component {
 
   render(){
     const actions = [
-      <RaisedButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />
+      // <Button
+      //   raised
+      //   label="Cancel"
+      //   primary={true}
+      //   onTouchTap={this.handleClose}
+      // />
     ]
 
-    return (
-      <Dialog
-        actions={actions}
-        modal={false}
-        contentStyle={styleModal}
-        className={css(sv.modalInner)}
-        open={this.state.open}
-        onRequestClose={this.handleClose}
-      >
-        <video controls playsInline id="sampleVideo" style={{width:'100%'}}>
-          <source src={require('../../assets/sampleVideo.m4v')} type="video/mp4" />
-        </video>
-      </Dialog>
+    return ("hey"
+      // <Dialog
+      //   actions={actions}
+      //   modal={false}
+      //   contentStyle={styleModal}
+      //   className={css(sv.modalInner)}
+      //   open={this.state.open}
+      //   onRequestClose={this.handleClose}
+      // >
+      //   <video controls playsInline id="sampleVideo" style={{width:'100%'}}>
+      //     <source src={require('../../assets/sampleVideo.m4v')} type="video/mp4" />
+      //   </video>
+      // </Dialog>
     )
   }
 }

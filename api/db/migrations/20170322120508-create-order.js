@@ -2,25 +2,32 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('orders', {
+    return queryInterface.createTable('Orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      agentId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       pilotId: Sequelize.INTEGER,
       editorId: Sequelize.INTEGER,
       receiptId: Sequelize.STRING,
-      acceptedAt: Sequelize.DATE,
+      pilotAcceptedAt: Sequelize.DATE,
+      editorAcceptedAt: Sequelize.DATE,
+      completedAt: Sequelize.DATE,
       rejectedAt: Sequelize.DATE,
+      rejectedBy: Sequelize.DATE,
       status: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'pending',
         validate: {
           isIn: {
-            args: [['pending', 'filming', 'processing', 'delivered', 'accepted', 'rejected']],
+            args: [['recruiting', 'pending', 'filming', 'processing', 'delivered', 'accepted', 'rejected']],
             msg: 'Order status is invalid'
           }
         }
@@ -35,13 +42,8 @@ module.exports = {
           }
         }
       },
-      agentId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       timeOfDay: {
         type: Sequelize.STRING,
-        allowNull: false,
         defaultValue: 'mid-day',
         validate: {
           isIn: {
@@ -62,6 +64,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('orders')
+    return queryInterface.dropTable('Orders')
   }
 }

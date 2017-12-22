@@ -3,8 +3,11 @@ import { ss, c} from '../../../styles/helpers'
 
 const mapper = StyleSheet.create({
   locationField: {
-    fontSize: '1.6rem',
     width: '100%',
+  },
+  check: {
+    color: c.green,
+    transition: 'all .5s ease-in-out'
   },
   mapContainer: {
     width: '200px',

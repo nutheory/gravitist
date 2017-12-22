@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import ProtectedRoute from './protected_route'
+import { graphql } from 'react-apollo'
+import DefaultLayout from './default'
+import SimpleLayout from './simple'
+import AuthLayout from './auth'
 // Public
-import PublicHeader from './headers/public_header'
 import IndexPage from '../index/index'
+import Order from '../agent/order'
 import Login from '../misc/login'
 import PilotPage from '../pilots/index'
 import PilotRegistrationPage from '../pilots/register/index'
@@ -11,56 +14,31 @@ import WorkPage from '../works/index'
 import FaqPage from '../misc/faq_index'
 import PricingPage from '../agent/page_pricing'
 import SampleVideo from '../misc/sample_video'
-import PublicFooter from './footers/public_footer'
 // Agent
-import PrivateHeader from './headers/private_header'
 import AgentDashboard from '../dashboard/agent_index'
 // Pilot
-// import PrivateHeader from './headers/private_header'
 import PilotDashboard from '../dashboard/pilot_index'
 // Admin
-
-
-const authenticated = (props) => {
-  console.log('loggedIn', props.currentUser)
-  return props.user ? true : false
-}
-
-const RenderHeader = (props) => {
-  if (props.currentUser){
-    return <PrivateHeader {...props} />
-  }
-  return <PublicHeader {...props} />
-}
-
-const RenderFooter = (props) => {
-  if (props.currentUser){
-    return null
-  }
-  return <PublicFooter {...props} />
-}
 
 const Routes = (props) => {
   return (
     <div>
-      {RenderHeader(props)}
       <Switch>
-        <ProtectedRoute path='/dashboard' component={AgentDashboard} user={props.currentUser} auth="agent" />
-        <ProtectedRoute path='/missions' component={PilotDashboard} user={props.currentUser} auth="pilot" />
-        <Route path='/pilots/register' component={PilotRegistrationPage} />
-        <Route path='/pilots' component={PilotPage} />
-        <Route path='/pricing' component={PricingPage} />
-        <Route path='/how-it-works' component={WorkPage} />
-        <Route path='/faq' component={FaqPage} />
-        <Route path='/pricing' component={PricingPage} />
-        <Route path='/' component={IndexPage} />
+        <SimpleLayout path='/login' component={Login} />
+        <AuthLayout path='/dashboard' component={AgentDashboard} auth="agent" />
+        <AuthLayout path='/missions' component={PilotDashboard} auth="pilot" />
+        <SimpleLayout path='/pricing/order/:plan' component={Order} />
+        <DefaultLayout path='/pilots/register' component={PilotRegistrationPage} />
+        <DefaultLayout path='/pilots' component={PilotPage} />
+        <DefaultLayout path='/pricing' component={PricingPage} />
+        <DefaultLayout path='/how-it-works' component={WorkPage} />
+        <DefaultLayout path='/faq' component={FaqPage} />
+        <DefaultLayout path='/' component={IndexPage} />
       </Switch>
       <Route path='/sample-video' component={SampleVideo} />
-      <Route path='/login' component={Login} />
-      {RenderFooter(props)}
     </div>
   )
 }
 
 
-module.exports = { Routes }
+export default Routes

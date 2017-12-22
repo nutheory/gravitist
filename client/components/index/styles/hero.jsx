@@ -2,6 +2,9 @@ import { StyleSheet, css } from 'aphrodite'
 import { ss, c } from '../../../styles/helpers'
 
 const hero = StyleSheet.create({
+  wrapper: {
+    width: '90%'
+  },
   synopsis: {
     fontFamily: 'poppins-bold',
     margin: '0',
@@ -27,9 +30,22 @@ const hero = StyleSheet.create({
       fontSize: '1.6rem',
     }
   },
+  ctaButtons: {
+    width: '100%',
+    marginTop: '40px',
+    textAlign: 'right',
+  },
+  ctaButtonRight: {
+    display: 'inline-block',
+    width: '20rem',
+  },
+  ctaButtonLeft: {
+      display: 'inline-block',
+    width: '20rem',
+    marginRight: '40px'
+  },
   bulletPoints: {
     display: 'flex',
-    fontFamily: 'poppins-semibold',
     color: c.white,
     position: 'relative',
     flexWrap: 'wrap',

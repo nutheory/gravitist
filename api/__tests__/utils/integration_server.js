@@ -1,3 +1,4 @@
+// const opbeat = require('opbeat').start()
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const session = require('express-session')
@@ -6,18 +7,31 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const passport = require('passport')
-const chalk = require('chalk')
+const { formatError } = require('../../utils/appErrors')
+const { tokenAuthenticate,
+        publicPassThrough } = require('./middleware')
+const { avatarUploader,
+        logoUploader,
+        insuranceUploader,
+        licenseUploader,
+        pilotOrderUploader,
+        pilotOrderUploadResult,
+        uploadResult } = require('../../services/assets')
 const config = require('../../config')
+const multer = require('multer')
+const upload = multer({ limits: { fileSize: 52428800 }})
 const Auth = require('../../services/auth')
 const schema = require('../../graphql/schema')
 const _ = require('lodash')
 const secret = config.jwt.secret
 
+const chalk = require('chalk')
+
+
 function intStart(done, appPort){
-  const app = express()
+  app = express()
   const PORT = appPort || 9000
-
-
+  // app.use(opbeat.middleware.express())
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
@@ -28,41 +42,69 @@ function intStart(done, appPort){
     return res.status(422).json({ errors: err })
   })
 
-  app.use('/graphql', (req, res, next) => {
-      if ( !req.headers.authorization || req.headers.authorization == undefined ){return next()}
-      passport.authenticate('bearer', (err, user, info) => {
-        // let regEx = new RegExp('createOrder')
-        // if (regEx.test(req.body.query)){
-        //   console.log('REQ', req)
-        // }
-        if (err) { return next(err) }
-        if (user) {
-          req.user = user
-        } else {
-          return res.status(401).json({ status: 'error', code: 'unauthorized' })
-        }
-        return next()
-      })(req, res, next)
-    }, (req, res, next) => {
-      let regEx
-      let noAuthRequired = false
-      const unprotectedMethods = [ 'login', 'createAgent', 'createPilot',
-        'createEditor', 'createAdmin', 'createOrderWithUser' ]
-      _.each(unprotectedMethods, (method) => {
-        regEx = new RegExp(method)
-        if (regEx.test(req.body.query)) {
-          noAuthRequired = true
-        }
-      })
-      if ( noAuthRequired || req.user ){
-        return next()
-      }
-      return res.status(401).json({ status: 'error', code: 'unauthorized' })
-    },
+  app.use('/graphql',
+    tokenAuthenticate,
+    publicPassThrough,
     graphqlHTTP(async (req, res, graphQLParams) => ({
-      schema: schema
+      schema,
+      formatError
     }))
   )
+
+  app.post('/avatar-uploader', tokenAuthenticate, publicPassThrough, upload.single('avatar'), async (req, res, next) => {
+    const upload = await avatarUploader(req).catch(err => { throw err })
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/avatar-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "avatar")
+      .catch(err => { throw err })
+  })
+
+  app.post('/logo-uploader', tokenAuthenticate, publicPassThrough, upload.single('logo'), async (req, res, next) => {
+    const upload = await logoUploader(req).catch(err => { throw err })
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/logo-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "logo")
+      .catch(err => { throw err })
+  })
+
+  app.post('/insurance-uploader', tokenAuthenticate, publicPassThrough, upload.single('insurance'), async (req, res, next) => {
+    const upload = await  insuranceUploader(req)
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/insurance-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "insurance")
+      .catch(err => { throw err })
+  })
+
+  app.post('/license-uploader', tokenAuthenticate, publicPassThrough, upload.single('license'), async (req, res, next) => {
+    const upload = await licenseUploader(req)
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/license-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "license")
+      .catch(err => { throw err })
+  })
+
+  app.post('/pilot-order-uploader', tokenAuthenticate, publicPassThrough, upload.array('assets', 40), async (req, res, next) => {
+    const uploads = await pilotOrderUploader(req).catch(err => { throw err })
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(uploads))
+  })
+
+  app.post('/pilot-order-notify-url', async (req, res, next) => {
+    const result = await pilotOrderUploadResult(req)
+      .catch(err => { throw err })
+  })
 
   return new Promise(resolve => {
     const server = app.listen(PORT, () => {
@@ -71,33 +113,5 @@ function intStart(done, appPort){
     })
   })
 }
-
-// async function gQL(queryObj){
-//   let result
-//   const app = queryObj.server
-//   const query = queryObj.query || ""
-//   const variables = queryObj.variables || null
-//   const method = queryObj.method || "get"
-//   const token = queryObj.token || undefined
-//
-//   console.log("queryObj", queryObj)
-//
-//   if ( token ) {
-//     result = await axios({
-//       url: `http://localhost:${app.address().port}/graphql`,
-//       method: method,
-//       data: { query, variables },
-//       headers: { 'authorization': token }
-//     })
-//   } else {
-//     result = await axios({
-//       url: `http://localhost:${app.address().port}/graphql`,
-//       method: method,
-//       data: { query, variables }
-//     })
-//   }
-//   console.log("QL", result)
-//   return result
-// }
 
 module.exports = { intStart }

@@ -1,21 +1,23 @@
-const Address = require('./address')
-const User = require('./user')
-const Plan = require('./plan')
-
 const Order = `
   type Order {
     id: ID
     plan: String
     status: String
-    agentId: String
+    pilotId: ID
+    agentId: ID
+    editorId: ID
+    pilotAcceptedAt: String
+    editorAcceptedAt: String
+    agentAcceptedAt: String
+    agent: User
+    pilot: User
+    editor: User
     receiptId: String
     timeOfDay: String
-    planInfo: Plan
     address: Address
-    acceptedAt: String
     createdAt: String
     updatedAt: String
-    distanceFromLocation: String
+    distanceFromLocation: Float
   }
 
   input AgentOrder {
@@ -23,13 +25,14 @@ const Order = `
   }
 
   input OrderWithUserInput {
-    order: OrderWithUserInputFields
+    user: AgentInputFields
+    order: OrderInputFields
   }
 
-  input OrderWithUserInputFields {
-    planInfo: PlanInputFields
-    address: AddressInputFields
-    user: AgentInputFields
+  input UpdateOrderInput {
+    id: ID!
+    authorizedId: ID!
+    order: OrderInputFields
   }
 
   input OrderInput {
@@ -37,21 +40,23 @@ const Order = `
   }
 
   input OrderInputFields {
-    planInfo: PlanInputFields
-    address: AddressInputFields
+    status: String
+    plan: PlanInput
+    address: AddressInput
+  }
+
+  input CollaborationInput {
+    id: ID
+    authorizedId: ID
+    status: String
   }
 
   input DestroyOrderInput {
-    itemId: ID!
-    ownerId: ID!
+    id: ID!
+    authorizedId: ID!
   }
 
   type OrderPayload {
-    order: OrderPayloadFields
-    auth: AuthPayload
-  }
-
-  type OrderTokenPayload {
     order: OrderPayloadFields
     auth: AuthPayload
   }
@@ -60,11 +65,19 @@ const Order = `
     id: ID
     plan: String
     receiptId: String
+    pilotAcceptedAt: String
+    editorAcceptedAt: String
+    agentAcceptedAt: String
     status: String
     address: Address
     agent: User
-    distanceFromLocation: String
+    pilot: User
+    editor: User
+    assets: [Asset]
+    distanceFromLocation: Float
+    createdAt: String
+    updatedAt: String
   }
 `
 
-module.exports = [Order, Address, User, Plan]
+module.exports = Order

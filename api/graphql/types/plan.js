@@ -5,10 +5,7 @@ const Plan = `
   }
 
   input PlanInput {
-    plan: PlanInputFields
-  }
-
-  input PlanInputFields {
+    id: ID
     name: String
     actualPrice: String
   }

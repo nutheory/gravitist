@@ -32,8 +32,8 @@ class PricingList extends Component {
   render(){
     return(
       <div id="pricingList" className={css(cL.wrapper, pricing.container)}>
-        <Header {...this.props.header} />
-        <div className={css(pricing.planList)}>
+        <div className={css(cT.bigTitle)}>Get Started by Choosing a Plan!</div>
+        <div className={`${css(pricing.planList)} columns`}>
           { plans.map( plan => <PricingPlan key={plan.name} planSpecifics={plan} selectedPlan={this.selectedPlan} /> )}
         </div>
         <p className={css(pricing.contactFooter)}>Alternatively, contact us at <a href="mailto:info@homefilming.com">info@homefilming.com</a> or <a href="tel:1-800-000-0000">1-800-000-0000</a> for your free consultation

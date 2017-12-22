@@ -5,8 +5,8 @@
     "city": "Grass Valley",
     "state": "CA",
     "zipCode": "95945",
-    "lat": "39.213076",
-    "lng": "-121.077583"
+    "lat": 39.213076,
+    "lng": -121.077583
   },
   {
     "address1": "637 Britannia Drive",
@@ -14,8 +14,8 @@
     "city": "Vallejo",
     "state": "CA",
     "zipCode": "94591",
-    "lat": "38.10476999999999",
-    "lng": "-122.193849"
+    "lat": 38.10476999999999,
+    "lng": -122.193849
   },
   {
     "address1": "22572 Toreador Drive",
@@ -23,8 +23,8 @@
     "city": "Salinas",
     "state": "CA",
     "zipCode": "93908",
-    "lat": "36.602449",
-    "lng": "-121.699071"
+    "lat": 36.602449,
+    "lng": -121.699071
   },
   {
     "address1": "49548 Road 200",
@@ -32,8 +32,8 @@
     "city": "O'Neals",
     "state": "CA",
     "zipCode": "93645",
-    "lat": "37.153463",
-    "lng": "-119.648192"
+    "lat": 37.153463,
+    "lng": -119.648192
   },
   {
     "address1": "20930 Todd Valley Road",
@@ -41,8 +41,8 @@
     "city": "Foresthill",
     "state": "CA",
     "zipCode": "95631",
-    "lat": "38.989466",
-    "lng": "-120.883108"
+    "lat": 38.989466,
+    "lng": -120.883108
   },
   {
     "address1": "125 John Street",
@@ -50,8 +50,8 @@
     "city": "Santa Cruz",
     "state": "CA",
     "zipCode": "95060",
-    "lat": "36.950901",
-    "lng": "-122.046881"
+    "lat": 36.950901,
+    "lng": -122.046881
   },
   {
     "address1": "31353 Santa Elena Way",
@@ -59,8 +59,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.593981",
-    "lng": "-122.059762"
+    "lat": 37.593981,
+    "lng": -122.059762
   },
   {
     "address1": "10826 Pointe Royal Drive",
@@ -68,8 +68,8 @@
     "city": "Bakersfield",
     "state": "CA",
     "zipCode": "93311",
-    "lat": "35.2930007",
-    "lng": "-119.1225908"
+    "lat": 35.2930007,
+    "lng": -119.1225908
   },
   {
     "address1": "19416 Barclay Road",
@@ -77,8 +77,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94546",
-    "lat": "37.70382",
-    "lng": "-122.091054"
+    "lat": 37.70382,
+    "lng": -122.091054
   },
   {
     "address1": "21950 Arnold Center Road",
@@ -86,8 +86,8 @@
     "city": "Carson",
     "state": "CA",
     "zipCode": "90810",
-    "lat": "33.8272706",
-    "lng": "-118.2302826"
+    "lat": 33.8272706,
+    "lng": -118.2302826
   },
   {
     "address1": "2313 Vegas Avenue",
@@ -95,8 +95,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94546",
-    "lat": "37.689189",
-    "lng": "-122.076775"
+    "lat": 37.689189,
+    "lng": -122.076775
   },
   {
     "address1": "38676 Greenwich Circle",
@@ -104,8 +104,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.562256",
-    "lng": "-121.976451"
+    "lat": 37.562256,
+    "lng": -121.976451
   },
   {
     "address1": "3228 Chettenham Drive",
@@ -113,8 +113,8 @@
     "city": "Rancho Cordova",
     "state": "CA",
     "zipCode": "95670",
-    "lat": "38.577813",
-    "lng": "-121.301333"
+    "lat": 38.577813,
+    "lng": -121.301333
   },
   {
     "address1": "1536 North Main Street",
@@ -122,8 +122,8 @@
     "city": "Salinas",
     "state": "CA",
     "zipCode": "93906",
-    "lat": "36.7122208",
-    "lng": "-121.6522485"
+    "lat": 36.7122208,
+    "lng": -121.6522485
   },
   {
     "address1": "1732 27th Avenue",
@@ -131,8 +131,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94601",
-    "lat": "37.783431",
-    "lng": "-122.228238"
+    "lat": 37.783431,
+    "lng": -122.228238
   },
   {
     "address1": "1643 Oxford Street",
@@ -140,8 +140,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94709",
-    "lat": "37.877894",
-    "lng": "-122.266436"
+    "lat": 37.877894,
+    "lng": -122.266436
   },
   {
     "address1": "26466 Mockingbird Lane",
@@ -149,8 +149,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.6410262",
-    "lng": "-122.0864272"
+    "lat": 37.6410262,
+    "lng": -122.0864272
   },
   {
     "address1": "1004 Bellflower Street",
@@ -158,8 +158,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94551",
-    "lat": "37.710745",
-    "lng": "-121.732765"
+    "lat": 37.710745,
+    "lng": -121.732765
   },
   {
     "address1": "4738 Mallard Common",
@@ -167,8 +167,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94555",
-    "lat": "37.5666441",
-    "lng": "-122.0444344"
+    "lat": 37.5666441,
+    "lng": -122.0444344
   },
   {
     "address1": "4438 Maine Avenue",
@@ -176,8 +176,8 @@
     "city": "Baldwin Park",
     "state": "CA",
     "zipCode": "91706",
-    "lat": "34.093409",
-    "lng": "-117.959953"
+    "lat": 34.093409,
+    "lng": -117.959953
   },
   {
     "address1": "107 Guaymas Place",
@@ -185,8 +185,8 @@
     "city": "Davis",
     "state": "CA",
     "zipCode": "95616",
-    "lat": "38.567048",
-    "lng": "-121.746046"
+    "lat": 38.567048,
+    "lng": -121.746046
   },
   {
     "address1": "622 Thomas Street",
@@ -194,8 +194,8 @@
     "city": "Woodland",
     "state": "CA",
     "zipCode": "95776",
-    "lat": "38.672731",
-    "lng": "-121.76065"
+    "lat": 38.672731,
+    "lng": -121.76065
   },
   {
     "address1": "2755 Country Drive",
@@ -203,8 +203,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.557882",
-    "lng": "-121.986823"
+    "lat": 37.557882,
+    "lng": -121.986823
   },
   {
     "address1": "145 Grau Drive",
@@ -212,8 +212,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.582453",
-    "lng": "-121.994476"
+    "lat": 37.582453,
+    "lng": -121.994476
   },
   {
     "address1": "3959 Fairlands Drive",
@@ -221,8 +221,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94588",
-    "lat": "37.6992001",
-    "lng": "-121.8703701"
+    "lat": 37.6992001,
+    "lng": -121.8703701
   },
   {
     "address1": "9036 Calico Court",
@@ -230,8 +230,8 @@
     "city": "Hesperia",
     "state": "CA",
     "zipCode": "92344",
-    "lat": "34.414491",
-    "lng": "-117.375403"
+    "lat": 34.414491,
+    "lng": -117.375403
   },
   {
     "address1": "90 Via Verde",
@@ -239,8 +239,8 @@
     "city": "San Lorenzo",
     "state": "CA",
     "zipCode": "94580",
-    "lat": "37.67869",
-    "lng": "-122.117142"
+    "lat": 37.67869,
+    "lng": -122.117142
   },
   {
     "address1": "553 South Arlington Road",
@@ -248,8 +248,8 @@
     "city": "Orange",
     "state": "CA",
     "zipCode": "92869",
-    "lat": "33.7794839",
-    "lng": "-117.820383"
+    "lat": 33.7794839,
+    "lng": -117.820383
   },
   {
     "address1": "6214 Herzog Street",
@@ -257,8 +257,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94608",
-    "lat": "37.84557849999999",
-    "lng": "-122.2825201"
+    "lat": 37.84557849999999,
+    "lng": -122.2825201
   },
   {
     "address1": "1452 55th Avenue",
@@ -266,8 +266,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94621",
-    "lat": "37.767671",
-    "lng": "-122.202326"
+    "lat": 37.767671,
+    "lng": -122.202326
   },
   {
     "address1": "4255 Tanager Common",
@@ -275,8 +275,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94555",
-    "lat": "37.5738888",
-    "lng": "-122.0460256"
+    "lat": 37.5738888,
+    "lng": -122.0460256
   },
   {
     "address1": "968 Virginia Avenue",
@@ -284,8 +284,8 @@
     "city": "Olivehurst",
     "state": "CA",
     "zipCode": "95961",
-    "lat": "39.1022419",
-    "lng": "-121.581218"
+    "lat": 39.1022419,
+    "lng": -121.581218
   },
   {
     "address1": "11150 Sun Valley Drive",
@@ -293,8 +293,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.752039",
-    "lng": "-122.11822"
+    "lat": 37.752039,
+    "lng": -122.11822
   },
   {
     "address1": "260 Rio Del Mar Boulevard",
@@ -302,8 +302,8 @@
     "city": "Aptos",
     "state": "CA",
     "zipCode": "95003",
-    "lat": "36.967915",
-    "lng": "-121.902513"
+    "lat": 36.967915,
+    "lng": -121.902513
   },
   {
     "address1": "2515 60th Avenue",
@@ -311,8 +311,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.7705346",
-    "lng": "-122.1907449"
+    "lat": 37.7705346,
+    "lng": -122.1907449
   },
   {
     "address1": "1011 San Jose Street",
@@ -320,8 +320,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94577",
-    "lat": "37.72956300000001",
-    "lng": "-122.147074"
+    "lat": 37.72956300000001,
+    "lng": -122.147074
   },
   {
     "address1": "20375 Wisteria Street",
@@ -329,8 +329,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94546",
-    "lat": "37.696683",
-    "lng": "-122.085865"
+    "lat": 37.696683,
+    "lng": -122.085865
   },
   {
     "address1": "2531 Prestwick Avenue",
@@ -338,8 +338,8 @@
     "city": "Concord",
     "state": "CA",
     "zipCode": "94519",
-    "lat": "37.9966039",
-    "lng": "-122.0280747"
+    "lat": 37.9966039,
+    "lng": -122.0280747
   },
   {
     "address1": "2747 68th Avenue",
@@ -347,8 +347,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.768532",
-    "lng": "-122.180694"
+    "lat": 37.768532,
+    "lng": -122.180694
   },
   {
     "address1": "1314 89th Avenue",
@@ -356,8 +356,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94621",
-    "lat": "37.7497401",
-    "lng": "-122.1762833"
+    "lat": 37.7497401,
+    "lng": -122.1762833
   },
   {
     "address1": "10881 Northforde Drive",
@@ -365,8 +365,8 @@
     "city": "Cupertino",
     "state": "CA",
     "zipCode": "95014",
-    "lat": "37.335812",
-    "lng": "-122.023985"
+    "lat": 37.335812,
+    "lng": -122.023985
   },
   {
     "address1": "4439 Gale Street",
@@ -374,8 +374,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.690199",
-    "lng": "-121.7411119"
+    "lat": 37.690199,
+    "lng": -121.7411119
   },
   {
     "address1": "152 Holly Court",
@@ -383,8 +383,8 @@
     "city": "Mountain View",
     "state": "CA",
     "zipCode": "94043",
-    "lat": "37.390391",
-    "lng": "-122.060062"
+    "lat": 37.390391,
+    "lng": -122.060062
   },
   {
     "address1": "1797 Pasatiempo Drive",
@@ -392,8 +392,8 @@
     "city": "Chico",
     "state": "CA",
     "zipCode": "95928",
-    "lat": "39.6777229",
-    "lng": "-121.7704692"
+    "lat": 39.6777229,
+    "lng": -121.7704692
   },
   {
     "address1": "915 Sacramento Street",
@@ -401,8 +401,8 @@
     "city": "Bakersfield",
     "state": "CA",
     "zipCode": "93305",
-    "lat": "35.3798759",
-    "lng": "-119.0002119"
+    "lat": 35.3798759,
+    "lng": -119.0002119
   },
   {
     "address1": "4016 Doane Street",
@@ -410,8 +410,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.514834",
-    "lng": "-121.95302"
+    "lat": 37.514834,
+    "lng": -121.95302
   },
   {
     "address1": "3215 Madsen Street",
@@ -419,8 +419,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.6618825",
-    "lng": "-122.0904612"
+    "lat": 37.6618825,
+    "lng": -122.0904612
   },
   {
     "address1": "222 Quince Street",
@@ -428,8 +428,8 @@
     "city": "San Diego",
     "state": "CA",
     "zipCode": "92103",
-    "lat": "32.7368499",
-    "lng": "-117.162443"
+    "lat": 32.7368499,
+    "lng": -117.162443
   },
   {
     "address1": "732 Kevin Court",
@@ -437,8 +437,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94621",
-    "lat": "37.757904",
-    "lng": "-122.206479"
+    "lat": 37.757904,
+    "lng": -122.206479
   },
   {
     "address1": "3377 Sandstone Court",
@@ -446,8 +446,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94588",
-    "lat": "37.680463",
-    "lng": "-121.860128"
+    "lat": 37.680463,
+    "lng": -121.860128
   },
   {
     "address1": "894 Windmill Park Lane",
@@ -455,8 +455,8 @@
     "city": "Mountain View",
     "state": "CA",
     "zipCode": "94043",
-    "lat": "37.399505",
-    "lng": "-122.077478"
+    "lat": 37.399505,
+    "lng": -122.077478
   },
   {
     "address1": "618 Staley Avenue",
@@ -464,8 +464,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.6629263",
-    "lng": "-122.091801"
+    "lat": 37.6629263,
+    "lng": -122.091801
   },
   {
     "address1": "840 Inglewood Drive",
@@ -473,8 +473,8 @@
     "city": "West Sacramento",
     "state": "CA",
     "zipCode": "95605",
-    "lat": "38.591235",
-    "lng": "-121.524984"
+    "lat": 38.591235,
+    "lng": -121.524984
   },
   {
     "address1": "1528 Stafford Avenue",
@@ -482,8 +482,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.680081",
-    "lng": "-122.074569"
+    "lat": 37.680081,
+    "lng": -122.074569
   },
   {
     "address1": "3578 Galindo Street",
@@ -491,8 +491,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94601",
-    "lat": "37.783471",
-    "lng": "-122.2149729"
+    "lat": 37.783471,
+    "lng": -122.2149729
   },
   {
     "address1": "2443 Sierra Nevada Road",
@@ -500,8 +500,8 @@
     "city": "Mammoth Lakes",
     "state": "CA",
     "zipCode": "93546",
-    "lat": "37.641304",
-    "lng": "-118.971489"
+    "lat": 37.641304,
+    "lng": -118.971489
   },
   {
     "address1": "25538 Calaroga Avenue",
@@ -509,8 +509,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94545",
-    "lat": "37.642952",
-    "lng": "-122.098647"
+    "lat": 37.642952,
+    "lng": -122.098647
   },
   {
     "address1": "1521 159th Avenue",
@@ -518,8 +518,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94578",
-    "lat": "37.70179340000001",
-    "lng": "-122.1192658"
+    "lat": 37.70179340000001,
+    "lng": -122.1192658
   },
   {
     "address1": "73455 Twentynine Palms Highway",
@@ -527,8 +527,8 @@
     "city": "Twentynine Palms",
     "state": "CA",
     "zipCode": "92277",
-    "lat": "34.1353352",
-    "lng": "-116.0598794"
+    "lat": 34.1353352,
+    "lng": -116.0598794
   },
   {
     "address1": "24147 Clinton Court",
@@ -536,8 +536,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94545",
-    "lat": "37.648857",
-    "lng": "-122.112388"
+    "lat": 37.648857,
+    "lng": -122.112388
   },
   {
     "address1": "236 Alden Road",
@@ -545,8 +545,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.682588",
-    "lng": "-122.112121"
+    "lat": 37.682588,
+    "lng": -122.112121
   },
   {
     "address1": "2042 High Street",
@@ -554,8 +554,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94601",
-    "lat": "37.776415",
-    "lng": "-122.209418"
+    "lat": 37.776415,
+    "lng": -122.209418
   },
   {
     "address1": "6244 Sun River Drive",
@@ -563,8 +563,8 @@
     "city": "Sacramento",
     "state": "CA",
     "zipCode": "95824",
-    "lat": "38.512894",
-    "lng": "-121.41258"
+    "lat": 38.512894,
+    "lng": -121.41258
   },
   {
     "address1": "36043 Soapberry Commons",
@@ -572,8 +572,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.555484",
-    "lng": "-122.012744"
+    "lat": 37.555484,
+    "lng": -122.012744
   },
   {
     "address1": "31130 Meadowbrook Avenue",
@@ -581,8 +581,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.61744100000001",
-    "lng": "-122.038397"
+    "lat": 37.61744100000001,
+    "lng": -122.038397
   },
   {
     "address1": "14524 Lodestar Drive",
@@ -590,8 +590,8 @@
     "city": "Grass Valley",
     "state": "CA",
     "zipCode": "95949",
-    "lat": "39.101221",
-    "lng": "-121.008546"
+    "lat": 39.101221,
+    "lng": -121.008546
   },
   {
     "address1": "136 Acacia Drive",
@@ -599,8 +599,8 @@
     "city": "Blue Lake",
     "state": "CA",
     "zipCode": "95525",
-    "lat": "40.879484",
-    "lng": "-123.978726"
+    "lat": 40.879484,
+    "lng": -123.978726
   },
   {
     "address1": "2035 Ninth Street",
@@ -608,8 +608,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94710",
-    "lat": "37.8676351",
-    "lng": "-122.2938418"
+    "lat": 37.8676351,
+    "lng": -122.2938418
   },
   {
     "address1": "2807 Huxley Place",
@@ -617,8 +617,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94555",
-    "lat": "37.584941",
-    "lng": "-122.03291"
+    "lat": 37.584941,
+    "lng": -122.03291
   },
   {
     "address1": "169 Avenida Drive",
@@ -626,8 +626,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94708",
-    "lat": "37.884824",
-    "lng": "-122.249694"
+    "lat": 37.884824,
+    "lng": -122.249694
   },
   {
     "address1": "281 MacArthur Boulevard",
@@ -635,8 +635,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94610",
-    "lat": "37.8147324",
-    "lng": "-122.25217"
+    "lat": 37.8147324,
+    "lng": -122.25217
   },
   {
     "address1": "4876 Norris Road",
@@ -644,8 +644,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.543515",
-    "lng": "-122.008143"
+    "lat": 37.543515,
+    "lng": -122.008143
   },
   {
     "address1": "19 Heritage",
@@ -653,8 +653,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.765568",
-    "lng": "-122.129528"
+    "lat": 37.765568,
+    "lng": -122.129528
   },
   {
     "address1": "330 Michell Court",
@@ -662,8 +662,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94551",
-    "lat": "37.690035",
-    "lng": "-121.759468"
+    "lat": 37.690035,
+    "lng": -121.759468
   },
   {
     "address1": "6145 East Castro Valley Boulevard",
@@ -671,8 +671,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94552",
-    "lat": "37.6992206",
-    "lng": "-122.0300502"
+    "lat": 37.6992206,
+    "lng": -122.0300502
   },
   {
     "address1": "18789 Crane Avenue",
@@ -680,8 +680,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94546",
-    "lat": "37.70902600000001",
-    "lng": "-122.059504"
+    "lat": 37.70902600000001,
+    "lng": -122.059504
   },
   {
     "address1": "6431 Shattuck Avenue",
@@ -689,8 +689,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94609",
-    "lat": "37.85015",
-    "lng": "-122.266142"
+    "lat": 37.85015,
+    "lng": -122.266142
   },
   {
     "address1": "11522 Country Spring Court",
@@ -698,8 +698,8 @@
     "city": "Cupertino",
     "state": "CA",
     "zipCode": "95014",
-    "lat": "37.3004559",
-    "lng": "-122.049009"
+    "lat": 37.3004559,
+    "lng": -122.049009
   },
   {
     "address1": "129 Grant Street",
@@ -707,8 +707,8 @@
     "city": "Redlands",
     "state": "CA",
     "zipCode": "92373",
-    "lat": "34.0529643",
-    "lng": "-117.1847245"
+    "lat": 34.0529643,
+    "lng": -117.1847245
   },
   {
     "address1": "2632 Jackson Street East",
@@ -716,8 +716,8 @@
     "city": "Carson",
     "state": "CA",
     "zipCode": "90810",
-    "lat": "33.8360282",
-    "lng": "-118.2202665"
+    "lat": 33.8360282,
+    "lng": -118.2202665
   },
   {
     "address1": "26563 Chisholm Court",
@@ -725,8 +725,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.641711",
-    "lng": "-122.078659"
+    "lat": 37.641711,
+    "lng": -122.078659
   },
   {
     "address1": "424 Callan Avenue",
@@ -734,8 +734,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94577",
-    "lat": "37.72780789999999",
-    "lng": "-122.152331"
+    "lat": 37.72780789999999,
+    "lng": -122.152331
   },
   {
     "address1": "918 Cheryl Ann Circle",
@@ -743,8 +743,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.635859",
-    "lng": "-122.076923"
+    "lat": 37.635859,
+    "lng": -122.076923
   },
   {
     "address1": "4231 Miramonte Way",
@@ -752,8 +752,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.591721",
-    "lng": "-122.075993"
+    "lat": 37.591721,
+    "lng": -122.075993
   },
   {
     "address1": "1987 Boxer Court",
@@ -761,8 +761,8 @@
     "city": "San Lorenzo",
     "state": "CA",
     "zipCode": "94580",
-    "lat": "37.670738",
-    "lng": "-122.147019"
+    "lat": 37.670738,
+    "lng": -122.147019
   },
   {
     "address1": "5792 Owl Hill Avenue",
@@ -770,8 +770,8 @@
     "city": "Santa Rosa",
     "state": "CA",
     "zipCode": "95409",
-    "lat": "38.467127",
-    "lng": "-122.640498"
+    "lat": 38.467127,
+    "lng": -122.640498
   },
   {
     "address1": "2414 Parker Street",
@@ -779,8 +779,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94704",
-    "lat": "37.862903",
-    "lng": "-122.2595092"
+    "lat": 37.862903,
+    "lng": -122.2595092
   },
   {
     "address1": "310 12th Avenue",
@@ -788,8 +788,8 @@
     "city": "Santa Cruz",
     "state": "CA",
     "zipCode": "95062",
-    "lat": "36.963154",
-    "lng": "-121.994045"
+    "lat": 36.963154,
+    "lng": -121.994045
   },
   {
     "address1": "2685 California Street",
@@ -797,8 +797,8 @@
     "city": "Mountain View",
     "state": "CA",
     "zipCode": "94040",
-    "lat": "37.4068693",
-    "lng": "-122.1129728"
+    "lat": 37.4068693,
+    "lng": -122.1129728
   },
   {
     "address1": "2134 West Mills Drive",
@@ -806,8 +806,8 @@
     "city": "Orange",
     "state": "CA",
     "zipCode": "92868",
-    "lat": "33.786584",
-    "lng": "-117.875665"
+    "lat": 33.786584,
+    "lng": -117.875665
   },
   {
     "address1": "6925 Lariat Lane",
@@ -815,8 +815,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94552",
-    "lat": "37.7157257",
-    "lng": "-122.0270913"
+    "lat": 37.7157257,
+    "lng": -122.0270913
   },
   {
     "address1": "2335 Orchard View Lane",
@@ -824,8 +824,8 @@
     "city": "Escondido",
     "state": "CA",
     "zipCode": "92027",
-    "lat": "33.119461",
-    "lng": "-117.007959"
+    "lat": 33.119461,
+    "lng": -117.007959
   },
   {
     "address1": "5805 Armada Drive",
@@ -833,8 +833,8 @@
     "city": "Carlsbad",
     "state": "CA",
     "zipCode": "92008",
-    "lat": "33.1238541",
-    "lng": "-117.3152497"
+    "lat": 33.1238541,
+    "lng": -117.3152497
   },
   {
     "address1": "22825 Paseo Place",
@@ -842,8 +842,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.6678961",
-    "lng": "-122.0832649"
+    "lat": 37.6678961,
+    "lng": -122.0832649
   },
   {
     "address1": "2902 Flint Street",
@@ -851,8 +851,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.60442",
-    "lng": "-122.069607"
+    "lat": 37.60442,
+    "lng": -122.069607
   },
   {
     "address1": "1238 Roanwood Way",
@@ -860,8 +860,8 @@
     "city": "Concord",
     "state": "CA",
     "zipCode": "94521",
-    "lat": "37.94042",
-    "lng": "-121.944464"
+    "lat": 37.94042,
+    "lng": -121.944464
   },
   {
     "address1": "3835 Oakes Drive",
@@ -869,8 +869,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94542",
-    "lat": "37.661345",
-    "lng": "-122.032784"
+    "lat": 37.661345,
+    "lng": -122.032784
   },
   {
     "address1": "3538 Mendenhall Court",
@@ -878,8 +878,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94588",
-    "lat": "37.6991919",
-    "lng": "-121.85909"
+    "lat": 37.6991919,
+    "lng": -121.85909
   },
   {
     "address1": "1011 Devon Drive",
@@ -887,8 +887,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94542",
-    "lat": "37.65444100000001",
-    "lng": "-122.067741"
+    "lat": 37.65444100000001,
+    "lng": -122.067741
   },
   {
     "address1": "1234 Carmel Street",
@@ -896,8 +896,8 @@
     "city": "Madera",
     "state": "CA",
     "zipCode": "93638",
-    "lat": "36.949941",
-    "lng": "-120.043739"
+    "lat": 36.949941,
+    "lng": -120.043739
   },
   {
     "address1": "22538 6th Street",
@@ -905,8 +905,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.680829",
-    "lng": "-122.07335"
+    "lat": 37.680829,
+    "lng": -122.07335
   },
   {
     "address1": "4500 Margalo Avenue",
@@ -914,8 +914,8 @@
     "city": "Bakersfield",
     "state": "CA",
     "zipCode": "93313",
-    "lat": "35.305082",
-    "lng": "-119.052448"
+    "lat": 35.305082,
+    "lng": -119.052448
   },
   {
     "address1": "5396 North Reese Avenue",
@@ -923,8 +923,8 @@
     "city": "Fresno",
     "state": "CA",
     "zipCode": "93722",
-    "lat": "36.815278",
-    "lng": "-119.864119"
+    "lat": 36.815278,
+    "lng": -119.864119
   },
   {
     "address1": "1219 Carleton Street",
@@ -932,8 +932,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94702",
-    "lat": "37.8591054",
-    "lng": "-122.285823"
+    "lat": 37.8591054,
+    "lng": -122.285823
   },
   {
     "address1": "422 Richmond Street",
@@ -941,8 +941,8 @@
     "city": "El Cerrito",
     "state": "CA",
     "zipCode": "94530",
-    "lat": "37.9028101",
-    "lng": "-122.2981152"
+    "lat": 37.9028101,
+    "lng": -122.2981152
   },
   {
     "address1": "5264 Shafter Avenue",
@@ -950,8 +950,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94618",
-    "lat": "37.839058",
-    "lng": "-122.256035"
+    "lat": 37.839058,
+    "lng": -122.256035
   },
   {
     "address1": "5732 Jean Drive",
@@ -959,8 +959,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.580691",
-    "lng": "-122.082773"
+    "lat": 37.580691,
+    "lng": -122.082773
   },
   {
     "address1": "1222 Arcade Boulevard",
@@ -968,8 +968,8 @@
     "city": "Sacramento",
     "state": "CA",
     "zipCode": "95815",
-    "lat": "38.626122",
-    "lng": "-121.43861"
+    "lat": 38.626122,
+    "lng": -121.43861
   },
   {
     "address1": "3600 Pennsylvania Avenue",
@@ -977,8 +977,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.5516245",
-    "lng": "-121.9872735"
+    "lat": 37.5516245,
+    "lng": -121.9872735
   },
   {
     "address1": "6420 Via Baron",
@@ -986,8 +986,8 @@
     "city": "Rancho Palos Verdes",
     "state": "CA",
     "zipCode": "90275",
-    "lat": "33.741162",
-    "lng": "-118.390767"
+    "lat": 33.741162,
+    "lng": -118.390767
   },
   {
     "address1": "37675 Fremont Boulevard",
@@ -995,8 +995,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.555306",
-    "lng": "-122.003412"
+    "lat": 37.555306,
+    "lng": -122.003412
   },
   {
     "address1": "849 East Victoria Street",
@@ -1004,8 +1004,8 @@
     "city": "Carson",
     "state": "CA",
     "zipCode": "90746",
-    "lat": "33.8673562",
-    "lng": "-118.2597713"
+    "lat": 33.8673562,
+    "lng": -118.2597713
   },
   {
     "address1": "4981 Shirley Way",
@@ -1013,8 +1013,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.682649",
-    "lng": "-121.733308"
+    "lat": 37.682649,
+    "lng": -121.733308
   },
   {
     "address1": "1300 Lemos Lane",
@@ -1022,8 +1022,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94539",
-    "lat": "37.546996",
-    "lng": "-121.951627"
+    "lat": 37.546996,
+    "lng": -121.951627
   },
   {
     "address1": "970 Old Oak Road",
@@ -1031,8 +1031,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.653774",
-    "lng": "-121.796632"
+    "lat": 37.653774,
+    "lng": -121.796632
   },
   {
     "address1": "441 Merritt Avenue",
@@ -1040,8 +1040,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94610",
-    "lat": "37.8058663",
-    "lng": "-122.2493644"
+    "lat": 37.8058663,
+    "lng": -122.2493644
   },
   {
     "address1": "1061 Sumatra Street",
@@ -1049,8 +1049,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.628092",
-    "lng": "-122.072806"
+    "lat": 37.628092,
+    "lng": -122.072806
   },
   {
     "address1": "954 Dowler Drive",
@@ -1058,8 +1058,8 @@
     "city": "Eureka",
     "state": "CA",
     "zipCode": "95501",
-    "lat": "40.7999306",
-    "lng": "-124.1449823"
+    "lat": 40.7999306,
+    "lng": -124.1449823
   },
   {
     "address1": "37600 Sycamore Street",
@@ -1067,8 +1067,8 @@
     "city": "Newark",
     "state": "CA",
     "zipCode": "94560",
-    "lat": "37.5261943",
-    "lng": "-122.0304698"
+    "lat": 37.5261943,
+    "lng": -122.0304698
   },
   {
     "address1": "22062 Cameron Street",
@@ -1076,8 +1076,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94546",
-    "lat": "37.6887201",
-    "lng": "-122.0675144"
+    "lat": 37.6887201,
+    "lng": -122.0675144
   },
   {
     "address1": "7573 National Drive",
@@ -1085,8 +1085,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.70168",
-    "lng": "-121.701526"
+    "lat": 37.70168,
+    "lng": -121.701526
   },
   {
     "address1": "23501 Ida Lane",
@@ -1094,8 +1094,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.660696",
-    "lng": "-122.100733"
+    "lat": 37.660696,
+    "lng": -122.100733
   },
   {
     "address1": "Vista Flores",
@@ -1103,8 +1103,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94566",
-    "lat": "37.6681878",
-    "lng": "-121.8514835"
+    "lat": 37.6681878,
+    "lng": -121.8514835
   },
   {
     "address1": "65 Hilltop Lane",
@@ -1112,8 +1112,8 @@
     "city": "McKinleyville",
     "state": "CA",
     "zipCode": "95519",
-    "lat": "40.895179",
-    "lng": "-124.004128"
+    "lat": 40.895179,
+    "lng": -124.004128
   },
   {
     "address1": "619 Colusa Avenue",
@@ -1121,8 +1121,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94707",
-    "lat": "37.896256",
-    "lng": "-122.284523"
+    "lat": 37.896256,
+    "lng": -122.284523
   },
   {
     "address1": "4920 Quonset Drive",
@@ -1130,8 +1130,8 @@
     "city": "Sacramento",
     "state": "CA",
     "zipCode": "95820",
-    "lat": "38.530987",
-    "lng": "-121.417033"
+    "lat": 38.530987,
+    "lng": -121.417033
   },
   {
     "address1": "158 Euclid Avenue",
@@ -1139,8 +1139,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94577",
-    "lat": "37.7329999",
-    "lng": "-122.158683"
+    "lat": 37.7329999,
+    "lng": -122.158683
   },
   {
     "address1": "238 La Salle Avenue",
@@ -1148,8 +1148,8 @@
     "city": "Piedmont",
     "state": "CA",
     "zipCode": "94610",
-    "lat": "37.815231",
-    "lng": "-122.226949"
+    "lat": 37.815231,
+    "lng": -122.226949
   },
   {
     "address1": "14285 Wycliff Way",
@@ -1157,8 +1157,8 @@
     "city": "Magalia",
     "state": "CA",
     "zipCode": "95954",
-    "lat": "39.829745",
-    "lng": "-121.604994"
+    "lat": 39.829745,
+    "lng": -121.604994
   },
   {
     "address1": "1937 Carleton Street",
@@ -1166,8 +1166,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94704",
-    "lat": "37.861126",
-    "lng": "-122.270083"
+    "lat": 37.861126,
+    "lng": -122.270083
   },
   {
     "address1": "3819 Vineyard Avenue",
@@ -1175,8 +1175,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94566",
-    "lat": "37.6631486",
-    "lng": "-121.862728"
+    "lat": 37.6631486,
+    "lng": -121.862728
   },
   {
     "address1": "2409 Park Street",
@@ -1184,8 +1184,8 @@
     "city": "Selma",
     "state": "CA",
     "zipCode": "93662",
-    "lat": "36.55983190000001",
-    "lng": "-119.6183089"
+    "lat": 36.55983190000001,
+    "lng": -119.6183089
   },
   {
     "address1": "3027 Badger Drive",
@@ -1193,8 +1193,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94566",
-    "lat": "37.667338",
-    "lng": "-121.849663"
+    "lat": 37.667338,
+    "lng": -121.849663
   },
   {
     "address1": "5715 Saint Matthew Drive",
@@ -1202,8 +1202,8 @@
     "city": "Newark",
     "state": "CA",
     "zipCode": "94560",
-    "lat": "37.538738",
-    "lng": "-122.024679"
+    "lat": 37.538738,
+    "lng": -122.024679
   },
   {
     "address1": "680 Quintana Road",
@@ -1211,8 +1211,8 @@
     "city": "Morro Bay",
     "state": "CA",
     "zipCode": "93442",
-    "lat": "35.3689245",
-    "lng": "-120.8436854"
+    "lat": 35.3689245,
+    "lng": -120.8436854
   },
   {
     "address1": "1532 Milvia Street",
@@ -1220,8 +1220,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94709",
-    "lat": "37.8792662",
-    "lng": "-122.2715332"
+    "lat": 37.8792662,
+    "lng": -122.2715332
   },
   {
     "address1": "1954 Wilson Court",
@@ -1229,8 +1229,8 @@
     "city": "Mountain View",
     "state": "CA",
     "zipCode": "94040",
-    "lat": "37.36696999999999",
-    "lng": "-122.089049"
+    "lat": 37.36696999999999,
+    "lng": -122.089049
   },
   {
     "address1": "42223 Edgewood Street",
@@ -1238,8 +1238,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.522428",
-    "lng": "-121.96178"
+    "lat": 37.522428,
+    "lng": -121.96178
   },
   {
     "address1": "4936 Sequoia Avenue",
@@ -1247,8 +1247,8 @@
     "city": "Dublin",
     "state": "CA",
     "zipCode": "94568",
-    "lat": "37.711885",
-    "lng": "-121.884051"
+    "lat": 37.711885,
+    "lng": -121.884051
   },
   {
     "address1": "3862 Almond Avenue",
@@ -1256,8 +1256,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.5343786",
-    "lng": "-121.9588068"
+    "lat": 37.5343786,
+    "lng": -121.9588068
   },
   {
     "address1": "11 Eclipse Court",
@@ -1265,8 +1265,8 @@
     "city": "Alameda",
     "state": "CA",
     "zipCode": "94501",
-    "lat": "37.7823187",
-    "lng": "-122.2678109"
+    "lat": 37.7823187,
+    "lng": -122.2678109
   },
   {
     "address1": "369 Ruth Avenue",
@@ -1274,8 +1274,8 @@
     "city": "Mountain View",
     "state": "CA",
     "zipCode": "94043",
-    "lat": "37.409802",
-    "lng": "-122.100957"
+    "lat": 37.409802,
+    "lng": -122.100957
   },
   {
     "address1": "22207 Quinterno Court",
@@ -1283,8 +1283,8 @@
     "city": "Cupertino",
     "state": "CA",
     "zipCode": "95014",
-    "lat": "37.320994",
-    "lng": "-122.063047"
+    "lat": 37.320994,
+    "lng": -122.063047
   },
   {
     "address1": "5410 McLean Drive",
@@ -1292,8 +1292,8 @@
     "city": "Elk Grove",
     "state": "CA",
     "zipCode": "95757",
-    "lat": "38.3890938",
-    "lng": "-121.4409219"
+    "lat": 38.3890938,
+    "lng": -121.4409219
   },
   {
     "address1": "2 Sotelo Avenue",
@@ -1301,8 +1301,8 @@
     "city": "Piedmont",
     "state": "CA",
     "zipCode": "94611",
-    "lat": "37.820272",
-    "lng": "-122.2195409"
+    "lat": 37.820272,
+    "lng": -122.2195409
   },
   {
     "address1": "3115 North Lake Boulevard",
@@ -1310,8 +1310,8 @@
     "city": "Tahoe City",
     "state": "CA",
     "zipCode": "96145",
-    "lat": "39.190947",
-    "lng": "-120.108825"
+    "lat": 39.190947,
+    "lng": -120.108825
   },
   {
     "address1": "1358 Scenic Avenue",
@@ -1319,8 +1319,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94708",
-    "lat": "37.8830528",
-    "lng": "-122.2632462"
+    "lat": 37.8830528,
+    "lng": -122.2632462
   },
   {
     "address1": "928 Wright Avenue",
@@ -1328,8 +1328,8 @@
     "city": "Mountain View",
     "state": "CA",
     "zipCode": "94043",
-    "lat": "37.3996523",
-    "lng": "-122.0796285"
+    "lat": 37.3996523,
+    "lng": -122.0796285
   },
   {
     "address1": "406 Ashwood Court",
@@ -1337,8 +1337,8 @@
     "city": "Vacaville",
     "state": "CA",
     "zipCode": "95688",
-    "lat": "38.3907616",
-    "lng": "-121.9805548"
+    "lat": 38.3907616,
+    "lng": -121.9805548
   },
   {
     "address1": "450 C Street",
@@ -1346,8 +1346,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.6678718",
-    "lng": "-122.0917029"
+    "lat": 37.6678718,
+    "lng": -122.0917029
   },
   {
     "address1": "4444 Central Avenue",
@@ -1355,8 +1355,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.55069599999999",
-    "lng": "-122.007419"
+    "lat": 37.55069599999999,
+    "lng": -122.007419
   },
   {
     "address1": "12091 Mierkey Road",
@@ -1364,8 +1364,8 @@
     "city": "Jackson",
     "state": "CA",
     "zipCode": "95642",
-    "lat": "38.385803",
-    "lng": "-120.670509"
+    "lat": 38.385803,
+    "lng": -120.670509
   },
   {
     "address1": "1870 A Street",
@@ -1373,8 +1373,8 @@
     "city": "Oroville",
     "state": "CA",
     "zipCode": "95966",
-    "lat": "39.499763",
-    "lng": "-121.551396"
+    "lat": 39.499763,
+    "lng": -121.551396
   },
   {
     "address1": "11 Alden Court",
@@ -1382,8 +1382,8 @@
     "city": "Roseville",
     "state": "CA",
     "zipCode": "95678",
-    "lat": "38.776113",
-    "lng": "-121.280178"
+    "lat": 38.776113,
+    "lng": -121.280178
   },
   {
     "address1": "2086 Hillside Drive",
@@ -1391,8 +1391,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94577",
-    "lat": "37.7238372",
-    "lng": "-122.1334006"
+    "lat": 37.7238372,
+    "lng": -122.1334006
   },
   {
     "address1": "3189 Main Street",
@@ -1400,8 +1400,8 @@
     "city": "Mammoth Lakes",
     "state": "CA",
     "zipCode": "93546",
-    "lat": "37.6470787",
-    "lng": "-118.9686523"
+    "lat": 37.6470787,
+    "lng": -118.9686523
   },
   {
     "address1": "20097 Butterfield Drive",
@@ -1409,8 +1409,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94546",
-    "lat": "37.6990989",
-    "lng": "-122.085039"
+    "lat": 37.6990989,
+    "lng": -122.085039
   },
   {
     "address1": "6100 Bullard Drive",
@@ -1418,8 +1418,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94611",
-    "lat": "37.829801",
-    "lng": "-122.216252"
+    "lat": 37.829801,
+    "lng": -122.216252
   },
   {
     "address1": "37122 Contra Costa Avenue",
@@ -1427,8 +1427,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.5534511",
-    "lng": "-122.0133239"
+    "lat": 37.5534511,
+    "lng": -122.0133239
   },
   {
     "address1": "565 Amber Isle",
@@ -1436,8 +1436,8 @@
     "city": "Alameda",
     "state": "CA",
     "zipCode": "94501",
-    "lat": "37.764288",
-    "lng": "-122.268645"
+    "lat": 37.764288,
+    "lng": -122.268645
   },
   {
     "address1": "703 Elizabeth Barcus Way",
@@ -1445,8 +1445,8 @@
     "city": "Fortuna",
     "state": "CA",
     "zipCode": "95540",
-    "lat": "40.59661",
-    "lng": "-124.132857"
+    "lat": 40.59661,
+    "lng": -124.132857
   },
   {
     "address1": "465 Humboldt Way",
@@ -1454,8 +1454,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94551",
-    "lat": "37.6958861",
-    "lng": "-121.7952093"
+    "lat": 37.6958861,
+    "lng": -121.7952093
   },
   {
     "address1": "7237 Wild Currant Way",
@@ -1463,8 +1463,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94611",
-    "lat": "37.8387892",
-    "lng": "-122.1996064"
+    "lat": 37.8387892,
+    "lng": -122.1996064
   },
   {
     "address1": "12156 Oslo Drive",
@@ -1472,8 +1472,8 @@
     "city": "Truckee",
     "state": "CA",
     "zipCode": "96161",
-    "lat": "39.35603649999999",
-    "lng": "-120.2351517"
+    "lat": 39.35603649999999,
+    "lng": -120.2351517
   },
   {
     "address1": "2835 Jed Road",
@@ -1481,8 +1481,8 @@
     "city": "Escondido",
     "state": "CA",
     "zipCode": "92027",
-    "lat": "33.140046",
-    "lng": "-117.032721"
+    "lat": 33.140046,
+    "lng": -117.032721
   },
   {
     "address1": "682 Brighton Way",
@@ -1490,8 +1490,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94551",
-    "lat": "37.689729",
-    "lng": "-121.791712"
+    "lat": 37.689729,
+    "lng": -121.791712
   },
   {
     "address1": "2750 Gilmore Lane",
@@ -1499,8 +1499,8 @@
     "city": "Oroville",
     "state": "CA",
     "zipCode": "95966",
-    "lat": "39.5076332",
-    "lng": "-121.5385254"
+    "lat": 39.5076332,
+    "lng": -121.5385254
   },
   {
     "address1": "1352 Purdue Street",
@@ -1508,8 +1508,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94579",
-    "lat": "37.6950209",
-    "lng": "-122.155653"
+    "lat": 37.6950209,
+    "lng": -122.155653
   },
   {
     "address1": "72 Salmon Road",
@@ -1517,8 +1517,8 @@
     "city": "Alameda",
     "state": "CA",
     "zipCode": "94502",
-    "lat": "37.739659",
-    "lng": "-122.255689"
+    "lat": 37.739659,
+    "lng": -122.255689
   },
   {
     "address1": "4511 Sloat Road",
@@ -1526,8 +1526,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.5420236",
-    "lng": "-121.9926731"
+    "lat": 37.5420236,
+    "lng": -121.9926731
   },
   {
     "address1": "4444 Hansen Avenue",
@@ -1535,8 +1535,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.5538472",
-    "lng": "-122.0122099"
+    "lat": 37.5538472,
+    "lng": -122.0122099
   },
   {
     "address1": "3318 East Woodbine Road",
@@ -1544,8 +1544,8 @@
     "city": "Orange",
     "state": "CA",
     "zipCode": "92867",
-    "lat": "33.835",
-    "lng": "-117.818473"
+    "lat": 33.835,
+    "lng": -117.818473
   },
   {
     "address1": "51035 Conifer Drive",
@@ -1553,8 +1553,8 @@
     "city": "Soda Springs",
     "state": "CA",
     "zipCode": "95728",
-    "lat": "39.31757899999999",
-    "lng": "-120.443713"
+    "lat": 39.31757899999999,
+    "lng": -120.443713
   },
   {
     "address1": "35805 Alcazar Court",
@@ -1562,8 +1562,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.563275",
-    "lng": "-122.026806"
+    "lat": 37.563275,
+    "lng": -122.026806
   },
   {
     "address1": "1357 Addison Street",
@@ -1571,8 +1571,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94702",
-    "lat": "37.8692812",
-    "lng": "-122.2846077"
+    "lat": 37.8692812,
+    "lng": -122.2846077
   },
   {
     "address1": "1040 University Avenue",
@@ -1580,8 +1580,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94710",
-    "lat": "37.8685768",
-    "lng": "-122.2934965"
+    "lat": 37.8685768,
+    "lng": -122.2934965
   },
   {
     "address1": "7435 East Tulare Avenue",
@@ -1589,8 +1589,8 @@
     "city": "Fresno",
     "state": "CA",
     "zipCode": "93737",
-    "lat": "36.743587",
-    "lng": "-119.656145"
+    "lat": 36.743587,
+    "lng": -119.656145
   },
   {
     "address1": "1821 Catalpa Way",
@@ -1598,8 +1598,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94545",
-    "lat": "37.622266",
-    "lng": "-122.081085"
+    "lat": 37.622266,
+    "lng": -122.081085
   },
   {
     "address1": "55620 Jolon Road",
@@ -1607,8 +1607,8 @@
     "city": "King City",
     "state": "CA",
     "zipCode": "93930",
-    "lat": "36.1162599",
-    "lng": "-121.130646"
+    "lat": 36.1162599,
+    "lng": -121.130646
   },
   {
     "address1": "1076 Foster Street",
@@ -1616,8 +1616,8 @@
     "city": "Alameda",
     "state": "CA",
     "zipCode": "94502",
-    "lat": "37.736838",
-    "lng": "-122.25143"
+    "lat": 37.736838,
+    "lng": -122.25143
   },
   {
     "address1": "2732 Humboldt Avenue",
@@ -1625,8 +1625,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94602",
-    "lat": "37.7906226",
-    "lng": "-122.2090177"
+    "lat": 37.7906226,
+    "lng": -122.2090177
   },
   {
     "address1": "2500 Medallion Drive",
@@ -1634,8 +1634,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.6053127",
-    "lng": "-122.0528926"
+    "lat": 37.6053127,
+    "lng": -122.0528926
   },
   {
     "address1": "4329 Howe Street",
@@ -1643,8 +1643,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94611",
-    "lat": "37.83019",
-    "lng": "-122.249552"
+    "lat": 37.83019,
+    "lng": -122.249552
   },
   {
     "address1": "16303 Mateo Street",
@@ -1652,8 +1652,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94578",
-    "lat": "37.697031",
-    "lng": "-122.11392"
+    "lat": 37.697031,
+    "lng": -122.11392
   },
   {
     "address1": "16910 Alpine Drive",
@@ -1661,8 +1661,8 @@
     "city": "Pioneer",
     "state": "CA",
     "zipCode": "95666",
-    "lat": "38.452242",
-    "lng": "-120.525135"
+    "lat": 38.452242,
+    "lng": -120.525135
   },
   {
     "address1": "4409 Star Jasmine Court",
@@ -1670,8 +1670,8 @@
     "city": "Bakersfield",
     "state": "CA",
     "zipCode": "93304",
-    "lat": "35.314966",
-    "lng": "-119.027406"
+    "lat": 35.314966,
+    "lng": -119.027406
   },
   {
     "address1": "439 Crestmont Drive",
@@ -1679,8 +1679,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94619",
-    "lat": "37.799782",
-    "lng": "-122.178871"
+    "lat": 37.799782,
+    "lng": -122.178871
   },
   {
     "address1": "6716 South Mariposa Lane",
@@ -1688,8 +1688,8 @@
     "city": "Dublin",
     "state": "CA",
     "zipCode": "94568",
-    "lat": "37.713863",
-    "lng": "-121.9110367"
+    "lat": 37.713863,
+    "lng": -121.9110367
   },
   {
     "address1": "654 Laurette Place",
@@ -1697,8 +1697,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.647646",
-    "lng": "-122.066458"
+    "lat": 37.647646,
+    "lng": -122.066458
   },
   {
     "address1": "468 Raymond Drive",
@@ -1706,8 +1706,8 @@
     "city": "Ione",
     "state": "CA",
     "zipCode": "95640",
-    "lat": "38.356566",
-    "lng": "-120.935883"
+    "lat": 38.356566,
+    "lng": -120.935883
   },
   {
     "address1": "43626 Bryant Street",
@@ -1715,8 +1715,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94539",
-    "lat": "37.526895",
-    "lng": "-121.92052"
+    "lat": 37.526895,
+    "lng": -121.92052
   },
   {
     "address1": "5725 Medallion Court",
@@ -1724,8 +1724,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94552",
-    "lat": "37.717206",
-    "lng": "-122.057019"
+    "lat": 37.717206,
+    "lng": -122.057019
   },
   {
     "address1": "6057 Griffith Avenue",
@@ -1733,8 +1733,8 @@
     "city": "Linda",
     "state": "CA",
     "zipCode": "95901",
-    "lat": "39.1299599",
-    "lng": "-121.523663"
+    "lat": 39.1299599,
+    "lng": -121.523663
   },
   {
     "address1": "1753 Carswell Court",
@@ -1742,8 +1742,8 @@
     "city": "Suisun City",
     "state": "CA",
     "zipCode": "94585",
-    "lat": "38.262862",
-    "lng": "-121.986278"
+    "lat": 38.262862,
+    "lng": -121.986278
   },
   {
     "address1": "6452 El Camino Real",
@@ -1751,8 +1751,8 @@
     "city": "Atascadero",
     "state": "CA",
     "zipCode": "93422",
-    "lat": "35.4882383",
-    "lng": "-120.6689552"
+    "lat": 35.4882383,
+    "lng": -120.6689552
   },
   {
     "address1": "33300 Mission Boulevard",
@@ -1760,8 +1760,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.6085241",
-    "lng": "-122.0190805"
+    "lat": 37.6085241,
+    "lng": -122.0190805
   },
   {
     "address1": "612 E Street",
@@ -1769,8 +1769,8 @@
     "city": "Marysville",
     "state": "CA",
     "zipCode": "95901",
-    "lat": "39.1416756",
-    "lng": "-121.5911593"
+    "lat": 39.1416756,
+    "lng": -121.5911593
   },
   {
     "address1": "1349 Burkhart Avenue",
@@ -1778,8 +1778,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94579",
-    "lat": "37.685391",
-    "lng": "-122.152332"
+    "lat": 37.685391,
+    "lng": -122.152332
   },
   {
     "address1": "1515 Excelsior Avenue",
@@ -1787,8 +1787,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94602",
-    "lat": "37.8019867",
-    "lng": "-122.2252044"
+    "lat": 37.8019867,
+    "lng": -122.2252044
   },
   {
     "address1": "40700 Penn Lane",
@@ -1796,8 +1796,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.540659",
-    "lng": "-121.957693"
+    "lat": 37.540659,
+    "lng": -121.957693
   },
   {
     "address1": "1890 Orchard View Road",
@@ -1805,8 +1805,8 @@
     "city": "Roseville",
     "state": "CA",
     "zipCode": "95747",
-    "lat": "38.7943511",
-    "lng": "-121.3518236"
+    "lat": 38.7943511,
+    "lng": -121.3518236
   },
   {
     "address1": "3388 Thomasson Lane",
@@ -1814,8 +1814,8 @@
     "city": "Fairfield",
     "state": "CA",
     "zipCode": "94534",
-    "lat": "38.198231",
-    "lng": "-122.106795"
+    "lat": 38.198231,
+    "lng": -122.106795
   },
   {
     "address1": "1226 Blossom Circle",
@@ -1823,8 +1823,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.679629",
-    "lng": "-121.739175"
+    "lat": 37.679629,
+    "lng": -121.739175
   },
   {
     "address1": "3415 Brookdale Drive",
@@ -1832,8 +1832,8 @@
     "city": "Santa Clara",
     "state": "CA",
     "zipCode": "95051",
-    "lat": "37.342399",
-    "lng": "-121.990657"
+    "lat": 37.342399,
+    "lng": -121.990657
   },
   {
     "address1": "11256 Palos Verdes Court",
@@ -1841,8 +1841,8 @@
     "city": "Cupertino",
     "state": "CA",
     "zipCode": "95014",
-    "lat": "37.3044458",
-    "lng": "-122.0529017"
+    "lat": 37.3044458,
+    "lng": -122.0529017
   },
   {
     "address1": "25800 Industrial Boulevard",
@@ -1850,8 +1850,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94545",
-    "lat": "37.6368362",
-    "lng": "-122.1119208"
+    "lat": 37.6368362,
+    "lng": -122.1119208
   },
   {
     "address1": "1909 Seventh Street",
@@ -1859,8 +1859,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94710",
-    "lat": "37.869121",
-    "lng": "-122.296661"
+    "lat": 37.869121,
+    "lng": -122.296661
   },
   {
     "address1": "26334 Adrian Avenue",
@@ -1868,8 +1868,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94545",
-    "lat": "37.636421",
-    "lng": "-122.102691"
+    "lat": 37.636421,
+    "lng": -122.102691
   },
   {
     "address1": "5430 Brookdale Avenue",
@@ -1877,8 +1877,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94619",
-    "lat": "37.774636",
-    "lng": "-122.195447"
+    "lat": 37.774636,
+    "lng": -122.195447
   },
   {
     "address1": "4971 Janet Court",
@@ -1886,8 +1886,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.6841886",
-    "lng": "-121.7340865"
+    "lat": 37.6841886,
+    "lng": -121.7340865
   },
   {
     "address1": "3905 Lyceum Avenue",
@@ -1895,8 +1895,8 @@
     "city": "Los Angeles",
     "state": "CA",
     "zipCode": "90066",
-    "lat": "33.9967467",
-    "lng": "-118.440265"
+    "lat": 33.9967467,
+    "lng": -118.440265
   },
   {
     "address1": "5130 Morris Way",
@@ -1904,8 +1904,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.544602",
-    "lng": "-122.019375"
+    "lat": 37.544602,
+    "lng": -122.019375
   },
   {
     "address1": "3777 Mowry Avenue",
@@ -1913,8 +1913,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.5497744",
-    "lng": "-121.9881106"
+    "lat": 37.5497744,
+    "lng": -121.9881106
   },
   {
     "address1": "1701 Atlantic Street",
@@ -1922,8 +1922,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.602458",
-    "lng": "-122.046613"
+    "lat": 37.602458,
+    "lng": -122.046613
   },
   {
     "address1": "1108 Slater Street",
@@ -1931,8 +1931,8 @@
     "city": "Santa Rosa",
     "state": "CA",
     "zipCode": "95404",
-    "lat": "38.451184",
-    "lng": "-122.715459"
+    "lat": 38.451184,
+    "lng": -122.715459
   },
   {
     "address1": "31770 Alvarado Boulevard",
@@ -1940,8 +1940,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.5927298",
-    "lng": "-122.071967"
+    "lat": 37.5927298,
+    "lng": -122.071967
   },
   {
     "address1": "1013 Balboa Avenue",
@@ -1949,8 +1949,8 @@
     "city": "Capitola",
     "state": "CA",
     "zipCode": "95010",
-    "lat": "36.982036",
-    "lng": "-121.938554"
+    "lat": 36.982036,
+    "lng": -121.938554
   },
   {
     "address1": "25793 Durrwood Court",
@@ -1958,8 +1958,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94552",
-    "lat": "37.6788246",
-    "lng": "-122.0341169"
+    "lat": 37.6788246,
+    "lng": -122.0341169
   },
   {
     "address1": "1761 Thousand Oaks Boulevard",
@@ -1967,8 +1967,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94707",
-    "lat": "37.897449",
-    "lng": "-122.28256"
+    "lat": 37.897449,
+    "lng": -122.28256
   },
   {
     "address1": "1209 Parker Street",
@@ -1976,8 +1976,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94702",
-    "lat": "37.859962",
-    "lng": "-122.286565"
+    "lat": 37.859962,
+    "lng": -122.286565
   },
   {
     "address1": "266 South J Street",
@@ -1985,8 +1985,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.6805701",
-    "lng": "-121.7680214"
+    "lat": 37.6805701,
+    "lng": -121.7680214
   },
   {
     "address1": "3526 Sutton Loop",
@@ -1994,8 +1994,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.5583435",
-    "lng": "-121.9995133"
+    "lat": 37.5583435,
+    "lng": -121.9995133
   },
   {
     "address1": "856 Milton Street",
@@ -2003,8 +2003,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94607",
-    "lat": "37.817176",
-    "lng": "-122.276749"
+    "lat": 37.817176,
+    "lng": -122.276749
   },
   {
     "address1": "37608 2nd Street",
@@ -2012,8 +2012,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.576224",
-    "lng": "-121.979386"
+    "lat": 37.576224,
+    "lng": -121.979386
   },
   {
     "address1": "15267 Hesperian Boulevard",
@@ -2021,8 +2021,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94578",
-    "lat": "37.6949779",
-    "lng": "-122.1311145"
+    "lat": 37.6949779,
+    "lng": -122.1311145
   },
   {
     "address1": "8934 Arrowrock Trail",
@@ -2030,8 +2030,8 @@
     "city": "Smartsville",
     "state": "CA",
     "zipCode": "95977",
-    "lat": "39.198651",
-    "lng": "-121.280114"
+    "lat": 39.198651,
+    "lng": -121.280114
   },
   {
     "address1": "36360 Beech Place",
@@ -2039,8 +2039,8 @@
     "city": "Newark",
     "state": "CA",
     "zipCode": "94560",
-    "lat": "37.53467699999999",
-    "lng": "-122.047933"
+    "lat": 37.53467699999999,
+    "lng": -122.047933
   },
   {
     "address1": "10312 Parlett Place",
@@ -2048,8 +2048,8 @@
     "city": "Cupertino",
     "state": "CA",
     "zipCode": "95014",
-    "lat": "37.327683",
-    "lng": "-122.031104"
+    "lat": 37.327683,
+    "lng": -122.031104
   },
   {
     "address1": "5110 East Shoshone Avenue",
@@ -2057,8 +2057,8 @@
     "city": "Orange",
     "state": "CA",
     "zipCode": "92867",
-    "lat": "33.814782",
-    "lng": "-117.798075"
+    "lat": 33.814782,
+    "lng": -117.798075
   },
   {
     "address1": "4253 San Juan Avenue",
@@ -2066,8 +2066,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.560886",
-    "lng": "-122.021195"
+    "lat": 37.560886,
+    "lng": -122.021195
   },
   {
     "address1": "43949 South Moray Street",
@@ -2075,8 +2075,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94539",
-    "lat": "37.5192549",
-    "lng": "-121.926948"
+    "lat": 37.5192549,
+    "lng": -121.926948
   },
   {
     "address1": "1 Kelton Court",
@@ -2084,8 +2084,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94611",
-    "lat": "37.8243896",
-    "lng": "-122.2508859"
+    "lat": 37.8243896,
+    "lng": -122.2508859
   },
   {
     "address1": "6148 Avon Avenue",
@@ -2093,8 +2093,8 @@
     "city": "San Gabriel",
     "state": "CA",
     "zipCode": "91775",
-    "lat": "34.1107022",
-    "lng": "-118.0784535"
+    "lat": 34.1107022,
+    "lng": -118.0784535
   },
   {
     "address1": "1725 Oxford Street",
@@ -2102,8 +2102,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94709",
-    "lat": "37.87633599999999",
-    "lng": "-122.2662512"
+    "lat": 37.87633599999999,
+    "lng": -122.2662512
   },
   {
     "address1": "2708 Mabel Street",
@@ -2111,8 +2111,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94702",
-    "lat": "37.857695",
-    "lng": "-122.284908"
+    "lat": 37.857695,
+    "lng": -122.284908
   },
   {
     "address1": "328 17th Street",
@@ -2120,8 +2120,8 @@
     "city": "Paso Robles",
     "state": "CA",
     "zipCode": "93446",
-    "lat": "35.629985",
-    "lng": "-120.702516"
+    "lat": 35.629985,
+    "lng": -120.702516
   },
   {
     "address1": "16502 South Main Street",
@@ -2129,8 +2129,8 @@
     "city": "Gardena",
     "state": "CA",
     "zipCode": "90248",
-    "lat": "33.8816216",
-    "lng": "-118.2753946"
+    "lat": 33.8816216,
+    "lng": -118.2753946
   },
   {
     "address1": "1780 142nd Avenue",
@@ -2138,8 +2138,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94578",
-    "lat": "37.7168246",
-    "lng": "-122.1336681"
+    "lat": 37.7168246,
+    "lng": -122.1336681
   },
   {
     "address1": "775 47th Street",
@@ -2147,8 +2147,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94609",
-    "lat": "37.835259",
-    "lng": "-122.2688057"
+    "lat": 37.835259,
+    "lng": -122.2688057
   },
   {
     "address1": "1139 Addison Street",
@@ -2156,16 +2156,16 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94702",
-    "lat": "37.8683866",
-    "lng": "-122.290025"
+    "lat": 37.8683866,
+    "lng": -122.290025
   },
   {
     "address1": "942 Lewis Road",
     "address2": "",
     "state": "CA",
     "zipCode": "95076",
-    "lat": "36.882406",
-    "lng": "-121.701963"
+    "lat": 36.882406,
+    "lng": -121.701963
   },
   {
     "address1": "4300 Soquel Drive",
@@ -2173,8 +2173,8 @@
     "city": "Soquel",
     "state": "CA",
     "zipCode": "95073",
-    "lat": "36.9863278",
-    "lng": "-121.9625694"
+    "lat": 36.9863278,
+    "lng": -121.9625694
   },
   {
     "address1": "1820 Scenic Avenue",
@@ -2182,8 +2182,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94709",
-    "lat": "37.875242",
-    "lng": "-122.262537"
+    "lat": 37.875242,
+    "lng": -122.262537
   },
   {
     "address1": "18687 County Road 97",
@@ -2191,8 +2191,8 @@
     "city": "Woodland",
     "state": "CA",
     "zipCode": "95695",
-    "lat": "38.66777099999999",
-    "lng": "-121.820164"
+    "lat": 38.66777099999999,
+    "lng": -121.820164
   },
   {
     "address1": "725 65th Street",
@@ -2200,8 +2200,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94609",
-    "lat": "37.849964",
-    "lng": "-122.266668"
+    "lat": 37.849964,
+    "lng": -122.266668
   },
   {
     "address1": "2399 East 14th Street",
@@ -2209,8 +2209,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94577",
-    "lat": "37.7159947",
-    "lng": "-122.1460405"
+    "lat": 37.7159947,
+    "lng": -122.1460405
   },
   {
     "address1": "20370 California 116",
@@ -2218,8 +2218,8 @@
     "city": "Monte Rio",
     "state": "CA",
     "zipCode": "95462",
-    "lat": "38.4677404",
-    "lng": "-123.0097631"
+    "lat": 38.4677404,
+    "lng": -123.0097631
   },
   {
     "address1": "649 Praderia Circle",
@@ -2227,8 +2227,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94539",
-    "lat": "37.5203849",
-    "lng": "-121.9236162"
+    "lat": 37.5203849,
+    "lng": -121.9236162
   },
   {
     "address1": "461 Alder Street",
@@ -2236,8 +2236,8 @@
     "city": "Eureka",
     "state": "CA",
     "zipCode": "95503",
-    "lat": "40.76621",
-    "lng": "-124.164174"
+    "lat": 40.76621,
+    "lng": -124.164174
   },
   {
     "address1": "22709 Canyon Terrace Drive",
@@ -2245,8 +2245,8 @@
     "city": "Castro Valley",
     "state": "CA",
     "zipCode": "94552",
-    "lat": "37.688608",
-    "lng": "-122.042969"
+    "lat": 37.688608,
+    "lng": -122.042969
   },
   {
     "address1": "474 Merritt Avenue",
@@ -2254,8 +2254,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94610",
-    "lat": "37.8064419",
-    "lng": "-122.248422"
+    "lat": 37.8064419,
+    "lng": -122.248422
   },
   {
     "address1": "3072 The Alameda",
@@ -2263,8 +2263,8 @@
     "city": "Concord",
     "state": "CA",
     "zipCode": "94519",
-    "lat": "37.976075",
-    "lng": "-122.021196"
+    "lat": 37.976075,
+    "lng": -122.021196
   },
   {
     "address1": "14347 Corvallis Street",
@@ -2272,8 +2272,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94579",
-    "lat": "37.7017199",
-    "lng": "-122.1576841"
+    "lat": 37.7017199,
+    "lng": -122.1576841
   },
   {
     "address1": "31 Yosemite Avenue",
@@ -2281,8 +2281,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94611",
-    "lat": "37.823278",
-    "lng": "-122.255305"
+    "lat": 37.823278,
+    "lng": -122.255305
   },
   {
     "address1": "1818 Bay Street",
@@ -2290,8 +2290,8 @@
     "city": "Alameda",
     "state": "CA",
     "zipCode": "94501",
-    "lat": "37.7774427",
-    "lng": "-122.2641515"
+    "lat": 37.7774427,
+    "lng": -122.2641515
   },
   {
     "address1": "3008 Russell Street",
@@ -2299,8 +2299,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94705",
-    "lat": "37.8588565",
-    "lng": "-122.2442037"
+    "lat": 37.8588565,
+    "lng": -122.2442037
   },
   {
     "address1": "1397 Tallac Lane",
@@ -2308,8 +2308,8 @@
     "city": "Lincoln",
     "state": "CA",
     "zipCode": "95648",
-    "lat": "38.862404",
-    "lng": "-121.262661"
+    "lat": 38.862404,
+    "lng": -121.262661
   },
   {
     "address1": "2348 Cantalise Drive",
@@ -2317,8 +2317,8 @@
     "city": "Dublin",
     "state": "CA",
     "zipCode": "94568",
-    "lat": "37.7203643",
-    "lng": "-121.8472135"
+    "lat": 37.7203643,
+    "lng": -121.8472135
   },
   {
     "address1": "7800 River Mist Avenue",
@@ -2326,8 +2326,8 @@
     "city": "Bakersfield",
     "state": "CA",
     "zipCode": "93313",
-    "lat": "35.308551",
-    "lng": "-119.088746"
+    "lat": 35.308551,
+    "lng": -119.088746
   },
   {
     "address1": "1679 Frederick Michael Way",
@@ -2335,8 +2335,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.655627",
-    "lng": "-121.77304"
+    "lat": 37.655627,
+    "lng": -121.77304
   },
   {
     "address1": "800 California 116",
@@ -2344,8 +2344,8 @@
     "city": "Sebastopol",
     "state": "CA",
     "zipCode": "95472",
-    "lat": "38.4088988",
-    "lng": "-122.8399147"
+    "lat": 38.4088988,
+    "lng": -122.8399147
   },
   {
     "address1": "24647 Patricia Court",
@@ -2353,8 +2353,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94541",
-    "lat": "37.669022",
-    "lng": "-122.065331"
+    "lat": 37.669022,
+    "lng": -122.065331
   },
   {
     "address1": "637 Laurelwood Circle",
@@ -2362,8 +2362,8 @@
     "city": "Vacaville",
     "state": "CA",
     "zipCode": "95687",
-    "lat": "38.31891",
-    "lng": "-121.967503"
+    "lat": 38.31891,
+    "lng": -121.967503
   },
   {
     "address1": "3483 Canyon Creek Drive",
@@ -2371,8 +2371,8 @@
     "city": "San Jose",
     "state": "CA",
     "zipCode": "95132",
-    "lat": "37.414296",
-    "lng": "-121.846876"
+    "lat": 37.414296,
+    "lng": -121.846876
   },
   {
     "address1": "4770 Balboa Way",
@@ -2380,8 +2380,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.551937",
-    "lng": "-122.021022"
+    "lat": 37.551937,
+    "lng": -122.021022
   },
   {
     "address1": "7144 Marlborough Terrace",
@@ -2389,8 +2389,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94705",
-    "lat": "37.8619142",
-    "lng": "-122.2237384"
+    "lat": 37.8619142,
+    "lng": -122.2237384
   },
   {
     "address1": "512 Tennyson Road",
@@ -2398,8 +2398,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.6324522",
-    "lng": "-122.0672661"
+    "lat": 37.6324522,
+    "lng": -122.0672661
   },
   {
     "address1": "3 Carson Street",
@@ -2407,8 +2407,8 @@
     "city": "Chico",
     "state": "CA",
     "zipCode": "95928",
-    "lat": "39.725125",
-    "lng": "-121.796593"
+    "lat": 39.725125,
+    "lng": -121.796593
   },
   {
     "address1": "152 Teddy Drive",
@@ -2416,8 +2416,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.608898",
-    "lng": "-122.029517"
+    "lat": 37.608898,
+    "lng": -122.029517
   },
   {
     "address1": "2064 West Columbia Way",
@@ -2425,8 +2425,8 @@
     "city": "Hanford",
     "state": "CA",
     "zipCode": "93230",
-    "lat": "36.3336245",
-    "lng": "-119.6799802"
+    "lat": 36.3336245,
+    "lng": -119.6799802
   },
   {
     "address1": "47634 Kato Road",
@@ -2434,8 +2434,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.4711524",
-    "lng": "-121.9288008"
+    "lat": 37.4711524,
+    "lng": -121.9288008
   },
   {
     "address1": "2703 Woolsey Street",
@@ -2443,8 +2443,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94705",
-    "lat": "37.854131",
-    "lng": "-122.252442"
+    "lat": 37.854131,
+    "lng": -122.252442
   },
   {
     "address1": "1528 Spruce Street",
@@ -2452,8 +2452,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94709",
-    "lat": "37.879558",
-    "lng": "-122.266155"
+    "lat": 37.879558,
+    "lng": -122.266155
   },
   {
     "address1": "12283 Thomas Lane",
@@ -2461,8 +2461,8 @@
     "city": "Yucaipa",
     "state": "CA",
     "zipCode": "92399",
-    "lat": "34.030566",
-    "lng": "-117.089117"
+    "lat": 34.030566,
+    "lng": -117.089117
   },
   {
     "address1": "1194 Cragmont Avenue",
@@ -2470,8 +2470,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94708",
-    "lat": "37.8880229",
-    "lng": "-122.256999"
+    "lat": 37.8880229,
+    "lng": -122.256999
   },
   {
     "address1": "46710 Crawford Street",
@@ -2479,8 +2479,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94539",
-    "lat": "37.4924962",
-    "lng": "-121.9246934"
+    "lat": 37.4924962,
+    "lng": -121.9246934
   },
   {
     "address1": "314 Mesa Street",
@@ -2488,8 +2488,8 @@
     "city": "Wheatland",
     "state": "CA",
     "zipCode": "95692",
-    "lat": "39.012762",
-    "lng": "-121.424206"
+    "lat": 39.012762,
+    "lng": -121.424206
   },
   {
     "address1": "701 Mussel Slough Road",
@@ -2497,8 +2497,8 @@
     "city": "Hanford",
     "state": "CA",
     "zipCode": "93230",
-    "lat": "36.353319",
-    "lng": "-119.655288"
+    "lat": 36.353319,
+    "lng": -119.655288
   },
   {
     "address1": "39247 Sundale Drive",
@@ -2506,8 +2506,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.5384851",
-    "lng": "-121.9855489"
+    "lat": 37.5384851,
+    "lng": -121.9855489
   },
   {
     "address1": "40902 Ingersoll Terrace",
@@ -2515,8 +2515,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94538",
-    "lat": "37.537485",
-    "lng": "-121.9558629"
+    "lat": 37.537485,
+    "lng": -121.9558629
   },
   {
     "address1": "10202 Vista Drive",
@@ -2524,8 +2524,8 @@
     "city": "Cupertino",
     "state": "CA",
     "zipCode": "95014",
-    "lat": "37.3254329",
-    "lng": "-122.026957"
+    "lat": 37.3254329,
+    "lng": -122.026957
   },
   {
     "address1": "2641 Heather Lane",
@@ -2533,8 +2533,8 @@
     "city": "Redding",
     "state": "CA",
     "zipCode": "96002",
-    "lat": "40.5690835",
-    "lng": "-122.3433244"
+    "lat": 40.5690835,
+    "lng": -122.3433244
   },
   {
     "address1": "8063 Regency Drive",
@@ -2542,8 +2542,8 @@
     "city": "Pleasanton",
     "state": "CA",
     "zipCode": "94588",
-    "lat": "37.661416",
-    "lng": "-121.908019"
+    "lat": 37.661416,
+    "lng": -121.908019
   },
   {
     "address1": "1383 Purdue Street",
@@ -2551,8 +2551,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94579",
-    "lat": "37.695385",
-    "lng": "-122.156506"
+    "lat": 37.695385,
+    "lng": -122.156506
   },
   {
     "address1": "2704 McGee Avenue",
@@ -2560,8 +2560,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94703",
-    "lat": "37.8589787",
-    "lng": "-122.2757415"
+    "lat": 37.8589787,
+    "lng": -122.2757415
   },
   {
     "address1": "1265 Xavier Avenue",
@@ -2569,8 +2569,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94545",
-    "lat": "37.648362",
-    "lng": "-122.111063"
+    "lat": 37.648362,
+    "lng": -122.111063
   },
   {
     "address1": "10400 Royal Oak Road",
@@ -2578,8 +2578,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.7587409",
-    "lng": "-122.1349653"
+    "lat": 37.7587409,
+    "lng": -122.1349653
   },
   {
     "address1": "2640 8th Avenue",
@@ -2587,8 +2587,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94606",
-    "lat": "37.8014543",
-    "lng": "-122.239441"
+    "lat": 37.8014543,
+    "lng": -122.239441
   },
   {
     "address1": "2400 Easy Street",
@@ -2596,8 +2596,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94578",
-    "lat": "37.70656",
-    "lng": "-122.108047"
+    "lat": 37.70656,
+    "lng": -122.108047
   },
   {
     "address1": "101 Mustang Drive",
@@ -2605,8 +2605,8 @@
     "city": "San Luis Obispo",
     "state": "CA",
     "zipCode": "93405",
-    "lat": "35.294785",
-    "lng": "-120.66573"
+    "lat": 35.294785,
+    "lng": -120.66573
   },
   {
     "address1": "45430 Lauri Lane",
@@ -2614,8 +2614,8 @@
     "city": "Oakhurst",
     "state": "CA",
     "zipCode": "93644",
-    "lat": "37.34877",
-    "lng": "-119.717807"
+    "lat": 37.34877,
+    "lng": -119.717807
   },
   {
     "address1": "7725 Ney Avenue",
@@ -2623,8 +2623,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.767338",
-    "lng": "-122.167775"
+    "lat": 37.767338,
+    "lng": -122.167775
   },
   {
     "address1": "826 Webster Street",
@@ -2632,8 +2632,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.6410274",
-    "lng": "-122.0560558"
+    "lat": 37.6410274,
+    "lng": -122.0560558
   },
   {
     "address1": "9300 C Street",
@@ -2641,8 +2641,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94603",
-    "lat": "37.745714",
-    "lng": "-122.176955"
+    "lat": 37.745714,
+    "lng": -122.176955
   },
   {
     "address1": "835 Shiloh Court",
@@ -2650,8 +2650,8 @@
     "city": "Redding",
     "state": "CA",
     "zipCode": "96003",
-    "lat": "40.620584",
-    "lng": "-122.368137"
+    "lat": 40.620584,
+    "lng": -122.368137
   },
   {
     "address1": "1106 Mission Drive",
@@ -2659,8 +2659,8 @@
     "city": "Antioch",
     "state": "CA",
     "zipCode": "94509",
-    "lat": "37.9930596",
-    "lng": "-121.8244023"
+    "lat": 37.9930596,
+    "lng": -121.8244023
   },
   {
     "address1": "2522 Fountain Avenue",
@@ -2668,8 +2668,8 @@
     "city": "South Lake Tahoe",
     "state": "CA",
     "zipCode": "96150",
-    "lat": "38.918128",
-    "lng": "-119.98002"
+    "lat": 38.918128,
+    "lng": -119.98002
   },
   {
     "address1": "28250 Dickens Avenue",
@@ -2677,8 +2677,8 @@
     "city": "Hayward",
     "state": "CA",
     "zipCode": "94544",
-    "lat": "37.626108",
-    "lng": "-122.072898"
+    "lat": 37.626108,
+    "lng": -122.072898
   },
   {
     "address1": "4540 Phyllis Court",
@@ -2686,8 +2686,8 @@
     "city": "Livermore",
     "state": "CA",
     "zipCode": "94550",
-    "lat": "37.6871239",
-    "lng": "-121.7409406"
+    "lat": 37.6871239,
+    "lng": -121.7409406
   },
   {
     "address1": "30451 Servilla Place",
@@ -2695,8 +2695,8 @@
     "city": "Castaic",
     "state": "CA",
     "zipCode": "91384",
-    "lat": "34.47215",
-    "lng": "-118.643301"
+    "lat": 34.47215,
+    "lng": -118.643301
   },
   {
     "address1": "5938 Laguna Honda Street",
@@ -2704,8 +2704,8 @@
     "city": "Redding",
     "state": "CA",
     "zipCode": "96001",
-    "lat": "40.5283666",
-    "lng": "-122.3878429"
+    "lat": 40.5283666,
+    "lng": -122.3878429
   },
   {
     "address1": "30544 Whitmore Road",
@@ -2713,8 +2713,8 @@
     "city": "Whitmore",
     "state": "CA",
     "zipCode": "96096",
-    "lat": "40.629069",
-    "lng": "-121.91378"
+    "lat": 40.629069,
+    "lng": -121.91378
   },
   {
     "address1": "22618 South Figueroa Street",
@@ -2722,8 +2722,8 @@
     "city": "Carson",
     "state": "CA",
     "zipCode": "90745",
-    "lat": "33.8206152",
-    "lng": "-118.2855662"
+    "lat": 33.8206152,
+    "lng": -118.2855662
   },
   {
     "address1": "1497 Greenbrier Road",
@@ -2731,8 +2731,8 @@
     "city": "West Sacramento",
     "state": "CA",
     "zipCode": "95691",
-    "lat": "38.547427",
-    "lng": "-121.521598"
+    "lat": 38.547427,
+    "lng": -121.521598
   },
   {
     "address1": "3365 Wyndham Drive",
@@ -2740,8 +2740,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.5742662",
-    "lng": "-122.026342"
+    "lat": 37.5742662,
+    "lng": -122.026342
   },
   {
     "address1": "514 Flower Lane",
@@ -2749,8 +2749,8 @@
     "city": "Alameda",
     "state": "CA",
     "zipCode": "94502",
-    "lat": "37.7356811",
-    "lng": "-122.2349598"
+    "lat": 37.7356811,
+    "lng": -122.2349598
   },
   {
     "address1": "3827 West Chapman Avenue",
@@ -2758,8 +2758,8 @@
     "city": "Orange",
     "state": "CA",
     "zipCode": "92868",
-    "lat": "33.789253",
-    "lng": "-117.894846"
+    "lat": 33.789253,
+    "lng": -117.894846
   },
   {
     "address1": "29104 Quartz Lane",
@@ -2767,8 +2767,8 @@
     "city": "Tollhouse",
     "state": "CA",
     "zipCode": "93667",
-    "lat": "36.973635",
-    "lng": "-119.379621"
+    "lat": 36.973635,
+    "lng": -119.379621
   },
   {
     "address1": "1736 81st Avenue",
@@ -2776,8 +2776,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94621",
-    "lat": "37.75841",
-    "lng": "-122.175261"
+    "lat": 37.75841,
+    "lng": -122.175261
   },
   {
     "address1": "5397 Wentworth Avenue",
@@ -2785,8 +2785,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94601",
-    "lat": "37.769842",
-    "lng": "-122.200969"
+    "lat": 37.769842,
+    "lng": -122.200969
   },
   {
     "address1": "10841 Sutter Circle",
@@ -2794,8 +2794,8 @@
     "city": "Sutter Creek",
     "state": "CA",
     "zipCode": "95685",
-    "lat": "38.378499",
-    "lng": "-120.775775"
+    "lat": 38.378499,
+    "lng": -120.775775
   },
   {
     "address1": "7096 Park Mesa Way",
@@ -2803,8 +2803,8 @@
     "city": "San Diego",
     "state": "CA",
     "zipCode": "92111",
-    "lat": "32.7981052",
-    "lng": "-117.1679122"
+    "lat": 32.7981052,
+    "lng": -117.1679122
   },
   {
     "address1": "38252 Farwell Drive",
@@ -2812,8 +2812,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94536",
-    "lat": "37.5376257",
-    "lng": "-122.0104815"
+    "lat": 37.5376257,
+    "lng": -122.0104815
   },
   {
     "address1": "2014 Clemens Road",
@@ -2821,8 +2821,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94602",
-    "lat": "37.809976",
-    "lng": "-122.208322"
+    "lat": 37.809976,
+    "lng": -122.208322
   },
   {
     "address1": "32512 Christine Drive",
@@ -2830,8 +2830,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.5727239",
-    "lng": "-122.0765151"
+    "lat": 37.5727239,
+    "lng": -122.0765151
   },
   {
     "address1": "430 Fig Street",
@@ -2839,8 +2839,8 @@
     "city": "Madera",
     "state": "CA",
     "zipCode": "93638",
-    "lat": "36.96641109999999",
-    "lng": "-120.0424251"
+    "lat": 36.96641109999999,
+    "lng": -120.0424251
   },
   {
     "address1": "2511 Hearst Avenue",
@@ -2848,8 +2848,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94709",
-    "lat": "37.8754289",
-    "lng": "-122.259581"
+    "lat": 37.8754289,
+    "lng": -122.259581
   },
   {
     "address1": "210 Beachcomber Drive",
@@ -2857,8 +2857,8 @@
     "city": "Pismo Beach",
     "state": "CA",
     "zipCode": "93449",
-    "lat": "35.169193",
-    "lng": "-120.694434"
+    "lat": 35.169193,
+    "lng": -120.694434
   },
   {
     "address1": "32532 Jean Drive",
@@ -2866,8 +2866,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.5752359",
-    "lng": "-122.07283"
+    "lat": 37.5752359,
+    "lng": -122.07283
   },
   {
     "address1": "1772 150th Avenue",
@@ -2875,8 +2875,8 @@
     "city": "San Leandro",
     "state": "CA",
     "zipCode": "94578",
-    "lat": "37.708643",
-    "lng": "-122.124605"
+    "lat": 37.708643,
+    "lng": -122.124605
   },
   {
     "address1": "1 Portsmouth Road",
@@ -2884,8 +2884,8 @@
     "city": "Piedmont",
     "state": "CA",
     "zipCode": "94610",
-    "lat": "37.816922",
-    "lng": "-122.235478"
+    "lat": 37.816922,
+    "lng": -122.235478
   },
   {
     "address1": "6630 MacArthur Boulevard",
@@ -2893,8 +2893,8 @@
     "city": "Oakland",
     "state": "CA",
     "zipCode": "94605",
-    "lat": "37.7724559",
-    "lng": "-122.1773575"
+    "lat": 37.7724559,
+    "lng": -122.1773575
   },
   {
     "address1": "1481 Stannage Avenue",
@@ -2902,8 +2902,8 @@
     "city": "Berkeley",
     "state": "CA",
     "zipCode": "94702",
-    "lat": "37.87654149999999",
-    "lng": "-122.2926347"
+    "lat": 37.87654149999999,
+    "lng": -122.2926347
   },
   {
     "address1": "15557 Sutter Creek Road",
@@ -2911,8 +2911,8 @@
     "city": "Sutter Creek",
     "state": "CA",
     "zipCode": "95685",
-    "lat": "38.41209300000001",
-    "lng": "-120.738443"
+    "lat": 38.41209300000001,
+    "lng": -120.738443
   },
   {
     "address1": "33655 5th Street",
@@ -2920,8 +2920,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.601043",
-    "lng": "-122.019351"
+    "lat": 37.601043,
+    "lng": -122.019351
   },
   {
     "address1": "31250 Courthouse Drive",
@@ -2929,8 +2929,8 @@
     "city": "Union City",
     "state": "CA",
     "zipCode": "94587",
-    "lat": "37.60187639999999",
-    "lng": "-122.0648031"
+    "lat": 37.60187639999999,
+    "lng": -122.0648031
   },
   {
     "address1": "5472 Sunstar Common",
@@ -2938,8 +2938,8 @@
     "city": "Fremont",
     "state": "CA",
     "zipCode": "94555",
-    "lat": "37.5609018",
-    "lng": "-122.0567745"
+    "lat": 37.5609018,
+    "lng": -122.0567745
   },
   {
     "address1": "4493 Heath Circle",
@@ -2947,8 +2947,8 @@
     "city": "Rohnert Park",
     "state": "CA",
     "zipCode": "94928",
-    "lat": "38.367468",
-    "lng": "-122.687717"
+    "lat": 38.367468,
+    "lng": -122.687717
   },
   {
     "address1": "2337 Nebraska Avenue",
@@ -2956,8 +2956,8 @@
     "city": "Selma",
     "state": "CA",
     "zipCode": "93662",
-    "lat": "36.5616476",
-    "lng": "-119.6175431"
+    "lat": 36.5616476,
+    "lng": -119.6175431
   },
   {
     "address1": "201 Juniper Springs Drive",
@@ -2965,8 +2965,8 @@
     "city": "Mammoth Lakes",
     "state": "CA",
     "zipCode": "93546",
-    "lat": "37.6349837",
-    "lng": "-118.9915892"
+    "lat": 37.6349837,
+    "lng": -118.9915892
   },
   {
     "address1": "3610 Story Road",
@@ -2974,8 +2974,8 @@
     "city": "San Jose",
     "state": "CA",
     "zipCode": "95127",
-    "lat": "37.36691",
-    "lng": "-121.804753"
+    "lat": 37.36691,
+    "lng": -121.804753
   },
   {
     "address1": "61 Callahan Way",
@@ -2983,7 +2983,7 @@
     "city": "Mammoth Lakes",
     "state": "CA",
     "zipCode": "93546",
-    "lat": "37.647421",
-    "lng": "-118.978423"
+    "lat": 37.647421,
+    "lng": -118.978423
   }
 ]

@@ -1,15 +1,14 @@
 'use strict'
-module.exports = (sequelize, DataTypes) => {
-  const Invitation = sequelize.define('invitation', {
-    mailId: DataTypes.INTEGER,
-    sentAt: DataTypes.DATE,
-    userId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate(models) {
-        Invitation.belongsTo(models.user)
-      }
-    }
+module.exports = (sequelize, Sequelize) => {
+  const Invitation = sequelize.define('Invitation', {
+    mailId: Sequelize.INTEGER,
+    sentAt: Sequelize.DATE,
+    userId: Sequelize.INTEGER
   })
+
+  Invitation.associate = function (models) {
+    Invitation.belongsTo(models.User)
+  }
+
   return Invitation
 }

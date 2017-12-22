@@ -3,58 +3,68 @@ import { ss, c } from '../../../styles/helpers'
 
 const pricing = StyleSheet.create({
   container: {
-    display: 'flex',
+    // display: 'flex',
+    width: '70%',
     margin: '1rem',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    // flexDirection: 'column',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   planList: {
-    margin: '1rem auto 0 auto',
-    display: 'flex',
+    margin: '1rem -1rem 0 -1rem',
+
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
   plan: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignContent: 'flex-start',
-    flexWrap: 'wrap',
-    fontFamily: 'poppins-semibold',
     borderRadius: '4px',
     border: '1px solid #e5e5e5',
-    boxShadow: '1px 1px 2px #5e5e5e',
+    background: 'rgba(255,255,255,0.3)',
+    boxShadow: '6px 6px 20px #000',
+    padding: '1rem 1.5rem',
+    textShadow: '1px 1px 2px #0a0a0a',
     margin: '1rem',
-    padding: '1rem 2rem 2rem 2rem',
-    [ss.sm]: {
-      width: 'calc(100% - 4rem - 2px)',
-    },
-    [ss.md]: {
-      width: 'calc(50% - 4rem - 2px)',
-      ':last-child': {
-        width: 'calc(100% - 4rem - 2px)'
-      }
-    },
+    display: 'flex',
+    flexDirection: 'column',
+    color: c.white,
+    // [ss.sm]: {
+    //   width: 'calc(100% - 4rem - 2px)',
+    // },
+    // [ss.md]: {
+    //   width: 'calc(50% - 4rem - 2px)',
+    //   ':last-child': {
+    //     width: 'calc(100% - 4rem - 2px)'
+    //   }
+    // },
     [ss.lg]: {
-      maxWidth: '440px',
-      width: 'calc(33.33333% - 4rem - 2px)',
-      ':last-child': {
-        width: 'calc(33.33333% - 4rem - 2px)'
-      }
+    //   maxWidth: '440px',
+      width: 'calc(50% - 5rem - 2px)',
+    //   ':last-child': {
+    //     width: 'calc(33.33333% - 4rem - 2px)'
+    //   }
     },
+  },
+  header: {
+    overflow: 'auto'
   },
   planTitle: {
-    fontFamily: 'poppins-semibold',
-    fontSize: '1.5rem',
+    float: 'left',
+    fontSize: '2.4rem',
+    fontWeight: '100'
   },
   changeLink: {
-    fontFamily: 'poppins-regular',
+
     fontSize: '0.875rem',
   },
   details: {
     alignSelf: 'flex-start',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    flex: '1 0 auto'
+  },
+  planPrice: {
+    float: 'right',
+    fontSize: '2.4rem',
+    fontWeight: '100'
   },
   // price: {
   //   flex: '1 1 100%',
@@ -62,8 +72,8 @@ const pricing = StyleSheet.create({
   //   fontSize: '2rem',
   // },
   // dollarSign: {
-  //   fontFamily: 'poppins-semibold',
   //   fontSize: '1.2rem',
+  //   lineHeight: '1.2rem',
   //   verticalAlign: 'top'
   // },
   // cents: {
@@ -71,42 +81,36 @@ const pricing = StyleSheet.create({
   //   fontSize: '1.2rem',
   // },
   desc: {
+    padding: '1rem 0',
     flex: '1 1 100%',
-    textTransform: 'uppercase',
-    fontFamily: 'poppins-light',
+    clear: 'both',
     fontSize: '1rem',
   },
   features: {
-    padding: '0',
+    padding: '1rem 0',
     listStyle: 'none',
   },
   feature: {
-    position: 'relative',
-    overflow: 'auto',
-    marginBottom: '8px',
+    marginBottom: '1.2rem',
     padding: '6px',
   },
   icon: {
-    width: '16px',
-    height: '16px',
-    display: 'block',
-    marginRight: '10px',
+    width: '2.4rem',
+    height: '2.2rem',
     float: 'left',
+    marginRight: '10px',
+    textAlign: 'center'
   },
   featureDesc: {
-    float: 'left',
-    fontFamily: 'poppins-regular',
+    marginLeft: '3rem',
     margin: '0',
-    width: 'calc(100% - 26px)',
   },
   buttonWrapper: {
-    display: 'flex',
-    flexGrow: '8',
-    alignItems: 'flex-end'
   },
   contactFooter: {
     textAlign: 'center',
-    margin: '2rem'
+    margin: '2rem 10rem',
+    color: c.white
   }
 })
 

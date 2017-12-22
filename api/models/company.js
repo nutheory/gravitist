@@ -1,25 +1,61 @@
 'use strict'
-module.exports = (sequelize, DataTypes) => {
-  const Company = sequelize.define('company', {
-    name: DataTypes.STRING,
-    display: DataTypes.BOOLEAN,
-    addressId: DataTypes.INTEGER,
-    logoId: DataTypes.INTEGER,
-    colors: DataTypes.ARRAY(DataTypes.STRING),
-    font: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate(models) {
-        Company.hasOne(models.asset)
-        Company.hasMany(models.contact, {
-          foreignKey: 'contactableId',
-          constraints: false,
-          scope: {
-            contactableType: 'company'
-          }
-        })
-      }
+module.exports = (sequelize, Sequelize) => {
+  const Company = sequelize.define('Company', {
+    ownerId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    key: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    subtitle: Sequelize.STRING,
+    styles: Sequelize.JSONB,
+    visible: {
+      type: Sequelize.BOOLEAN,
+      default: false
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
     }
   })
+
+  Company.updateFields = () => {
+    return [ 'name', 'subtitle', 'styles', 'visible', 'logo' ]
+  }
+
+  Company.associate = function (models) {
+    Company.hasOne(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'logo'
+      },
+      onDelete: 'CASCADE',
+      hooks: true,
+      as: 'logo'
+    })
+    Company.hasMany(models.Contact, {
+      foreignKey: 'contactableId',
+      constraints: false,
+      scope: {
+        contactable: 'company'
+      }
+    })
+    Company.hasMany(models.User, {
+      foreignKey: 'companyId',
+      as: 'company'
+    })
+  }
+
   return Company
 }

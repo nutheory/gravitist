@@ -1,30 +1,38 @@
 const express = require('express')
-const graphQLHTTP = require('express-graphql')
+const graphqlHTTP = require('express-graphql')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
-const errorhandler = require('errorhandler')
+const logger = require('morgan')
 const passport = require('passport')
-const morgan = require('morgan')
-const multer  = require('multer')
-const schema = require('./graphql/schema')
+const { tokenAuthenticate,
+        publicPassThrough } = require('./middleware')
+const { avatarUploader,
+        logoUploader,
+        insuranceUploader,
+        licenseUploader,
+        pilotOrderUploader,
+        pilotOrderUploadResult,
+        uploadResult } = require('./services/assets')
 const config = require('./config')
-const passportConfig = require('./services/auth')
-const app = express()
-const storage = multer.memoryStorage()
-const upload = multer({ storage: storage })
-const isDev = app.settings.env === 'development'
-const router = express.Router()
+const multer = require('multer')
+const upload = multer({ limits: { fileSize: 52428800 }})
+const Auth = require('./services/auth')
+const schema = require('./graphql/schema')
 
-function serverStart() {
+const secret = config.jwt.secret
 
+function serverStart(done, appPort){
+  app = express()
+  const PORT = appPort || 9002
+  // app.use(opbeat.middleware.express())
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  app.use(morgan(':remote-addr - :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'))
   app.use(cors())
-  if (isDev) { app.use(errorhandler()) }
+  app.use(logger(':remote-addr - :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'))
   app.use(express.static(path.resolve() + '/dist/'))
   app.use(passport.initialize())
   app.use(function(err, req, res, next) {
@@ -33,52 +41,68 @@ function serverStart() {
   })
 
   app.use('/graphql',
-    (req, res, next) => {
-      console.log("checkForToken - reqHeaders",req.headers)
-      if (!req.headers.authorization || req.headers.authorization == 'undefined'){return next()}
-      console.log("checkForToken - has token")
-      passport.authenticate('bearer', (err, user, info) => {
-        if (err) return next(err)
-        if (user) {
-          req.user = user
-          return next()
-        } else {
-          return res.status(401).json({ status: 'error', code: 'unauthorized' })
-        }
-      })(req, res, next)
-    },
-    // (req, res, next) => {
-    //   console.log("checkForLoginCredentials - req.body.variables", req.body.variables)
-    //   console.log("req.body.variables.input", (req.body.variables.input ? true : false))
-    //   if (!req.body.variables.input || !req.body.variables.input.password){
-    //     console.log("checkForLoginCredentials - IF is TRUE, going to NEXT")
-    //     return next()
-    //   }
-    //   console.log("checkForLoginCredentials - IF is FALSE, passed check")
-    //   passport.authenticate('local', function(err, user, info) {
-    //     console.log("checkForLoginCredentials - err", err)
-    //     console.log("checkForLoginCredentials - user", user)
-    //     console.log("checkForLoginCredentials - info", info)
-    //     if (err) return next(err)
-    //     if (!user) {
-    //       return res.status(401).json({ status: 'error', code: 'unauthorized' })
-    //     } else {
-    //       return res.json({ token: jwt.sign({id: user.id}, secret) })
-    //     }
-    //   })(req, res, next)
-    // },
-    // (req, res, next) => {
-    //   console.log("passThrough reached - user", req.user)
-    //   return next()
-    // },
-    graphQLHTTP(async (req, res, graphQLParams) => ({
-      schema: schema,
-      graphiql: true
+    tokenAuthenticate,
+    publicPassThrough,
+    graphqlHTTP(async (req, res, graphQLParams) => ({
+      schema
     }))
   )
 
-  app.post('/asset-uploads', upload.array('assets'), (req, res) => {
-    // console.log('REQQQQQ',req.body.file)
+  app.post('/avatar-uploader', tokenAuthenticate, publicPassThrough, upload.single('avatar'), async (req, res, next) => {
+    console.log('UPPPPPPP',req)
+    const upload = await avatarUploader(req).catch(err => { throw err })
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/avatar-notify-url', async (req, res, next) => {
+    console.log('RETURN',req)
+    const result = await uploadResult(req, "user", "avatar")
+      .catch(err => { throw err })
+  })
+
+  app.post('/logo-uploader', tokenAuthenticate, publicPassThrough, upload.single('logo'), async (req, res, next) => {
+    const upload = await logoUploader(req).catch(err => { throw err })
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/logo-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "logo")
+      .catch(err => { throw err })
+  })
+
+  app.post('/insurance-uploader', tokenAuthenticate, publicPassThrough, upload.single('insurance'), async (req, res, next) => {
+    const upload = await  insuranceUploader(req)
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/insurance-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "insurance")
+      .catch(err => { throw err })
+  })
+
+  app.post('/license-uploader', tokenAuthenticate, publicPassThrough, upload.single('license'), async (req, res, next) => {
+    const upload = await licenseUploader(req)
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(upload))
+  })
+
+  app.post('/license-notify-url', async (req, res, next) => {
+    const result = await uploadResult(req, "license")
+      .catch(err => { throw err })
+  })
+
+  app.post('/pilot-order-uploader', tokenAuthenticate, publicPassThrough, upload.array('assets', 40), async (req, res, next) => {
+    const uploads = await pilotOrderUploader(req).catch(err => { throw err })
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(uploads))
+  })
+
+  app.post('/pilot-order-notify-url', async (req, res, next) => {
+    const result = await pilotOrderUploadResult(req)
+      .catch(err => { throw err })
   })
 
   app.get('*', (req, res) => {
@@ -86,15 +110,12 @@ function serverStart() {
   })
 
   return new Promise(resolve => {
-    const server = app.listen(process.env.PORT || 5000, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Listening on port ${server.address().port}`)
-      server.on('close', () => {
-        console.log(`Goodbye`)
-      })
       resolve(server)
     })
   })
-
 }
+
 
 module.exports = { serverStart }
