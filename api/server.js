@@ -26,7 +26,7 @@ const secret = config.jwt.secret
 
 function serverStart(done, appPort){
   app = express()
-  const PORT = appPort || 9002
+  const PORT = appPort || 9000
   // app.use(opbeat.middleware.express())
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
