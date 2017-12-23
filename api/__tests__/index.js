@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { intStart } = require('./utils/integration_server')
 
 let server
