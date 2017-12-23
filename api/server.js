@@ -26,7 +26,7 @@ const secret = config.jwt.secret
 
 function serverStart(done, appPort){
   app = express()
-  const PORT = appPort || 9000
+  // const PORT = appPort || 9000
   // app.use(opbeat.middleware.express())
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
@@ -110,12 +110,14 @@ function serverStart(done, appPort){
   })
 
   return new Promise(resolve => {
-    const server = app.listen(PORT, () => {
+    const server = app.listen(process.env.PORT || 5000, () => {
       console.log(`Listening on port ${server.address().port}`)
       resolve(server)
     })
   })
 }
+// .listen(process.env.PORT || 5000)
+
 
 
 module.exports = { serverStart }
