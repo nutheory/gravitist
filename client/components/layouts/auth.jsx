@@ -34,3 +34,5 @@ const AuthLayout = ({ component: Component, auth, ...rest }) => {
     )} />
   )
 }
+
+export default AuthLayout

@@ -2,52 +2,6 @@ import { StyleSheet, css } from 'aphrodite'
 import { ss, c } from './helpers'
 
 const commonText = StyleSheet.create({
-  synopsis: {
-    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
-    margin: '0',
-    display: 'flex',
-    alignItems: 'right',
-    flexDirection: 'column',
-    color: c.white,
-    // textTransform: 'uppercase',
-    position: 'relative',
-    textAlign: 'right',
-    zIndex: '10',
-    fontWeight: '200',
-    textShadow: '2px 2px 2px #000',
-    [ss.sm]: {
-      width: '90%',
-      fontSize: '1.6rem',
-    },
-    [ss.lg]: {
-      width: '50%',
-      marginLeft: '50%',
-      fontSize: '3.6rem',
-      lineHeight: '4.4rem'
-    },
-  },
-  bevSynopsis: {
-    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
-    margin: '0',
-    display: 'flex',
-    alignItems: 'right',
-    flexDirection: 'column',
-    color: c.white,
-    // textTransform: 'uppercase',
-    position: 'relative',
-    textAlign: 'right',
-    zIndex: '10',
-    fontWeight: '200',
-    textShadow: '2px 2px 2px #000',
-    [ss.sm]: {
-      width: '90%',
-      fontSize: '1.6rem',
-    },
-    [ss.lg]: {
-      fontSize: '3.6rem',
-      lineHeight: '4.4rem'
-    },
-  },
   sectionHeader: {
     fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     textTransform: 'uppercase',
@@ -108,6 +62,13 @@ const commonText = StyleSheet.create({
     lineHeight: '1.8rem',
     textShadow: '1px 1px 2px #666',
     fontWeight: '100'
+  },
+  bulletListTextSmall: {
+    margin: '4px 0 4px 6rem',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
+    fontSize: '1.0rem',
+    lineHeight: '1.4rem',
+    fontWeight: '300'
   },
   infoAreaText: {
     fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',

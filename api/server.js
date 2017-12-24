@@ -24,9 +24,8 @@ const schema = require('./graphql/schema')
 
 const secret = config.jwt.secret
 
-function serverStart(done, appPort){
+function serverStart(done){
   app = express()
-  // const PORT = appPort || 9000
   // app.use(opbeat.middleware.express())
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
@@ -49,14 +48,12 @@ function serverStart(done, appPort){
   )
 
   app.post('/avatar-uploader', tokenAuthenticate, publicPassThrough, upload.single('avatar'), async (req, res, next) => {
-    console.log('UPPPPPPP',req)
     const upload = await avatarUploader(req).catch(err => { throw err })
     res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(upload))
   })
 
   app.post('/avatar-notify-url', async (req, res, next) => {
-    console.log('RETURN',req)
     const result = await uploadResult(req, "user", "avatar")
       .catch(err => { throw err })
   })
@@ -116,8 +113,5 @@ function serverStart(done, appPort){
     })
   })
 }
-// .listen(process.env.PORT || 5000)
-
-
 
 module.exports = { serverStart }

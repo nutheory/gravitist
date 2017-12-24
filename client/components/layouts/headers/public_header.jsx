@@ -92,7 +92,7 @@ class PublicHeader extends Component {
     if (width > 960){
       return(
         <div className={css(hdr.absoluteHeader)}>
-          <div className={`${css(hdr.bg)} ${this.state.bgPinned === true ? css(hdr.bgPin) : ''}`} style={{background: `url(${require('../../../assets/images/header.jpg')})`}}></div>
+          <div className={`${css(hdr.bg)} ${this.state.bgPinned === true ? css(hdr.bgPin) : ''}`}></div>
           <header id="AppHeader" className={`${css(hdr.container)} columns`}>
             <div className={`${css(hdr.logoArea)} column is-half`}>
               <div className={css(hdr.logoArea)}>

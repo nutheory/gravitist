@@ -2,22 +2,49 @@ import { StyleSheet, css } from 'aphrodite'
 import { ss, c } from '../../../styles/helpers'
 
 const howItWorks = StyleSheet.create({
-  instruction: {
+  bulletListText: {
+    marginLeft: '6rem',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
+    fontSize: '1rem',
+    lineHeight: '1.2rem',
+    textShadow: 'none',
+    fontWeight: '100'
+  },
+  button: {
     position: 'relative',
+    width: '60%',
+    margin: '2rem auto'
   },
-  stepNumber: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: '-20px',
-    right: '-20px',
-    width: '40px',
-    height: '40px',
-    borderRadius: '20px',
-    background: c.blue,
-    color: c.white
+  name: {
+    color: '#999',
+    fontSize: '1rem',
+    lineHeight: '1.4rem',
+    float: 'left',
+    width: '50%',
+    [ss.sm]: {
+      textAlign: 'center',
+    },
   },
+  location: {
+    color: '#999',
+    fontSize: '1rem',
+    lineHeight: '1.4rem',
+    float: 'left',
+    width: '50%',
+    textAlign: 'right',
+    [ss.sm]: {
+      textAlign: 'center',
+    },
+  },
+  qoute: {
+    fontSize: '1rem',
+    color: '#4a4a4a',
+    lineHeight: '1.4rem',
+    marginBottom: '0.4rem',
+    [ss.sm]: {
+      textAlign: 'center',
+    },
+  }
 })
 
 export default howItWorks

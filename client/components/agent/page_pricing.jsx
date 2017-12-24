@@ -14,7 +14,7 @@ const Pricing = (props: Props) => {
   return (
     <div>
       <div className={css(cL.pricingContainer)}>
-        <div className={css(cL.heroBg, cL.heroBgFull)} style={{background: `url(${require('../../assets/images/pricingBg2.jpg')}) no-repeat`}}>
+        <div className={css(cL.specialHeroBg, cL.heroBgFull)} style={{background: `url(${require('../../assets/images/pricingBg2.jpg')}) no-repeat`}}>
           <div className={css(cL.pricingOverlay)}></div>
           <div className={css(cL.centerMainContent)}>
             <Route exact path="/pricing" render={({match}) => (

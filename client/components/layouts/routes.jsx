@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { graphql } from 'react-apollo'
@@ -20,7 +21,11 @@ import AgentDashboard from '../dashboard/agent_index'
 import PilotDashboard from '../dashboard/pilot_index'
 // Admin
 
-const Routes = (props) => {
+type Props = {
+
+}
+
+const Routes = () => {
   return (
     <div>
       <Switch>

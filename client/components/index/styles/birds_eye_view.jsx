@@ -2,6 +2,40 @@ import { StyleSheet, css } from 'aphrodite'
 import { ss, c } from '../../../styles/helpers'
 
 const birdsEyeView = StyleSheet.create({
+  synopsis: {
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
+    margin: '0',
+    display: 'flex',
+    alignItems: 'right',
+    flexDirection: 'column',
+    color: c.white,
+    position: 'relative',
+    textAlign: 'right',
+    fontWeight: '200',
+    textShadow: '2px 2px 2px #000',
+    [ss.sm]: {
+      width: '90%',
+      fontSize: '1.6rem',
+    },
+    [ss.lg]: {
+      fontSize: '3.6rem',
+      lineHeight: '4.4rem'
+    },
+  },
+  infoText: {
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
+    color: c.white,
+    fontSize: '2.4rem',
+    fontWeight: '200',
+    textShadow: '2px 2px 2px #000',
+    lineHeight: '3rem',
+    [ss.sm]: {
+      width: '100%',
+    },
+    [ss.lg]: {
+      width: '100%',
+    },
+  },
   container: {
     position: 'relative',
     background: `url(${require('../../../assets/images/phone.jpg')})`,
@@ -64,55 +98,18 @@ const birdsEyeView = StyleSheet.create({
       marginLeft: '35%'
     },
   },
-  worksWith: {
-    [ss.sm]: {
-      marginTop: '2rem',
-      marginBottom: '2rem'
-    },
-    [ss.sm]: {
-      marginTop: '3rem',
-      marginBottom: '3rem'
-    },
-
-    [ss.lg]: {
-      marginTop: '4rem',
-      marginBottom: '4rem'
-    },
+  ctaButtons: {
+    width: '100%',
+    marginTop: '2rem',
   },
-  worksWithHeader: {
-    fontFamily: 'poppins-bold',
-    textTransform: 'uppercase',
+  ctaButtonRight: {
+    display: 'inline-block',
+    width: '20rem',
   },
-  worksWithLogos: {
-    display: 'flex',
-    alignItems: 'center',
-    [ss.sm]: {
-      flexWrap: 'wrap',
-      textAlign:'center',
-      justifyContent: 'center',
-    },
-    [ss.md]: {
-      flexWrap: 'wrap',
-    },
-    [ss.lg]: {
-    },
-  },
-  logo: {
-    backgroundPosition: 'center center',
-    [ss.sm]: {
-      marginRight: '1.2rem',
-      marginBottom: '1.5rem',
-    },
-    [ss.md]: {
-      marginRight: '1.2rem',
-      marginBottom: '1.5rem',
-    },
-    [ss.lg]: {
-      marginRight: '1.4rem',
-    },
-    ':last-child': {
-      marginRight: '0'
-    }
+  ctaButtonLeft: {
+      display: 'inline-block',
+    width: '20rem',
+    marginRight: '40px'
   }
 })
 

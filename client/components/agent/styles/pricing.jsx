@@ -5,14 +5,13 @@ const pricing = StyleSheet.create({
   container: {
     // display: 'flex',
     width: '70%',
-    margin: '1rem',
+    margin: '6rem auto',
     // flexDirection: 'column',
     // alignItems: 'center',
     // justifyContent: 'center',
   },
   planList: {
     margin: '1rem -1rem 0 -1rem',
-
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
@@ -53,7 +52,6 @@ const pricing = StyleSheet.create({
     fontWeight: '100'
   },
   changeLink: {
-
     fontSize: '0.875rem',
   },
   details: {
@@ -66,20 +64,6 @@ const pricing = StyleSheet.create({
     fontSize: '2.4rem',
     fontWeight: '100'
   },
-  // price: {
-  //   flex: '1 1 100%',
-  //   fontFamily: 'poppins-semibold',
-  //   fontSize: '2rem',
-  // },
-  // dollarSign: {
-  //   fontSize: '1.2rem',
-  //   lineHeight: '1.2rem',
-  //   verticalAlign: 'top'
-  // },
-  // cents: {
-  //   fontFamily: 'poppins-semibold',
-  //   fontSize: '1.2rem',
-  // },
   desc: {
     padding: '1rem 0',
     flex: '1 1 100%',
@@ -104,8 +88,6 @@ const pricing = StyleSheet.create({
   featureDesc: {
     marginLeft: '3rem',
     margin: '0',
-  },
-  buttonWrapper: {
   },
   contactFooter: {
     textAlign: 'center',

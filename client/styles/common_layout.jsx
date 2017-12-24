@@ -4,11 +4,8 @@ import { ss, c } from './helpers'
 const commonLayout = StyleSheet.create({
   centerMainContent: {
     position: 'relative',
-    zIndex: '8',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: '100%'
   },
   heroContainer: {
@@ -18,7 +15,7 @@ const commonLayout = StyleSheet.create({
   },
   pricingContainer: {
     display: 'block',
-    height: '100vh',
+    minHeight: '100vh',
     position: 'relative',
   },
   fourContainer: {
@@ -42,8 +39,18 @@ const commonLayout = StyleSheet.create({
     justifyContent: 'center',
     backgroundPosition: 'center center',
   },
+  specialHeroBg: {
+    backgroundSize: 'cover',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundPosition: 'center center',
+  },
   heroBgFull: {
-    height: '100vh'
+    overflow: 'auto',
+    minHeight: '100vh'
   },
   heroOverlay: {
     width: '100%',

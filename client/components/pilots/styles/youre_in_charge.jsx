@@ -5,7 +5,11 @@ const youreInCharge = StyleSheet.create({
   container: {
     width: '100%',
     background: c.blue,
-    overflow: 'auto'
+    overflow: 'auto',
+    background: '#6441A5',
+    background: '-webkit-linear-gradient(to bottom, #2a0845, #6441A5)',
+    background: 'linear-gradient(to bottom, #2a0845, #6441A5)'
+
   },
   formatter: {
     justifyContent: 'space-between',
@@ -46,7 +50,7 @@ const youreInCharge = StyleSheet.create({
     width: '110px',
     height: '24px',
   },
-  signupOnline: {
+  signup: {
     background: c.white,
     overflow: 'auto',
     [ss.sm]: {
@@ -62,10 +66,13 @@ const youreInCharge = StyleSheet.create({
   soWrapper: {
     margin: '3rem 1rem',
   },
-  buttonWrapper: {
+  button: {
+    width: '90%',
+    display: 'block',
+    margin: 'auto',
     [ss.sm]: {
       padding: '0 0.8rem',
-      margin: '2rem auto 0.8rem auto',
+      margin: '1rem auto 0.4rem auto',
     },
     [ss.md]: {
       padding: '0 2rem',
@@ -79,6 +86,9 @@ const youreInCharge = StyleSheet.create({
     marginRight: '0.6rem',
   },
   yicHeader: {
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
+    fontWeight: '200',
+    textShadow: '2px 2px 2px #000',
     fontSize: '1.6rem',
     [ss.sm]: {
       textAlign: 'center',
@@ -88,7 +98,9 @@ const youreInCharge = StyleSheet.create({
     },
   },
   soHeader: {
-    fontFamily: 'poppins-bold',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
+    fontWeight: '200',
+    textShadow: '2px 2px 2px #000',
     textAlign: 'center',
     fontSize: '1.6rem',
   },
@@ -120,9 +132,9 @@ const youreInCharge = StyleSheet.create({
     padding: '0 1rem',
     color: c.grey,
   },
-  blueText: {
-    textTransform: 'uppercase',
-    color: c.blue,
+  bottomText: {
+    margin: '1rem',
+    color: c.grey,
     textAlign: 'center',
     [ss.sm]: {
       fontSize: '1rem',

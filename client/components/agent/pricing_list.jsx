@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
-import pricing from './styles/pricing'
+import prc from './styles/pricing'
 import cT from '../../styles/common_text'
 import cL from '../../styles/common_layout'
 import _ from 'lodash'
@@ -31,12 +31,12 @@ class PricingList extends Component {
 
   render(){
     return(
-      <div id="pricingList" className={css(cL.wrapper, pricing.container)}>
+      <div id="pricingList" className={css(prc.container)}>
         <div className={css(cT.bigTitle)}>Get Started by Choosing a Plan!</div>
-        <div className={`${css(pricing.planList)} columns`}>
+        <div className={`${css(prc.planList)} columns`}>
           { plans.map( plan => <PricingPlan key={plan.name} planSpecifics={plan} selectedPlan={this.selectedPlan} /> )}
         </div>
-        <p className={css(pricing.contactFooter)}>Alternatively, contact us at <a href="mailto:info@homefilming.com">info@homefilming.com</a> or <a href="tel:1-800-000-0000">1-800-000-0000</a> for your free consultation
+        <p className={css(prc.contactFooter)}>Alternatively, contact us at <a href="mailto:info@homefilming.com">info@homefilming.com</a> or <a href="tel:1-800-000-0000">1-800-000-0000</a> for your free consultation
 to find out just how we can help your business grow the smart way!</p>
       </div>
     )

@@ -3,32 +3,31 @@ import { ss, c } from '../../../styles/helpers'
 
 const hero = StyleSheet.create({
   wrapper: {
-    width: '90%'
+    width: '90%',
+    position: 'relative',
+    zIndex: '1'
   },
   synopsis: {
-    fontFamily: 'poppins-bold',
+    fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     margin: '0',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'right',
     flexDirection: 'column',
     color: c.white,
-    textTransform: 'uppercase',
     position: 'relative',
-    textAlign: 'center',
-    zIndex: '10',
-    textShadow: '1px 1px 2px #0a0a0a',
-    [ss.lg]: {
-      width: '75%',
-      fontSize: '3.5rem',
-    },
-    [ss.md]: {
-      width: '75%',
-      fontSize: '3.5rem',
-    },
+    textAlign: 'right',
+    fontWeight: '200',
+    textShadow: '2px 2px 2px #000',
     [ss.sm]: {
       width: '90%',
       fontSize: '1.6rem',
-    }
+    },
+    [ss.lg]: {
+      width: '50%',
+      marginLeft: '50%',
+      fontSize: '3.6rem',
+      lineHeight: '4.4rem'
+    },
   },
   ctaButtons: {
     width: '100%',
@@ -43,37 +42,7 @@ const hero = StyleSheet.create({
       display: 'inline-block',
     width: '20rem',
     marginRight: '40px'
-  },
-  bulletPoints: {
-    display: 'flex',
-    color: c.white,
-    position: 'relative',
-    flexWrap: 'wrap',
-    zIndex: '10',
-    fontSize: '1.5rem',
-    justifyContent: 'center',
-    textShadow: '1px 1px 2px #0a0a0a',
-    [ss.lg]: {
-      fontSize: '1.5rem',
-    },
-    [ss.sm]: {
-      fontSize: '1rem',
-      paddingLeft: '10px'
-    }
-  },
-  point: {
-    margin: '10px 40px',
-    flexWrap: 'nowrap',
-    [ss.sm]: {
-
-    }
-  },
-  playIcon: {
-    width: '22px',
-    height: '22px',
-    display: 'inline-block',
-    marginRight: '10px',
-  },
+  }
 })
 
 export default hero
