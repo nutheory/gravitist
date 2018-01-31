@@ -4,10 +4,44 @@ const compose = require('folktale/core/lambda/compose')
 const { chain, map } = require('folktale/fantasy-land')
 const R = require('ramda')
 const db = require('../models')
+const Op = db.Sequelize.Op
 const { createError } = require('../utils/appErrors')
-const { retrieveCustomer, addCustomerSource } = require('../services/payments')
+const { retrieveCustomer, addCustomerSource } = require('./payments')
 const { FailFastError } = require('../utils/errors')
 const chalk = require('chalk')
+
+const capitalize = str =>
+  str.charAt(0).toUpperCase() + str.slice(1)
+
+const userInclude = (criteria) => {
+  if(criteria && criteria.type === "pilot"){
+    return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatar' },
+      { model: db.Asset, as: 'insurance' }, { model: db.Asset, as: 'license' },
+      { model: db.Contact, as: 'contacts' }] }
+  } else {
+    return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatar' },
+    { model: db.Contact, as: 'contacts' }] }
+  }
+}
+
+const userIncludes = (criteria) => {
+  if( criteria && criteria.type === "pilot"){
+    return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
+      { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
+      { model: db.Contact, as: 'contacts' }] }
+  } else {
+    return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
+    { model: db.Contact, as: 'contacts' }] }
+  }
+}
+
+const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
+  const obj = {}
+  if( sortKey && sortValue ){ obj.order = [[ sortKey, sortValue ]] }
+  if( sizeLimit ){ obj.limit = sizeLimit }
+  if( colOffset ){ obj.offset = colOffset }
+  return obj
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -17,77 +51,126 @@ const log = data => R.tap(() => console.log(chalk.blue.bold('DATA'), data), data
 const getFullUser = findBy =>
   task(resolver =>
     db.User.findOne({ where: (findBy.id ? { id: findBy.id  } : { email: findBy.email.toLowerCase() } ),
-      rejectOnEmpty: true, include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatar' },
-      { model: db.Asset, as: 'insurance' }, { model: db.Asset, as: 'license' },
-      { model: db.Contact, as: 'contacts' }] })
-    .then(res => resolver.resolve({ usr: res, auth: findBy }) )
-    .catch(err => resolver.reject(FailFastError(err.name, { args: findBy, loc: 'Service: User.getFullUser' }))) )
+      rejectOnEmpty: true, include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
+        { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
+        { model: db.Contact, as: 'contacts' }] })
+      .then(res => resolver.resolve({ usr: res, auth: findBy }) )
+      .catch(err => resolver.reject(FailFastError(err.name, { args: findBy, loc: 'Service: User.getFullUser' }))) )
+  .run().promise()
+
+const getCoreUser = ({ usr, attrs }) =>
+  task(resolver =>
+    db.User.find({ where: { id: attrs.id }, rejectOnEmpty: true,
+      include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' }] })
+      .then(usr => resolver.resolve({ usr, attrs }) )
+      .catch(err => resolver.reject(FailFastError(err.name, { args: attr, loc: 'Service: User.getCoreUser' }))) )
   .run().promise()
 
 const getUser = attrs =>
   task(resolver =>
-    db.User.find({ where: { id: attrs.id }, rejectOnEmpty: true, include: [{ model: db.Contact, as: 'contacts' }] })
-      .then(usr => resolver.resolve({usr, attrs}))
+    db.User.find({ where: { id: attrs.id }, rejectOnEmpty: true })
+      .then(usr => resolver.resolve({ usr, attrs }))
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getUser' }))) )
   .run().promise()
 
-const getAsscAccessorName = asscName =>
-  'create' + asscName.charAt(0).toUpperCase() + asscName.slice(1)
+const getUsersByCriteria = attrs =>
+  task(resolver =>
+    db.User.findAll(R.merge({ where: R.merge(attrs.criteria,
+      { [Op.or]: [
+        { name: { [Op.iLike]: `%${attrs.queryString}%` } },
+        { email: { [Op.iLike]: `%${attrs.queryString}%` } },
+        { customerId: { [Op.iLike]: `%${attrs.queryString}%` } },
+        { accountId: { [Op.iLike]: `%${attrs.queryString}%` } }
+      ] }) }, R.merge(userIncludes(attrs.criteria), collectionOptions( attrs.options))))
+      .then(users => resolver.resolve({ users }))
+      .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getUser' }))) )
+  .run().promise()
 
-const buildContactAssociations = async (asscConts) => {
-  const contacts = []
-  asscConts.contacts.map(contact =>
-    contacts.push( task(resolver =>
-      asscConts.usr.createContact(contact, { transaction: asscConts.tx })
-      .then(res => resolver.resolve(res.dataValues)))))
-  const result = await waitAll(contacts).run().promise()
-  return { contacts: result }
+const contactAssociations = async (asscConts) => {
+  if(asscConts.contacts && asscConts.contacts.length > 0){
+    const contacts = []
+    asscConts.contacts.map(contact => {
+      if(contact.status === "delete"){
+        contacts.push( task(resolver =>
+          db.Contact.destroy({ where: { id: contact.id }, transaction: asscConts.tx })
+            .then(res => resolver.resolve(res.dataValues))))
+      } else if(contact.status === "new"){
+        contacts.push( task(resolver =>
+          asscConts.usr.createContact({ type: contact.type, content: contact.content,
+            default: contact.default }, { transaction: asscConts.tx })
+          .then(res => resolver.resolve(res.dataValues))))
+      } else {
+        contacts.push( task(resolver =>
+          db.Contact.update({ type: contact.type, content: contact.content, default: contact.default },
+            { where: { id: contact.id }, transaction: asscConts.tx })
+            .then(res => resolver.resolve(res.dataValues))))
+      }})
+    const result = await waitAll(contacts).run().promise()
+    console.log(chalk.blue.bold("err con"),result)
+    return { contacts: result }
+  }
 }
 
-const buildAssociations = async (assc) => {
+const createAssociations = (assc) => {
   const tasks = []
   R.keys(assc.attrs).map(attr =>
-    tasks.push( task(resolver =>
-      assc.usr[getAsscAccessorName(attr)](assc.attrs[attr], { transaction: assc.tx })
-      .then(res => resolver.resolve({ [attr]: res.dataValues })))))
-  return await waitAll(tasks).run().promise()
+    tasks.push( task(resolver => {
+      assc.usr['create' + capitalize(attr)](assc.attrs[attr], { transaction: assc.tx })
+      .then(res => resolver.resolve({ [attr]: res.dataValues }))})))
+  return waitAll(tasks).run().promise()
 }
 
 const createUserWithAssociations = attrs =>
   db.sequelize.transaction(tx =>
     task(resolver =>
       db.User.create(attrs, { stripeToken: attrs.stripeToken, transaction: tx })
-      .then(async (usr) =>
-        ({ usr, assc: await buildAssociations({usr, attrs: R.pick(['avatar', 'address', 'insurance', 'license'], attrs), tx })}))
-      .then(async ({ usr, assc }) =>
-        ({ usr, assc: await assc.concat(buildContactAssociations({usr, contacts: R.pathOr([], ['user', 'contacts'], attrs), tx}))}))
-      .then(res => resolver.resolve(res)))
-    .orElse(reason => reason ).run().promise() ).catch(err => { throw err })
+      .then(async (usr) => {
+        const addressPromise = attrs.address ? usr.createAddress(attrs.address, { transaction: tx }) : []
+        const contactsPromises = attrs.contacts ? contactAssociations({usr, contacts: attrs.contacts, tx}) : []
+        const [address, contacts] = await Promise.all([addressPromise, contactsPromises])
+        resolver.resolve(usr.dataValues)
+      }))
+    .orElse(reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
-const updateUserWithAssociations = ({ usr, attrs }) =>
+const updateAssociations = ({ usr, attrs }) => {
+  return db.sequelize.transaction(tx =>
+    task(async (resolver) => {
+      const addressPromise = attrs.user.address ? usr.address.updateAttributes(attrs.user.address, { transaction: tx }) : []
+      const contactsPromises = attrs.user.contacts ? contactAssociations({usr, contacts: attrs.user.contacts, tx}) : []
+      const [address, contacts] = await Promise.all([addressPromise, contactsPromises])
+      resolver.resolve(attrs)
+    })
+    .orElse( reason => reason ).run().promise() ).catch(err => { throw err })
+  }
+
+const updateUser = ({ usr, attrs }) =>
   db.sequelize.transaction(tx =>
     task(resolver =>
-      usr.update(attrs.user, { fields: db.User.updateFields(attrs.user.type), tx })
-      .then(async (usr) =>
-        ({usr, assc: await buildAssociations({usr, attrs: R.pick(['avatar', 'address', 'insurance', 'license'], attrs.user), tx})}))
-      .then(async ({usr, assc}) => {
-        await usr.contacts.map((ct) => ct.destroy())
-        return { usr, assc: await assc.concat(buildContactAssociations({usr, contacts: R.pathOr([], ['user', 'contacts'], attrs), tx}))}})
-      .then(res => resolver.resolve(res)).catch(err => { throw err }))
-    .orElse(reason => reason ).run().promise() ).catch(err => { throw err })
+      usr.update(attrs.user, { tx })
+        .then(usr => resolver.resolve({ usr, attrs }))
+        .catch(err => { throw err }))
+    .orElse( reason => reason ).run().promise() ).catch(err => { throw err })
 
 const validateIncomingPassword = async ({ usr, auth }) =>
-  await usr.comparePassword(auth.password).then(res => (res ? usr.dataValues : AuthenticationFailed))
-    .catch(err => { throw err })
-
-const mergeAllUserInfo = ({ usr, assc }) =>
-  R.merge(usr.dataValues, R.mergeAll(assc))
+  await usr.comparePassword(auth.password).then(res => {
+    console.log(chalk.blue.bold("RES"),res)
+    if(res){
+      return { usr }
+    } else {
+      throw new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }))
+    }
+  }).catch(err => {
+    console.log(chalk.blue.bold("ERR"),err) 
+    throw err })
+    // FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }) )
+    // .catch(err => err))
 
 // const sendEmailConfirmationToUser = (userObj) =>
 //   userObj
 
-const returnTokenAndUserInfo = userObj =>
-  db.User.createAndReturnToken(userObj)
+const returnTokenAndUserInfo = userObj => {
+  return db.User.createAndReturnToken(userObj)
+}
 
 const destroyUser = ({ usr }) => {
   const cl = R.clone(usr)
@@ -99,7 +182,6 @@ const destroyUser = ({ usr }) => {
 }
 
 const returnUser = ({ usr }) => {
-  // console.log(chalk.blue.bold('hgkgk'), usr)
   return { user: usr.dataValues }}
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -110,6 +192,8 @@ const profile = R.pipeP(
   returnUser
 )
 
+const collection = getUsersByCriteria
+
 const login = R.pipeP(
   getFullUser,
   validateIncomingPassword,
@@ -118,22 +202,34 @@ const login = R.pipeP(
 
 const create = R.pipeP(
   createUserWithAssociations,
-  mergeAllUserInfo,
+  getFullUser,
   returnTokenAndUserInfo
 )
 
 const update = R.pipeP(
   getUser,
-  updateUserWithAssociations,
-  mergeAllUserInfo,
+  updateUser,
+  getCoreUser,
+  updateAssociations,
+  getFullUser,
   returnTokenAndUserInfo
 )
 
 const destroy = R.pipeP(
   getUser,
   destroyUser,
-  log,
   returnUser
 )
 
-module.exports = { create, update, destroy, profile, login }
+const verify = R.pipeP(
+  getUser,
+  updateUser,
+  returnUser
+)
+
+const refresh = R.pipeP(
+  getUser,
+  returnUser
+)
+
+module.exports = { create, update, verify, destroy, profile, login, refresh, collection }

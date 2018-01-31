@@ -2,7 +2,9 @@
   {
     "planId": 1,
     "price": "349",
-    "actualPrice": "24900",
+    "actualPrice": "34900",
+    "bounty": "40",
+    "actualBounty": "4000",
     "name": "standard",
     "title": "Standard",
     "desc": "Photo and video clips package",
@@ -16,9 +18,11 @@
   {
     "planId": 2,
     "price": "499",
-    "actualPrice": "39900",
+    "actualPrice": "49900",
+    "bounty": "40",
+    "actualBounty": "4000",
     "name": "premium",
-    "title": "Premuim",
+    "title": "Premium",
     "desc": "Photo and video clips with fully edited video package",
     "color": "Purple",
     "features": [

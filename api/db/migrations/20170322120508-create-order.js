@@ -14,20 +14,27 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       pilotId: Sequelize.INTEGER,
+      pilotBounty: Sequelize.FLOAT,
+      pilotDistance: Sequelize.FLOAT,
+      videoApprovedBy: Sequelize.INTEGER,
+      videoApprovedAt: Sequelize.DATE,
+      uploadedAt: Sequelize.DATE,
+      pilotPaymentReceiptId: Sequelize.STRING,
       editorId: Sequelize.INTEGER,
       receiptId: Sequelize.STRING,
+      rawUrl: Sequelize.STRING,
       pilotAcceptedAt: Sequelize.DATE,
       editorAcceptedAt: Sequelize.DATE,
       completedAt: Sequelize.DATE,
       rejectedAt: Sequelize.DATE,
-      rejectedBy: Sequelize.DATE,
+      rejectedBy: Sequelize.INTEGER,
       status: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'pending',
+        defaultValue: 'recruiting',
         validate: {
           isIn: {
-            args: [['recruiting', 'pending', 'filming', 'processing', 'delivered', 'accepted', 'rejected']],
+            args: [['recruiting', 'pending', 'filming', 'uploaded', 'processing', 'delivered', 'accepted', 'rejected']],
             msg: 'Order status is invalid'
           }
         }
@@ -37,7 +44,7 @@ module.exports = {
         allowNull: false,
         validate: {
           isIn: {
-            args: [['basic', 'standard', 'premium']],
+            args: [['standard', 'premium']],
             msg: 'Plan is Invalid'
           }
         }

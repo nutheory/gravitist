@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite'
-import { ss, c } from './helpers'
+import { ss, c, b } from './helpers'
 
 const commonElements = StyleSheet.create({
   iconImg: {
@@ -32,22 +32,32 @@ const commonElements = StyleSheet.create({
     transition: 'all .3s ease-out',
     opacity: '0',
     ':hover': {
-      opacity: '1'
+      opacity: '1',
+      cursor: 'pointer'
     }
   },
   ctaButton: {
     display: 'inline-block',
     lineHeight: '54px',
     color: '#fff',
+    textDecoration: 'none',
     boxShadow: '1px 1px 2px #0a0a0a',
     fontWeight: '500',
     fontSize: '1.125em',
     border: 0,
-    borderRadius: '6px',
+    padding: '0 3rem',
+    borderRadius: '4px',
     height: '54px',
     position: 'relative',
     textAlign: 'center',
     width: '100%'
+  },
+  ctaDisabled: {
+    backgroundImage: 'linear-gradient(-180deg,#dbdbdb 0,#7a7a7a 100%)',
+    color: 'rgba(10,10,10,0.25)',
+    ':hover': {
+      cursor: 'default'
+    }
   },
   ctaGreen: {
     backgroundImage: 'linear-gradient(-180deg,#74c947 0,#4bc459 100%)',
@@ -55,8 +65,14 @@ const commonElements = StyleSheet.create({
   ctaPurple: {
     backgroundImage: 'linear-gradient(-180deg, #644985 0, #534192 100%)',
   },
+  ctaDisabled: {
+    backgroundImage: 'linear-gradient(-180deg, #536976 0, #BBD2C5 100%)',
+  },
   ctaRed: {
     backgroundImage: 'linear-gradient(-180deg, #e52d27 0, #b31217 100%)',
+  },
+  ctaBlue: {
+    backgroundImage: 'linear-gradient(to top, #314755, #26a0da)'
   },
   cta: {
     fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
@@ -335,6 +351,72 @@ const commonElements = StyleSheet.create({
   bullet: {
     position: 'relative',
     margin: '20px 0',
+  },
+  validContainer: {
+    textAlign: 'center',
+    padding:  '0.4rem 0.6rem',
+    borderRadius: b.radius,
+    border: `1px solid ${c.bFgGreen}`
+  },
+  invalidContainer: {
+    textAlign: 'center',
+    padding: '0.4rem 0.6rem',
+    borderRadius: b.radius,
+    border: `1px solid ${c.bFgRed}`
+  },
+  validBackground: {
+    background: c.bBgGreen
+  },
+  validForeground: {
+    marginRight: '0.6rem',
+    color: c.bFgGreen
+  },
+  invalidBackground: {
+    background: c.bBgRed
+  },
+  invalidForeground: {
+    marginRight: '0.6rem',
+    color: c.bFgRed
+  },
+  iconSpace: {
+    marginRight: '0.6rem',
+    color: c.midGrey
+  },
+  blueObj: {
+    background: c.bBgBlue,
+    borderColor: c.bFgBlue,
+    color: c.bTextBlue
+  },
+  redObj: {
+    background: c.bBgRed,
+    borderColor: c.bFgRed,
+    color: c.bTextRed
+  },
+  greenObj: {
+    background: c.bBgGreen,
+    borderColor: c.bFgGreen,
+    color: c.bTextGreen
+  },
+  yellowObj: {
+    background: c.bBgYellow,
+    borderColor: c.bFgYellow,
+    color: c.bTextYellow
+  },
+  greyObj: {
+    background: c.bBgSoftGrey,
+    borderColor: c.bFgSoftGrey,
+    color: c.bTextSoftGrey
+  },
+  darkObj: {
+    background: c.bBgGrey,
+    borderColor: c.bFgGrey,
+    color: c.bTextGrey
+  },
+  areaBase: {
+    padding: '1rem',
+    borderRadius: '3px',
+    borderStyle: 'solid',
+    borderWidth: '1px'
   }
 })
 

@@ -37,7 +37,6 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       type: Sequelize.DATE
     },
-    expiresAt: Sequelize.DATE,
     name: Sequelize.STRING,
     ext: Sequelize.STRING,
     mime: Sequelize.STRING,

@@ -11,6 +11,13 @@ module.exports = (sequelize, Sequelize) => {
     pilotId: Sequelize.INTEGER,
     editorId: Sequelize.INTEGER,
     receiptId: Sequelize.STRING,
+    pilotBounty: Sequelize.FLOAT,
+    pilotDistance: Sequelize.FLOAT,
+    videoApprovedBy: Sequelize.INTEGER,
+    videoApprovedAt: Sequelize.DATE,
+    uploadedAt: Sequelize.DATE,
+    rawUrl: Sequelize.STRING,
+    pilotPaymentReceiptId: Sequelize.STRING,
     pilotAcceptedAt: Sequelize.DATE,
     editorAcceptedAt: Sequelize.DATE,
     completedAt: Sequelize.DATE,
@@ -19,10 +26,10 @@ module.exports = (sequelize, Sequelize) => {
     status: {
       type: Sequelize.STRING,
       allowNull: false,
-      defaultValue: 'pending',
+      defaultValue: 'recruiting',
       validate: {
         isIn: {
-          args: [['recruiting', 'pending', 'filming', 'processing', 'delivered', 'accepted', 'rejected']],
+          args: [['recruiting', 'pending', 'filming', 'uploaded', 'processing', 'delivered', 'accepted', 'rejected']],
           msg: 'Order status is invalid'
         }
       }
@@ -32,7 +39,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       validate: {
         isIn: {
-          args: [['basic', 'standard', 'premium']],
+          args: [['standard', 'premium']],
           msg: 'Plan is Invalid'
         }
       }
@@ -94,6 +101,11 @@ module.exports = (sequelize, Sequelize) => {
       as: 'address',
       hooks: true
     })
+    Order.hasOne(models.Listing, {
+      foreignKey: 'orderId',
+      onDelete: 'CASCADE',
+      as: 'listing'
+    })
     Order.hasMany(models.Asset, {
       foreignKey: 'assetableId',
       constraints: false,
@@ -101,6 +113,14 @@ module.exports = (sequelize, Sequelize) => {
         assetable: 'order'
       },
       as: 'assets'
+    })
+    Order.hasMany(models.Note, {
+      foreignKey: 'notableId',
+      constraints: false,
+      scope: {
+        notable: 'order'
+      },
+      as: 'notes'
     })
     Order.hasMany(models.Rating, {
       foreignKey: 'ratableId',

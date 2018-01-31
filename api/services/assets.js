@@ -1,6 +1,7 @@
 const TransloaditClient = require("transloadit")
 const Crypto = require('crypto')
 const _ = require('lodash')
+const { find, propEq } = require('ramda')
 const Aws = require('aws-sdk')
 const config = require('../config')
 const s3 = new Aws.S3({
@@ -10,20 +11,26 @@ const s3 = new Aws.S3({
   apiVersion: '2006-03-01'
 })
 const db = require('../models')
-const { order } = require('./orders')
-const { utcDateString } = require('../utils/helpers')
-const { returnTokenAndUserInfo, getFullUser } = require('./users')
+// const { order } = require('./orders')
+const ContactTypes = require('../../client/utils/contact_types')
+const { update } = require('./users')
+// const { order } = require('./orders')
 const { UnknownError, UnauthorizedError, AlreadyAuthenticatedError, ForbiddenError } = require('../utils/errors')
 const transloadit = new TransloaditClient(config.transloadit)
 const env = process.env.NODE_ENV
+const chalk = require('chalk')
 
-
-async function avatarUploader({ file, user }){
-  console.log('UPPPPPPP File',file)
+async function avatarUploader({ file, user, body }){
   const assemblyOptions = {
     params: {
       template_id: config.assemblies[env].avatar,
-      fields: { userId: user.id, userType: user.type },
+      fields: {
+        name: body.name,
+        source: body.source,
+        uploadToId: body.uploadToId,
+        userType: user.type,
+        uploaderId: user.id,
+        instanceOf: body.instanceOf },
       notify_url: `${config.base_url[env]}/avatar-notify-url`
     }
   }
@@ -31,8 +38,6 @@ async function avatarUploader({ file, user }){
 }
 
 async function logoUploader({ file, body }){
-  //const companyId = body?
-
   const assemblyOptions = {
     params: {
       template_id: config.assemblies[env].logo,
@@ -43,26 +48,47 @@ async function logoUploader({ file, body }){
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
 }
 
-async function insuranceUploader({ file, user }){
+async function insuranceUploader({ file, user, body }){
   const assemblyOptions = {
     params: {
       template_id: config.assemblies[env].insurance,
-      fields: { userId: user.id, userType: user.type },
+      fields: {
+        name: body.name,
+        source: body.source,
+        uploadToId: body.uploadToId,
+        userType: user.type,
+        uploaderId: user.id,
+        instanceOf: body.instanceOf },
       notify_url: `${config.base_url[env]}/insurance-notify-url`
     }
   }
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
 }
 
-async function licenseUploader({ file, user }){
+async function licenseUploader({ file, user, body }){
   const assemblyOptions = {
     params: {
       template_id: config.assemblies[env].license,
-      fields: { userId: user.id, userType: user.type },
+      fields: {
+        name: body.name,
+        source: body.source,
+        uploadToId: body.uploadToId,
+        userType: user.type,
+        uploaderId: user.id,
+        instanceOf: body.instanceOf },
       notify_url: `${config.base_url[env]}/license-notify-url`
     }
   }
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
+}
+
+async function buildPresignedRequest({ body, user }){
+  const params = {
+    Bucket: 'homefilming',
+    Key: `${body.model}/${body.modelId}/raw/${Date.now()}`,
+    Expires: 604800
+  }
+  return s3.getSignedUrl('putObject', params)
 }
 
 async function pilotOrderUploader({ body, files, user }){
@@ -95,8 +121,62 @@ async function destroyAsset(url, { user }){
   })
 }
 
-async function updateActiveToggle(){
+const buildOrderOverlay = async ({ usr, ordr }) => {
+  console.log(chalk.blue.bold('BUILD ORDER'), ordr)
+  const contact = await ordr.agent.contacts.filter(cnt => cnt.default ? cnt : null)[0]
+  const contactType = find(propEq('type', contact.type))(ContactTypes)
+  const avatar = ordr.agent.avatar ? ordr.agent.avatar : null
+  const assemblyOptions = {
+    params: {
+      template_id: config.assemblies[env].video_overlay,
+      fields: {
+        bgUrl: 'https://s3-us-west-1.amazonaws.com/homefilming/video_canvas.png',
+        avatarXoffset: 20,
+        avatarYoffset: 14,
+        avatarUrl: avatar ? avatar.url : 'https://s3-us-west-1.amazonaws.com/homefilming/no_avatar.png',
+        nameXoffset: avatar ? 200 : 20,
+        nameYoffset: 76,
+        contactXoffset: avatar ? 200 : 20,
+        contactYoffset: 32,
+        addressXoffset: 20,
+        addressYoffset: 72,
+        cityXoffset: 20,
+        cityYoffset: 32,
+        name: ordr.agent.name,
+        contact: `${ contactType.humanized }: ${ contact.content }`,
+        address: ordr.address.address1,
+        city: ordr.address.city,
+        pilotId: usr.id,
+        orderId: ordr.id,
+        instanceOf: 'overlay'
+      },
+      notify_url: `${config.base_url[env]}/overlay-notify-url`
+    }
+  }
+  const upload = performAssembly(assemblyOptions).catch(err => { console.log(chalk.blue.bold('ERR'), err) })
+}
 
+const finalProcessing = async ({ body }) => {
+  const { results, fields } = JSON.parse(body.transloadit)
+  const order = await db.Order.findById(fields.orderId, {})
+  console.log(chalk.blue.bold('BODY order'), order)
+  console.log(chalk.blue.bold('BODY fields'), fields)
+
+  const processes = ["process"]
+  processes.forEach((prcs, i) => {
+    const assemblyOptions = {
+      params: {
+        template_id: config.assemblies[env][`${prcs}`],
+        fields: {
+          importKey: `${order.rawUrl}`,
+          pilotId: order.pilotId,
+          orderId: order.id
+        },
+        notify_url: `${config.base_url[env]}/${prcs}-notify-url`
+      }
+    }
+    const upload = performAssembly(assemblyOptions).catch(err => { console.log(chalk.blue.bold('ERR'), err) })
+  })
 }
 
 module.exports = {
@@ -104,9 +184,10 @@ module.exports = {
   logoUploader,
   insuranceUploader,
   licenseUploader,
-  pilotOrderUploader,
-  pilotOrderUploadResult,
+  buildPresignedRequest,
+  finalProcessing,
   uploadResult,
+  buildOrderOverlay,
   destroyAsset
 }
 
@@ -129,25 +210,18 @@ async function pilotOrderUploadResult({ body }){
   })
 }
 
-async function uploadResult({ body, user }, model, uploadName){
-  // console.log(chalk.blue.bold('BODY'), body)
+async function uploadResult({ body }, model, uploadName){
   if(!transloaditResultValid(body.transloadit, body.signature)){ throw UnauthorizedError() }
   const { results, fields } = JSON.parse(body.transloadit)
-  // console.log(chalk.blue.bold('REZULTS'), results)
-  // console.log(chalk.blue.bold('FIELDS'), fields)
   const { ssl_url, ext, type, mime, size, meta } = results[uploadName][0]
-  const name = getNameFromUrl(ssl_url)
-  console.log(chalk.blue.bold('Name'), name)
   const awsId = getIdFromUrl(ssl_url)
-  console.log(chalk.blue.bold('aws'), awsId)
-  const asset = await db.Asset.findOne({ where: {assetableId: fields.userId, assetable: model,
-    assetableName: name, awsId, active: true } })
-  console.log(chalk.blue.bold('ASSET'), asset)
-  const toggle = await activeToggle(asset)
-  console.log(chalk.blue.bold('Toggle'), toggle)
-  const uploaded = await db.Asset.create({ assetableId: fields.userId, assetable: model,
-    assetableName: name, url: ssl_url, ext, type, mime, size, active: true,
-    meta, name, awsId, uploaderId: fields.userId }).catch(err => { throw err })
+  const assets = await db.Asset.findAll({ where: {assetableId: fields.uploadToId, assetable: model,
+    assetableName: fields.instanceOf, active: true } })
+  const toggle = await activeToggle(assets)
+  const uploaded = await db.Asset.create({ assetableId: fields.uploadToId, assetable: model,
+    assetableName: fields.instanceOf, url: ssl_url, ext, type, mime, size, active: true,
+    meta, name: fields.name, awsId, uploaderId: fields.uploaderId || fields.uploadToId }).catch(err => { throw err })
+  await update({ id: fields.uploadToId, user: { refreshToken: true }})
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -164,16 +238,26 @@ function uploadFile(file, opts){
   })
 }
 
-async function activeToggle(asset){
-  if(asset){
-    const status = asset.active ? false : true
-    const updated = await asset.update({ active: status }).catch(err => { throw err })
-    return updated
+function performAssembly(opts){
+  return new Promise((resolve,reject) => {
+    return transloadit.createAssembly(opts, (err, res) => {
+      if (err) { throw err }
+      resolve({ create: { status: res.ok }})
+    })
+  })
+}
+
+function activeToggle(assets){
+  if(assets){
+    assets.map(async (asset) => {
+      const status = asset.active ? false : true
+      const updated = await asset.update({ active: status }).catch(err => { throw err })
+      return updated
+    })
   }
 }
 
 function createAssetObj({ ssl_url, ext, type, mime, size, meta }){
-
   return {
     url: ssl_url,
     ext,
@@ -206,3 +290,11 @@ function transloaditResultValid(transloaditData, signature){
     return false
   }
 }
+
+// "captures": {
+//   "use": "imported",
+//   "robot": "/video/thumbs",
+//   "ffmpeg_stack": "v2.2.3",
+//   "result": true,
+//   "count": 40
+// },

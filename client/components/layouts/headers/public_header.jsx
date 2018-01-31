@@ -1,7 +1,8 @@
+// @flow
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
-import Login from '../../misc/login'
+import Login from '../../users/login'
 import { StyleSheet, css } from 'aphrodite'
 import cE from '../../../styles/common_elements'
 import hdr from '../styles/public_header'
@@ -16,63 +17,39 @@ import { Button, Grid, Segment, Header } from 'semantic-ui-react'
 //   //   className={classname}
 //   // >{label}</Button>
 // ))
+type Props = {
 
+}
 
-class PublicHeader extends Component {
+type State = {
+  bgPinned: boolean
+}
+
+class PublicHeader extends Component<Props, State> {
+
+  handleScroll: Function
+
   constructor(){
     super()
 
     this.state = {
-      currentUser: "",
-      bgPinned: false,
-      drawerOpen: false,
-      popoverOpen: false
+      bgPinned: false
     }
 
     this.handleScroll = this.handleScroll.bind(this)
-    this.handlePopoverClose = this.handlePopoverClose.bind(this)
-    this.handlePopoverToggle = this.handlePopoverToggle.bind(this)
-    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
-    // this.QueryCurrentUser = this.QueryCurrentUser.bind(this)
   }
 
-  handleDrawerToggle(){
-    this.setState({drawerOpen: !this.state.drawerOpen})
-  }
-
-  handlePopoverToggle(evt){
-    evt.preventDefault()
-    this.setState({
-      anchorEl: evt.currentTarget,
-      popoverOpen: !this.state.popoverOpen
-    })
-  }
-
-  handlePopoverClose(){
-    this.setState({
-      popoverOpen: false
-    })
-  }
-
-  handleScroll(ev) {
-    console.log('hey', window.pageYOffset)
-    // window.pageYOffset > 300 ? console.log('true') : console.log('false')
-    if (window.pageYOffset > 300 && this.state.bgPinned === false ) {
+  handleScroll(ev: SyntheticEvent<*>) {
+    if (window.pageYOffset > 100 && this.state.bgPinned === false ) {
       this.setState({ bgPinned: true })
     }
-    if (window.pageYOffset < 300 && this.state.bgPinned === true ) {
+    if (window.pageYOffset < 100 && this.state.bgPinned === true ) {
       this.setState({ bgPinned: false })
     }
   }
 
-  // async QueryCurrentUser(){
-  //   const res = await this.props.data.user
-  //   console.log('trytrffruy',res)
-  //   if(this.props.data){return res}
-  // }
-
   componentDidMount() {
-    addEventListener('scroll', this.handleScroll)
+    document.addEventListener('scroll', this.handleScroll)
     // const res = this.QueryCurrentUser()
     // console.log('ressssss',res)
   }
@@ -82,7 +59,7 @@ class PublicHeader extends Component {
   // }
 
   componentWillUnmount() {
-    removeEventListener('scroll', this.handleScroll)
+    document.removeEventListener('scroll', this.handleScroll)
   }
 
   render(){
@@ -106,7 +83,7 @@ class PublicHeader extends Component {
             </div>
             <div className={`${css(hdr.phoneButtonArea)} column is-half`}>
               <div className={css(hdr.buttonArea)}>
-                <NavLink className={css(cE.buttonWithOutline)} to="/signup">SIGNUP TO FLY</NavLink>
+                <NavLink className={css(cE.buttonWithOutline)} to="/pilots/register">SIGNUP TO FLY</NavLink>
                 <NavLink className={css(cE.buttonWithOutline)} to="/login">LOGIN</NavLink>
               </div>
               <div className={css(hdr.phoneArea)}>
@@ -187,10 +164,10 @@ class PublicHeader extends Component {
               <div className={css(mobileHeader.callInfo)}>
                 <div className={css(mobileHeader.callInfoInner)}>
                   <div className={css(mobileHeader.callNumber)}>
-                    <img src={'../../../assets/svg/phoneIcon.svg'} alt="Phone Icon" className={css(header.phoneIcon)} />
+                    <img src={'../../../assets/svg/phoneIcon.svg'} alt="Phone Icon" className={css(hdr.phoneIcon)} />
                     <a href="tel:800 555 6767" className={css(mobileHeader.callLink)}>800 555 6767</a>
                   </div>
-                  <div className={css(header.callText)}>Toll Free Number</div>
+                  <div className={css(hdr.callText)}>Toll Free Number</div>
                 </div>
               </div>
             </div>

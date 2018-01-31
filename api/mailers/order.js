@@ -1,26 +1,63 @@
-var helper = require('sendgrid').mail
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const pug = require('pug')
+const isProduction = process.env.NODE_ENV === 'production'
+const toMail = (address) => isProduction ? address : 'drush@nutheory.com'
+const recruitingTemplate = pug.compileFile('recruit_pilots.pug')
+const completedTemplate = pug.compileFile('order_completed.pug')
+const confirmationTemplate = pug.compileFile('order_confirmation.pug')
+const chalk = require('chalk')
 
-const orderReceipt = ({}) => {
-  var fromEmail = new helper.Email('noreply@homefilming.com')
-  var toEmail = new helper.Email('test@example.com')
+const confirmationMailer = ({ agent, order }) => {
+  const msg = {
+    to: toMail(agent.email),
+    from: 'noreply@homefilming.com',
+    subject: `Thank you for your order at Homefilming`,
+    text: ``,
+    html: ``,
+  }
+  sgMail.send(msg)
+}
 
-  var subject = 'Sending with SendGrid is Fun'
-  var content = new helper.Content('text/plain', 'and easy to do anywhere, even with Node.js')
-  var mail = new helper.Mail(fromEmail, subject, toEmail, content)
+const recruitingMailer = ({ pilot, order }) => {
+  console.log(chalk.blue.bold('PILOT'), pilot)
+  console.log(chalk.blue.bold('ORDER'), order)
+  const msg = {
+    to: toMail(pilot.email),
+    from: 'noreply@homefilming.com',
+    subject: 'New filming opportunity in your area',
+    text: `Earn some extra cash by accepting this opportunity to film a
+      awesome piece of real estate. Just click the link below to
+      take ownership of this mission. And don't forget you must be able
+      to fly within 48hrs. Visit https://homefilming.com`,
+    html: recruitingTemplate({
+      title: `Recruiting ${pilot.name}`,
+      name: pilot.name,
+      bounty: `${pilot.distanceFromLocation}`,
+      distance: `${pilot.distanceFromLocation}`,
+      address: order.address.address1,
+      cityState: `${order.address.city}, ${order.address.state}`,
+      orderId: orderId,
+      agentId: order.agent.id
+    }),
+  }
+  // sgMail.send(msg)
+}
 
-  var sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
-  var request = sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: mail.toJSON()
-  })
+const completedMailer = ({ pilot, order }) => {
 
-  sg.API(request, function (error, response) {
-    if (error) {
-      console.log('Error response received')
-    }
-    console.log(response.statusCode)
-    console.log(response.body)
-    console.log(response.headers)
-  })
+  const msg = {
+    to: toMail(pilot.email),
+    from: 'noreply@homefilming.com',
+    subject: 'New filming opportunity in your area',
+    text: ``,
+    html: ``,
+  }
+  sgMail.send(msg)
+}
+
+module.exports = {
+  confirmationMailer,
+  recruitingMailer,
+  completedMailer
 }

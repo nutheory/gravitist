@@ -9,19 +9,16 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false
     },
-    name: Sequelize.STRING,
+    default: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    },
     content: {
       type: Sequelize.STRING,
       allowNull: false
     },
     type: {
       type: Sequelize.STRING,
-      validate:{
-        isIn: {
-          args: [['phone', 'skype', 'slack', 'email', 'url']],
-          msg: 'Contact type is invalid'
-        }
-      }
     },
     createdAt: {
       allowNull: false,

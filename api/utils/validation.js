@@ -3,13 +3,13 @@ const { RequiredFieldsError, UniqueEmailError } = require("./errors")
 const db = require('../models')
 const chalk = require('chalk')
 
-var Validate = function(input){
+const Validate = (input) => {
 
-  var missingKeys = []
-  var requiredKeys = []
-  var promises = []
+  const missingKeys = []
+  const requiredKeys = []
+  const errors = []
 
-  var _checkKeys = function(attr, requiredKeys){
+  const checkKeys = function(attr, requiredKeys){
     if(requiredKeys){
       requiredKeys.map( keyName => {
         if( !attr[keyName] ){
@@ -19,62 +19,63 @@ var Validate = function(input){
     }
   }
 
-  var isValidUser = function(){
+  const isValidUser = () => {
     switch(input.user.type){
       case "agent":
-        requiredKeys = [ "email", "name", "password", "stripeToken" ]
+        requiredKeys = [ "email", "name", "password", "contacts", "stripeToken" ]
         break
       case "pilot":
-        requiredKeys = [ "license", "insurance", "email", "name", "password",
-          "address", "workRadius", "stripeToken" ]
+        requiredKeys = [ "email", "name", "password", "contacts", "workRadius" ]
         break
       case "editor":
-        requiredKeys = [ "email", "name", "password", "stripeToken" ]
+        requiredKeys = [ "email", "name", "password" ]
         break
       case "admin":
         requiredKeys = [ "email", "name", "password" ]
         break
+      case "unapproved_editor":
+        requiredKeys = [ "email", "name", "password" ]
+        break
+      case "unapproved_admin":
+        requiredKeys = [ "email", "name", "password" ]
+        break
     }
-    _checkKeys(input.user, requiredKeys)
-    return this
+    checkKeys(input.user, requiredKeys)
   }
 
-  var isUniqueEmail = function(){
+  const isUniqueEmail = async () =>{
+    console.log(chalk.blue.bold('input.useremail'), inp)
+    console.log(chalk.blue.bold('this'), this)
     const lowercaseEmail = input.user.email.toLowerCase()
-    const uniqueEmailPromise = db.User.findOne({ where: { email: lowercaseEmail } })
-    promises.push(uniqueEmailPromise)
-    return this
+    const uniqueEmail = await db.User.findOne({ where: { email: lowercaseEmail } })
+    console.log(chalk.blue.bold('uniqueEmail'), uniqueEmail)
   }
 
-  const isValidOrder = function(){
+  const isValidOrder = () => {
     isValidPlan()
     isValidAddress()
-    return this
   }
 
-  const isValidPlan = function(){
+  const isValidPlan = () => {
     const base = input.order
     requiredKeys = ['name', 'actualPrice']
-    _checkKeys(input.order.plan, requiredKeys)
-    return this
+    checkKeys(input.order.plan, requiredKeys)
   }
 
-  const isValidAddress = function(){
+  const isValidAddress = () => {
     const base = input.order
-    if(input.order.address){
+    if(input.order && input.order.address){
       requiredKeys = ['address1', 'zipCode', 'city', 'state', 'lat', 'lng' ]
-      _checkKeys(input.order.address, requiredKeys)
+      checkKeys(input.order.address, requiredKeys)
     }
-    return this
   }
 
-  var done = async function(){
-    const errors = []
-    const [ email ] = await Promise.all(promises)
+  const done = () => {
+    console.log(chalk.blue.bold('[ email.id ]'), email.id)
     if(missingKeys.length > 0){ errors.push( "RequiredFieldsError" )}
-    if(email) { errors.push( "UniqueEmailError" ) }
-    if(errors.length > 0){ throw errors }
-    return this
+    if(email.id) { errors.push( "UniqueEmailError" ) }
+    console.log(chalk.blue.bold('[ errors ]'), errors)
+    // if(errors.length > 0){ throw errors }
   }
 
   return { isValidUser, isValidOrder, isValidPlan, isValidAddress, isUniqueEmail, done }

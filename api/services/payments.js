@@ -1,5 +1,5 @@
 const config = require('../config')
-const stripe = require("stripe")(config.stripe_test.secret_key)
+const stripe = require("stripe")(config.stripe[process.env.NODE_ENV].secret_key)
 
 async function createStripeCharge({ pln, customer }){
   return await stripe.charges.create({

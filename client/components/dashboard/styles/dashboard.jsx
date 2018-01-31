@@ -11,6 +11,13 @@ const dashboard = StyleSheet.create({
     padding: '1em 1.25em',
     borderRadius: '3px',
     marginBottom: '1.5em'
+  },
+  slideClose: {
+    maxHeight: '0',
+    WebkitTransition: 'all .4s ease-in-out',
+    MozTransition: 'all .4s ease-in-out',
+    OTransition: 'all .4s ease-in-out',
+    transition: 'all .4s ease-in-out'
   }
 })
 

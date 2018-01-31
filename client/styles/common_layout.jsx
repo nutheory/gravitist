@@ -2,6 +2,18 @@ import { StyleSheet, css } from 'aphrodite'
 import { ss, c } from './helpers'
 
 const commonLayout = StyleSheet.create({
+  mSection: {
+    marginTop: '1rem',
+    marginBottom: '1rem'
+  },
+  cSection: {
+    display: 'block',
+    marginBottom: '1rem'
+  },
+  splitHeader: {
+    display: 'block',
+    overflow:'auto'
+  },
   centerMainContent: {
     position: 'relative',
     display: 'flex',

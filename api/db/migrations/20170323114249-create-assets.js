@@ -29,8 +29,7 @@ module.exports = {
       },
       verified: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
+        defaultValue: false
       },
       active: {
         type: Sequelize.BOOLEAN,
@@ -43,9 +42,6 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      expiresAt: {
         type: Sequelize.DATE
       },
       name: Sequelize.STRING,

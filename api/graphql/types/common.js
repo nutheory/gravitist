@@ -1,5 +1,4 @@
 const Common = `
-
   input GetProtectedInput {
     id: ID
     authorizedId: ID
@@ -17,7 +16,6 @@ const Common = `
     sizeLimit: Int
     colOffset: Int
   }
-
 `
 
 module.exports = Common

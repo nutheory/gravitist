@@ -19,17 +19,11 @@ module.exports = {
       },
       addressableName: Sequelize.STRING,
       name: Sequelize.STRING,
-      address1: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
+      address1: Sequelize.STRING,
       address2: Sequelize.STRING,
       city: Sequelize.STRING,
       state: Sequelize.STRING,
-      zipCode: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
+      zipCode: Sequelize.STRING,
       type: {
         type: Sequelize.STRING,
         defaultValue: 'residence',

@@ -1,0 +1,34 @@
+extends layout.pug
+
+block content        
+  div.intro
+    h3.header We got a new filming opportunity in your area
+    p.body-text 
+      | Earn some extra cash by accepting this opportunity to film a 
+      | awesome piece of real estate. Just click the link below to 
+      | take ownership of this mission. And don't forget you must be able 
+      | to fly within 48hrs. 
+  div.info
+    div.data
+      div.value $#{bounty}
+      div.text 
+        | min. estimated
+        br/
+        | bounty
+    div.data
+      div.value #{distance}
+      div.text 
+        | miles est.
+        br/
+        | distance
+    div.data.ex
+      div.top-line #{address}
+      div.bottom-line #{cityState}
+  div.cta
+    a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View this opportunity
+  div.explain
+    p
+      | You have been chosen to receive this email because this filming opportunity 
+      | falls within your workable area radius you set when you signed up. If you 
+      | would like to lessen the frequency of these emails you can lower your workable
+      | area or unsubscribe completely and check our boards at your leisure. 

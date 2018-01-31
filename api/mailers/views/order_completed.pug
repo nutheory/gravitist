@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  div.intro
+    h3.header We have completed processing your order
+    p.body-text
+      | Good news! We have filmed and processed your order. You can view and
+      | share it from your dashboard or you can email a link to the web version 
+      | of the propery we filmed. 
+    div.info
+      div.left
+        a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View dashboard
+      div.right
+        a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View showcase

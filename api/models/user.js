@@ -12,6 +12,7 @@ module.exports = function(sequelize, Sequelize) {
       allowNull: false
     },
     customerId: Sequelize.STRING,
+    accountId: Sequelize.STRING,
     companyId: Sequelize.INTEGER,
     companyOwner: {
       type: Sequelize.BOOLEAN,
@@ -31,7 +32,7 @@ module.exports = function(sequelize, Sequelize) {
     type: {
       type: Sequelize.STRING,
       validate: {
-        isIn: [[ 'agent', 'pilot', 'editor', 'admin' ]]
+        isIn: [[ 'agent', 'pilot', 'unapproved_editor', 'unapproved_admin', 'editor', 'admin' ]]
       }
     },
     bio: Sequelize.TEXT,
@@ -41,6 +42,14 @@ module.exports = function(sequelize, Sequelize) {
     },
     workRadius: Sequelize.INTEGER,
     payRate: Sequelize.DECIMAL,
+    refreshToken: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    },
+    termsAccepted: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    },
     superAdmin: {
       type: Sequelize.BOOLEAN,
       defaultValue: false
@@ -74,10 +83,10 @@ module.exports = function(sequelize, Sequelize) {
   User.updateFields = (type) => {
     let fields
     switch(type) {
-    case "agent": fields = [ 'password', 'bio', 'name', 'contacts' ]; break;
-    case "pilot": fields = [ 'password', 'bio', 'name', 'payrate', 'workRadius' ]; break;
-    case "editor": fields = [ 'password', 'bio', 'name', 'payrate' ]; break;
-    case "admin": fields = [ 'password', 'bio', 'name', 'payrate', 'workRadius' ]; break;
+    case "agent": fields = [ 'id', 'password', 'bio', 'name', 'address', 'contacts', 'email' ]; break;
+    case "pilot": fields = [ 'id', 'password', 'bio', 'name', 'address', 'payrate', 'workRadius', 'email' ]; break;
+    case "editor": fields = [ 'id', 'password', 'bio', 'name', 'address', 'payrate', 'email' ]; break;
+    case "admin": fields = [ 'id', 'password', 'bio', 'name', 'address', 'payrate', 'workRadius', 'email' ]; break;
     }
     return fields
   }
@@ -153,14 +162,14 @@ module.exports = function(sequelize, Sequelize) {
       },
       as: 'pilotAddress'
     })
-    User.hasOne(models.Asset, {
+    User.hasMany(models.Asset, {
       foreignKey: 'assetableId',
       constraints: false,
       scope: {
         assetable: 'user',
         assetableName: 'avatar'
       },
-      as: 'avatar'
+      as: 'avatars'
     })
     User.hasMany(models.Asset, {
       foreignKey: 'assetableId',
@@ -169,7 +178,7 @@ module.exports = function(sequelize, Sequelize) {
         assetable: 'user',
         assetableName: 'license'
       },
-      as: 'license'
+      as: 'licenses'
     })
     User.hasMany(models.Asset, {
       foreignKey: 'assetableId',
@@ -177,6 +186,36 @@ module.exports = function(sequelize, Sequelize) {
       scope: {
         assetable: 'user',
         assetableName: 'insurance'
+      },
+      as: 'insurances'
+    })
+    User.hasOne(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'user',
+        assetableName: 'avatar',
+        active: true
+      },
+      as: 'avatar'
+    })
+    User.hasOne(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'user',
+        assetableName: 'license',
+        active: true
+      },
+      as: 'license'
+    })
+    User.hasOne(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'user',
+        assetableName: 'insurance',
+        active: true
       },
       as: 'insurance'
     })
@@ -187,9 +226,12 @@ module.exports = function(sequelize, Sequelize) {
       id: user.id,
       name: user.name,
       email: user.email,
-      type: user.type
+      type: user.type,
+      isVerified: user.isVerified
     }
     if ( user.customerId ) { newToken.customerId = user.customerId }
+    if ( user.accountId ) { newToken.accountId = user.accountId }
+    if ( user.termsAccepted ) { newToken.termsAccepted = user.termsAccepted }
     if ( user.workRadius ) { newToken.workRadius = user.workRadius }
     if ( user.address ) { newToken.address = user.address }
     if ( user.avatar ) { newToken.avatar = user.avatar }
@@ -198,12 +240,12 @@ module.exports = function(sequelize, Sequelize) {
     return newToken
   }
 
-  User.createAndReturnToken = async function (user) {
-    let userTokenInfo = User.buildToken(user)
+  User.createAndReturnToken = async function ({ usr }) {
+    let userTokenInfo = User.buildToken(usr.dataValues)
     const token = await jwt.sign(userTokenInfo, secret, {
       expiresIn: "30 days"
     })
-    return { user, auth: { token: `bearer ${token}` } }
+    return { user: usr, auth: { token: `bearer ${token}` } }
   }
 
   User.beforeCreate(async ( user, { stripeToken } ) => {

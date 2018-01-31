@@ -3,4 +3,3 @@ raw/
 .env
 sendgrid.env
 coverage/
-.env

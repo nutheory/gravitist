@@ -1,5 +1,5 @@
 const Address = `
-
+    scalar JSON
   type Address {
     id: ID
     address1: String

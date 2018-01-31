@@ -1,0 +1,196 @@
+doctype
+html
+  head
+    title #{title}
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width")
+    style(type="text/css").
+      body {
+        font-weight: 100;
+        font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+      div.container{
+        max-width: 680px;
+        margin: 3rem auto;
+        color: #999;
+      }
+      h1.title{
+        font-size: 2.4rem;
+        font-weight: 100;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 3rem;
+      }
+      h5.title{
+        font-size: 0.8rem;
+        font-weight: 100;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      h2.value{
+        font-size: 2rem;
+        line-height: 1rem;
+        font-family: "Droid serif", Times, serif;
+        font-weight: bold;
+      }
+      a.logo {
+        text-decoration: none;
+        color: #999;
+      }
+      h3.header{
+        font-size: 1.2rem;
+        font-weight: 100;
+        margin-bottom: 0.6rem;
+      }
+      p.body-text{
+        line-height: 1.6rem;
+      }
+      a.button{
+        display: block;
+        line-height: 54px;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 1px 1px 2px #0a0a0a;
+        font-weight: 100;
+        font-size: 1.125em;
+        border: 0;
+        padding: 0 3rem;
+        border-radius: 4px;
+        height: 54px;
+        position: relative;
+        text-align: center;
+        background: #74c947;
+        background-image: linear-gradient(-180deg,#74c947 0,#4bc459 100%);
+      }
+      a.button:hover{
+        cursor:pointer;
+        background-image: linear-gradient(0deg,#74c947 0,#4bc459 100%);
+      }
+      div.info{
+        margin: 2rem 0 3rem 0;
+        display:flex;
+      }
+      div.left{
+        flex: 1;
+      }
+      div.right{
+        flex: 1;
+        margin-left: 1rem;
+      }
+      div.data{
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        padding: 0.4rem 1rem;
+        margin-right: 1rem;
+      }
+      div.data.ex{
+        flex: 1;
+        margin-right: 0;
+      }
+      div.top-line{
+        font-size: 1.6rem;
+        line-height: 1.4rem;
+        font-family: "Droid serif", Times, serif;
+        font-weight: 600;
+      }
+      div.bottom-line{
+        font-size: 0.8rem;
+      }
+      div.value{
+        margin-right: 0.6rem;
+        display: inline-block;
+        font-size: 2rem;
+        line-height: 1rem;
+        font-family: "Droid serif", Times, serif;
+        font-weight: bold;
+      }
+      div.text{
+        display: inline-block;
+        font-size: 0.8rem;
+        line-height: 1rem;
+      }
+      div.explain{
+        margin-top: 3rem;
+        border-top: 1px solid #dedede;
+        padding: 1rem 0;
+        font-size: 0.8rem;
+        line-height: 1rem;
+      }
+      div.footer{
+        font-size: 0.8rem;
+        text-align: center;
+        border-top: 1px solid #dedede;
+        padding: 0.6rem 0 3rem 0;
+      }
+      div.footer a{
+        display: inline-block;
+        padding: 0 0.8rem;
+        margin-bottom: 0.6rem;
+        color: #999;
+      } 
+      a.logo-link{
+        text-transform: uppercase;
+      }
+      a.contact-link{
+        border-left: 1px solid #dedede;
+        border-right: 1px solid #dedede;
+      }
+      p.copyright{
+        text-align: center;
+        margin: 0; 
+      }
+      @media only screen and (max-width: 480px) {
+        h3.header{
+          font-size: 1.2rem;
+          font-weight: 100;
+          text-align: center; 
+          margin: 0rem 2rem 0.6rem 2rem;
+        }
+        p.body-text{
+          text-align: center; 
+          line-height: 1.4rem;
+          margin: 0rem 1rem;
+        }
+        div.info{
+          display: block;
+        }
+        a.button{
+          margin: 0rem 1rem;
+        }
+        div.data{
+          display: block;
+          margin: 0.4rem 1rem;
+        }
+        div.data.ex{
+          display: block;
+          margin: 0.4rem 1rem;
+        }
+        div.explain{
+          margin: 3rem 1rem 0 1rem;
+        }
+        div.footer{
+          margin: 0rem 1rem;
+        }
+        div.footer a{
+          display: block;
+          padding: 0 0.8rem;
+          margin-bottom: 0.6rem;
+          color: #999;
+        }
+        a.contact-link{
+          border: 0;
+        } 
+      } 
+  body
+    div.container
+      h1.title 
+        a.logo(href="http://www.homefilming.com") homefilming
+      div.content
+        block content
+      div.footer
+        a.unsub-link(href="http://www.homefilming.com/unsubscribe") Unsubscribe
+        a.contact-link(href="mailto:info@homefilming.com") info@homefilming.com
+        a.logo-link(href="http://www.homefilming.com") Homefilming
+        p.copyright Copyright © 2018 HomeFilming. All rights reserved.
+    
+    

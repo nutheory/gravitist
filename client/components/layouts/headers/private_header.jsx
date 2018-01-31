@@ -1,24 +1,36 @@
+// @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { css } from 'aphrodite'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 import LiNavLink from '../../misc/li_navlink'
-import LogoutUser from '../../../mutations/logout'
 import jwtDecode from 'jwt-decode'
 import styles from '../styles/private_header'
-import _ from 'lodash'
+import UserTokenQuery from '../../../queries/check_refresh'
+import UpdateUserMutation from '../../../mutations/update_user'
 
-const agentLinks = [['tachometer', 'dashboard', 'Dashboard'], ['rocket', 'order', 'New Order'],
-  ['address-card-o', 'contact', 'Contact'], ['cog', 'settings', 'Settings']]
+const agentLinks = [['tachometer', '/dashboard', 'Dashboard'], ['rocket', '/order', 'New Order'],
+  ['address-card-o', '/contact', 'Contact'], ['cog', '/settings', 'Settings']]
+const pilotLinks = [['tachometer', '/dashboard', 'Dashboard'], ['rocket', '/missions', 'Missions'],
+  ['address-card-o', '/contact', 'Contact'], ['cog', '/settings', 'Settings']]
+const adminLinks = [['tachometer', '/dashboard', 'Dashboard'], ['plane', '/admin/pilots', 'Pilots'],
+  ['id-card-o', '/admin/agents', 'Agents'],['hashtag', '/admin/orders', 'Orders'], ['cog', '/settings', 'Settings']]
 
-const pilotLinks = [['tachometer', 'dashboard', 'Dashboard'], ['rocket', 'missions', 'Missions'],
-  ['address-card-o', 'contact', 'Contact'], ['cog', 'settings', 'Settings']]
+type Props = {
+  history: Object,
+  user: Object,
+  checkToken: Object,
+  refreshToken: Function
+}
 
-class PrivateHeader extends Component {
+type State = {
+  currentUser: Object
+}
 
-  static contextTypes = {
-    router: PropTypes.object
-  }
+class PrivateHeader extends Component<Props, State> {
+
+  renderLinks: Function
+  userTypeLinks: Function
+  handleRefreshToken: Function
 
   constructor(){
     super()
@@ -28,17 +40,47 @@ class PrivateHeader extends Component {
 
     this.renderLinks = this.renderLinks.bind(this)
     this.userTypeLinks = this.userTypeLinks.bind(this)
+    this.handleRefreshToken = this.handleRefreshToken.bind(this)
     // this.logoutHandler = this.logoutHandler.bind(this)
   }
 
-  renderLinks(userType){
-    if(userType == "agent"){ return this.userTypeLinks(agentLinks) }
-    if(userType == "pilot"){ return this.userTypeLinks(pilotLinks) }
+  async componentDidMount(){
+    // const { loading, error, tokenRefreshCheck } = this.props.checkToken
+    // const result = this.props.checkToken
+    // if(!loading){
+      // console.log('result.error',result)
+
+    //   console.log('result.error',loading)
+    //   console.log('result.error', tokenRefreshCheck)
+    // }
+
+    //   // if( result.tokenRefreshCheck ){
+    //   //   if( result.tokenRefreshCheck.user.refreshToken ){
+    //   //     const newAuth = this.props.refreshToken({
+    //   //       variables: { input: {
+    //   //         id: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+    //   //         authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+    //   //         user: { refreshToken: false } } } })
+    //   //           .then(auth => { localStorage.setItem('hf_auth_header_token', auth.data.updateUser.auth.token) })
+    //   //   }
+    //   } else {
+    //     localStorage.removeItem('hf_auth_header_token')
+    //     this.props.history.replace('/')
+    //   }
+    // } else {
+    //   console.log('result.error',result.error)
+    // }
   }
 
-  userTypeLinks(arrLinks){
+  renderLinks(userType: string){
+    if(userType == "agent"){ return this.userTypeLinks(agentLinks) }
+    if(userType == "pilot"){ return this.userTypeLinks(pilotLinks) }
+    if(userType == "admin"){ return this.userTypeLinks(adminLinks) }
+  }
+
+  userTypeLinks(arrLinks: Array<Array<string>>){
     const links = arrLinks.map((link, i) =>
-      <LiNavLink key={link[1]} activeClassName='is-active' strict to={`/${link[1]}`}>
+      <LiNavLink key={link[1]} activeClassName='is-active' strict to={`${link[1]}`}>
         <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-${link[0]}`} aria-hidden="true"></i></span>
         <span className={`is-hidden-touch ${css(styles.icon_with_text)}`}>{link[2]}</span>
       </LiNavLink>
@@ -46,14 +88,37 @@ class PrivateHeader extends Component {
     return links
   }
 
-  logoutHandler(e){
+  logoutHandler(e: SyntheticEvent<*>){
     e.preventDefault()
     localStorage.removeItem('hf_auth_header_token')
-    this.context.router.history.replace('/')
+    this.props.history.replace('/')
+  }
+
+  handleRefreshToken(){
+    console.log('found')
+    this.props.refreshToken().then(res => localStorage.setItem('hf_auth_header_token', res.data.updateUser.auth.token))
+  }
+
+  handleErrors(errors){
+    // console.log('ERRRR', errors)
+    errors.map(err => {
+      if(err.name === "NotFound"){
+        localStorage.removeItem('hf_auth_header_token')
+        this.props.history.replace('/')
+      }
+    })
   }
 
   render(){
-    console.log('Private', this.props)
+    const { loading, error, tokenRefreshCheck } = this.props.checkToken
+    if(loading){ return <div></div> }
+    if(error){ if(error.graphQLErrors[0].name === 'NotFound'){
+      localStorage.removeItem('hf_auth_header_token')
+      window.location.reload(true)
+    } }
+    if(tokenRefreshCheck.user.refreshToken){ this.handleRefreshToken() }
+    console.log('rere', tokenRefreshCheck.user.refreshToken)
+    console.log('TOKEN', jwtDecode(localStorage.getItem('hf_auth_header_token')))
     return (
       <div>
         {/* <nav className="columns section has-shadow" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
@@ -104,4 +169,15 @@ class PrivateHeader extends Component {
   }
 }
 
-export default PrivateHeader
+export default compose(
+  graphql(UserTokenQuery, { name: 'checkToken' }),
+  graphql(UpdateUserMutation, {
+    props: ({ ownProps, mutate }) => ({
+      refreshToken: () => mutate({ variables: { input: {
+        id: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+        authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+        user: { refreshToken: false } } }
+      })
+    })
+  })
+)(PrivateHeader)

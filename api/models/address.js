@@ -16,14 +16,12 @@ module.exports = (sequelize, Sequelize) => {
     name: Sequelize.STRING,
     address1: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     address2: Sequelize.STRING,
     city: Sequelize.STRING,
     state: Sequelize.STRING,
     zipCode: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     type: {
       type: Sequelize.STRING,

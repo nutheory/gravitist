@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  div.intro
+    h3.header Thank you for your order
+    p.body-text
+      | 
+    div.info
+      div.data
+        h5.title Ordered
+        h2.value
+      div.data
+        h5.title Status
+        h2.value
+      div.data.ex
+        h5.title Confirmation Number
+        h2.value
+    div.cta
+      a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View dashboard  

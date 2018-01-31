@@ -1,5 +1,6 @@
 const assert = require('assert')
 const ExtendableError = require('es6-error')
+const chalk = require('chalk')
 
 const isString = d => Object.prototype.toString.call(d) === '[object String]'
 const isObject = d => Object.prototype.toString.call(d) === '[object Object]'
@@ -46,7 +47,7 @@ class ApolloError extends ExtendableError {
       error.locations = locations
       error.path = path
     }
-
+    
     return error
   }
 
@@ -66,11 +67,9 @@ const formatError = (error, returnNull = false) => {
 
   if (!originalError) return returnNull ? null : error
 
-  const { name, message } = originalError
-
-  // if (!name || !isInstance(originalError)) return returnNull ? null : error
-
-  // const { time_thrown, message, data, _showLocations } = originalError
+  const { name } = originalError
+  if (!name || !isInstance(originalError)) return returnNull ? null : error
+  const { time_thrown, message, data, _showLocations } = originalError
 
   if (_showLocations) {
     const { locations, path } = error

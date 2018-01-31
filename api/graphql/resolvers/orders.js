@@ -1,13 +1,14 @@
 const { createResolver } = require('apollo-resolvers')
 const { baseResolver, isAuthenticated, isAuthorized, isAgent } = require('./auth')
 const { Validate } = require('../../utils/validation')
-const { create, update, joinOrLeave, destroy, order, orders, missions } = require('../../services/orders')
+const { create, update, joinOrLeave, destroy, order, orders, missions, uploaded } = require('../../services/orders')
 const { createAgent } = require('./users')
 const chalk = require('chalk')
 
 const getOrders = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
-    const ordersCollection = await orders({ usr: user, qryPrms: input })
+    console.log(chalk.blue.bold("ORDERS?"), input)
+    const ordersCollection = await orders({ usr: user, attrs: input })
     return ordersCollection
   }
 )
@@ -21,6 +22,7 @@ const getOrder = isAuthenticated.createResolver(
 
 const getMissions = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
+    console.log(chalk.blue.bold("MISSONS? input"),input)
     const queryParams = {}
     queryParams.sortKey = input.sortKey || "distanceFromLocation"
     queryParams.sortValue = input.sortValue || "ASC"
@@ -43,8 +45,6 @@ const createOrderWithUser = baseResolver.createResolver(
 
 const createOrder = isAgent.createResolver(
   async (root, { input }, { user }) => {
-    const valid = await Validate( input ).isValidOrder().done()
-    if( !valid ){ return valid }
     const order = await create({ usr: user, pln: input.order.plan, addr: input.order.address })
     // sendEmailConfirmationToUser,
     order.agent = user
@@ -56,8 +56,7 @@ const updateOrder = isAuthorized.createResolver(
   async (root, { input }, { user }) => {
     const valid = await Validate( input ).isValidAddress().done()
     if( !valid ){ return valid }
-    const order = await update({ usr: user, id: input.id, updates: input.order })
-    order.agent = user
+    const order = await update({ usr: user, id: input.id, ordr: input.order, addr: input.address })
     return { order }
   }
 )
@@ -66,6 +65,16 @@ const joinOrLeaveCollaboration = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
     const result = await joinOrLeave({ usr: user, id: input.id, updates: input })
     // sendEmailConfirmationToUser,
+    console.log(chalk.blue.bold("joinOrLeave"), result)
+    return result
+  }
+)
+
+const uploadedOrder = isAuthorized.createResolver(
+  async (root, { input }, { user }) => {
+    console.log(chalk.blue.bold("RESOLVER"))
+    const result = await uploaded({ usr: user, id: input.id, updates: input })
+
     return result
   }
 )
@@ -89,6 +98,7 @@ const orderResolvers = {
     createOrderWithUser,
     createOrder,
     joinOrLeaveCollaboration,
+    uploadedOrder,
     updateOrder,
     destroyOrder
   }

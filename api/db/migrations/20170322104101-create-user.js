@@ -12,6 +12,7 @@ module.exports = {
       customerId: {
         type: Sequelize.STRING
       },
+      accountId: Sequelize.STRING,
       companyId: Sequelize.INTEGER,
       companyOwner: {
         type: Sequelize.BOOLEAN,
@@ -45,6 +46,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      verifiedBy: Sequelize.INTEGER,
       workRadius: Sequelize.INTEGER,
       payRate: Sequelize.DECIMAL,
       bio: Sequelize.TEXT,
@@ -53,10 +55,18 @@ module.exports = {
         allowNull: false,
         validate: {
           isIn: {
-            args: [['agent', 'pilot', 'editor', 'admin']],
+            args: [['agent', 'pilot', 'unaprroved_editor', 'unapproved_admin', 'editor', 'admin' ]],
             msg: 'Type is invalid'
           }
         }
+      },
+      refreshToken: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      termsAccepted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       superAdmin: {
         type: Sequelize.BOOLEAN,

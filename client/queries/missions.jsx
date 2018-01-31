@@ -1,9 +1,10 @@
 import gql from 'graphql-tag'
 
-const Missions = gql`
-  query missions{
-    missions{
+const GetMissions = gql`
+  query getMissions($input: GetListInput){
+    getMissions(input: $input){
       id
+      agentId
       status
       createdAt
       distanceFromLocation
@@ -21,4 +22,4 @@ const Missions = gql`
   }
 `
 
-export default Missions
+export default GetMissions

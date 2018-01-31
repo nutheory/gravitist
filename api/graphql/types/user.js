@@ -2,6 +2,7 @@ const User = `
   type User {
     id: ID
     name: String
+    accountId: String
     customerId: String
     stripeToken: String
     email: String
@@ -9,12 +10,20 @@ const User = `
     type: String
     bio: String
     isVerified: Boolean
+    refreshToken: Boolean
+    termsAccepted: Boolean
     workRadius: Int
     ratingCount: Int
     rating: String
     payRate: String
     address: Address
+    avatar: Asset
+    avatars: [Asset]
+    licenses: [Asset]
+    insurances: [Asset]
     contacts: [Contact]
+    createdAt: String
+    updatedAt: String
   }
 
   type AuthPayload {
@@ -29,10 +38,13 @@ const User = `
 
   input UpdateUserInputFields {
     name: String
+    email: String
     password: String
     bio: String
     stripeToken: String
     isVerified: Boolean
+    refreshToken: Boolean
+    termsAccepted: Boolean
     workRadius: Int
     ratingCount: Int
     rating: String
@@ -67,13 +79,27 @@ const User = `
     user: PilotInputFields
   }
 
-  input EditorInput{
-    user: EditorInputFields
+  input UserCollectionInput{
+    options: GetListInput
+    criteria: UserInputFields
+    queryString: String
   }
 
-  input AdminInput{
-    user: AdminInputFields
+  input UserInput{
+    user: UserInputFields
   }
+
+  input VerifyUserInput{
+    id: ID
+    authorizedId: ID
+    user: VerifyUserInputFields
+  }
+
+  input VerifyUserInputFields{
+    isVerified: Boolean
+    refreshToken: Boolean
+  }
+
 
   input AgentInputFields {
     name: String
@@ -99,29 +125,41 @@ const User = `
     contacts: [ContactInput]
   }
 
-  input EditorInputFields {
+  input UserInputFields {
     name: String
     email: String
     password: String
-    stripeToken: String
+    type: String
     bio: String
+    isVerified: Boolean
     address: AddressInput
     avatar: AssetInput
     contacts: [ContactInput]
   }
 
-  input AdminInputFields {
-    name: String
-    email: String
-    password: String
-    bio: String
-    address: AddressInput
-    avatar: AssetInput
-    contacts: [ContactInput]
+  type CheckTokenPayload {
+    user: CheckPayloadFields
+  }
+
+  type CheckPayloadFields {
+    refreshToken: Boolean
+  }
+
+  type UsersPayload {
+    users: [User]
   }
 
   type UserPayload {
     user: UserPayloadFields
+  }
+
+  type UserVerifyPayload {
+    user: UserVerifyPayloadFields
+  }
+
+  type UserVerifyPayloadFields{
+    id: ID
+    isVerified: Boolean
   }
 
   type UserTokenPayload {
@@ -129,17 +167,18 @@ const User = `
     auth: AuthPayload
   }
 
-  type GetProfilePayload {
-    user: UserPayloadFields
+  type GetUserPayload {
+    user: User
   }
 
-  type GetProfileFields {
+  type GetUserFields {
     id: ID
     name: String
     email: String
     customerId: String
     companyId: ID
     companyOwner: Boolean
+    contacts: [Contact]
     address: AddressPayloadFields
     type: String
   }
@@ -149,9 +188,15 @@ const User = `
     name: String
     email: String
     customerId: String
+    accountId: String
     companyId: ID
     companyOwner: Boolean
+    bio: String
     address: AddressPayloadFields
+    isVerified: Boolean
+    refreshToken: Boolean
+    termsAccepted: Boolean
+    workRadius: Int
     insurance: AssetPayload
     license: AssetPayload
     avatar: AssetPayload

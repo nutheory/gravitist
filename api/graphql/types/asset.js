@@ -9,10 +9,11 @@ const Asset = `
     size: String
     meme: String
     awsId: String
-    uploaderId: ID
+    uploader: User
     meta: String
     verified: Boolean
     active: Boolean
+    createdAt: String
   }
 
   input AssetInput {

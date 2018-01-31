@@ -7,9 +7,6 @@ const commonErrors = StyleSheet.create({
     padding: '0',
     maxHeight: '0px',
     overflowY: 'hidden',
-	  transitionProperty: 'all',
-	  transitionDuration: '.5s',
-	  transitionTimingFunction: 'cubic-bezier(0, 1, 0.5, 1)'
   },
   area: {
     margin: '1rem 0',
@@ -17,6 +14,9 @@ const commonErrors = StyleSheet.create({
     margin: '1rem 0 ',
     padding: '1rem',
     maxHeight: '500px',
+    transitionProperty: 'all',
+    transitionDuration: '0.5s',
+    transitionTimingFunction: 'cubic-bezier(0, 1, 0, 1)'
   },
   section: {
     padding: '0.4rem 0',

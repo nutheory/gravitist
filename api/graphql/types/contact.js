@@ -2,17 +2,20 @@ const Contact = `
 
   type Contact {
     id : ID
-    name: String
+    status: String
     content: String
     type: String
+    default: Boolean
     createdAt: String
     updatedAt: String
   }
 
   input ContactInput {
-    name: String
+    id: ID
+    status: String
     content: String
     type: String
+    default: Boolean
   }
 
   input UpdateContactInput {
@@ -34,6 +37,7 @@ const Contact = `
     name: String
     content: String
     type: String
+    default: Boolean
     createdAt: String
     updatedAt: String
   }
