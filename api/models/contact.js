@@ -13,6 +13,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     },
+    name: {
+      type: Sequelize.STRING,
+    },
     content: {
       type: Sequelize.STRING,
       allowNull: false
@@ -40,6 +43,11 @@ module.exports = (sequelize, Sequelize) => {
       foreignKey: 'contactableId',
       constraints: false,
       as: 'company'
+    })
+    Contact.belongsTo(models.Order, {
+      foreignKey: 'contactableId',
+      constraints: false,
+      as: 'order'
     })
   }
 

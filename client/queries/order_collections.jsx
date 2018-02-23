@@ -9,7 +9,6 @@ const GetOrders = gql`
         status
         receiptId
         pilotAcceptedAt
-        editorAcceptedAt
         agentAcceptedAt
         createdAt
         pilotBounty

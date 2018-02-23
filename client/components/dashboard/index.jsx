@@ -8,7 +8,6 @@ import AdminDashboard from './admin/index'
 
 
 const Dashboard = ( props: Object ) => {
-  console.log("PROPS", props)
   return (
     <div>
       { props.user.type === 'pilot' ? <PilotDashboard {...props} /> : null }

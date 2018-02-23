@@ -7,6 +7,7 @@ import Config from '../../utils/config'
 import Evaporate from 'evaporate'
 import Axios from 'axios'
 import Crypto from 'crypto'
+import jwtDecode from 'jwt-decode'
 import ProgressBar from './progress_bar'
 import Uppy from 'uppy/lib/core'
 import XHRUpload from 'uppy/lib/plugins/XHRUpload'
@@ -86,8 +87,10 @@ class DragDropUploader extends Component<Props, State> {
     this.handleDrop()
     this.uppy = Uppy({
       id: this.props.source,
-      debug: true,
-      meta: { source: this.props.source, instanceOf: this.props.fieldname, uploadToId: this.props.uploadToId },
+      meta: {
+        source: this.props.source,
+        instanceOf: this.props.fieldname,
+        uploadToId: this.props.uploadToId },
       restrictions: { allowedFileTypes: mimeTypes[this.props.mimes] },
       autoProceed: this.props.auto || false,
       onBeforeFileAdded: (current, files) => {
@@ -117,8 +120,7 @@ class DragDropUploader extends Component<Props, State> {
   }
 
   async generatePreview(file: Object){
-    console.log('FILE',file.size)
-    if(file.size < 40000000){
+    if(file.size < 40000000 && this.props.auto !== true && this.props.mimes !== "documents" ){
       const reader = new FileReader()
       const tmpThis = this
       reader.onload = (e) => {
@@ -137,7 +139,7 @@ class DragDropUploader extends Component<Props, State> {
           <img src={this.state.preview} />
           <div
             className={css(styles.changeDragDropOverlay)}
-            onClick={this.onBrowseClick}><i className="fa fa-pencil fa-2x"></i></div>
+            onClick={this.onBrowseClick}><i className="far fa-edit fa-2x"></i></div>
         </div>
       )
     } else if (this.state.previewInfo && contains(this.state.previewInfo.type, mimeTypes['videos'])) {
@@ -148,16 +150,16 @@ class DragDropUploader extends Component<Props, State> {
           </video>
           <div
             className={css(styles.changeDragDropOverlay)}
-            onClick={this.onBrowseClick}><i className="fa fa-pencil fa-2x"></i></div>
+            onClick={ this.onBrowseClick }><i className="far fa-edit fa-2x"></i></div>
         </div>
       )
     } else {
       return (
         <div id={`preview${this.props.source}`} className={css(styles.noImagePreview)}>
-          <i className="fa fa-check fa-4x"></i>
+          <i className="fas fa-check fa-4x"></i>
           <div
             className={css(styles.changeDragDropOverlay)}
-            onClick={this.onBrowseClick}><i className="fa fa-pencil fa-2x"></i></div>
+            onClick={ this.onBrowseClick }><i className="far fa-edit fa-2x"></i></div>
         </div>
       )
     }
@@ -201,7 +203,7 @@ class DragDropUploader extends Component<Props, State> {
           signerUrl: `${host}/auth-signature`,
           signHeaders: { Authorization: localStorage.getItem('hf_auth_header_token') },
           aws_key: aws,
-          aws_url: 'http://s3.us-west-1.amazonaws.com',
+          aws_url: 'https://s3.us-west-1.amazonaws.com',
           awsRegion: 'us-west-1',
           bucket: 'homefilming',
           // s3FileCacheHoursAgo: 3,
@@ -221,10 +223,9 @@ class DragDropUploader extends Component<Props, State> {
     const state = this.state
     return Evaporate.create(state.evaporateConfig)
       .then(evaporate => {
-        console.log('this.state.uploadS3',state.uploadS3)
         const file = new File([""], "file_object_to_upload")
         const addConfig = {
-          name: state.uploadS3 ? `${this.props.endpoint}raw-upload` : null,
+          name: state.uploadS3 ? `${env === "production" ? '' : 'development/'}${this.props.endpoint}` : null,
           file: state.uploadS3,
           started: () => { ths.setState({ showProgressBar: true, showSubmitForReview: false }) },
           progress: (progressValue) => { ths.setState({ uploadProgress: progressValue }) },
@@ -244,32 +245,44 @@ class DragDropUploader extends Component<Props, State> {
   render(){
     return (
       <div className={css(styles.mainDragDropWrapper)} >
-        <div
-          ref={ dropzone => this.dropzone = dropzone }
-          className={css(styles.mainDragDropContainer)}
-          style={ this.props.padding ? { padding: '2rem 1rem' } : {} }
-        >
-          <form className={css(styles.mainDragDropForm)}>
-            <input
-              ref={ input => this.inputElement = input }
-              className={css(styles.hiddenDragDropInput)}
-              type="file"
-              name="files[]"
-              value=""
-              multiple={this.props.multiple || false}
-              onChange={this.onInputChange} />
-          { this.state.preview ? this.renderPreview() :
-            <div>
-              <div className={css(styles.mainDragDropInstruction)}>
-                <i className={`${css(styles.mainDragDropIcon)} fa fa-${this.props.mimes === 'documents' ? 'file-text-o' : 'cloud-upload' } fa-2x`}></i>
-                <h3 className={css(styles.mainDragDropHeader)}>{this.props.header}</h3>
-                <p className={css(styles.mainDragDropText)}>Drag & drop {this.props.fileTypeName} or click to browse</p>
-              </div>
-              <label className={css(styles.clickableDragDropLabel)} onClick={this.onBrowseClick}></label>
-            </div> }
-          </form>
-        </div>
-        <div>
+        { this.state.showProgressBar ?
+          <div className={``}>
+            <ProgressBar progress={ this.state.uploadProgress } />
+          </div>
+        :
+          <div
+            ref={ dropzone => this.dropzone = dropzone }
+            className={css(styles.mainDragDropContainer)}
+            style={ this.props.padding ? { padding: '2rem 1rem' } : {} }
+          >
+            <form className={css(styles.mainDragDropForm)}>
+              <input
+                ref={ input => this.inputElement = input }
+                className={css(styles.hiddenDragDropInput)}
+                type="file"
+                name="files[]"
+                value=""
+                multiple={this.props.multiple || false}
+                onChange={this.onInputChange} />
+            { this.state.preview ? this.renderPreview() :
+              <div>
+                <div className={css(styles.mainDragDropInstruction)}>
+                  { this.state.previewInfo ?
+                    <div>
+                      <i className={`${css(styles.mainDragDropIconSuccess)} fas fa-check fa-2x`}></i>
+                      <h3 className={css(styles.mainDragDropHeader)}>Got It</h3>
+                      <p className={css(styles.mainDragDropText)}>{this.props.auto !== true ? 'Ready to upload...' : 'Uploaded' }</p></div>
+                  : <div>
+                    <i className={`${css(styles.mainDragDropIcon)} ${this.props.mimes === 'documents' ? 'far fa-file-pdf' : 'fas fa-cloud-upload-alt' } fa-2x`}></i>
+                    <h3 className={css(styles.mainDragDropHeader)}>{ this.props.header }</h3>
+                    <p className={css(styles.mainDragDropText)}>Drag & drop { this.props.fileTypeName } or click to browse</p>
+                  </div> }
+                </div>
+                <label className={css(styles.clickableDragDropLabel)} onClick={ this.onBrowseClick }></label>
+              </div> }
+            </form>
+          </div> }
+
           { this.state.showSubmitForReview ?
             <div className={css(styles.reviewButton)}>
               <a className={`${css(cE.ctaButton, cE.ctaGreen)}`} onClick={ this.handleReviewSubmit }>
@@ -277,12 +290,7 @@ class DragDropUploader extends Component<Props, State> {
               </a>
             </div>
           : null }
-          { this.state.showProgressBar ?
-            <div className={css(styles.reviewButton)}>
-              <ProgressBar progress={ this.state.uploadProgress } />
-            </div>
-          : null }
-        </div>
+
       </div>
     )
   }

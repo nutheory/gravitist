@@ -1,5 +1,5 @@
-const config = require('../config')
-const stripe = require("stripe")(config.stripe[process.env.NODE_ENV].secret_key)
+const stripe = require("stripe")(process.env[`STRIPE${process.env.NODE_ENV === 'development' ? '_DEV' : ''}_SECRET_KEY`])
+const chalk = require('chalk')
 
 async function createStripeCharge({ pln, customer }){
   return await stripe.charges.create({
@@ -44,11 +44,29 @@ async function destroyStripeSource(customerId, cardId){
   }, err => { throw err })
 }
 
+async function createStripeTransfer({ accountId, transferAmount, orderId, pilotId }){
+  return await stripe.transfers.create({
+    amount: transferAmount,
+    currency: "usd",
+    destination: accountId,
+    metadata: {
+      orderId,
+      pilotId
+    }
+  }).then(payout => {
+    console.log(chalk.blue.bold('PAYOUT'), payout)
+    return payout
+  }, err => {
+    console.log(chalk.blue.bold('ERR'), err)
+  })
+}
+
 module.exports = {
   createStripeCharge,
   createStripeCustomer,
   getStripeCustomer,
   createStripeSource,
   setDefaultStripeSource,
+  createStripeTransfer,
   destroyStripeSource
 }

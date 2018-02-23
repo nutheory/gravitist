@@ -1,6 +1,7 @@
 'use strict'
 
 const { createStripeCharge } = require('../services/payments')
+const uuidv4 = require('uuid/v4')
 
 module.exports = (sequelize, Sequelize) => {
   const Order = sequelize.define('Order', {
@@ -8,51 +9,51 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       type: Sequelize.INTEGER,
     },
+    uuid: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
     pilotId: Sequelize.INTEGER,
-    editorId: Sequelize.INTEGER,
     receiptId: Sequelize.STRING,
     pilotBounty: Sequelize.FLOAT,
     pilotDistance: Sequelize.FLOAT,
-    videoApprovedBy: Sequelize.INTEGER,
-    videoApprovedAt: Sequelize.DATE,
-    uploadedAt: Sequelize.DATE,
+    reviewedBy: Sequelize.INTEGER,
+    rejectedDescription: Sequelize.TEXT,
     rawUrl: Sequelize.STRING,
-    pilotPaymentReceiptId: Sequelize.STRING,
+    pilotTransferId: Sequelize.STRING,
+    pilotTransferResult: Sequelize.JSONB,
+    publicAssetsWatermarked: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    galleryUrl: Sequelize.STRING,
+    history: {
+      type: Sequelize.JSONB,
+      allowNull: false,
+      defaultValue: {}
+    },
     pilotAcceptedAt: Sequelize.DATE,
-    editorAcceptedAt: Sequelize.DATE,
+    uploadedAt: Sequelize.DATE,
+    initProcessCompletedAt: Sequelize.DATE,
+    reviewedAt: Sequelize.DATE,
     completedAt: Sequelize.DATE,
     rejectedAt: Sequelize.DATE,
-    rejectedBy: Sequelize.DATE,
     status: {
       type: Sequelize.STRING,
       allowNull: false,
       defaultValue: 'recruiting',
       validate: {
         isIn: {
-          args: [['recruiting', 'pending', 'filming', 'uploaded', 'processing', 'delivered', 'accepted', 'rejected']],
+          args: [['recruiting', 'pending', 'filming', 'uploaded', 'initial_processing',
+            'awaiting_review','final_processing', 'approved_completed', 'rejected']],
           msg: 'Order status is invalid'
         }
       }
     },
     plan: {
       type: Sequelize.STRING,
-      allowNull: false,
-      validate: {
-        isIn: {
-          args: [['standard', 'premium']],
-          msg: 'Plan is Invalid'
-        }
-      }
-    },
-    timeOfDay: {
-      type: Sequelize.STRING,
-      defaultValue: 'mid-day',
-      validate: {
-        isIn: {
-          args: [['any', 'dawn', 'mid-day', 'dusk']],
-          msg: 'Time of day is invalid'
-        }
-      }
+      allowNull: false
     },
     createdAt: {
       allowNull: false,
@@ -67,11 +68,11 @@ module.exports = (sequelize, Sequelize) => {
   Order.updateFields = (type) => {
     let fields
     switch(type) {
-    case "agent": fields = [ 'status', 'agentAcceptedAt', 'rejectedAt', 'pilotId',
-      'editorId', 'updatedAt', 'rejectedBy', 'rejectedAt', 'updatedAt' ]; break;
-    case "pilot": fields = [ 'pilotId', 'pilotAcceptedAt', 'rejectedBy', 'status',
+    case "agent": fields = [ 'status', 'rejectedAt', 'pilotId',
+      'updatedAt', 'rejectedBy', 'rejectedAt', 'updatedAt' ]; break;
+    case "pilot": fields = [ 'pilotId', 'reviewedAt', 'rejectedBy', 'status',
       'rejectedAt', 'updatedAt' ]; break;
-    case "editor": fields = [ 'editorId', 'editorAcceptedAt', 'rejectedBy', 'status',
+    case "editor": fields = [ 'rejectedBy', 'status',
       'rejectedAt', 'updatedAt' ]; break;
     // case "admin": fields = [ 'password', 'bio', 'avatarId', 'name', 'payrate',
     //   'workRadius', 'licenseId', 'insuranceId' ]; break;
@@ -87,10 +88,6 @@ module.exports = (sequelize, Sequelize) => {
     Order.belongsTo(models.User, {
       foreignKey: 'pilotId',
       as: 'pilot'
-    })
-    Order.belongsTo(models.User, {
-      foreignKey: 'editorId',
-      as: 'editor'
     })
     Order.hasOne(models.Address, {
       foreignKey: 'addressableId',
@@ -110,9 +107,19 @@ module.exports = (sequelize, Sequelize) => {
       foreignKey: 'assetableId',
       constraints: false,
       scope: {
-        assetable: 'order'
+        assetable: 'order',
+        type: 'video'
       },
       as: 'assets'
+    })
+    Order.hasMany(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'order',
+        assetableName: ['video_og', 'photo']
+      },
+      as: 'galleryAssets'
     })
     Order.hasMany(models.Note, {
       foreignKey: 'notableId',
@@ -122,15 +129,18 @@ module.exports = (sequelize, Sequelize) => {
       },
       as: 'notes'
     })
-    Order.hasMany(models.Rating, {
-      foreignKey: 'ratableId',
+    Order.hasMany(models.Contact, {
+      foreignKey: 'contactableId',
       constraints: false,
       scope: {
-        ratable: 'order'
+        contactable: 'order'
       },
-      as: 'rating'
+      as: 'contacts'
     })
   }
+
+  Order.beforeValidate(( order, {pln, customer} ) =>
+    Object.assign(order, { uuid: uuidv4() }) )
 
   Order.beforeCreate( async ( order, {pln, customer} ) => {
     const stripeCharge = await createStripeCharge({ pln, customer })

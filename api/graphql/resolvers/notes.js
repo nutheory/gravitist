@@ -19,7 +19,6 @@ const createNote = isAuthenticated.createResolver(
 
 const destroyNote = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
-    console.log(chalk.blue.bold('AUTHOR IDRESSSS'), input)
     const note = await destroy(input.id, user.id)
     return note
   }

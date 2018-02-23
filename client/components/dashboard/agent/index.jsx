@@ -4,8 +4,9 @@ import { Route, Switch } from 'react-router-dom'
 import { graphql, compose } from 'react-apollo'
 import jwtDecode from 'jwt-decode'
 import OrderList from '../order_list'
+import Overview from './overview'
+import Reorder from './reorder'
 import Profile from '../../users/view_edit'
-import CollaborationArea from './collaboration_area'
 import dsh from '../styles/dashboard'
 import { css } from 'aphrodite'
 import {pathOr} from 'ramda'
@@ -45,15 +46,15 @@ class AgentDashboard extends Component<Props, State>{
       console.log(error)
       return <p>Error!</p>
     } else {
-      console.log('list', list)
       return (
         <div className={`section ${css(dsh.paddingTopBottom)}`}>
           <div className="container">
             <Switch>
-              {/* <Route exact={true} path="/dashboard" component={MissionList} /> */}
-              {/* <Route path="/missions/:missionId/:agentId?" render={({ match }) => (
-                <MissionView missionid={match.params.missionId} authid={match.params.agentId ? match.params.agentId : null} />
-              )} /> */}
+              <Route path="/dashboard/:orderId?" render={({ match }) => (
+                <Overview orderid={ match.params.orderId ? match.params.orderId : null } />
+              )} />
+              <Route path="/new-order" component={ Reorder } />
+              
               <Route path="/settings" render={({ match }) => (
                 <Profile />
               )} />

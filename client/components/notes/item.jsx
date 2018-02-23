@@ -6,7 +6,7 @@ import { find, propEq, reject } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import Avatar from '../assets/avatar'
 import Moment from 'moment'
-import GetNotes from '../../queries/notes_collections'
+import GetNotes from '../../queries/note_collections'
 import DestroyNote from '../../mutations/destroy_note'
 import note from './styles/notes'
 
@@ -36,6 +36,7 @@ class NoteItem extends Component<Props, void> {
 
   render(){
     const user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
+    console.log(this.props.note)
     return(
       <article className={`media box ${css(note.noteItem)}`}>
         <figure className="media-left">

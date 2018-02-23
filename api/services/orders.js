@@ -2,8 +2,9 @@ const { task, waitAll } = require('folktale/concurrency/task')
 const R = require('ramda')
 const db = require('../models')
 const Op = db.Sequelize.Op
-const { AuthenticationFailed, UserError, UnauthorizedError, ForbiddenError } = require('../utils/errors')
-const { buildOrderOverlay } = require('./assets')
+const { AuthenticationFailed, UserError, UnauthorizedError, ForbiddenError, NotFoundError, RobberyInProgressError } = require('../utils/errors')
+const { buildOrderOverlay, processPhotos } = require('./assets')
+const { createStripeTransfer } = require('./payments')
 const { recruitingMailer } = require('../mailers/order')
 const chalk = require('chalk')
 
@@ -14,8 +15,7 @@ const log = data =>
   R.tap(console.log(chalk.blue.bold('DATA'), data))
 
 const orderIncludes = queryString => {
-  console.log(chalk.blue.bold('QUERY'), queryString)
-  return { include: [ { model: db.Address, as: 'address' },
+  return { include: [ { model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' },
   { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }] },
   { model: db.User, as: 'pilot', include: [{ model: db.Asset, as: 'avatar' }] },
   { model: db.Asset, as: 'assets' }, { model: db.Listing, as: 'listing' } ] } }
@@ -28,17 +28,25 @@ const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
   return obj
 }
 
-const getFullOrderInstance = ({id, usr}) => {
-  return task(resolver => resolver.resolve(
-    db.Order.findOne( R.merge({ where: { id }}, orderIncludes()) )
-    .then(res => {
-      return { order: res.dataValues }
-    }).catch(err => console.log(chalk.blue.bold('ERR'), err))
-   ) )
+const getFullGallery = ({ uuid }) => {
+  console.log(chalk.blue.bold('uuid'), uuid )
+  return task(resolver =>
+    db.Order.findOne( R.merge({ where: { uuid }}, { include: [ { model: db.Address, as: 'address' },
+      { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }, { model: db.Contact, as: 'contacts' }] },
+      { model: db.Listing, as: 'listing' }, { model: db.Asset, as: 'galleryAssets' } ] }) )
+      .then(res => resolver.resolve({ gallery: res.dataValues }) ) )
   .run().promise()
 }
 
-// May need double merge of params
+const getFullOrderInstance = ({id, usr}) =>
+  task(resolver =>
+    db.Order.findOne( R.merge({ where: { id }}, orderIncludes()) )
+    .then(res => {
+      if(!res){ throw NotFoundError({ args: { id }, loc: 'Service: User.getFullUser' }) }
+      resolver.resolve({ order: res.dataValues })
+    }).catch(err => err) )
+  .run().promise()
+
 const getOrdersByCriteria = ({ usr, attrs }) =>
   task(resolver =>
     db.Order.findAll( R.merge({ where: R.mergeAll([ attrs.criteria,
@@ -49,7 +57,6 @@ const getOrdersByCriteria = ({ usr, attrs }) =>
       ] }, usr.type !== "admin" ? { [`${usr.type}Id`]: usr.id } : {} ]) },
       R.merge(orderIncludes(attrs.queryString), collectionOptions(attrs.options))))
       .then(res => {
-        console.log(chalk.blue.bold('RES'), res.length)
         resolver.resolve({orders: res})}) )
   .run().promise()
 
@@ -60,31 +67,31 @@ const createOrderWithAssociations = ({ usr, pln, addr }) =>
         { customer: usr.customerId, pln, transaction: tx })
       .then(ordr => ordr.createAddress(addr, { transaction: tx })
         .then(addr => {
-          //
           const createdOrder = R.merge(ordr.dataValues, {address: addr.dataValues})
           return resolver.resolve(createdOrder) } )) )
     .orElse(reason => reason ).run().promise() )
   .catch(err => { throw err })
 
-const getOrderWithAddressToUpdate = ({ usr, id, ordr, addr }) =>
-  task( resolver =>
-    db.Order.findOne(R.merge({ where: { id }}, orderIncludes))
-      .then(async (res) => {
-        const pOrdr = res.update(ordr)
-        const pOrdrAddrss = res.address.update(addr)
-        const [newOrder, newAddress] = await Promise.all([pOrdr, pOrdrAddrss])
-        return resolver.resolve(newOrder.dataValues)
-      })).run().promise()
+const getOrderToUpdate = ({ usr, id, ordr }) =>
+  db.sequelize.transaction(tx =>
+    task( resolver =>
+      db.Order.findById(id, { transaction: tx })
+        .then(res => res.update(ordr, R.merge(orderIncludes(), { transaction: tx }))
+        .then(upd => resolver.resolve(upd.dataValues))) )
+    .run().promise() )
 
 const toggleOrderParticipation = ({ usr, id, updates }) =>
   db.sequelize.transaction(tx =>
     task(resolver =>
       db.Order.findById(id, { transaction: tx })
-        .then(async (ordr) => ordr.update({
+        .then((ordr) => {
+          console.log(chalk.blue.bold('ordr[`${usr.type}AcceptedAt`]'), ordr[`${usr.type}AcceptedAt`])
+          return ordr.update({
           [`${usr.type}Id`]: ( R.isNil(ordr[`${usr.type}Id`]) ? usr.id :
           ( R.equals(ordr[`${usr.type}Id`], usr.id) ? null : resolver.reject('Already Assigned.'))),
-          [`${usr.type}AcceptedAt`]: ( R.isNil(ordr[`${usr.type}AcceptedAt`]) ? new Date() : null ),
-          status: updates.status }).then(ordr => resolver.resolve(({ id: ordr.id, usr, ordr, updates })) ) )
+          [`${usr.type}AcceptedAt`]: ordr[`${usr.type}AcceptedAt`] ? null : new Date(),
+          status: updates.status, pilotBounty: updates.pilotBounty, pilotDistance: updates.pilotDistance,
+        }).then(ordr => resolver.resolve(({ id: ordr.id, usr, ordr, updates })) ) })
      ).orElse(reason => reason ).run().promise() )
   .catch(err => { console.log(chalk.blue.bold("ERRRRRRR"), err) })
 
@@ -94,9 +101,8 @@ const processUploadedOrder = ({ usr, id, updates }) =>
       db.Order.findById(id, { include: [ { model: db.Address, as: 'address' },
         { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' },
         { model: db.Contact, as: 'contacts' }]} ], transaction: tx })
-        .then( async (ordr) => ordr.update({ status: updates.status, uploadedAt: updates.uploadedAt, rawUrl: updates.rawUrl })
+        .then( async (ordr) => ordr.update({ status: 'initial_processing', uploadedAt: updates.uploadedAt, rawUrl: updates.rawUrl })
         .then( async (res) => {
-          console.log('RESSSSS', res)
           const build = await buildOrderOverlay({ usr, ordr: res.dataValues })
           return resolver.resolve({ order: res })
         }))
@@ -125,10 +131,8 @@ const queryMissionsWithinRadius = ({ usr, qryPrms }) =>
 
 const queryPilotsWithinRadius = ({ ordr, qryPrms }) =>
   task(resolver => rawPilotsWithinRadiusSqlQuery({ ordr, qryPrms }).then(res => {
-    console.log('PilotsWithinRadius RES', res)
     resolver.resolve({users: res}) }) )
   .run().promise()
-
 
 const notifyLocalPilots = async ({ ordr }) => {
   const pilots = await queryPilotsWithinRadius({ ordr })
@@ -137,17 +141,38 @@ const notifyLocalPilots = async ({ ordr }) => {
   })
 }
 
+const approveAndPayout = async ({ id, user, photos }) => {
+  if( user.type !== "admin" ){ return false }
+  const ordr = await db.Order.findById(id, { include: [{ model: db.User, as: 'pilot'}] })
+  processPhotos({ ordr, photos })
+  if (ordr.pilotBounty > 200) { throw RobberyInProgressError }
+  const transfer = await createStripeTransfer({
+    accountId: ordr.pilot.accountId,
+    transferAmount: ordr.pilotBounty*100,
+    orderId: ordr.id,
+    pilotId: ordr.pilotId }).catch(err => { throw err })
+  const result = await ordr.update({
+    status: 'final_processing',
+    pilotTransferId: transfer.id,
+    pilotTransferResult: transfer,
+    reviewedBy: user.id,
+    reviewedAt: new Date() })
+}
+
+const rejectAndNotify = async ({ id, user }) => {
+
+}
+
 const rawMissionsWithinRadiusSqlQuery = ({ usr, qryPrms }) => db.sequelize.query(`
   SELECT
     "order"."id", "order"."status", "order"."agentId",
     "order"."plan", "order"."createdAt", "order"."completedAt", "order"."pilotAcceptedAt",
-    "order"."editorAcceptedAt", "agent"."id" AS "agent.id","agent"."name" AS "agent.name",
-    "agent"."email" AS "agent.email", "address"."address1" AS "address.address1",
-    "address"."address2" AS "address.address2", "address"."city" AS "address.city",
-    "address"."state" AS "address.state", "address"."zipCode" AS "address.zipCode",
-    "address"."type" AS "address.type", "address"."lat" AS "address.lat",
-    "address"."lng" AS "address.lng", "address"."createdAt" AS "address.createdAt",
-    "address"."updatedAt" AS "address.updatedAt",
+    "agent"."id" AS "agent.id","agent"."name" AS "agent.name", "agent"."email" AS "agent.email",
+    "address"."address1" AS "address.address1", "address"."address2" AS "address.address2",
+    "address"."city" AS "address.city","address"."state" AS "address.state",
+    "address"."zipCode" AS "address.zipCode", "address"."type" AS "address.type",
+    "address"."lat" AS "address.lat", "address"."lng" AS "address.lng",
+    "address"."createdAt" AS "address.createdAt", "address"."updatedAt" AS "address.updatedAt",
     ( earth_distance(
         ll_to_earth(${usr.address.lat}, ${usr.address.lng}),
         ll_to_earth("address".lat, "address".lng)
@@ -196,13 +221,15 @@ const rawPilotsWithinRadiusSqlQuery = ({ ordr, qryPrms }) => db.sequelize.query(
 ////////////////////////////////////////////////////////////////////////////////
 
 const create = R.tryCatch(R.pipeP(createOrderWithAssociations),log)
-const update = R.tryCatch(R.pipeP(getOrderWithAddressToUpdate),log)
+const update = R.tryCatch(R.pipeP(getOrderToUpdate, getFullOrderInstance),log)
 const destroy = R.tryCatch(R.pipeP(destroyOrderWithAssociated),log)
 const missions = R.tryCatch(R.pipeP(queryMissionsWithinRadius),log)
 const order = getFullOrderInstance
 const orders = getOrdersByCriteria
-
+const gallery = getFullGallery
 const joinOrLeave = toggleOrderParticipation
+const approve = approveAndPayout
+const reject = rejectAndNotify
 const uploaded = processUploadedOrder
 
 module.exports = {
@@ -213,5 +240,33 @@ module.exports = {
   order,
   missions,
   uploaded,
-  destroy
+  destroy,
+  approve,
+  reject,
+  gallery,
+  notifyLocalPilots
 }
+
+
+// PAYOUT { id: 'tr_1BujL4EAoEhChe3Fkepetjgl',
+// [dev.server]   object: 'transfer',
+// [dev.server]   amount: 60,
+// [dev.server]   amount_reversed: 0,
+// [dev.server]   balance_transaction: 'txn_1BujL4EAoEhChe3FrqldksIT',
+// [dev.server]   created: 1518449730,
+// [dev.server]   currency: 'usd',
+// [dev.server]   description: null,
+// [dev.server]   destination: 'acct_1BdkWkFxrkXLpyla',
+// [dev.server]   destination_payment: 'py_1BujL4FxrkXLpylaLrVE4aAA',
+// [dev.server]   livemode: false,
+// [dev.server]   metadata: { orderId: '141', pilotId: '86' },
+// [dev.server]   reversals:
+// [dev.server]    { object: 'list',
+// [dev.server]      data: [],
+// [dev.server]      has_more: false,
+// [dev.server]      total_count: 0,
+// [dev.server]      url: '/v1/transfers/tr_1BujL4EAoEhChe3Fkepetjgl/reversals' },
+// [dev.server]   reversed: false,
+// [dev.server]   source_transaction: null,
+// [dev.server]   source_type: 'card',
+// [dev.server]   transfer_group: null }

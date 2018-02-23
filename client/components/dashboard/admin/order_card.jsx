@@ -5,7 +5,7 @@ import { graphql, compose } from 'react-apollo'
 import { css } from 'aphrodite'
 import Avatar from '../../assets/avatar'
 import Moment from 'moment'
-import crd from './styles/order_card'
+import crd from '../styles/order_card'
 
 
 type Props = {

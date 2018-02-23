@@ -3,18 +3,46 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const pug = require('pug')
 const isProduction = process.env.NODE_ENV === 'production'
 const toMail = (address) => isProduction ? address : 'drush@nutheory.com'
-const recruitingTemplate = pug.compileFile('recruit_pilots.pug')
-const completedTemplate = pug.compileFile('order_completed.pug')
-const confirmationTemplate = pug.compileFile('order_confirmation.pug')
+const recruitingTemplate = pug.compileFile(__dirname + '/views/recruit_pilots.pug')
+const completedTemplate = pug.compileFile(__dirname + '/views/order_completed.pug')
+const confirmationTemplate = pug.compileFile(__dirname + '/views/order_confirmation.pug')
 const chalk = require('chalk')
 
-const confirmationMailer = ({ agent, order }) => {
+
+const welcomeConfirmationMailer = ({ order, user }) => {
+  console.log(chalk.blue.bold('Agent'), user)
+  console.log(chalk.blue.bold('ORDER'), order)
   const msg = {
-    to: toMail(agent.email),
+    to: toMail(user.email),
+    from: 'noreply@homefilming.com',
+    subject: `Welcome to Homefilming`,
+    text: `Welcome to Homefilming`,
+    html: confirmationTemplate({
+      title: `Welcome to Homefilming`,
+      name: user.name,
+      plan: order.plan,
+      createdAt: order.createdAt,
+      status: order.status,
+      receiptId: order.receiptId
+    }),
+  }
+  sgMail.send(msg)
+}
+
+const confirmationMailer = ({ order, user }) => {
+  const msg = {
+    to: toMail(user.email),
     from: 'noreply@homefilming.com',
     subject: `Thank you for your order at Homefilming`,
-    text: ``,
-    html: ``,
+    text: `Thank you for your order at Homefilming`,
+    html: confirmationTemplate({
+      title: `Thank you for your order at Homefilming`,
+      name: user.name,
+      plan: order.plan,
+      createdAt: order.createdAt,
+      status: order.status,
+      receiptId: order.receiptId
+    }),
   }
   sgMail.send(msg)
 }
@@ -37,7 +65,7 @@ const recruitingMailer = ({ pilot, order }) => {
       distance: `${pilot.distanceFromLocation}`,
       address: order.address.address1,
       cityState: `${order.address.city}, ${order.address.state}`,
-      orderId: orderId,
+      orderId: order.id,
       agentId: order.agent.id
     }),
   }
@@ -57,6 +85,7 @@ const completedMailer = ({ pilot, order }) => {
 }
 
 module.exports = {
+  welcomeConfirmationMailer,
   confirmationMailer,
   recruitingMailer,
   completedMailer

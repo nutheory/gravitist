@@ -19,7 +19,7 @@ const tokenAuthenticate = (req, res, next) => {
 const publicPassThrough = (req, res, next) => {
   let regEx
   let noAuthRequired = false
-  const unprotectedMethods = [ 'loginUser', 'createAgent', 'createPilot',
+  const unprotectedMethods = [ 'getGallery', 'loginUser', 'createAgent', 'createPilot',
     'createEditor', 'createUser', 'createOrderWithUser' ]
   unprotectedMethods.map(method => {
     regEx = new RegExp(method)

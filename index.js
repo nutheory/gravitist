@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { serverStart } = require('./api/server')
 
 let server

@@ -8,12 +8,12 @@ import styles from '../styles/private_header'
 import UserTokenQuery from '../../../queries/check_refresh'
 import UpdateUserMutation from '../../../mutations/update_user'
 
-const agentLinks = [['tachometer', '/dashboard', 'Dashboard'], ['rocket', '/order', 'New Order'],
-  ['address-card-o', '/contact', 'Contact'], ['cog', '/settings', 'Settings']]
-const pilotLinks = [['tachometer', '/dashboard', 'Dashboard'], ['rocket', '/missions', 'Missions'],
-  ['address-card-o', '/contact', 'Contact'], ['cog', '/settings', 'Settings']]
-const adminLinks = [['tachometer', '/dashboard', 'Dashboard'], ['plane', '/admin/pilots', 'Pilots'],
-  ['id-card-o', '/admin/agents', 'Agents'],['hashtag', '/admin/orders', 'Orders'], ['cog', '/settings', 'Settings']]
+const agentLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-rocket', '/new-order', 'New Order'],
+  ['fa fa-hashtag', '/orders', 'Orders'], ['fa fa-cog', '/settings', 'Settings']]
+const pilotLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-history', '/history', 'History'],
+  ['fa fa-cog', '/settings', 'Settings']]
+const adminLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fa fa-plane', '/admin/pilots', 'Pilots'],
+  ['far fa-id-card', '/admin/agents', 'Agents'],['fa fa-hashtag', '/admin/orders', 'Orders'], ['fa fa-cog', '/settings', 'Settings']]
 
 type Props = {
   history: Object,
@@ -23,7 +23,8 @@ type Props = {
 }
 
 type State = {
-  currentUser: Object
+  currentUser: Object,
+  lastRefreshed?: string
 }
 
 class PrivateHeader extends Component<Props, State> {
@@ -81,7 +82,7 @@ class PrivateHeader extends Component<Props, State> {
   userTypeLinks(arrLinks: Array<Array<string>>){
     const links = arrLinks.map((link, i) =>
       <LiNavLink key={link[1]} activeClassName='is-active' strict to={`${link[1]}`}>
-        <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-${link[0]}`} aria-hidden="true"></i></span>
+        <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`${link[0]}`} aria-hidden="true"></i></span>
         <span className={`is-hidden-touch ${css(styles.icon_with_text)}`}>{link[2]}</span>
       </LiNavLink>
     )
@@ -95,8 +96,11 @@ class PrivateHeader extends Component<Props, State> {
   }
 
   handleRefreshToken(){
-    console.log('found')
-    this.props.refreshToken().then(res => localStorage.setItem('hf_auth_header_token', res.data.updateUser.auth.token))
+    this.props.refreshToken().then(res => {
+      // this.setState({ lastRefreshed: Date.now().toString() })
+      localStorage.setItem('hf_auth_header_token', res.data.updateUser.auth.token)
+      window.location.reload(true)
+    })
   }
 
   handleErrors(errors){
@@ -117,8 +121,6 @@ class PrivateHeader extends Component<Props, State> {
       window.location.reload(true)
     } }
     if(tokenRefreshCheck.user.refreshToken){ this.handleRefreshToken() }
-    console.log('rere', tokenRefreshCheck.user.refreshToken)
-    console.log('TOKEN', jwtDecode(localStorage.getItem('hf_auth_header_token')))
     return (
       <div>
         {/* <nav className="columns section has-shadow" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
@@ -156,7 +158,7 @@ class PrivateHeader extends Component<Props, State> {
               { this.renderLinks(this.state.currentUser.type) }
               <li>
                 <a href='#' onClick={this.logoutHandler.bind(this)}>
-                  <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fa fa-sign-out`} aria-hidden="true"></i></span>
+                  <span className={`icon is-small ${css(styles.icon_only)}`}><i className={`fas fa-sign-out-alt`} aria-hidden="true"></i></span>
                   <span className={`is-hidden-touch ${css(styles.icon_with_text)}`}>Logout</span>
                 </a>
               </li>

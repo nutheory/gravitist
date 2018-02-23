@@ -35,7 +35,7 @@ class PricingList extends Component<Props, State> {
 
   selectedPlan(selectedPlan: string){
     this.setState({ selectedPlan }, (res) => {
-      
+
     })
   }
 
@@ -44,7 +44,7 @@ class PricingList extends Component<Props, State> {
       <div id="pricingList" className={css(prc.container)}>
         <div className={css(cT.bigTitle)}>Get Started by Choosing a Plan!</div>
         <div className={`${css(prc.planList)} columns`}>
-          { plans.map( plan => <div key={plan.name}><PricingPlan planSpecifics={plan} selectedPlan={this.selectedPlan} /></div> )}
+          { plans.map( plan => <div style={{display: 'flex', flex: 1 }} key={plan.name}><PricingPlan planSpecifics={plan} selectedPlan={this.selectedPlan} /></div> )}
         </div>
         <p className={css(prc.contactFooter)}>Alternatively, contact us at <a href="mailto:info@homefilming.com">info@homefilming.com</a> or <a href="tel:1-800-000-0000">1-800-000-0000</a> for your free consultation
 to find out just how we can help your business grow the smart way!</p>

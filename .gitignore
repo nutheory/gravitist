@@ -1,5 +1,4 @@
 node_modules/
 raw/
 .env
-sendgrid.env
 coverage/

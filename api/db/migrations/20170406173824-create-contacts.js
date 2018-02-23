@@ -25,6 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      name: Sequelize.STRING,
       type: Sequelize.STRING,
       createdAt: {
         allowNull: false,

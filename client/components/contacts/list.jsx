@@ -51,7 +51,6 @@ class ContactList extends Component<Props, State> {
   }
 
   getInvalidContacts(){
-    console.log('valid?',this.state.contacts)
     return this.state.contacts.filter(c => c.validated === false ? c : null )
   }
 
@@ -106,7 +105,7 @@ class ContactList extends Component<Props, State> {
     const cType = ContactTypes.filter(ct => ct.type === cnt.type ? ct : null )
     return (
       <div className={`${css(con.contactDisplayItemInner)} columns`}>
-        <div className={`${css(con.contactDisplayIcon)} column is-narrow`}><i className={`fa fa-${cType[0].icon} fa-2x`} /></div>
+        <div className={`${css(con.contactDisplayIcon)} column is-narrow`}><i className={`${cType[0].icon} fa-2x`} /></div>
         <div className={`${css(con.contactDisplayContent)} column `}>
           <div className="title is-4">{cnt.content}</div>
         </div>

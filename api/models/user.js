@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const config = require('../config')
-const secret = config.jwt.secret
+const secret = process.env.JWT_SECRET
 const { createStripeCustomer } = require('../services/payments')
 const chalk = require('chalk')
 
@@ -32,7 +31,7 @@ module.exports = function(sequelize, Sequelize) {
     type: {
       type: Sequelize.STRING,
       validate: {
-        isIn: [[ 'agent', 'pilot', 'unapproved_editor', 'unapproved_admin', 'editor', 'admin' ]]
+        isIn: [[ 'agent', 'pilot', 'unapproved_admin', 'admin' ]]
       }
     },
     bio: Sequelize.TEXT,
@@ -40,11 +39,30 @@ module.exports = function(sequelize, Sequelize) {
       type: Sequelize.BOOLEAN,
       defaultValue: false
     },
+    passwordResetSent: Sequelize.DATE,
+    unsubscribedEmail: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
+    },
     workRadius: Sequelize.INTEGER,
     payRate: Sequelize.DECIMAL,
     refreshToken: {
       type: Sequelize.BOOLEAN,
       defaultValue: false
+    },
+    deactivated: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    },
+    deactivatedReason: {
+      type: Sequelize.STRING,
+      validate: {
+        isIn: {
+          args: [[ 'rejected_filmings', 'conduct', 'invalid_credentials', 'payout_account_error' ]],
+          msg: 'reason is invalid'
+        }
+      }
     },
     termsAccepted: {
       type: Sequelize.BOOLEAN,
@@ -93,7 +111,7 @@ module.exports = function(sequelize, Sequelize) {
 
   // Adding an instance level method
   User.prototype.comparePassword = async function (pw) {
-    return await bcrypt.compare(pw, this.password).catch(err => { throw err })
+    return await bcrypt.compare(pw, this.password)
   }
 
   User.prototype.isAdmin = (user) => {
@@ -125,10 +143,6 @@ module.exports = function(sequelize, Sequelize) {
       foreignKey: 'pilotId',
       as: 'pilot'
     })
-    User.hasMany(models.Order, {
-      foreignKey: 'editorId',
-      as: 'editor'
-    })
     User.hasMany(models.Contact, {
       foreignKey: 'contactableId',
       onDelete: 'CASCADE',
@@ -136,6 +150,15 @@ module.exports = function(sequelize, Sequelize) {
         contactable: 'user'
       },
       as: 'contacts'
+    })
+    User.hasMany(models.Contact, {
+      foreignKey: 'contactableId',
+      onDelete: 'CASCADE',
+      scope: {
+        contactable: 'user',
+        default: true
+      },
+      as: 'contact'
     })
     User.hasMany(models.Invitation, {
       foreignKey: 'userId'
@@ -234,7 +257,7 @@ module.exports = function(sequelize, Sequelize) {
     if ( user.termsAccepted ) { newToken.termsAccepted = user.termsAccepted }
     if ( user.workRadius ) { newToken.workRadius = user.workRadius }
     if ( user.address ) { newToken.address = user.address }
-    if ( user.avatar ) { newToken.avatar = user.avatar }
+    if ( user.avatars ) { newToken.avatars = user.avatars }
     if ( user.contacts ) { newToken.contacts = user.contacts }
 
     return newToken

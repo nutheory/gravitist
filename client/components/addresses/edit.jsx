@@ -62,7 +62,7 @@ class AddressEdit extends Component<Props, State> {
               <i className="fa fa-home"></i>
             </span>
             <span className="icon is-small is-right">
-              <i className="fa fa-check"></i>
+              <i className="fas fa-check"></i>
             </span>
           </div>
         </div>

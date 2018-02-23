@@ -2,44 +2,37 @@ import { StyleSheet } from 'aphrodite'
 import { ss, c} from '../../../styles/helpers'
 
 const progress = StyleSheet.create({
-  bg: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '6px',
-    backgroundImage: 'linear-gradient(-180deg,#dbdbdb 0,#7a7a7a 100%)',
-    width: '100%',
-    height: '3.8rem',
-    zIndex: '1'
+  progressArea: {
+    marginTop: '2rem'
   },
-  border: {
-    position: 'absolute',
-    zIndex: '4',
-    width: '100%',
-    height: '3.8rem',
-    borderRadius: '6px',
-    border: '4px solid #34566b',
-    boxShadow: 'inset 0 0 10px #000000'
+  progressBar: {
+    width: '90%',
+    margin: '-2rem auto 2rem auto'
   },
-  bar: {
-    position: 'absolute',
-    zIndex: '2',
-    width: '107%',
-    height: '3.8rem',
-    borderRadius: '24px',
-    boxShadow: '1px 1px 2px #0a0a0a',
-    background: '#ad5389',
-    background: '-webkit-linear-gradient(to top, #3c1053, #ad5389)',
-    background: 'linear-gradient(to top, #3c1053, #ad5389)'
+  content: {
+    width: '100%',
+    margin: 'auto'
   },
   percent: {
-    position: 'absolute',
-    top: '1.8rem',
-    right: '1.2rem',
-    zIndex: '3',
-    fontSize: '1.4rem',
+    textAlign: 'right',
+    verticalAlign: 'top',
+    display: 'inline-block',
+    width: '30%',
+    fontSize: '5rem',
+    lineHeight: '5.2rem',
     fontFamily: '"Droid serif", Times, serif',
-    textShadow: '2px 2px 2px #000',
-    color: '#b560cc'
+    fontWeight: 'bold',
+  },
+  info: {
+    display: 'inline-block',
+    paddingLeft: '1rem',
+    width: 'calc(70% - 1rem)',
+  },
+  infoHeader: {
+    fontSize: '1.4rem'
+  },
+  infoText: {
+    lineHeight: '1.3rem'
   }
 })
 

@@ -38,11 +38,12 @@ class MapDirections extends Component<Props, State> {
   }
 
   initMap() {
+    const ths = this
     const markerArray = [];
     const directionsService = new google.maps.DirectionsService
     const map = new google.maps.Map(document.getElementById('mapArea'), {
       zoom: 13,
-      center: {lat: this.props.location.lat, lng: this.props.location.lng}
+      center: {lat: ths.props.location.lat, lng: ths.props.location.lng}
     })
 
     const directionsDisplay = new google.maps.DirectionsRenderer({map: map})
@@ -54,10 +55,10 @@ class MapDirections extends Component<Props, State> {
     for (var i = 0; i < markerArray.length; i++) {
       markerArray[i].setMap(null)
     }
-
+    const ths = this
     directionsService.route({
-      origin: `${this.props.location.lat},${this.props.location.lng}`,
-      destination: `${this.props.htf.lat},${this.props.htf.lng}`,
+      origin: `${ths.props.location.lat},${ths.props.location.lng}`,
+      destination: `${ths.props.htf.lat},${ths.props.htf.lng}`,
       travelMode: 'DRIVING'
     }, (response, status) => {
       if (status === 'OK') {
@@ -65,10 +66,10 @@ class MapDirections extends Component<Props, State> {
         const distance = response.routes[0].legs[0].distance.value
         const duration = response.routes[0].legs[0].duration.value
         response.routes[0].legs[0].steps.map(st => directions.push(st.instructions))
-        this.setState({ distance, duration, directions }, function(){
-          this.props.returnMapInfo({
-            distance: Math.round( (this.state.distance / 1609.34) * 10 ) / 10,
-            duration: (Math.round(this.state.duration / 60)).toString().split('.')[0]
+        ths.setState({ distance, duration, directions }, () => {
+          ths.props.returnMapInfo({
+            distance: (Math.round( (parseInt(ths.state.distance) / 1609.34) * 10 ) / 10),
+            duration: (Math.round( parseInt(ths.state.duration) / 60) ).toString().split('.')[0]
           })
         })
         directionsDisplay.setDirections(response)
@@ -85,7 +86,7 @@ class MapDirections extends Component<Props, State> {
           { this.state.directions ? this.state.directions.map((dir, i) =>
             <li key={`direction_${i}`}
               className={css(mdr.mapDirectionItem)}
-              dangerouslySetInnerHTML={{__html: dir}}></li>) : null }
+              dangerouslySetInnerHTML={{__html: `<i class="fa fa-map-pin ${css(mdr.mapDirectionIcon)}"></i> <div class="${css(mdr.mapDirectionText)}">${dir}</div>`}}></li>) : null }
         </ul>
       </div>
     )

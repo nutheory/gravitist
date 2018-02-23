@@ -35,7 +35,6 @@ class Toggle extends Component<Props, State> {
   // }
 
   render(){
-    console.log('VIEWToggle', this.props.toggleState)
     return (
       <div >
         <label className='checkboxControl'>

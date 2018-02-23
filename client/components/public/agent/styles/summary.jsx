@@ -65,7 +65,6 @@ const summary = StyleSheet.create({
   },
   previewArea:{
     width: '100%',
-    height: '100%',
     fontSize: '2.0rem',
     zIndex: '200',
     opacity: '1',

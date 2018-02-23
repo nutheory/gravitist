@@ -28,7 +28,7 @@ class OrderList extends Component<Props, State>{
     return (
       <div className={ this.props.cssHelper === "horizontal" ? this.props.cssHelper : 'columns is-multiline' }>
         { orders ? orders.map((order, i) => (
-          <OrderCard order={order} key={`order_${i}`} />
+          <OrderCard order={order} key={`order_${order.id}`} />
         )) : 'No Results' }
       </div>
     )
@@ -43,7 +43,7 @@ export default compose(
         options: {
           sortKey: props.sortBy || 'createdAt',
           sortValue: props.sortDirection  || 'DESC',
-          sizeLimit: props.sizeLimit || 20
+          sizeLimit: props.sizeLimit || 50
         },
         criteria: props.criteria,
         queryString: props.queryString || ''

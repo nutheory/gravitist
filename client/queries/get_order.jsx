@@ -1,14 +1,26 @@
 import gql from 'graphql-tag'
 
-const getOrder = gql`
+const GetOrder = gql`
   query getOrder($input: GetProtectedInput){
     getOrder(input: $input){
       order {
         id
+        uuid
         plan
         status
         receiptId
+        pilotTransferId
+        pilotTransferResult
+        pilotDistance
+        pilotBounty
+        pilotAcceptedAt
         createdAt
+        uploadedAt
+        completedAt
+        reviewedAt
+        history
+        rejectedBy
+        rejectedAt
         distanceFromLocation
         notes {
           author {
@@ -31,7 +43,8 @@ const getOrder = gql`
           price
           sqft
           type
-          status
+          mlsStatus
+          mlsNumber
           description
           features
         }
@@ -64,16 +77,6 @@ const getOrder = gql`
           name
           email
         }
-        editor {
-          id
-          avatar {
-            id
-            url
-          }
-          type
-          name
-          email
-        }
         assets {
           id
           name
@@ -92,9 +95,14 @@ const getOrder = gql`
             email
           }
         }
+        contacts {
+          name
+          content
+          createdAt
+        }
       }
     }
   }
 `
 
-export default getOrder
+export default GetOrder

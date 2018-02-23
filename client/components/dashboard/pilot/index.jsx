@@ -8,7 +8,7 @@ import jwtDecode from 'jwt-decode'
 import Config from '../../../utils/config'
 import Profile from '../../users/view_edit'
 import MissionList from './mission_list'
-import MissionView from './mission_view'
+import MissionView from '../../orders/view_edit'
 import AcceptTermsMutation from '../../../mutations/accept_terms'
 import Notifications from '../../../utils/notifications.json'
 const env = window.location.host === "homefilming.com" ? "production" : "development"
@@ -63,7 +63,7 @@ class PilotDashboard extends Component<Props, State> {
               <p>{ Notifications.user.pilot.terms.body }</p>
               <a style={{ display: 'block', marginTop: '1rem' }} className={`button is-success`} onClick={ this.handleAcceptTerms }>
                 <span className="icon is-small">
-                  <i className="fa fa-check"></i>
+                  <i className="fas fa-check"></i>
                 </span>
                 <span>Accept terms</span>
               </a>
@@ -124,9 +124,20 @@ class PilotDashboard extends Component<Props, State> {
             { this.renderAcceptTermsNotification() }
           </div>
           <Switch>
-            <Route exact={true} path="/dashboard" component={MissionList} />
+            <Route path="/dashboard" render={({ match }) => (
+              <MissionList view={ match.path.substring(1) } />
+            )} />
+            <Route path="/history" render={({ match }) => (
+              <MissionList view={ match.path.substring(1) } />
+            )} />
             <Route path="/missions/:missionId/:agentId?" render={({ match }) => (
-              <MissionView missionid={match.params.missionId} authid={match.params.agentId ? match.params.agentId : null} />
+              <div className={`columns`}>
+                <div className={`column`}>
+                  <MissionView orderid={match.params.missionId} authid={match.params.agentId ? match.params.agentId : null} />
+                </div>
+                <div className={`column is-one-fifth`}>
+                </div>
+              </div>
             )} />
             <Route path="/settings" render={({ match }) => (
               <Profile />

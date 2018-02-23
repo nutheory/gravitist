@@ -12,7 +12,7 @@ import User from '../../users/signup'
 import AddressMapper from '../../addresses/address_mapper'
 import DragDropUploader from '../../assets/drag_drop_uploader'
 import FormHeader from '../../misc/form_section_header'
-import CreateOrderWithUser from '../../../mutations/order'
+import CreateOrderWithUser from '../../../mutations/create_order_user'
 import jwtDecode from 'jwt-decode'
 import odr from './styles/order'
 import cL from '../../../styles/common_layout'
@@ -112,7 +112,7 @@ class OrderForm extends Component<Props, State> {
     return (<span
         className={`${css(cF.check)} icon is-small is-right`}
         style={{opacity: `${ this.state.userVerified ? 1 : 0 }` }}>
-        <i className="fa fa-check"></i></span>)
+        <i className="fas fa-check"></i></span>)
   }
 
   handleReturnedLocation({ address1, address2, city, state, zip, lat, lng }){
@@ -157,11 +157,11 @@ class OrderForm extends Component<Props, State> {
 
   handleGQLErrors(err){
     err.graphQLErrors.map((error) => {
-      if(error.message = "UniqueEmailError") {
+      if(error.message === "UniqueEmailError") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "email", section: "Email address is taken",
             message: "The email address you entered is already in use. Would you like to login?" }) }) )
-      } else if(error.message = "RequiredFieldError") {
+      } else if(error.message === "RequiredFieldError") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "user", section: "Missing Required Field",
             message: "Please check all your info." }) }) )
@@ -203,16 +203,17 @@ class OrderForm extends Component<Props, State> {
 
   runMutation(token){
     this.setState({ loading: !this.state.loading }, async () => {
-      const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status'], c))
+      const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status', 'default'], c))
       const resolved = await this.props.submitOrder({ contacts, token, state: this.state }).catch(err => {
         this.handleGQLErrors(err)
       })
       const { data: { createOrderWithUser: { order, auth } } } = resolved
       localStorage.setItem('hf_auth_header_token', auth.token)
       if(this.state.avatar.plugins){
+        this.state.avatar.setMeta({uploadToId: order.agentId})
         this.state.avatar.plugins.uploader[0].opts.headers.authorization = auth.token
-        const { successful } = await this.state.avatar.upload()
-        if(successful){ this.setState({ loading: !this.state.loading })
+        const res = await this.state.avatar.upload()
+        if(res.successful.length > 0){ this.setState({ loading: !this.state.loading })
         } else {  }
       } else {
         this.setState({ loading: !this.state.loading })

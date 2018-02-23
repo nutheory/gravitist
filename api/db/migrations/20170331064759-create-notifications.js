@@ -19,7 +19,7 @@ module.exports = {
       type: {
         type: Sequelize.STRING,
         validate: {
-          isIn: [['status_update', 'rejected', 'accepted']]
+          isIn: [[ 'status_update', 'rejected', 'approved', 'note_added', 'payout' ]]
         }
       },
       createdAt: {

@@ -9,26 +9,26 @@ import cT from '../../../styles/common_text'
 const FeaturesBenefits = () => {
 
   const points = [
-    {name: 'usd', bg: cE.gradRed, text: 'Your listing sells faster and you get paid sooner'},
-    {name: 'home', bg: cE.gradBlue, text: 'You get better buyers, better showings, fewer looky loos'},
-    {name: 'list', bg: cE.gradGreen, text: 'You get more listings and better listings'},
-    {name: 'line-chart', bg: cE.gradOrange, text: 'You will be stand out from the competition'}
+    {name: 'fas fa-dollar-sign', bg: cE.gradRed, text: 'Your listing sells faster and you get paid sooner'},
+    {name: 'fa fa-home', bg: cE.gradBlue, text: 'You get better buyers, better showings, fewer looky loos'},
+    {name: 'fa fa-list', bg: cE.gradGreen, text: 'You get more listings and better listings'},
+    {name: 'fas fa-chart-line', bg: cE.gradOrange, text: 'You will be stand out from the competition'}
   ]
 
   const features = [
-    { name: 'film', bg: cE.gradVice, text: "High resolution photos and videos" },
-    { name: 'pencil', bg: cE.gradPeach, text: "Post production and editing" },
-    { name: 'signal', bg: cE.gradIntuitive, text: "Prompt and professional service" },
-    { name: 'plane', bg: cE.gradMirage, text: "FAA licensed pilot" },
-    { name: 'diamond', bg: cE.gradStrain, text: "Fully insured" },
-    { name: 'refresh', bg: cE.gradMango, text: "48-hour turnaround" },
+    { name: 'fa fa-film', bg: cE.gradVice, text: "High resolution photos and videos" },
+    { name: 'fas fa-pencil-alt', bg: cE.gradPeach, text: "Post production and editing" },
+    { name: 'fa fa-signal', bg: cE.gradIntuitive, text: "Prompt and professional service" },
+    { name: 'fa fa-plane', bg: cE.gradMirage, text: "FAA licensed pilot" },
+    { name: 'far fa-gem', bg: cE.gradStrain, text: "Fully insured" },
+    { name: 'fas fa-sync-alt', bg: cE.gradMango, text: "48-hour turnaround" },
   ]
 
   const createBullets = (sp, i) => {
     return (
       <div key={i} className={css(cE.bullet)}>
         <div className={css(cE.imgIconWrapper, cE.gradButton, sp.bg)}>
-          <i className={`${css(cE.iconFix)} fa fa-${sp.name} fa-2x`} />
+          <i className={`${css(cE.iconFix)} ${sp.name} fa-2x`} />
         </div>
         <div className={css(cT.bulletListText)}>{sp.text}</div>
       </div>

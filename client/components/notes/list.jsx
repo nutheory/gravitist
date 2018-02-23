@@ -5,11 +5,11 @@ import { css } from 'aphrodite'
 import { splitAt } from 'ramda'
 import NoteItem from './item'
 import NoteForm from './form'
-import GetNotes from '../../queries/notes_collections'
+import GetNotes from '../../queries/note_collections'
 import note from './styles/notes'
 
 type Props = {
-  noteList: Object,
+  data: Object,
   notes: Array<Object>,
   modelId: number,
   model: string,
@@ -39,8 +39,7 @@ class NoteList extends Component<Props, State> {
   }
 
   render(){
-    console.log('newNote', this.props.noteList)
-    const { loading, getNotes } = this.props.noteList
+    const { loading, getNotes } = this.props.data
     if(loading){return <div></div>}
     const notes = getNotes.notes.length > 0 ? splitAt(getNotes.notes.length - 2, getNotes.notes) : null
     return(
@@ -84,9 +83,10 @@ class NoteList extends Component<Props, State> {
   }
 }
 
-export default compose(
-  graphql(GetNotes, {
-    name: "noteList",
-    options: (props) => ({variables: { input: { model: props.model, modelId: props.modelId } } })
-  })
-)(NoteList)
+export default graphql(GetNotes, {
+  options: (props) => ({
+    variables: {
+      input: {
+        model: props.model,
+        modelId: props.modelId } } })
+})(NoteList)

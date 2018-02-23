@@ -1,13 +1,21 @@
 const { createResolver } = require('apollo-resolvers')
 const { baseResolver, isAuthenticated, isAuthorized, isAgent } = require('./auth')
 const { Validate } = require('../../utils/validation')
-const { create, update, joinOrLeave, destroy, order, orders, missions, uploaded } = require('../../services/orders')
+const { create, update, joinOrLeave, destroy, order, orders, approve, reject,
+        missions, uploaded, notifyLocalPilots, gallery } = require('../../services/orders')
 const { createAgent } = require('./users')
+const { welcomeConfirmationMailer, confirmationMailer } = require('../../mailers/order')
 const chalk = require('chalk')
+
+const getGallery = baseResolver.createResolver(
+  async (root, { input }, req) => {
+    const result = await gallery({ uuid: input.uuid })
+    return result
+  }
+)
 
 const getOrders = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
-    console.log(chalk.blue.bold("ORDERS?"), input)
     const ordersCollection = await orders({ usr: user, attrs: input })
     return ordersCollection
   }
@@ -15,8 +23,8 @@ const getOrders = isAuthenticated.createResolver(
 
 const getOrder = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
-    const orderById = await order({ usr: user, id: input.id })
-    return orderById
+    const result= await order({ usr: user, id: input.id })
+    return result
   }
 )
 
@@ -37,16 +45,17 @@ const createOrderWithUser = baseResolver.createResolver(
   async (root, args, req) => {
     const newUser = await createAgent(root, args, req)
     req.user = newUser.user
-    const result = await createOrder(root, args, req)
-    // sendEmailConfirmationToUser,
+    const result = await createOrder(root, args, req, true )
+    welcomeConfirmationMailer({ order: result.order, user: newUser.user })
     return { order: result.order, auth: newUser.auth }
   }
 )
 
 const createOrder = isAgent.createResolver(
-  async (root, { input }, { user }) => {
+  async (root, { input }, { user }, newUser = false) => {
     const order = await create({ usr: user, pln: input.order.plan, addr: input.order.address })
-    // sendEmailConfirmationToUser,
+    if( !newUser ){ confirmationMailer({ order, user }) }
+    notifyLocalPilots({ ordr: order })
     order.agent = user
     return { order }
   }
@@ -54,10 +63,10 @@ const createOrder = isAgent.createResolver(
 
 const updateOrder = isAuthorized.createResolver(
   async (root, { input }, { user }) => {
-    const valid = await Validate( input ).isValidAddress().done()
-    if( !valid ){ return valid }
-    const order = await update({ usr: user, id: input.id, ordr: input.order, addr: input.address })
-    return { order }
+    // const valid = await Validate( input ).isValidAddress().done()
+    // if( !valid ){ return valid }
+    const result = await update({ usr: user, id: input.id, ordr: input.order, addr: input.address })
+    return result
   }
 )
 
@@ -70,11 +79,23 @@ const joinOrLeaveCollaboration = isAuthenticated.createResolver(
   }
 )
 
+const approveOrder = isAuthenticated.createResolver(
+  async (root, { input }, { user }) => {
+    const result = await approve({ user, id: input.id, photos: input.order.photos })
+    return result
+  }
+)
+
+const rejectOrder = isAuthenticated.createResolver(
+  async (root, { input }, { user }) => {
+    const result = await reject({ user, id: input.id })
+    return result
+  }
+)
+
 const uploadedOrder = isAuthorized.createResolver(
   async (root, { input }, { user }) => {
-    console.log(chalk.blue.bold("RESOLVER"))
     const result = await uploaded({ usr: user, id: input.id, updates: input })
-
     return result
   }
 )
@@ -89,6 +110,7 @@ const destroyOrder = isAuthorized.createResolver(
 const orderResolvers = {
 
   Query: {
+    getGallery,
     getOrder,
     getOrders,
     getMissions
@@ -97,6 +119,8 @@ const orderResolvers = {
   Mutation: {
     createOrderWithUser,
     createOrder,
+    approveOrder,
+    rejectOrder,
     joinOrLeaveCollaboration,
     uploadedOrder,
     updateOrder,

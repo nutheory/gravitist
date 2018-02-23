@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { Input, Button, Form } from 'semantic-ui-react'
 import { withRouter, Link } from 'react-router-dom'
 import LoginUser from '../../mutations/login'
 import { css } from 'aphrodite'
@@ -63,12 +62,13 @@ class Login extends Component<Props, State> {
 
   handleGQLErrors(err){
     err.graphQLErrors.map((error) => {
+      console.log("BOOOM")
       if(error.name === "NotFound"){
         this.setState((prevState) => ({ errors: prevState.errors.concat({
           message: "Email could not be found for authenication." }) }) )
       } else {
         this.setState((prevState) => ({ errors: prevState.errors.concat({
-          message: error.message.split(': ')[1] }) }) )
+          message: "Authenication failed." }) }) )
       }
     })
   }

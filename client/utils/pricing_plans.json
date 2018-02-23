@@ -10,9 +10,9 @@
     "desc": "Photo and video clips package",
     "color": "Green",
     "features": [
-      { "icon": "clock-o", "desc": "48 Hour Delivery" },
-      { "icon": "camera", "desc": "12 High Res Photos" },
-      { "icon": "film", "desc": "6 Video Clips" }
+      { "icon": "far fa-clock", "desc": "48 Hour Delivery" },
+      { "icon": "fa fa-camera-retro", "desc": "12 High Res Photos" },
+      { "icon": "fa fa-film", "desc": "6 Video Clips" }
     ]
   },
   {
@@ -26,11 +26,11 @@
     "desc": "Photo and video clips with fully edited video package",
     "color": "Purple",
     "features": [
-      { "icon": "clock-o", "desc": "48 Hour Delivery" },
-      { "icon": "camera", "desc": "12 High Res Photos" },
-      { "icon": "film", "desc": "6 Video Clips" },
-      { "icon": "id-badge", "desc": "6 Video Clips" },
-      { "icon": "desktop", "desc": "30 second, fully produced video with the listing address, contact info and music." }
+      { "icon": "far fa-clock", "desc": "48 Hour Delivery" },
+      { "icon": "fa fa-camera-retro", "desc": "12 High Res Photos" },
+      { "icon": "fa fa-film", "desc": "6 Video Clips" },
+      { "icon": "fa fa-id-badge", "desc": "6 Video Clips" },
+      { "icon": "fa fa-desktop", "desc": "30 second, fully produced video with the listing address, contact info and music." }
     ]
   }
 ]

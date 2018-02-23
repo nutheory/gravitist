@@ -1,49 +1,33 @@
 const { isValidUrl, isValidName, isValidPhone, isValidEmail } = require('./validators')
+const formatPhoneNumber = (number) => {
+  const reg = /\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})/g
+  const subst = '$1.$2.$3'
+  return number.replace(reg, subst)
+}
 
 const ContactTypes = [{
-    "type": "cellPhone",
-    "humanized": "Cell phone",
-    "icon": "mobile",
+    "type": "phone",
+    "humanized": "Phone",
+    "icon": "fa fa-phone",
     "useText": false,
     "ext": "tel",
     "placeholder": "(555) 555-5555",
     "validator": isValidPhone,
-    "typename": "phone"
-  },
-  {
-    "type": "officePhone",
-    "humanized": "Office phone",
-    "icon": "phone",
-    "useText": false,
-    "ext": "tel",
-    "placeholder": "(555) 555-5555",
-    "validator": isValidPhone,
-    "typename": "phone"
-  },
-  {
-    "type": "homePhone",
-    "humanized": "Home phone",
-    "icon": "phone",
-    "useText": false,
-    "ext": "tel",
-    "placeholder": "(555) 555-5555",
-    "validator": isValidPhone,
-    "typename": "phone"
-  },
-  {
+    "typename": "phone",
+    "formatter": formatPhoneNumber
+  }, {
     "type": "email",
     "humanized": "Email",
-    "icon": "envelope-o",
+    "icon": "fa fa-envelope",
     "useText": false,
     "ext": "mailto",
     "placeholder": "name@company.com",
     "validator": isValidEmail,
     "typename": "email"
-  },
-  {
+  }, {
     "type": "skype",
     "humanized": "Skype",
-    "icon": "skype",
+    "icon": "fab fa-skype",
     "useText": false,
     "ext": "skype",
     "placeholder": "Skype name",
@@ -53,7 +37,7 @@ const ContactTypes = [{
   {
     "type": "slack",
     "humanized": "Slack",
-    "icon": "slack",
+    "icon": "fab fa-slack",
     "useText": false,
     "placeholder": "Display name",
     "validator": isValidName,
@@ -62,7 +46,7 @@ const ContactTypes = [{
   {
     "type": "msnMessenger",
     "humanized": "MSN Messenger",
-    "icon": "windows",
+    "icon": "fab fa-windows",
     "useText": false,
     "placeholder": "MSN name",
     "validator": isValidName,
@@ -71,7 +55,7 @@ const ContactTypes = [{
   {
     "type": "website",
     "humanized": "Website",
-    "icon": "desktop",
+    "icon": "fa fa-desktop",
     "useText": false,
     "ext": "http://",
     "placeholder": "eg... yoursite.com",
@@ -81,7 +65,7 @@ const ContactTypes = [{
   {
     "type": "linkedIn",
     "humanized": "LinkedIn",
-    "icon": "linkedin",
+    "icon": "fab fa-linkedin",
     "useText": false,
     "placeholder": "LinkedIn name",
     "validator": isValidName,
@@ -90,7 +74,7 @@ const ContactTypes = [{
   {
     "type": "facebook",
     "humanized": "Facebook",
-    "icon": "facebook-official",
+    "icon": "fab fa-facebook",
     "useText": false,
     "placeholder": "Facebook name",
     "validator": isValidName,
@@ -99,7 +83,7 @@ const ContactTypes = [{
   {
     "type": "twitter",
     "humanized": "Twitter",
-    "icon": "twitter",
+    "icon": "fab fa-twitter",
     "useText": false,
     "placeholder": "@yourname",
     "validator": isValidName,
@@ -108,7 +92,7 @@ const ContactTypes = [{
   {
     "type": "zillow",
     "humanized": "Zillow",
-    "icon": "id-badge",
+    "icon": "fa fa-id-badge",
     "useText": true,
     "placeholder": "Zillow name",
     "validator": isValidName,
@@ -117,7 +101,7 @@ const ContactTypes = [{
   {
     "type": "trulia",
     "humanized": "Trulia",
-    "icon": "id-badge",
+    "icon": "fa fa-id-badge",
     "useText": true,
     "placeholder": "Trulia name",
     "validator": isValidName,
@@ -126,7 +110,7 @@ const ContactTypes = [{
   {
     "type": "realitor",
     "humanized": "Realitor.com",
-    "icon": "id-badge",
+    "icon": "fa fa-id-badge",
     "useText": true,
     "placeholder": "Realitor.com name",
     "validator": isValidName,
@@ -135,7 +119,7 @@ const ContactTypes = [{
   {
     "type": "mlsId",
     "humanized": "MLS ID",
-    "icon": "id-badge",
+    "icon": "fa fa-id-badge",
     "useText": true,
     "placeholder": "MLS ID",
     "validator": isValidName,

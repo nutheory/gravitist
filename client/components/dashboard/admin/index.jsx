@@ -37,10 +37,12 @@ class AdminDashboard extends Component<Props, State>{
   }
 
   render(){
-    console.log('PROPS2',this.props)
     return (
       <div className="container">
         <Switch>
+          <Route path="/dashboard" render={({ match }) => (
+            <Overview />
+          )} />
           <Route path="/admin/pilots" render={({ match }) => (
             <div>
               <div className="columns">

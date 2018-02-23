@@ -3,6 +3,7 @@ const { baseResolver, isAuthenticated, isAuthorized } = require('./auth')
 const { Validate } = require('../../utils/validation')
 const { RequiredFieldsError, UniqueEmailError } = require("../../utils/errors")
 const { create, update, destroy, profile, verify, login, refresh, collection } = require('../../services/users')
+const { pilotRegistrationMailer } = require('../../mailers/user')
 const chalk = require('chalk')
 
 const currentUser = baseResolver.createResolver(
@@ -35,14 +36,15 @@ const createPilot = baseResolver.createResolver(
     // const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
     // if( !valid ){ return valid }
     const result = await create( input.user )
+    pilotRegistrationMailer(result)
     return result
   }
 )
 
 const createUser = baseResolver.createResolver(
   async ( root, { input }, req ) => {
-    const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
-    if( !valid ){ return valid }
+    // const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
+    // if( !valid ){ return valid }
     const result = await create( input.user )
     return result
   }
@@ -75,6 +77,7 @@ const loginUser = baseResolver.createResolver(
   async (root, { input }, req) => {
     const { email, password } = input
     const result = await login({ email, password })
+    console.log(chalk.blue.bold("USER ERR"),result)
     return result
   }
 )

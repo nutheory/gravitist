@@ -10,7 +10,8 @@ const UpdateListing = gql`
         price
         sqft
         type
-        status
+        mlsNumber
+        mlsStatus
         description
         features
         createdAt

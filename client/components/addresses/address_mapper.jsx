@@ -60,7 +60,7 @@ class AddressMapper extends Component<Props, State> {
       lng: place.geometry.location.lng()
     }
 
-    _.each(place.address_components, (v, k) => {
+    place.address_components.forEach((v, k) => {
       switch(v.types[0]){
         case "route": normalized.street = v.long_name; break;
         case "locality": normalized.city = v.long_name; break;

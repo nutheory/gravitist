@@ -6,17 +6,15 @@ const Order = `
     receiptId: String
     pilotId: ID
     agentId: ID
-    editorId: ID
     pilotAcceptedAt: String
-    editorAcceptedAt: String
     agentAcceptedAt: String
     pilotBounty: String
     pilotDistance: String
     pilotTransferId: String
+    pilotTransferResult: String
     uploadedAt: String
     agent: User
     pilot: User
-    editor: User
     notes: [Note]
     assets: [Asset]
     address: Address
@@ -56,8 +54,8 @@ const Order = `
     plan: PlanInput
     pilotId: ID
     agentId: ID
-    editorId: ID
     address: AddressInput
+    photos: [String]
   }
 
   input UploadedInput {
@@ -68,6 +66,10 @@ const Order = `
     rawUrl: String
   }
 
+  input GetGalleryInput {
+    uuid: String
+  }
+
   input CollaborationInput {
     id: ID
     authorizedId: ID
@@ -75,7 +77,6 @@ const Order = `
     pilotBounty: String
     pilotDistance: String
     pilotId: ID
-    pilotAcceptedAt: String
   }
 
   input DestroyOrderInput {
@@ -94,15 +95,21 @@ const Order = `
 
   type OrderPayloadFields {
     id: ID
+    uuid: String
     plan: String
     agentId: ID
     receiptId: String
     pilotAcceptedAt: String
-    editorAcceptedAt: String
     agentAcceptedAt: String
     pilotBounty: String
     pilotDistance: String
     pilotTransferId: String
+    pilotTransferResult: String
+    reviewedAt: String
+    history: String
+    rejectedBy: ID
+    rejectedAt: String
+    completedAt: String
     status: String
     uploadedAt: String
     address: Address
@@ -110,11 +117,24 @@ const Order = `
     listing: Listing
     agent: User
     pilot: User
-    editor: User
     assets: [Asset]
+    contacts: [Contact]
     distanceFromLocation: Float
     createdAt: String
     updatedAt: String
+  }
+
+  type GalleryPayload{
+    gallery: GalleryPayloadFields
+  }
+
+  type GalleryPayloadFields{
+    id: ID
+    uuid: String
+    address: Address
+    listing: Listing
+    agent: User
+    galleryAssets: [Asset]
   }
 `
 

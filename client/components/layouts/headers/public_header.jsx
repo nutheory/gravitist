@@ -9,14 +9,7 @@ import hdr from '../styles/public_header'
 import { colors } from '../../../styles/helpers'
 import mobileHeader from '../styles/mobile_header'
 import { scrollSpy } from 'react-scroll'
-import { Button, Grid, Segment, Header } from 'semantic-ui-react'
 
-// const FlatButtonWithRouter = withRouter(({ history, href, label, classname}) => (
-//   // <Button
-//   //   onClick={() => { history.push(href) }}
-//   //   className={classname}
-//   // >{label}</Button>
-// ))
 type Props = {
 
 }

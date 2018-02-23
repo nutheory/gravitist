@@ -6,12 +6,7 @@ const JoinOrLeaveCollaboration = gql`
       order {
         status
         pilotAcceptedAt
-        editorAcceptedAt
         agentAcceptedAt
-        editor {
-          id
-          type
-        }
         agent {
           id
           type

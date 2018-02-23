@@ -49,7 +49,7 @@ class PlanSummary extends Component<Props> {
             {this.props.selectedPlan.features.map((feat, i) => {
               return (
                 <li key={i} className={css(styles.feature)}>
-                  <i className={`${css(styles.icon)} fa fa-${feat.icon} fa-2x`} />
+                  <i className={`${css(styles.icon)} ${feat.icon} fa-2x`} />
                   <p className={css(styles.featureDesc)}>{feat.desc}</p>
                 </li>
               )

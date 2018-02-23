@@ -2,10 +2,13 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { graphql } from 'react-apollo'
+import { Helmet } from "react-helmet"
 import DefaultLayout from './default'
+import GalleryLayout from './gallery'
 import SimpleLayout from './simple'
 import AuthLayout from './auth'
 // Public
+import GalleryView from '../public/gallery/index'
 import IndexPage from '../public/index/index'
 import Order from '../public/agent/order'
 import Login from '../users/login'
@@ -24,15 +27,17 @@ type Props = {
 }
 
 const Routes = () => {
+
   let user
+  const path = window.location.pathname.substring(1)
+  console.log("No Auth", path)
   try{
     user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
   } catch(e){
-    console.log("No Auth")
   }
   return (
     <div>
-      { user ? <AuthLayout path='/' component={Dashboard} /> :
+      {/* { user  ? <AuthLayout path='/' component={Dashboard} /> : */}
         <div>
           <Switch>
             <SimpleLayout path='/login' component={Login} />
@@ -43,12 +48,14 @@ const Routes = () => {
             <DefaultLayout path='/pricing' component={PagePricing} />
             <DefaultLayout path='/how-it-works' component={WorkPage} />
             <DefaultLayout path='/faq' component={FaqPage} />
-            <DefaultLayout path='/' component={IndexPage} />
+            { user ? <AuthLayout path='/' component={Dashboard} /> :
+            <DefaultLayout path='/' component={IndexPage} /> }
+
             {/* <AuthLayout path='/' component={Dashboard} /> */}
           </Switch>
           <Route path='/sample-video' component={SampleVideo} />
         </div>
-      }
+
     </div>
   )
 }

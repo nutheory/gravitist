@@ -142,11 +142,11 @@ class PilotRegister extends Component<Props, State> {
 
   handleGQLErrors(err){
     err.graphQLErrors.map((error) => {
-      if(error.message = "UniqueEmailError") {
+      if(error.message === "UniqueEmailError") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "email", section: "Email address is taken",
             message: "The email address you entered is already in use. Would you like to login?" }) }) )
-      } else if(error.message = "RequiredFieldError") {
+      } else if(error.message === "RequiredFieldError") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "user", section: "Missing Required Field", message: "Please check all your info." }) }) )
       }
@@ -261,9 +261,10 @@ class PilotRegister extends Component<Props, State> {
             { this.renderErrors() }
             <div className="message is-success">
               <div className="message-body">
-                <p className={css(reg.textBottomMargin)}>Last Step is to set up how to get paid right, Well we set this all
-                  up through Stripe fo easy instant money. So clicking the link to contue will link your bank or debit
-                  card to us so we can pan you.</p>
+                <p className={css(reg.textBottomMargin)}>Last Step is to set up how to get paid, we set this all
+                  up through Stripe for simple secure payouts on both ends. Submiting this form will create your
+                  account and briefly redirect you to a Stripe processing page. After which you will be redirected
+                  back and be logged in.</p>
                 <div className={css(reg.buttonArea, reg.buttonAreaUnique)}>
                   <button
                     className={css(cE.ctaButton, cE.ctaGreen)}

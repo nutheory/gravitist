@@ -17,6 +17,7 @@ module.exports = function(sequelize, Sequelize) {
     sqft: Sequelize.STRING,
     type: Sequelize.STRING,
     mlsStatus: Sequelize.STRING,
+    mlsNumber: Sequelize.STRING,
     description: Sequelize.TEXT,
     features: Sequelize.JSONB,
     createdAt: {

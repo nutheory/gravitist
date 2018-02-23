@@ -9,6 +9,13 @@ const UnauthorizedError = createError('UnauthorizedError', {
   message: 'You must login to do that'
 })
 
+const RobberyInProgressError = ({args, loc}) => new (createError('RobberyInProgressError', {
+  message: `Transfer is not reasonable. Please check amount.`,
+  name: 'RobberyInProgress',
+  args,
+  info: loc
+}))()
+
 const AuthenticationFailed = ({args, loc}) => new (createError('AuthenticationFailed', {
   message: `Authentication failed. Please check your email and password.`,
   name: 'AuthenticationFailed',
@@ -63,7 +70,9 @@ module.exports = {
   UnknownError,
   UnauthorizedError,
   AlreadyAuthenticatedError,
+  RobberyInProgressError,
   ForbiddenError,
+  NotFoundError,
   UniqueEmailError,
   RequiredFieldsError,
   FailFastError

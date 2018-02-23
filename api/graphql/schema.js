@@ -2,6 +2,7 @@ const { makeExecutableSchema, addMockFunctionsToSchema } = require('graphql-tool
 const GraphQLJSON = require('graphql-type-json')
 const { companyResolvers } = require('./resolvers/companies')
 const { userResolvers } = require('./resolvers/users')
+const { assetResolvers } = require('./resolvers/assets')
 const { listingResolvers } = require('./resolvers/listings')
 const { noteResolvers } = require('./resolvers/notes')
 const { orderResolvers } = require('./resolvers/orders')
@@ -26,11 +27,13 @@ const Query = `
     tokenRefreshCheck : CheckTokenPayload
     getUsers( input: UserCollectionInput ): UsersPayload
     getOrders( input: OrderCollectionInput ): OrdersPayload
-    getNotes( input: NotesCollectionInput ): NotesPayload
+    getNotes( input: NoteCollectionInput ): NotesPayload
+    getAssets( input: AssetCollectionInput ): AssetsPayload
     getOrder( input: GetProtectedInput ): OrderPayload
     getMissions( input: GetListInput ): [Order]
     getUser( input: GetProtectedInput ): GetUserPayload
     getCustomer( input: GetCustomerInput ): CustomerPayload
+    getGallery( input: GetGalleryInput ): GalleryPayload
   }
 `
 
@@ -46,12 +49,15 @@ const Mutation = `
     createListing( input: CreateListingInput ): ListingPayload
     createNote( input: CreateNoteInput ): NotePayload
     joinOrLeaveCollaboration( input: CollaborationInput ): OrderPayload
+    approveOrder( input: UpdateOrderInput ): OrderPayload
+    rejectOrder( input: UpdateOrderInput ): OrderPayload
     createCompany( input: CompanyInput ): CompanyPayload
     joinCompany( input: JoinCompanyInput ): CompanyPayload
     leaveCompany( input: LeaveCompanyInput ): CompanyPayload
     updateOrder( input: UpdateOrderInput ): OrderPayload
     uploadedOrder( input: UploadedInput ): OrderPayload
     updateUser( input: UpdateUserInput ): UserTokenPayload
+    updateAsset( input: AssetInput ): AssetPayload
     verifyUser( input: VerifyUserInput ): UserVerifyPayload
     updateListing( input: UpdateListingInput ): ListingPayload
     updateCompany( input: UpdateCompanyInput ): CompanyPayload
@@ -60,7 +66,9 @@ const Mutation = `
     destroyOrder( input: DestroyOrderInput ): OrderPayload
     destroyCompany( input: DestroyCompanyInput ): CompanyPayload
     destroyNote( input: DestroyNoteInput ): NotePayload
+    destroyAsset( input: AssetInput ): AssetPayload
     setDefaultSource( input: SetDefaultSourceInput ): CustomerPayload
+    toggleDefaultAsset( input: AssetInput ): AssetPayload
   }
 `
 
@@ -75,6 +83,7 @@ const resolvers = _.merge(
   {JSON: GraphQLJSON},
   companyResolvers,
   userResolvers,
+  assetResolvers,
   listingResolvers,
   noteResolvers,
   orderResolvers,

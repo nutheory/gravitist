@@ -12,11 +12,10 @@ const _ = require('lodash')
 const fs = require('fs')
 const uuidv4 = require('uuid/v4')
 const Aws = require('aws-sdk')
-const config = require('../../config')
 const db = require('../../models')
 const s3 = new Aws.S3({
-  accessKeyId: config.aws.accessKeyId,
-  secretAccessKey: config.aws.secretAccessKey,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: 'us-west-1',
   apiVersion: '2006-03-01'
 })
@@ -26,7 +25,7 @@ const chalk = require('chalk')
 module.exports = {
   up: async function (queryInterface, Sequelize) {
     const pilots = await db.User.findAll({where: { type: 'pilot'} })
-    const orders = await db.Order.findAll({where: { status: 'delivered'} })
+    const orders = await db.Order.findAll({where: { status: 'completed'} })
     let assetAvatars = []
 
 ////////////////////////////////////////////////////////////////////////////////

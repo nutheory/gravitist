@@ -36,7 +36,7 @@ class PricingPlan extends Component<Props, void> {
 
   render(){
     return (
-      <div className={`${css(styles.plan)} column is-half`}>
+      <div className={`${css(styles.plan)} column`}>
         <div className={css(styles.header)}>
           <h3 className={css(styles.planTitle)}>{this.props.planSpecifics.title} {this.isSelected(this.props.selected)}</h3>
           <h3 className={css(styles.planPrice)}>${this.props.planSpecifics.price}</h3>
@@ -47,7 +47,7 @@ class PricingPlan extends Component<Props, void> {
             {this.props.planSpecifics.features.map((feat, i) => {
               return (
                 <li key={i} className={css(styles.feature)}>
-                  <i className={`${css(styles.icon)} fa fa-${feat.icon} fa-2x`} />
+                  <i className={`${css(styles.icon)} ${feat.icon} fa-2x`} />
                   <p className={css(styles.featureDesc)}>{feat.desc}</p>
                 </li>
               )

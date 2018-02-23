@@ -6,9 +6,9 @@ const Listing = `
     baths: String
     price: String
     mlsNumber: String
+    mlsStatus: String
     sqft: String
     type: String
-    status: String
     description: String
     features: JSON
     createdAt: String
@@ -21,9 +21,9 @@ const Listing = `
     baths: String
     price: String
     mlsNumber: String
+    mlsStatus: String
     sqft: String
     type: String
-    status: String
     description: String
     features: JSON
   }

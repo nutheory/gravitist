@@ -15,7 +15,7 @@ module.exports = {
 
     const agents = await db.User.findAll({where: {type: 'agent'}}).catch(err => { console.log(chalk.blue.bold("order1"), err); throw err })
     const pilot = await db.User.findOne({where: {email: 'drush81+pilot@gmail.com'}}).catch(err => { console.log(chalk.blue.bold("order2"), err); throw err })
-    const editor = await db.User.findOne({where: {email: 'drush81+editor@gmail.com'}}).catch(err => { console.log(chalk.blue.bold("order3"), err); throw err })
+    const admin = await db.User.findOne({where: {email: 'drush81+admin@gmail.com'}}).catch(err => { console.log(chalk.blue.bold("order3"), err); throw err })
     const isNew = () => ({ status: 'recruiting' })
     const isFilming = () => {
       const distance = parseFloat(Math.min(10 + (Math.random() * (50 - 10)),50).toFixed(2))
@@ -32,8 +32,8 @@ module.exports = {
     const isDelivered = () => {
       const distance = parseFloat(Math.min(10 + (Math.random() * (50 - 10)),50).toFixed(2))
       const bounty = Math.round(40 + distance)
-      return { status: 'delivered', pilotId: pilot.id, pilotAcceptedAt: new Date(), uploadedAt: new Date(),
-      pilotBounty: bounty, pilotDistance: distance, editorId: editor.id, editorAcceptedAt: new Date() }
+      return { status: 'approved_completed', pilotId: pilot.id, pilotAcceptedAt: new Date(), uploadedAt: new Date(),
+      pilotBounty: bounty, pilotDistance: distance, reviewedBy: admin.id, reviewedAt: new Date() }
     }
 
     const statuses = [ isNew, isNew, isNew, isNew, isNew, isNew, isNew, isFilming, isFilming, isFilming, isDelivered, isDelivered ]

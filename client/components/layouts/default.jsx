@@ -9,9 +9,8 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
   try{
     user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
   } catch(e){
-    console.log("No Auth")
   }
-  console.log("USER", user)
+
   return (
     <Route {...rest} render={ props => (
       <div>

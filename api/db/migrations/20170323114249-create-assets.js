@@ -27,11 +27,27 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      watermarked: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
+      thumbnail: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
       verified: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
       active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
+      galleryVisible: Sequelize.BOOLEAN,
+      default: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false

@@ -8,12 +8,23 @@ const UpdateOrder = gql`
         plan
         status
         receiptId
+        pilotTransferId
+        pilotTransferResult
+        pilotDistance
+        pilotBounty
         createdAt
+        uploadedAt
+        completedAt
+        reviewedAt
+        history
+        rejectedBy
+        rejectedAt
         distanceFromLocation
         notes {
           author {
             id
             avatar {
+              id
               url
             }
             type
@@ -30,7 +41,7 @@ const UpdateOrder = gql`
           price
           sqft
           type
-          status
+          mlsStatus
           description
           features
         }
@@ -46,6 +57,7 @@ const UpdateOrder = gql`
         agent {
           id
           avatar {
+            id
             url
           }
           type
@@ -55,15 +67,7 @@ const UpdateOrder = gql`
         pilot {
           id
           avatar {
-            url
-          }
-          type
-          name
-          email
-        }
-        editor {
-          id
-          avatar {
+            id
             url
           }
           type
@@ -80,6 +84,7 @@ const UpdateOrder = gql`
           uploader {
             id
             avatar {
+              id
               url
             }
             type

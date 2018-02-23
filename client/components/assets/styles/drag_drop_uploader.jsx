@@ -3,18 +3,23 @@ import { ss, c} from '../../../styles/helpers'
 
 const uploads = StyleSheet.create({
   mainDragDropWrapper: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    lineHeight: '0'
+    // position: 'relative',
+    // width: '100%',
+    // height: '100%',
+    // lineHeight: '0'
   },
   mainDragDropContainer: {
     display: 'flex',
+    position: 'relative',
+    lineHeight: '0',
     width: '100%',
     height: '100%',
     border: '2px dashed #27708c',
     borderRadius: '6px',
     background: '#f5f5f5',
+  },
+  mainDragDropIconSuccess: {
+    color: '#6dc949'
   },
   mainDragDropContainerHover: {
     border: '2px solid #23d160',
@@ -57,13 +62,14 @@ const uploads = StyleSheet.create({
     fontFamily: 'Avenir Next, Helvetica, Arial, sans-serif',
     fontWeight: '100',
     textAlign: 'center',
+    marginTop: '0.6rem',
     lineHeight: '2rem',
     color: c.darkGrey
   },
   mainDragDropText: {
     fontSize: '0.8rem',
     textAlign: 'center',
-    margin: '0 1rem',
+    margin: '0.4rem 1rem 0 1rem',
     lineHeight: '1rem'
   },
   changeDragDropOverlay: {

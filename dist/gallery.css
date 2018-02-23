@@ -1,0 +1,178 @@
+.galleryDarkBg {
+  background: #000; }
+
+.bgContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.85); }
+
+.container {
+  position: relative;
+  z-index: 10; }
+
+.videoInfoContainer {
+  display: flex;
+  margin: 3rem auto;
+  max-width: 1280px; }
+  .videoInfoContainer .videoContactLeft {
+    margin: 0 1rem;
+    width: calc(67% - 2rem - 6px); }
+    .videoInfoContainer .videoContactLeft .video {
+      border: 3px solid #333;
+      border-radius: 4px;
+      box-shadow: 4px 4px 4px; }
+    .videoInfoContainer .videoContactLeft .contact {
+      display: flex;
+      background: #333;
+      margin-top: 2rem;
+      border-radius: 4px;
+      box-shadow: 4px 4px 4px; }
+      .videoInfoContainer .videoContactLeft .contact h4.title {
+        font-family: "Avenir Next", Helvetica, Arial, sans-serif;
+        font-weight: 100;
+        font-size: 1.6rem;
+        margin: 0; }
+      .videoInfoContainer .videoContactLeft .contact .agentArea {
+        display: flex;
+        margin-right: 1rem; }
+        .videoInfoContainer .videoContactLeft .contact .agentArea .photo {
+          border-radius: 4px 0 0 4px;
+          width: 100px;
+          height: 100px; }
+        .videoInfoContainer .videoContactLeft .contact .agentArea .info {
+          color: #fff;
+          margin: 0.6rem 1rem; }
+          .videoInfoContainer .videoContactLeft .contact .agentArea .info .contactItem {
+            margin-top: 0.4rem; }
+      .videoInfoContainer .videoContactLeft .contact .contactForm {
+        color: #fff;
+        margin: 0.6rem 1rem; }
+        .videoInfoContainer .videoContactLeft .contact .contactForm .result {
+          margin: 0.6rem 0 0 0;
+          display: none; }
+        .videoInfoContainer .videoContactLeft .contact .contactForm .form-group {
+          margin: 0.6rem 0 0 0;
+          display: flex; }
+          .videoInfoContainer .videoContactLeft .contact .contactForm .form-group .form-elem {
+            flex: 1;
+            padding-right: 1rem; }
+          .videoInfoContainer .videoContactLeft .contact .contactForm .form-group .form-control {
+            font-size: 1.2rem;
+            padding: 0.4rem;
+            width: calc(100% - 1rem);
+            border-radius: 3px;
+            border: 1px solid transparent;
+            border-top: none;
+            border-bottom: 1px solid #DDD;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.39), 0 -1px 1px #FFF, 0 1px 0 #FFF; }
+  .videoInfoContainer .infoRight {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    width: calc(33% - 2rem); }
+    .videoInfoContainer .infoRight .address {
+      font-family: "Avenir Next", Helvetica, Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 100;
+      padding: 1.4rem;
+      border-radius: 4px;
+      background: #333;
+      box-shadow: 4px 4px 4px #000;
+      color: #fff; }
+      .videoInfoContainer .infoRight .address .smallerText {
+        font-size: 1.4rem; }
+    .videoInfoContainer .infoRight .listing {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      padding: 1.4rem;
+      color: #fff;
+      border-radius: 4px;
+      box-shadow: 4px 4px 4px #000;
+      background: #333; }
+      .videoInfoContainer .infoRight .listing .section {
+        margin: 0.3rem; }
+      .videoInfoContainer .infoRight .listing .right {
+        text-align: right; }
+      .videoInfoContainer .infoRight .listing .expand {
+        display: flex;
+        flex-direction: column;
+        flex: 1; }
+      .videoInfoContainer .infoRight .listing .description {
+        display: flex;
+        flex-direction: column;
+        flex: 1; }
+      .videoInfoContainer .infoRight .listing .priceContainer {
+        display: flex;
+        font-family: "Droid serif", Times, serif;
+        font-size: 2rem; }
+      .videoInfoContainer .infoRight .listing .priceLabel {
+        display: flex; }
+        .videoInfoContainer .infoRight .listing .priceLabel h4.title {
+          margin-right: 1rem;
+          width: calc(100% - 1rem);
+          align-self: flex-end; }
+      .videoInfoContainer .infoRight .listing .bedsBathsSqftContainer {
+        display: flex;
+        margin: 1rem; }
+        .videoInfoContainer .infoRight .listing .bedsBathsSqftContainer .column {
+          flex: 1; }
+        .videoInfoContainer .infoRight .listing .bedsBathsSqftContainer .shrinkWrap {
+          width: 70%;
+          text-align: center;
+          margin: auto;
+          padding: 0.4rem;
+          border: 1px solid #209cee; }
+          .videoInfoContainer .infoRight .listing .bedsBathsSqftContainer .shrinkWrap h4.title {
+            text-align: center; }
+          .videoInfoContainer .infoRight .listing .bedsBathsSqftContainer .shrinkWrap .value {
+            text-align: center;
+            font-size: 2rem; }
+      .videoInfoContainer .infoRight .listing .mlsDetails {
+        display: flex; }
+      .videoInfoContainer .infoRight .listing .mlsNumber .value {
+        text-transform: uppercase; }
+      .videoInfoContainer .infoRight .listing .mlsStatus .value {
+        text-transform: uppercase; }
+      .videoInfoContainer .infoRight .listing .column {
+        flex: 1; }
+      .videoInfoContainer .infoRight .listing h4.title {
+        font-family: "Avenir Next", Helvetica, Arial, sans-serif;
+        font-weight: 100;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin: 0.2rem 0; }
+      .videoInfoContainer .infoRight .listing .featureList {
+        padding: 0;
+        list-style: none; }
+        .videoInfoContainer .infoRight .listing .featureList .featureItem {
+          width: 100%;
+          display: flex;
+          margin: 0.4rem 0; }
+          .videoInfoContainer .infoRight .listing .featureList .featureItem .label {
+            margin-right: 1rem;
+            flex: 2;
+            text-align: right; }
+          .videoInfoContainer .infoRight .listing .featureList .featureItem .value {
+            margin-left: 1rem;
+            flex: 4; }
+
+.photosContainer {
+  margin: 0 auto 4rem auto;
+  max-width: 1280px; }
+  .photosContainer .photoList {
+    padding: 0;
+    list-style: none;
+    overflow: auto; }
+    .photosContainer .photoList .thumb {
+      display: block;
+      margin: 1rem;
+      width: calc(25% - 2rem);
+      float: left; }
+      .photosContainer .photoList .thumb img {
+        width: 100%; }

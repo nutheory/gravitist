@@ -13,7 +13,7 @@ const FormHeader = (props: Props) => {
     <h4 className={css(cF.subtitle)}>{ props.text }
       <span className={`${css(cF.check)} icon is-small is-right`}
         style={{opacity: `${ props.verified ? 1 : 0 }` }}>
-        <i className="fa fa-check"></i>
+        <i className="fas fa-check"></i>
       </span>
     </h4>
   )

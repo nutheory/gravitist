@@ -21,6 +21,8 @@ class ClassNAME extends Component<Props, State> {
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
+  handleInputChange(){}
+
   render(){
     return(
       <div></div>

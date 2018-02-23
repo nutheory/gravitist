@@ -9,32 +9,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      uuid: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       agentId: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      receiptId: Sequelize.STRING,
       pilotId: Sequelize.INTEGER,
       pilotBounty: Sequelize.FLOAT,
       pilotDistance: Sequelize.FLOAT,
-      videoApprovedBy: Sequelize.INTEGER,
-      videoApprovedAt: Sequelize.DATE,
-      uploadedAt: Sequelize.DATE,
-      pilotPaymentReceiptId: Sequelize.STRING,
-      editorId: Sequelize.INTEGER,
-      receiptId: Sequelize.STRING,
-      rawUrl: Sequelize.STRING,
+      pilotTransferId: Sequelize.STRING,
+      pilotTransferResult: Sequelize.JSONB,
       pilotAcceptedAt: Sequelize.DATE,
-      editorAcceptedAt: Sequelize.DATE,
-      completedAt: Sequelize.DATE,
-      rejectedAt: Sequelize.DATE,
-      rejectedBy: Sequelize.INTEGER,
+      reviewedBy: Sequelize.INTEGER,
+      rejectedDescription: Sequelize.TEXT,
+      rawUrl: Sequelize.STRING,
       status: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'recruiting',
         validate: {
           isIn: {
-            args: [['recruiting', 'pending', 'filming', 'uploaded', 'processing', 'delivered', 'accepted', 'rejected']],
+            args: [['recruiting', 'pending', 'filming', 'uploaded', 'initial_processing',
+              'awaiting_review','final_processing', 'approved_completed', 'rejected']],
             msg: 'Order status is invalid'
           }
         }
@@ -49,16 +49,23 @@ module.exports = {
           }
         }
       },
-      timeOfDay: {
-        type: Sequelize.STRING,
-        defaultValue: 'mid-day',
-        validate: {
-          isIn: {
-            args: [['any', 'dawn', 'mid-day', 'dusk']],
-            msg: 'Time of day is invalid'
-          }
-        }
+      publicAssetsWatermarked: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
+      galleryUrl: Sequelize.STRING,
+      history: {
+        type: Sequelize.JSONB,
+        allowNull: false,
+        defaultValue: {}
+      },
+      pilotAcceptedAt: Sequelize.DATE,
+      uploadedAt: Sequelize.DATE,
+      initProcessCompletedAt: Sequelize.DATE,
+      reviewedAt: Sequelize.DATE,
+      completedAt: Sequelize.DATE,
+      rejectedAt: Sequelize.DATE,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

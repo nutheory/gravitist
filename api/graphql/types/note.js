@@ -9,7 +9,7 @@ const Note = `
     updatedAt: String
   }
 
-  input NotesCollectionInput {
+  input NoteCollectionInput {
     modelId: ID
     model: String
   }

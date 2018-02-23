@@ -12,6 +12,7 @@ const User = `
     isVerified: Boolean
     refreshToken: Boolean
     termsAccepted: Boolean
+    unsubscribedEmail: Boolean
     workRadius: Int
     ratingCount: Int
     rating: String
@@ -45,14 +46,12 @@ const User = `
     isVerified: Boolean
     refreshToken: Boolean
     termsAccepted: Boolean
+    unsubscribedEmail: Boolean
     workRadius: Int
     ratingCount: Int
     rating: String
     payRate: String
     address: AddressInput
-    avatar: AssetInput
-    license: AssetInput
-    insurance: AssetInput
     contacts: [ContactInput]
   }
 
@@ -196,6 +195,7 @@ const User = `
     isVerified: Boolean
     refreshToken: Boolean
     termsAccepted: Boolean
+    unsubscribedEmail: Boolean
     workRadius: Int
     insurance: AssetPayload
     license: AssetPayload

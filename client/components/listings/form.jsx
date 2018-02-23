@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import { css } from 'aphrodite'
-import { pathOr, concat, isEmpty, remove, merge, update } from 'ramda'
+import { pathOr, concat, isEmpty, remove, merge, update, omit } from 'ramda'
 import FeatureForm from './feature'
 import lsf from './styles/form'
 import jwtDecode from 'jwt-decode'
@@ -25,8 +25,9 @@ type State = {
   mlsNumber?: string | null,
   description?: string | null,
   type?: string | null,
-  status?: string | null,
-  features: Array<Object>
+  mlsStatus?: string | null,
+  features: Array<Object>,
+  updated: boolean
 }
 
 class ListingForm extends Component<Props, State> {
@@ -47,9 +48,10 @@ class ListingForm extends Component<Props, State> {
       price: props.listing ? props.listing.price : null,
       mlsNumber: props.listing ? props.listing.mlsNumber : null,
       description: props.listing ? props.listing.description : null,
-      type: props.listing ? props.listing.types : null,
-      status: props.listing ? props.listing.status : null,
-      features: props.listing ? props.listing.features : []
+      type: props.listing ? props.listing.type : null,
+      mlsStatus: props.listing ? props.listing.mlsStatus : null,
+      features: props.listing ? props.listing.features : [],
+      updated: false
     }
 
     this.newFeature = this.newFeature.bind(this)
@@ -60,19 +62,11 @@ class ListingForm extends Component<Props, State> {
   }
 
   componentDidMount(){
-    console.log('listing', this.props.listing)
-    // if(pathOr(false, ['listing', 'features'], this.props)){
-    //   const feat = this.props.listing.features
-    //   this.setState((prevState) => ({ features: concat(prevState.features, feat) }), function(){
-    //   })
-    // } else {
-    //   this.newFeature()
-    // }
   }
 
   handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
     this.setState({ [e.currentTarget.name]: e.currentTarget.value }, function(){
-      console.log('state', this.state)
+
     })
   }
 
@@ -94,15 +88,18 @@ class ListingForm extends Component<Props, State> {
   }
 
   submitListing(){
-    if(this.props.listing){
-      this.props.updateListing({
-        id: this.props.listing.id,
-        authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
-        listing: this.state
-      })
-    } else {
-      this.props.createListing({ listing: merge(this.state, { orderId: this.props.order.id}) })
-    }
+      if(this.props.listing){
+        this.props.updateListing({
+          id: this.props.listing.id,
+          authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+          listing: omit(['updated'], this.state)
+        }).then(res => this.setState({ updated: true }))
+      } else {
+        const state = omit(['updated'], this.state)
+        this.props.createListing({
+          listing: merge(state, { orderId: this.props.order.id})
+        }).then(res => this.setState({ updated: true }))
+      }
   }
 
   render(){
@@ -143,11 +140,13 @@ class ListingForm extends Component<Props, State> {
                   onChange={ this.handleInputChange }
                 />
                 <span className="icon is-small is-left">
-                  <i className="fa fa-bed"></i>
+                  <i className="fa fa-bath"></i>
                 </span>
               </div>
             </div>
           </div>
+        </div>
+        <div className="columns">
           <div className="column">
             <div className="field">
               <div className="control has-icons-left">
@@ -183,11 +182,13 @@ class ListingForm extends Component<Props, State> {
                   onChange={ this.handleInputChange }
                 />
                 <span className="icon is-small is-left">
-                  <i className="fa fa-usd"></i>
+                  <i className="fa fa-dollar-sign"></i>
                 </span>
               </div>
             </div>
           </div>
+        </div>
+        <div className="columns">
           <div className="column">
             <div className="field">
               <div className="control has-icons-left">
@@ -200,7 +201,7 @@ class ListingForm extends Component<Props, State> {
                   onChange={ this.handleInputChange }
                 />
                 <span className="icon is-small is-left">
-                  <i className="fa fa-slack"></i>
+                  <i className="fa fa-hashtag"></i>
                 </span>
               </div>
             </div>
@@ -211,7 +212,7 @@ class ListingForm extends Component<Props, State> {
             <div className="field">
               <p className="control">
                 <span className="select is-fullwidth">
-                  <select onChange={ this.handleInputChange } name="status" defaultValue={ this.state.status }>
+                  <select onChange={ this.handleInputChange } name="mlsStatus" defaultValue={ this.state.mlsStatus }>
                     <option>MLS Status</option>
                     { ListingDropdowns.mlsStatuses.map((stat, i) => (
                       <option
@@ -224,6 +225,8 @@ class ListingForm extends Component<Props, State> {
               </p>
             </div>
           </div>
+        </div>
+        <div className="columns">
           <div className="column">
             <div className="field">
               <p className="control">
@@ -247,6 +250,7 @@ class ListingForm extends Component<Props, State> {
             <textarea
               className="textarea"
               name="description"
+              defaultValue={ this.state.description }
               placeholder="Description of listing"
               onChange={ this.handleInputChange }></textarea>
           </div>
@@ -267,10 +271,11 @@ class ListingForm extends Component<Props, State> {
           </ul>
           <div className="columns">
             <div className="column">
-              <a className="" onClick={this.newFeature}>Add another feature</a>
+              <a className="" onClick={this.newFeature}>Add feature</a>
             </div>
             <div className="column">
-              <a className="button is-success is-pulled-right" onClick={ this.submitListing }>Save listing info</a>
+              <a className="button is-success is-pulled-right" onClick={ this.submitListing }>
+                { this.state.updated ? 'Saved.' : 'Save listing info' }</a>
             </div>
           </div>
 

@@ -55,14 +55,41 @@ module.exports = {
         allowNull: false,
         validate: {
           isIn: {
-            args: [['agent', 'pilot', 'unaprroved_editor', 'unapproved_admin', 'editor', 'admin' ]],
+            args: [['agent', 'pilot', 'unapproved_admin', 'admin' ]],
             msg: 'Type is invalid'
           }
         }
       },
+
+      transfersToDate: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      transferedAmount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      passwordResetSent: Sequelize.DATE,
+      unsubscribedEmail: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       refreshToken: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
+      },
+      deactivated: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      deactivatedReason: {
+        type: Sequelize.STRING,
+        validate: {
+          isIn: {
+            args: [[ 'rejected_filmings', 'conduct', 'invalid_credentials', 'payout_account_error' ]],
+            msg: 'reason is invalid'
+          }
+        }
       },
       termsAccepted: {
         type: Sequelize.BOOLEAN,

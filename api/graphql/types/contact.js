@@ -3,6 +3,7 @@ const Contact = `
   type Contact {
     id : ID
     status: String
+    name: String
     content: String
     type: String
     default: Boolean
@@ -13,6 +14,7 @@ const Contact = `
   input ContactInput {
     id: ID
     status: String
+    name: String
     content: String
     type: String
     default: Boolean

@@ -5,7 +5,7 @@ import { css } from 'aphrodite'
 import { propOr } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import Avatar from '../assets/avatar'
-import GetNotes from '../../queries/notes_collections'
+import GetNotes from '../../queries/note_collections'
 import CreateNote from '../../mutations/create_note'
 import note from './styles/notes'
 
@@ -69,9 +69,9 @@ class NoteForm extends Component<Props, State> {
         </div>
         <div className={`column is-narrow`}>
           <button
-            className={`button is-pulled-right ${css(note.submitButton)}`}
+            className={`button ${css(note.submitButton)}`}
             onClick={ this.handleSubmit }>
-            <i className="fa fa-commenting-o fa-2x" />
+            <i className="far fa-comment-alt fa-2x" />
           </button>
         </div>
       </div>
@@ -87,5 +87,6 @@ export default graphql(CreateNote, {
         query: GetNotes,
         variables: { input: {
           model: props.model,
-          modelId: props.modelId } } }] }) })
+          modelId: props.modelId } } }]
+    }) })
 })(NoteForm)

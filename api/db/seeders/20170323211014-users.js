@@ -1,4 +1,5 @@
 'use strict'
+require('dotenv').config()
 const { createStripeCustomer } = require('../../services/payments')
 const db = require('../../models')
 const Faker = require('faker')
@@ -33,19 +34,6 @@ module.exports = {
       insuranceId: 1,
       licenseId: 1,
       workRadius: 40,
-      bio: Faker.lorem.paragraph(),
-      createdAt: new Date(),
-      updatedAt: new Date()
-    })
-
-    userlist.push({
-      name: "Jon Schnitzer",
-      email: "drush81+editor@gmail.com",
-      password: password,
-      type: "unapproved_editor",
-      isVerified: "true",
-      payRate: "19.99",
-      workRadius: _.sample(radiusOptions),
       bio: Faker.lorem.paragraph(),
       createdAt: new Date(),
       updatedAt: new Date()

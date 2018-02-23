@@ -7,21 +7,18 @@ const db = require('../models')
 const Op = db.Sequelize.Op
 const { createError } = require('../utils/appErrors')
 const { retrieveCustomer, addCustomerSource } = require('./payments')
-const { FailFastError } = require('../utils/errors')
+const { FailFastError, NotFoundError } = require('../utils/errors')
 const chalk = require('chalk')
 
 const capitalize = str =>
   str.charAt(0).toUpperCase() + str.slice(1)
 
-const userInclude = (criteria) => {
-  if(criteria && criteria.type === "pilot"){
-    return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatar' },
-      { model: db.Asset, as: 'insurance' }, { model: db.Asset, as: 'license' },
-      { model: db.Contact, as: 'contacts' }] }
-  } else {
-    return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatar' },
-    { model: db.Contact, as: 'contacts' }] }
-  }
+const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
+  const obj = {}
+  if( sortKey && sortValue ){ obj.order = [[ sortKey, sortValue ]] }
+  if( sizeLimit ){ obj.limit = sizeLimit }
+  if( colOffset ){ obj.offset = colOffset }
+  return obj
 }
 
 const userIncludes = (criteria) => {
@@ -35,40 +32,39 @@ const userIncludes = (criteria) => {
   }
 }
 
-const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
-  const obj = {}
-  if( sortKey && sortValue ){ obj.order = [[ sortKey, sortValue ]] }
-  if( sizeLimit ){ obj.limit = sizeLimit }
-  if( colOffset ){ obj.offset = colOffset }
-  return obj
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 const log = data => R.tap(() => console.log(chalk.blue.bold('DATA'), data), data)
 
-const getFullUser = findBy =>
-  task(resolver =>
-    db.User.findOne({ where: (findBy.id ? { id: findBy.id  } : { email: findBy.email.toLowerCase() } ),
-      rejectOnEmpty: true, include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
+const getFullUser = attrs => {
+  console.log(chalk.blue.bold("findByID"),attrs.id)
+  console.log(chalk.blue.bold("findByEm"),attrs.usr)
+  return task(resolver =>
+    db.User.findOne({ where: (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
+      include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
         { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
         { model: db.Contact, as: 'contacts' }] })
-      .then(res => resolver.resolve({ usr: res, auth: findBy }) )
-      .catch(err => resolver.reject(FailFastError(err.name, { args: findBy, loc: 'Service: User.getFullUser' }))) )
+      .then(res => resolver.resolve({ usr: res, attrs }) )
+      .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getFullUser' }))) )
   .run().promise()
+}
 
-const getCoreUser = ({ usr, attrs }) =>
-  task(resolver =>
-    db.User.find({ where: { id: attrs.id }, rejectOnEmpty: true,
-      include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' }] })
+const getCoreUser = attrs => {
+  console.log(chalk.blue.bold("Core ATTRS"),attrs)
+  return task(resolver =>
+    db.User.find({ where: attrs.email ? { email: attrs.email.toLowerCase() } :
+      (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
+      include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contact' },
+      { model: db.Asset, as: 'avatar' }] })
       .then(usr => resolver.resolve({ usr, attrs }) )
-      .catch(err => resolver.reject(FailFastError(err.name, { args: attr, loc: 'Service: User.getCoreUser' }))) )
+      .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getCoreUser' }))) )
   .run().promise()
+}
 
 const getUser = attrs =>
   task(resolver =>
-    db.User.find({ where: { id: attrs.id }, rejectOnEmpty: true })
+    db.User.find({ where: { id: attrs.id } })
       .then(usr => resolver.resolve({ usr, attrs }))
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getUser' }))) )
   .run().promise()
@@ -87,6 +83,7 @@ const getUsersByCriteria = attrs =>
   .run().promise()
 
 const contactAssociations = async (asscConts) => {
+  console.log(chalk.blue.bold("err start"),asscConts.contacts)
   if(asscConts.contacts && asscConts.contacts.length > 0){
     const contacts = []
     asscConts.contacts.map(contact => {
@@ -106,7 +103,7 @@ const contactAssociations = async (asscConts) => {
             .then(res => resolver.resolve(res.dataValues))))
       }})
     const result = await waitAll(contacts).run().promise()
-    console.log(chalk.blue.bold("err con"),result)
+    console.log(chalk.blue.bold("err end"),result)
     return { contacts: result }
   }
 }
@@ -135,13 +132,14 @@ const createUserWithAssociations = attrs =>
 const updateAssociations = ({ usr, attrs }) => {
   return db.sequelize.transaction(tx =>
     task(async (resolver) => {
-      const addressPromise = attrs.user.address ? usr.address.updateAttributes(attrs.user.address, { transaction: tx }) : []
-      const contactsPromises = attrs.user.contacts ? contactAssociations({usr, contacts: attrs.user.contacts, tx}) : []
+      const addressPromise = attrs.user && attrs.user.address && usr.address ?
+        usr.address.updateAttributes(attrs.user.address, { transaction: tx }) : []
+      const contactsPromises = attrs.user && attrs.user.contacts ? contactAssociations({usr, contacts: attrs.user.contacts, tx}) : []
       const [address, contacts] = await Promise.all([addressPromise, contactsPromises])
-      resolver.resolve(attrs)
+      resolver.resolve({ usr, attrs })
     })
     .orElse( reason => reason ).run().promise() ).catch(err => { throw err })
-  }
+}
 
 const updateUser = ({ usr, attrs }) =>
   db.sequelize.transaction(tx =>
@@ -149,19 +147,19 @@ const updateUser = ({ usr, attrs }) =>
       usr.update(attrs.user, { tx })
         .then(usr => resolver.resolve({ usr, attrs }))
         .catch(err => { throw err }))
-    .orElse( reason => reason ).run().promise() ).catch(err => { throw err })
+    .orElse( reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
-const validateIncomingPassword = async ({ usr, auth }) =>
-  await usr.comparePassword(auth.password).then(res => {
+const validateIncomingPassword = async ({ usr, attrs }) =>
+  await usr.comparePassword(attrs.password).then(res => {
     console.log(chalk.blue.bold("RES"),res)
     if(res){
       return { usr }
     } else {
-      throw new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }))
+      console.log(chalk.blue.bold("still OK"),res)
+      return new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }))
     }
   }).catch(err => {
-    console.log(chalk.blue.bold("ERR"),err) 
-    throw err })
+    throw new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' })) })
     // FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }) )
     // .catch(err => err))
 
@@ -182,7 +180,9 @@ const destroyUser = ({ usr }) => {
 }
 
 const returnUser = ({ usr }) => {
-  return { user: usr.dataValues }}
+  if( !usr ){ throw NotFoundError({ args: usr, loc: 'Service: User.returnUser' }) }
+  return { user: usr.dataValues }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -195,23 +195,23 @@ const profile = R.pipeP(
 const collection = getUsersByCriteria
 
 const login = R.pipeP(
-  getFullUser,
+  getCoreUser,
   validateIncomingPassword,
   returnTokenAndUserInfo
 )
 
 const create = R.pipeP(
   createUserWithAssociations,
-  getFullUser,
+  getCoreUser,
   returnTokenAndUserInfo
 )
 
 const update = R.pipeP(
   getUser,
   updateUser,
-  getCoreUser,
-  updateAssociations,
   getFullUser,
+  updateAssociations,
+  getCoreUser,
   returnTokenAndUserInfo
 )
 

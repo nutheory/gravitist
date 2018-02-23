@@ -36,8 +36,6 @@ const isEditor = isAuthenticated.createResolver(
 const isAuthorized = isAuthenticated.createResolver(
   (root, { input }, { user }) => {
     const { authorizedId } = input
-    console.log(chalk.blue.bold('parseInt(authorizedId)'),input)
-    console.log(chalk.blue.bold('user.id'),user.id)
     if( user.type !== "admin" && parseInt(authorizedId) !== user.id ){ throw new ForbiddenError() }
   }
 )

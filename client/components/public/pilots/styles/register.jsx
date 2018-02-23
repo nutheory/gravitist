@@ -32,9 +32,7 @@ const register = StyleSheet.create({
   upload: {
     margin: '1rem 0',
     display: 'flex',
-    flexBasis: '33%',
     flexDirection: 'column',
-    flexGrow: '1',
   },
   uploadTitle: {
     color: c.white,

@@ -4,13 +4,11 @@ const db = require('../models')
 const chalk = require('chalk')
 
 const collection = ({ input }) =>
-  task(resolver => db.Note.findAll({
-    where: { notable: input.model, notableId: input.modelId },
-    include: [{ model: db.User, as: 'author',
-      include: [{ model: db.Asset, as: 'avatar' }] }],
-    order: [['createdAt', 'ASC']] })
-      .then(res => resolver.resolve({ notes: res }))
-  ).run().promise()
+  task(resolver =>
+    db.Note.findAll({ where: { notable: input.model, notableId: input.modelId },
+    include: [ { model: db.User, as: 'author', include: [ { model: db.Asset, as: 'avatar' } ] } ],
+    order: [['createdAt', 'ASC']] }).then(res => { resolver.resolve({ notes: res }) } ) )
+  .run().promise()
 
 const create = ({ input, usr }) =>
   db.sequelize.transaction(tx =>

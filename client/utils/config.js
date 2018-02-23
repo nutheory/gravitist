@@ -7,7 +7,7 @@ module.exports = {
       'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
     },
     production: {
-      'publishable_key': ''
+      'publishable_key': 'pk_live_oquMAwDjxlu3ZLBwx1dCkomg'
     }
   },
   stripe_platform: {
@@ -16,11 +16,12 @@ module.exports = {
     production: 'ca_BIQQAFoAbsx5V7IK7wOa6rrFbjBnxil7'
   },
   aws: {
+    baseUrl: 'https://s3-us-west-1.amazonaws.com/homefilming/',
     accessKeyId: 'AKIAJIBEGSDYXPQQVALQ'
   },
   base_url: {
-    test: 'http://eed9286a.ngrok.io',
-    development: 'http://eed9286a.ngrok.io',
+    test: 'https://a0094e0f.ngrok.io',
+    development: 'https://a0094e0f.ngrok.io',
     production: 'https://homefilming.com'
   },
   assemblies: {

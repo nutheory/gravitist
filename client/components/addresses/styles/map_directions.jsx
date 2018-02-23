@@ -4,8 +4,8 @@ import { ss, c } from '../../../styles/helpers'
 const mapDirections = StyleSheet.create({
 
   mapArea: {
-    minWidth: '400px',
-    minHeight: '400px',
+    minWidth: '300px',
+    minHeight: '300px',
     marginBottom: '1.5rem'
   },
   mapDistance: {
@@ -37,9 +37,19 @@ const mapDirections = StyleSheet.create({
     color: c.green
   },
   mapDirectionItem: {
-    borderTop: '1px solid #999',
     padding: '0.6rem 0.4rem',
-    color: '#999'
+    color: '#454545'
+  },
+  mapDirectionIcon: {
+    display: 'inline-block',
+    verticalAlign: 'top',
+    padding: '0.4rem 0.6rem 0 0',
+    color: '#454545'
+  },
+  mapDirectionText: {
+    display: 'inline-block',
+    width: '85%',
+    fontFamily: 'Helvetica Neue, Avenir Next, Arial, sans-serif',
   }
 })
 

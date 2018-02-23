@@ -37,6 +37,7 @@ const GetUser = gql`
           type
           url
           active
+          default
           createdAt
         }
         licenses {

@@ -4,16 +4,16 @@ block content
   div.intro
     h3.header Thank you for your order
     p.body-text
-      | 
+      | Thank you for your #{plan} order.
     div.info
       div.data
-        h5.title Ordered
-        h2.value
+        h5.title Ordered On
+        h2.value #{createdAt}
       div.data
         h5.title Status
-        h2.value
+        h2.value #{status}
       div.data.ex
         h5.title Confirmation Number
-        h2.value
+        h2.value #{receiptId}
     div.cta
-      a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View dashboard  
+      a.button(href="https://homefilming.com/dashboard" target="_blank") View dashboard  

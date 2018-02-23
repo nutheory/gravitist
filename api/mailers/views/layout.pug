@@ -14,11 +14,7 @@ html
         margin: 3rem auto;
         color: #999;
       }
-      h1.title{
-        font-size: 2.4rem;
-        font-weight: 100;
-        text-align: center;
-        text-transform: uppercase;
+      div.title{
         margin-bottom: 3rem;
       }
       h5.title{
@@ -34,6 +30,19 @@ html
         font-weight: bold;
       }
       a.logo {
+        text-transform: uppercase;
+        display:block;        
+        font-size: 2.4rem;
+        font-weight: 100;
+        text-align: center;
+        text-decoration: none;
+        color: #999;
+      }
+      a.name {
+        display:block;        
+        font-size: 1.4rem;
+        font-weight: 100;
+        text-align: center;
         text-decoration: none;
         color: #999;
       }
@@ -183,8 +192,9 @@ html
       } 
   body
     div.container
-      h1.title 
+      div.title 
         a.logo(href="http://www.homefilming.com") homefilming
+        a.name(href="http://www.homefilming.com") #{name}
       div.content
         block content
       div.footer
@@ -192,5 +202,6 @@ html
         a.contact-link(href="mailto:info@homefilming.com") info@homefilming.com
         a.logo-link(href="http://www.homefilming.com") Homefilming
         p.copyright Copyright © 2018 HomeFilming. All rights reserved.
-    
-    
+        
+        
+        

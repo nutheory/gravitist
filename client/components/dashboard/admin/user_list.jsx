@@ -35,13 +35,13 @@ class UserList extends Component<Props, State>{
 
 
   render(){
-    const { loading, getUsers } = this.state.searchResults || this.props.userList
+    const { loading } = this.state.searchResults || this.props.userList
     if(loading){return <div></div>}
-    const users = getUsers.users
+    const users = this.props.userList.getUsers.users
     return (
       <div className={ this.props.cssHelper === "horizontal" ? this.props.cssHelper : 'columns is-multiline' }>
         { users.map((user, i) => (
-          <UserCard user={user} key={`user_${i}`} />
+          <UserCard user={user} key={`user_${user.id}`} />
         ))}
       </div>
     )
@@ -56,7 +56,7 @@ export default compose(
         options: {
           sortKey: props.sortBy || 'createdAt',
           sortValue: props.sortDirection  || 'DESC',
-          sizeLimit: props.sizeLimit || 100000
+          sizeLimit: props.sizeLimit || 50
         },
         criteria: props.criteria,
         queryString: props.queryString || ''

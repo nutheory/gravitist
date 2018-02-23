@@ -15,8 +15,11 @@ import cE from '../../styles/common_elements'
 import cF from '../../styles/common_forms'
 import GetUser from '../../queries/get_user'
 import GetUsers from '../../queries/user_collections'
+import GetAssets from '../../queries/asset_collections'
 import VerifyUser from '../../mutations/verify_user'
 import UpdateUser from '../../mutations/update_user'
+import ToggleDefaultAsset from '../../mutations/toggle_default_asset'
+import DestroyAsset from '../../mutations/destroy_asset'
 import StripeLogo from '../../assets/images/powered_by_stripe2x.png'
 import { isValidEmail, isValidName, isValidPassword } from '../../utils/validators'
 const linkToApiAccount = `https://dashboard.stripe.com/${ process.env.NODE_ENV === "production" ? '' : 'test/' }applications/users/`
@@ -24,6 +27,10 @@ const linkToApiCustomer = `https://dashboard.stripe.com/${ process.env.NODE_ENV 
 
 type Props = {
   data: Object,
+  qGetUser: Object,
+  qGetAssets: Object,
+  toggleDefaultAsset: Function,
+  destroyAsset: Function,
   submitVerify: Function,
   submitUser: Function
 }
@@ -60,10 +67,15 @@ class UserViewEdit extends Component<Props, State>{
   handleEmailChange: Function
   handlePasswordChange: Function
   handleReturnedContacts: Function
+  handleDestroyAsset: Function
+  handleToggleDefaultAsset: Function
+  handleGQLErrors: Function
   returnVerified: Function
+  returnUploadInstance: Function
   returnEditMode: Function
   buildInput: Function
   checkUserVerified: Function
+  renderAvatar: Function
   handleSubmit: Function
 
   constructor(props){
@@ -78,14 +90,19 @@ class UserViewEdit extends Component<Props, State>{
       errors: []
     }
 
+    this.handleGQLErrors = this.handleGQLErrors.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
+    this.handleToggleDefaultAsset = this.handleToggleDefaultAsset.bind(this)
+    this.handleDestroyAsset = this.handleDestroyAsset.bind(this)
+    this.returnUploadInstance = this.returnUploadInstance.bind(this)
     this.returnVerified = this.returnVerified.bind(this)
     this.returnEditMode = this.returnEditMode.bind(this)
     this.buildInput = this.buildInput.bind(this)
+    this.renderAvatar = this.renderAvatar.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -120,11 +137,9 @@ class UserViewEdit extends Component<Props, State>{
 
   returnVerified(verified){
     this.setState({ loading: !this.state.loading }, async function(){
-      const resolved = await this.props.submitVerify(this.props.data.getUser.user.id, !verified)
-      .catch(err => { this.setState(prevState => { errors: prevState.errors.concat(err) }) })
-      console.log('resolved-bef', resolved)
+      const resolved = await this.props.submitVerify(this.props.qGetUser.getUser.user.id, !verified)
+        .catch(err => { this.setState(prevState => { errors: prevState.errors.concat(err) }) })
       if(resolved){
-        console.log('resolved-aft', resolved)
         this.setState({
           loading: !this.state.loading,
           isVerified: resolved.data.verifyUser.user.isVerified }, function(){
@@ -140,14 +155,23 @@ class UserViewEdit extends Component<Props, State>{
   }
 
   returnUploadInstance(upload){
-    console.log('Upload',upload)
+    console.log('Upload', upload)
+    // this.props.qGetAssets.startPolling(1000)
+    // setInterval(() => {
+    //   this.props.qGetAssets.stopPolling()
+    // },60000)
   }
+
 
   handleReturnedContacts(verified, contacts){
     if(verified){
       console.log('returned', contacts)
       this.setState({ contacts })
     }
+  }
+
+  handleGQLErrors(err){
+    console.log('ERR', err)
   }
 
   handleReturnedLocation(loc: Object){
@@ -225,6 +249,14 @@ class UserViewEdit extends Component<Props, State>{
     return input
   }
 
+  handleToggleDefaultAsset(e: SyntheticEvent<*>){
+    this.props.toggleDefaultAsset(e.currentTarget.getAttribute('assetid'), e.currentTarget.getAttribute('userid'))
+  }
+
+  handleDestroyAsset(e: SyntheticEvent<*>){
+    this.props.destroyAsset(e.currentTarget.getAttribute('assetid'), e.currentTarget.getAttribute('userid'))
+  }
+
   handleSubmit(){
     const user = this.props.data.getUser.user
     if(this.checkRequiredInfo()){
@@ -241,17 +273,31 @@ class UserViewEdit extends Component<Props, State>{
     }
   }
 
+  renderAvatar(av, user){
+    return (
+      <li key={`avatar_${av.id}`} className={`columns`}>
+        <div className={`column is-one-third`}>
+          <img src={`${av.url}`} className={css(view.avatarWrapper)} />
+        </div>
+        <div className={`column`}>
+          <p onClick={this.handleToggleDefaultAsset} userid={user.id} assetid={av.id}>make default</p><br />
+          <p onClick={this.handleDestroyAsset} userid={user.id} assetid={av.id}>delete</p>
+        </div>
+      </li>
+    )
+  }
+
   render(){
     const currentUser = jwtDecode(localStorage.getItem('hf_auth_header_token'))
-    const { loading, getUser } = this.props.data
-    if(loading){return (<div></div>)}
-    const user = getUser.user
+    const resGetUser = this.props.qGetUser
+    const resGetAssets = this.props.qGetAssets
+    if(resGetUser.loading === true || resGetAssets.loading === true){return (<div></div>)}
+    const user = resGetUser.getUser.user
+    const avatars = resGetAssets.getAssets.assets
     const userid = parseInt(user.id)
-    const avatarList = user.avatars.length > 0 ? splitEvery(3, user.avatars) : null
-    const currentAvatar = user.avatars.length > 0 ? user.avatars.find(av => av.active === true) : null
+    const avatarList = avatars.length > 0 ? splitEvery(3, avatars) : null
+    const currentAvatar = avatars.length > 0 ? avatars.find(av => av.default === true) : null
     const edit = this.state.editModeEnabled
-    console.log('currentUser', currentUser)
-    console.log('user', parseInt(user.id))
     return (
       <div>
         { this.state.loading ? <Loading /> : null }
@@ -267,7 +313,7 @@ class UserViewEdit extends Component<Props, State>{
                     <div className={`${css(view.toggle)}`}>
                       <div id="verify-toggle-check"
                         className={`${css(view.toggleIcon)} ${ this.state.isVerified || user.isVerified ? css(view.toggleBlue) : '' }`}
-                      ><i className="fa fa-thumbs-o-up fa-2x" /></div>
+                      ><i className="far fa-thumbs-up fa-2x" /></div>
                       <div className={`${css(view.toggleSwitch)}`}><Toggle
                         toggleState={ this.state.isVerified === undefined ? user.isVerified : this.state.isVerified }
                         returnToggleResult={this.returnVerified} /></div>
@@ -275,7 +321,7 @@ class UserViewEdit extends Component<Props, State>{
                   : null }
                   { currentUser.id === userid || currentUser.type === "admin" ?
                     <div className={`${css(view.toggle)}`}>
-                      <div id="edit-toggle-pencil" className={`${css(view.toggleIcon)}`}><i className="fa fa-pencil-square-o fa-2x" /></div>
+                      <div id="edit-toggle-pencil" className={`${css(view.toggleIcon)}`}><i className="far fa-edit fa-2x" /></div>
                       <div className={`${css(view.toggleSwitch)}`}>
                         <Toggle toggleState={ this.state.editModeEnabled } returnToggleResult={this.returnEditMode} />
                       </div>
@@ -293,22 +339,25 @@ class UserViewEdit extends Component<Props, State>{
                   : null }
                 </div>
                 { edit ?
-                  <div className={css(view.newAvatar)}>
-                    <DragDropUploader
-                      header="Upload avatar"
-                      fileTypeName="photo"
-                      auto={true}
-                      uploadToId={user.id}
-                      source="Signup-Avatar"
-                      fieldname="avatar"
-                      mimes="images"
-                      endpoint="/avatar-uploader"
-                      returnUploadInstance={ this.returnUploadInstance }
-                    />
-                  </div>
-                : null }
-                <div className={`${css(view.avatarListWrapper)}`}>
-                  { avatarList ?
+                  <div>
+                    <div className={css(view.newAvatar)}>
+                      <DragDropUploader
+                        header="Upload avatar"
+                        fileTypeName="photo"
+                        auto={true}
+                        uploadToId={user.id}
+                        source="Settings-Avatar"
+                        fieldname="avatar"
+                        mimes="images"
+                        endpoint="/avatar-uploader"
+                        returnUploadInstance={ this.returnUploadInstance }
+                      />
+                    </div>
+                    <ul className={`${css(view.avatarListWrapper)}`} id="avatarList">
+                      { avatars ? avatars.map((av, i) => this.renderAvatar(av, user)) : null }
+                    </ul>
+                </div>
+                : avatarList ?
                     avatarList.map((avRow, i) => (
                       <div key={`row_${i}`} className={`columns`}>
                         { avRow.map(av => (
@@ -319,7 +368,6 @@ class UserViewEdit extends Component<Props, State>{
                       </div>
                     ))
                   : null }
-                </div>
                 { user.type === "pilot" || (currentUser.type === "admin" && user.type === "pilot") ?
                   <div>
                     <div className={`field ${css(view.fieldModify)}`}>
@@ -473,6 +521,7 @@ class UserViewEdit extends Component<Props, State>{
                           header="Upload FAA License"
                           padding={true}
                           auto={true}
+                          uploadToId={user.id}
                           fileTypeName="FAA license"
                           source="Signup-License"
                           fieldname="license"
@@ -513,24 +562,55 @@ class UserViewEdit extends Component<Props, State>{
 }
 
 export default compose(
-  graphql( GetUser, { options: ({ userid }) => ({ variables: {
+  graphql( GetUser, {
+    name: "qGetUser",
+    options: ({ userid }) => ({ variables: {
     input: {
       id: userid || jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
       authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id
+    } } }) }),
+  graphql( GetAssets, {
+    name: "qGetAssets",
+    options: ({ userid }) => ({ variables: {
+    input: {
+      authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+      modelId: userid || jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+      modelType: 'user',
+      modelName: 'avatar'
     } } }) }),
   graphql( VerifyUser, {
     props: ({ ownProps, mutate }) => ({
       submitVerify: (id, isVerified) => mutate({
         variables: { input: { id, authorizedId: id, user: { isVerified, refreshToken: true } } },
-        refetchQueries: [
-          { query: GetUsers,
-            variables: { input: { options: {
-              sortKey: ownProps.sortBy || 'createdAt',
-              sortValue: ownProps.sortDirection  || 'DESC',
-              sizeLimit: ownProps.sizeLimit || 100
-            }, criteria: {} } } }]
-      }) }) }),
+  }) }) }),
+  graphql( DestroyAsset, {
+    props: ({ ownProps, mutate }) => ({
+      destroyAsset: ( id, userId ) => mutate({
+        variables: { input: { id, authorizedId: id, modelId: userId, modelType: 'user', modelName: 'avatar' } },
+  }) }) }),
+  graphql( ToggleDefaultAsset, {
+    props: ({ ownProps, mutate }) => ({
+      toggleDefaultAsset: ( id, userId ) => mutate({
+        variables: { input: { id, authorizedId: id, modelId: userId, modelType: 'user', modelName: 'avatar' } },
+        refetchQueries: [{
+          query: GetAssets,
+          variables: { input: {
+            authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+            modelId: ownProps.userid || jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+            modelType: 'user',
+            modelName: 'avatar' } } }]
+  }) }) }),
   graphql( UpdateUser, {
     props: ({ ownProps, mutate }) => ({
-      submitUser: (input) => mutate({ variables: { input: input } }) }) })
+      submitUser: (input) => {
+        console.log('ownProps', ownProps)
+        return mutate({
+        variables: { input: input },
+        refetchQueries: [{
+          query: GetUser,
+          variables: { input: {
+            id: ownProps.userid || jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+            authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id }
+          }
+        }] })} }) })
 )(UserViewEdit)

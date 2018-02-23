@@ -48,7 +48,7 @@ class ContactForm extends Component<Props, State> {
       content: props.content || props.contact.content,
       default: props.default || props.contact.default,
       holder: 'select type...',
-      icon: 'address-card-o',
+      icon: 'far fa-address-card',
       properName: 'Contact type',
       typesOpen: false,
     }
@@ -73,9 +73,7 @@ class ContactForm extends Component<Props, State> {
         default: this.props.contact.default,
         content: this.props.contact.content,
         type: this.props.contact.type
-      }, function(){
-        console.log('this.props.contactFormend', this.state)
-      })
+      }, function(){})
     }
   }
 
@@ -144,19 +142,19 @@ class ContactForm extends Component<Props, State> {
         idx={idx}
         className={`${css(cssInjection)} button`}>
         <span className="icon is-small">
-          <i className={`fa fa-${icon}`}></i>
+          <i className={`${icon}`}></i>
         </span>
       </button>
     )
   }
 
   render(){
-    console.log('contactState', this.state)
+    console.log('this.state.icon', this.state.icon)
     return (
       <div className="columns">
         <div className="column is-narrow">
           {this.renderButton(this.props.cId, this.props.idx, this.handleDefaultContact,
-            this.props.contact.default ? con.contactButtonDefault : con.contactButtonDefaultUnselected, 'star')}
+            this.props.contact.default ? con.contactButtonDefault : con.contactButtonDefaultUnselected, 'fa fa-star')}
         </div>
         <div className="column is-narrow">
           <div className={`dropdown ${this.state.typesOpen ? 'is-active' : ''}`}>
@@ -184,7 +182,7 @@ class ContactForm extends Component<Props, State> {
                     onClick={this.handleTypeChange}
                     className={`dropdown-item column ${css(con.contactDropdownItem)}`}
                     key={`${cType.type}_${i}`}>
-                    <i className={`fa fa-${cType.icon}`} /> {cType.humanized}</a>)
+                    <i className={`${cType.icon}`} /> {cType.humanized}</a>)
                 }
               </div>
             </div>
@@ -199,14 +197,14 @@ class ContactForm extends Component<Props, State> {
               value={this.state.content}
               placeholder={this.state.holder} />
             <span className="icon is-left">
-              <i className={`fa fa-${this.state.icon}`}></i>
+              <i className={`${ this.state.icon }`}></i>
             </span>
           </div>
         </div>
 
         <div className={`${css(con.contactButtonArea)} field column is-narrow`}>
-          {this.props.idx >= 1 ? this.renderButton(this.props.cId, this.props.idx, this.handleRemoveContact, con.contactButtonMinus, 'minus') : ""}
-          {this.renderButton(this.props.cId, this.props.idx, this.handleAddContact, con.contactButtonPlus, 'plus')}
+          {this.props.idx >= 1 ? this.renderButton(this.props.cId, this.props.idx, this.handleRemoveContact, con.contactButtonMinus, 'fas fa-minus') : ""}
+          {this.renderButton(this.props.cId, this.props.idx, this.handleAddContact, con.contactButtonPlus, 'fas fa-plus')}
         </div>
       </div>
     )

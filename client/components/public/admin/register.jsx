@@ -75,7 +75,7 @@ class CreateUser extends Component<Props, State> {
     return (<span
       className={`${css(cF.check)} icon is-small is-right`}
       style={{opacity: `${ this.state.userVerified ? 1 : 0 }` }}>
-      <i className="fa fa-check"></i></span>)
+      <i className="fas fa-check"></i></span>)
   }
 
   toggleUserTypeOpen(){
@@ -113,12 +113,13 @@ class CreateUser extends Component<Props, State> {
   }
 
   handleGQLErrors(err){
+    console.log(err)
     err.graphQLErrors.map((error) => {
-      if(error.message = "UniqueEmailError") {
+      if(error.message === "UniqueEmailError") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "email", section: "Email address is taken",
             message: "The email address you entered is already in use. Would you like to login?" }) }) )
-      } else if(error.message = "RequiredFieldError") {
+      } else if(error.message === "RequiredFieldError") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "user", section: "Missing Required Field",
             message: "Please check all your info." }) }) )
@@ -149,8 +150,8 @@ class CreateUser extends Component<Props, State> {
 
   runMutation(){
     this.setState({ loading: !this.state.loading }, async () => {
-      const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status'], c))
-      const resolved = await this.props.submitUser({ contacts, state: this.state }).catch(err => {
+      const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status', 'default'], c))
+      let resolved = await this.props.submitUser({ contacts, state: this.state }).catch(err => {
         this.handleGQLErrors(err)
       })
       const { data: { createUser: { user, auth } } } = resolved
@@ -185,8 +186,7 @@ class CreateUser extends Component<Props, State> {
               </div>
               <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
-                  {[['Agent', 'agent'], ['Pilot', 'pilot'], ['Unapproved Editor','unapproved_editor'],
-                    ['Unapproved Admin', 'unapproved_admin']].map((type, i) => (
+                  {[['Agent', 'agent'], ['Pilot', 'pilot'], ['Unapproved Admin', 'unapproved_admin']].map((type, i) => (
                     <a
                       key={`opts_${i}`}
                       className="dropdown-item"
@@ -222,7 +222,6 @@ class CreateUser extends Component<Props, State> {
       </div>
     )
   }
-
 }
 
 export default graphql(CreateUserMigration, {

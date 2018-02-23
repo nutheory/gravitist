@@ -2,7 +2,8 @@ const Asset = `
   type Asset {
     id: ID
     assetableId: ID
-    assetableType: String
+    assetable: String
+    assetableName: String
     name: String
     type: String
     url: String
@@ -13,24 +14,28 @@ const Asset = `
     meta: String
     verified: Boolean
     active: Boolean
+    default: Boolean
     createdAt: String
+  }
+
+  input AssetCollectionInput {
+    authorizedId: ID
+    modelId: ID
+    modelType: String
+    modelName: [String]
+    type: String
   }
 
   input AssetInput {
     id: ID
-    name: String
-    type: String
-    url: String
-    size: String
-    meme: String
-    awsId: String
-    uploaderId: ID
-    meta: String
-    verified: Boolean
-    active: Boolean
+    authorizedId: ID
+    modelId: ID
+    modelType: String
+    modelName: String
+    asset: AssetInputFields
   }
 
-  type AssetPayload {
+  input AssetInputFields {
     id: ID
     name: String
     type: String
@@ -42,6 +47,33 @@ const Asset = `
     meta: String
     verified: Boolean
     active: Boolean
+    default: Boolean
+  }
+
+  type AssetsPayload {
+    assets: [AssetPayloadFields]
+  }
+
+  type AssetPayload {
+    asset: AssetPayloadFields
+  }
+
+  type AssetPayloadFields {
+    id: ID
+    name: String
+    assetableId: ID
+    assetableName: String
+    type: String
+    url: String
+    size: String
+    meme: String
+    awsId: String
+    uploaderId: ID
+    meta: String
+    verified: Boolean
+    active: Boolean
+    default: Boolean
+    createdAt: String
   }
 `
 module.exports = Asset
