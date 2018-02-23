@@ -22,7 +22,7 @@ module.exports = {
   base_url: {
     test: 'https://a0094e0f.ngrok.io',
     development: 'https://a0094e0f.ngrok.io',
-    production: 'https://homefilming.com'
+    production: 'https://www.homefilming.com'
   },
   assemblies: {
     test: {
