@@ -3,7 +3,6 @@ const crypto = require('crypto')
 const chalk = require('chalk')
 
 const tokenAuthenticate = (req, res, next) => {
-  console.log('tokAuth1', req.headers)
   if ( !req.headers.authorization || req.headers.authorization == undefined ){return next()}
   passport.authenticate('bearer', (err, user, info) => {
     if (err) { return next(err) }
