@@ -16,7 +16,8 @@ import mimeTypes from '../../utils/mime_types.js'
 import styles from './styles/drag_drop_uploader'
 import cE from '../../styles/common_elements'
 const Buffer = require('buffer').Buffer
-const env = window.location.host === "homefilming.com" ? "production" : "development"
+const env = window.location.host === "homefilming.com" || 
+  window.location.host === "www.homefilming.com" ? "production" : "development"
 const host = Config.base_url[env]
 const aws = Config.aws.accessKeyId
 

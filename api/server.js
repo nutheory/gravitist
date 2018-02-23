@@ -34,7 +34,7 @@ const chalk = require('chalk')
 function serverStart(done){
   app = express()
   // app.use(opbeat.middleware.express())
-  app.use(wwwhisper())
+
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
   app.use(bodyParser.json({limit: '1mb'}))
@@ -44,6 +44,7 @@ function serverStart(done){
   app.set('views', path.resolve() + '/client/views/')
   app.set('view engine', 'pug')
   app.use(passport.initialize())
+  app.use(wwwhisper())
   app.use(function(err, req, res, next) {
     console.error(err)
     return res.status(422).json({ errors: err })

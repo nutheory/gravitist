@@ -11,6 +11,7 @@ type Props = {
 }
 
 type State = {
+  isFinding: boolean,
   isGeolocatable: boolean,
   radiusOpen: boolean,
   workRadius?: number,
@@ -24,6 +25,8 @@ class WorkArea extends Component<Props, State> {
   handleRadiusChange: Function
   toggleRadiusOpen: Function
   geolocateSuccess: Function
+  geolocateError: Function
+  handleMapperLocation: Function
   showAddressMapper: Function
   findLocation: Function
 
@@ -32,12 +35,15 @@ class WorkArea extends Component<Props, State> {
 
     this.state ={
       radiusOpen: false,
-      isGeolocatable: true
+      isGeolocatable: true,
+      isFinding: false
     }
 
     this.toggleRadiusOpen = this.toggleRadiusOpen.bind(this)
     this.handleRadiusChange = this.handleRadiusChange.bind(this)
     this.geolocateSuccess = this.geolocateSuccess.bind(this)
+    this.geolocateError = this.geolocateError.bind(this)
+    this.handleMapperLocation = this.handleMapperLocation.bind(this)
     this.showAddressMapper = this.showAddressMapper.bind(this)
     this.findLocation = this.findLocation.bind(this)
   }
@@ -46,8 +52,14 @@ class WorkArea extends Component<Props, State> {
     if(!navigator.geolocation){ this.setState({ isGeolocatable: false }) }
   }
 
+  handleMapperLocation(position: Object){
+    this.setState({ lat: position.lat, lng: position.lng }, function(){
+      this.props.handleReturnedLocation(this.state)
+    })
+  }
+
   showAddressMapper(){
-    return <AddressMapper handleReturnedLocation={ this.props.handleReturnedLocation } />
+    return <AddressMapper handleReturnedLocation={ this.handleMapperLocation } />
   }
 
   showGeolocatorButton(){
@@ -78,25 +90,17 @@ class WorkArea extends Component<Props, State> {
   }
 
   geolocateSuccess(position: Object){
-    const el = document.getElementById('fetching-location-coords')
-    el ? el.classList.remove(css(loc.spinnerShow)) : null
     this.setState({ lat: position.coords.latitude, lng: position.coords.longitude }, function(){
       this.props.handleReturnedLocation(this.state)
     })
   }
 
   geolocateError(){
-    return (
-      <div>
-        <p></p>
-        <AddressMapper handleReturnedLocation={ this.props.handleReturnedLocation } />
-      </div>
-    )
+    this.setState({ isGeolocatable: false })
   }
 
   findLocation(){
-    const el = document.getElementById('fetching-location-coords')
-    el ? el.classList.add(css(loc.spinnerShow)) : null
+
     try{
       navigator.geolocation.getCurrentPosition(this.geolocateSuccess, this.geolocateError)
     } catch(e){
@@ -107,7 +111,7 @@ class WorkArea extends Component<Props, State> {
   render(){
     return (
       <div className={`message is-info ${css(loc.posForSpinner)}`}>
-        <div id="fetching-location-coords" className={`${css(loc.spinner)}`}>
+        <div id="fetching-location-coords" className={`${css(loc.spinner)} ${ this.state.isFinding ? css(loc.spinnerShow) : '' }`}>
           <i className="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
         <div className="message-body">

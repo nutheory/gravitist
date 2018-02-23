@@ -111,11 +111,13 @@ class OrderViewEdit extends Component<Props, State>{
     } else if(user.type === 'pilot') {
       return null
     } else {
-      return <AssetViewEdit
-        orderId={ order.id }
-        uuid={ order.uuid }
-        assetNames={['photo', 'video_og']}
-        user={ user } />
+      if(order.status === 'approved_completed'){
+        return <AssetViewEdit
+          orderId={ order.id }
+          uuid={ order.uuid }
+          assetNames={['photo', 'video_og']}
+          user={ user } />
+      }
     }
   }
 
