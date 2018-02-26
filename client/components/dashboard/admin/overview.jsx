@@ -23,16 +23,22 @@ class Overview extends Component<Props, State>{
   render(){
     return (
       <div className="container">
-        <div className="columns">
-          <div className="column">
-            <div className="title is-4">Unverified Pilots</div>
-            <UserList sortBy="createdAt" sizeLimit={10} criteria={{ type: 'pilot', isVerified: false }} />
+        <div className="flex flex-wrap -mx-6">
+          <div className="w-full lg:w-1/2 px-6 pb-4">
+            <div className="">Unverified Pilots</div>
+            <UserList
+              cssSizing="w-full lg:w-1/2"
+              sortBy="createdAt"
+              sizeLimit={10}
+              criteria={{ type: 'pilot', isVerified: false }} />
           </div>
-        </div>
-        <div className="columns">
-          <div className="column">
-            <div className="title is-4">Orders needing review</div>
-            <OrderList sortBy="uploadedAt" sizeLimit={10} criteria={{ status: 'awaiting_review' }} />
+          <div className="w-full lg:w-1/2 px-6 pb-4">
+            <div className="">Orders needing review</div>
+            <OrderList
+              cssSizing="w-full lg:w-1/2"
+              sortBy="uploadedAt"
+              sizeLimit={10}
+              criteria={{ status: 'awaiting_review' }} />
           </div>
         </div>
       </div>

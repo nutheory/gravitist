@@ -45,35 +45,27 @@ class FeatureForm extends Component<Props, State> {
 
   render(){
     return(
-      <div className="columns">
-        <div className="column">
-          <div className="field">
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                placeholder="Ex. Garages"
-                name="label"
-                onChange={ this.handleInputChange }
-                defaultValue={this.props.feature.label} />
-            </div>
-          </div>
+      <div className="w-full flex -mx-2 my-1">
+        <div className="mx-2">
+          <input
+            type="text"
+            className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+            placeholder="Ex. Garages"
+            name="label"
+            onChange={ this.handleInputChange }
+            defaultValue={this.props.feature.label} />
         </div>
-        <div className="column">
-          <div className="field">
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                placeholder="3 car"
-                name="value"
-                onChange={ this.handleInputChange }
-                defaultValue={this.props.feature.value} />
-            </div>
-          </div>
+        <div className="mx-2">
+          <input
+            type="text"
+            className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+            placeholder="3 car"
+            name="value"
+            onChange={ this.handleInputChange }
+            defaultValue={this.props.feature.value} />
         </div>
-        <div className="column is-narrow">
-          <a className="button" onClick={this.handleRemoveClick}><i className="fa fa-times" /></a>
+        <div className="mx-2 mt-2">
+          <a className="rounded-sm border border-grey px-3 py-2" onClick={this.handleRemoveClick}><i className="fa fa-times" /></a>
         </div>
       </div>
     )

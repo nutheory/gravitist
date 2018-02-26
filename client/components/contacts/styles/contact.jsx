@@ -61,18 +61,6 @@ const contact = StyleSheet.create({
   removeButton: {
     backgroundColor: 'rgba(212,0,88,1)'
   },
-  smallDisplay: {
-    paddingTop: '0.4rem',
-    fontSize: '1rem'
-  },
-  mediumDisplay: {
-    paddingTop: '0.2rem',
-    fontSize: '1.4rem'
-  },
-  largeDisplay: {
-    paddingTop: '0.2rem',
-    fontSize: '1.8rem'
-  },
   subduedIcon: {
     marginRight: '0.6rem',
     color: c.midGrey

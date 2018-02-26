@@ -2,7 +2,7 @@ const { isValidUrl, isValidName, isValidPhone, isValidEmail } = require('./valid
 const formatPhoneNumber = (number) => {
   const reg = /\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})/g
   const subst = '$1.$2.$3'
-  return number.replace(reg, subst)
+  return number.toString().replace(reg, subst)
 }
 
 const ContactTypes = [{

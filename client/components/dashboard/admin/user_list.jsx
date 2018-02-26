@@ -14,6 +14,7 @@ type Props = {
   sizeLimit: number,
   criteria: Object,
   cssHelper?: Object,
+  cssSizing?: string,
   userList: Function,
   searchQuery: Function
 }
@@ -39,9 +40,12 @@ class UserList extends Component<Props, State>{
     if(loading){return <div></div>}
     const users = this.props.userList.getUsers.users
     return (
-      <div className={ this.props.cssHelper === "horizontal" ? this.props.cssHelper : 'columns is-multiline' }>
+      <div className="flex flex-wrap -mb-4 -mx-4">
         { users.map((user, i) => (
-          <UserCard user={user} key={`user_${user.id}`} />
+          <UserCard
+            cssSizing={ this.props.cssSizing }
+            user={user}
+            key={`user_${user.id}`} />
         ))}
       </div>
     )

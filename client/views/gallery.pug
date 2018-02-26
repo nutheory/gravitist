@@ -20,10 +20,10 @@ html(lang="en")
     meta(name="og:title" content="The Title")
     
     link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
-    link(rel="stylesheet" type="text/css" href="/gallery.css")
+    link(rel="stylesheet" type="text/css" href="/dist/gallery.css")
     link(rel="stylesheet" href="https://cdn.plyr.io/2.0.18/plyr.css")
     script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")  
-    script(src="/gallery.js")
+    script(src="/dist/gallery_bundle.js")
     script
       - const price = '$ '+ listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       - const sqft = listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")

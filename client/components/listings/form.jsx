@@ -104,159 +104,115 @@ class ListingForm extends Component<Props, State> {
 
   render(){
     return(
-      <div id="listing">
-        <div className="title is-4">Listing details</div>
-        <div className="columns">
-          <div className="column">
-            <div className="field">
-              <div className="control has-icons-left">
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  className="input is-medium"
-                  placeholder="Beds"
-                  name="beds"
-                  defaultValue={ this.state.beds }
-                  onChange={ this.handleInputChange }
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-bed"></i>
-                </span>
-              </div>
-            </div>
+      <div id="listing" className="w-64+ bg-white rounded shadow p-4">
+        <h3 className="font-bold">Listing details</h3>
+        <p className="text-sm py-2">These added details will be displayed on your gallery page.</p>
+        <div className="w-full flex -mx-2 my-4">
+          <div className="mx-2">
+            <div className="text-xs">Beds</div>
+            <input
+              type="number"
+              step="1"
+              min="0"
+              className="w-16 shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+              placeholder="Beds"
+              name="beds"
+              defaultValue={ this.state.beds }
+              onChange={ this.handleInputChange }
+            />
           </div>
-          <div className="column">
-            <div className="field">
-              <div className="control has-icons-left">
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  className="input is-medium"
-                  placeholder="Baths"
-                  name="baths"
-                  defaultValue={ this.state.baths }
-                  onChange={ this.handleInputChange }
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-bath"></i>
-                </span>
-              </div>
-            </div>
+          <div className="mx-2">
+            <div className="text-xs">Baths</div>
+            <input
+              type="number"
+              step="0.5"
+              min="0"
+              className="w-16 shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+              placeholder="Baths"
+              name="baths"
+              defaultValue={ this.state.baths }
+              onChange={ this.handleInputChange }
+            />
           </div>
-        </div>
-        <div className="columns">
-          <div className="column">
-            <div className="field">
-              <div className="control has-icons-left">
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  className="input is-medium"
-                  placeholder="Sqft"
-                  name="sqft"
-                  defaultValue={ this.state.sqft }
-                  onChange={ this.handleInputChange }
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-clone"></i>
-                </span>
-              </div>
-            </div>
+          <div className="mx-2">
+            <div className="text-xs">Sqft</div>
+            <input
+              type="number"
+              step="1"
+              min="0"
+              className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+              placeholder="Sqft"
+              name="sqft"
+              defaultValue={ this.state.sqft }
+              onChange={ this.handleInputChange }
+            />
           </div>
         </div>
-        <div className="columns">
-          <div className="column">
-            <div className="field">
-              <div className="control has-icons-left">
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  className="input is-medium"
-                  placeholder="Price"
-                  name="price"
-                  defaultValue={ this.state.price }
-                  onChange={ this.handleInputChange }
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-dollar-sign"></i>
-                </span>
-              </div>
-            </div>
+        <div className="w-full flex -mx-2 my-4">
+          <div className="mx-2">
+            <div className="text-xs">Price</div>
+            <input
+              type="number"
+              step="1"
+              min="0"
+              className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+              placeholder="Price"
+              name="price"
+              defaultValue={ this.state.price }
+              onChange={ this.handleInputChange }
+            />
+          </div>
+          <div className="mx-2">
+            <div className="text-xs">MLS Number</div>
+            <input
+              type="text"
+              className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+              placeholder="MLS Number"
+              name="mlsNumber"
+              defaultValue={ this.state.mlsNumber }
+              onChange={ this.handleInputChange }
+            />
           </div>
         </div>
-        <div className="columns">
-          <div className="column">
-            <div className="field">
-              <div className="control has-icons-left">
-                <input
-                  type="text"
-                  className="input is-medium"
-                  placeholder="MLS Number"
-                  name="mlsNumber"
-                  defaultValue={ this.state.mlsNumber }
-                  onChange={ this.handleInputChange }
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-hashtag"></i>
-                </span>
-              </div>
-            </div>
+        <div className="w-full flex -mx-2 my-4">
+          <div className="mx-2">
+            <div className="text-xs">Property Type</div>
+            <p className="control">
+              <span className="select is-fullwidth">
+                <select onChange={ this.handleInputChange } defaultValue={ this.state.type } name="type">
+                  <option>Property Type</option>
+                  { ListingDropdowns.propertyTypes.map((type, i) => (
+                    <option key={`prop_${i}`} value={ type.value }>{ type.name }</option>
+                  )) }
+                </select>
+              </span>
+            </p>
+          </div>
+          <div className="mx-2">
+            <div className="text-xs">MLS Status</div>
+            <p className="control">
+              <span className="select is-fullwidth">
+                <select onChange={ this.handleInputChange } name="mlsStatus" defaultValue={ this.state.mlsStatus }>
+                  <option>MLS Status</option>
+                  { ListingDropdowns.mlsStatuses.map((stat, i) => (
+                    <option key={`status_${i}`} value={ stat.value }>{ stat.name }</option>
+                  )) }
+                </select>
+              </span>
+            </p>
           </div>
         </div>
-        <div className="columns">
-          <div className="column">
-            <div className="field">
-              <p className="control">
-                <span className="select is-fullwidth">
-                  <select onChange={ this.handleInputChange } name="mlsStatus" defaultValue={ this.state.mlsStatus }>
-                    <option>MLS Status</option>
-                    { ListingDropdowns.mlsStatuses.map((stat, i) => (
-                      <option
-                        key={`status_${i}`}
-                        value={ stat.value }
-                      >{ stat.name }</option>
-                    )) }
-                  </select>
-                </span>
-              </p>
-            </div>
-          </div>
+        <div className="w-full my-4">
+          <div className="text-xs">Description</div>
+          <textarea
+            className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+            name="description"
+            defaultValue={ this.state.description }
+            placeholder="Description of listing"
+            onChange={ this.handleInputChange }></textarea>
         </div>
-        <div className="columns">
-          <div className="column">
-            <div className="field">
-              <p className="control">
-                <span className="select is-fullwidth">
-                  <select onChange={ this.handleInputChange } defaultValue={ this.state.type } name="type">
-                    <option>Property Type</option>
-                    { ListingDropdowns.propertyTypes.map((type, i) => (
-                      <option
-                        key={`prop_${i}`}
-                        value={ type.value }
-                      >{ type.name }</option>
-                    )) }
-                  </select>
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="field">
-          <div className="control">
-            <textarea
-              className="textarea"
-              name="description"
-              defaultValue={ this.state.description }
-              placeholder="Description of listing"
-              onChange={ this.handleInputChange }></textarea>
-          </div>
-        </div>
-        <div className={`${css(lsf.featuresList)}`}>
-          <div className="title is-5">Features</div>
+        <div className="w-full my-4">
+          <div className="text-sm font-bold">Features</div>
           <ul id="featuresList">
             { this.state.features.map((feat, i) => (
               <li key={`feat_${i}`}>
@@ -264,23 +220,198 @@ class ListingForm extends Component<Props, State> {
                   idx={i}
                   removeFeature={ this.removeFeature }
                   updateFeature={ this.updateFeature }
-                  feature={feat}
-                />
+                  feature={feat} />
               </li>
             ))}
           </ul>
-          <div className="columns">
-            <div className="column">
-              <a className="" onClick={this.newFeature}>Add feature</a>
-            </div>
-            <div className="column">
-              <a className="button is-success is-pulled-right" onClick={ this.submitListing }>
-                { this.state.updated ? 'Saved.' : 'Save listing info' }</a>
-            </div>
+        </div>
+        <div className="flex">
+          <div className="flex-1">
+            <a className="" onClick={this.newFeature}>Add feature</a>
           </div>
-
+          <div className="flex-1 text-right">
+            <a className="" onClick={ this.submitListing }>
+              { this.state.updated ? 'Saved.' : 'Save listing info' }</a>
+          </div>
         </div>
       </div>
+      // <div id="listing">
+      //   <div className="title is-4">Listing details</div>
+      //   <div className="columns">
+      //     <div className="column">
+      //       <div className="field">
+      //         <div className="control has-icons-left">
+      //           <input
+      //             type="number"
+      //             step="1"
+      //             min="0"
+      //             className="input is-medium"
+      //             placeholder="Beds"
+      //             name="beds"
+      //             defaultValue={ this.state.beds }
+      //             onChange={ this.handleInputChange }
+      //           />
+      //           <span className="icon is-small is-left">
+      //             <i className="fa fa-bed"></i>
+      //           </span>
+      //         </div>
+      //       </div>
+      //     </div>
+      //     <div className="column">
+      //       <div className="field">
+      //         <div className="control has-icons-left">
+      //           <input
+      //             type="number"
+      //             step="1"
+      //             min="0"
+      //             className="input is-medium"
+      //             placeholder="Baths"
+      //             name="baths"
+      //             defaultValue={ this.state.baths }
+      //             onChange={ this.handleInputChange }
+      //           />
+      //           <span className="icon is-small is-left">
+      //             <i className="fa fa-bath"></i>
+      //           </span>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="columns">
+      //     <div className="column">
+      //       <div className="field">
+      //         <div className="control has-icons-left">
+      //           <input
+      //             type="number"
+      //             step="1"
+      //             min="0"
+      //             className="input is-medium"
+      //             placeholder="Sqft"
+      //             name="sqft"
+      //             defaultValue={ this.state.sqft }
+      //             onChange={ this.handleInputChange }
+      //           />
+      //           <span className="icon is-small is-left">
+      //             <i className="fa fa-clone"></i>
+      //           </span>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="columns">
+      //     <div className="column">
+      //       <div className="field">
+      //         <div className="control has-icons-left">
+      //           <input
+      //             type="number"
+      //             step="1"
+      //             min="0"
+      //             className="input is-medium"
+      //             placeholder="Price"
+      //             name="price"
+      //             defaultValue={ this.state.price }
+      //             onChange={ this.handleInputChange }
+      //           />
+      //           <span className="icon is-small is-left">
+      //             <i className="fa fa-dollar-sign"></i>
+      //           </span>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="columns">
+      //     <div className="column">
+      //       <div className="field">
+      //         <div className="control has-icons-left">
+      //           <input
+      //             type="text"
+      //             className="input is-medium"
+      //             placeholder="MLS Number"
+      //             name="mlsNumber"
+      //             defaultValue={ this.state.mlsNumber }
+      //             onChange={ this.handleInputChange }
+      //           />
+      //           <span className="icon is-small is-left">
+      //             <i className="fa fa-hashtag"></i>
+      //           </span>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="columns">
+      //     <div className="column">
+      //       <div className="field">
+      //         <p className="control">
+      //           <span className="select is-fullwidth">
+      //             <select onChange={ this.handleInputChange } name="mlsStatus" defaultValue={ this.state.mlsStatus }>
+      //               <option>MLS Status</option>
+      //               { ListingDropdowns.mlsStatuses.map((stat, i) => (
+      //                 <option
+      //                   key={`status_${i}`}
+      //                   value={ stat.value }
+      //                 >{ stat.name }</option>
+      //               )) }
+      //             </select>
+      //           </span>
+      //         </p>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="columns">
+      //     <div className="column">
+      //       <div className="field">
+      //         <p className="control">
+      //           <span className="select is-fullwidth">
+      //             <select onChange={ this.handleInputChange } defaultValue={ this.state.type } name="type">
+      //               <option>Property Type</option>
+      //               { ListingDropdowns.propertyTypes.map((type, i) => (
+      //                 <option
+      //                   key={`prop_${i}`}
+      //                   value={ type.value }
+      //                 >{ type.name }</option>
+      //               )) }
+      //             </select>
+      //           </span>
+      //         </p>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="field">
+      //     <div className="control">
+      //       <textarea
+      //         className="textarea"
+      //         name="description"
+      //         defaultValue={ this.state.description }
+      //         placeholder="Description of listing"
+      //         onChange={ this.handleInputChange }></textarea>
+      //     </div>
+      //   </div>
+      //   <div className={`${css(lsf.featuresList)}`}>
+      //     <div className="title is-5">Features</div>
+      //     <ul id="featuresList">
+      //       { this.state.features.map((feat, i) => (
+      //         <li key={`feat_${i}`}>
+      //           <FeatureForm
+      //             idx={i}
+      //             removeFeature={ this.removeFeature }
+      //             updateFeature={ this.updateFeature }
+      //             feature={feat}
+      //           />
+      //         </li>
+      //       ))}
+      //     </ul>
+      //     <div className="columns">
+      //       <div className="column">
+      //         <a className="" onClick={this.newFeature}>Add feature</a>
+      //       </div>
+      //       <div className="column">
+      //         <a className="button is-success is-pulled-right" onClick={ this.submitListing }>
+      //           { this.state.updated ? 'Saved.' : 'Save listing info' }</a>
+      //       </div>
+      //     </div>
+      //
+      //   </div>
+      // </div>
     )
   }
 }

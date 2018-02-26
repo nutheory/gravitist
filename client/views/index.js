@@ -9,9 +9,9 @@ import { merge } from 'ramda'
 import { ApolloProvider } from 'react-apollo'
 import { render } from 'react-dom'
 import '../styles/loader.css'
-import '../styles/gallery.scss'
 import '../styles/bulma_overrides.scss'
 import '../../node_modules/video-react/dist/video-react.css'
+import '../styles/main.css'
 import App from '../components/layouts/app'
 
 const requestLink = createHttpLink({

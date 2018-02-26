@@ -44,7 +44,7 @@ function serverStart(done){
   app.set('views', path.resolve() + '/client/views/')
   app.set('view engine', 'pug')
   app.use(passport.initialize())
-  app.use(wwwhisper())
+  app.use(wwwhisper(false))
   app.use(function(err, req, res, next) {
     console.error(err)
     return res.status(422).json({ errors: err })
@@ -177,7 +177,7 @@ function serverStart(done){
   })
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve() + '/dist/index.html')
+    res.render('index', {})
   })
 
   return new Promise(resolve => {

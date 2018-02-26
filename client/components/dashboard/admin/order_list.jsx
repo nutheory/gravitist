@@ -8,7 +8,8 @@ import OrderCard from './order_card'
 
 type Props = {
   orderList: Object,
-  title: string
+  title: string,
+  cssSizing: string
 }
 
 type State = {
@@ -26,9 +27,12 @@ class OrderList extends Component<Props, State>{
     if(loading){return (<div></div>)}
     const orders = getOrders.orders
     return (
-      <div className={ this.props.cssHelper === "horizontal" ? this.props.cssHelper : 'columns is-multiline' }>
+      <div className="flex flex-wrap -mb-4 -mx-4">
         { orders ? orders.map((order, i) => (
-          <OrderCard order={order} key={`order_${order.id}`} />
+          <OrderCard
+            cssSizing={ this.props.cssSizing }
+            order={order}
+            key={`order_${order.id}`} />
         )) : 'No Results' }
       </div>
     )
