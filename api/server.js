@@ -34,8 +34,9 @@ const chalk = require('chalk')
 function serverStart(done){
   app = express()
   // app.use(opbeat.middleware.express())
-  app.use(wwwhisper())
+
   app.use(cookieParser())
+  app.use(wwwhisper())
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
   app.use(bodyParser.json({limit: '1mb'}))
   app.use(cors({ origin: 'http://localhost:5000', credentials: true }))
@@ -91,6 +92,7 @@ function serverStart(done){
   })
 
   app.post('/avatar-notifications', async (req, res, next) => {
+    console.log(chalk.blue.bold('uploader'),req)
     const result = await uploadResult(req, "user", "avatar")
       .catch(err => { throw err })
     console.log(chalk.blue.bold('notifyer avatar'))
