@@ -38,8 +38,8 @@ function serverStart(done){
   app.use(cookieParser())
 
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
-  app.use(wwwhisper())
   app.use(bodyParser.json({limit: '1mb'}))
+  app.use(wwwhisper())
   app.use(cors({ origin: 'http://localhost:5000', credentials: true }))
   app.use(logger(':remote-addr - :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'))
   app.use(express.static(path.resolve() + '/dist/'))
