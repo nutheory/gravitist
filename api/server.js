@@ -36,8 +36,9 @@ function serverStart(done){
   // app.use(opbeat.middleware.express())
 
   app.use(cookieParser())
-  app.use(wwwhisper())
+
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
+  app.use(wwwhisper())
   app.use(bodyParser.json({limit: '1mb'}))
   app.use(cors({ origin: 'http://localhost:5000', credentials: true }))
   app.use(logger(':remote-addr - :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'))
