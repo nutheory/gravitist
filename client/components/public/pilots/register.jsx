@@ -17,7 +17,6 @@ import cL from '../../../styles/common_layout'
 import cF from '../../../styles/common_forms'
 import cE from '../../../styles/common_elements'
 import cErr from '../../../styles/common_errors'
-import reg from './styles/register'
 const env = window.location.host === "homefilming.com" ? "production" : "development"
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
@@ -52,7 +51,7 @@ type State = {
 
 class PilotRegister extends Component<Props, State> {
 
-  handleReturnedUser: Function
+  handleInputChange: Function
   handleReturnedContacts: Function
   handleReturnedLocation: Function
   infoCriteriaMet: Function
@@ -76,7 +75,7 @@ class PilotRegister extends Component<Props, State> {
       errors: []
     }
 
-    this.handleReturnedUser = this.handleReturnedUser.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
     this.renderButtonText = this.renderButtonText.bind(this)
@@ -86,8 +85,10 @@ class PilotRegister extends Component<Props, State> {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleReturnedUser(verified: boolean, { name, email, password }: Object){
-    this.setState({ userVerified: verified, name, email, password })
+  handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value }, () => {
+      // this.checkUserVerified()
+    })
   }
 
   handleReturnedContacts(verified: boolean, contacts: Array<Object>){
@@ -170,14 +171,17 @@ class PilotRegister extends Component<Props, State> {
 
   renderErrors(){
     return (
-      <div className={`notification is-danger ${css(cErr.areaHidden)}
-        ${ this.state.errors.length > 0 ? css(cErr.area) : ""}`}>
-        <h2 className={`${css(cErr.header)}`}>Please correct these errors</h2>
+      <div className={`error-area hide-error ${ this.state.errors.length > 0 ? ' show-error' : ''}`}>
+        <h2 className="text-base font-bold">Please correct these errors</h2>
         { this.state.errors.map((err, i) => (
-          <div key={`error_${i}`} className={css(cErr.section)}>
-            <h3 className={`${css(cErr.title)}`}>{err.section}</h3>
-            <p className={`${css(cErr.text)}`}>{err.message}</p>
-            { err.type === "email" ? <Link to="/login" className={css(cErr.buttonWithOutline)}>Login</Link> : null }
+          <div key={`error_${i}`} className="my-4">
+            <h3 className="text-sm font-bold">{err.section}</h3>
+            <p className="text-sm">{err.message}</p>
+            { err.type === "email" ?
+              <Link to="/login" className="button-blue">
+                <span className="action-button-overlay"></span>Login
+              </Link>
+            : null }
           </div>
         ))}
       </div>
@@ -199,81 +203,131 @@ class PilotRegister extends Component<Props, State> {
 
   render(){
     return(
-      <div>
+      <div className="signup-container">
         { this.state.loading ? <Loading /> : null }
-        <div className={`${css(reg.container)} columns`}>
-          <div className={`${css(reg.uploads)} column`}>
-            <h3 className={css(reg.uploadTitle)}>Upload Documents</h3>
-            <h4 className={css(reg.uploadInstruct)}>Please upload the required documents below.</h4>
-            <div className={css(reg.upload)}>
+        <div className="w-full rounded shadow p-6 border border-grey-dark">
+          <div className="signup-header">
+            <div className="w-48 h-48">
               <DragDropUploader
-                header="Upload insurance"
-                padding={true}
-                fileTypeName="proof of insurance"
-                source="Signup-Insurance"
-                fieldname="insurance"
-                mimes="documents"
-                endpoint="/insurance-uploader"
+                circle={true}
+                header="Upload avatar"
+                fileTypeName="photo"
+                source="Signup-Avatar"
+                fieldname="avatar"
+                mimes="images"
+                endpoint="/uploads/avatar"
                 returnUploadInstance={ this.returnUploadInstance }
               />
             </div>
-            <div className={css(reg.upload)}>
-              <DragDropUploader
-                header="Upload FAA License"
-                padding={true}
-                fileTypeName="FAA license"
-                source="Signup-License"
-                fieldname="license"
-                mimes="documents"
-                endpoint="/license-uploader"
-                returnUploadInstance={ this.returnUploadInstance }
-              />
-            </div>
-          </div>
-          <div className={`${css(reg.mainArea)} column`}>
-            <div className={`columns`}>
-              <div className={`column is-two-thirds`}><Header title="homefilming" subtitle="Pilot sign up" /></div>
-              <div className={`column`}>
-                <DragDropUploader
-                  header="Upload avatar"
-                  fileTypeName="photo"
-                  source="Signup-Avatar"
-                  fieldname="avatar"
-                  mimes="images"
-                  endpoint="/avatar-uploader"
-                  returnUploadInstance={ this.returnUploadInstance }
-                />
+            <div className="flex-1 -mr-6">
+              <div className="">
+                <h2 className="text-right py-1">Homefilming</h2>
+                <div className="text-right text-sm">Step <strong>1</strong> of 2 | <strong>Create Account</strong></div>
               </div>
-            </div>
-            <div className={css(reg.section)}>
-              <FormHeader text="Basic info" verified={ this.state.userVerified } />
-              <User
-                userVerified={ this.state.userVerified }
-                handleReturnedUser={ this.handleReturnedUser } />
-            </div>
-            <div className={css(reg.section)}>
-              <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
-              <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
-            </div>
-            <div className={css(reg.section)}>
-              <Location handleReturnedLocation={ this.handleReturnedLocation } />
-            </div>
-            { this.renderErrors() }
-            <div className="message is-success">
-              <div className="message-body">
-                <p className={css(reg.textBottomMargin)}>Last Step is to set up how to get paid, we set this all
-                  up through Stripe for simple secure payouts on both ends. Submiting this form will create your
-                  account and briefly redirect you to a Stripe processing page. After which you will be redirected
-                  back and be logged in.</p>
-                <div className={css(reg.buttonArea, reg.buttonAreaUnique)}>
-                  <button
-                    className={css(cE.ctaButton, cE.ctaGreen)}
-                    onClick={this.handleSubmit}>
-                    <span className={css(cE.ctaButtonOverlay)}></span>
-                    { this.renderButtonText() }
-                  </button>
+              <div className="px-6 py-6">
+                <div className="mb-4">
+                  <div className="text-xs">Full name</div>
+                  <input
+                    onChange={this.handleInputChange}
+                    className="input"
+                    name="name"
+                    type="text"
+                    placeholder="Full Name" />
+                </div>
+                <div className="f">
+                  <div className="text-xs">Phone number</div>
+                  <input
+                    onChange={this.handleInputChange}
+                    className="input"
+                    name="phone"
+                    type="text"
+                    placeholder="Phone number" />
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="border-b">
+            <div className="mb-4">
+              <div className="text-xs">Email address</div>
+              <input
+                onChange={this.handleInputChange}
+                className="input"
+                name="email"
+                type="text"
+                placeholder="Email address" />
+            </div>
+            <div className="flex mb-4 -mx-2">
+              <div className="flex-1 mx-2">
+                <div className="text-xs">Create password</div>
+                <input
+                  onChange={this.handleInputChange}
+                  className="input"
+                  name="password"
+                  type="text"
+                  placeholder="Create password" />
+              </div>
+              <div className="flex-1 mx-2">
+                <div className="text-xs">Confirm password</div>
+                <input
+                  onChange={this.handleInputChange}
+                  className="input"
+                  name="confirm"
+                  type="text"
+                  placeholder="Confirm password" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="my-4">Piloting info</h3>
+            <div className="flex -mx-2">
+              <div className="flex-1 mx-2">
+                <div className="text-xs">FAA License</div>
+                <div className="">
+                  <DragDropUploader
+                    header="Upload FAA License"
+                    padding={true}
+                    fileTypeName="FAA license"
+                    source="Signup-License"
+                    fieldname="license"
+                    mimes="documents"
+                    endpoint="/uploads/license"
+                    returnUploadInstance={ this.returnUploadInstance }
+                  />
+                </div>
+              </div>
+              <div className="flex-1 mx-2">
+                <div className="text-xs">Insurance</div>
+                <div className="">
+                  <DragDropUploader
+                    header="Upload insurance"
+                    padding={true}
+                    fileTypeName="proof of insurance"
+                    source="Signup-Insurance"
+                    fieldname="insurance"
+                    mimes="documents"
+                    endpoint="/uploads/insurance"
+                    returnUploadInstance={ this.returnUploadInstance }
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="my-4">
+              <Location handleReturnedLocation={ this.handleReturnedLocation } />
+            </div>
+            <div className="my-4">
+              <h3 className="text-sm font-bold">Next step</h3>
+              <p className="text-sm"> Next is to set up how you get paid, we set this all
+              up through Stripe for simple secure payouts. Submitting this form will create your
+              account and briefly redirect you to a Stripe processing page. After which you will be redirected
+              back and be logged in.</p>
+            </div>
+            <div className="mt-4">
+              <a
+                className="button-green"
+                onClick={this.handleSubmit}>
+                <span className="action-button-overlay"></span>
+                Create Account
+              </a>
             </div>
           </div>
         </div>
@@ -281,6 +335,84 @@ class PilotRegister extends Component<Props, State> {
     )
   }
 }
+
+      //   { /* <div className={`${css(reg.container)} columns`}>
+      //     <div className={`${css(reg.uploads)} column`}>
+      //       <h3 className={css(reg.uploadTitle)}>Upload Documents</h3>
+      //       <h4 className={css(reg.uploadInstruct)}>Please upload the required documents below.</h4>
+      //       <div className={css(reg.upload)}>
+      //         <DragDropUploader
+      //           header="Upload insurance"
+      //           padding={true}
+      //           fileTypeName="proof of insurance"
+      //           source="Signup-Insurance"
+      //           fieldname="insurance"
+      //           mimes="documents"
+      //           endpoint="/insurance-uploader"
+      //           returnUploadInstance={ this.returnUploadInstance }
+      //         />
+      //       </div>
+      //       <div className={css(reg.upload)}>
+      //         <DragDropUploader
+      //           header="Upload FAA License"
+      //           padding={true}
+      //           fileTypeName="FAA license"
+      //           source="Signup-License"
+      //           fieldname="license"
+      //           mimes="documents"
+      //           endpoint="/license-uploader"
+      //           returnUploadInstance={ this.returnUploadInstance }
+      //         />
+      //       </div>
+      //     </div>
+      //     <div className={`${css(reg.mainArea)} column`}>
+      //       <div className={`columns`}>
+      //         <div className={`column is-two-thirds`}><Header title="homefilming" subtitle="Pilot sign up" /></div>
+      //         <div className={`column`}>
+      //           <DragDropUploader
+      //             header="Upload avatar"
+      //             fileTypeName="photo"
+      //             source="Signup-Avatar"
+      //             fieldname="avatar"
+      //             mimes="images"
+      //             endpoint="/avatar-uploader"
+      //             returnUploadInstance={ this.returnUploadInstance }
+      //           />
+      //         </div>
+      //       </div>
+      //       <div className={css(reg.section)}>
+      //         <FormHeader text="Basic info" verified={ this.state.userVerified } />
+      //         <User
+      //           userVerified={ this.state.userVerified }
+      //           handleReturnedUser={ this.handleReturnedUser } />
+      //       </div>
+      //       <div className={css(reg.section)}>
+      //         <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
+      //         <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
+      //       </div>
+      //       <div className={css(reg.section)}>
+      //         <Location handleReturnedLocation={ this.handleReturnedLocation } />
+      //       </div>
+      //       { this.renderErrors() }
+      //       <div className="message is-success">
+      //         <div className="message-body">
+      //           <p className={css(reg.textBottomMargin)}>Last Step is to set up how to get paid, we set this all
+      //             up through Stripe for simple secure payouts on both ends. Submiting this form will create your
+      //             account and briefly redirect you to a Stripe processing page. After which you will be redirected
+      //             back and be logged in.</p>
+      //           <div className={css(reg.buttonArea, reg.buttonAreaUnique)}>
+      //             <button
+      //               className={css(cE.ctaButton, cE.ctaGreen)}
+      //               onClick={this.handleSubmit}>
+      //               <span className={css(cE.ctaButtonOverlay)}></span>
+      //               { this.renderButtonText() }
+      //             </button>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div> */}
 
 export default graphql(CreateUserAsPilot, {
   props: ({ ownProps, mutate }) => ({

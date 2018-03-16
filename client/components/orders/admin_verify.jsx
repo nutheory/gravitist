@@ -80,54 +80,51 @@ class AdminOrderVerify extends Component<Props, State> {
     if ( getAssets.assets.length < 1 ) { return <div>Results empty.</div> }
     const watermarked = getAssets.assets.filter(as => as.assetableName === 'video_wm')
     const optimized = getAssets.assets.filter(as => as.assetableName === 'video_og')
-    const images = getAssets.assets.filter(as => as.type === 'image')
-    const assets = images ? splitEvery(4, images) : null
+    const assets = getAssets.assets.filter(as => as.type === 'image')
     return(
       <div>
-        <div className="columns">
-          <div className="column title is-4">Review Videos</div>
-        </div>
-        <div className="columns">
-          <div className="column">
-            <Player>
-              <source src={ optimized[0].url } />
-            </Player>
+        <div className="reviewcontainer">
+          <div className="">
+            <div className="">Review Videos</div>
           </div>
-          <div className="column">
-            <Player>
-              <source src={ watermarked[0].url } />
-            </Player>
+          <div className="flex flex-wrap md:-mx-4">
+            <div className="w-full md:w-1/2 p-4 rounded-lg">
+              <Player>
+                <source src={ optimized[0].url } />
+              </Player>
+            </div>
+            <div className="w-full md:w-1/2 p-4 rounded-lg">
+              <Player>
+                <source src={ watermarked[0].url } />
+              </Player>
+            </div>
           </div>
         </div>
-        <div className="columns">
-          <div className="column title is-4">Select 20 Acceptable Photos</div>
-        </div>
-        { assets ? assets.map((assetGroup, i) => (
-          <div className="columns" key={`row_${i}`}>
-            { assetGroup.map((asset, i) => (
-              <div className={`${css(frm.imageItem)} column`} key={`col_${i}`}>
-                <img src={asset.url} />
-                <div className={`
-                  ${ css(frm.imageActions) }
-                  ${ contains(asset.awsId, this.state.selectedImages) ? css(frm.imageSelected) : '' }`}
+        <div className="my-8">
+          <div className="">
+            <div className="">Select 20 Acceptable Photos</div>
+          </div>
+          { assets.length > 0 ?
+            <div className="flex flex-wrap md:-mx-4">
+              { assets.map((asset, i) =>  (
+                <div key={`col_${i}`}
                   onClick={ this.toggleAcceptedImage }
-                  awsid={ asset.awsId }>
-                  <span className="icon is-small">
-                    <i className={`${css(frm.check)} fas fa-check`}></i>
-                  </span>
+                  className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 relative hover:cursor-pointer"
+                  awsid={ asset.awsId } >
+                  <div className="relative">
+                    <img src={asset.url} className="rounded-lg border border-grey border-solid" />
+                    <div className={`img-overlay ${ contains( asset.awsId, this.state.selectedImages ) ? 'opacity-100' : 'opacity-0' }`}>
+                      <span className="far fa-check-circle fa-2x"></span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )
-          )}
-        </div>
-        )) : <div className="columns">
-          <div className="column title is-5">No Photos</div>
-        </div> }
-        <div className="columns">
-          <div className="column is-4 is-offset-8">
-            <div className={css(frm.reviewButton)}>
-              <a className={`${css(cE.ctaButton, cE.ctaGreen)}`} onClick={ this.approveOrder }>
-                <span className={css(cE.ctaButtonOverlay)}></span>{ this.approveOrderText() }
+              ))}
+            </div>
+          : null }
+          <div className="w-full flex justify-end">
+            <div className="inline-block">
+              <a className="button-green px-8 py-3" onClick={ this.approveOrder }>
+                <span className="action-button-overlay"></span>{ this.approveOrderText() }
               </a>
             </div>
           </div>

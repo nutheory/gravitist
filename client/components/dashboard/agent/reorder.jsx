@@ -1,15 +1,9 @@
 // @flow
 import React, { Component } from 'react'
 import { compose, graphql } from 'react-apollo'
-import { css } from 'aphrodite'
 import { Link } from 'react-router-dom'
-import Loading from '../../misc/loader'
-import AddressMapper from '../../addresses/address_mapper'
+import NewOrder from '../../orders/new_order'
 import CreateOrder from '../../../mutations/create_order'
-import Plans from '../../../utils/pricing_plans.json'
-import rdr from '../styles/reorder'
-import cE from '../../../styles/common_elements'
-import cErr from '../../../styles/common_errors'
 
 type Props = {
   submitOrder: Function
@@ -73,66 +67,81 @@ class Reorder extends Component<Props, State> {
 
   render(){
     return(
-      <div className="columns is-mobile is-centered">
-        <div className="column is-three-fifths is-narrow">
-          <div className="columns">
-            <div className={`column ${css(rdr.pageTitle)}`}>Order a new filming</div>
-          </div>
-          <div className="columns">
-            <div className="column">
-              <div className="field">
-                <label className="label">Address to film</label>
-                <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
+      <div className="flex justify-center">
+        <div className="w-full lg:w-1/2">
+          <div className="font-bold text-xl my-2">Order a new filming</div>
+          <div className="bg-white rounded shadow">
+            <div className="p-6">
+              <NewOrder handleReturnedLocation={ this.handleReturnedLocation }  />
+              <div className="">
+                <button onClick={ this.submitOrder } className="button-green">
+                  <span className="action-button-overlay"></span>Order now</button>
               </div>
             </div>
-          </div>
-          <div className="columns">
-            <div className="column">
-              <div className={`notification is-danger ${css(cErr.areaHidden)}
-                ${ this.state.errors.length > 0 ? css(cErr.area) : ""}`}>
-                <h2 className={`${css(cErr.header)}`}>Please correct these errors</h2>
-                { this.state.errors.map((err, i) => (
-                  <div key={`error_${i}`} className={css(cErr.section)}>
-                    <p className={`${css(cErr.text)}`}>{err}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="columns">
-          { Plans.map(plan =>
-            <div key={`plan_${plan.name}`} className={`column ${css(rdr.planOuter)}`}>
-              <div className={`${css(rdr.plan, cE.areaBase, cE.blueObj)}`}>
-                <div className={`${css(rdr.header)} columns`}>
-                  <h3 className={`${css(rdr.planTitle)} column`}>{plan.title}</h3>
-                  <h3 className={`${css(rdr.planPrice)} column is-narrow`}>${plan.price}</h3>
-                </div>
-                <div className={`${css(rdr.details)} columns`}>
-                  <div className={`column`}>
-                    <p className={css(rdr.desc)}>{plan.desc}</p>
-                    <ul className={css(rdr.features)}>
-                      {plan.features.map((feat, i) => {
-                        return (
-                          <li key={i} className={css(rdr.feature)}>
-                            <i className={`${css(rdr.icon)} ${feat.icon}`} />
-                            <p className={css(rdr.featureText)}>{feat.desc}</p>
-                          </li> )})}
-                    </ul>
-                  </div>
-                </div>
-                <div className={css(rdr.buttonWrapper)}>
-                  <a
-                    onClick={this.submitOrder(plan)}
-                    className={css(cE.ctaButton, cE[`cta${plan.color}`])}>
-                    <span className={css(cE.ctaButtonOverlay)}></span>Order Now
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
           </div>
         </div>
       </div>
+
+      // <div className="columns is-mobile is-centered">
+      //   <div className="column is-three-fifths is-narrow">
+      //     <div className="columns">
+      //       <div className={`column ${css(rdr.pageTitle)}`}>Order a new filming</div>
+      //     </div>
+      //     <div className="columns">
+      //       <div className="column">
+      //         <div className="field">
+      //           <label className="label">Address to film</label>
+      //           <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
+      //         </div>
+      //       </div>
+      //     </div>
+      //     <div className="columns">
+      //       <div className="column">
+      //         <div className={`notification is-danger ${css(cErr.areaHidden)}
+      //           ${ this.state.errors.length > 0 ? css(cErr.area) : ""}`}>
+      //           <h2 className={`${css(cErr.header)}`}>Please correct these errors</h2>
+      //           { this.state.errors.map((err, i) => (
+      //             <div key={`error_${i}`} className={css(cErr.section)}>
+      //               <p className={`${css(cErr.text)}`}>{err}</p>
+      //             </div>
+      //           ))}
+      //         </div>
+      //       </div>
+      //     </div>
+      //     <div className="columns">
+      //     { Plans.map(plan =>
+      //       <div key={`plan_${plan.name}`} className={`column ${css(rdr.planOuter)}`}>
+      //         <div className={`${css(rdr.plan, cE.areaBase, cE.blueObj)}`}>
+      //           <div className={`${css(rdr.header)} columns`}>
+      //             <h3 className={`${css(rdr.planTitle)} column`}>{plan.title}</h3>
+      //             <h3 className={`${css(rdr.planPrice)} column is-narrow`}>${plan.price}</h3>
+      //           </div>
+      //           <div className={`${css(rdr.details)} columns`}>
+      //             <div className={`column`}>
+      //               <p className={css(rdr.desc)}>{plan.desc}</p>
+      //               <ul className={css(rdr.features)}>
+      //                 {plan.features.map((feat, i) => {
+      //                   return (
+      //                     <li key={i} className={css(rdr.feature)}>
+      //                       <i className={`${css(rdr.icon)} ${feat.icon}`} />
+      //                       <p className={css(rdr.featureText)}>{feat.desc}</p>
+      //                     </li> )})}
+      //               </ul>
+      //             </div>
+      //           </div>
+      //           <div className={css(rdr.buttonWrapper)}>
+      //             <a
+      //               onClick={this.submitOrder(plan)}
+      //               className={css(cE.ctaButton, cE[`cta${plan.color}`])}>
+      //               <span className={css(cE.ctaButtonOverlay)}></span>Order Now
+      //             </a>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     )}
+      //     </div>
+      //   </div>
+      // </div>
     )
   }
 }

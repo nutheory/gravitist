@@ -14,16 +14,18 @@ const notes = StyleSheet.create({
     paddingBottom: '0.6rem'
   },
   prevContainer: {
+    padding: '2px',
     transitionDuration: '0.3s',
     transitionTimingFunction: 'cubic-bezier(0, 1, 0.5, 1)',
     maxHeight: '0px',
-    overflowY: 'hidden'
+    overflowY: 'hidden',
+    overflowX: 'visible'
   },
   open: {
     transitionDuration: '0.3s',
     transitionTimingFunction: 'ease-in',
     maxHeight: '1000px',
-    overflowY: 'hidden'
+    // overflowY: 'hidden'
   },
   noteItem: {
     margin: '1px',

@@ -20,8 +20,8 @@ module.exports = {
     accessKeyId: 'AKIAJIBEGSDYXPQQVALQ'
   },
   base_url: {
-    test: 'https://2c104d94.ngrok.io',
-    development: 'https://2c104d94.ngrok.io',
+    test: 'https://homefilming.ngrok.io',
+    development: 'https://homefilming.ngrok.io',
     production: 'https://www.homefilming.com'
   },
   assemblies: {

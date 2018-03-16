@@ -64,9 +64,9 @@ class WorkArea extends Component<Props, State> {
 
   showGeolocatorButton(){
     return (
-      <a className={`button ${css(loc.button)}`} onClick={ this.findLocation }>
+      <a className={`button-blue`} onClick={ this.findLocation }>
         <span className="icon">
-          <i className={`fa fa-${ this.state.lat ? ('check ' + css(loc.buttonSuccessText)) : 'location-arrow' }`}></i>
+          <i className={`inline-block mr-3 fa fa-${ this.state.lat ? 'check text-green-dark' : 'location-arrow' }`}></i>
         </span>
         <span>{ this.state.lat ? 'Got it, thanks' : 'Get Location Information' }</span>
       </a>
@@ -90,66 +90,65 @@ class WorkArea extends Component<Props, State> {
   }
 
   geolocateSuccess(position: Object){
-    this.setState({ lat: position.coords.latitude, lng: position.coords.longitude }, function(){
+    this.setState({ isFinding: false, lat: position.coords.latitude, lng: position.coords.longitude }, function(){
       this.props.handleReturnedLocation(this.state)
     })
   }
 
   geolocateError(){
-    this.setState({ isGeolocatable: false })
+    this.setState({ isFinding: false, isGeolocatable: false })
   }
 
   findLocation(){
-
-    try{
-      navigator.geolocation.getCurrentPosition(this.geolocateSuccess, this.geolocateError)
-    } catch(e){
-      this.geolocateError
-    }
+    this.setState({ isFinding: true }, function(){
+      try{
+        navigator.geolocation.getCurrentPosition(this.geolocateSuccess, this.geolocateError)
+      } catch(e){
+        this.geolocateError
+      }
+    })
   }
 
   render(){
     return (
-      <div className={`message is-info ${css(loc.posForSpinner)}`}>
-        <div id="fetching-location-coords" className={`${css(loc.spinner)} ${ this.state.isFinding ? css(loc.spinnerShow) : '' }`}>
+      <div className={`relative rounded-lg border border-grey-light bg-grey-lighter p-4`}>
+        <div id="fetching-location-coords" className={`spinner ${ this.state.isFinding ? 'opacity-100' : '' }`}>
           <i className="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
-        <div className="message-body">
-          <p className={css(loc.textBottomMargin)}>In order to send you local homes to film we need to gather your location information
-            and the radius of the area you would like to work.</p>
-          <div className="columns">
-            <div className="column is-narrow">
-              <div className={`dropdown ${ this.state.radiusOpen ? 'is-active' : '' }`}>
-                <div className="dropdown-trigger">
-                  <button
-                    onClick={this.toggleRadiusOpen}
-                    className="button is-medium"
-                    aria-haspopup="true"
-                    aria-controls="dropdown-menu">
-                    <span>{ this.state.properRadiusText ? this.state.properRadiusText : 'Work radius' }</span>
-                    <span className="icon is-small">
-                      <i className="fa fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                  </button>
-                </div>
-                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                  <div className="dropdown-content">
-                    { radiusOpts.map((rad, i) =>
-                      <a
-                        radius={rad}
-                        proper={`${rad.toString()} miles`}
-                        onClick={this.handleRadiusChange}
-                        className={`dropdown-item ${css(loc.fixDropdownItemLinks)}`}
-                        key={`radius_${rad.toString()}`}>
-                        {`${rad.toString()} miles`}</a>
-                    ) }
-                  </div>
+
+        <p className="text-sm">In order to send you local homes to film we need to gather your location information
+          and the radius of the area you would like to work.</p>
+        <div className="flex mt-4">
+          <div className="mr-4">
+            <div className={`dropdown relative ${ this.state.radiusOpen ? 'is-active' : '' }`}>
+              <div className="dropdown-trigger hover:cursor-pointer" onClick={this.toggleRadiusOpen}>
+                <button
+                  className="select-faker"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu">
+                  <span>{ this.state.properRadiusText ? this.state.properRadiusText : 'Work radius' }</span>
+                  <span className="inline-block ml-6">
+                    <i className="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div className={`dropdown-menu ${ this.state.radiusOpen ? 'block' : 'hidden' }`} id="dropdown-menu" role="menu">
+                <div className="p-2 flex flex-wrap bg-white border border-grey rounded">
+                  { radiusOpts.map((rad, i) =>
+                    <a
+                      radius={rad}
+                      proper={`${rad.toString()} miles`}
+                      onClick={this.handleRadiusChange}
+                      className="w-full block px-2 py-1 hover:cursor-pointer"
+                      key={`radius_${rad.toString()}`}>
+                      {`${rad.toString()} miles`}</a>
+                  ) }
                 </div>
               </div>
             </div>
-            <div className="column">
-              { this.state.isGeolocatable ? this.showGeolocatorButton() : this.showAddressMapper() }
-            </div>
+          </div>
+          <div className="flex-1">
+            { this.state.isGeolocatable ? this.showGeolocatorButton() : this.showAddressMapper() }
           </div>
         </div>
       </div>

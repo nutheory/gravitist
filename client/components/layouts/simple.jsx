@@ -7,7 +7,7 @@ import Loader from '../misc/loader'
 const SimpleLayout = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest} render={ props => (
-      <div className={css(ss.container)}>
+      <div className="font-source-sans">
         <Component {...props} />
       </div>
     )} />

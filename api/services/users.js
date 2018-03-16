@@ -37,7 +37,7 @@ const userIncludes = (criteria) => {
 
 const log = data => R.tap(() => console.log(chalk.blue.bold('DATA'), data), data)
 
-const getFullUser = attrs => {
+const getFullUser = ({ attrs }) => {
   console.log(chalk.blue.bold("findByID"),attrs.id)
   console.log(chalk.blue.bold("findByEm"),attrs.usr)
   return task(resolver =>
@@ -50,7 +50,7 @@ const getFullUser = attrs => {
   .run().promise()
 }
 
-const getCoreUser = attrs => {
+const getCoreUser = ({ attrs }) => {
   console.log(chalk.blue.bold("Core ATTRS"),attrs)
   return task(resolver =>
     db.User.find({ where: attrs.email ? { email: attrs.email.toLowerCase() } :
@@ -62,14 +62,14 @@ const getCoreUser = attrs => {
   .run().promise()
 }
 
-const getUser = attrs =>
+const getUser = ({ attrs }) =>
   task(resolver =>
     db.User.find({ where: { id: attrs.id } })
       .then(usr => resolver.resolve({ usr, attrs }))
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getUser' }))) )
   .run().promise()
 
-const getUsersByCriteria = attrs =>
+const getUsersByCriteria = ({ attrs }) =>
   task(resolver =>
     db.User.findAll(R.merge({ where: R.merge(attrs.criteria,
       { [Op.or]: [
@@ -87,7 +87,7 @@ const contactAssociations = async (asscConts) => {
   if(asscConts.contacts && asscConts.contacts.length > 0){
     const contacts = []
     asscConts.contacts.map(contact => {
-      if(contact.status === "delete"){
+      if(contact.status === "delete" || contact.content === ""){
         contacts.push( task(resolver =>
           db.Contact.destroy({ where: { id: contact.id }, transaction: asscConts.tx })
             .then(res => resolver.resolve(res.dataValues))))
@@ -132,6 +132,7 @@ const createUserWithAssociations = attrs =>
 const updateAssociations = ({ usr, attrs }) => {
   return db.sequelize.transaction(tx =>
     task(async (resolver) => {
+      console.log(chalk.blue.bold("attrs"),attrs.user)
       const addressPromise = attrs.user && attrs.user.address && usr.address ?
         usr.address.updateAttributes(attrs.user.address, { transaction: tx }) : []
       const contactsPromises = attrs.user && attrs.user.contacts ? contactAssociations({usr, contacts: attrs.user.contacts, tx}) : []

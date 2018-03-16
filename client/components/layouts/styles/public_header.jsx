@@ -127,6 +127,8 @@ const header = StyleSheet.create({
   },
   phoneIcon: {
     width: '2.2rem',
+    color: 'red',
+    fill: 'red',
     height: '2.2rem',
   },
   pilotSignup: {

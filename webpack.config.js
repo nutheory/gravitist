@@ -56,7 +56,7 @@ module.exports = [
     },
     plugins: [
       appCss,
-      new DashboardPlugin()
+      require('autoprefixer')
     ]
   },
   {
@@ -79,12 +79,13 @@ module.exports = [
         },
         {
           test: /\.(sass|scss)$/,
-          use: appCss.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
+          use: galleryCss.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
         }
       ]
     },
     plugins: [
-      galleryCss
+      galleryCss,
+      require('autoprefixer')
     ]
   }
 ]

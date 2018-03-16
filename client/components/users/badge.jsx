@@ -10,40 +10,37 @@ const UserBadge = (props: Object) => {
   return (
     <div>
       { props.align === "right" ?
-      <div className={`${css(cE.areaBase)} ${css(cE[props.flavor + 'Obj'])}`}>
-        <div className={`columns`}>
-          <div className={`column ${css(bdg.agent)} ${css(bdg.removeRightPadding)}`}>
-            <div className={`${css(bdg.smallUppercaseRight)}`}>{ props.user.type }</div>
-            <div className={`${css(bdg.rightText)}`}>
+        <div className="flex">
+          <div className="flex-1">
+            <div className="text-right">
               {props.link ?
                 <Link to={`/admin/profile/${props.user.id}`}>{ props.user.name }</Link>
               : props.user.name }
             </div>
+            <div className="text-xs uppercase text-right">{ props.user.type }</div>
           </div>
-          <div className={`${css(bdg.avatar)} column is-narrow`}>
+          <div className="ml-4">
             <Avatar
               src={ props.user.avatar ? props.user.avatar.url : null }
               size={`medium`} />
           </div>
         </div>
-      </div>
       :
-        <div className={`${css(cE.areaBase)} ${css(cE[props.flavor + 'Obj'])}`}>
-          <div className={`columns`}>
-            <div className={`${css(bdg.avatar)} column is-narrow`}>
+        <div className="flex">
+            <div className="mr-4">
               <Avatar
                 src={ props.user.avatar ? props.user.avatar.url : null }
                 size={`medium`} />
             </div>
-            <div className={`column ${css(bdg.agent)} ${css(bdg.removeLeftPadding)}`}>
-              <div className={`${css(bdg.smallUppercase)}`}>{ props.user.type }</div>
-              <div className={`${css(bdg.nameText)}`}>
+            <div className="flex-1">
+              <div className="">
                 {props.link ?
                   <Link to={`/admin/profile/${props.user.id}`}>{ props.user.name }</Link>
                 : props.user.name }
               </div>
+              <div className="text-xs uppercase">{ props.user.type }</div>
             </div>
-          </div>
+
         </div>
       }
     </div>

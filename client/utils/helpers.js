@@ -7,5 +7,6 @@ const humanize = (str) => str
 
 
 const dateTimeShort = (date) => Moment(Date.parse(date)).format('MMM Do YYYY, h:mma')
+const dateShort = (date) => Moment(Date.parse(date)).format('MMMM Do YYYY')
 
-module.exports =  { humanize, dateTimeShort }
+module.exports =  { humanize, dateTimeShort, dateShort }

@@ -47,9 +47,18 @@ const getFullOrderInstance = ({id, usr}) =>
     }).catch(err => err) )
   .run().promise()
 
-const getOrdersByCriteria = ({ usr, attrs }) =>
-  task(resolver =>
-    db.Order.findAll( R.merge({ where: R.mergeAll([ attrs.criteria,
+const getOrdersByCriteria = ({ usr, attrs }) => {
+  const criteriaArray = R.toPairs(attrs.criteria)
+  const criteria = {}
+  criteriaArray.map((crit) => {
+    if([crit[0]] === 'status'){
+      criteria[crit[0]] = { [Op.like]: { [Op.any]: typeof(crit[1]) === 'string' ? crit[1].split(',') : crit[1] } }
+    } else {
+      criteria[crit[0]] = crit[1]
+    }
+  })
+  return task(resolver =>
+    db.Order.findAll( R.merge({ where: R.mergeAll([ criteria,
       { [Op.or]: [
         { plan: { [Op.iLike]: `%${attrs.queryString}%` } },
         { status: { [Op.iLike]: `%${attrs.queryString}%` } },
@@ -59,6 +68,7 @@ const getOrdersByCriteria = ({ usr, attrs }) =>
       .then(res => {
         resolver.resolve({orders: res})}) )
   .run().promise()
+}
 
 const createOrderWithAssociations = ({ usr, pln, addr }) =>
   db.sequelize.transaction( tx =>
@@ -74,10 +84,12 @@ const createOrderWithAssociations = ({ usr, pln, addr }) =>
 
 const getOrderToUpdate = ({ usr, id, ordr }) =>
   db.sequelize.transaction(tx =>
-    task( resolver =>
-      db.Order.findById(id, { transaction: tx })
-        .then(res => res.update(ordr, R.merge(orderIncludes(), { transaction: tx }))
-        .then(upd => resolver.resolve(upd.dataValues))) )
+    task( resolver => {
+      const modifier = ordr.status === "recruiting" ? {
+        pilotId: null, pilotAcceptedAt: null, pilotBounty: null, pilotDistance: null } : {}
+      return db.Order.findById(id, { transaction: tx })
+        .then(res => res.update(R.merge(ordr, modifier), R.merge(orderIncludes(), { transaction: tx }))
+        .then(upd => resolver.resolve(upd.dataValues))) })
     .run().promise() )
 
 const toggleOrderParticipation = ({ usr, id, updates }) =>
@@ -146,17 +158,24 @@ const approveAndPayout = async ({ id, user, photos }) => {
   const ordr = await db.Order.findById(id, { include: [{ model: db.User, as: 'pilot'}] })
   processPhotos({ ordr, photos })
   if (ordr.pilotBounty > 200) { throw RobberyInProgressError }
-  const transfer = await createStripeTransfer({
-    accountId: ordr.pilot.accountId,
-    transferAmount: ordr.pilotBounty*100,
-    orderId: ordr.id,
-    pilotId: ordr.pilotId }).catch(err => { throw err })
-  const result = await ordr.update({
-    status: 'final_processing',
-    pilotTransferId: transfer.id,
-    pilotTransferResult: transfer,
-    reviewedBy: user.id,
-    reviewedAt: new Date() })
+  if(ordr.pilotTransferId){
+    const result = await ordr.update({
+      status: 'final_processing',
+      reviewedBy: user.id,
+      reviewedAt: new Date() })
+  } else {
+    const transfer = await createStripeTransfer({
+      accountId: ordr.pilot.accountId,
+      transferAmount: ordr.pilotBounty*100,
+      orderId: ordr.id,
+      pilotId: ordr.pilotId }).catch(err => { throw err })
+    const result = await ordr.update({
+      status: 'final_processing',
+      pilotTransferId: transfer.id,
+      pilotTransferResult: transfer,
+      reviewedBy: user.id,
+      reviewedAt: new Date() })
+  }
 }
 
 const rejectAndNotify = async ({ id, user }) => {
@@ -184,7 +203,7 @@ const rawMissionsWithinRadiusSqlQuery = ({ usr, qryPrms }) => db.sequelize.query
     LEFT OUTER JOIN "Addresses" AS "address" ON "order"."id" = "address"."addressableId"
     AND "address"."addressable" = 'order'
   WHERE
-    "order"."pilotId" IS NULL
+    "order"."status" = 'recruiting'
     AND earth_box(ll_to_earth(${usr.address.lat}, ${usr.address.lng}),
     ${usr.workRadius * 1000.34}) @> ll_to_earth("address".lat, "address".lng)
   ORDER BY

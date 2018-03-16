@@ -1,12 +1,9 @@
 // @flow
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { StyleSheet, css } from 'aphrodite'
-import Pricing from '../agent/pricing_list'
-import styles from '../../../styles/common_layout'
 import Hero from './hero'
 import HowItWorks from './how_it_works'
 import HardSell from './hard_sell'
+import Stats from './stats'
 
 
 class Works extends Component<void, void> {
@@ -16,10 +13,11 @@ class Works extends Component<void, void> {
 
   render(){
     return(
-      <div className={css(styles.centerMainContent)}>
+      <div className="relative flex flex-col w-full">
         <Hero />
         <HowItWorks />
         <HardSell />
+        <Stats />
       </div>
     )
   }

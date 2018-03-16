@@ -3,9 +3,10 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { graphql, compose } from 'react-apollo'
 import jwtDecode from 'jwt-decode'
-import OrderList from '../order_list'
+import OrderList from './order_list'
 import Overview from './overview'
 import Reorder from './reorder'
+import Order from '../../orders/view_edit'
 import Profile from '../../users/view_edit'
 import dsh from '../styles/dashboard'
 import { css } from 'aphrodite'
@@ -47,38 +48,43 @@ class AgentDashboard extends Component<Props, State>{
       return <p>Error!</p>
     } else {
       return (
-        <div className={`section ${css(dsh.paddingTopBottom)}`}>
-          <div className="container">
-            <Switch>
-              <Route path="/dashboard/:orderId?" render={({ match }) => (
-                <Overview orderid={ match.params.orderId ? match.params.orderId : null } />
-              )} />
-              <Route path="/new-order" component={ Reorder } />
-              
-              <Route path="/settings" render={({ match }) => (
-                <Profile />
-              )} />
-            </Switch>
-          </div>
-          {/* <div className="tile is-ancestor">
-            <div className="tile is-vertical is-parent"> */}
-              {/* <div className="tile is-child">
-                <Reorder />
-              </div> */}
-              {/* <div className="tile is-parent box hero is-dark is-bold">
-                <Route path={ `/dashboard/:orderId?` } render={opts =>
-                  <CollaborationArea
-                    {...opts}
-                    orderId={ opts.match.params.orderId || list.orders[0].id || null } />
-                } />
+        <div className="container mx-auto mt-8">
+          <Switch>
+            <Route path="/dashboard" render={({ match }) => (
+              <div className="flex flex-wrap -mx-6">
+                <div className="w-full lg:w-1/2 px-6 pb-4">
+                  <div className="font-bold text-xl my-2">Recent orders</div>
+                  <OrderList
+                    cssSizing="w-full lg:w-1/2"
+                    sortBy="uploadedAt"
+                    sizeLimit={10}
+                    criteria={{ status: 'recruiting,filming,initial_processing,final_processing,awaiting_review' }} />
+                </div>
+                <div className="w-full lg:w-1/2 px-6 pb-4">
+                  <div className="font-bold text-xl my-2">Order history</div>
+                  <OrderList
+                    cssSizing="w-full lg:w-1/2"
+                    sortBy="uploadedAt"
+                    sizeLimit={10}
+                    criteria={{ status: 'approved_completed' }} />
+                </div>
               </div>
-            </div>
-            <div className="tile is-3 is-parent">
-              <div className="tile is-child">
-                <OrderList orders={ list.orders } title="Orders" itemName="order" />
-              </div>
-            </div> */}
-          {/* </div> */}
+            )} />
+            <Route path="/orders/:orderId" render={({ match }) => (
+              <Order orderid={ match.params.orderId } />
+            )} />
+            {/* <Route path="/orders" render={({ match }) => (
+              <OrderList
+                cssSizing="w-full lg:w-1/2"
+                sortBy="uploadedAt"
+                sizeLimit={10}
+                criteria={{ status: 'approved_completed' }} />
+            )} /> */}
+            <Route path="/new-order" component={ Reorder } />
+            <Route path="/settings" render={({ match }) => (
+              <Profile />
+            )} />
+          </Switch>
         </div>
       )
     }

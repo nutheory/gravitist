@@ -45,27 +45,27 @@ class FeatureForm extends Component<Props, State> {
 
   render(){
     return(
-      <div className="w-full flex -mx-2 my-1">
-        <div className="mx-2">
+      <div className="w-full flex mb-3">
+        <div className="mr-4">
           <input
             type="text"
-            className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+            className="input"
             placeholder="Ex. Garages"
             name="label"
             onChange={ this.handleInputChange }
             defaultValue={this.props.feature.label} />
         </div>
-        <div className="mx-2">
+        <div className="mr-4">
           <input
             type="text"
-            className="w-full shadow-inner rounded-sm border text-lg border-grey px-3 py-2"
+            className="input"
             placeholder="3 car"
             name="value"
             onChange={ this.handleInputChange }
             defaultValue={this.props.feature.value} />
         </div>
-        <div className="mx-2 mt-2">
-          <a className="rounded-sm border border-grey px-3 py-2" onClick={this.handleRemoveClick}><i className="fa fa-times" /></a>
+        <div className="list-button">
+          <a className="" onClick={this.handleRemoveClick}><i className="fa fa-times" /></a>
         </div>
       </div>
     )

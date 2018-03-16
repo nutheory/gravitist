@@ -16,13 +16,14 @@ import mimeTypes from '../../utils/mime_types.js'
 import styles from './styles/drag_drop_uploader'
 import cE from '../../styles/common_elements'
 const Buffer = require('buffer').Buffer
-const env = window.location.host === "homefilming.com" || 
+const env = window.location.host === "homefilming.com" ||
   window.location.host === "www.homefilming.com" ? "production" : "development"
 const host = Config.base_url[env]
 const aws = Config.aws.accessKeyId
 
 type Props = {
   padding?: boolean,
+  circle?: boolean,
   header: string,
   fileTypeName: string,
   multiple?: boolean,
@@ -136,30 +137,30 @@ class DragDropUploader extends Component<Props, State> {
   renderPreview(){
     if(this.state.previewInfo && contains(this.state.previewInfo.type, mimeTypes['images'])){
       return (
-        <div id={`preview${this.props.source}`} className={css(styles.mainDragDropPreview)}>
-          <img src={this.state.preview} />
+        <div id={`preview${this.props.source}`} className="w-full h-full">
+          <img src={this.state.preview} className={`h-full w-full ${ this.props.circle ? 'circle' : '' }`} />
           <div
-            className={css(styles.changeDragDropOverlay)}
-            onClick={this.onBrowseClick}><i className="far fa-edit fa-2x"></i></div>
+            className={` ${ this.props.circle ? 'edit-upload-overlay-circle' : 'edit-upload-overlay' }`}
+            onClick={this.onBrowseClick}><i className="far fa-edit"></i></div>
         </div>
       )
     } else if (this.state.previewInfo && contains(this.state.previewInfo.type, mimeTypes['videos'])) {
       return (
-        <div id={`preview${this.props.source}`} className={css(styles.mainDragDropPreview)}>
-          <video width='100%' controls>
+        <div id={`preview${this.props.source}`} className="w-full h-full">
+          <video width='100%' className="rounded-lg border border-grey-dark" controls>
             <source src={this.state.preview} type='video/mp4' />
           </video>
           <div
-            className={css(styles.changeDragDropOverlay)}
+            className={` ${ this.props.circle ? 'edit-upload-overlay-circle' : 'edit-upload-overlay' }`}
             onClick={ this.onBrowseClick }><i className="far fa-edit fa-2x"></i></div>
         </div>
       )
     } else {
       return (
-        <div id={`preview${this.props.source}`} className={css(styles.noImagePreview)}>
+        <div id={`preview${this.props.source}`} className="">
           <i className="fas fa-check fa-4x"></i>
           <div
-            className={css(styles.changeDragDropOverlay)}
+            className={` ${ this.props.circle ? 'edit-upload-overlay-circle' : 'edit-upload-overlay' }`}
             onClick={ this.onBrowseClick }><i className="far fa-edit fa-2x"></i></div>
         </div>
       )
@@ -213,7 +214,7 @@ class DragDropUploader extends Component<Props, State> {
           cryptoMd5Method: (data) => Crypto.createHash('md5').update(Buffer.from(data)).digest('base64'),
           cryptoHexEncodedHash256: (data) => Crypto.createHash('sha256').update(data).digest('hex')
         } })
-      this.props.returnUploadInstance({ hideBailOption: true })
+      this.props.returnUploadInstance({ hideIrrelevant: true })
     } else {
       this.props.returnUploadInstance(this.uppy)
     }
@@ -232,7 +233,7 @@ class DragDropUploader extends Component<Props, State> {
           progress: (progressValue) => { ths.setState({ uploadProgress: progressValue }) },
           complete: (_xhr, awsKey) => {
             ths.setState({ uploadCompleted: true }, () => {
-              this.props.returnUploadInstance({ hideBailOption: true, showUploadSuccess: true, keyUrl: awsKey })
+              this.props.returnUploadInstance({ hideIrrelevant: true, showUploadSuccess: true, keyUrl: awsKey })
             })
           }
           // error: (msg) => { ths.setState({ showProgressBar: false, showSubmitForReview: true }) }
@@ -245,18 +246,17 @@ class DragDropUploader extends Component<Props, State> {
 
   render(){
     return (
-      <div className={css(styles.mainDragDropWrapper)} >
+      <div className="h-full" >
         { this.state.showProgressBar ?
-          <div className={``}>
+          <div className={`h-full`}>
             <ProgressBar progress={ this.state.uploadProgress } />
           </div>
         :
           <div
             ref={ dropzone => this.dropzone = dropzone }
-            className={css(styles.mainDragDropContainer)}
-            style={ this.props.padding ? { padding: '2rem 1rem' } : {} }
+            className={`${ this.props.circle ? 'circle h-full' : 'rounded-lg' } ${this.props.padding ? 'p-4' : '' } ${this.state.showSubmitForReview ? 'padding-override' : 'upload-container'} relative`}
           >
-            <form className={css(styles.mainDragDropForm)}>
+            <form className={`h-full w-full`}>
               <input
                 ref={ input => this.inputElement = input }
                 className={css(styles.hiddenDragDropInput)}
@@ -266,29 +266,35 @@ class DragDropUploader extends Component<Props, State> {
                 multiple={this.props.multiple || false}
                 onChange={this.onInputChange} />
             { this.state.preview ? this.renderPreview() :
-              <div>
-                <div className={css(styles.mainDragDropInstruction)}>
+              <div className={`h-full`}>
+                <div className={`h-full`}>
                   { this.state.previewInfo ?
                     <div>
-                      <i className={`${css(styles.mainDragDropIconSuccess)} fas fa-check fa-2x`}></i>
-                      <h3 className={css(styles.mainDragDropHeader)}>Got It</h3>
-                      <p className={css(styles.mainDragDropText)}>{this.props.auto !== true ? 'Ready to upload...' : 'Uploaded' }</p></div>
-                  : <div>
-                    <i className={`${css(styles.mainDragDropIcon)} ${this.props.mimes === 'documents' ? 'far fa-file-pdf' : 'fas fa-cloud-upload-alt' } fa-2x`}></i>
-                    <h3 className={css(styles.mainDragDropHeader)}>{ this.props.header }</h3>
-                    <p className={css(styles.mainDragDropText)}>Drag & drop { this.props.fileTypeName } or click to browse</p>
+                      <i className="text-green-dark fas fa-check fa-2x"></i>
+                      <h3 className="">Got it</h3>
+                      <p className="">{this.props.auto !== true ? 'Ready to upload...' : 'Uploaded' }</p></div>
+                  : <div className={`flex ${ this.props.circle ? 'flex-wrap justify-center items-center h-full' : '' }`}>
+                    <div className={`${ this.props.circle ? '' : 'flex' }`}>
+                      <div className={`${ this.props.circle ? 'w-full text-center my-2 self-center' : 'mr-4' }`}>
+                        <i className={`${this.props.mimes === 'documents' ? 'far fa-file-pdf' : 'fas fa-cloud-upload-alt' } fa-2x`}></i>
+                      </div>
+                      <div className={`${ this.props.circle ? 'w-2/3 m-auto' : '' }`}>
+                        <h3 className={`${ this.props.circle ? 'my-2 text-center' : '' } text-sm font-bold`}>{ this.props.header }</h3>
+                        <p className={`${ this.props.circle ? 'text-center' : '' } text-xs`}>Drag & drop { this.props.fileTypeName } or click to browse</p>
+                      </div>
+                    </div>
                   </div> }
                 </div>
-                <label className={css(styles.clickableDragDropLabel)} onClick={ this.onBrowseClick }></label>
+                <label className="block absolute pin-t pin-l w-full h-full cursor-pointer z-10" onClick={ this.onBrowseClick }></label>
               </div> }
             </form>
           </div> }
 
           { this.state.showSubmitForReview ?
-            <div className={css(styles.reviewButton)}>
-              <a className={`${css(cE.ctaButton, cE.ctaGreen)}`} onClick={ this.handleReviewSubmit }>
-                <span className={css(cE.ctaButtonOverlay)}></span>Submit for review
-              </a>
+            <div className="mt-4">
+              <button className="button-green" onClick={ this.handleReviewSubmit }>
+                <span className="action-button-overlay"></span>Submit for review
+              </button>
             </div>
           : null }
 

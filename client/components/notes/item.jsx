@@ -36,17 +36,16 @@ class NoteItem extends Component<Props, void> {
 
   render(){
     const user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
-    console.log(this.props.note)
     return(
-      <article className={`media box ${css(note.noteItem)}`}>
-        <figure className="media-left">
+      <article className="bg-white rounded shadow p-4 flex my-4">
+        <figure className="mr-4">
           <Avatar
             size="medium"
             src={ this.props.note.author.avatar ? this.props.note.author.avatar.url : null }
           />
         </figure>
-        <div className="media-content">
-          <div className="content">
+        <div className="flex-1">
+          <div className="">
             <p>
               <strong>{ this.props.note.author.name }</strong>
               <small>  { Moment(Date.parse(this.props.note.createdAt)).format('MMM Do YYYY, h:mma') }</small>
@@ -56,8 +55,8 @@ class NoteItem extends Component<Props, void> {
           </div>
         </div>
         { this.props.note.author.id == user.id ?
-          <div className="media-right">
-            <button className="delete" onClick={ this.handleRemoveNote }></button>
+          <div className="">
+            <button className="text-grey" onClick={ this.handleRemoveNote }><i className="far fa-times-circle"></i></button>
           </div>
         : null }
       </article>

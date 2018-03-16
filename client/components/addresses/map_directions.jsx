@@ -77,17 +77,30 @@ class MapDirections extends Component<Props, State> {
     })
   }
 
+  // ${this.props.directionsVisible ? 'block' : 'none'}
+
   render(){
     return(
-      <div className={css(mdr.mapContainer)}>
-        <div id='mapArea' className={css(mdr.mapArea)}></div>
-        <ul id="drivingDirections" className={css(mdr.mapDirections)}  style={{display: `${this.props.directionsVisible ? 'block' : 'none'}`}}>
-          <li className={`title is-5`}>Driving directions</li>
-          { this.state.directions ? this.state.directions.map((dir, i) =>
-            <li key={`direction_${i}`}
-              className={css(mdr.mapDirectionItem)}
-              dangerouslySetInnerHTML={{__html: `<i class="fa fa-map-pin ${css(mdr.mapDirectionIcon)}"></i> <div class="${css(mdr.mapDirectionText)}">${dir}</div>`}}></li>) : null }
-        </ul>
+      <div className="bg-white rounded shadow p-6">
+        <div className="flex pb-2">
+          <div className="text-xl font-bold">Map</div>
+          <div className="flex-1 ml-4 text-right text-xs">
+            est. drive time
+            <span className="text-xl font-bold inline-block ml-2">
+              { this.state.duration ? (Math.round( parseInt(this.state.duration) / 60) ).toString().split('.')[0] : 'NA' }
+            </span>
+          </div>
+        </div>
+        <div id='mapArea' className="w-full h-64 border border-grey-dark"></div>
+        <div className={`${ this.props.directionsVisible ? 'block' : 'hidden' } mt-4`}>
+          <div className="font-bold text-sm">Driving directions</div>
+          <ul id="drivingDirections">
+            { this.state.directions ? this.state.directions.map((dir, i) =>
+              <li key={`direction_${i}`}
+                className="flex text-sm my-3"
+                dangerouslySetInnerHTML={{__html: `<i class="fas fa-map-pin inline-block mr-2 text-grey"></i> <div class="flex-1">${dir}</div>`}}></li>) : null }
+          </ul>
+        </div>
       </div>
     )
   }

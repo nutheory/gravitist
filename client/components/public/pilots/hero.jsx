@@ -1,26 +1,26 @@
 // @flow
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import { StyleSheet, css } from 'aphrodite'
+import { Link } from 'react-router-dom'
 import ScrollDown from '../scroll_down'
-import hero from './styles/hero'
-import cL from '../../../styles/common_layout'
-import cE from '../../../styles/common_elements'
 
 
 const Hero = () => {
   return(
-    <div className={css(cL.heroContainer)}>
-      <div className={css(cL.heroBg)} style={{background: `url(${require('../../../assets/images/pilotHero.jpg')}) no-repeat`}}>
-        <div className={css(cL.heroOverlay)}></div>
-        <div className={css(hero.wrapper)}>
-          <div className={css(hero.infoRight)}>
-            <h1 className={css(hero.synopsis)}>Fly with Homefilming</h1>
-            <p className={css(hero.infoText)}>Earn money. Fly when you want.</p>
-            <NavLink className={css(cE.ctaButton, cE.ctaGreen, hero.button)} to="/pilots/register">
-              <span className={css(cE.ctaButtonOverlay)}></span>
-              Get Started
-            </NavLink>
+    <div className="hero">
+      <div className="bg" style={{backgroundImage: `url(${require('../../../assets/images/pilotHero.jpg')})`}}>
+        <div className="overlay"></div>
+        <div className="w-full flex justify-end px-8 lg:pr-20">
+          <div className="w-full sm:w-4/5 md:w-3/5 lg:w-3-5 xl:w-2/5 z-5">
+            <div className="text-3xl xl:text-5xl text-white text-right t-shadow">Fly with Homefilming</div>
+            <div className="text-xl xl:text-3xl text-white text-right t-shadow">Earn money. Fly when you want.</div>
+            <div className="flex flex-wrap -mx-4 justify-end">
+              <div className="p-4 inline-block">
+                <Link className="button-green py-4 px-12" to="/pilots/register">
+                  <span className="action-button-overlay"></span>
+                  Register now to start flying
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         <ScrollDown to="/" />

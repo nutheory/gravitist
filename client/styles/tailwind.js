@@ -127,6 +127,11 @@ let colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  twitter: '#00aced',
+  facebook: '#3b5998',
+  twitterHigh: '#0084b4',
+  facebookHigh: '#8b9dc3'
 }
 
 module.exports = {
@@ -194,6 +199,7 @@ module.exports = {
 
   fonts: {
     'sans': [
+      'Source Sans Pro',
       'Avenir Next',
       'system-ui',
       'BlinkMacSystemFont',
@@ -306,6 +312,7 @@ module.exports = {
     'none': 1,
     'tight': 1.25,
     'normal': 1.5,
+    'wide': 1.75,
     'loose': 2,
   },
 
@@ -465,7 +472,6 @@ module.exports = {
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',
-    '64+': '24rem',
     '1/2': '50%',
     '1/3': '33.33333%',
     '2/3': '66.66667%',
@@ -513,8 +519,9 @@ module.exports = {
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',
+    '100': '25rem',
     'full': '100%',
-    'screen': '100vh'
+    'screen': '100vh',
   },
 
 
@@ -632,6 +639,9 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+    '12': '3rem',
+    '16': '4rem',
+    '20': '5rem',
   },
 
 
@@ -660,6 +670,9 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+    '12': '3rem',
+    '16': '4rem',
+    '20': '5rem',
   },
 
 
@@ -731,6 +744,7 @@ module.exports = {
   zIndex: {
     'auto': 'auto',
     '0': 0,
+    '5': 5,
     '10': 10,
     '20': 20,
     '30': 30,
@@ -824,7 +838,7 @@ module.exports = {
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
     borderWidths: ['responsive'],
-    cursor: ['responsive'],
+    cursor: ['responsive', 'hover'],
     display: ['responsive'],
     flexbox: ['responsive'],
     float: ['responsive'],

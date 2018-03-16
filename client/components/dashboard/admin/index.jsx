@@ -38,18 +38,18 @@ class AdminDashboard extends Component<Props, State>{
 
   render(){
     return (
-      <div className="container">
+      <div className="container mx-auto mt-8">
         <Switch>
           <Route path="/dashboard" render={({ match }) => (
             <Overview />
           )} />
           <Route path="/admin/pilots" render={({ match }) => (
             <div>
-              <div className="columns">
-                <div className="column">
-                  <h3 className="title is-3">Pilots</h3>
+              <div className="flex my-4">
+                <div className="flex-1 flex items-end">
+                  <h3 className="font-bold text-xl">Pilots</h3>
                 </div>
-                <div className="column is-one-third">
+                <div className="w-1/3">
                   <Search
                     placeHolder="Search by name, account ID, or email"
                     queryString={ this.state.queryString }
@@ -65,11 +65,11 @@ class AdminDashboard extends Component<Props, State>{
           )} />
           <Route path="/admin/agents" render={({ match }) => (
             <div>
-              <div className="columns">
-                <div className="column">
-                  <h3 className="title is-3">Agents</h3>
+              <div className="flex flex-wrap my-4">
+                <div className="flex-1 flex items-end">
+                  <h3 className="font-bold text-xl">Agents</h3>
                 </div>
-                <div className="column is-one-third">
+                <div className="w-1/3">
                   <Search
                     placeHolder="Search by name, customer ID, or email"
                     queryString={ this.state.queryString }
@@ -84,33 +84,36 @@ class AdminDashboard extends Component<Props, State>{
             </div>
           )} />
           <Route path="/admin/:type/profile/:userId" render={({ match }) => (
-            <div>
-              <Profile userid={match.params.userId} />
-              <div className="columns">
-                <div className="column">
-                  <h3 className="title is-3">Orders</h3>
-                </div>
-                <div className="column is-one-third">
+            <div className="flex flex-wrap">
+              <div className="w-full lg:w-3/4">
+                <Profile userid={match.params.userId} />
+              </div>
+              <div className="w-full lg:w-1/4 lg:pl-8 pt-4">
+                <h3 className="font-bold text-right">Recent History</h3>
+                <div className="w-full pt-2 pb-4">
                   <Search
-                    placeHolder="Search by status, receipt ID, or plan"
+                    placeHolder="Search by status, or receipt ID"
+                    queryString={ this.state.queryString }
+                    searchQuery={ this.searchQuery } />
+                </div>
+                <div className="w-full">
+                  <OrderList
+                    cssSizing="w-full sm:w-1/2 md:w-1/3 lg:w-full"
+                    sortBy="createdAt"
+                    criteria={{ [`${ match.params.type ? match.params.type : '' }Id`]: match.params.userId }}
                     queryString={ this.state.queryString }
                     searchQuery={ this.searchQuery } />
                 </div>
               </div>
-              <OrderList
-                sortBy="createdAt"
-                criteria={{ [`${ match.params.type ? match.params.type : '' }Id`]: match.params.userId }}
-                queryString={ this.state.queryString }
-                searchQuery={ this.searchQuery } />
             </div>
           )} />
           <Route path="/admin/orders" render={({ match }) => (
             <div>
-              <div className="columns">
-                <div className="column">
-                  <h3 className="title is-3">Recent Orders</h3>
+              <div className="flex flex-wrap my-4">
+                <div className="flex-1 flex items-end">
+                  <h3 className="font-bold text-xl">Orders</h3>
                 </div>
-                <div className="column is-one-third">
+                <div className="w-1/3">
                   <Search
                     placeHolder="Search by status, receipt ID, or plan"
                     queryString={ this.state.queryString }

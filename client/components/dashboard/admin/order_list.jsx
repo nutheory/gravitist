@@ -1,8 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import { graphql, compose } from 'react-apollo'
-import { css } from 'aphrodite'
+import { graphql } from 'react-apollo'
 import GetOrders from '../../../queries/order_collections'
 import OrderCard from './order_card'
 
@@ -27,7 +25,7 @@ class OrderList extends Component<Props, State>{
     if(loading){return (<div></div>)}
     const orders = getOrders.orders
     return (
-      <div className="flex flex-wrap -mb-4 -mx-4">
+      <div className="flex flex-wrap mb-6 md:-mx-4">
         { orders ? orders.map((order, i) => (
           <OrderCard
             cssSizing={ this.props.cssSizing }
@@ -39,18 +37,16 @@ class OrderList extends Component<Props, State>{
   }
 }
 
-export default compose(
-  graphql(GetOrders, {
-    name: "orderList",
-    options: (props) => ({
-      variables: { input: {
-        options: {
-          sortKey: props.sortBy || 'createdAt',
-          sortValue: props.sortDirection  || 'DESC',
-          sizeLimit: props.sizeLimit || 50
-        },
-        criteria: props.criteria,
-        queryString: props.queryString || ''
-    } } })
-  })
-)(OrderList)
+export default graphql(GetOrders, {
+  name: "orderList",
+  options: (props) => ({
+    variables: { input: {
+      options: {
+        sortKey: 'uploadedAt' || 'createdAt',
+        sortValue: props.sortDirection  || 'DESC',
+        sizeLimit: props.sizeLimit || 50
+      },
+      criteria: props.criteria,
+      queryString: props.queryString || ''
+  } } })
+})(OrderList)

@@ -163,8 +163,13 @@ module.exports = function(sequelize, Sequelize) {
     User.hasMany(models.Invitation, {
       foreignKey: 'userId'
     })
-    User.hasMany(models.Notification, {
-      foreignKey: 'authorId'
+    // User.hasMany(models.Note, {
+    //   foreignKey: 'authorId'
+    // })
+    User.hasOne(models.Note, {
+      foreignKey: 'authorId',
+      constraints: false,
+      as: 'author'
     })
     User.hasOne(models.Address, {
       foreignKey: 'addressableId',
@@ -190,7 +195,8 @@ module.exports = function(sequelize, Sequelize) {
       constraints: false,
       scope: {
         assetable: 'user',
-        assetableName: 'avatar'
+        assetableName: 'avatar',
+        active: true
       },
       as: 'avatars'
     })
@@ -218,7 +224,7 @@ module.exports = function(sequelize, Sequelize) {
       scope: {
         assetable: 'user',
         assetableName: 'avatar',
-        active: true
+        default: true
       },
       as: 'avatar'
     })

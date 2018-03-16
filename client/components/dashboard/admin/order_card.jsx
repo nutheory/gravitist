@@ -28,7 +28,7 @@ class OrderCard extends Component<Props, State>{
     const order = this.props.order
     return (
       <div className={`${ cssSizing } px-4 pb-6`}>
-        <div className="rounded shadow px-4 py-3">
+        <div className="bg-white rounded shadow p-4">
           <div className="py-4">
             <p className="text-center font-medium">{ humanize(order.status) }</p>
             <p className="text-center text-xs">{ dateTimeShort(order.createdAt) }</p>
@@ -46,30 +46,30 @@ class OrderCard extends Component<Props, State>{
               </div>
               <div className="">
                 <p className="text-right">{ order.agent.name }</p>
-                <p className="text-xs uppercase text-right">{ order.agent.type }</p>
+                <p className="text-xs uppercase text-right">Agent</p>
               </div>
             </div>
-            { order.pilot ?
-              <div className="flex float-right py-2">
-                <div className="">
-                  <p className="text-right">{ order.pilot.name }</p>
-                  <p className="text-xs uppercase">{ order.pilot.type }</p>
-                </div>
-                <div className="ml-2">
+            <div className="flex float-right py-2">
+              <div className="">
+                <p className="text-right">{ order.pilot ? order.pilot.name : 'Recruiting now' }</p>
+                <p className="text-xs uppercase">Pilot</p>
+              </div>
+              <div className="ml-2">
+                { order.pilot ?
                   <Avatar
                     src={ order.pilot.avatar ? order.pilot.avatar.url : null}
                     size={`medium`} />
-                </div>
+                : <i className="text-grey-light far fa-question-circle fa-3x"></i> }
               </div>
-            : null }
+            </div>
           </div>
           <div className="text-center text-xs py-4">
             <a href={`${ linkToApiReceipt }${ order.receiptId }`} target="_blank">{ order.receiptId }</a>
           </div>
-          <div className="flex">
+          <div className="flex leading-normal">
             <div className=" flex-1 text-xs text-right">
               <Link
-                className="text-blue-darker border border-blue-darker py-1 px-6 rounded-full"
+                className="inline-block text-blue-darker border border-blue-darker py-1 px-6 rounded-full"
                 to={`/admin/order/${ order.id }`}>View</Link>
             </div>
           </div>

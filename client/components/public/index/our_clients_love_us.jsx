@@ -1,10 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
-import Header from '../header'
-import love from './styles/our_clients_love_us'
-import cT from '../../../styles/common_text'
-import cL from '../../../styles/common_layout'
+
 
 const OurClientsLoveUs = () => {
 
@@ -14,71 +10,32 @@ const OurClientsLoveUs = () => {
     { img: require('../../../assets/images/4.jpg'), name: "Lily Howell", title: "CEO of Zillow", rating: 4, qoute: "HomeFilming should be nominated for service of the year. I use HomeFilming often." }
   ]
 
-  const mainLayout = (test, i) => {
+  const testimonial = (test, i) => {
     return (
-      <div key={`inner_${i}`}>
-        <div className={css(love.head)}>
-          <div className={css(love.avatar)} style={{ background: `url(/${test.img}) no-repeat`, backgroundSize: '100px', backgroundPosition: '-20px 0px'}}></div>
-          <h3 className={css(love.name)}>{test.name}</h3>
-          <p className={css(love.title)}>{test.title}</p>
+      <div className={`w-full md:w-1/3 justify-center ${i === 1 ? 'rounded border-grey-darker shadow bg-white' : ''}`} key={`testimonial_${i}`}>
+        <div className="text-center p-8 border-b">
+          <div className="rounded-full h-16 w-16 mx-auto" style={{ background: `url(/${test.img}) no-repeat`, backgroundSize: '100px', backgroundPosition: '-20px 0px'}}></div>
+          <h3 className="mt-4 text-center">{test.name}</h3>
+          <p className="text-center">{test.title}</p>
           {[...Array(test.rating)].map((ar, i) => {
             return (
-              <img key={`star_${i}`} src={require('../../../assets/svg/star.svg')} alt="star" className={css(love.starImg)} style={{display: 'inline'}} />
+              <img key={`star_${i}`}
+                src={require('../../../assets/svg/star.svg')}
+                alt="star"
+                className="inline mt-4 w-4 h-4" />
             )
           })}
         </div>
-        <div className={css(love.body)}>
-          <div className={css(love.qoute)}>"{test.qoute}"</div>
-        </div>
+        <div className="p-8 text-center">"{test.qoute}"</div>
       </div>
     )
   }
 
-  const testimonial = () => {
-    let width = window.innerWidth
-    if(width > 1023){
-      return testimonials.map((test, i) => {
-        if(i === 1){
-          return (
-            <div className={css(love.outerBoxTall)} key={`testimonial_${i}`}>
-              {mainLayout(test, i)}
-            </div>
-          )
-        } else {
-          return (
-            <div className={css(love.outerBoxShort)} key={`testimonial_${i}`}>
-              {mainLayout(test, i)}
-            </div>
-          )
-        }
-      })
-    } else {
-      const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-      return (
-        <div className={css(love.outerBoxTall)}>
-          {/* <Slider {...settings}>
-            {testimonials.map((test, i) => {
-              return mainLayout(test, i)
-            })}
-          </Slider> */}
-        </div>
-      )
-    }
-  }
-
   return (
-    <div className={css(love.container)}>
-      <div className={css(cL.wrapper)}>
-        <Header title="Our Clients Love Us" />
-        <div className={css(love.innerContainer)}>
-          {testimonial()}
-        </div>
+    <div className="py-20 container mx-auto">
+      <h1 className="pb-12 text-center">Our clients love us</h1>
+      <div className="flex flex-wrap w-4/5 mx-auto">
+        { testimonials.map((test, i) => testimonial(test, i)) }
       </div>
     </div>
   )

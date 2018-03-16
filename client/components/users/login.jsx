@@ -87,52 +87,52 @@ class Login extends Component<Props, State> {
   render(){
     const { email, password } = this.state
     return(
-      <div className={css(lg.innerContainer)}>
-        <div>
-          <Link className={css(lg.logo)} to="/">HOMEFILMING</Link>
-        </div>
-        <div className={css(lg.formArea)}>
-          <p className={`subtitle is-4`}>Log in to HomeFilming</p>
-          { this.state.errors.length > 0 ?
-            <div className={`message is-danger`}>
-              <div className={`message-body`}>
-                <ul>
-                  { this.state.errors.map((err, i) => <li key={`error_${i}`}>{ err.message }</li>) }
-                </ul>
+      <div className="login-container">
+        <div className="login-wrapper">
+          <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
+          <div className="text-right text-sm font-bold pb-1">Login</div>
+          <div className="w-full bg-white rounded shadow p-6 border border-grey-dark">
+            <div className="py-1 font-bold text-sm">Log in to Homefilming</div>
+            { this.state.errors.length > 0 ?
+              <div className="">
+                <div className="">
+                  <ul>
+                    { this.state.errors.map((err, i) => <li key={`error_${i}`}>{ err.message }</li>) }
+                  </ul>
+                </div>
               </div>
-            </div>
-          : null }
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <div className="control has-icons-left">
+            : null }
+            <form onSubmit={this.handleSubmit}>
+              <div className="relative mb-4">
                 <input
-                  className="input is-medium"
+                  className="input pl-8"
                   name="email"
                   value={email}
                   type="text"
                   onChange={this.handleChange}
                   placeholder="Email" />
-                  <span className="icon is-small is-left">
-                    <i className="fa fa-envelope"></i>
-                  </span>
+                <span className="input-icon pin-l">
+                  <i className="far fa-envelope"></i>
+                </span>
               </div>
-            </div>
-            <div className="field">
-              <div className="control has-icons-left">
+              <div className="relative my-4">
                 <input
-                  className="input is-medium"
+                  className="input pl-8"
                   name="password"
                   value={password}
                   type="password"
                   onChange={this.handleChange}
                   placeholder="Password" />
-                  <span className="icon is-small is-left">
-                    <i className="fa fa-lock"></i>
-                  </span>
+                <span className="input-icon pin-l">
+                  <i className="fa fa-lock"></i>
+                </span>
               </div>
-            </div>
-            <button className={`${css(lg.button)} button`}>Login</button>
-          </form>
+              <div className="flex">
+                <div className="flex-1 flex items-end"><Link to="/">Forgot your password?</Link></div>
+                <div className="w-1/4"><button className="button-blue"><span className="action-button-overlay"></span>Login</button></div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     )

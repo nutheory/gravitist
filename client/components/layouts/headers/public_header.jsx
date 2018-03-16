@@ -15,20 +15,24 @@ type Props = {
 }
 
 type State = {
-  bgPinned: boolean
+  bgPinned: boolean,
+  navDrawerActive: boolean
 }
 
 class PublicHeader extends Component<Props, State> {
 
+  toggleDrawerState: Function
   handleScroll: Function
 
   constructor(){
     super()
 
     this.state = {
-      bgPinned: false
+      bgPinned: false,
+      navDrawerActive: false
     }
 
+    this.toggleDrawerState = this.toggleDrawerState.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
   }
 
@@ -43,131 +47,67 @@ class PublicHeader extends Component<Props, State> {
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll)
-    // const res = this.QueryCurrentUser()
-    // console.log('ressssss',res)
   }
 
-  // componentDidUpdate(){
-  //   console.log('booooooo',this.props.data)
-  // }
+  toggleDrawerState() {
+    this.setState({ navDrawerActive: !this.state.navDrawerActive })
+  }
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.handleScroll)
   }
 
   render(){
-    // const res = this.props.data.user
-    // console.log(this.props.data)
-    let width = window.innerWidth
-    if (width > 960){
-      return(
-        <div className={css(hdr.absoluteHeader)}>
-          <div className={`${css(hdr.bg)} ${this.state.bgPinned === true ? css(hdr.bgPin) : ''}`}></div>
-          <header id="AppHeader" className={`${css(hdr.container)} columns`}>
-            <div className={`${css(hdr.logoArea)} column is-half`}>
-              <div className={css(hdr.logoArea)}>
-                <NavLink className={css(hdr.logo)} to="/">HOMEFILMING</NavLink>
-              </div>
-              <div className={css(hdr.navArea)}>
-                <NavLink className={css(hdr.navItem)} to="/pricing">PRICING</NavLink>
-                <NavLink className={css(hdr.navItem)} to="/how-it-works">HOW IT WORKS</NavLink>
-                <NavLink className={css(hdr.navItem)} to="/pilots">JOBS FOR PILOTS</NavLink>
-              </div>
+    return(
+      <div className="fixed z-10 w-full px-8 lg:px-20 py-3 public-header">
+        <div className={`header-bg ${ this.state.bgPinned === true ? 'header-bg-pin' : '' }`}></div>
+        <header id="AppHeader" className={`flex ${ this.state.bgPinned === true ? 'header-fg-pin' : '' }`}>
+          <div className="flex-1 flex">
+            <div className="pr-4 py-1 inline-block">
+              <NavLink className="title text-3xl no-underline" to="/">Homefilming</NavLink>
             </div>
-            <div className={`${css(hdr.phoneButtonArea)} column is-half`}>
-              <div className={css(hdr.buttonArea)}>
-                <NavLink className={css(cE.buttonWithOutline)} to="/pilots/register">SIGNUP TO FLY</NavLink>
-                <NavLink className={css(cE.buttonWithOutline)} to="/login">LOGIN</NavLink>
-              </div>
-              <div className={css(hdr.phoneArea)}>
-                <div className={css(hdr.callInfo)}>
-                  <div className={css(hdr.callNumber)}>800 555 6767</div>
-                  <div className={css(hdr.callText)}>Toll Free Number</div>
-                </div>
-                <div className={css(hdr.phoneIconWrapper)}>
-                  <img src={require('../../../assets/svg/phoneIcon.svg')} alt="Phone Icon" className={css(hdr.phoneIcon)} />
-                </div>
-              </div>
+            <div className="hidden md:flex pl-4 border-l border-grey py-3">
+              <NavLink className="inline-block px-2" to="/pricing">Pricing</NavLink>
+              <NavLink className="inline-block px-2" to="/how-it-works">How it works</NavLink>
+              <NavLink className="inline-block px-2" to="/pilots">Jobs for pilots</NavLink>
             </div>
-            {/* <div className={css(header.pilotSignup)}>
-              <Button basic>SIGNUP TO FLY</Button> */}
-              {/* <FlatButtonWithRouter
-                href="/pilots/register"
-                label="SIGNUP TO FLY"
-                classname={css(header.pilotSignupButton)}
-              /> */}
-            {/* </div>
-            <div className={css(header.login)}> */}
-              {/* <Button
-                onClick={this.handlePopoverToggle}
-                className={css(header.loginButton)}
-              >LOGIN</Button>
-              <Popover
-                open={this.state.popoverOpen}
-                onRequestClose={this.handlePopoverClose}
-                anchorEl={this.state.anchorEl}
-                animation={PopoverAnimationVertical}
-              >
-                  <Login />
-              </Popover> */}
-            {/* </div> */}
-          </header>
-        </div>
-      )
-    } else {
-      return(
-        <div className={css(mobileHeader.container)}>
-          <div className={css(mobileHeader.title)}>
-            <NavLink to="/"><img src={require('../../../assets/svg/logo.svg')} className={css(mobileHeader.logoImg)} /></NavLink>
           </div>
-          <div className={css(mobileHeader.menu)}>
-            {/* <IconButton
-              onClick={this.handleDrawerToggle}
-            >
-              <Hamburger />
-            </IconButton> */}
-          </div>
-          {/* <Drawer
-            width={320}
-            docked={false}
-            openSecondary={true}
-            open={this.state.drawerOpen}
-            onRequestChange={open => this.setState({open})}
-          > */}
-            <div className={css(mobileHeader.drawer)}>
-              <div className={css(mobileHeader.actions)}>
-                {/* <IconButton
-                  onClick={this.handleDrawerToggle}
-                >
-                  <Close />
-                </IconButton> */}
-              </div>
-              {/* <Divider /> */}
-              <div className={css(mobileHeader.mainLinks)}>
-                {/* <MenuItem>PRICING</MenuItem>
-                <MenuItem><NavLink to="/how-it-works">HOW IT WORKS</NavLink></MenuItem>
-                <MenuItem onClick={this.handleDrawerToggle}><NavLink to="/pilots/register">JOBS FOR PILOTS</NavLink></MenuItem>
-                <MenuItem>SIGNUP TO FLY</MenuItem> */}
-              </div>
-              {/* <Divider /> */}
-              <div className={css(mobileHeader.loginLinks)}>
-                {/* <MenuItem >CUSTOMER LOGIN</MenuItem>
-                <MenuItem>PILOT LOGIN</MenuItem> */}
-              </div>
-              <div className={css(mobileHeader.callInfo)}>
-                <div className={css(mobileHeader.callInfoInner)}>
-                  <div className={css(mobileHeader.callNumber)}>
-                    <img src={'../../../assets/svg/phoneIcon.svg'} alt="Phone Icon" className={css(hdr.phoneIcon)} />
-                    <a href="tel:800 555 6767" className={css(mobileHeader.callLink)}>800 555 6767</a>
-                  </div>
-                  <div className={css(hdr.callText)}>Toll Free Number</div>
+          <div className="flex">
+            <div className="flex-1 flex justify-end">
+              <div className="flex inline-block">
+                <div className="hidden xl:inline-block pt-1 w-8">
+                  <svg className="fill-current phone-icon" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><g><path d="M6.5 9c0 3.5 3.06 6.57 3.06 6.57l.87.88S13.5 19.5 17 19.5a3.2 3.2 0 0 0 3.27-2.44 5.13 5.13 0 0 0 .23-1.32.92.92 0 0 0-.59-.81L17.15 14a.56.56 0 0 0-.74.4 9.28 9.28 0 0 1-.34 1c-.29.73-1.7 1.44-4.32-1.19s-1.93-4-1.19-4.32a9 9 0 0 1 1-.34.56.56 0 0 0 .4-.74l-.92-2.76a.92.92 0 0 0-.81-.59 5.09 5.09 0 0 0-1.31.22A3.2 3.2 0 0 0 6.5 9z"/><path d="M0 13A13 13 0 1 0 13 0 13 13 0 0 0 0 13zm25 0A12 12 0 1 1 13 1a12 12 0 0 1 12 12z"/></g></svg>
+                </div>
+                <div className="hidden xl:inline-block px-4">
+                  <div className="text-2xl">800 555 6767</div>
+                  <div className="text-xs text-right">Toll Free Number</div>
                 </div>
               </div>
             </div>
-          {/* </Drawer> */}
-        </div>
-      )
-    }
+            <div className="hidden md:inline-block">
+              <div className="flex">
+                <NavLink className="button" to="/pilots/register">Sign up to fly</NavLink>
+                <NavLink className="button" to="/login">Login</NavLink>
+              </div>
+            </div>
+            <div className={`block relative md:hidden mt-2 -mr-2 hover:cursor-pointer z-30 ${ this.state.navDrawerActive ? 'main-text' : ''}`} onClick={ this.toggleDrawerState }>
+              <svg className="fill-current w-8 h-8" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 100 125"><g><path d="M92.028,25h-84c-1.657,0-3-1.343-3-3V8c0-1.657,1.343-3,3-3h84c1.657,0,3,1.343,3,3v14C95.028,23.657,93.685,25,92.028,25z   "/></g><g><path d="M92.028,59.938h-84c-1.657,0-3-1.343-3-3v-14c0-1.657,1.343-3,3-3h84c1.657,0,3,1.343,3,3v14   C95.028,58.594,93.685,59.938,92.028,59.938z"/></g><g><path d="M92.028,94.875h-84c-1.657,0-3-1.343-3-3v-14c0-1.657,1.343-3,3-3h84c1.657,0,3,1.343,3,3v14   C95.028,93.532,93.685,94.875,92.028,94.875z"/></g></svg>
+            </div>
+          </div>
+        </header>
+        <nav className={`navDrawer${ this.state.navDrawerActive ? ' navDrawerActive' : '' }`}>
+          <div className="mt-16 px-4">
+            <h3 className="font-bold text-sm px-4">Navigation</h3>
+            <NavLink to="/pricing">Pricing</NavLink>
+            <NavLink to="/how-it-works">How it works</NavLink>
+            <NavLink to="/pilots">Jobs for pilots</NavLink>
+
+            <NavLink to="/pilots/register">Sign up to fly</NavLink>
+            <NavLink to="/login">Login</NavLink>
+          </div>
+        </nav>
+      </div>
+    )
   }
 }
 

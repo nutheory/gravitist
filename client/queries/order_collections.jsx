@@ -11,6 +11,7 @@ const GetOrders = gql`
         pilotAcceptedAt
         agentAcceptedAt
         createdAt
+        updatedAt
         pilotBounty
         pilotDistance
         distanceFromLocation

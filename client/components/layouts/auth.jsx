@@ -13,7 +13,7 @@ const AuthLayout = ({ component: Component, ...rest }) => {
   }
   return (
     <Route {...rest} render={ props => (
-      <div>
+      <div className="admin-body font-source-sans">
         <PrivateHeader user={user} {...props} />
         <Component user={user} {...props} />
       </div>

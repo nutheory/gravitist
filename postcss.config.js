@@ -1,5 +1,8 @@
 module.exports = {
-    plugins: [
-        require('tailwindcss')('./client/styles/tailwind.js')
-    ]
+  plugins: [
+    require('postcss-cssnext')({
+      browsers: ['last 2 versions', '> 5%'],
+    }),
+    require('tailwindcss')('./client/styles/tailwind.js')
+  ]
 }

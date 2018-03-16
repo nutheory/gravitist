@@ -54,25 +54,24 @@ class NoteForm extends Component<Props, State> {
   render(){
     const user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
     return(
-      <div className={`columns`}>
-        <div className={`column`}>
-          <div className="field">
-            <div className="control">
-              <textarea
-                className={`textarea ${css(note.textbox)}`}
-                onChange={ this.handleInputChange }
-                value={ this.state.body }
-                placeholder={ this.props.placeholderText ? this.props.placeholderText : 'Add a note.'}>
-              </textarea>
-            </div>
-          </div>
+      <div className="">
+        <div className="">
+          <textarea
+            className="input"
+            onChange={ this.handleInputChange }
+            value={ this.state.body }
+            placeholder={ this.props.placeholderText ? this.props.placeholderText : 'Add a note.'}>
+          </textarea>
         </div>
-        <div className={`column is-narrow`}>
-          <button
-            className={`button ${css(note.submitButton)}`}
-            onClick={ this.handleSubmit }>
-            <i className="far fa-comment-alt fa-2x" />
-          </button>
+        <div className="mt-2 flex justify-end">
+          <div className="inline-block">
+            <button
+              className="button-green"
+              onClick={ this.handleSubmit }>
+              <span className="action-button-overlay"></span>
+              Add Note
+            </button>
+          </div>
         </div>
       </div>
     )

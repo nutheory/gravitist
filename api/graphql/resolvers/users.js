@@ -15,7 +15,7 @@ const currentUser = baseResolver.createResolver(
 
 const getUser = isAuthorized.createResolver(
   async ( root, { input }, { user } ) => {
-    const result = await profile({ id: input.id })
+    const result = await profile({ attrs: { id: input.id } })
     return result
   }
 )
@@ -54,7 +54,7 @@ const updateUser = isAuthorized.createResolver(
   async ( root, { input }, req ) => {
     const valid = await Validate(input, [ 'id' ])
     if( !valid ){ return valid }
-    const result = await update( input )
+    const result = await update({ attrs: input })
     return result
   }
 )
@@ -76,7 +76,7 @@ const destroyUser = isAuthorized.createResolver(
 const loginUser = baseResolver.createResolver(
   async (root, { input }, req) => {
     const { email, password } = input
-    const result = await login({ email, password })
+    const result = await login({attrs: { email, password }})
     console.log(chalk.blue.bold("USER ERR"),result)
     return result
   }
@@ -84,14 +84,14 @@ const loginUser = baseResolver.createResolver(
 
 const tokenRefreshCheck = baseResolver.createResolver(
   async ( root, { input }, { user } ) => {
-    const result = await refresh({ id: user.id })
+    const result = await refresh({ attrs: { id: user.id } })
     return result
   }
 )
 
 const getUsers = isAuthorized.createResolver(
   async ( root, { input }, req ) => {
-    const result = await collection( input )
+    const result = await collection({ attrs: input })
     console.log(chalk.blue.bold("USERS"),result)
     return result
   }

@@ -294,56 +294,6 @@ const commonElements = StyleSheet.create({
     marginRight: 0,
     color: '#fff'
   },
-  gradRed: {
-    background: '#c94b4b',
-    background: '-webkit-linear-gradient(to bottom, #4b134f, #c94b4b)',
-    background: 'linear-gradient(to bottom, #4b134f, #c94b4b)'
-  },
-  gradBlue: {
-    background: '#43C6AC',
-    background: '-webkit-linear-gradient(to bottom, #191654, #43C6AC)',
-    background: 'linear-gradient(to bottom, #191654, #43C6AC)'
-  },
-  gradGreen: {
-    background: '#DCE35B',
-    background: '-webkit-linear-gradient(to bottom, #45B649, #DCE35B)',
-    background: 'linear-gradient(to bottom, #45B649, #DCE35B)'
-  },
-  gradOrange: {
-    background: '#c21500',
-    background: '-webkit-linear-gradient(to top, #ffc500, #c21500)',
-    background: 'linear-gradient(to top, #ffc500, #c21500)'
-  },
-  gradVice: {
-    background: '#3494E6',
-    background: '-webkit-linear-gradient(to bottom, #EC6EAD, #3494E6)',
-    background: 'linear-gradient(to bottom, #EC6EAD, #3494E6)'
-  },
-  gradPeach: {
-    background: '#ED4264',
-    background: '-webkit-linear-gradient(to bottom, #FFEDBC, #ED4264)',
-    background: 'linear-gradient(to bottom, #FFEDBC, #ED4264)'
-  },
-  gradIntuitive: {
-    background: '#da22ff',
-    background: '-webkit-linear-gradient(to bottom, #da22ff, #9733ee)',
-    background: 'linear-gradient(to bottom, #da22ff, #9733ee)'
-  },
-  gradMirage: {
-    background: '#16222A',
-    background: '-webkit-linear-gradient(to bottom, #3A6073, #16222A)',
-    background: 'linear-gradient(to bottom, #3A6073, #16222A)'
-  },
-  gradStrain: {
-    background: '#870000',
-    background: '-webkit-linear-gradient(to bottom, #870000, #190A05)',
-    background: 'linear-gradient(to bottom, #870000, #190A05)'
-  },
-  gradMango: {
-    background: '#ffe259',
-    background: '-webkit-linear-gradient(to bottom, #ffa751, #ffe259)',
-    background: 'linear-gradient(to bottom, #ffa751, #ffe259)'
-  },
   bulletList: {
     width: '50%',
     margin: '2rem 0'

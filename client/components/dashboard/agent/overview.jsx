@@ -36,7 +36,7 @@ class AgentOverview extends Component<Props, State> {
     const currentOrderId = this.props.orderid ? this.props.orderid : history.orders[0].id
     return(
       <div className={`columns`}>
-        <div className={`column`}>
+        <div className={`w-1/4`}>
           <Order orderid={ currentOrderId } />
         </div>
         <div className={`column is-one-fifth`}>
@@ -56,11 +56,6 @@ export default compose(
         sizeLimit: 10
       },
       criteria: {},
-      queryString: '' } } }),
-    props: ({ ownProps,  data: { getOrders, loading, error } }) => ({
-      overview: {
-        error,
-        loading,
-        history: getOrders } })
+      queryString: '' } } })
   })
 )(AgentOverview)

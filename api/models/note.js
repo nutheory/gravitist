@@ -35,6 +35,7 @@ module.exports = (sequelize, Sequelize) => {
       as: 'order'
     })
     Note.belongsTo(models.User, {
+      foreignKey: 'authorId',
       constraints: false,
       as: 'author'
     })

@@ -30,7 +30,7 @@ describe('Upload assets for a user', () => {
 
   test(chalk.green.bold('it should upload a users avatar'), () => {
     return request(url)
-      .post('/avatar-uploader')
+      .post('/uploads/avatar')
       .set('authorization', pilot.loginUser.auth.token)
       .field('userId', pilotSnapshot.id)
       .field('userType', pilotSnapshot.type)
@@ -47,7 +47,7 @@ describe('Upload assets for a user', () => {
 
   test(chalk.green.bold('it should upload a pilots insurance'), () => {
     return request(url)
-      .post('/insurance-uploader')
+      .post('/uploads/insurance')
       .set('authorization', pilot.loginUser.auth.token)
       .field('userId', pilotSnapshot.id)
       .field('userType', pilotSnapshot.type)
@@ -60,7 +60,7 @@ describe('Upload assets for a user', () => {
 
   test(chalk.green.bold('it should upload a pilots license'), () => {
     return request(url)
-      .post('/license-uploader')
+      .post('/uploads/license')
       .set('authorization', pilot.loginUser.auth.token)
       .field('userId', pilotSnapshot.id)
       .field('userType', pilotSnapshot.type)

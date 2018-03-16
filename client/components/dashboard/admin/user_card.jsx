@@ -50,8 +50,8 @@ class UserCard extends Component<Props, State>{
     const contact = user.contacts.filter(cnt => cnt.default ? cnt : null)[0]
     return (
       <div className={`${ cssSizing } px-4 pb-6`}>
-        <div className="rounded shadow px-4 py-3">
-          <div className="py-4  w-20 mx-auto">
+        <div className="bg-white rounded shadow px-4 py-3">
+          <div className="py-4 w-20 mx-auto">
             <Avatar size="large" src={ user.avatars.length > 0 ? user.avatars[0].url : null } />
           </div>
           <p className="text-center">{user.name}</p>
@@ -77,12 +77,12 @@ class UserCard extends Component<Props, State>{
           <div className="text-xs text-center py-4">
             { this.renderApiLink(user) }
           </div>
-          <div className="flex">
+          <div className="flex leading-normal">
             <div className="flex-1 capitalize text-sm">
               <i className={`${ user.type === 'pilot' ? 'fas fa-plane' : 'far fa-id-badge' } mr-2`} data-fa-transform="rotate--20"></i>{ user.type }</div>
-            <div className=" flex-1 text-xs text-right">
+            <div className="flex-1 text-xs text-right">
               <Link
-                className="text-blue-darker border border-blue-darker py-1 px-6 rounded-full"
+                className="inline-block text-blue-darker border border-blue-darker py-1 px-6 rounded-full"
                 to={`/admin/${ user.type }/profile/${ user.id }`}>View</Link>
             </div>
           </div>

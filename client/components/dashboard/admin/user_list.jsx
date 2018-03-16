@@ -40,7 +40,7 @@ class UserList extends Component<Props, State>{
     if(loading){return <div></div>}
     const users = this.props.userList.getUsers.users
     return (
-      <div className="flex flex-wrap -mb-4 -mx-4">
+      <div className="flex flex-wrap mb-6 md:-mx-4">
         { users.map((user, i) => (
           <UserCard
             cssSizing={ this.props.cssSizing }

@@ -1,12 +1,13 @@
 // @flow
 import React, { Component } from 'react'
-import { isEmpty, propSatisfies, last, merge, remove, where, concat } from 'ramda'
+import { isEmpty, propSatisfies, last, merge, remove, where, concat, clone, times } from 'ramda'
 import { StyleSheet, css } from 'aphrodite'
 import ContactForm from './form'
 import con from './styles/contact'
 import ContactTypes from '../../utils/contact_types.js'
 
 type Props = {
+  restrictedMode?: boolean,
   editMode: boolean,
   contacts?: Array<Object>,
   handleReturnedContacts: Function
@@ -19,6 +20,7 @@ type State = {
 
 class ContactList extends Component<Props, State> {
 
+  getValidContacts: Function
   getInvalidContacts: Function
   buildContact: Function
   newContact: Function
@@ -32,6 +34,7 @@ class ContactList extends Component<Props, State> {
       contacts: []
     }
 
+    this.getValidContacts = this.getValidContacts.bind(this)
     this.getInvalidContacts = this.getInvalidContacts.bind(this)
     this.buildContact = this.buildContact.bind(this)
     this.newContact = this.newContact.bind(this)
@@ -41,12 +44,21 @@ class ContactList extends Component<Props, State> {
   }
 
   componentDidMount(){
-    if(this.props.contacts){
-      const con = this.props.contacts
+    if(this.props.contacts && this.props.contacts.length > 0 ){
+      const con = clone(this.props.contacts)
+      const contactList = con.map(c => {
+        if(!c.validated){
+          const cType = ContactTypes.filter(ct => ct.type === c.type ? ct : null )[0]
+          c.validated = cType.validator(c.content)
+        }
+        return c
+      })
+
       this.setState((prevState) => ({ contacts: concat(prevState.contacts, con) }), function(){
+        this.state.contacts.length < 2 ? this.newContact() : null
       })
     } else {
-      this.newContact()
+      times(this.newContact, 2)
     }
   }
 
@@ -54,38 +66,51 @@ class ContactList extends Component<Props, State> {
     return this.state.contacts.filter(c => c.validated === false ? c : null )
   }
 
+  getValidContacts(){
+    return this.state.contacts.filter(cnt => cnt.validated === true ? cnt : null )
+  }
+
   checkContactsValidated(){
-    this.props.handleReturnedContacts(this.getInvalidContacts().length === 0, this.state.contacts)
+    this.props.handleReturnedContacts(true, this.getValidContacts())
   }
 
   buildContact(def: Object){
     const newContact = { id: `new-${Math.floor(Math.random() * 999999)}`, type: "",
       content: "", validated: false, status: "new", default: def.default }
-    this.setState((prevState) => ({ contacts: this.state.contacts.concat(newContact) }))
+    this.setState((prevState) => ({ contacts: prevState.contacts.concat(newContact) }))
   }
 
   newContact(){
+    console.log('BAM')
     if(isEmpty(this.state.contacts)){
       this.buildContact({ default: true })
     } else {
-      if(this.getInvalidContacts().length === 0){ this.buildContact({ default: false }) }
+      this.buildContact({ default: false })
     }
   }
 
   updateContact(updatedContact: Object){
     const cType = ContactTypes.filter(ct => ct.type === updatedContact.type ? ct : null )
 
-    if(cType[0]){ updatedContact.validated = cType[0].validator(updatedContact.content || "")
-    } else { updatedContact.validated = false }
+    if(cType[0]){
+      updatedContact.validated = cType[0].validator(updatedContact.content || "")
+    } else {
+      updatedContact.validated = false
+    }
 
     if(updatedContact.default === true){
-      console.log('updatedContactIN', updatedContact)
       this.setState({ contacts: this.state.contacts.map(c =>
         c.id === updatedContact.id ? merge(c, updatedContact) : merge(c, { default: false }) )
       }, this.checkContactsValidated)
     } else {
       this.setState({ contacts: this.state.contacts.map(c =>
         c.id === updatedContact.id ? merge(c, updatedContact) : c )
+      }, this.checkContactsValidated )
+    }
+
+    if(updatedContact.content === ""){
+      this.setState({ contacts: this.state.contacts.map((c, i) =>
+        c.id === updatedContact.id ? merge(c, { validated: true, content: "" }) : c )
       }, this.checkContactsValidated )
     }
   }
@@ -96,52 +121,86 @@ class ContactList extends Component<Props, State> {
       this.setState(prevState => ({ contacts: remove(idx, 1, prevState.contacts) }), this.checkContactsValidated )
     } else {
       this.setState({ contacts: this.state.contacts.map((c, i) =>
-        c.id === contactId ? merge(c, { status: "delete" }) : c )
+        c.id === contactId ? merge(c, { status: "delete", validated: true }) : c )
       }, this.checkContactsValidated )
+    }
+    if(this.props.restricedMode){
+      this.state.contacts.length < 2 ? this.newContact() : null
     }
   }
 
   renderContact(cnt: Object){
-    const cType = ContactTypes.filter(ct => ct.type === cnt.type ? ct : null )
-    return (
-      <div className={`${css(con.contactDisplayItemInner)} columns`}>
-        <div className={`${css(con.contactDisplayIcon)} column is-narrow`}><i className={`${cType[0].icon} fa-2x`} /></div>
-        <div className={`${css(con.contactDisplayContent)} column `}>
-          <div className="title is-4">{cnt.content}</div>
+    const cType = ContactTypes.filter(ct => ct.type === cnt.type ? ct : null )[0]
+
+    if(cType){
+      return (
+        <div className="flex">
+          <div className="mr-4"><i className={`${cType.icon}`} /></div>
+          <div className="flex-1 font-bold">{ cType.formatter ? cType.formatter(cnt.content) : cnt.content }</div>
+          <div className="font-bold text-grey">{cType.type}</div>
         </div>
-        <div className={`column is-narrow`}>
-          <div className={`${css(con.contactDisplayType)} title is-4`}>{cType[0].type}</div>
-        </div>
-      </div>
-    )
+      )
+    }
   }
 
   render(){
+    console.log('this.props.restrictedMode', this.state.contacts[0])
     return (
       <div>
         { this.props.editMode ?
-          <ul id="contactList">
-            { this.state.contacts.map((contact, i) => (
-              <li key={`contact_${contact.id}`}>
-                { contact.status !== "delete" ?
-                  <ContactForm
-                    idx={i}
-                    default={contact.default}
-                    status={contact.status === "new" ? contact.status : "update" }
-                    cId={contact.id}
-                    contact={contact}
-                    updateContact={this.updateContact}
-                    newContact={this.newContact}
-                    removeContact={this.removeContact}
-                  />
-                : null }
-              </li>
-            ))}
-          </ul>
-        :
-          <ul id="contactList">
+          <div>
+            { this.props.restrictedMode ?
+              <ul id="contactList">
+                <li className="my-2">
+                  { this.state.contacts[0] && this.state.contacts[0].status !== "delete" ?
+                    <ContactForm
+                      idx={0}
+                      default={this.state.contacts[0].default}
+                      status={this.state.contacts[0].status === "new" ? this.state.contacts[0].status : "update" }
+                      cId={this.state.contacts[0].id ? this.state.contacts[0].id : ''}
+                      contact={this.state.contacts[0]}
+                      restrictedMode={ this.props.restrictedMode }
+                      updateContact={this.updateContact}
+                      newContact={this.newContact}
+                      removeContact={this.removeContact} />
+                  : null }
+                </li>
+                <li className="my-2">
+                  { this.state.contacts[1] && this.state.contacts[1].status !== "delete" ?
+                    <ContactForm
+                      idx={1}
+                      default={this.state.contacts[1].default}
+                      status={this.state.contacts[1].status === "new" ? this.state.contacts[1].status : "update" }
+                      cId={this.state.contacts[1].id ? this.state.contacts[1].id : ''}
+                      contact={this.state.contacts[1]}
+                      restrictedMode={ this.props.restrictedMode }
+                      updateContact={this.updateContact}
+                      newContact={this.newContact}
+                      removeContact={this.removeContact} />
+                  : null }
+                </li>
+              </ul>
+            : <ul id="contactList">
+              { this.state.contacts.map((contact, i) => (
+                <li key={`contact_${contact.id}`} className="my-2">
+                  { contact.status !== "delete" ?
+                    <ContactForm
+                      idx={i}
+                      default={contact.default}
+                      status={contact.status === "new" ? contact.status : "update" }
+                      cId={contact.id}
+                      contact={contact}
+                      updateContact={this.updateContact}
+                      newContact={this.newContact}
+                      removeContact={this.removeContact} />
+                  : null }
+                </li>
+              ))}
+            </ul> }
+          </div>
+        : <ul id="contactList">
             { this.state.contacts.map(contact => (
-              <li key={`contact_${contact.id}`} className={`${css(con.contactDisplayItem)}`}>
+              <li key={`contact_${contact.id}`} className="my-2">
                 {this.renderContact(contact)}
               </li>
             ))}

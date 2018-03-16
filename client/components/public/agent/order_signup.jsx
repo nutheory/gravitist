@@ -8,8 +8,7 @@ import Header from '../header'
 import Loading from '../../misc/loader'
 import Config from '../../../utils/config'
 import ContactList from '../../contacts/list'
-import User from '../../users/signup'
-import AddressMapper from '../../addresses/address_mapper'
+import NewOrder from '../../orders/new_order'
 import DragDropUploader from '../../assets/drag_drop_uploader'
 import FormHeader from '../../misc/form_section_header'
 import CreateOrderWithUser from '../../../mutations/create_order_user'
@@ -23,10 +22,10 @@ const env = window.location.host === "homefilming.com" ? "production" : "develop
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {
-  updateMapInSummary: Function,
   submitOrder: Function,
   selectedPlan: Object,
-  history: Object
+  history: Object,
+  match: Object
 }
 
 type State = {
@@ -57,7 +56,7 @@ class OrderForm extends Component<Props, State> {
   stripe: Function
   elements: Function
   handleReturnedLocation: Function
-  handleReturnedUser: Function
+  handleInputChange: Function
   handleReturnedContacts: Function
   handleReturnedPayment: Function
   renderValidated: Function
@@ -85,7 +84,7 @@ class OrderForm extends Component<Props, State> {
     this.stripe = Stripe(publishable_key)
     this.elements = this.stripe.elements()
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
-    this.handleReturnedUser = this.handleReturnedUser.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
     this.renderValidated = this.renderValidated.bind(this)
     this.fetchStripeToken = this.fetchStripeToken.bind(this)
@@ -117,14 +116,14 @@ class OrderForm extends Component<Props, State> {
 
   handleReturnedLocation({ address1, address2, city, state, zip, lat, lng }){
     if (address1 && city && state && zip && lat && lng){
-      this.setState({ address1, address2, city, state, zip, lat, lng, addressVerified: true }, () => {
-        this.props.updateMapInSummary([lat, lng])
-      })
+      this.setState({ address1, address2, city, state, zip, lat, lng, addressVerified: true })
     }
   }
 
-  handleReturnedUser(verified, { name, email, password }){
-    this.setState({ userVerified: verified, name, email, password })
+  handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value }, () => {
+      // this.checkUserVerified()
+    })
   }
 
   handleReturnedContacts(verified, contacts){
@@ -171,14 +170,16 @@ class OrderForm extends Component<Props, State> {
 
   renderErrors(){
     return (
-      <div className={`notification is-danger ${css(cErr.areaHidden)}
-        ${ this.state.errors.length > 0 ? css(cErr.area) : ""}`}>
-        <h2 className={`${css(cErr.header)}`}>Please correct these errors</h2>
+      <div className={`error-area hide-error ${ this.state.errors.length > 0 ? ' show-error' : ''}`}>
+        <h2 className="text-base font-bold">Please correct these errors</h2>
         { this.state.errors.map((err, i) => (
-          <div key={`error_${i}`} className={css(cErr.section)}>
-            <h3 className={`${css(cErr.title)}`}>{err.section}</h3>
-            <p className={`${css(cErr.text)}`}>{err.message}</p>
-            { err.type === "email" ? <Link to="/login" className={css(cErr.buttonWithOutline)}>Login</Link> : null }
+          <div key={`error_${i}`} className="my-4">
+            <h3 className="text-sm font-bold">{err.section}</h3>
+            <p className="text-sm">{err.message}</p>
+            { err.type === "email" ?
+            <Link to="/login" className="button-blue">
+              <span className="action-button-overlay"></span>Login
+            </Link> : null }
           </div>
         ))}
       </div>
@@ -186,7 +187,7 @@ class OrderForm extends Component<Props, State> {
   }
 
   renderButtonText(){
-    if( this.allCriteriaVerified() && this.state.avatar.plugins ){ return "Submit"
+    if( this.allCriteriaVerified() && this.state.avatar.plugins ){ return "Submit Order"
     } else if ( this.allCriteriaVerified() ) { return "Don't forget your avatar..."
     } else { return "Please enter required info..." }
   }
@@ -230,54 +231,148 @@ class OrderForm extends Component<Props, State> {
   }
 
   render(){
+    console.log('match', this.props)
     return (
-      <div>
+      <div className="signup-container">
         { this.state.loading ? <Loading /> : null }
-        <div className={`columns`}>
-          <div className={`column is-two-thirds`}><Header title="homefilming" subtitle="Sign up" /></div>
-          <div className={`column`}>
-            <DragDropUploader
-              header="Upload avatar"
-              fileTypeName="photo"
-              source="MainOrder-Avatar"
-              fieldname="avatar"
-              mimes="images"
-              endpoint="/avatar-uploader"
-              returnUploadInstance={ this.returnUploadInstance }
-            />
+        <div className="w-full rounded shadow p-6 border border-grey-dark">
+          <div className="signup-header">
+            <div className="w-48 h-48">
+              <DragDropUploader
+                header="Upload avatar"
+                circle={true}
+                fileTypeName="photo"
+                source="MainOrder-Avatar"
+                fieldname="avatar"
+                mimes="images"
+                endpoint="/uploads/avatar"
+                returnUploadInstance={ this.returnUploadInstance }
+              />
+            </div>
+            <div className="flex-1 -mr-6">
+              <div className="">
+                <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
+                <div className="text-right text-sm font-bold">Create Order</div>
+              </div>
+              <div className="px-6 pt-8 pb-2">
+                <div className="mb-4">
+                  <div className="text-sm font-bold mt-4">Full name</div>
+                  <p className="text-xs mt-1 mb-2">This is how your name will appear in all
+                    images/video watermarking</p>
+                  <input
+                    onChange={this.handleInputChange}
+                    className="input"
+                    name="name"
+                    type="text"
+                    placeholder="Full Name" />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={css(odr.section)}>
-          <FormHeader text="Address of home to film" verified={ this.state.addressVerified } />
-          <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
-        </div>
-        <div className={css(odr.section)}>
-          <FormHeader text="Basic info" verified={ this.state.userVerified } />
-          <User
-            userVerified={this.state.userVerified}
-            handleReturnedUser={ this.handleReturnedUser } />
-        </div>
-        <div className={css(odr.section)}>
-              <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
-              <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
-        </div>
-        <div className={css(odr.section)}>
-          <FormHeader text="Payment" verified={ this.state.paymentVerified } />
-          <div id="card-element" className={css(odr.paymentInput)}></div>
-        </div>
-        { this.renderErrors() }
-        <div className={css(odr.buttonArea)}>
-          <button
-            className={ css(cE.ctaButton, cE.ctaGreen) }
-            onClick={ this.handleSubmit }>
-            <span className={ css(cE.ctaButtonOverlay) }></span>
-            { this.renderButtonText() }
-          </button>
+          <div className="border-b">
+            <div className="mb-4">
+              <div className="text-xs">Email address</div>
+              <input
+                onChange={this.handleInputChange}
+                className="input"
+                name="email"
+                type="text"
+                placeholder="Email address" />
+            </div>
+            <div className="flex mb-4 -mx-2">
+              <div className="flex-1 mx-2">
+                <div className="text-xs">Create password</div>
+                <input
+                  onChange={this.handleInputChange}
+                  className="input"
+                  name="password"
+                  type="text"
+                  placeholder="Create password" />
+              </div>
+              <div className="flex-1 mx-2">
+                <div className="text-xs">Confirm password</div>
+                <input
+                  onChange={this.handleInputChange}
+                  className="input"
+                  name="confirm"
+                  type="text"
+                  placeholder="Confirm password" />
+              </div>
+            </div>
+          </div>
+          <div className="border-b pb-2">
+            <div className="my-4">
+              <h3 className="mb-1">Points of contact</h3>
+              <p className="text-xs">These points of contact will be added to the watermarking of your assets.</p>
+            </div>
+            <ContactList
+              restrictedMode={ true }
+              editMode={ true }
+              handleReturnedContacts={ this.handleReturnedContacts } />
+          </div>
+          <div className="my-4">
+            <h3 className="mb-1">Order</h3>
+            <p className="text-xs mt-1 mb-2">This is how your name will appear in all
+              images/video watermarking</p>
+          </div>
+          <NewOrder handleReturnedLocation={ this.handleReturnedLocation } selectedPlan={this.props.match.params.plan} />
+          { this.renderErrors() }
+          <div className="mt-4">
+            <a
+              className="button-green"
+              onClick={this.handleSubmit}>
+              <span className="action-button-overlay"></span>
+              { this.renderButtonText() }
+            </a>
+          </div>
         </div>
       </div>
     )
   }
 }
+
+{/* <div className={`columns`}>
+  <div className={`column is-two-thirds`}><Header title="homefilming" subtitle="Sign up" /></div>
+  <div className={`column`}>
+    <DragDropUploader
+      header="Upload avatar"
+      fileTypeName="photo"
+      source="MainOrder-Avatar"
+      fieldname="avatar"
+      mimes="images"
+      endpoint="/avatar-uploader"
+      returnUploadInstance={ this.returnUploadInstance }
+    />
+  </div>
+</div>
+<div className={css(odr.section)}>
+  <FormHeader text="Address of home to film" verified={ this.state.addressVerified } />
+  <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
+</div>
+<div className={css(odr.section)}>
+  <FormHeader text="Basic info" verified={ this.state.userVerified } />
+  <User
+    userVerified={this.state.userVerified}
+    handleReturnedUser={ this.handleReturnedUser } />
+</div>
+<div className={css(odr.section)}>
+      <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
+      <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
+</div>
+<div className={css(odr.section)}>
+  <FormHeader text="Payment" verified={ this.state.paymentVerified } />
+  <div id="card-element" className={css(odr.paymentInput)}></div>
+</div>
+{ this.renderErrors() }
+<div className={css(odr.buttonArea)}>
+  <button
+    className={ css(cE.ctaButton, cE.ctaGreen) }
+    onClick={ this.handleSubmit }>
+    <span className={ css(cE.ctaButtonOverlay) }></span>
+    { this.renderButtonText() }
+  </button>
+</div>
+</div> */}
 
 export default graphql(CreateOrderWithUser, {
   props: ({ ownProps, mutate }) => ({

@@ -1,8 +1,7 @@
-
 doctype html
 html(lang="en")
   head
-    title Homefilming Gallery
+    title= "Homefilming Gallery"
     meta(http-equiv="x-ua-compatible" content="ie=edge")
     meta(name="description" content="")
     meta(name="author" content="Homefilming")
@@ -18,74 +17,87 @@ html(lang="en")
     meta(name="twitter:player:stream" content=video.url)
     meta(name="twitter:player:stream:content_type" content="video/mp4")
     meta(name="og:title" content="The Title")
-    
+
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro")
     link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
-    link(rel="stylesheet" type="text/css" href="/dist/gallery.css")
+    link(rel="stylesheet" type="text/css" href="/lightbox.min.css")
+    link(rel="stylesheet" type="text/css" href="/gallery.css")
     link(rel="stylesheet" href="https://cdn.plyr.io/2.0.18/plyr.css")
-    script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")  
-    script(src="/dist/gallery_bundle.js")
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")
+    script(src="/lightbox-plus-jquery.min.js")
+    script(src="/gallery_bundle.js")
     script
       - const price = '$ '+ listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       - const sqft = listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  body.galleryDarkBg(style={ background: '#000', background: 'url('+ assetUrl+ 'photo/'+ defaultAsset.name +') no-repeat center center fixed', backgroundSize: 'cover' })
-    div.bgContainer
+  body
+    div.bgContainer(style={ background: 'url('+ assetUrl+ 'photo/'+ defaultAsset.name +')' })
     div.container
       div.videoInfoContainer
         div.videoContactLeft
-          div.video
-            video(poster=assetUrl+'photo_thumb/'+defaultAsset.name controls)
+          div.videoContainer
+            video.video(poster=assetUrl+'photo_thumb/'+defaultAsset.name controls)
               source(src=video.url type="video/mp4")
           div.contact
             div.agentArea
-              div.photo(style={ background: 'url('+ agent.avatar.url +') no-repeat', 'background-size': 'cover' })  
+              if agent.avatar
+                div.photo(style={ background: 'url('+ agent.avatar.url +') no-repeat', 'background-size': 'cover' })
               div.info
                 h4.title= agent.name
                 div.contactItem= contacts[0].content
-                div.contactItem= contacts[1].content 
+                if contacts[1]
+                  div.contactItem= contacts[1].content
             div.contactForm
-              h4.title= "Request more information"
-              div#contactFormResult.result
-                | Thank you for interest. We will be in contact soon. 
-              div#contactForm.form-group
-                input.form-control(type='hidden' id="order", value=id)
-                div.form-elem
-                  input.form-control(type='text' id='contactName' placeholder='Your name')
-                div.form-elem
-                  input.form-control(type='text' id='contactContent' placeholder='Phone or Email')
-                input#newSubmit.button(type='submit')
+              div.contactWrapper
+                h4.title= "Request more information"
+                div#contactFormResult.result
+                  | Thank you for interest. We will be in contact soon.
+                div#contactForm.form-group
+                  input(type='hidden' id="order", value=id)
+                  div.form-elem
+                    input.input(type='text' id='contactName' placeholder='Your name')
+                  div.form-elem
+                    input.input(type='text' id='contactContent' placeholder='Phone or Email')
+                  button#newSubmit.actionButton="Submit"
+                    span.actionOverlay
+                    
+                    
         div.infoRight
           div.address
             div= address.address1
-            div.smallerText= address.city + ' | ' + address.state  
-          div.listing
-            if listing
-              if listing.price
-                div.section.priceContainer
-                  div.column.priceLabel
-                    h4.title.right= "List price"
-                  div.column
-                    div.valuePrice.right= price
-              div.section.bedsBathsSqftContainer
+            div.smallerText= address.city + ' | ' + address.state
+          
+          if listing
+            div.listing
+              div.bedsBathsSqftContainer
                 if listing.beds
                   div.column
                     div.shrinkWrap
-                      h4.title= "Beds"
                       div.value= listing.beds
+                      h4.title= "Beds"
                 if listing.baths
                   div.column
                     div.shrinkWrap
-                      h4.title= "Baths"
                       div.value= listing.baths
-                if listing.sqft  
+                      h4.title= "Baths"
+                if listing.sqft
                   div.column
                     div.shrinkWrap
-                      h4.title= "SqFt"
                       div.value= sqft
+                      h4.title= "SqFt"
+              div.priceTypeContainer
+                if listing.price
+                  div.column.price
+                    h4.title= "List price"
+                    div.value= price
+                if listing.type
+                  div.type
+                    h4.title= "Property type"
+                    div.value.caps= listing.type
               if listing.description
                 div.section.description
                   h4.title= "Description"
                   div.value.expand= listing.description
-              if listing.features.length > 0 
+              if listing.features.length > 0
                 div.features
                   ul.featureList
                     h4.title= "Features"
@@ -93,7 +105,7 @@ html(lang="en")
                       li.featureItem
                         div.label= feat.label
                         div.value= feat.value
-              div.section.mlsDetails    
+              div.section.mlsDetails
                 if listing.mlsNumber
                   div.column
                     div.mlsNumber
@@ -104,21 +116,18 @@ html(lang="en")
                     div.mlsStatus
                       h4.title= "MLS status"
                       div.value= listing.mlsStatus
-              div.section.mlsDetails  
-                if listing.type
-                  div.type  
-                    h4.title= "Property type"
-                    div.value= listing.type
-            else 
-              p.noListingInfo 
-            
+          else
+            p.noListingInfo
+
       div.photosContainer
-        ul.photoList
+        div.photosTitle= "Listing photos"
+        div.photoList
           each ph in photos
-            li.thumb
-              img(src=assetUrl+ 'photo_thumb/' +ph.name)      
-            
-          
+            div
+              a.className(href=assetUrl+ 'photo/' +ph.name data-lightbox='order_asset')
+                img(src=assetUrl+ 'photo_thumb/' +ph.name)
+
+
     script(src="https://cdn.plyr.io/2.0.18/plyr.js")
     script
       | plyr.setup();

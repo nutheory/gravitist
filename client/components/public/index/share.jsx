@@ -1,10 +1,5 @@
 // @flow
 import React from 'react'
-import { StyleSheet, css } from 'aphrodite'
-import Header from '../header'
-import share from './styles/share'
-import cL from '../../../styles/common_layout'
-import cT from '../../../styles/common_text'
 
 const Share = () => {
   const social = [
@@ -15,17 +10,21 @@ const Share = () => {
     {src: require('../../../assets/svg/snapchat.svg'), name: "Snapchat"}
   ]
   return (
-    <div className={css(cL.wrapper)}>
-      <Header title="Share Your Videos" />
-      <div className={css(share.innerContainer)}>
-      {social.map((s, i) => {
-        return (
-          <div key={`pill_${i}`} className={css(share.pill)}>
-            <div className={css(share.icon)}><img src={s.src} alt={`${s.name}`} className={css(share.iconImg)} /></div>
-            <div className={css(share.text)}>{s.name}</div>
-          </div>
-        )
-      })}
+    <div className="bg-white">
+      <div className="py-8 container mx-auto">
+        <h2 className="text-center pb-8">Share Your Videos</h2>
+        <div className="flex flex-wrap w-full lg:w-4/5 mx-auto">
+        {social.map((s, i) => {
+          return (
+            <div key={`pill_${i}`} className="w-full sm:w-1/2 md:w-1/5 p-4">
+              <div className="flex rounded-full border border-grey-darkest py-2 px-4">
+                <div className="inline-block mr-3"><img src={s.src} alt={`${s.name}`} className="w-6 h-6" /></div>
+                <div className="inline-block mt-1">{s.name}</div>
+              </div>
+            </div>
+          )
+        })}
+        </div>
       </div>
     </div>
   )

@@ -56,7 +56,7 @@ async function avatarUploader({ file, user, body }){
         userType: user.type,
         uploaderId: user.id,
         instanceOf: body.instanceOf },
-      notify_url: `${process.env.BASE_URL}/avatar-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/avatar`
     }
   }
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
@@ -67,7 +67,7 @@ async function logoUploader({ file, body }){
     params: {
       template_id: process.env.TRANSLOADIT_TEMPLATE_LOGO,
       fields: { env, companyId },
-      notify_url: `${process.env.BASE_URL}/logo-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/logo`
     }
   }
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
@@ -85,7 +85,7 @@ async function insuranceUploader({ file, user, body }){
         userType: user.type,
         uploaderId: user.id,
         instanceOf: body.instanceOf },
-      notify_url: `${process.env.BASE_URL}/insurance-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/insurance`
     }
   }
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
@@ -103,7 +103,7 @@ async function licenseUploader({ file, user, body }){
         userType: user.type,
         uploaderId: user.id,
         instanceOf: body.instanceOf },
-      notify_url: `${process.env.BASE_URL}/license-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/license`
     }
   }
   return uploadFile(file.stream, assemblyOptions).catch(err => { throw err })
@@ -159,7 +159,7 @@ const buildOrderOverlay = ({ usr, ordr }) => {
         orderId: ordr.id,
         instanceOf: 'overlay'
       },
-      notify_url: `${process.env.BASE_URL}/overlay-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/overlay`
     }
   }
   const upload = performAssembly(assemblyOptions).catch(err => { console.log(chalk.blue.bold('ERR'), err) })
@@ -178,7 +178,7 @@ const processVideoInitPhotos = async ({ body }) => {
         pilotId: order.pilotId,
         orderId: order.id
       },
-      notify_url: `${process.env.BASE_URL}/process-video-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/process-video`
     }
   }
   const upload = performAssembly(assemblyOptions).catch(err => { console.log(chalk.blue.bold('ERR'), err) })
@@ -197,7 +197,7 @@ const processPhotos = ({ ordr, photos }) => {
         orderId: ordr.id
       },
       steps: { photo: { path: photos } },
-      notify_url: `${process.env.BASE_URL}/process-photos-notifications`
+      notify_url: `${process.env.BASE_URL}/notifications/process-photos`
     }
   }
   const upload = performAssembly(assemblyOptions).catch(err => { console.log(chalk.blue.bold('ERR'), err) })
@@ -220,6 +220,7 @@ const uploadBulkResult = async ({ body }) => {
   if(!transloaditResultValid(body.transloadit, body.signature)){ throw UnauthorizedError() }
   const { template_id, results, fields } = JSON.parse(body.transloadit)
   const { orderId, pilotId } = fields
+  let defaultSet = false
   const resultSet = template_id === 'e6b66e500f3c11e8aa615b9c41212186' ? { photo: results.photo } : results
   Object.keys(resultSet).forEach(assemblyResultsName => {
     resultSet[assemblyResultsName].map( async (aR) => {
@@ -228,9 +229,11 @@ const uploadBulkResult = async ({ body }) => {
       const wmRegex = /_wm/
       const watermarked = wmRegex.test(assemblyResultsName)
       await db.Asset.create({ assetableId: orderId, assetable: 'order',
+        default: aR.type === "image" && !defaultSet ? true : false,
         assetableName: assemblyResultsName, url: aR.ssl_url, uploaderId: pilotId,
         ext: aR.ext, type: aR.type, mime: aR.mime, size: aR.size, meta: aR.meta,
         name, awsId, watermarked })
+      if(aR.type === "image"){ defaultSet = true }
   }) })
   postProcessingUpdate(orderId)
 }

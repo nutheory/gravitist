@@ -2,12 +2,7 @@ import { StyleSheet } from 'aphrodite'
 import { ss, c} from '../../../styles/helpers'
 
 const uploads = StyleSheet.create({
-  mainDragDropWrapper: {
-    // position: 'relative',
-    // width: '100%',
-    // height: '100%',
-    // lineHeight: '0'
-  },
+
   mainDragDropContainer: {
     display: 'flex',
     position: 'relative',

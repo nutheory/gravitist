@@ -91,13 +91,11 @@ class AddressMapper extends Component<Props, State> {
 
   render(){
     return(
-      <div className="field">
-        <div className={`${css(mapper.mapForm)} control has-icons-left has-icons-right`}>
-          <input type="textfield" className={`${css(mapper.locationField)} input is-medium`} id="addressToFilm" />
-          <span className="icon is-small is-left">
-            <i className="fa fa-home"></i>
-          </span>
-        </div>
+      <div className="relative">
+        <input type="textfield" className="input pl-8" id="addressToFilm" />
+        <span className="input-icon pin-l">
+          <i className="fa fa-home"></i>
+        </span>
       </div>
     )
   }

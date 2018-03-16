@@ -8,6 +8,7 @@ import con from './styles/contact'
 import ContactTypes from '../../utils/contact_types.js'
 
 type Props = {
+  restrictedMode?: boolean,
   newContact: Function,
   removeContact: Function,
   updateContact: Function,
@@ -133,15 +134,14 @@ class ContactForm extends Component<Props, State> {
     this.setState({ typesOpen: !this.state.typesOpen })
   }
 
-  renderButton(id: string, idx: number, method: Function, cssInjection: Object, icon: string){
+  renderButton(id: string, idx: number, method: Function, cssInjection: string, icon: string){
     return(
       <button
-        className="field column"
         onClick={method}
         cid={`${id}`}
-        idx={idx}
-        className={`${css(cssInjection)} button`}>
-        <span className="icon is-small">
+        idx={ idx }
+        className={`h-full ${cssInjection}`}>
+        <span className="flex items-center justify-center">
           <i className={`${icon}`}></i>
         </span>
       </button>
@@ -149,29 +149,30 @@ class ContactForm extends Component<Props, State> {
   }
 
   render(){
-    console.log('this.state.icon', this.state.icon)
+    console.log('this.state.icon', this.props.restrictedMode)
     return (
-      <div className="columns">
-        <div className="column is-narrow">
+      <div className="flex">
+        { !this.props.restrictedMode ?
+        <div className="mr-4">
           {this.renderButton(this.props.cId, this.props.idx, this.handleDefaultContact,
-            this.props.contact.default ? con.contactButtonDefault : con.contactButtonDefaultUnselected, 'fa fa-star')}
+            this.props.contact.default ? 'text-green-dark' : 'text-grey-light', 'fa fa-check')}
         </div>
-        <div className="column is-narrow">
-          <div className={`dropdown ${this.state.typesOpen ? 'is-active' : ''}`}>
-            <div className="dropdown-trigger">
-              <button
-                onClick={this.toggleDropdownHandler}
-                className="button"
+        : null }
+        <div className="mr-4">
+          <div className={`dropdown relative ${this.state.typesOpen ? 'is-active' : ''}`}>
+            <div className="dropdown-trigger hover:cursor-pointer" onClick={this.toggleDropdownHandler}>
+              <div
+                className="select-faker"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu">
                   <span>{ `${ this.state.properName }` }</span>
-                  <span className="icon is-small">
+                  <span className="inline-block ml-6">
                     <i className="fa fa-angle-down" aria-hidden="true"></i>
                   </span>
-              </button>
+              </div>
             </div>
-            <div className="dropdown-menu" id="dropdown-menu" role="menu">
-              <div className={`dropdown-content rows ${css(con.contactDropdown)}`} >
+            <div className={`dropdown-menu ${ this.state.typesOpen ? 'block' : 'hidden' }`} id="dropdown-menu" role="menu">
+              <div className="p-2 flex flex-wrap bg-white border border-grey rounded" style={{ width: '22rem' }} >
                 { ContactTypes.map((cType, i) =>
                   <a
                     icon={cType.icon}
@@ -180,15 +181,15 @@ class ContactForm extends Component<Props, State> {
                     name={cType.type}
                     holder={cType.placeholder}
                     onClick={this.handleTypeChange}
-                    className={`dropdown-item column ${css(con.contactDropdownItem)}`}
+                    className="w-1/2 block px-2 py-1 hover:cursor-pointer"
                     key={`${cType.type}_${i}`}>
-                    <i className={`${cType.icon}`} /> {cType.humanized}</a>)
+                    <i className={`inline-block mr-3 ${cType.icon}`} />{cType.humanized}</a>)
                 }
               </div>
             </div>
           </div>
         </div>
-        <div className={`${css(con.contactContent)} column`}>
+        <div className={`flex-1${ !this.props.restrictedMode ? ' mr-4' : '' }`}>
           <div className="control has-icons-left">
             <input
               onChange={this.handleContentChange}
@@ -196,16 +197,14 @@ class ContactForm extends Component<Props, State> {
               type={this.state.ext}
               value={this.state.content}
               placeholder={this.state.holder} />
-            <span className="icon is-left">
-              <i className={`${ this.state.icon }`}></i>
-            </span>
           </div>
         </div>
-
-        <div className={`${css(con.contactButtonArea)} field column is-narrow`}>
-          {this.props.idx >= 1 ? this.renderButton(this.props.cId, this.props.idx, this.handleRemoveContact, con.contactButtonMinus, 'fas fa-minus') : ""}
-          {this.renderButton(this.props.cId, this.props.idx, this.handleAddContact, con.contactButtonPlus, 'fas fa-plus')}
-        </div>
+        { !this.props.restrictedMode ?
+          <div className={`${css(con.contactButtonArea)} field column is-narrow`}>
+            {/* {this.props.idx >= 1 ? this.renderButton(this.props.cId, this.props.idx, this.handleRemoveContact, con.contactButtonMinus, 'fas fa-minus') : ""}
+            {this.renderButton(this.props.cId, this.props.idx, this.handleAddContact, con.contactButtonPlus, 'fas fa-plus')} */}
+          </div>
+        : null }
       </div>
     )
   }

@@ -5,7 +5,7 @@ import { css } from 'aphrodite'
 import { splitEvery, pick, propOr, find, propEq } from 'ramda'
 import moment from 'moment'
 import ListingForm from '../listings/form'
-import OrderAdminForm from './admin_form'
+import OrderAdminView from './admin_view'
 import OrderAgentView from './agent_view'
 import OrderPilotView from './pilot_view'
 import AgentResults from './agent_results'
@@ -27,6 +27,7 @@ type State = {
   duration?: number,
   pilotDistance?: number,
   pilotBounty?: number,
+  isProcessing?: boolean
 }
 
 class OrderViewEdit extends Component<Props, State>{
@@ -60,18 +61,16 @@ class OrderViewEdit extends Component<Props, State>{
   }
 
   updateCallback(res){
-    console.log('RES', res)
-    // this.props.data.startPolling(5000).then(
-    //
-    // )
+    this.props.data.startPolling(5000)
   }
 
   userTypeContent({ order, user }){
     if(user.type === 'admin'){
-      return <OrderAdminForm order={order} />
+      return <OrderAdminView order={order} />
     } else if(user.type === 'pilot') {
       return <OrderPilotView
-        order={order}
+        order={ order }
+        updateCallback={ this.updateCallback }
         duration={ this.state.duration }
         distance={ this.state.pilotDistance }
         bounty={ this.state.pilotBounty }  />
@@ -81,9 +80,7 @@ class OrderViewEdit extends Component<Props, State>{
   }
 
   userTypeSidebar({ order, user }){
-    if(user.type === 'admin'){
-      return <ListingForm listing={ order.listing } order={ order } />
-    } else if(user.type === 'pilot') {
+    if(user.type === 'pilot') {
       return <MapDirections
         htf={ order.address }
         location={ user.address }
@@ -101,6 +98,8 @@ class OrderViewEdit extends Component<Props, State>{
           assetNames={['images', 'video_wm', 'video_og']}
           user={ user }
           updateCallback={ this.updateCallback } />
+      } else if(order.status === 'final_processing'){
+        return (<div>Final proccessing</div>)
       } else if(order.status === 'approved_completed'){
         return <AssetViewEdit
           orderId={ order.id }
@@ -125,26 +124,30 @@ class OrderViewEdit extends Component<Props, State>{
     const { loading, getOrder } = this.props.data
     const currentUser = jwtDecode(localStorage.getItem('hf_auth_header_token'))
     if(loading){return (<div>Loading...</div>)}
+    console.log('pollingCheck', getOrder)
+    if(currentUser.type === "admin" && getOrder.order.status === "approved_completed" ||
+      currentUser.type === "pilot" && getOrder.order.status === "awaiting_review"){
+      this.props.data.stopPolling()
+    }
     return(
       <div>
         { this.state.loading ? <Loading /> : null }
-        <div className="message">
-          <div className="message-body">
-            <div className="columns">
-              <div className="column is-three-fifths">
+        <div className="container py-8">
+          <div className="flex flex-wrap md:-mx-4">
+            <div className="w-full md:w-3/5">
+              <div className="p-4">
                 { this.userTypeContent({ order: getOrder.order, user: currentUser }) }
               </div>
-              <div className="column">
-                <div className="message is-link">
-                  <div className="message-body">
-                    { this.userTypeSidebar({ order: getOrder.order, user: currentUser }) }
-                  </div>
-                </div>
+            </div>
+            <div className="w-full md:w-2/5">
+              <div className="p-4">
+                { this.userTypeSidebar({ order: getOrder.order, user: currentUser }) }
               </div>
             </div>
-            <div>
-              { this.userTypeResult({ order: getOrder.order, user: currentUser }) }
-            </div>
+          </div>
+          {/* footer */}
+          <div className="boogie">
+            { this.userTypeResult({ order: getOrder.order, user: currentUser }) }
           </div>
         </div>
       </div>
@@ -157,19 +160,4 @@ export default compose(
     input: {
       id: orderid,
       authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id } } }) }),
-  // graphql( VerifyUser, {
-  //   props: ({ ownProps, mutate }) => ({
-  //     submitVerify: (id, isVerified) => mutate({
-  //       variables: { input: { id, authorizedId: id, user: { isVerified, refreshToken: true } } },
-  //       refetchQueries: [
-  //         { query: GetUsers,
-  //           variables: { input: { options: {
-  //             sortKey: ownProps.sortBy || 'createdAt',
-  //             sortValue: ownProps.sortDirection  || 'DESC',
-  //             sizeLimit: ownProps.sizeLimit || 100
-  //           }, criteria: {} } } }]
-  //     }) }) }),
-  // graphql( UpdateUser, {
-  //   props: ({ ownProps, mutate }) => ({
-  //     submitUser: (input) => mutate({ variables: { input: input } }) }) })
 )(OrderViewEdit)

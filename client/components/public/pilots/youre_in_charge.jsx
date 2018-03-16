@@ -1,34 +1,30 @@
 // @flow
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { StyleSheet, css } from 'aphrodite'
-import yic from './styles/youre_in_charge'
-import cL from '../../../styles/common_layout'
-import cT from '../../../styles/common_text'
-import cE from '../../../styles/common_elements'
 
 const YoureInCharge = () => {
   return (
-    <div className={css(yic.container)}>
-      <div className={css(cL.wrapper)}>
-        <div className={css(yic.formatter)}>
-          <div className={css(yic.youreInCharge)}>
-            <div className={css(yic.yicWrapper)}>
-              <h2 className={css(yic.yicHeader)}>You're In Charge</h2>
-              <h4 className={css(cT.smallTitle, yic.yicTitle)}>Getting started is fast and easy</h4>
-              <p className={css(cT.smallText, yic.yicText)}>Sign up today and you’ll be flying in no time. Signing up takes only a couple of minutes.</p>
-              <p className={css(cT.smallText, yic.yicText)}>Don’t wait to start making great money with your drone!</p>
-              <div className={css(yic.arrowLayout)}><img src={require('../../../assets/svg/drawn-arrow.svg')} alt="arrow" /></div>
+    <div className="bg-blue-darker py-8 md:py-20">
+      <div className="container mx-auto">
+        <div className="flex flex-wrap text-white">
+          <div className="relative w-full md:w-3/5">
+            <div className="w-full md:w-3/5 pr-12 md:pr-2 pl-12 pb-8">
+              <h2 className="pt-8">You're In Charge</h2>
+              <h4 className="pt-8">Getting started is fast and easy</h4>
+              <p className="pt-6">Sign up today and you’ll be flying in no time. Signing up takes only a couple of minutes.</p>
+              <p className="pt-6">Don’t wait to start making great money with your drone!</p>
             </div>
+            <div className="hidden md:block w-32 h-8 absolute pin-b pin-r"><img src={require('../../../assets/svg/drawn-arrow.svg')} alt="arrow" /></div>
           </div>
-          <div className={css(yic.signup)}>
-            <div className={css(yic.soWrapper)}>
-              <h4 className={css(cT.smallTitle)}>Tell us a little about yourself and your drone</h4>
-              <Link className={css(cE.ctaButton, cE.ctaGreen, yic.button)} to="/pilots/register">
+          <div className="w-full md:w-2/5 pl-8 pr-12">
+            <div className="bg-white main-text text-center p-8">
+              <h4 className="">Tell us a little about yourself and your drone</h4>
+              <Link className="button-blue my-6" to="/pilots/register">
+                <span className="action-button-overlay"></span>
                 Sign up now
               </Link>
-              <p className={css(cT.smallText, yic.smallText)}>Just upload your FAA license number, and proof of insurance.</p>
-              <p className={css(yic.bottomText)}>Get approved as an independent contractor - You are good to go!</p>
+              <p className="text-sm px-12">Just upload your FAA license number, and proof of insurance.</p>
+              <p className="mt-4 text-sm px-12">Get approved as an independent contractor - You are good to go!</p>
             </div>
           </div>
         </div>

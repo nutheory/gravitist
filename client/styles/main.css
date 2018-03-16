@@ -1,2 +1,24 @@
 @tailwind preflight;
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import "errors.css";
+@import "utils.css";
+@import "forms.scss";
+
 @tailwind utilities;
+
+.card-button{
+  @apply .text-blue-darker .border .border-blue-darker .py-1 .px-4 .rounded-full .text-xs .text-center;
+}
+
+.card-button-selected{
+  @apply .bg-blue-darker .text-white .border .border-blue-darker .py-1 .px-4 .rounded-full .text-xs .text-center;
+}
+
+.share-button{
+  @apply flex-1 mx-2 bg-white rounded shadow py-1 text-center
+}
+
+.big-button{
+  @apply no-underline block text-center rounded shadow p-2 border border-grey
+}
