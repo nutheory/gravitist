@@ -269,10 +269,13 @@ class DragDropUploader extends Component<Props, State> {
               <div className={`h-full`}>
                 <div className={`h-full`}>
                   { this.state.previewInfo ?
-                    <div>
-                      <i className="text-green-dark fas fa-check fa-2x"></i>
-                      <h3 className="">Got it</h3>
-                      <p className="">{this.props.auto !== true ? 'Ready to upload...' : 'Uploaded' }</p></div>
+                    <div className="flex">
+                      <div className="mr-4"><i className="text-green-dark fas fa-check fa-2x"></i></div>
+                      <div className="flex-1">
+                        <h3 className="text-sm font-bold">Got it</h3>
+                        <p className="text-sm">{this.props.auto !== true ? 'Ready to upload...' : 'Uploaded' }</p>
+                      </div>
+                    </div>
                   : <div className={`flex ${ this.props.circle ? 'flex-wrap justify-center items-center h-full' : '' }`}>
                     <div className={`${ this.props.circle ? '' : 'flex' }`}>
                       <div className={`${ this.props.circle ? 'w-full text-center my-2 self-center' : 'mr-4' }`}>

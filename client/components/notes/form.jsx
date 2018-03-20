@@ -7,7 +7,6 @@ import jwtDecode from 'jwt-decode'
 import Avatar from '../assets/avatar'
 import GetNotes from '../../queries/note_collections'
 import CreateNote from '../../mutations/create_note'
-import note from './styles/notes'
 
 type Props = {
   model: string,

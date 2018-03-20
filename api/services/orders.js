@@ -51,12 +51,15 @@ const getOrdersByCriteria = ({ usr, attrs }) => {
   const criteriaArray = R.toPairs(attrs.criteria)
   const criteria = {}
   criteriaArray.map((crit) => {
-    if([crit[0]] === 'status'){
+    if(crit[0] === 'status'){
+      console.log(chalk.blue.bold('criteriaT'),typeof(crit[1]))
       criteria[crit[0]] = { [Op.like]: { [Op.any]: typeof(crit[1]) === 'string' ? crit[1].split(',') : crit[1] } }
     } else {
+      console.log(chalk.blue.bold('criteriaElse'), crit[0])
       criteria[crit[0]] = crit[1]
     }
   })
+  console.log(chalk.blue.bold('criteria'),criteria)
   return task(resolver =>
     db.Order.findAll( R.merge({ where: R.mergeAll([ criteria,
       { [Op.or]: [

@@ -1,22 +1,17 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { css } from 'aphrodite'
 import { Link, Redirect } from 'react-router-dom'
 import { pick } from 'ramda'
-import Header from '../header'
 import Loading from '../../misc/loader'
 import Config from '../../../utils/config'
 import DragDropUploader from '../../assets/drag_drop_uploader'
-import FormHeader from '../../misc/form_section_header'
 import User from '../../users/signup'
 import ContactList from '../../contacts/list'
 import Location from '../../addresses/location'
+import InputMask from 'react-input-mask'
+import { isValidEmail, isValidName, isValidPassword, isValidPhone } from '../../../utils/validators'
 import CreateUserAsPilot from '../../../mutations/create_pilot'
-import cL from '../../../styles/common_layout'
-import cF from '../../../styles/common_forms'
-import cE from '../../../styles/common_elements'
-import cErr from '../../../styles/common_errors'
 const env = window.location.host === "homefilming.com" ? "production" : "development"
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
@@ -34,6 +29,7 @@ type State = {
   name?: string,
   email?: string,
   password?: string,
+  confirmPassword?: string,
   address1?: string,
   address2?: string,
   city?: string,
@@ -51,6 +47,7 @@ type State = {
 
 class PilotRegister extends Component<Props, State> {
 
+  checkUserVerified: Function
   handleInputChange: Function
   handleReturnedContacts: Function
   handleReturnedLocation: Function
@@ -75,9 +72,9 @@ class PilotRegister extends Component<Props, State> {
       errors: []
     }
 
+    this.checkUserVerified = this.checkUserVerified.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
-    this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
     this.renderButtonText = this.renderButtonText.bind(this)
     this.infoCriteriaMet = this.infoCriteriaMet.bind(this)
     this.uploadCriteriaMet = this.uploadCriteriaMet.bind(this)
@@ -86,13 +83,32 @@ class PilotRegister extends Component<Props, State> {
   }
 
   handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value }, () => {
-      // this.checkUserVerified()
-    })
+    if(e.currentTarget.name === "phone"){
+      if(isValidPhone(e.currentTarget.value)){
+        const sub = e.currentTarget.value.substring(2)
+        const num = sub.replace(/[{()}]/g, '')
+        this.setState({ contacts: [{ id: `new-${Math.floor(Math.random() * 999999)}`, type: "phone",
+          content: num.replace(/\s/g, ''), validated: true, status: "new", default: true }], contactsVerified: true }, () => {
+        })
+      } else {
+        this.setState({ contactsVerified: false }, () => {})
+      }
+    } else {
+      this.setState({ [e.currentTarget.name]: e.currentTarget.value }, () => {
+        this.checkUserVerified()
+      })
+    }
   }
 
-  handleReturnedContacts(verified: boolean, contacts: Array<Object>){
-    this.setState({ contactsVerified: verified, contacts })
+  checkUserVerified(){
+    if (isValidName(this.state.name) &&
+      isValidEmail(this.state.email) &&
+      isValidPassword(this.state.password) &&
+      this.state.confirmPassword === this.state.password){
+        this.setState({ userVerified: true }, () => {})
+      }else{
+        this.setState({ userVerified: false }, () => {})
+      }
   }
 
   handleReturnedLocation({ address1, address2, city, state, zip, lat, lng, workRadius }: Object){
@@ -100,7 +116,6 @@ class PilotRegister extends Component<Props, State> {
   }
 
   returnUploadInstance(upload: Object){
-
     this.setState({ [upload.opts.meta.instanceOf]: upload }, function(){
       console.log("UPLOAD", this.state)
     })
@@ -120,23 +135,29 @@ class PilotRegister extends Component<Props, State> {
   runMutation(){
     console.log(Config)
     this.setState({ loading: !this.state.loading }, async () => {
-      const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status'], c))
+      const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status', 'default'], c))
       const resolved = await this.props.submitPilot({ contacts, state: this.state }).catch(err => {
         console.log('STATE', this.state)
         this.handleGQLErrors(err)
       })
       if(resolved){
         const { data: { createPilot: { user, auth } } } = resolved
+        console.log('USER', user)
         await localStorage.setItem('hf_auth_header_token', auth.token)
         this.state.insurance.plugins.uploader[0].opts.headers.authorization = auth.token
         this.state.license.plugins.uploader[0].opts.headers.authorization = auth.token
         const insurance = await this.state.insurance.upload()
         const license = await this.state.license.upload()
+        const nameArr = user.name.split(" ")
+        const phoneNumber = user.contacts[0].content
         if(this.state.avatar.plugins){
           this.state.avatar.plugins.uploader[0].opts.headers.authorization = auth.token
           const avatar = await this.state.avatar.upload()
         }
-        window.location = `https://connect.stripe.com/express/oauth/authorize?redirect_uri=${returnUri}/signup-pilot&client_id=${stripeClientId}&state=${user.id}`
+        console.log('phoneNumber', phoneNumber)
+        const base = `https://connect.stripe.com/express/oauth/authorize?`
+        const userStr = `&stripe_user[email]=${user.email}&stripe_user[first_name]=${nameArr[0]}&stripe_user[last_name]=${nameArr[1]}&stripe_user[phone_number]=${phoneNumber}&stripe_user[country]="US"`
+        window.location = `${base}redirect_uri=${returnUri}/signup-pilot&client_id=${stripeClientId}&state=${user.id}${userStr}`
       }
     })
   }
@@ -170,6 +191,7 @@ class PilotRegister extends Component<Props, State> {
   }
 
   renderErrors(){
+    console.log("errs", this.state.errors)
     return (
       <div className={`error-area hide-error ${ this.state.errors.length > 0 ? ' show-error' : ''}`}>
         <h2 className="text-base font-bold">Please correct these errors</h2>
@@ -202,6 +224,7 @@ class PilotRegister extends Component<Props, State> {
   }
 
   render(){
+    console.log("state", this.state)
     return(
       <div className="signup-container">
         { this.state.loading ? <Loading /> : null }
@@ -236,11 +259,13 @@ class PilotRegister extends Component<Props, State> {
                 </div>
                 <div className="f">
                   <div className="text-xs">Phone number</div>
-                  <input
+                  <InputMask
+                    mask="1 \(999\) 999 9999"
+                    maskChar=" "
                     onChange={this.handleInputChange}
                     className="input"
                     name="phone"
-                    type="text"
+                    type="tel"
                     placeholder="Phone number" />
                 </div>
               </div>
@@ -263,7 +288,7 @@ class PilotRegister extends Component<Props, State> {
                   onChange={this.handleInputChange}
                   className="input"
                   name="password"
-                  type="text"
+                  type="password"
                   placeholder="Create password" />
               </div>
               <div className="flex-1 mx-2">
@@ -271,8 +296,8 @@ class PilotRegister extends Component<Props, State> {
                 <input
                   onChange={this.handleInputChange}
                   className="input"
-                  name="confirm"
-                  type="text"
+                  name="confirmPassword"
+                  type="password"
                   placeholder="Confirm password" />
               </div>
             </div>
@@ -326,7 +351,7 @@ class PilotRegister extends Component<Props, State> {
                 className="button-green"
                 onClick={this.handleSubmit}>
                 <span className="action-button-overlay"></span>
-                Create Account
+                { this.renderButtonText() }
               </a>
             </div>
           </div>
@@ -335,84 +360,6 @@ class PilotRegister extends Component<Props, State> {
     )
   }
 }
-
-      //   { /* <div className={`${css(reg.container)} columns`}>
-      //     <div className={`${css(reg.uploads)} column`}>
-      //       <h3 className={css(reg.uploadTitle)}>Upload Documents</h3>
-      //       <h4 className={css(reg.uploadInstruct)}>Please upload the required documents below.</h4>
-      //       <div className={css(reg.upload)}>
-      //         <DragDropUploader
-      //           header="Upload insurance"
-      //           padding={true}
-      //           fileTypeName="proof of insurance"
-      //           source="Signup-Insurance"
-      //           fieldname="insurance"
-      //           mimes="documents"
-      //           endpoint="/insurance-uploader"
-      //           returnUploadInstance={ this.returnUploadInstance }
-      //         />
-      //       </div>
-      //       <div className={css(reg.upload)}>
-      //         <DragDropUploader
-      //           header="Upload FAA License"
-      //           padding={true}
-      //           fileTypeName="FAA license"
-      //           source="Signup-License"
-      //           fieldname="license"
-      //           mimes="documents"
-      //           endpoint="/license-uploader"
-      //           returnUploadInstance={ this.returnUploadInstance }
-      //         />
-      //       </div>
-      //     </div>
-      //     <div className={`${css(reg.mainArea)} column`}>
-      //       <div className={`columns`}>
-      //         <div className={`column is-two-thirds`}><Header title="homefilming" subtitle="Pilot sign up" /></div>
-      //         <div className={`column`}>
-      //           <DragDropUploader
-      //             header="Upload avatar"
-      //             fileTypeName="photo"
-      //             source="Signup-Avatar"
-      //             fieldname="avatar"
-      //             mimes="images"
-      //             endpoint="/avatar-uploader"
-      //             returnUploadInstance={ this.returnUploadInstance }
-      //           />
-      //         </div>
-      //       </div>
-      //       <div className={css(reg.section)}>
-      //         <FormHeader text="Basic info" verified={ this.state.userVerified } />
-      //         <User
-      //           userVerified={ this.state.userVerified }
-      //           handleReturnedUser={ this.handleReturnedUser } />
-      //       </div>
-      //       <div className={css(reg.section)}>
-      //         <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
-      //         <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
-      //       </div>
-      //       <div className={css(reg.section)}>
-      //         <Location handleReturnedLocation={ this.handleReturnedLocation } />
-      //       </div>
-      //       { this.renderErrors() }
-      //       <div className="message is-success">
-      //         <div className="message-body">
-      //           <p className={css(reg.textBottomMargin)}>Last Step is to set up how to get paid, we set this all
-      //             up through Stripe for simple secure payouts on both ends. Submiting this form will create your
-      //             account and briefly redirect you to a Stripe processing page. After which you will be redirected
-      //             back and be logged in.</p>
-      //           <div className={css(reg.buttonArea, reg.buttonAreaUnique)}>
-      //             <button
-      //               className={css(cE.ctaButton, cE.ctaGreen)}
-      //               onClick={this.handleSubmit}>
-      //               <span className={css(cE.ctaButtonOverlay)}></span>
-      //               { this.renderButtonText() }
-      //             </button>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div> */}
 
 export default graphql(CreateUserAsPilot, {
   props: ({ ownProps, mutate }) => ({

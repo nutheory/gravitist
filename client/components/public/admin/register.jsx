@@ -1,19 +1,13 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { pick, pathOr } from 'ramda'
-import Header from '../header'
 import Loading from '../../misc/loader'
 import ContactList from '../../contacts/list'
 import User from '../../users/signup'
-import FormHeader from '../../misc/form_section_header'
-import odr from '../agent/styles/order'
-import cE from '../../../styles/common_elements'
-import cF from '../../../styles/common_forms'
-import cErr from '../../../styles/common_errors'
-import reg from './styles/register'
+import DragDropUploader from '../../assets/drag_drop_uploader'
+import { isValidEmail, isValidName, isValidPassword } from '../../../utils/validators'
 import CreateUserMigration from '../../../mutations/create_user'
 const env = window.location.host === "homefilming.com" ? "production" : "development"
 
@@ -41,7 +35,8 @@ class CreateUser extends Component<Props, State> {
 
   toggleUserTypeOpen: Function
   userTypeSelect: Function
-  handleReturnedUser: Function
+  checkUserVerified: Function
+  handleInputChange: Function
   handleReturnedContacts: Function
   renderValidated: Function
   runMutation: Function
@@ -63,7 +58,8 @@ class CreateUser extends Component<Props, State> {
 
     this.toggleUserTypeOpen = this.toggleUserTypeOpen.bind(this)
     this.userTypeSelect = this.userTypeSelect.bind(this)
-    this.handleReturnedUser = this.handleReturnedUser.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.checkUserVerified = this.checkUserVerified.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
     this.renderValidated = this.renderValidated.bind(this)
     this.runMutation = this.runMutation.bind(this)
@@ -73,7 +69,7 @@ class CreateUser extends Component<Props, State> {
 
   renderValidated(){
     return (<span
-      className={`${css(cF.check)} icon is-small is-right`}
+      className=""
       style={{opacity: `${ this.state.userVerified ? 1 : 0 }` }}>
       <i className="fas fa-check"></i></span>)
   }
@@ -94,6 +90,27 @@ class CreateUser extends Component<Props, State> {
 
   handleReturnedContacts(verified, contacts){
     this.setState({ contactsVerified: verified, contacts })
+  }
+
+  returnUploadInstance(){
+
+  }
+
+  handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value }, () => {
+      this.checkUserVerified()
+    })
+  }
+
+  checkUserVerified(){
+    if (isValidName(this.state.name) &&
+      isValidEmail(this.state.email) &&
+      isValidPassword(this.state.password) &&
+      this.state.confirmPassword === this.state.password){
+        this.setState({ userVerified: true })
+      } else {
+        this.setState({ userVerified: false })
+      }
   }
 
   allCriteriaVerified(){
@@ -129,14 +146,17 @@ class CreateUser extends Component<Props, State> {
 
   renderErrors(){
     return (
-      <div className={`notification is-danger ${css(cErr.areaHidden)}
-        ${ this.state.errors.length > 0 ? css(cErr.area) : ""}`}>
-        <h2 className={`${css(cErr.header)}`}>Please correct these errors</h2>
+      <div className={`error-area hide-error ${ this.state.errors.length > 0 ? ' show-error' : ''}`}>
+        <h2 className="text-base font-bold">Please correct these errors</h2>
         { this.state.errors.map((err, i) => (
-          <div key={`error_${i}`} className={css(cErr.section)}>
-            <h3 className={`${css(cErr.title)}`}>{err.section}</h3>
-            <p className={`${css(cErr.text)}`}>{err.message}</p>
-            { err.type === "email" ? <Link to="/login" className={css(cErr.buttonWithOutline)}>Login</Link> : null }
+          <div key={`error_${i}`} className="my-4">
+            <h3 className="text-sm font-bold">{err.section}</h3>
+            <p className="text-sm">{err.message}</p>
+            { err.type === "email" ?
+              <Link to="/login" className="button-blue">
+                <span className="action-button-overlay"></span>Login
+              </Link>
+            : null }
           </div>
         ))}
       </div>
@@ -172,51 +192,115 @@ class CreateUser extends Component<Props, State> {
     return (
       <div>
         { this.state.loading ? <Loading /> : null }
-        <div className={`${css(reg.container)}`}>
-          <div className={css(reg.section)}>
-            <Header title="homefilming" subtitle="Sign up" />
-          </div>
-          <div className={css(reg.section)}>
-            <div className={`dropdown ${this.state.userTypeOpen ? 'is-active' : '' }`}>
-              <div className="dropdown-trigger">
-                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={ this.toggleUserTypeOpen }>
-                  <span>{ this.state.userTypeTitle ? this.state.userTypeTitle : 'UserType' }</span>
-                  <span className="icon is-small"><i className="fa fa-angle-down" aria-hidden="true"></i></span>
-                </button>
+        <div className="signup-container">
+          { this.state.loading ? <Loading /> : null }
+          <div className="w-full rounded shadow p-6 border border-grey-dark">
+            <div className="signup-header">
+              <div className="w-48 h-48">
+                <DragDropUploader
+                  header="Upload avatar"
+                  circle={true}
+                  fileTypeName="photo"
+                  source="MainOrder-Avatar"
+                  fieldname="avatar"
+                  mimes="images"
+                  endpoint="/uploads/avatar"
+                  returnUploadInstance={ this.returnUploadInstance }
+                />
               </div>
-              <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                <div className="dropdown-content">
-                  {[['Agent', 'agent'], ['Pilot', 'pilot'], ['Unapproved Admin', 'unapproved_admin']].map((type, i) => (
-                    <a
-                      key={`opts_${i}`}
-                      className="dropdown-item"
-                      onClick={ this.userTypeSelect }
-                      value={type[1]}
-                      title={type[0]}
-                    >{type[0]}</a>
-                  ))}
+              <div className="flex-1 -mr-6">
+                <div className="">
+                  <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
+                  <div className="text-right text-sm font-bold">Create Admin</div>
+                </div>
+                <div className={`ml-6 mt-6 dropdown relative inline-block ${this.state.userTypeOpen ? 'is-active' : '' }`}>
+                  <div className="dropdown-trigger hover:cursor-pointer" onClick={ this.toggleUserTypeOpen }>
+                    <button
+                      className="select-faker"
+                      aria-haspopup="true"
+                      aria-controls="dropdown-menu">
+                      <span>{ this.state.userTypeTitle ? this.state.userTypeTitle : 'UserType' }</span>
+                      <span className="inline-block ml-6">
+                        <i className="fa fa-angle-down" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                  <div className={`dropdown-menu ${ this.state.userTypeOpen ? 'block' : 'hidden' }`} id="dropdown-menu" role="menu">
+                    <div className="p-2 flex flex-wrap bg-white border border-grey rounded">
+                      {[['Agent', 'agent'], ['Pilot', 'pilot'], ['Unapproved Admin', 'unapproved_admin']].map((type, i) => (
+                        <a
+                          key={`opts_${i}`}
+                          className="w-full block px-2 py-1 hover:cursor-pointer"
+                          onClick={ this.userTypeSelect }
+                          value={type[1]}
+                          title={type[0]}
+                        >{type[0]}</a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="px-6 pb-2">
+                  <div className="mb-4">
+                    <div className="text-sm font-bold mt-4">Full name</div>
+                    <input
+                      onChange={this.handleInputChange}
+                      className="input"
+                      name="name"
+                      type="text"
+                      placeholder="Full Name" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={css(reg.section)}>
-            <FormHeader text="Basic info" verified={ this.state.userVerified } />
-            <User
-              userVerified={this.state.userVerified}
-              handleReturnedUser={ this.handleReturnedUser } />
-          </div>
-          <div className={css(reg.section)}>
-            <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
-            <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
-          </div>
-          { this.renderErrors() }
-          <div className={css(reg.section)}>
-            <button
-              className={ css(cE.ctaButton, cE.ctaGreen) }
-              onClick={ this.handleSubmit }>
-              <span className={ css(cE.ctaButtonOverlay) }></span>
-              { this.renderButtonText() }
-            </button>
+            <div className="border-b">
+              <div className="mb-4">
+                <div className="text-xs">Email address</div>
+                <input
+                  onChange={this.handleInputChange}
+                  className="input"
+                  name="email"
+                  type="text"
+                  placeholder="Email address" />
+              </div>
+              <div className="flex mb-4 -mx-2">
+                <div className="flex-1 mx-2">
+                  <div className="text-xs">Create password</div>
+                  <input
+                    onChange={this.handleInputChange}
+                    className="input"
+                    name="password"
+                    type="password"
+                    placeholder="Create password" />
+                </div>
+                <div className="flex-1 mx-2">
+                  <div className="text-xs">Confirm password</div>
+                  <input
+                    onChange={this.handleInputChange}
+                    className="input"
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password" />
+                </div>
+              </div>
+            </div>
+            <div className="pb-2">
+              <div className="my-4">
+                <h3 className="mb-1">Points of contact</h3>
+              </div>
+              <ContactList
+                restrictedMode={ true }
+                editMode={ true }
+                handleReturnedContacts={ this.handleReturnedContacts } />
+            </div>
+            { this.renderErrors() }
+            <div className="mt-4">
+              <a
+                className="button-green"
+                onClick={this.handleSubmit}>
+                <span className="action-button-overlay"></span>
+                { this.renderButtonText() }
+              </a>
+            </div>
           </div>
         </div>
       </div>

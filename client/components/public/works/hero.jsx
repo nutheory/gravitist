@@ -1,11 +1,7 @@
 // @flow
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { css } from 'aphrodite'
 import ScrollDown from '../scroll_down'
-import hero from './styles/hero'
-import cL from '../../../styles/common_layout'
-import cE from '../../../styles/common_elements'
 
 const Hero = () => {
   return (

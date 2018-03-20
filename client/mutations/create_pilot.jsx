@@ -10,6 +10,10 @@ const createPilot = gql`
         customerId
         type
         workRadius
+        contacts{
+          type
+          content
+        }
         address {
           address1
           address2

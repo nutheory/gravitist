@@ -7,7 +7,6 @@ import BirdsEyeView from './birds_eye_view'
 import Photos from './photos'
 import Features from './features'
 import SampleVideo from './sample_video'
-import PricingList from '../agent/pricing_list'
 import Share from './share'
 import OurClientsLoveUs from './our_clients_love_us'
 

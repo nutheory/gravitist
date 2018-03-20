@@ -83,6 +83,7 @@
     "react-dom": "16.2.0",
     "react-headroom": "2.2.2",
     "react-helmet": "5.2.0",
+    "react-input-mask": "1.2.2",
     "react-resize-detector": "^1.1.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.0",

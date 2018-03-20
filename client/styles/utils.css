@@ -331,7 +331,7 @@ ul{
     opacity: 0;
     border-bottom: 1px solid #666;
     background-color: rgba(255,255,255, 0.9);
-    box-shadow: 5px 5px 8px #333;
+    box-shadow: 1px 1px 10px #999;
     overflow: hidden;
     z-index: 9;
     -webkit-transition: all .2s ease-in-out;
@@ -479,4 +479,20 @@ ul{
 
 .main-text{
   color: #3d4852;
+}
+
+.notes{
+  & .prev-container {
+    padding: 2px;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    max-height: 0px;
+    overflow-y: hidden;
+    overflow-x: visible;
+  }
+  & .open{
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+    max-height: 1000px;
+  }
 }

@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import { css } from 'aphrodite'
-import cT from '../../styles/common_text'
 import header from './styles/header'
 
 const Header = (props: Object) => {

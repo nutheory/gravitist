@@ -62,7 +62,6 @@ class Login extends Component<Props, State> {
 
   handleGQLErrors(err){
     err.graphQLErrors.map((error) => {
-      console.log("BOOOM")
       if(error.name === "NotFound"){
         this.setState((prevState) => ({ errors: prevState.errors.concat({
           message: "Email could not be found for authenication." }) }) )
@@ -87,7 +86,7 @@ class Login extends Component<Props, State> {
   render(){
     const { email, password } = this.state
     return(
-      <div className="login-container">
+      <div className="login-container mt-20">
         <div className="login-wrapper">
           <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
           <div className="text-right text-sm font-bold pb-1">Login</div>

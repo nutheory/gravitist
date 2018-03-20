@@ -1,12 +1,10 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
-import { css } from 'aphrodite'
 import { splitAt } from 'ramda'
 import NoteItem from './item'
 import NoteForm from './form'
 import GetNotes from '../../queries/note_collections'
-import note from './styles/notes'
 
 type Props = {
   data: Object,
@@ -44,7 +42,7 @@ class NoteList extends Component<Props, State> {
     const notes = getNotes.notes.length > 0 ? splitAt(getNotes.notes.length - 2, getNotes.notes) : null
     console.log('notes', notes)
     return(
-      <div id={`${this.props.model}_${this.props.modelId}_notes`}>
+      <div id={`${this.props.model}_${this.props.modelId}_notes`} className="notes">
         <div className="flex">
           <div className="mr-4 font-bold flex-1">{ this.props.title }</div>
           { getNotes.notes.length > 2 ?
@@ -55,9 +53,9 @@ class NoteList extends Component<Props, State> {
         </div>
         <div
           id={`${this.props.model}_${this.props.modelId}_prev_notes`}
-          className={`${css(note.prevContainer)} ${ this.state.prevNotesOpen ? css(note.open) : '' }`}>
+          className={`prev-container ${ this.state.prevNotesOpen ? ' open' : '' }`}>
           { notes && notes[0].length > 0 ? notes[0].map((note, i) => (
-            <div key={`${this.props.model}_${this.props.modelId}_note_${note.id}_prev_${i}`} className={`${css(note.noteItem)}`}>
+            <div key={`${this.props.model}_${this.props.modelId}_note_${note.id}_prev_${i}`} className="mb-4">
               <NoteItem
                 note={note}
                 model={ this.props.model }

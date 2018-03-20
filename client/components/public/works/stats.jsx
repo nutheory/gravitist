@@ -2,9 +2,9 @@
 import React, { Component } from 'react'
 
 const charts = [
-  { img: require('../../../assets/svg/68.svg'), cl: "border-grey-light border-r border-b", text: "According to MLS, homes with aerial images sold 68 percent faster than homes with standard images" },
-  { img: require('../../../assets/svg/85.svg'), cl: "border-grey-light border-b", text: "85 percent of buyers and sellers want to work with an agent who uses video, however, only 9 percent of agents create listing videos" },
-  { img: require('../../../assets/svg/4.svg'), cl: "border-grey-light border-r", text: "Homes listed with video get four times the inquiries of homes listed without video" },
+  { img: require('../../../assets/svg/68.svg'), cl: "border-grey-light md:border-r md:border-b", text: "According to MLS, homes with aerial images sold 68 percent faster than homes with standard images" },
+  { img: require('../../../assets/svg/85.svg'), cl: "border-grey-light md:border-b", text: "85 percent of buyers and sellers want to work with an agent who uses video, however, only 9 percent of agents create listing videos" },
+  { img: require('../../../assets/svg/4.svg'), cl: "border-grey-light md:border-r", text: "Homes listed with video get four times the inquiries of homes listed without video" },
   { img: require('../../../assets/svg/75.svg'), cl: "", text: "Including video in emails doubles the click-through rate and reduces opt-outs by 75 percent" }
 ]
 

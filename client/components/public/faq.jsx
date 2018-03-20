@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import faq from './styles/faq'
-import cT from '../../styles/common_text'
 
 type Props = {
   faq: Object,

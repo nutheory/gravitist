@@ -81,7 +81,6 @@ class ContactList extends Component<Props, State> {
   }
 
   newContact(){
-    console.log('BAM')
     if(isEmpty(this.state.contacts)){
       this.buildContact({ default: true })
     } else {

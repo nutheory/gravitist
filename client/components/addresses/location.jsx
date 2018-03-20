@@ -1,9 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { StyleSheet, css } from 'aphrodite'
 import AddressMapper from './address_mapper'
-import cE from '../../styles/common_elements'
-import loc from './styles/location'
 const radiusOpts = [10, 20, 30, 40, 50]
 
 type Props = {
@@ -64,11 +61,12 @@ class WorkArea extends Component<Props, State> {
 
   showGeolocatorButton(){
     return (
-      <a className={`button-blue`} onClick={ this.findLocation }>
+      <a className={`button-blue hover:cursor-pointer`} onClick={ this.findLocation }>
         <span className="icon">
-          <i className={`inline-block mr-3 fa fa-${ this.state.lat ? 'check text-green-dark' : 'location-arrow' }`}></i>
+          <i className={`inline-block mr-3 fas fa-${ this.state.lat ? 'check text-green-dark' : 'location-arrow' }`}></i>
         </span>
         <span>{ this.state.lat ? 'Got it, thanks' : 'Get Location Information' }</span>
+        <span className="action-button-overlay"></span>
       </a>
     )
   }

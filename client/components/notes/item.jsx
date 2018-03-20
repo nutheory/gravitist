@@ -8,7 +8,6 @@ import Avatar from '../assets/avatar'
 import Moment from 'moment'
 import GetNotes from '../../queries/note_collections'
 import DestroyNote from '../../mutations/destroy_note'
-import note from './styles/notes'
 
 type Props = {
   destroyNote: Function,

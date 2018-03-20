@@ -1,29 +1,22 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { pick, pathOr } from 'ramda'
-import Header from '../header'
+import { isValidEmail, isValidName, isValidPassword } from '../../../utils/validators'
 import Loading from '../../misc/loader'
 import Config from '../../../utils/config'
 import ContactList from '../../contacts/list'
 import NewOrder from '../../orders/new_order'
 import DragDropUploader from '../../assets/drag_drop_uploader'
-import FormHeader from '../../misc/form_section_header'
 import CreateOrderWithUser from '../../../mutations/create_order_user'
 import jwtDecode from 'jwt-decode'
-import odr from './styles/order'
-import cL from '../../../styles/common_layout'
-import cE from '../../../styles/common_elements'
-import cF from '../../../styles/common_forms'
-import cErr from '../../../styles/common_errors'
+import Plans from '../../../utils/pricing_plans.json'
 const env = window.location.host === "homefilming.com" ? "production" : "development"
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {
   submitOrder: Function,
-  selectedPlan: Object,
   history: Object,
   match: Object
 }
@@ -33,6 +26,7 @@ type State = {
   userVerified: boolean,
   contactsVerified: boolean,
   paymentVerified: boolean,
+  selectedPlan?: Object,
   loading: boolean,
   userType: 'agent' | 'pilot' | 'admin',
   address1?: string,
@@ -95,6 +89,8 @@ class OrderForm extends Component<Props, State> {
   }
 
   componentDidMount(){
+    const choosenPlan = Plans.filter(p => p.name === this.props.match.params.plan ? p : null)
+    this.setState({ selectedPlan: choosenPlan[0] }, (res) => {})
     this.card = this.elements.create('card')
     this.card.mount('#card-element')
     const _this = this
@@ -109,7 +105,6 @@ class OrderForm extends Component<Props, State> {
 
   renderValidated(){
     return (<span
-        className={`${css(cF.check)} icon is-small is-right`}
         style={{opacity: `${ this.state.userVerified ? 1 : 0 }` }}>
         <i className="fas fa-check"></i></span>)
   }
@@ -122,7 +117,7 @@ class OrderForm extends Component<Props, State> {
 
   handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
     this.setState({ [e.currentTarget.name]: e.currentTarget.value }, () => {
-      // this.checkUserVerified()
+      this.checkUserVerified()
     })
   }
 
@@ -130,7 +125,19 @@ class OrderForm extends Component<Props, State> {
     this.setState({ contactsVerified: verified, contacts })
   }
 
+  checkUserVerified(){
+    if (isValidName(this.state.name) &&
+      isValidEmail(this.state.email) &&
+      isValidPassword(this.state.password) &&
+      this.state.confirmPassword === this.state.password){
+        this.setState({ userVerified: true })
+      } else {
+        this.setState({ userVerified: false })
+      }
+  }
+
   allCriteriaVerified(){
+    console.log("state", this.state)
     return this.state.addressVerified &&
     this.state.userVerified &&
     this.state.contactsVerified &&
@@ -225,6 +232,7 @@ class OrderForm extends Component<Props, State> {
   }
 
   async handleSubmit(e){
+    console.log("bammmm")
     if(this.state.errors.length > 0) { this.setState({ errors: [] }) }
     const token = await this.fetchStripeToken()
     if(this.submitErrorCheck()) { this.runMutation(token) } else { return false }
@@ -286,7 +294,7 @@ class OrderForm extends Component<Props, State> {
                   onChange={this.handleInputChange}
                   className="input"
                   name="password"
-                  type="text"
+                  type="password"
                   placeholder="Create password" />
               </div>
               <div className="flex-1 mx-2">
@@ -294,8 +302,8 @@ class OrderForm extends Component<Props, State> {
                 <input
                   onChange={this.handleInputChange}
                   className="input"
-                  name="confirm"
-                  type="text"
+                  name="confirmPassword"
+                  type="password"
                   placeholder="Confirm password" />
               </div>
             </div>
@@ -331,51 +339,10 @@ class OrderForm extends Component<Props, State> {
   }
 }
 
-{/* <div className={`columns`}>
-  <div className={`column is-two-thirds`}><Header title="homefilming" subtitle="Sign up" /></div>
-  <div className={`column`}>
-    <DragDropUploader
-      header="Upload avatar"
-      fileTypeName="photo"
-      source="MainOrder-Avatar"
-      fieldname="avatar"
-      mimes="images"
-      endpoint="/avatar-uploader"
-      returnUploadInstance={ this.returnUploadInstance }
-    />
-  </div>
-</div>
-<div className={css(odr.section)}>
-  <FormHeader text="Address of home to film" verified={ this.state.addressVerified } />
-  <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
-</div>
-<div className={css(odr.section)}>
-  <FormHeader text="Basic info" verified={ this.state.userVerified } />
-  <User
-    userVerified={this.state.userVerified}
-    handleReturnedUser={ this.handleReturnedUser } />
-</div>
-<div className={css(odr.section)}>
-      <FormHeader text="Contact info" verified={ this.state.contactsVerified } />
-      <ContactList editMode={true} handleReturnedContacts={ this.handleReturnedContacts } />
-</div>
-<div className={css(odr.section)}>
-  <FormHeader text="Payment" verified={ this.state.paymentVerified } />
-  <div id="card-element" className={css(odr.paymentInput)}></div>
-</div>
-{ this.renderErrors() }
-<div className={css(odr.buttonArea)}>
-  <button
-    className={ css(cE.ctaButton, cE.ctaGreen) }
-    onClick={ this.handleSubmit }>
-    <span className={ css(cE.ctaButtonOverlay) }></span>
-    { this.renderButtonText() }
-  </button>
-</div>
-</div> */}
-
 export default graphql(CreateOrderWithUser, {
-  props: ({ ownProps, mutate }) => ({
+  props: ({ ownProps, mutate }) => {
+    console.log('ownProps', ownProps.match.params.plan)
+    return ({
     submitOrder: ({ state, contacts, token }) => mutate({ variables: {
       input: {
         user: {
@@ -388,9 +355,9 @@ export default graphql(CreateOrderWithUser, {
         order: {
           status: "pending",
           plan: {
-            id: ownProps.selectedPlan.planId,
-            name: ownProps.selectedPlan.name,
-            actualPrice: ownProps.selectedPlan.actualPrice,
+            id: state.selectedPlan.planId,
+            name: state.selectedPlan.name,
+            actualPrice: state.selectedPlan.actualPrice,
           },
           address: {
             address1: state.address1,
@@ -404,5 +371,5 @@ export default graphql(CreateOrderWithUser, {
         }
       }
     }})
-  })
+  })}
 })(OrderForm)

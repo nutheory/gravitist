@@ -7,7 +7,7 @@ const HardSell = () => {
     <div className="bg-white">
       <div className="container mx-auto py-8 md:py-20">
         <div className="flex mx-4 md:-mx-4">
-          <div className="w-full w-3/5">
+          <div className="hidden md:block w-3/5">
             <img src={require('../../../assets/images/whiteDrone@2x.png')} className="px-12" alt="drone image" />
           </div>
           <div className="w-full w-2/5 px-12">

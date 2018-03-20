@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+
+
 const Hero = () => {
   return(
     <div className="hero h-screen">
@@ -10,11 +12,11 @@ const Hero = () => {
         <div className="w-full flex justify-end px-8 lg:pr-20">
           <div className="w-full sm:w-4/5 md:w-3/5 lg:w-3-5 xl:w-2/5 z-5">
             <div className="text-3xl xl:text-5xl text-white t-shadow mt-4">What you get...</div>
-            <div className="text-xl xl:text-3xl text-white t-shadow mt-4">
+            <div className="text-xl xl:text-3xl text-white t-shadow mt-4 flex">
               <div className="inline-block"><i className="far fa-check-circle fa-lg text-green pr-4 pt-1"></i></div>
               <div className="inline-block">2 minute video fly around of the property.</div>
             </div>
-            <div className="text-xl xl:text-3xl text-white t-shadow mt-4">
+            <div className="text-xl xl:text-3xl text-white t-shadow mt-4 flex">
               <div className="inline-block"><i className="far fa-check-circle fa-lg text-green pr-4 pt-1"></i></div>
               <div className="inline-block">20 Hi-res photos.</div>
             </div>

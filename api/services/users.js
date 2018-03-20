@@ -55,7 +55,7 @@ const getCoreUser = ({ attrs }) => {
   return task(resolver =>
     db.User.find({ where: attrs.email ? { email: attrs.email.toLowerCase() } :
       (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
-      include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contact' },
+      include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' },
       { model: db.Asset, as: 'avatar' }] })
       .then(usr => resolver.resolve({ usr, attrs }) )
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getCoreUser' }))) )
@@ -125,7 +125,7 @@ const createUserWithAssociations = attrs =>
         const addressPromise = attrs.address ? usr.createAddress(attrs.address, { transaction: tx }) : []
         const contactsPromises = attrs.contacts ? contactAssociations({usr, contacts: attrs.contacts, tx}) : []
         const [address, contacts] = await Promise.all([addressPromise, contactsPromises])
-        resolver.resolve(usr.dataValues)
+        resolver.resolve({ attrs: usr.dataValues })
       }))
     .orElse(reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
