@@ -36,7 +36,7 @@ class GalleryView extends Component<Props, State> {
     )}
     const photos = getGallery.gallery.galleryAssets.filter(gal => gal.assetableName === 'photo')
     const video = getGallery.gallery.galleryAssets.filter(gal => gal.assetableName === 'video_og')[0]
-    const env = window.location.host === 'homefilming.com' ? '' : 'development/'
+    const env = window.location.host.includes("homefilming.com") ? '' : 'development/'
     const assetUrl = `${Config.aws.baseUrl}${env}orders/${getGallery.gallery.id}`
     const agent = getGallery.gallery.agent
     const listing = getGallery.gallery.listing

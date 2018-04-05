@@ -24145,7 +24145,6 @@ fieldset {
 }
 
 .react-datepicker-wrapper {
-  width: 100%;
   display: inline-block;
 }
 
@@ -24508,7 +24507,7 @@ fieldset {
 
 .react-datepicker__input-container {
   position: relative;
-  /* display: inline-block; */
+  display: inline-block;
 }
 
 .react-datepicker__year-read-view,

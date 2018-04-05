@@ -13,7 +13,7 @@ import InputMask from 'react-input-mask'
 import { formatPhone } from '../../../utils/helpers'
 import { isValidEmail, isValidName, isValidPassword, isValidPhone } from '../../../utils/validators'
 import CreateUserAsPilot from '../../../mutations/create_pilot'
-const env = window.location.host === "homefilming.com" ? "production" : "development"
+const env = window.location.host.includes("homefilming.com") ? "production" : "development"
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
 

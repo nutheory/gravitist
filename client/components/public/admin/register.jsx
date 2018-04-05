@@ -9,7 +9,7 @@ import User from '../../users/signup'
 import DragDropUploader from '../../assets/drag_drop_uploader'
 import { isValidEmail, isValidName, isValidPassword } from '../../../utils/validators'
 import CreateUserMigration from '../../../mutations/create_user'
-const env = window.location.host === "homefilming.com" ? "production" : "development"
+const env = window.location.host.includes("homefilming.com") ? "production" : "development"
 
 type Props = {
   submitUser: Function,

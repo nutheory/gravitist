@@ -12,7 +12,7 @@ import AcceptedMissions from './accepted_missions'
 import MissionView from '../../orders/view_edit'
 import AcceptTermsMutation from '../../../mutations/accept_terms'
 import Notifications from '../../../utils/notifications.json'
-const env = window.location.host === "homefilming.com" ? "production" : "development"
+const env = window.location.host.includes("homefilming.com") ? "production" : "development"
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
 

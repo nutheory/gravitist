@@ -11,7 +11,7 @@ import asw from './styles/asset_wrapper'
 import jwtDecode from 'jwt-decode'
 import AssetsQuery from '../../queries/asset_collections'
 import ToggleDefaultAsset from '../../mutations/toggle_default_asset'
-const env = window.location.host === 'homefilming.com' ? '' : 'development/'
+const env = window.location.host.includes("homefilming.com") ? '' : 'development/'
 const assetUrl = `${Config.aws.baseUrl}${env}orders/`
 
 type Props = {
