@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env[`STRIPE${process.env.NODE_ENV === 'development' ? '_DEV' : ''}_SECRET_KEY`])
+const stripe = require("stripe")(process.env[`STRIPE_SECRET_KEY`])
 const chalk = require('chalk')
 
 async function createStripeCharge({ pln, amountPaid, customer }){

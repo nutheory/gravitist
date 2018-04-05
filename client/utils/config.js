@@ -7,13 +7,15 @@ module.exports = {
       'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
     },
     production: {
-      'publishable_key': 'pk_live_oquMAwDjxlu3ZLBwx1dCkomg'
+      'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
+      // 'publishable_key': 'pk_live_oquMAwDjxlu3ZLBwx1dCkomg'
     }
   },
   stripe_platform: {
     test: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
     development: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
-    production: 'ca_BIQQAFoAbsx5V7IK7wOa6rrFbjBnxil7'
+    production: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl'
+    // production: 'ca_BIQQAFoAbsx5V7IK7wOa6rrFbjBnxil7'
   },
   aws: {
     baseUrl: 'https://s3-us-west-1.amazonaws.com/homefilming/',

@@ -7,7 +7,7 @@ const chalk = require('chalk')
 router.get('/signup-pilot', async (req, res, next) => {
   console.log(chalk.blue.bold('pilot signup'), req.query)
   axios.post('https://connect.stripe.com/oauth/token', {
-    client_secret: process.env[`STRIPE${process.env.NODE_ENV === 'development' ? '_DEV' : ''}_SECRET_KEY`],
+    client_secret: process.env[`STRIPE_SECRET_KEY`],
     code: req.query.code,
     grant_type: 'authorization_code'
   }).then(async (response) => {
