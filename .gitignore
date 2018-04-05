@@ -1,4 +1,4 @@
-node_modules/
-raw/
+/node_modules
+/raw
 .env
-coverage/
+/coverage
