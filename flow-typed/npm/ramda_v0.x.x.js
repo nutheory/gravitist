@@ -1,5 +1,5 @@
-// flow-typed signature: bd8e51b6c0c8ba360e9621e1661849f0
-// flow-typed version: dd2e8d3c25/ramda_v0.x.x/flow_>=v0.49.x
+// flow-typed signature: 6baa9163b830d21d1adf9af2bdb589b2
+// flow-typed version: 9e2812a6a8/ramda_v0.x.x/flow_>=v0.49.x <=v0.61.x
 
 /* eslint-disable no-unused-vars, no-redeclare */
 
@@ -875,6 +875,12 @@ declare module ramda {
     ...rest: Array<void>
   ): (xs: T) => T;
 
+  declare function sortWith<V, T: Array<V>>(fns: Array<(a: V, b: V) => number>, xs: T): T;
+  declare function sortWith<V, T: Array<V>>(
+    fns: Array<(a: V, b: V) => number>,
+    ...rest: Array<void>
+  ): (xs: T) => T;
+
   declare function times<T>(fn: (i: number) => T, n: number): Array<T>;
   declare function times<T>(
     fn: (i: number) => T,
@@ -1530,21 +1536,20 @@ declare module ramda {
   declare function path<V, A: null | void>(p: Array<string>, o: A): void;
   declare function path<V, A: mixed>(p: Array<string>, o: A): ?V;
 
-  declare function pathOr<T, V, A: NestedObject<V>>(
-    or: T,
-    ...rest: Array<void>
-  ): ((p: Array<string>, ...rest: Array<void>) => (o: ?A) => V | T) &
-    ((p: Array<string>, o: ?A) => V | T);
-  declare function pathOr<T, V, A: NestedObject<V>>(
-    or: T,
-    p: Array<string>,
-    ...rest: Array<void>
-  ): (o: ?A) => V | T;
-  declare function pathOr<T, V, A: NestedObject<V>>(
-    or: T,
-    p: Array<string>,
-    o: ?A
-  ): V | T;
+  declare type PathOr =
+    & (
+      <T, V, A: NestedObject<V>>(or: T) =>
+        & ((p: Array<string|number>) => (o: A) => V | T)
+        & ((p: Array<string|number>, o: A) => V | T)
+    )
+    & (
+      <T, V, A: NestedObject<V>>(or: T, p: Array<string|number>) => (o: A) => V | T
+    )
+    & (
+      <T, V, A: NestedObject<V>>(or: T, p: Array<string|number>, o: A ) => V | T
+    );
+
+  declare var pathOr: PathOr;
 
   declare function pick<A>(
     keys: Array<string>,

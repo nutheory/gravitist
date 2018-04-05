@@ -225,12 +225,10 @@ const commonElements = StyleSheet.create({
   },
   scrollDown: {
     position: 'absolute',
-    maxWidth: '80%',
     margin: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
+    color: '#fff',
     left: '50%',
-    marginLeft: '-90px',
+    marginLeft: '-2rem',
     [ss.sm]: {
       bottom: '20px',
     },

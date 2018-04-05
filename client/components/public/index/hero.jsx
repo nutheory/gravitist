@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ScrollDown from '../scroll_down'
 
-const Hero = () => {
+const Hero = (props: Object) => {
   return(
     <div className="hero">
-      <div className="bg" style={{background: `url(${require('../../../assets/images/homeHero.jpg')}) no-repeat`}}>
+      <div className="bg" style={{background: `url(/${require('../../../assets/images/homeHero.jpg')}) no-repeat`}}>
         <div className="overlay"></div>
         <div className="w-full flex justify-end px-8 lg:pr-20">
           <div className="w-full sm:w-4/5 md:w-3/5 lg:w-3-5 xl:w-2/5 z-5">
@@ -27,7 +27,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <ScrollDown to="/" />
+        <ScrollDown to="/" jumpStart={props.jumpStart} />
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ const BirdsEyeView = () => {
       <div className="container mx-auto py-8 flex flex-wrap">
         <div className="w-full md:w-1/2">
           <div className="p-8">
-            <img src={ ipadImg } />
+            <img src={`/${ipadImg}`} />
           </div>
         </div>
         <div className="w-full md:w-1/2">

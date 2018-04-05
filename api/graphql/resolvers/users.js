@@ -2,8 +2,8 @@ const { createResolver } = require('apollo-resolvers')
 const { baseResolver, isAuthenticated, isAuthorized } = require('./auth')
 const { Validate } = require('../../utils/validation')
 const { RequiredFieldsError, UniqueEmailError } = require("../../utils/errors")
-const { create, update, destroy, profile, verify, login, refresh, collection } = require('../../services/users')
-const { pilotRegistrationMailer } = require('../../mailers/user')
+const { create, update, destroy, profile, verify, login, refresh, collection, initReset, reset } = require('../../services/users')
+const { pilotRegistrationMailer, resetPasswordMailer } = require('../../mailers/user')
 const chalk = require('chalk')
 
 const currentUser = baseResolver.createResolver(
@@ -61,7 +61,7 @@ const updateUser = isAuthorized.createResolver(
 
 const verifyUser = isAuthorized.createResolver(
   async ( root, { input }, req ) => {
-    const result = await verify( input )
+    const result = await verify({ attrs: input })
     return result
   }
 )
@@ -92,7 +92,21 @@ const tokenRefreshCheck = baseResolver.createResolver(
 const getUsers = isAuthorized.createResolver(
   async ( root, { input }, req ) => {
     const result = await collection({ attrs: input })
-    console.log(chalk.blue.bold("USERS"),result)
+    return result
+  }
+)
+
+const initResetPassword = baseResolver.createResolver(
+  async ( root, { input }, req ) => {
+    const result = await initReset({ attrs: { email: input.email }})
+    resetPasswordMailer(result)
+    return result
+  }
+)
+
+const resetPassword = baseResolver.createResolver(
+  async ( root, { input }, req ) => {
+    const result = await reset({ attrs: input })
     return result
   }
 )
@@ -113,7 +127,9 @@ const userResolvers = {
     createUser,
     updateUser,
     verifyUser,
-    destroyUser
+    destroyUser,
+    initResetPassword,
+    resetPassword
   }
 
 }

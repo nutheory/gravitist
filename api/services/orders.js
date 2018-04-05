@@ -73,13 +73,15 @@ const getOrdersByCriteria = ({ usr, attrs }) => {
   .run().promise()
 }
 
-const createOrderWithAssociations = ({ usr, pln, addr }) =>
+const createOrderWithAssociations = ({ ordr, usr, addr }) =>
   db.sequelize.transaction( tx =>
     task( resolver => db.Order.create(
-        { agentId: usr.id, plan: pln.name },
-        { customer: usr.customerId, pln, transaction: tx })
+        { agentId: usr.id, plan: ordr.plan.name, amountPaid: ordr.amountPaid, discountId: ordr.discountId },
+        { customer: usr.customerId, pln: ordr.plan, amountPaid: ordr.amountPaid, transaction: tx })
       .then(ordr => ordr.createAddress(addr, { transaction: tx })
         .then(addr => {
+          console.log(chalk.blue.bold('ORDR'), ordr)
+          console.log(chalk.blue.bold('ADDR'), addr)
           const createdOrder = R.merge(ordr.dataValues, {address: addr.dataValues})
           return resolver.resolve(createdOrder) } )) )
     .orElse(reason => reason ).run().promise() )
@@ -87,9 +89,13 @@ const createOrderWithAssociations = ({ usr, pln, addr }) =>
 
 const getOrderToUpdate = ({ usr, id, ordr }) =>
   db.sequelize.transaction(tx =>
-    task( resolver => {
-      const modifier = ordr.status === "recruiting" ? {
-        pilotId: null, pilotAcceptedAt: null, pilotBounty: null, pilotDistance: null } : {}
+    task( async (resolver) => {
+      let modifier = {}
+      if(ordr.status === "recruiting"){
+        modifier = { pilotId: null, pilotAcceptedAt: null, pilotBounty: null, pilotDistance: null }
+        const assets = await db.Asset.findAll({ where: { assetableId: id, assetable: "order" } })
+        assets.map(asset => asset.update({ rejectedAt: Date.now() }))
+      }
       return db.Order.findById(id, { transaction: tx })
         .then(res => res.update(R.merge(ordr, modifier), R.merge(orderIncludes(), { transaction: tx }))
         .then(upd => resolver.resolve(upd.dataValues))) })
@@ -146,14 +152,13 @@ const queryMissionsWithinRadius = ({ usr, qryPrms }) =>
 
 const queryPilotsWithinRadius = ({ ordr, qryPrms }) =>
   task(resolver => rawPilotsWithinRadiusSqlQuery({ ordr, qryPrms }).then(res => {
-    resolver.resolve({users: res}) }) )
+    resolver.resolve({ pilots: res }) }) )
   .run().promise()
 
 const notifyLocalPilots = async ({ ordr }) => {
-  const pilots = await queryPilotsWithinRadius({ ordr })
-  pilots.forEach(pilot => {
-    recruitingMailer({ pilot, order: ordr })
-  })
+  const { pilots } = await queryPilotsWithinRadius({ ordr })
+  console.log(chalk.blue.bold('NOTIFY'), pilots)
+  pilots.map( pilot => recruitingMailer({ pilot, order: ordr }) )
 }
 
 const approveAndPayout = async ({ id, user, photos }) => {
@@ -268,27 +273,3 @@ module.exports = {
   gallery,
   notifyLocalPilots
 }
-
-
-// PAYOUT { id: 'tr_1BujL4EAoEhChe3Fkepetjgl',
-// [dev.server]   object: 'transfer',
-// [dev.server]   amount: 60,
-// [dev.server]   amount_reversed: 0,
-// [dev.server]   balance_transaction: 'txn_1BujL4EAoEhChe3FrqldksIT',
-// [dev.server]   created: 1518449730,
-// [dev.server]   currency: 'usd',
-// [dev.server]   description: null,
-// [dev.server]   destination: 'acct_1BdkWkFxrkXLpyla',
-// [dev.server]   destination_payment: 'py_1BujL4FxrkXLpylaLrVE4aAA',
-// [dev.server]   livemode: false,
-// [dev.server]   metadata: { orderId: '141', pilotId: '86' },
-// [dev.server]   reversals:
-// [dev.server]    { object: 'list',
-// [dev.server]      data: [],
-// [dev.server]      has_more: false,
-// [dev.server]      total_count: 0,
-// [dev.server]      url: '/v1/transfers/tr_1BujL4EAoEhChe3Fkepetjgl/reversals' },
-// [dev.server]   reversed: false,
-// [dev.server]   source_transaction: null,
-// [dev.server]   source_type: 'card',
-// [dev.server]   transfer_group: null }

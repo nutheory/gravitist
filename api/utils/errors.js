@@ -48,6 +48,12 @@ const NotFoundError = ({args, loc}) => new (createError('NotFound', {
   info: loc
 }))()
 
+const ConstraintError = ({args, loc}) => new (createError('Constraint', {
+  message: `Db Unique constaint error.`,
+  args,
+  info: loc
+}))()
+
 const RequiredFieldsError = (fieldsArr) => createError('RequiredFieldsError', {
     message: `Missing required field(s) ${ fieldsArr }. Please complete all fields`
 })
@@ -60,6 +66,7 @@ const FailFastError = (name, args) => {
   console.log(chalk.blue.bold('NAME'), name)
   switch(name) {
     case "AuthenticationFailed": return AuthenticationFailed(args)
+    case "SequelizeUniqueConstraintError": return ConstraintError(args)
     case "SequelizeEmptyResultError": return NotFoundError(args)
     case "CompanyAccessError": return CompanyAccessError(args)
     default: return UnknownErrorFF(args)

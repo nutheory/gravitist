@@ -6,6 +6,8 @@ import { css } from 'aphrodite'
 import Overview from './overview'
 import UserList from './user_list'
 import OrderList from './order_list'
+import DiscountList from './discount_list'
+import DiscountForm from './discount_form'
 import Profile from '../../users/view_edit'
 import Order from '../../orders/view_edit'
 import Search from '../../misc/search'
@@ -40,9 +42,6 @@ class AdminDashboard extends Component<Props, State>{
     return (
       <div className="container mx-auto mt-8">
         <Switch>
-          <Route path="/dashboard" render={({ match }) => (
-            <Overview />
-          )} />
           <Route path="/admin/pilots" render={({ match }) => (
             <div>
               <div className="flex my-4">
@@ -107,12 +106,13 @@ class AdminDashboard extends Component<Props, State>{
               </div>
             </div>
           )} />
-          <Route path="/admin/orders" render={({ match }) => (
+          <Route path="/admin/orders/:criteria?/:criteriaId?" render={({ match }) => (
             <div>
               <div className="flex flex-wrap my-4">
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Orders</h3>
                 </div>
+                {console.log('match', match)}
                 <div className="w-1/3">
                   <Search
                     placeHolder="Search by status, receipt ID, or plan"
@@ -122,7 +122,7 @@ class AdminDashboard extends Component<Props, State>{
               </div>
               <OrderList
                 sortBy="createdAt"
-                criteria={{ }}
+                criteria={ match.params.criteria ? { [match.params.criteria]: match.params.criteriaId } : null }
                 queryString={ this.state.queryString }
                 searchQuery={ this.searchQuery } />
             </div>
@@ -130,11 +130,25 @@ class AdminDashboard extends Component<Props, State>{
           <Route path="/admin/order/:orderId" render={({ match }) => (
             <Order orderid={ match.params.orderId } />
           )} />
+          <Route path="/admin/discounts" render={({ match }) => (
+            <div>
+              <div className="flex flex-wrap w-full">
+                <DiscountForm />
+              </div>
+              <div className="flex flex-wrap -mx-6">
+                <div className="w-full px-6 my-8 pb-4">
+                  <div className="font-bold text-xl my-2">Discounts</div>
+                  <DiscountList />
+                </div>
+              </div>
+            </div>
+          )} />
           <Route path="/settings" render={({ match }) => (
             <Profile />
           )} />
-          <Route path="/dashboard" component={Overview} />
-          <Redirect from="/" to="/dashboard" />
+          <Route path="/" render={({ match }) => (
+            <Overview />
+          )} />
         </Switch>
       </div>
     )

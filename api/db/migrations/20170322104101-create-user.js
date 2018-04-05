@@ -60,7 +60,6 @@ module.exports = {
           }
         }
       },
-
       transfersToDate: {
         type: Sequelize.INTEGER,
         defaultValue: 0
@@ -70,6 +69,7 @@ module.exports = {
         defaultValue: 0
       },
       passwordResetSent: Sequelize.DATE,
+      passwordResetToken: Sequelize.STRING,
       unsubscribedEmail: {
         type: Sequelize.BOOLEAN,
         defaultValue: false

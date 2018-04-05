@@ -30,10 +30,10 @@ async function toggleActive({ activeId, assetableId, assetable, assetableName })
 
 async function toggleDefault({ defaultId, assetableId, assetable, assetableName }){
   const assets = await db.Asset.findAll({ where: { assetableId, assetable, assetableName, default: true } })
-  if( assets.length > 0 ){ assets.map( async asset => await asset.update({ default: false }).catch(err => { throw err }) ) }
+  if( assets.length > 0 ){ assets.map( async (asset) => await asset.update({ default: false }).catch(err => { throw err }) ) }
   const newDefault = await db.Asset.findById(defaultId)
   if( newDefault ){ await newDefault.update({ default: true }).catch(err => { throw err }) }
-  if( assetableName === 'avatar' ){ await update({ id: assetableId, user: { refreshToken: true }}) }
+  if( assetableName === 'avatar' ){ await update({ attrs: { id: assetableId, user: { refreshToken: true }} }) }
 }
 
 const assets = async ({ assetableId, assetable, assetableName }) => {

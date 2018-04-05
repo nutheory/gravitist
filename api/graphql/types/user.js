@@ -60,6 +60,15 @@ const User = `
     password: String!
   }
 
+  input InitResetPasswordInput {
+    email: String!
+  }
+
+  input ResetPasswordInput {
+    email: String!
+    password: String!
+  }
+
   input DestroyUserInput {
     id: ID!
     authorizedId: ID!
@@ -98,7 +107,6 @@ const User = `
     isVerified: Boolean
     refreshToken: Boolean
   }
-
 
   input AgentInputFields {
     name: String

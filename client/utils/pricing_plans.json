@@ -1,9 +1,9 @@
 [
   {
     "planId": 1,
-    "price": "349",
+    "price": "349.00",
     "actualPrice": "34900",
-    "bounty": "40",
+    "bounty": "40.00",
     "actualBounty": "4000",
     "name": "standard",
     "title": "Standard",
@@ -17,7 +17,7 @@
   },
   {
     "planId": 2,
-    "price": "499",
+    "price": "499.00",
     "actualPrice": "49900",
     "bounty": "40",
     "actualBounty": "4000",

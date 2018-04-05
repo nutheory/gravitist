@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import { isEmpty, propSatisfies, last, merge, remove, where, concat, clone, times } from 'ramda'
 import { StyleSheet, css } from 'aphrodite'
 import ContactForm from './form'
+import { formatPhone } from '../../utils/helpers'
 import con from './styles/contact'
-import ContactTypes from '../../utils/contact_types.js'
+import ContactTypes from '../../utils/contact_types'
 
 type Props = {
   restrictedMode?: boolean,
@@ -71,7 +72,7 @@ class ContactList extends Component<Props, State> {
   }
 
   checkContactsValidated(){
-    this.props.handleReturnedContacts(true, this.getValidContacts())
+    this.props.handleReturnedContacts(this.getValidContacts())
   }
 
   buildContact(def: Object){
@@ -89,10 +90,13 @@ class ContactList extends Component<Props, State> {
   }
 
   updateContact(updatedContact: Object){
-    const cType = ContactTypes.filter(ct => ct.type === updatedContact.type ? ct : null )
-
-    if(cType[0]){
-      updatedContact.validated = cType[0].validator(updatedContact.content || "")
+    const cType = ContactTypes.filter(ct => ct.type === updatedContact.type ? ct : null )[0]
+    if(cType.type === "phone"){
+      console.log("phone")
+      updatedContact.content = formatPhone(updatedContact.content)
+    }
+    if(cType){
+      updatedContact.validated = cType.validator(updatedContact.content || "")
     } else {
       updatedContact.validated = false
     }
@@ -109,7 +113,7 @@ class ContactList extends Component<Props, State> {
 
     if(updatedContact.content === ""){
       this.setState({ contacts: this.state.contacts.map((c, i) =>
-        c.id === updatedContact.id ? merge(c, { validated: true, content: "" }) : c )
+        c.id === updatedContact.id ? merge(c, { content: "" }) : c )
       }, this.checkContactsValidated )
     }
   }
@@ -143,7 +147,6 @@ class ContactList extends Component<Props, State> {
   }
 
   render(){
-    console.log('this.props.restrictedMode', this.state.contacts[0])
     return (
       <div>
         { this.props.editMode ?

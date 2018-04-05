@@ -6,6 +6,7 @@ const Order = `
     receiptId: String
     pilotId: ID
     agentId: ID
+    discountId: ID
     pilotAcceptedAt: String
     agentAcceptedAt: String
     pilotBounty: String
@@ -54,6 +55,8 @@ const Order = `
     plan: PlanInput
     pilotId: ID
     agentId: ID
+    discountId: ID
+    amountPaid: String
     address: AddressInput
     photos: [String]
   }
@@ -111,6 +114,7 @@ const Order = `
     rejectedAt: String
     completedAt: String
     status: String
+    amountPaid: String
     uploadedAt: String
     address: Address
     notes: [Note]
@@ -118,6 +122,7 @@ const Order = `
     agent: User
     pilot: User
     assets: [Asset]
+    discount: [Discount]
     contacts: [Contact]
     distanceFromLocation: Float
     createdAt: String

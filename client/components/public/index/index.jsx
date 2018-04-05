@@ -10,18 +10,46 @@ import SampleVideo from './sample_video'
 import Share from './share'
 import OurClientsLoveUs from './our_clients_love_us'
 
-const Index = (props: Object) => {
-  return(
-    <div className="">
-      <Hero {...props} />
-      <Benefits />
-      <Photos />
-      <Features />
-      <OurClientsLoveUs />
-      <BirdsEyeView />
-      <Share />
-    </div>
-  )
+type Props = {
+
+}
+
+type State = {
+
+}
+
+class Index extends Component<Props, State> {
+
+  jumpStart: Function
+  benefits: Node
+
+  constructor(props: Object){
+    super(props)
+
+    this.state ={
+
+    }
+
+    this.jumpStart = this.jumpStart.bind(this)
+  }
+
+  jumpStart(){
+    this.benefits.scrollIntoView({behavior: "smooth"})
+  }
+
+  render(){
+    return(
+      <div className="">
+        <Hero {...this.props} jumpStart={this.jumpStart} />
+        <Benefits benefitsRef={node => this.benefits = node} />
+        <Photos />
+        <Features />
+        <OurClientsLoveUs />
+        <BirdsEyeView />
+        <Share />
+      </div>
+    )
+  }
 }
 
 export default Index

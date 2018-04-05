@@ -2,6 +2,8 @@ const { task, of, waitAll } = require('folktale/concurrency/task')
 const Result = require('folktale/result')
 const compose = require('folktale/core/lambda/compose')
 const { chain, map } = require('folktale/fantasy-land')
+const Jwt = require('jsonwebtoken')
+const Secret = process.env.JWT_SECRET
 const R = require('ramda')
 const db = require('../models')
 const Op = db.Sequelize.Op
@@ -58,7 +60,8 @@ const getCoreUser = ({ attrs }) => {
       include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' },
       { model: db.Asset, as: 'avatar' }] })
       .then(usr => resolver.resolve({ usr, attrs }) )
-      .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getCoreUser' }))) )
+      .catch(err => console.log( chalk.blue.bold("BIG-ERR"), err ) ))
+      // .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getCoreUser' }))) )
   .run().promise()
 }
 
@@ -126,8 +129,8 @@ const createUserWithAssociations = attrs =>
         const contactsPromises = attrs.contacts ? contactAssociations({usr, contacts: attrs.contacts, tx}) : []
         const [address, contacts] = await Promise.all([addressPromise, contactsPromises])
         resolver.resolve({ attrs: usr.dataValues })
-      }))
-    .orElse(reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
+      }).catch(err => resolver.reject(FailFastError(err.name, { args: { attrs }, loc: 'Service: User.createUserWithAssociations' }))) )
+    .run().promise() ).catch(err => { throw err })
 
 const updateAssociations = ({ usr, attrs }) => {
   return db.sequelize.transaction(tx =>
@@ -145,7 +148,7 @@ const updateAssociations = ({ usr, attrs }) => {
 const updateUser = ({ usr, attrs }) =>
   db.sequelize.transaction(tx =>
     task(resolver =>
-      usr.update(attrs.user, { tx })
+      usr.update(attrs.user, { transaction: tx })
         .then(usr => resolver.resolve({ usr, attrs }))
         .catch(err => { throw err }))
     .orElse( reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
@@ -161,15 +164,25 @@ const validateIncomingPassword = async ({ usr, attrs }) =>
     }
   }).catch(err => {
     throw new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' })) })
-    // FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }) )
-    // .catch(err => err))
 
-// const sendEmailConfirmationToUser = (userObj) =>
-//   userObj
 
-const returnTokenAndUserInfo = userObj => {
-  return db.User.createAndReturnToken(userObj)
+const returnTokenAndUserInfo = userObj => db.User.createAndReturnToken(userObj)
+
+const generatePasswordReset = async ({ usr }) => {
+  const token = await Jwt.sign({ id: usr.id, email: usr.email }, Secret, { expiresIn: '1h' })
+  const update = await usr.update({ passwordResetToken: token, passwordResetSent: Date.now() })
+  return { user: usr.dataValues, token }
 }
+
+const passwordReset = async ({ usr, attrs }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver => usr.update({
+      password: attrs.password,
+      passwordResetToken: null,
+      passwordResetSent: null }, { transaction: tx })
+      .then(usr => resolver.resolve({ usr }))
+      .catch(err => { throw err }))
+    .orElse( reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
 const destroyUser = ({ usr }) => {
   const cl = R.clone(usr)
@@ -201,11 +214,11 @@ const login = R.pipeP(
   returnTokenAndUserInfo
 )
 
-const create = R.pipeP(
+const create = R.tryCatch(R.pipeP(
   createUserWithAssociations,
   getCoreUser,
   returnTokenAndUserInfo
-)
+), log)
 
 const update = R.pipeP(
   getUser,
@@ -233,4 +246,15 @@ const refresh = R.pipeP(
   returnUser
 )
 
-module.exports = { create, update, verify, destroy, profile, login, refresh, collection }
+const initReset = R.pipeP(
+  getCoreUser,
+  generatePasswordReset
+)
+
+const reset = R.pipeP(
+  getCoreUser,
+  passwordReset,
+  returnTokenAndUserInfo
+)
+
+module.exports = { create, update, verify, destroy, profile, login, refresh, collection, initReset, reset }

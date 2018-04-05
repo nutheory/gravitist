@@ -19,7 +19,8 @@ const publicPassThrough = (req, res, next) => {
   let regEx
   let noAuthRequired = false
   const unprotectedMethods = [ 'getGallery', 'loginUser', 'createAgent', 'createPilot',
-    'createEditor', 'createUser', 'createOrderWithUser' ]
+    'createEditor', 'createUser', 'createOrderWithUser', 'applyDiscount', 'initResetPassword',
+    'resetPassword' ]
   unprotectedMethods.map(method => {
     regEx = new RegExp(method)
     if (regEx.test(req.body.query)) {

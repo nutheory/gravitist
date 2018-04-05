@@ -63,7 +63,6 @@ function serverStart(done){
   })
 
   app.get('*', (req, res) => {
-    console.log(chalk.blue.bold('ran this also'))
     res.render('index', {})
   })
 

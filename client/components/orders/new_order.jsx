@@ -1,58 +1,94 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
-// import PlanSummary from './plan_summary'
-// import OrderForm from '../pu/order_signup'
-import Config from '../../utils/config'
+import { ApolloConsumer } from 'react-apollo'
+import Moment from 'moment'
+import { calcPercentageDiscount, calcNumberDiscount } from '../../utils/helpers'
 import AddressMapper from '../addresses/address_mapper'
-const env = window.location.host === "homefilming.com" ? "production" : "development"
-const publishable_key = Config.stripe[env].publishable_key
-// import Plans from '../../utils/pricing_plans.json'
+import ApplyDiscount from '../../queries/apply_discount'
 
 type Props = {
   handleReturnedLocation: Function,
-  selectedPlan?: Object
+  handleReturnedPayment: Function,
+  plan?: string,
+  price?: string,
+  actualPrice?: string,
 }
 
 type State = {
-  paymentVerified: boolean,
-  selectedPlan?: Object,
+  discountErrors: Array<string>,
+  discount?: Object | null,
+  checking: boolean,
   latLng: Array<string>
 }
 
 class Order extends Component<Props, State> {
 
-  card: Function
-  stripe: Function
-  elements: Function
+  validateDiscount: Function
   handleReturnedLocation: Function
+  checkDiscountCode: Function
   fetchAssociatedMap: Function
 
   constructor(props: Object){
     super()
 
     this.state = {
-      paymentVerified: false,
-      // selectedPlan: Plans.filter(p => p.name === props.selectedPlan ? p : null)[0],
-      latLng: []
+      planName: props.plan,
+      planPrice: props.actualPrice,
+      checking: false,
+      latLng: [],
+      discountErrors: []
     }
 
-    this.stripe = Stripe(publishable_key)
-    this.elements = this.stripe.elements()
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
+    this.validateDiscount = this.validateDiscount.bind(this)
+    this.checkDiscountCode = this.checkDiscountCode.bind(this)
     this.fetchAssociatedMap = this.fetchAssociatedMap.bind(this)
   }
 
   componentDidMount(){
-    this.card = this.elements.create('card')
-    this.card.mount('#card-element')
-    const _this = this
-    this.card.addEventListener('change', function(e) {
-      if(e.complete){
-        _this.setState({ paymentVerified: true })
+  }
+
+  validateDiscount(discount: Object){
+    if(discount.appliesTo && discount.appliesTo !== 'all'){
+      this.state.planName !== discount.appliesTo ? this.setState(prevState => ({ discountErrors: prevState.discountErrors.concat("Discount does not apply.") })) : null
+    }
+    if(discount.maxUsageCount){
+      discount.usageCount >= discount.maxUsageCount ? this.setState(prevState => ({ discountErrors: prevState.discountErrors.concat("Discount eligibilty has ended.") })) : null
+    }
+    if(discount.endAt && discount.startsAt){
+      Moment().isBetween(discount.startsAt, discount.endAt) ? this.setState(prevState => ({ discountErrors: prevState.discountErrors.concat("Discount invalid.") })) : null
+    }
+    if( this.state.discountErrors.length > 0 ){ return false }
+    return true
+  }
+
+  checkDiscountCode(client: Object, e: SyntheticInputEvent<HTMLInputElement>){
+    const val = e.currentTarget.value
+    this.setState({ checking: true, discountErrors: [] }, async function(){
+      const { data: { applyDiscount } } = await client.query({
+        query: ApplyDiscount,
+        variables: { input: { code: val }}
+      })
+      if(applyDiscount.discount){
+        console.log('applyDiscount.discount', applyDiscount.discount)
+        const valid = this.validateDiscount(applyDiscount.discount)
+        if(valid){
+          const updatedPrice = applyDiscount.discount.amount.includes('%') ? calcPercentageDiscount({
+            base: this.state.planPrice, percent: applyDiscount.discount.amount
+          }) : calcNumberDiscount({
+            base: this.state.planPrice, number: applyDiscount.discount.amount
+          })
+          this.props.handleReturnedPayment({
+            discountId: applyDiscount.discount.id,
+            discountedActualPrice: updatedPrice,
+            discountedPrice: updatedPrice.slice(0, updatedPrice.length - 2) +
+              '.' + updatedPrice.slice(updatedPrice.length - 2, updatedPrice.length) })
+        }
       } else {
-        _this.setState({ paymentVerified: false })
+        this.props.handleReturnedPayment({ discountedActualPrice: null, discountedPrice: null, discountId: null })
       }
+      console.log('err', this.state.discountErrors)
+      this.setState({ checking: false, discount: applyDiscount.discount ? applyDiscount.discount :null })
     })
   }
 
@@ -80,43 +116,71 @@ class Order extends Component<Props, State> {
 
   render(){
 
-    // if ( this.state.selectedPlan && this.state.selectedPlan.name){
-      return (
+    return (
+      <div>
         <div>
-          <div>
-            <div className="text-sm font-bold">Address to film</div>
-            <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
+          <div className="text-sm font-bold">Address to film</div>
+          <AddressMapper handleReturnedLocation={ this.handleReturnedLocation } />
+        </div>
+        <div className="flex">
+          <div className="w-2/5 pt-4">
+            <p className="text-sm font-bold">Your order includes...</p>
+            <ul className="my-2">
+              <li className="my-3 flex">
+                <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
+                <span className="block text-sm">2 minute aerial video showcasing the property.</span>
+              </li>
+              <li className="my-3 flex">
+                <span className="block mr-3"><i className="far fa-check-circle fa-lg"></i></span>
+                <span className="block text-sm pt-1">20 Photos of the property.</span>
+              </li>
+              <li className="my-3 flex">
+                <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
+                <span className="block text-sm">Lead capturing tool for sharing on social media.</span>
+              </li>
+            </ul>
+            <p className="text-sm">... And of course, its all branded to YOU.</p>
           </div>
-          <div className="flex">
-            <div className="w-2/5 pt-4">
-              <p className="text-sm font-bold">Your order includes...</p>
-              <ul className="my-2">
-                <li className="my-3 flex">
-                  <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
-                  <span className="block text-sm">2 minute aerial video showcasing the property.</span>
-                </li>
-                <li className="my-3 flex">
-                  <span className="block mr-3"><i className="far fa-check-circle fa-lg"></i></span>
-                  <span className="block text-sm pt-1">20 Photos of the property.</span>
-                </li>
-                <li className="my-3 flex">
-                  <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
-                  <span className="block text-sm">Lead capturing tool for sharing on social media.</span>
-                </li>
-              </ul>
-              <p className="text-sm">... And of course, its all branded to YOU.</p>
-            </div>
-            <div className="w-3/5 ml-4 pt-4">
-              <div className="signup-map-area rounded" id='mapArea'></div>
-            </div>
-          </div>
-          <div className="my-4">
-            <div className="text-sm font-bold">Payment</div>
-            <div id="card-element" className="input"></div>
+          <div className="w-3/5 ml-4 pt-4">
+            <div className="signup-map-area rounded" id='mapArea'></div>
           </div>
         </div>
-      )
-    // } else { return (<div></div>) }
+        <div className="my-4 flex">
+          <div className="w-1/2">
+            <ApolloConsumer>
+              {client => (
+                <div>
+                  <div className="text-sm font-bold">Do you have a discount code?</div>
+                  <input
+                    type="text"
+                    placeholder="Discount code"
+                    name="discountCode"
+                    onChange={(e) => this.checkDiscountCode(client, e)}
+                    className="input" />
+                </div>
+              )}
+            </ApolloConsumer>
+          </div>
+          <div className="w-1/2 flex ">
+            <div className="flex-1 flex items-end pl-4">
+              { this.state.discountErrors.length > 0 ?
+                 this.state.discountErrors.map( (err, i) => (
+                   <p className="text-sm text-red" key={`err_${i}`}>{ err }</p>
+                 ))
+                : `${this.state.discount ? this.state.discount.amount : ''} ${this.state.discount ? ' off' : '' }`
+              }
+            </div>
+            <div className="flex text-xl font-bold items-end">
+              <span className="inline-block mb-2 mr-1 text-sm">$</span>{ this.props.price }
+            </div>
+          </div>
+        </div>
+        <div className="my-4">
+          <div className="text-sm font-bold">Payment</div>
+          <div id="card-element" className="input"></div>
+        </div>
+      </div>
+    )
   }
 }
 

@@ -12,6 +12,7 @@ import GalleryView from '../public/gallery/index'
 import IndexPage from '../public/index/index'
 import OrderSignup from '../public/agent/order_signup'
 import Login from '../users/login'
+import ResetPassword from '../users/reset_password'
 import PilotPage from '../public/pilots/index'
 import PilotRegistrationPage from '../public/pilots/register'
 import AdminRegistrationPage from '../public/admin/register'
@@ -30,7 +31,6 @@ const Routes = () => {
 
   let user
   const path = window.location.pathname.substring(1)
-  console.log("No Auth", path)
   try{
     user = jwtDecode(localStorage.getItem('hf_auth_header_token'))
   } catch(e){
@@ -39,6 +39,7 @@ const Routes = () => {
     <div className="--router">
       <Switch>
         <SimpleLayout path='/login' component={Login} />
+        <SimpleLayout path='/reset-password' component={ResetPassword} />
         <SimpleLayout path='/!!!admin-registration' component={AdminRegistrationPage} />
         <SimpleLayout path='/pricing/order/:plan' component={OrderSignup} />
         <SimpleLayout path='/pilots/register' component={PilotRegistrationPage} />

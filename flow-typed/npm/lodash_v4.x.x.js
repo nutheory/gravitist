@@ -1,5 +1,5 @@
-// flow-typed signature: 4bc4941d632258b8e73434a140fa542c
-// flow-typed version: 5d0ad8f069/lodash_v4.x.x/flow_>=v0.55.x <=v0.62.x
+// flow-typed signature: 2aa4c73f85e9dfa81f161e7edb6e4d6e
+// flow-typed version: 8c150a1c24/lodash_v4.x.x/flow_>=v0.55.x <=v0.62.x
 
 declare module "lodash" {
   declare type __CurriedFunction1<A, R, AA: A> = (...r: [AA]) => R;
@@ -411,7 +411,14 @@ declare module "lodash" {
     uniq<T>(array?: ?Array<T>): Array<T>;
     uniqBy<T>(array?: ?Array<T>, iteratee?: ?ValueOnlyIteratee<T>): Array<T>;
     uniqWith<T>(array?: ?Array<T>, comparator?: ?Comparator<T>): Array<T>;
-    unzip<T>(array?: ?Array<T>): Array<T>;
+    unzip<A, B>(array: Array<[A, B]>): [Array<A>, Array<B>];
+    unzip<A, B, C>(array: Array<[A, B, C]>): [Array<A>, Array<B>, Array<C>];
+    unzip<A, B, C, D>(
+      array: Array<[A, B, C, D]>,
+    ): [Array<A>, Array<B>, Array<C>, Array<D>];
+    unzip<A, B, C, D, E>(
+      array: Array<[A, B, C, D, E]>,
+    ): [Array<A>, Array<B>, Array<C>, Array<D>, Array<E>];
     unzipWith<T>(array: ?Array<T>, iteratee?: ?Iteratee<T>): Array<T>;
     without<T>(array?: ?Array<T>, ...values?: Array<?T>): Array<T>;
     xor<T>(...array: Array<Array<T>>): Array<T>;
@@ -1362,10 +1369,8 @@ declare module "lodash" {
     // NaN is a number instead of its own type, otherwise it would behave like null/void
     defaultTo<T1: number, T2>(value: T1, defaultValue: T2): T1 | T2;
     defaultTo<T1: void | null, T2>(value: T1, defaultValue: T2): T2;
-    flow: $ComposeReverse;
-    flow(funcs?: Array<Function>): Function;
-    flowRight: $Compose;
-    flowRight(funcs?: Array<Function>): Function;
+    flow: ($ComposeReverse & (funcs: Array<Function>) => Function);
+    flowRight: ($Compose & (funcs: Array<Function>) => Function);
     identity<T>(value: T): T;
     iteratee(func?: any): Function;
     matches(source?: ?Object): Function;
@@ -3113,14 +3118,10 @@ declare module "lodash/fp" {
     defaultTo<T1: number, T2>(defaultValue: T2, value: T1): T1 | T2;
     defaultTo<T1: void | null, T2>(defaultValue: T2): (value: T1) => T2;
     defaultTo<T1: void | null, T2>(defaultValue: T2, value: T1): T2;
-    flow: $ComposeReverse;
-    flow(funcs: Array<Function>): Function;
-    pipe: $ComposeReverse;
-    pipe(funcs: Array<Function>): Function;
-    flowRight: $Compose;
-    flowRight(funcs: Array<Function>): Function;
-    compose: $Compose;
-    compose(funcs: Array<Function>): Function;
+    flow: ($ComposeReverse & (funcs: Array<Function>) => Function);
+    pipe: ($ComposeReverse & (funcs: Array<Function>) => Function);
+    flowRight: ($Compose & (funcs: Array<Function>) => Function);
+    compose: ($Compose & (funcs: Array<Function>) => Function);
     identity<T>(value: T): T;
     iteratee(func: any): Function;
     matches(source: Object): (object: Object) => boolean;

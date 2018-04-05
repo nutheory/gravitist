@@ -59,32 +59,4 @@ class MissionCard extends Component<Props, State> {
   }
 }
 
-{/* <Link to={`/missions/${mission.id}${mission.agentId ? '/' + mission.agentId : ''}`}>
-  <div className={`card ${css(crd.card)}`}>
-    <div className={`${css(crd.cardContent)}`}>
-      <div className={`columns`}>
-        <div className={`${css(crd.addressIcon)} column is-narrow`}><i className="fa fa-home fa-3x" /></div>
-        <div className={`${css(crd.addressText)} column ${css(crd.removeLeftPadding)}`}>
-          <div className={`title is-5 ${css(crd.address)}`}>{ mission.address.address1 }</div>
-          <div className={`${css(crd.smallUppercase)}`}>{`${mission.address.city}, ${mission.address.state} ${mission.address.zipCode}`}</div>
-        </div>
-      </div>
-      <div className={`${css(crd.row)}`}>
-        <div className={`${css(crd.blueArea)} column`}>
-          <div className={`${css(crd.highlightValue)}`}>
-            ${ mission.pilotBounty ? mission.pilotBounty : (Math.round(parseInt(bounty) + distance)).toString()}
-          </div>
-          <div className={`${css(crd.highlightText)}`}>min. est.<br />bounty</div>
-        </div>
-        <div className={`${css(crd.blueArea)} column`}>
-          <div className={`${css(crd.highlightValue)}`}>
-            { mission.pilotDistance ? mission.pilotDistance : distance.toString() }
-          </div>
-          <div className={`${css(crd.highlightText)}`}>miles est.<br />distance</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</Link> */}
-
 export default MissionCard

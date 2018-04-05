@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       type: Sequelize.STRING,
     },
+    amountPaid: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
     pilotId: Sequelize.INTEGER,
     receiptId: Sequelize.STRING,
     pilotBounty: Sequelize.FLOAT,
@@ -33,6 +37,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       defaultValue: {}
     },
+    discountId: Sequelize.INTEGER,
     pilotAcceptedAt: Sequelize.DATE,
     uploadedAt: Sequelize.DATE,
     initProcessCompletedAt: Sequelize.DATE,
@@ -142,8 +147,8 @@ module.exports = (sequelize, Sequelize) => {
   Order.beforeValidate(( order, {pln, customer} ) =>
     Object.assign(order, { uuid: uuidv4() }) )
 
-  Order.beforeCreate( async ( order, {pln, customer} ) => {
-    const stripeCharge = await createStripeCharge({ pln, customer })
+  Order.beforeCreate( async ( order, {pln, amountPaid, customer} ) => {
+    const stripeCharge = await createStripeCharge({ pln, amountPaid, customer })
     return Object.assign(order, { receiptId: stripeCharge.id })
   })
 

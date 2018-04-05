@@ -25,7 +25,7 @@ block content
       div.top-line #{address}
       div.bottom-line #{cityState}
   div.cta
-    a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View this opportunity
+    a.button(href=`${baseUrl}/missions/${orderId}/${agentId}` target="_blank") View this opportunity
   div.explain
     p
       | You have been chosen to receive this email because this filming opportunity 

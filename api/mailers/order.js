@@ -1,6 +1,7 @@
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const pug = require('pug')
+const Moment = require('moment')
 const isProduction = process.env.NODE_ENV === 'production'
 const toMail = (address) => isProduction ? address : 'drush@nutheory.com'
 const recruitingTemplate = pug.compileFile(__dirname + '/views/recruit_pilots.pug')
@@ -21,9 +22,10 @@ const welcomeConfirmationMailer = ({ order, user }) => {
       title: `Welcome to Homefilming`,
       name: user.name,
       plan: order.plan,
-      createdAt: order.createdAt,
+      createdAt: Moment(Date.parse(order.createdAt)).format('MMM Do YYYY, h:mma'),
       status: order.status,
-      receiptId: order.receiptId
+      receiptId: order.receiptId,
+      baseUrl: process.env.BASE_URL
     }),
   }
   sgMail.send(msg)
@@ -39,9 +41,10 @@ const confirmationMailer = ({ order, user }) => {
       title: `Thank you for your order at Homefilming`,
       name: user.name,
       plan: order.plan,
-      createdAt: order.createdAt,
+      createdAt: Moment(Date.parse(order.createdAt)).format('MMM Do YYYY, h:mma'),
       status: order.status,
-      receiptId: order.receiptId
+      receiptId: order.receiptId,
+      baseUrl: process.env.BASE_URL
     }),
   }
   sgMail.send(msg)
@@ -66,7 +69,8 @@ const recruitingMailer = ({ pilot, order }) => {
       address: order.address.address1,
       cityState: `${order.address.city}, ${order.address.state}`,
       orderId: order.id,
-      agentId: order.agent.id
+      agentId: order.agent.id,
+      baseUrl: process.env.BASE_URL
     }),
   }
   // sgMail.send(msg)

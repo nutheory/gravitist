@@ -121,7 +121,7 @@ class PilotView extends Component<Props, State> {
                 </div>
                 <div className="flex-1 text-right">
                   <label className="block text-xs">Status</label>
-                  {/* <div className="font-bold">{ status.name }</div> */}
+                  <div className="font-bold">{ status.name }</div>
                 </div>
               </div>
               { order.status === "filming" ?

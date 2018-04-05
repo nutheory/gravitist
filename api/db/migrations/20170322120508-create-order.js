@@ -21,6 +21,10 @@ module.exports = {
       pilotId: Sequelize.INTEGER,
       pilotBounty: Sequelize.FLOAT,
       pilotDistance: Sequelize.FLOAT,
+      amountPaid: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       pilotTransferId: Sequelize.STRING,
       pilotTransferResult: Sequelize.JSONB,
       pilotAcceptedAt: Sequelize.DATE,
@@ -60,6 +64,7 @@ module.exports = {
         allowNull: false,
         defaultValue: {}
       },
+      discountId: Sequelize.INTEGER,
       pilotAcceptedAt: Sequelize.DATE,
       uploadedAt: Sequelize.DATE,
       initProcessCompletedAt: Sequelize.DATE,

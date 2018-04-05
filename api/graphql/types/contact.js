@@ -1,7 +1,7 @@
 const Contact = `
 
   type Contact {
-    id : ID
+    id: ID
     status: String
     name: String
     content: String

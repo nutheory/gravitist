@@ -29,6 +29,9 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: false,
       allowNull: false
     },
+    rejectedAt: {
+      type: Sequelize.DATE,
+    },
     default: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,

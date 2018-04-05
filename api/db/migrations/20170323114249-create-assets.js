@@ -46,6 +46,9 @@ module.exports = {
         defaultValue: false,
         allowNull: false
       },
+      rejectedAt: {
+        type: Sequelize.DATE
+      },
       galleryVisible: Sequelize.BOOLEAN,
       default: {
         type: Sequelize.BOOLEAN,

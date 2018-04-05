@@ -1,9 +1,6 @@
 const { isValidUrl, isValidName, isValidPhone, isValidEmail } = require('./validators')
-const formatPhoneNumber = (number) => {
-  const reg = /\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})/g
-  const subst = '$1.$2.$3'
-  return number.toString().replace(reg, subst)
-}
+const { formatPhone } = require('./helpers')
+
 
 const ContactTypes = [{
     "type": "phone",
@@ -14,7 +11,8 @@ const ContactTypes = [{
     "placeholder": "(555) 555-5555",
     "validator": isValidPhone,
     "typename": "phone",
-    "formatter": formatPhoneNumber
+    "formatter": formatPhone,
+    "mask": '1 \\(999\\) 999-9999 \\ext. 9999'
   }, {
     "type": "email",
     "humanized": "Email",

@@ -50,7 +50,21 @@ class AgentDashboard extends Component<Props, State>{
       return (
         <div className="container mx-auto mt-8">
           <Switch>
-            <Route path="/dashboard" render={({ match }) => (
+            <Route path="/orders/:orderId" render={({ match }) => (
+              <Order orderid={ match.params.orderId } />
+            )} />
+            {/* <Route path="/orders" render={({ match }) => (
+              <OrderList
+                cssSizing="w-full lg:w-1/2"
+                sortBy="uploadedAt"
+                sizeLimit={10}
+                criteria={{ status: 'approved_completed' }} />
+            )} /> */}
+            <Route path="/new-order" component={ Reorder } />
+            <Route path="/settings" render={({ match }) => (
+              <Profile />
+            )} />
+            <Route path="/" render={({ match }) => (
               <div className="flex flex-wrap -mx-6">
                 <div className="w-full lg:w-1/2 px-6 pb-4">
                   <div className="font-bold text-xl my-2">Recent orders</div>
@@ -69,20 +83,6 @@ class AgentDashboard extends Component<Props, State>{
                     criteria={{ status: 'approved_completed' }} />
                 </div>
               </div>
-            )} />
-            <Route path="/orders/:orderId" render={({ match }) => (
-              <Order orderid={ match.params.orderId } />
-            )} />
-            {/* <Route path="/orders" render={({ match }) => (
-              <OrderList
-                cssSizing="w-full lg:w-1/2"
-                sortBy="uploadedAt"
-                sizeLimit={10}
-                criteria={{ status: 'approved_completed' }} />
-            )} /> */}
-            <Route path="/new-order" component={ Reorder } />
-            <Route path="/settings" render={({ match }) => (
-              <Profile />
             )} />
           </Switch>
         </div>

@@ -26,7 +26,9 @@ type State = {
   userVerified: boolean,
   contactsVerified: boolean,
   paymentVerified: boolean,
-  selectedPlan?: Object,
+  selectedPlan: Object,
+  amountPaid?: string,
+  price?: string,
   loading: boolean,
   userType: 'agent' | 'pilot' | 'admin',
   address1?: string,
@@ -39,6 +41,7 @@ type State = {
   name?: string,
   email?: string,
   password?: string,
+  discountId?: number | null,
   avatar: Object,
   contacts: Array<Object>,
   errors: Array<Object>
@@ -50,6 +53,7 @@ class OrderForm extends Component<Props, State> {
   stripe: Function
   elements: Function
   handleReturnedLocation: Function
+  handleReturnedPayment: Function
   handleInputChange: Function
   handleReturnedContacts: Function
   handleReturnedPayment: Function
@@ -60,7 +64,7 @@ class OrderForm extends Component<Props, State> {
   allCriteriaVerified: Function
   handleSubmit: Function
 
-  constructor(){
+  constructor(props: Object){
     super()
     this.state = {
       addressVerified: false,
@@ -68,6 +72,9 @@ class OrderForm extends Component<Props, State> {
       contactsVerified: false,
       paymentVerified: false,
       avatarVerified: false,
+      selectedPlan: Plans.filter(p => p.name === props.match.params.plan ? p : null)[0],
+      price: Plans.filter(p => p.name === props.match.params.plan ? p : null)[0].price,
+      amountPaid: Plans.filter(p => p.name === props.match.params.plan ? p : null)[0].actualPrice,
       loading: false,
       userType: "agent",
       avatar: {},
@@ -80,6 +87,7 @@ class OrderForm extends Component<Props, State> {
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
+    this.handleReturnedPayment = this.handleReturnedPayment.bind(this)
     this.renderValidated = this.renderValidated.bind(this)
     this.fetchStripeToken = this.fetchStripeToken.bind(this)
     this.returnUploadInstance = this.returnUploadInstance.bind(this)
@@ -89,8 +97,6 @@ class OrderForm extends Component<Props, State> {
   }
 
   componentDidMount(){
-    const choosenPlan = Plans.filter(p => p.name === this.props.match.params.plan ? p : null)
-    this.setState({ selectedPlan: choosenPlan[0] }, (res) => {})
     this.card = this.elements.create('card')
     this.card.mount('#card-element')
     const _this = this
@@ -121,9 +127,22 @@ class OrderForm extends Component<Props, State> {
     })
   }
 
-  handleReturnedContacts(verified, contacts){
-    this.setState({ contactsVerified: verified, contacts })
+  handleReturnedContacts(contacts){
+    this.setState({ contacts, contactsVerified: contacts.length > 0 })
   }
+
+  handleReturnedPayment({ discountId, discountedActualPrice, discountedPrice }){
+    if (discountId){
+      this.setState({ discountId, amountPaid: discountedActualPrice, price: discountedPrice })
+    } else {
+      this.setState({
+        price: Plans.filter(p => p.name === this.props.match.params.plan ? p : null)[0].price,
+        amountPaid: Plans.filter(p => p.name === this.props.match.params.plan ? p : null)[0].actualPrice,
+        discountId: null
+      })
+    }
+  }
+
 
   checkUserVerified(){
     if (isValidName(this.state.name) &&
@@ -137,7 +156,6 @@ class OrderForm extends Component<Props, State> {
   }
 
   allCriteriaVerified(){
-    console.log("state", this.state)
     return this.state.addressVerified &&
     this.state.userVerified &&
     this.state.contactsVerified &&
@@ -163,7 +181,7 @@ class OrderForm extends Component<Props, State> {
 
   handleGQLErrors(err){
     err.graphQLErrors.map((error) => {
-      if(error.message === "UniqueEmailError") {
+      if(error.message === "UniqueEmailError" || error.name === "Constraint") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "email", section: "Email address is taken",
             message: "The email address you entered is already in use. Would you like to login?" }) }) )
@@ -180,11 +198,11 @@ class OrderForm extends Component<Props, State> {
       <div className={`error-area hide-error ${ this.state.errors.length > 0 ? ' show-error' : ''}`}>
         <h2 className="text-base font-bold">Please correct these errors</h2>
         { this.state.errors.map((err, i) => (
-          <div key={`error_${i}`} className="my-4">
+          <div key={`error_${i}`} className="mt-4">
             <h3 className="text-sm font-bold">{err.section}</h3>
-            <p className="text-sm">{err.message}</p>
+            <p className="text-sm mt-1">{err.message}</p>
             { err.type === "email" ?
-            <Link to="/login" className="button-blue">
+            <Link to="/login" className="button-blue w-1/4 mt-2">
               <span className="action-button-overlay"></span>Login
             </Link> : null }
           </div>
@@ -232,14 +250,12 @@ class OrderForm extends Component<Props, State> {
   }
 
   async handleSubmit(e){
-    console.log("bammmm")
     if(this.state.errors.length > 0) { this.setState({ errors: [] }) }
     const token = await this.fetchStripeToken()
     if(this.submitErrorCheck()) { this.runMutation(token) } else { return false }
   }
 
   render(){
-    console.log('match', this.props)
     return (
       <div className="signup-container">
         { this.state.loading ? <Loading /> : null }
@@ -323,7 +339,12 @@ class OrderForm extends Component<Props, State> {
             <p className="text-xs mt-1 mb-2">This is how your name will appear in all
               images/video watermarking</p>
           </div>
-          <NewOrder handleReturnedLocation={ this.handleReturnedLocation } selectedPlan={this.props.match.params.plan} />
+          <NewOrder
+            handleReturnedLocation={ this.handleReturnedLocation }
+            handleReturnedPayment={ this.handleReturnedPayment }
+            plan={ this.state.selectedPlan.name }
+            price={ this.state.price }
+            actualPrice={ this.state.amountPaid } />
           { this.renderErrors() }
           <div className="mt-4">
             <a
@@ -340,9 +361,7 @@ class OrderForm extends Component<Props, State> {
 }
 
 export default graphql(CreateOrderWithUser, {
-  props: ({ ownProps, mutate }) => {
-    console.log('ownProps', ownProps.match.params.plan)
-    return ({
+  props: ({ ownProps, mutate }) => ({
     submitOrder: ({ state, contacts, token }) => mutate({ variables: {
       input: {
         user: {
@@ -354,6 +373,8 @@ export default graphql(CreateOrderWithUser, {
         },
         order: {
           status: "pending",
+          amountPaid: state.amountPaid,
+          discountId: state.discountId,
           plan: {
             id: state.selectedPlan.planId,
             name: state.selectedPlan.name,
@@ -369,7 +390,5 @@ export default graphql(CreateOrderWithUser, {
             lng: state.lng
           }
         }
-      }
-    }})
-  })}
+      }}})})
 })(OrderForm)

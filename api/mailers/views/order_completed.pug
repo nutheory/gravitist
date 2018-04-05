@@ -9,6 +9,6 @@ block content
       | of the propery we filmed. 
     div.info
       div.left
-        a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View dashboard
+        a.button(href="#{process.env.BASE_URL}/missions/#{orderId}/#{agentId}" target="_blank") View dashboard
       div.right
-        a.button(href="https://homefilming.com/missions/#{orderId}/#{agentId}" target="_blank") View showcase
+        a.button(href="#{process.env.BASE_URL}/missions/#{orderId}/#{agentId}" target="_blank") View showcase

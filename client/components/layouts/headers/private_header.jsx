@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { css } from 'aphrodite'
 import { graphql, compose } from 'react-apollo'
+import { Link, withRouter } from 'react-router-dom'
 import LiNavLink from '../../misc/li_navlink'
 import jwtDecode from 'jwt-decode'
 import styles from '../styles/private_header'
@@ -11,7 +12,8 @@ import UpdateUserMutation from '../../../mutations/update_user'
 const agentLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-rocket', '/new-order', 'New Order']]
 const pilotLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-history', '/history', 'History']]
 const adminLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fa fa-plane', '/admin/pilots', 'Pilots'],
-  ['far fa-id-card', '/admin/agents', 'Agents'],['fa fa-hashtag', '/admin/orders', 'Orders']]
+  ['far fa-id-card', '/admin/agents', 'Agents'],['fa fa-hashtag', '/admin/orders', 'Orders'],
+  ['fas fa-tags', '/admin/discounts', 'Discounts']]
 
 type Props = {
   history: Object,
@@ -55,7 +57,7 @@ class PrivateHeader extends Component<Props, State> {
     const links = arrLinks.map((link, i) =>
       <LiNavLink key={link[1]} activeClassName='is-active' className="ml-4 no-underline text-sm" strict to={`${link[1]}`}>
         <span className="px-1"><i className={`${link[0]}`} aria-hidden="true"></i></span>
-        <span className="hidden sm:inline-block px-1">{link[2]}</span>
+        <span className="hidden md:inline-block pl-1">{link[2]}</span>
       </LiNavLink>
     )
     return links
@@ -69,6 +71,7 @@ class PrivateHeader extends Component<Props, State> {
 
   handleRefreshToken(){
     this.props.refreshToken().then(res => {
+      console.log('res.data.updateUser.auth.token', jwtDecode(res.data.updateUser.auth.token))
       localStorage.setItem('hf_auth_header_token', res.data.updateUser.auth.token)
       window.location.reload(true)
     })
@@ -90,17 +93,19 @@ class PrivateHeader extends Component<Props, State> {
       localStorage.removeItem('hf_auth_header_token')
       window.location.reload(true)
     } }
+    console.log('tokenRefreshCheck.user.refreshToken', tokenRefreshCheck.user.refreshToken)
     if(tokenRefreshCheck.user.refreshToken){ this.handleRefreshToken() }
     return (
       <div className="auth-header-bg">
         <header className="container h-full flex mx-auto">
           <div className="flex-1 flex items-center">
-            <a className="hover:cursor-pointer no-underline">
-              <h1 className="text-xl">Homefilming</h1>
-            </a>
+            <h1 className="text-xl"><Link className="hover:cursor-pointer no-underline" to="/dashboard">Homefilming</Link></h1>
           </div>
           <nav className="flex flex-col">
-            <div className="flex self-end mb-6 text-sm pt-1">
+            <div className="flex self-end mb-5 text-sm pt-1">
+              <div className="ml-4">
+                Welcome {this.state.currentUser.name}
+              </div>
               <a href='/settings' className="block ml-4">
                 <span className="">Settings</span>
               </a>

@@ -64,7 +64,7 @@ class UserViewEdit extends Component<Props, State>{
   handleReturnedContacts: Function
   handleReturnedLocation: Function
   handleGQLErrors: Function
-  returnVerified: Function
+  toggleVerified: Function
   toggleEditMode: Function
   buildInput: Function
   checkUserVerified: Function
@@ -89,7 +89,7 @@ class UserViewEdit extends Component<Props, State>{
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
-    this.returnVerified = this.returnVerified.bind(this)
+    this.toggleVerified = this.toggleVerified.bind(this)
     this.toggleEditMode = this.toggleEditMode.bind(this)
     this.buildInput = this.buildInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -117,22 +117,12 @@ class UserViewEdit extends Component<Props, State>{
     this.setState({ editModeEnabled: !this.state.editModeEnabled })
   }
 
-  returnVerified(verified){
+  toggleVerified(){
     this.setState({ loading: !this.state.loading }, async function(){
-      const resolved = await this.props.submitVerify(this.props.qGetUser.getUser.user.id, !verified)
+      const user = this.props.qGetUser.getUser.user
+      const resolved = await this.props.submitVerify(user.id, !user.isVerified)
         .catch(err => { this.setState(prevState => { errors: prevState.errors.concat(err) }) })
-      if(resolved){
-        this.setState({
-          loading: !this.state.loading,
-          isVerified: resolved.data.verifyUser.user.isVerified }, function(){
-          const el = document.getElementById('verify-toggle-check')
-          if(this.state.isVerified) {
-            el ? el.classList.add(css(view.toggleBlue)) : null
-          } else {
-            el ? el.classList.remove(css(view.toggleBlue)) : null
-          }
-        })
-      }
+      if(resolved){ this.setState({ loading: !this.state.loading, isVerified: resolved.data.verifyUser.user.isVerified }) }
     })
   }
 
@@ -174,7 +164,6 @@ class UserViewEdit extends Component<Props, State>{
   }
 
   handlePasswordChange(e: SyntheticInputEvent<HTMLInputElement>){
-    console.log("changed")
     this.setState({
       password: e.currentTarget.value,
       passwordChanged: true
@@ -253,7 +242,13 @@ class UserViewEdit extends Component<Props, State>{
           <div id="profile" className="bg-white rounded shadow p-4">
             <div className="flex">
               <h3 className="font-bold flex-1">{ currentUser.id === userid ? 'Settings' : 'Profile' }</h3>
-              <div onClick={ this.toggleEditMode }>edit</div>
+              <div onClick={ this.toggleEditMode } className="hover:cursor-pointer">edit</div>
+              { currentUser.type === "admin" ?
+                <div onClick={ this.toggleVerified } className={`${user.isVerified ? 'button-red ' : 'button-green' } ml-4 w-24`}>
+                  <span className="action-button-overlay"></span>
+                  { user.isVerified ? 'Unverify' : 'Verify'}
+                </div>
+              : null }
             </div>
             <div className="my-4 w-full">
               <div className="text-xs">Name</div>
@@ -376,6 +371,13 @@ export default compose(
     props: ({ ownProps, mutate }) => ({
       submitVerify: (id, isVerified) => mutate({
         variables: { input: { id, authorizedId: id, user: { isVerified, refreshToken: true } } },
+        refetchQueries: [{
+          query: GetUser,
+          variables: { input: {
+            id: id ,
+            authorizedId: id }
+          }
+        }]
   }) }) }),
   graphql( UpdateUser, {
     props: ({ ownProps, mutate }) => ({

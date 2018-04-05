@@ -10,6 +10,7 @@ import User from '../../users/signup'
 import ContactList from '../../contacts/list'
 import Location from '../../addresses/location'
 import InputMask from 'react-input-mask'
+import { formatPhone } from '../../../utils/helpers'
 import { isValidEmail, isValidName, isValidPassword, isValidPhone } from '../../../utils/validators'
 import CreateUserAsPilot from '../../../mutations/create_pilot'
 const env = window.location.host === "homefilming.com" ? "production" : "development"
@@ -85,10 +86,8 @@ class PilotRegister extends Component<Props, State> {
   handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
     if(e.currentTarget.name === "phone"){
       if(isValidPhone(e.currentTarget.value)){
-        const sub = e.currentTarget.value.substring(2)
-        const num = sub.replace(/[{()}]/g, '')
         this.setState({ contacts: [{ id: `new-${Math.floor(Math.random() * 999999)}`, type: "phone",
-          content: num.replace(/\s/g, ''), validated: true, status: "new", default: true }], contactsVerified: true }, () => {
+          content: formatPhone(e.currentTarget.value), validated: true, status: "new", default: true }], contactsVerified: true }, () => {
         })
       } else {
         this.setState({ contactsVerified: false }, () => {})
@@ -156,15 +155,15 @@ class PilotRegister extends Component<Props, State> {
         }
         console.log('phoneNumber', phoneNumber)
         const base = `https://connect.stripe.com/express/oauth/authorize?`
-        const userStr = `&stripe_user[email]=${user.email}&stripe_user[first_name]=${nameArr[0]}&stripe_user[last_name]=${nameArr[1]}&stripe_user[phone_number]=${phoneNumber}&stripe_user[country]="US"`
-        window.location = `${base}redirect_uri=${returnUri}/signup-pilot&client_id=${stripeClientId}&state=${user.id}${userStr}`
+        const userStr = `&stripe_user[email]=${user.email}&stripe_user[first_name]=${nameArr[0]}&stripe_user[last_name]=${nameArr[1] ? nameArr[1] : ''}&stripe_user[phone_number]=${phoneNumber}&stripe_user[country]="US"`
+        window.location = `${base}redirect_uri=${returnUri}/users/signup-pilot&client_id=${stripeClientId}&state=${user.id}${userStr}`
       }
     })
   }
 
   handleGQLErrors(err){
     err.graphQLErrors.map((error) => {
-      if(error.message === "UniqueEmailError") {
+      if(error.message === "UniqueEmailError" || error.name === "Constraint") {
         this.setState((prevState) => ({ errors: prevState.errors.concat(
           { type: "email", section: "Email address is taken",
             message: "The email address you entered is already in use. Would you like to login?" }) }) )
@@ -184,23 +183,22 @@ class PilotRegister extends Component<Props, State> {
       if(!this.state.userVerified){ this.setState((prevState) => ({ errors: prevState.errors.concat(
         { type: "user", section: "User info", message: "Please make sure all your user fields are valid." }) })) }
       if(!this.state.contactsVerified){ this.setState((prevState) => ({ errors: prevState.errors.concat(
-        { type: "contacts", section: "Contacts", message: "Please add at least one valid point of contact." }) })) }
+        { type: "contacts", section: "Phone number", message: "Please add a valid phone number." }) })) }
       if(!this.state.license.plugins || !this.state.insurance.plugins){ this.setState((prevState) => ({ errors: prevState.errors.concat(
         { type: "uploads", section: "Upload Documents", message: "Both Documents are required for review." }) })) }
     }
   }
 
   renderErrors(){
-    console.log("errs", this.state.errors)
     return (
       <div className={`error-area hide-error ${ this.state.errors.length > 0 ? ' show-error' : ''}`}>
         <h2 className="text-base font-bold">Please correct these errors</h2>
         { this.state.errors.map((err, i) => (
-          <div key={`error_${i}`} className="my-4">
+          <div key={`error_${i}`} className="mt-4">
             <h3 className="text-sm font-bold">{err.section}</h3>
-            <p className="text-sm">{err.message}</p>
+            <p className="text-sm mt-1">{err.message}</p>
             { err.type === "email" ?
-              <Link to="/login" className="button-blue">
+              <Link to="/login" className="button-blue w-1/4 mt-2">
                 <span className="action-button-overlay"></span>Login
               </Link>
             : null }
@@ -224,7 +222,6 @@ class PilotRegister extends Component<Props, State> {
   }
 
   render(){
-    console.log("state", this.state)
     return(
       <div className="signup-container">
         { this.state.loading ? <Loading /> : null }
@@ -244,7 +241,7 @@ class PilotRegister extends Component<Props, State> {
             </div>
             <div className="flex-1 -mr-6">
               <div className="">
-                <h2 className="text-right py-1">Homefilming</h2>
+                <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
                 <div className="text-right text-sm">Step <strong>1</strong> of 2 | <strong>Create Account</strong></div>
               </div>
               <div className="px-6 py-6">
@@ -260,8 +257,8 @@ class PilotRegister extends Component<Props, State> {
                 <div className="f">
                   <div className="text-xs">Phone number</div>
                   <InputMask
-                    mask="1 \(999\) 999 9999"
-                    maskChar=" "
+                    mask={`1 \\(999\\) 999-9999 \\ext. 9999`}
+                    maskChar="_"
                     onChange={this.handleInputChange}
                     className="input"
                     name="phone"
@@ -339,6 +336,7 @@ class PilotRegister extends Component<Props, State> {
             <div className="my-4">
               <Location handleReturnedLocation={ this.handleReturnedLocation } />
             </div>
+            { this.renderErrors() }
             <div className="my-4">
               <h3 className="text-sm font-bold">Next step</h3>
               <p className="text-sm"> Next is to set up how you get paid, we set this all

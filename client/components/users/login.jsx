@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { withRouter, Link } from 'react-router-dom'
 import LoginUser from '../../mutations/login'
-import { css } from 'aphrodite'
-import lg from './styles/login'
 
 type Props = {
   history: Object,
@@ -79,7 +77,7 @@ class Login extends Component<Props, State> {
 
   handleSubmit(e){
     e.preventDefault()
-    console.log("go")
+    this.setState({ errors: [] })
     this.runMutation()
   }
 
@@ -93,12 +91,10 @@ class Login extends Component<Props, State> {
           <div className="w-full bg-white rounded shadow p-6 border border-grey-dark">
             <div className="py-1 font-bold text-sm">Log in to Homefilming</div>
             { this.state.errors.length > 0 ?
-              <div className="">
-                <div className="">
-                  <ul>
-                    { this.state.errors.map((err, i) => <li key={`error_${i}`}>{ err.message }</li>) }
-                  </ul>
-                </div>
+              <div className="text-red-dark">
+                <ul>
+                  { this.state.errors.map((err, i) => <li key={`error_${i}`}>{ err.message }</li>) }
+                </ul>
               </div>
             : null }
             <form onSubmit={this.handleSubmit}>
@@ -127,7 +123,7 @@ class Login extends Component<Props, State> {
                 </span>
               </div>
               <div className="flex">
-                <div className="flex-1 flex items-end"><Link to="/">Forgot your password?</Link></div>
+                <div className="flex-1 flex items-end"><Link to="/reset-password">Forgot your password?</Link></div>
                 <div className="w-1/4"><button className="button-blue"><span className="action-button-overlay"></span>Login</button></div>
               </div>
             </form>
@@ -138,4 +134,4 @@ class Login extends Component<Props, State> {
   }
 }
 
-export default graphql(LoginUser, {name: 'loginUser'})(Login)
+export default graphql(LoginUser, { name: 'loginUser' })(Login)

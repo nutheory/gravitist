@@ -5,6 +5,7 @@ import { css } from 'aphrodite'
 import { find, propEq } from 'ramda'
 import cE from '../../styles/common_elements'
 import con from './styles/contact'
+import InputMask from 'react-input-mask'
 import ContactTypes from '../../utils/contact_types.js'
 
 type Props = {
@@ -24,6 +25,7 @@ type State = {
   typesOpen: boolean,
   type?: string,
   icon: string,
+  mask?: string,
   ext: string,
   properName: string,
   default: boolean,
@@ -64,13 +66,14 @@ class ContactForm extends Component<Props, State> {
 
   componentDidMount(){
     if(this.props.contact.type){
-      const cType = ContactTypes.filter(ct => ct.type === this.props.contact.type ? ct : null )
+      const cType = ContactTypes.filter(ct => ct.type === this.props.contact.type ? ct : null )[0]
       this.setState({
-        type: cType[0].name,
-        icon: cType[0].icon,
-        properName: cType[0].humanized,
-        holder: cType[0].holder,
-        ext: cType[0].ext,
+        type: cType.name,
+        icon: cType.icon,
+        properName: cType.humanized,
+        holder: cType.holder,
+        ext: cType.ext,
+        mask: cType.mask,
         default: this.props.contact.default,
         content: this.props.contact.content,
         type: this.props.contact.type
@@ -93,6 +96,7 @@ class ContactForm extends Component<Props, State> {
       properName: e.currentTarget.getAttribute('proper'),
       holder: e.currentTarget.getAttribute('holder'),
       ext: e.currentTarget.getAttribute('ext'),
+      mask: e.currentTarget.getAttribute('mask'),
       typesOpen: false
     }, function(){
       this.props.updateContact({
@@ -104,6 +108,12 @@ class ContactForm extends Component<Props, State> {
   }
 
   handleContentChange(e: SyntheticEvent<HTMLInputElement>){
+    // let content
+    // if(this.state.type === "phone"){
+    //   content =
+    // } else {
+    //   content = e.currentTarget.value
+    // }
     this.setState({
       content: e.currentTarget.value
     }, function(){
@@ -149,7 +159,6 @@ class ContactForm extends Component<Props, State> {
   }
 
   render(){
-    console.log('this.state.icon', this.props.restrictedMode)
     return (
       <div className="flex">
         { !this.props.restrictedMode ?
@@ -179,6 +188,7 @@ class ContactForm extends Component<Props, State> {
                     ext={cType.ext ? cType.ext : 'text' }
                     proper={cType.humanized}
                     name={cType.type}
+                    mask={cType.mask}
                     holder={cType.placeholder}
                     onClick={this.handleTypeChange}
                     className="w-1/2 block px-2 py-1 hover:cursor-pointer"
@@ -190,8 +200,9 @@ class ContactForm extends Component<Props, State> {
           </div>
         </div>
         <div className={`flex-1${ !this.props.restrictedMode ? ' mr-4' : '' }`}>
-          <div className="control has-icons-left">
-            <input
+          <div className="">
+            <InputMask
+              mask={this.state.mask ? this.state.mask : ''}
               onChange={this.handleContentChange}
               className="input"
               type={this.state.ext}

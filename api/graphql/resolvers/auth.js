@@ -33,6 +33,12 @@ const isEditor = isAuthenticated.createResolver(
   }
 )
 
+const isAdmin = isAuthenticated.createResolver(
+  (root, { input }, { user }) => {
+    if( user.type !== "admin" ){ throw new ForbiddenError() }
+  }
+)
+
 const isAuthorized = isAuthenticated.createResolver(
   (root, { input }, { user }) => {
     const { authorizedId } = input
@@ -40,4 +46,4 @@ const isAuthorized = isAuthenticated.createResolver(
   }
 )
 
-module.exports = { baseResolver, isAuthenticated, isAuthorized, isAgent, isPilot, isEditor }
+module.exports = { baseResolver, isAuthenticated, isAuthorized, isAgent, isPilot, isEditor, isAdmin }

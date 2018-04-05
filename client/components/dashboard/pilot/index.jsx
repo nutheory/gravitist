@@ -37,17 +37,17 @@ class PilotDashboard extends Component<Props, State> {
   renderNotifications(user: Object){
     return (
       <div className="flex flex-wrap md:-mx-4 ">
-        { user.accountId ? <div className="flex-1 p-4">
+        { !user.accountId ? <div className="flex-1 p-4">
           <div className="border border-grey bg-red-lightest p-4">
             <h3 className="font-bold text-sm">{ Notifications.user.pilot.account.title }</h3>
             <p className="text-sm">{ Notifications.user.pilot.account.body }</p>
-            <a href={`https://connect.stripe.com/express/oauth/authorize?redirect_uri=${returnUri}/signup-pilot&client_id=${stripeClientId}&state=${user.id}`}>
+            <a href={`https://connect.stripe.com/express/oauth/authorize?redirect_uri=${returnUri}/users/signup-pilot&client_id=${stripeClientId}&state=${user.id}`}>
               <img src={`${require('../../../assets/images/stripe.png')}`} style={{ display: 'block', height: '30px', marginTop: '1rem' }} />
             </a>
           </div>
         </div> : null }
-        { user.isVerified ? <div className="flex-1 p-4">
-          <div className="border border-grey bg-red-lightest p-4">
+        { !user.isVerified ? <div className="flex-1 p-4">
+          <div className="border border-grey bg-yellow-lightest p-4">
             <h3 className="font-bold text-sm">{ Notifications.user.pilot.verified.title }</h3>
             <p className="text-sm">{ Notifications.user.pilot.verified.body }</p>
           </div>

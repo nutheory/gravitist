@@ -20,7 +20,7 @@ const OurClientsLoveUs = () => {
           {[...Array(test.rating)].map((ar, i) => {
             return (
               <img key={`star_${i}`}
-                src={require('../../../assets/svg/star.svg')}
+                src={`/${require('../../../assets/svg/star.svg')}`}
                 alt="star"
                 className="inline mt-4 w-4 h-4" />
             )

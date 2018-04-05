@@ -18,7 +18,7 @@ const Share = () => {
           return (
             <div key={`pill_${i}`} className="w-full sm:w-1/2 md:w-1/5 p-4">
               <div className="flex rounded-full border border-grey-darkest py-2 px-4">
-                <div className="inline-block mr-3"><img src={s.src} alt={`${s.name}`} className="w-6 h-6" /></div>
+                <div className="inline-block mr-3"><img src={`/${s.src}`} alt={`${s.name}`} className="w-6 h-6" /></div>
                 <div className="inline-block mt-1">{s.name}</div>
               </div>
             </div>

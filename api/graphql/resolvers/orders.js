@@ -53,7 +53,7 @@ const createOrderWithUser = baseResolver.createResolver(
 
 const createOrder = isAgent.createResolver(
   async (root, { input }, { user }, newUser = false) => {
-    const order = await create({ usr: user, pln: input.order.plan, addr: input.order.address })
+    const order = await create({ ordr: input.order, usr: user, addr: input.order.address })
     if( !newUser ){ confirmationMailer({ order, user }) }
     notifyLocalPilots({ ordr: order })
     order.agent = user

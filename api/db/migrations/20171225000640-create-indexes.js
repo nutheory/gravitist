@@ -3,7 +3,7 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     queryInterface.addIndex('Users', ['email', 'companyId'])
-    queryInterface.addIndex('Orders', ['pilotId', 'receiptId', 'pilotTransferId', 'agentId'])
+    queryInterface.addIndex('Orders', ['pilotId', 'receiptId', 'pilotTransferId', 'agentId', 'discountId'])
     queryInterface.addIndex('Addresses', ['addressableId', 'addressable'])
     queryInterface.addIndex('Companies', ['name'])
     queryInterface.addIndex('Contacts', ['contactableId', 'contactable'])
@@ -13,11 +13,12 @@ module.exports = {
     queryInterface.addIndex('Notes', ['notableId', 'notable', 'authorId'])
     queryInterface.addIndex('Notifications', ['userId'])
     queryInterface.addIndex('Listings', ['orderId'])
+    queryInterface.addIndex('Discounts', ['code'])
   },
 
   down: function (queryInterface, Sequelize) {
     queryInterface.removeIndex('Users', ['email', 'companyId'])
-    queryInterface.removeIndex('Orders', ['pilotId', 'receiptId', 'pilotTransferId', 'agentId'])
+    queryInterface.removeIndex('Orders', ['pilotId', 'receiptId', 'pilotTransferId', 'agentId', 'discountId'])
     queryInterface.removeIndex('Addresses', ['addressableId', 'addressable'])
     queryInterface.removeIndex('Companies', ['name'])
     queryInterface.removeIndex('Contacts', ['contactableId', 'contactable'])
@@ -27,5 +28,6 @@ module.exports = {
     queryInterface.removeIndex('Notes', ['notableId', 'notable', 'authorId'])
     queryInterface.removeIndex('Notifications', ['userId'])
     queryInterface.removeIndex('Listings', ['orderId'])
+    queryInterface.removeIndex('Discounts', ['code'])
   }
 }

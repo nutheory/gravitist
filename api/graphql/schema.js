@@ -4,6 +4,7 @@ const { companyResolvers } = require('./resolvers/companies')
 const { userResolvers } = require('./resolvers/users')
 const { assetResolvers } = require('./resolvers/assets')
 const { listingResolvers } = require('./resolvers/listings')
+const { discountResolvers } = require('./resolvers/discounts')
 const { noteResolvers } = require('./resolvers/notes')
 const { orderResolvers } = require('./resolvers/orders')
 const { paymentResolvers } = require('./resolvers/payments')
@@ -12,6 +13,7 @@ const Asset = require('./types/asset')
 const Common = require('./types/common')
 const Company = require('./types/company')
 const Contact = require('./types/contact')
+const Discount = require('./types/discount')
 const Listing = require('./types/listing')
 const Note = require('./types/note')
 const Order = require('./types/order')
@@ -34,6 +36,8 @@ const Query = `
     getUser( input: GetProtectedInput ): GetUserPayload
     getCustomer( input: GetCustomerInput ): CustomerPayload
     getGallery( input: GetGalleryInput ): GalleryPayload
+    applyDiscount( input: ApplyDiscountInput ): DiscountPayload
+    getDiscounts( input: DiscountCollectionInput ): DiscountsPayload
   }
 `
 
@@ -48,6 +52,7 @@ const Mutation = `
     createSource( input: CreateSourceInput ): CustomerPayload
     createListing( input: CreateListingInput ): ListingPayload
     createNote( input: CreateNoteInput ): NotePayload
+    createDiscount( input: CreateDiscountInput ): DiscountPayload
     joinOrLeaveCollaboration( input: CollaborationInput ): OrderPayload
     approveOrder( input: UpdateOrderInput ): OrderPayload
     rejectOrder( input: UpdateOrderInput ): OrderPayload
@@ -65,10 +70,13 @@ const Mutation = `
     destroySource( input: DestroySourceInput ): DestroySourcePayload
     destroyOrder( input: DestroyOrderInput ): OrderPayload
     destroyCompany( input: DestroyCompanyInput ): CompanyPayload
+    destroyDiscount( input: DestroyDiscountInput ): DiscountPayload
     destroyNote( input: DestroyNoteInput ): NotePayload
     destroyAsset( input: AssetInput ): AssetPayload
     setDefaultSource( input: SetDefaultSourceInput ): CustomerPayload
     toggleDefaultAsset( input: AssetInput ): AssetPayload
+    initResetPassword( input: InitResetPasswordInput ): UserPayload
+    resetPassword( input: ResetPasswordInput ): UserTokenPayload
   }
 `
 
@@ -85,6 +93,7 @@ const resolvers = _.merge(
   userResolvers,
   assetResolvers,
   listingResolvers,
+  discountResolvers,
   noteResolvers,
   orderResolvers,
   paymentResolvers
@@ -100,6 +109,7 @@ const schema = makeExecutableSchema({
     Common,
     Company,
     Contact,
+    Discount,
     Listing,
     Note,
     Address,

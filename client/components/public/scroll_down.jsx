@@ -6,15 +6,8 @@ import cE from '../../styles/common_elements'
 
 const scrollDown = (props: Object) => {
   return (
-    <div className={css(cE.scrollDown)}>
-      <div className={css(cE.scrollDownInner)}>
-        <NavLink
-          to={props.to}
-        >
-          <img src={require('../../assets/svg/scrollDown.svg')} className={css(cE.scrollDownIcon)} alt="scroll" /><br />
-          <span className={css(cE.scrollDownText)}>Scroll Down to Learn More</span>
-          </NavLink>
-      </div>
+    <div className="absolute pin-b pb-4 flex justify-center w-8 brighten " onClick={props.jumpStart}>
+      <img src={`/${require('../../assets/svg/arrow-down.svg')}`}  alt="scroll" /><br />
     </div>
   )
 }

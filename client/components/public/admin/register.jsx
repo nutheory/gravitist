@@ -88,8 +88,8 @@ class CreateUser extends Component<Props, State> {
     this.setState({ userVerified: verified, name, email, password })
   }
 
-  handleReturnedContacts(verified, contacts){
-    this.setState({ contactsVerified: verified, contacts })
+  handleReturnedContacts(contacts){
+    this.setState({ contacts, contactsVerified: contacts.length > 0 })
   }
 
   returnUploadInstance(){

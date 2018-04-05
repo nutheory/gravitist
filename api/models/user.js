@@ -40,6 +40,7 @@ module.exports = function(sequelize, Sequelize) {
       defaultValue: false
     },
     passwordResetSent: Sequelize.DATE,
+    passwordResetToken: Sequelize.STRING,
     unsubscribedEmail: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,

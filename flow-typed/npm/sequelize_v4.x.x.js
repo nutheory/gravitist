@@ -1,5 +1,5 @@
-// flow-typed signature: 62f6785ac3e0e4cfc50189096522dc75
-// flow-typed version: 010cf91127/sequelize_v4.x.x/flow_>=v0.42.x
+// flow-typed signature: 43c2d126baa1115c874c31d06ef27adb
+// flow-typed version: e278878fb6/sequelize_v4.x.x/flow_>=v0.42.x
 
 // @flow
 
@@ -1341,6 +1341,8 @@ declare module "sequelize" {
      * A string or a data type
      */
     type: DataTypeAbstract,
+    
+    allowNull?: boolean,
 
     values?: Array<any>,
 
@@ -4323,9 +4325,15 @@ declare module "sequelize" {
      */
     addIndex(
       tableName: string | Object,
-      attributes: string[],
-      options?: DefineIndexOptions,
-      rawTablename?: string): Promise<void>,
+      options?: {
+        fields: Array<string>,
+        unique?: boolean,
+        using?: string,
+        type?: IndexType,
+        name?: string,
+        where?: WhereOptions<any>,
+      }
+    ): Promise<void>,
 
     /**
      * Shows the index of a table

@@ -1,9 +1,9 @@
 const stripe = require("stripe")(process.env[`STRIPE${process.env.NODE_ENV === 'development' ? '_DEV' : ''}_SECRET_KEY`])
 const chalk = require('chalk')
 
-async function createStripeCharge({ pln, customer }){
+async function createStripeCharge({ pln, amountPaid, customer }){
   return await stripe.charges.create({
-    amount: pln.actualPrice,
+    amount: amountPaid,
     customer: customer,
     currency: "usd",
     description: pln.name

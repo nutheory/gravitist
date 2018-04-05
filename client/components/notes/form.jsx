@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
-import { css } from 'aphrodite'
 import { propOr } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import Avatar from '../assets/avatar'

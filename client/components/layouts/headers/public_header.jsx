@@ -79,7 +79,7 @@ class PublicHeader extends Component<Props, State> {
                   <svg className="fill-current phone-icon" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><g><path d="M6.5 9c0 3.5 3.06 6.57 3.06 6.57l.87.88S13.5 19.5 17 19.5a3.2 3.2 0 0 0 3.27-2.44 5.13 5.13 0 0 0 .23-1.32.92.92 0 0 0-.59-.81L17.15 14a.56.56 0 0 0-.74.4 9.28 9.28 0 0 1-.34 1c-.29.73-1.7 1.44-4.32-1.19s-1.93-4-1.19-4.32a9 9 0 0 1 1-.34.56.56 0 0 0 .4-.74l-.92-2.76a.92.92 0 0 0-.81-.59 5.09 5.09 0 0 0-1.31.22A3.2 3.2 0 0 0 6.5 9z"/><path d="M0 13A13 13 0 1 0 13 0 13 13 0 0 0 0 13zm25 0A12 12 0 1 1 13 1a12 12 0 0 1 12 12z"/></g></svg>
                 </div>
                 <div className="hidden xl:inline-block px-4">
-                  <div className="text-2xl">800 555 6767</div>
+                  <div className="text-2xl">800 208 8947</div>
                   <div className="text-xs text-right">Toll Free Number</div>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import ScrollDown from '../scroll_down'
 const Hero = () => {
   return (
     <div className="hero">
-      <div className="bg" style={{backgroundImage: `url(${require('../../../assets/images/homePhoto2.jpg')})`}}>
+      <div className="bg" style={{backgroundImage: `url(/${require('../../../assets/images/homePhoto2.jpg')})`}}>
         <div className="overlay"></div>
         <div className="w-full flex justify-end px-8 lg:pr-20">
           <div className="w-full sm:w-4/5 md:w-3/5 lg:w-3-5 xl:w-2/5 z-5">
