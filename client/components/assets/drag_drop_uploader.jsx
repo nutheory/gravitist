@@ -16,6 +16,7 @@ import mimeTypes from '../../utils/mime_types.js'
 import styles from './styles/drag_drop_uploader'
 import cE from '../../styles/common_elements'
 const Buffer = require('buffer').Buffer
+let env = ''
 if(window.location.host.includes("homefilming.com")){
   env = "production"
 } else if(window.location.host.includes("herokuapp.com")){
