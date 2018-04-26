@@ -16,7 +16,7 @@ module.exports = {
   stripe_platform: {
     test: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
     development: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
-    production: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl'
+    production: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
     staging: 'ca_CkcRx3A3U0dkiYApkt1WoSNvcNXdnURT'
   },
   aws: {
