@@ -16,7 +16,13 @@ import mimeTypes from '../../utils/mime_types.js'
 import styles from './styles/drag_drop_uploader'
 import cE from '../../styles/common_elements'
 const Buffer = require('buffer').Buffer
-const env = window.location.host.includes("homefilming.com") ? "production" : "development"
+if(window.location.host.includes("homefilming.com")){
+  env = "production"
+} else if(window.location.host.includes("herokuapp.com")){
+  env = "staging"
+} else {
+  env = "development"
+}
 const host = Config.base_url[env]
 const aws = Config.aws.accessKeyId
 

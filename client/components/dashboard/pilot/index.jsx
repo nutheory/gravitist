@@ -16,10 +16,8 @@ let env = ''
 if(window.location.host.includes("homefilming.com")){
   env = "production"
 } else if(window.location.host.includes("herokuapp.com")){
-  alert('staging')
   env = "staging"
 } else {
-  alert('dev')
   env = "development"
 }
 const stripeClientId = Config.stripe_platform[env]
