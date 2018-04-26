@@ -6,16 +6,18 @@ module.exports = {
     development: {
       'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
     },
+    staging: {
+      'publishable_key': 'pk_test_iBrsAg4OASHeIPwax9jXpUEz'
+    },
     production: {
       'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
-      // 'publishable_key': 'pk_live_oquMAwDjxlu3ZLBwx1dCkomg'
     }
   },
   stripe_platform: {
     test: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
     development: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
     production: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl'
-    // production: 'ca_BIQQAFoAbsx5V7IK7wOa6rrFbjBnxil7'
+    staging: 'ca_CkcRx3A3U0dkiYApkt1WoSNvcNXdnURT'
   },
   aws: {
     baseUrl: 'https://s3-us-west-1.amazonaws.com/homefilming/',

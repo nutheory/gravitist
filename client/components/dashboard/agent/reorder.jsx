@@ -6,7 +6,14 @@ import NewOrder from '../../orders/new_order'
 import CreateOrder from '../../../mutations/create_order'
 import Config from '../../../utils/config'
 import Plans from '../../../utils/pricing_plans.json'
-const env = window.location.host === "homefilming.com" ? "production" : "development"
+let env = ''
+if(window.location.host.includes("homefilming.com")){
+  env = "production"
+} else if(window.location.host.includes("herokuapp.com")){
+  env = "staging"
+} else {
+  env = "development"
+}
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {

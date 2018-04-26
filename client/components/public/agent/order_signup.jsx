@@ -12,7 +12,14 @@ import DragDropUploader from '../../assets/drag_drop_uploader'
 import CreateOrderWithUser from '../../../mutations/create_order_user'
 import jwtDecode from 'jwt-decode'
 import Plans from '../../../utils/pricing_plans.json'
-const env = window.location.host.includes("homefilming.com") ? "production" : "development"
+let env = ''
+if(window.location.host.includes("homefilming.com")){
+  env = "production"
+} else if(window.location.host.includes("herokuapp.com")){
+  env = "staging"
+} else {
+  env = "development"
+}
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {
