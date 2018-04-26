@@ -1,0 +1,75 @@
+{
+  "name": "homefilming",
+  "scripts": {
+  },
+  "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "BASE_URL": {
+      "required": true
+    },
+    "GOOGLE": {
+      "required": true
+    },
+    "JWT_SECRET": {
+      "required": true
+    },
+    "STRIPE_PLATFORM": {
+      "required": true
+    },
+    "STRIPE_PUBLISHABLE_KEY": {
+      "required": true
+    },
+    "STRIPE_SECRET_KEY": {
+      "required": true
+    },
+    "TRANSLOADIT_AUTH_KEY": {
+      "required": true
+    },
+    "TRANSLOADIT_SECRET_KEY": {
+      "required": true
+    },
+    "TRANSLOADIT_TEMPLATE_AVATAR": {
+      "required": true
+    },
+    "TRANSLOADIT_TEMPLATE_DOCUMENTS": {
+      "required": true
+    },
+    "TRANSLOADIT_TEMPLATE_LOGO": {
+      "required": true
+    },
+    "TRANSLOADIT_TEMPLATE_OVERLAY": {
+      "required": true
+    },
+    "TRANSLOADIT_TEMPLATE_PROCESS": {
+      "required": true
+    },
+    "TWILIO_SID": {
+      "required": true
+    },
+    "TWILIO_TOKEN": {
+      "required": true
+    },
+    "WWWHISPER_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql",
+    "wwwhisper"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
