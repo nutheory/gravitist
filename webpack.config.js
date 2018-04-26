@@ -32,14 +32,9 @@ module.exports = [
           exclude: /node_modules/
         },
         {
-          test: /\.(sass|scss)$/,
-          use: appCss.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
-        },
-        {
           test: /\.(css)$/,
           use: appCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
-          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]}),
-          exclude: /gallery/
+          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
         },
         {
           test: /.*\.(gif|png|jpe?g|svg|mp4|m4v|)$/i,
@@ -78,8 +73,9 @@ module.exports = [
           exclude: /node_modules/
         },
         {
-          test: /\.(sass|scss)$/,
-          use: galleryCss.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
+          test: /\.(css)$/,
+          use: galleryCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
+          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
         }
       ]
     },

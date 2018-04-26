@@ -58,19 +58,24 @@ class PublicHeader extends Component<Props, State> {
   }
 
   render(){
+    console.log(window.location.pathname)
     return(
-      <div className="fixed z-10 w-full px-8 lg:px-20 py-3 public-header">
-        <div className={`header-bg ${ this.state.bgPinned === true ? 'header-bg-pin' : '' }`}></div>
-        <header id="AppHeader" className={`flex ${ this.state.bgPinned === true ? 'header-fg-pin' : '' }`}>
+      <div className="fixed z-40 w-full px-8 lg:px-20 py-3 public-header">
+        <div className={`header-bg ${ this.state.bgPinned ? 'header-bg-pin' : '' }`}></div>
+        <header id="AppHeader" className={`flex ${ this.state.bgPinned ? 'header-fg-pin' : '' }`}>
           <div className="flex-1 flex">
             <div className="pr-4 py-1 inline-block">
-              <NavLink className="title text-3xl no-underline" to="/">Homefilming</NavLink>
+              <NavLink className="w-48 h-6 block mt-2" to="/">
+                { this.state.bgPinned ? <img src={require('../../../assets/svg/hf_logo_dark.svg')} />
+                : <img src={require('../../../assets/svg/hf_logo_white.svg')} /> }
+              </NavLink>
             </div>
+            { window.location.pathname === '/pilots' ? null :
             <div className="hidden md:flex pl-4 border-l border-grey py-3">
               <NavLink className="inline-block px-2" to="/pricing">Pricing</NavLink>
               <NavLink className="inline-block px-2" to="/how-it-works">How it works</NavLink>
               <NavLink className="inline-block px-2" to="/pilots">Jobs for pilots</NavLink>
-            </div>
+            </div> }
           </div>
           <div className="flex">
             <div className="flex-1 flex justify-end">
@@ -86,7 +91,7 @@ class PublicHeader extends Component<Props, State> {
             </div>
             <div className="hidden md:inline-block">
               <div className="flex">
-                <NavLink className="button" to="/pilots/register">Sign up to fly</NavLink>
+                {/* <NavLink className="button" to="/pilots/register">Sign up to fly</NavLink> */}
                 <NavLink className="button" to="/login">Login</NavLink>
               </div>
             </div>

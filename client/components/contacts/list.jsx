@@ -1,10 +1,8 @@
 // @flow
 import React, { Component } from 'react'
 import { isEmpty, propSatisfies, last, merge, remove, where, concat, clone, times } from 'ramda'
-import { StyleSheet, css } from 'aphrodite'
 import ContactForm from './form'
 import { formatPhone } from '../../utils/helpers'
-import con from './styles/contact'
 import ContactTypes from '../../utils/contact_types'
 
 type Props = {
@@ -59,7 +57,7 @@ class ContactList extends Component<Props, State> {
         this.state.contacts.length < 2 ? this.newContact() : null
       })
     } else {
-      times(this.newContact, 2)
+      this.newContact(2)
     }
   }
 
@@ -78,15 +76,13 @@ class ContactList extends Component<Props, State> {
   buildContact(def: Object){
     const newContact = { id: `new-${Math.floor(Math.random() * 999999)}`, type: "",
       content: "", validated: false, status: "new", default: def.default }
-    this.setState((prevState) => ({ contacts: prevState.contacts.concat(newContact) }))
+    this.setState((prevState) => ({ contacts: prevState.contacts.concat(newContact) }), function(){
+      def.contactCount > 0 ? this.buildContact({ default: false, contactCount: def.contactCount - 1 }) : null
+    })
   }
 
-  newContact(){
-    if(isEmpty(this.state.contacts)){
-      this.buildContact({ default: true })
-    } else {
-      this.buildContact({ default: false })
-    }
+  newContact(numberOfContacts: number){
+    this.buildContact({ default: true, contactCount: numberOfContacts ? numberOfContacts : 1 })
   }
 
   updateContact(updatedContact: Object){

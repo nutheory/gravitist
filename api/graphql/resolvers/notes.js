@@ -6,7 +6,6 @@ const chalk = require('chalk')
 const getNotes = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
     const notes = await collection({ input })
-    console.log(chalk.blue.bold('notes'), notes)
     return notes
   }
 )

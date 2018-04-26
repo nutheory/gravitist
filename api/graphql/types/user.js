@@ -126,9 +126,6 @@ const User = `
     workRadius: Int
     bio: String
     address: AddressInput
-    avatar: AssetInput
-    license: AssetInput
-    insurance: AssetInput
     contacts: [ContactInput]
   }
 
@@ -140,7 +137,6 @@ const User = `
     bio: String
     isVerified: Boolean
     address: AddressInput
-    avatar: AssetInput
     contacts: [ContactInput]
   }
 

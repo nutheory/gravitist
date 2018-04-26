@@ -44,12 +44,13 @@ const UnknownErrorFF = ({args, loc}) => new (createError('Unknown', {
 
 const NotFoundError = ({args, loc}) => new (createError('NotFound', {
   message: `Not found.`,
+  name: 'NotFoundError',
   args,
   info: loc
 }))()
 
 const ConstraintError = ({args, loc}) => new (createError('Constraint', {
-  message: `Db Unique constaint error.`,
+  message: `DB unique constraint error.`,
   args,
   info: loc
 }))()

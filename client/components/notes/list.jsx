@@ -40,7 +40,6 @@ class NoteList extends Component<Props, State> {
     const { loading, getNotes } = this.props.data
     if(loading){return <div></div>}
     const notes = getNotes.notes.length > 0 ? splitAt(getNotes.notes.length - 2, getNotes.notes) : null
-    console.log('notes', notes)
     return(
       <div id={`${this.props.model}_${this.props.modelId}_notes`} className="notes">
         <div className="flex">

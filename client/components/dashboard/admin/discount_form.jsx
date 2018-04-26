@@ -76,7 +76,7 @@ class DiscountForm extends Component<Props, State> {
         endsAt: this.state.dateChanged ? this.state.endsDate : null,
         maxUsageCount: this.state.maxUsageCount
       })
-      console.log('resolved', resolved)
+      this.setState({ code: "", amount: "" })
     }
   }
 
@@ -131,7 +131,7 @@ class DiscountForm extends Component<Props, State> {
           <div className="px-2 sm:w-1/2 md:w-1/3 mb-4 lg:w-auto lg:mb-auto">
             <div className="text-xs">Apply to plan</div>
             <div className="inline-block">
-            <div className={`dropdown relative ${ this.state.planOpen ? 'is-active' : '' }`}>
+              <div className={`dropdown relative ${ this.state.planOpen ? 'is-active' : '' }`}>
                 <div className="dropdown-trigger hover:cursor-pointer">
                   <button
                     onClick={this.toggleDropdownHandler}
@@ -180,6 +180,6 @@ export default graphql(CreateDiscount, {
       variables: { input: props },
       refetchQueries: [{
         query: GetDiscounts,
-        variables: { } }]
+        variables: { input: { } } }]
     }) })
 })(DiscountForm)

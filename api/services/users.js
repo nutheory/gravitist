@@ -153,18 +153,19 @@ const updateUser = ({ usr, attrs }) =>
         .catch(err => { throw err }))
     .orElse( reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
-const validateIncomingPassword = async ({ usr, attrs }) =>
-  await usr.comparePassword(attrs.password).then(res => {
-    console.log(chalk.blue.bold("RES"),res)
+const validateIncomingPassword = async ({ usr, attrs }) => {
+  if(!usr){ throw new Error(NotFoundError({ args: attrs, loc: 'Service: User.validateIncomingPassword'})) }
+  return usr.comparePassword(attrs.password).then(res => {
+    console.log(chalk.blue.bold("still OK"),res)
     if(res){
       return { usr }
     } else {
-      console.log(chalk.blue.bold("still OK"),res)
-      return new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' }))
+      console.log(chalk.blue.bold("still OK2"),res)
+      throw new Error(FailFastError("AuthenticationFailed", { args: attrs, loc: 'Service: User.validateIncomingPassword' }))
     }
   }).catch(err => {
-    throw new Error(FailFastError("AuthenticationFailed", { args: auth, loc: 'Service: User.validateIncomingPassword' })) })
-
+    throw new Error(FailFastError("AuthenticationFailed", { args: attrs, loc: 'Service: User.validateIncomingPassword' })) })
+}
 
 const returnTokenAndUserInfo = userObj => db.User.createAndReturnToken(userObj)
 
@@ -181,7 +182,7 @@ const passwordReset = async ({ usr, attrs }) =>
       passwordResetToken: null,
       passwordResetSent: null }, { transaction: tx })
       .then(usr => resolver.resolve({ usr }))
-      .catch(err => { throw err }))
+      .catch(err => resolver.reject({ err })))
     .orElse( reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
 const destroyUser = ({ usr }) => {

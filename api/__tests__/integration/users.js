@@ -1,4 +1,4 @@
-const { intStart } = require('../utils/integration_server')
+// const { serverStart } = require('../../server')
 const Users = require('../resolverMethods/users')
 const { randSix, gQL, gQLget, gQLpost, generateUserData, generateAddressData,
   cleanUpTestItem, responseFactory, LogIn } = require('../utils/helpers')
@@ -14,7 +14,6 @@ describe('creating users with types', () => {
     const attr = { stripeToken: "tok_visa" }
     const email = `drush81+agent${randSix()}@gmail.com`
     const agent = await Users.createNewUser( "Agent", attr, { email } )
-        // console.log(chalk.blue.bold('newAgent'), agent.result)
     expect(agent.result.status).toEqual(200)
     expect(agent.result[`createAgent`].user).toHaveProperty( 'type', 'agent' )
     const clean = agent.cleanUpUser
@@ -25,9 +24,7 @@ describe('creating users with types', () => {
     const address = await generateAddressData()
     const email = `drush81+pilot${randSix()}@gmail.com`
     const attr = { stripeToken: "tok_visa", workRadius: 50, address: missionViejoMall,
-      contacts: [{ content: "nutheory", type: "slack" }, { content: "555-5555", type: "phone" }],
-      license: {url: "test.com", awsId: "this-is-a-id"}, insurance: { url: "test.com", awsId: "this-is-a-id" },
-      avatar: { url: "test.com", awsId: "this-is-a-id" } }
+      contacts: [{ content: "nutheory", type: "slack" }, { content: "(949) 555-5555", type: "phone" }]}
     const pilot = await Users.createNewUser( "Pilot", attr, { email } )
     expect(pilot.result.status).toEqual(200)
     expect(pilot.result["createPilot"].user).toHaveProperty('type', 'pilot')
@@ -36,22 +33,14 @@ describe('creating users with types', () => {
     return clean()
   })
 
-  test(chalk.green.bold('it should create a editor'), async () => {
-    const attr = { stripeToken: "tok_visa" }
-    const email = `drush81+editor${randSix()}@gmail.com`
-    const editor = await Users.createNewUser("Editor", attr, { email } )
-    expect(editor.result.status).toEqual(200)
-    expect(editor.result["createEditor"].user).toHaveProperty('type', 'editor')
-    const clean = editor.cleanUpUser
-    return clean()
-  })
 
   test(chalk.green.bold('it should create a admin'), async () => {
-    const attr = {}
+    const attr = { type: 'unapproved_admin',
+      contacts: [{ content: "nutheory", type: "slack" }, { content: "(949) 555-5555", type: "phone" }] }
     const email = `drush81+admin${randSix()}@gmail.com`
-    const admin = await Users.createNewUser("Admin", attr, { email } )
+    const admin = await Users.createNewUser("User", attr, { email } )
     expect(admin.result.status).toEqual(200)
-    expect(admin.result["createAdmin"].user).toHaveProperty('type', 'admin')
+    expect(admin.result["createUser"].user).toHaveProperty('type', 'unapproved_admin')
     const clean = admin.cleanUpUser
     return clean()
   })
@@ -61,16 +50,16 @@ describe('creating users with types', () => {
     const email = `drush81+agent@gmail.com`
     const agent = await Users.createNewUser( "Agent", attr, { email } )
     expect(agent.result.status).toEqual(200)
-    expect(agent.result.data.errors[0].message).toEqual( expect.stringMatching(/^UniqueEmailError/) )
+    expect(agent.result.data.errors[0]).toHaveProperty('message', expect.stringContaining('unique constraint') )
   })
 
-  test(chalk.green.bold('it should fail to create a agent with RequiredFieldsError'), async () => {
-    const attr = { }
-    const email = `drush81+agent${randSix()}@gmail.com`
-    const agent = await Users.createNewUser( "Agent", attr, { email } )
-    expect(agent.result.status).toEqual(200)
-    expect(agent.result.data.errors[0].message).toEqual( expect.stringMatching(/^RequiredFieldsError/) )
-  })
+  // test(chalk.green.bold('it should fail to create a agent with RequiredFieldsError'), async () => {
+  //   const attr = { }
+  //   const email = `drush81+agent${randSix()}@gmail.com`
+  //   const agent = await Users.createNewUser( "Agent", attr, { email } )
+  //   expect(agent.result.status).toEqual(200)
+  //   expect(agent.result.data.errors[0]).toHaveProperty('message', expect.stringContaining('unique constraint') )
+  // })
 
   test(chalk.green.bold('it should delete the current user'), async () => {
     const attr = { stripeToken: "tok_visa" }
@@ -80,6 +69,8 @@ describe('creating users with types', () => {
     gQL.defaults.headers.common.authorization = agent.result.createAgent.auth.token
     const id = agent.result.createAgent.user.id
     const deleted = await Users.destroyUser( { input: { id: id, authorizedId: id } } )
+    console.log(chalk.blue.bold('deleted.destroyUser'), deleted.data)
+    console.log(chalk.blue.bold('agent.result.createAgent.user.name'), agent.result.createAgent.user.name)
     expect(deleted.status).toEqual(200)
     expect(deleted.destroyUser.user.name).toEqual(agent.result.createAgent.user.name)
     gQL.defaults.headers.common.authorization = ''
@@ -104,8 +95,8 @@ describe('perform tasks as authenticated user', () => {
   test(chalk.green.bold('it should get a users profile'), async () => {
     const user = await Users.getProfile({ input: { id: agentSnapshot.id, authorizedId: agentSnapshot.id } })
     expect(user.status).toEqual(200)
-    expect(user.getProfile.user.name).toEqual('Derek Rush')
-    expect(user.getProfile.user.address).toHaveProperty( 'zipCode' )
+    expect(user.getUser.user.name).toEqual('Derek Rush')
+    expect(user.getUser.user.address).toHaveProperty( 'zipCode' )
   })
 
   test(chalk.green.bold('it should get denied a users profile'), async () => {

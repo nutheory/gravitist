@@ -1,9 +1,7 @@
 @tailwind preflight;
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-@import "errors.css";
 @import "utils.css";
-@import "forms.scss";
 
 @tailwind utilities;
 

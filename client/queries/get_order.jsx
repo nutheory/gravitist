@@ -97,6 +97,7 @@ const GetOrder = gql`
         }
         contacts {
           name
+          type
           content
           createdAt
         }

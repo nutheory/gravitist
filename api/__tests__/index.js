@@ -1,9 +1,10 @@
-const { intStart } = require('./utils/integration_server')
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+const { serverStart } = require('../server')
 
 let server
 
 const Init = async () => {
-  return intStart().then(s => {
+  return serverStart().then(s => {
     server = s
   })
 }

@@ -18,6 +18,8 @@ const formatPhone = (phone) => {
   }
 }
 
+const cleansePrice = (price) => price.replace(/[ ,$]/g, '')
+
 const calcPercentageDiscount = ({ base, percent }) => {
   const baseAmount = base.includes('.') ? parseInt(base.replace(/\./g,'')) : parseInt(base)
   const percentAmount = percent.includes('%') ? parseInt(percent.replace(/\%/g,'')) : parseInt(percent)
@@ -30,4 +32,4 @@ const calcNumberDiscount = ({ base, number }) => {
   return (baseAmount - numberAmount).toString()
 }
 
-module.exports =  { humanize, dateTimeShort, dateShort, formatPhone, calcPercentageDiscount, calcNumberDiscount }
+module.exports =  { humanize, dateTimeShort, dateShort, formatPhone, calcPercentageDiscount, calcNumberDiscount, cleansePrice }

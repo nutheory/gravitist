@@ -3,7 +3,6 @@ body{
   color: #3d4852;
   font-family: 'Source Sans Pro','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen','cursive','Droid Sans','Helvetica Neue';
 
-
   & a:link{
     color: #3d4852;
   }
@@ -53,6 +52,10 @@ body{
   &.font-source-sans {
     font-family: 'Source Sans Pro','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen','cursive','Droid Sans','Helvetica Neue';
   }
+}
+
+button:focus, input[type="button"]:focus {
+    outline: none;
 }
 
 ul{
@@ -481,6 +484,69 @@ ul{
   }
 }
 
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.40);
+  background: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #dae1e7;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  width: 100%;
+  color: #666;
+  font-weight: 200;
+}
+.select-faker{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.40);
+  background: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #dae1e7;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  color: #666;
+  font-weight: 200;
+}
+
+input {
+  -webkit-appearance: none;
+}
+
+.input-icon {
+  height: 2.25em;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25em;
+  z-index: 4;
+}
+
+.input {
+  box-shadow: inset 0 1px 2px 0 rgba(10,10,10,0.1);
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  background: #fff;
+}
+
+.list-button{
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.40);
+  background: #fff;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+}
+
+.list-button:hover{
+  cursor: pointer;
+}
+
 .t-shadow{
   text-shadow: rgb(0, 0, 0) 2px 2px 2px;
 }
@@ -503,4 +569,29 @@ ul{
     transition-timing-function: ease-in;
     max-height: 1000px;
   }
+}
+
+.error-area{
+  display:block;
+}
+
+.hide-error{
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow-y: hidden;
+}
+
+.show-error{
+  margin: 1rem 0;
+  overflow-y: hidden;
+  margin: 1rem 0;
+  background-color: #FCEBEA;
+  border: 1px solid #621B18;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  max-height: 500px;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0, 1)
 }

@@ -49,6 +49,7 @@ module.exports = {
         let base = {
           customer,
           agentId: agentId,
+          amountPaid: "34900",
           createdAt: new Date(),
           updatedAt: new Date()
         }
@@ -63,20 +64,20 @@ module.exports = {
     await Promise.all(orderlist.map(async (order) => {
       let pln = _.sample(plans)
       let customerId = order.customer
+      let amountPaid = "34900"
       order.plan = pln.name
-      // console.log(chalk.blue.bold("order"), order.customer)
       const newOrder = await db.sequelize.transaction(t => {
-        return db.Order.create(order, { stripeToken: "tok_visa", transaction: t, customer: customerId, pln })
+        return db.Order.create(order, { transaction: t, customer: customerId, pln, amountPaid })
           .then(ord => {
             const address = _.merge(_.sample(Addresses), { addressableId: ord.id, addressable: 'order' })
             return db.Address.create(address, {transaction: t}).then(address => {
               const orderT = _.merge(order, { address })
               return orderT
-            }).catch(err => { console.log(chalk.blue.bold("order"), err); throw err })
-          }).catch(err => { console.log(chalk.blue.bold("order"), err); throw err })
-        }).catch(err => { console.log(chalk.blue.bold("order"), err); throw err })
+            }).catch(err => { console.log(chalk.blue.bold("order1"), err); throw err })
+          }).catch(err => { console.log(chalk.blue.bold("order2"), err); throw err })
+        }).catch(err => { console.log(chalk.blue.bold("order3"), err); throw err })
       return newOrder
-    })).catch(err => { console.log(chalk.blue.bold("order"), err); throw err })
+    })).catch(err => { console.log(chalk.blue.bold("order4"), err); throw err })
   },
 
   down: function (queryInterface, Sequelize) {

@@ -9,14 +9,14 @@ import ApplyDiscount from '../../queries/apply_discount'
 type Props = {
   handleReturnedLocation: Function,
   handleReturnedPayment: Function,
-  plan?: string,
+  plan: Object,
   price?: string,
   actualPrice?: string,
 }
 
 type State = {
   discountErrors: Array<string>,
-  discount?: Object | null,
+  discount?: Object,
   checking: boolean,
   latLng: Array<string>
 }
@@ -32,7 +32,7 @@ class Order extends Component<Props, State> {
     super()
 
     this.state = {
-      planName: props.plan,
+      planName: props.plan.name,
       planPrice: props.actualPrice,
       checking: false,
       latLng: [],
@@ -126,20 +126,13 @@ class Order extends Component<Props, State> {
           <div className="w-2/5 pt-4">
             <p className="text-sm font-bold">Your order includes...</p>
             <ul className="my-2">
-              <li className="my-3 flex">
-                <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
-                <span className="block text-sm">2 minute aerial video showcasing the property.</span>
-              </li>
-              <li className="my-3 flex">
-                <span className="block mr-3"><i className="far fa-check-circle fa-lg"></i></span>
-                <span className="block text-sm pt-1">20 Photos of the property.</span>
-              </li>
-              <li className="my-3 flex">
-                <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
-                <span className="block text-sm">Lead capturing tool for sharing on social media.</span>
-              </li>
+              { this.props.plan.features.map((feat, i) => (
+                <li key={`feature_${i}`} className="my-3 flex">
+                  <span className="block mr-3 pt-1"><i className="far fa-check-circle fa-lg"></i></span>
+                  <span className="block text-sm">{ feat.desc }</span>
+                </li>
+              )) }
             </ul>
-            <p className="text-sm">... And of course, its all branded to YOU.</p>
           </div>
           <div className="w-3/5 ml-4 pt-4">
             <div className="signup-map-area rounded" id='mapArea'></div>

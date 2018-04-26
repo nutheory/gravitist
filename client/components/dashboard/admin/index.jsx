@@ -48,7 +48,7 @@ class AdminDashboard extends Component<Props, State>{
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Pilots</h3>
                 </div>
-                <div className="w-1/3">
+                <div className="w-2/3">
                   <Search
                     placeHolder="Search by name, account ID, or email"
                     queryString={ this.state.queryString }
@@ -68,7 +68,7 @@ class AdminDashboard extends Component<Props, State>{
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Agents</h3>
                 </div>
-                <div className="w-1/3">
+                <div className="w-1/2">
                   <Search
                     placeHolder="Search by name, customer ID, or email"
                     queryString={ this.state.queryString }
@@ -108,13 +108,14 @@ class AdminDashboard extends Component<Props, State>{
           )} />
           <Route path="/admin/orders/:criteria?/:criteriaId?" render={({ match }) => (
             <div>
-              <div className="flex flex-wrap my-4">
+              <div className="flex flex-wrap my-4 mx-4 md:mx-0">
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Orders</h3>
                 </div>
                 {console.log('match', match)}
-                <div className="w-1/3">
+                <div className="w-1/2">
                   <Search
+                    pageType="order"
                     placeHolder="Search by status, receipt ID, or plan"
                     queryString={ this.state.queryString }
                     searchQuery={ this.searchQuery } />

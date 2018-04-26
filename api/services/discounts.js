@@ -8,6 +8,10 @@ const db = require('../models')
 const log = data =>
   R.tap(console.log(chalk.blue.bold('DATA'), data))
 
+const getDiscount = ({ id }) =>
+  task(resolver => db.Discount.findById(id).then(res =>
+    resolver.resolve({ discount: res ? res.dataValues : null })) ).run().promise()
+
 const getDiscounts = () =>
   task(resolver => db.Discount.findAll().then(res =>
     resolver.resolve({ discounts: res })) ).run().promise()
@@ -29,9 +33,10 @@ const applyDiscount = ({ code }) =>
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+
 const discounts = R.tryCatch(R.pipeP(getDiscounts),log)
 const create = R.tryCatch(R.pipeP(createDiscount),log)
 const destroy = R.tryCatch(R.pipeP(destroyDiscount),log)
 const apply = R.tryCatch(R.pipeP(applyDiscount),log)
 
-module.exports = { create, destroy, discounts, apply }
+module.exports = { create, destroy, getDiscount, discounts, apply }

@@ -6,10 +6,11 @@ import NewOrder from '../../orders/new_order'
 import CreateOrder from '../../../mutations/create_order'
 import Config from '../../../utils/config'
 import Plans from '../../../utils/pricing_plans.json'
-const env = window.location.host.includes("homefilming.com") ? "production" : "development"
+const env = window.location.host === "homefilming.com" ? "production" : "development"
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {
+  match: Object,
   history: Object,
   submitOrder: Function
 }
@@ -48,9 +49,9 @@ class Reorder extends Component<Props, State> {
     this.state ={
       paymentVerified: false,
       addressVerified: false,
-      selectedPlan: Plans.filter(p => p.name === 'standard' ? p : null)[0],
-      price: Plans.filter(p => p.name === 'standard' ? p : null)[0].price,
-      amountPaid: Plans.filter(p => p.name === 'standard' ? p : null)[0].actualPrice,
+      selectedPlan: Plans.filter(p => p.name === props.match.params.plan ? p : null)[0],
+      price: Plans.filter(p => p.name === props.match.params.plan ? p : null)[0].price,
+      amountPaid: Plans.filter(p => p.name === props.match.params.plan ? p : null)[0].actualPrice,
       loading: false,
       errors: []
     }
@@ -93,8 +94,8 @@ class Reorder extends Component<Props, State> {
       this.setState({ discountId, amountPaid: discountedActualPrice, price: discountedPrice })
     } else {
       this.setState({
-        price: Plans.filter(p => p.name === 'standard' ? p : null)[0].price,
-        amountPaid: Plans.filter(p => p.name === 'standard' ? p : null)[0].actualPrice,
+        price: Plans.filter(p => p.name === this.props.match.params.plan ? p : null)[0].price,
+        amountPaid: Plans.filter(p => p.name === this.props.match.params.plan ? p : null)[0].actualPrice,
         discountId: null
       })
     }
@@ -123,7 +124,7 @@ class Reorder extends Component<Props, State> {
               <NewOrder
                 handleReturnedLocation={ this.handleReturnedLocation }
                 handleReturnedPayment={ this.handleReturnedPayment }
-                plan={ this.state.selectedPlan.name }
+                plan={ this.state.selectedPlan }
                 price={ this.state.price }
                 actualPrice={ this.state.amountPaid } />
               <div className="">

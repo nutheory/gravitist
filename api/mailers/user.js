@@ -1,10 +1,11 @@
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const pug = require('pug')
-const pilotRegistrationTemplate = pug.compileFile(__dirname + '/views/pilot_registration.pug')
-const passwordResetTemplate = pug.compileFile(__dirname + '/views/password_reset.pug')
 const isProduction = process.env.NODE_ENV === 'production'
 const toMail = (address) => isProduction ? address : 'drush@nutheory.com'
+const sendMail = (msg) => process.env.NODE_ENV !== 'test' ? sgMail.send(msg) : null
+const pilotRegistrationTemplate = pug.compileFile(__dirname + '/views/pilot_registration.pug')
+const passwordResetTemplate = pug.compileFile(__dirname + '/views/password_reset.pug')
 const chalk = require('chalk')
 
 const pilotRegistrationMailer = ({ user }) => {
@@ -19,7 +20,7 @@ const pilotRegistrationMailer = ({ user }) => {
       baseUrl: process.env.BASE_URL
     }),
   }
-  sgMail.send(msg)
+  sendMail(msg)
 }
 
 const resetPasswordMailer = ({ user, token }) => {
@@ -41,7 +42,7 @@ const resetPasswordMailer = ({ user, token }) => {
       baseUrl: process.env.BASE_URL
     }),
   }
-  sgMail.send(msg)
+  sendMail(msg)
 }
 
 module.exports = {

@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import { splitEvery, where, equals } from 'ramda'
 import { dateShort } from '../../utils/helpers'
@@ -66,7 +65,6 @@ class OrderViewEditForm extends Component<Props, State>{
 
   render(){
     const order = this.props.order
-    console.log('pollingCheckForm', order.status)
     const plan = PricingPlans.filter(pln => pln.name === this.props.order.plan)[0]
     return(
       <div>
@@ -94,7 +92,12 @@ class OrderViewEditForm extends Component<Props, State>{
               </div>
             </div>
             { order.status === "approved_completed" ?
-              <div className="my-6"><TransferReceipt order={ order } /></div>
+              <div>
+                <div className="my-6"><TransferReceipt order={ order } /></div>
+                <div className="my-8">
+                  <CollectedContacts contacts={ order.contacts } />
+                </div>
+              </div>
             : null }
             <div className="my-8">
               <div className="rounded-lg border border-grey-light bg-grey-lighter p-4">

@@ -25,6 +25,7 @@ const GetGallery = gql`
             url
           }
           type
+          bio
           name
           email
           contacts {

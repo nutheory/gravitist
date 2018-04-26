@@ -67,7 +67,9 @@ class AgentView extends Component<Props, State> {
                   </div>
                 </div>
               </div>
-            : null }
+            : <div className="my-8">
+                <CollectedContacts contacts={ order.contacts } />
+              </div> }
             <div className="w-full lg:w-3/5 m-auto mt-4 text-center">
             { order.status === "recruiting" ?
               <p>Thank you very much for your order, we got the wheels in motion and have started

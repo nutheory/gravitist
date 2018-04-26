@@ -20,6 +20,11 @@ const Contact = `
     default: Boolean
   }
 
+  input CreateLeadInput {
+    contactableId: ID!
+    lead: ContactInput
+  }
+
   input UpdateContactInput {
     id: ID!
     authorizedId: ID!
@@ -32,6 +37,10 @@ const Contact = `
 
   type ContactPayload {
     contacts: [ContactPayloadFields]
+  }
+
+  type LeadPayload {
+    lead: Contact
   }
 
   type ContactPayloadFields {

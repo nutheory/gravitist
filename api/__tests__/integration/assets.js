@@ -5,9 +5,9 @@ const Orders = require('../resolverMethods/orders')
 const { gQL, gQLget, gQLpost, generateUserData, generateAddressData, cleanUpTestItem,
   cleanUpTestItemAsAdmin, responseFactory, LogIn } = require('../utils/helpers')
 const chalk = require('chalk')
-
+console.log(chalk.blue.bold('process.env.PORT'), process.env.NODE_ENV)
 let testFilePath = null
-let url = 'http://localhost:9000'
+let url = `https://localhost:${process.env.PORT}`
 
 describe('Upload assets for a user', () => {
 

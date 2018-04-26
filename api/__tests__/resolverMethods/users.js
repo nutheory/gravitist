@@ -9,7 +9,7 @@ const Users = (() => {
   const getProfile = async ( variables ) => {
     const query = `
       query($input: GetProtectedInput){
-        getProfile(input: $input){
+        getUser(input: $input){
           user {
             id
             name

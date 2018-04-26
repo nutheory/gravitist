@@ -124,7 +124,6 @@ class OrderViewEdit extends Component<Props, State>{
     const { loading, getOrder } = this.props.data
     const currentUser = jwtDecode(localStorage.getItem('hf_auth_header_token'))
     if(loading){return (<div>Loading...</div>)}
-    console.log('pollingCheck', getOrder)
     if(currentUser.type === "admin" && getOrder.order.status === "approved_completed" ||
       currentUser.type === "pilot" && getOrder.order.status === "awaiting_review"){
       this.props.data.stopPolling()

@@ -5,6 +5,7 @@ import { graphql, compose } from 'react-apollo'
 import jwtDecode from 'jwt-decode'
 import OrderList from './order_list'
 import Overview from './overview'
+import PricingOptions from '../../public/agent/pricing_options'
 import Reorder from './reorder'
 import Order from '../../orders/view_edit'
 import Profile from '../../users/view_edit'
@@ -53,14 +54,12 @@ class AgentDashboard extends Component<Props, State>{
             <Route path="/orders/:orderId" render={({ match }) => (
               <Order orderid={ match.params.orderId } />
             )} />
-            {/* <Route path="/orders" render={({ match }) => (
-              <OrderList
-                cssSizing="w-full lg:w-1/2"
-                sortBy="uploadedAt"
-                sizeLimit={10}
-                criteria={{ status: 'approved_completed' }} />
-            )} /> */}
-            <Route path="/new-order" component={ Reorder } />
+            <Route path="/re-order/:plan" render={({ match }) => (
+              <Reorder match={match} />
+            )} />
+            <Route path="/new-order" render={({ match }) => (
+              <PricingOptions />
+            )} />
             <Route path="/settings" render={({ match }) => (
               <Profile />
             )} />

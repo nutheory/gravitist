@@ -41,9 +41,14 @@ module.exports = function(sequelize, Sequelize) {
     },
     passwordResetSent: Sequelize.DATE,
     passwordResetToken: Sequelize.STRING,
-    unsubscribedEmail: {
+    smsNotifications: {
       type: Sequelize.BOOLEAN,
-      defaultValue: false,
+      defaultValue: true,
+      allowNull: false
+    },
+    emailNotifications: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
       allowNull: false
     },
     workRadius: Sequelize.INTEGER,
@@ -112,6 +117,7 @@ module.exports = function(sequelize, Sequelize) {
 
   // Adding an instance level method
   User.prototype.comparePassword = async function (pw) {
+    console.log(chalk.blue.bold('comparePassword'), this.password)
     return await bcrypt.compare(pw, this.password)
   }
 

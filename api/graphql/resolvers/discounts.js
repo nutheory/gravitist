@@ -1,8 +1,8 @@
 const { createResolver } = require('apollo-resolvers')
 const { baseResolver, isAuthenticated, isAuthorized, isAdmin } = require('./auth')
 const { create, destroy, discounts, apply } = require('../../services/discounts')
-
 const chalk = require('chalk')
+
 
 const getDiscounts = isAdmin.createResolver(
   async (root, { input }, { user }) => {

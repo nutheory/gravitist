@@ -31,7 +31,6 @@ class DiscountList extends Component<Props, State> {
   render(){
     const { loading, getDiscounts } = this.props.data
     if(loading){return (<div>Loading</div>)}
-    console.log('getDiscounts', getDiscounts)
     return(
       <div className="flex flex-wrap mb-6 md:-mx-4">
         { getDiscounts.discounts.map(dct => (
@@ -42,7 +41,7 @@ class DiscountList extends Component<Props, State> {
                 <p className="text-lg text-center mb-4">{dct.amount}</p>
                 <p className="text-xs font-bold text-center mb-1">Duration</p>
                 { dct.startsAt || dct.endsAt ?
-                  <div className="mb-4">
+                  <div className="mt-4">
                     { dct.startsAt ? <div className="text-xs text-center">{dateShort(dct.startsAt)}</div>
                     : <div className="text-xs text-center">no start date</div>}
                     <div className="text-xs text-center"> - </div>
@@ -51,19 +50,19 @@ class DiscountList extends Component<Props, State> {
                   </div>
                 : <p className="text-sm text-center">Continuous</p> }
                 { dct.appliesTo && dct.appliesTo !== 'all'  ?
-                  <div className="mb-4">
+                  <div className="mt-4">
                     <p className="text-xs font-bold text-center mb-1">Apllies to plan</p>
                     <div className="text-xs text-center">{humanize(dct.appliesTo)}</div>
                   </div>
                 : null }
                 { dct.maxUsageCount ?
-                  <div className="mb-4">
+                  <div className="mt-4">
                     <p className="text-xs font-bold text-center mb-1">Availability</p>
                     <div className="text-xs text-center">{dct.usageCount} of {dct.maxUsageCount}</div>
                   </div>
                 : null }
               </div>
-              <div className="flex self-end leading-normal">
+              <div className="flex self-end leading-normal mt-4">
                 <div className=" flex-1 text-xs text-right">
                   <Link
                     className="inline-block text-blue-darker border border-blue-darker py-1 px-6 rounded-full"
@@ -78,6 +77,6 @@ class DiscountList extends Component<Props, State> {
   }
 }
 
-export default compose(
-  graphql(GetDiscounts, {})
-)(DiscountList)
+export default graphql(GetDiscounts, {
+  options: (props) => ({ variables: { input: { } } })
+})(DiscountList)

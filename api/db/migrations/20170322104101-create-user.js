@@ -60,6 +60,14 @@ module.exports = {
           }
         }
       },
+      smsNotifications: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
+      emailNotifications: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
       transfersToDate: {
         type: Sequelize.INTEGER,
         defaultValue: 0
@@ -70,13 +78,13 @@ module.exports = {
       },
       passwordResetSent: Sequelize.DATE,
       passwordResetToken: Sequelize.STRING,
-      unsubscribedEmail: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      },
       refreshToken: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
+      },
+      abortCount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       deactivated: {
         type: Sequelize.BOOLEAN,

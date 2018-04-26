@@ -1,11 +1,11 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
-import { css } from 'aphrodite'
 import { pathOr, concat, isEmpty, remove, merge, update, omit } from 'ramda'
 import FeatureForm from './feature'
 import jwtDecode from 'jwt-decode'
 import ListingDropdowns from '../../utils/listing_dropdowns.js'
+import { cleansePrice } from '../../utils/helpers'
 import CreateListing from '../../mutations/create_listing'
 import UpdateListing from '../../mutations/update_listing'
 
@@ -20,7 +20,7 @@ type State = {
   beds?: number | null,
   baths?: number | null,
   sqft?: number | null,
-  price?: number | null,
+  price?: string | null,
   mlsNumber?: string | null,
   description?: string | null,
   type?: string | null,
@@ -64,9 +64,7 @@ class ListingForm extends Component<Props, State> {
   }
 
   handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value }, function(){
-
-    })
+    this.setState({ [e.currentTarget.name]: e.currentTarget.name === "price" ? cleansePrice(e.currentTarget.value) : e.currentTarget.value })
   }
 
   checkFeaturesValidated(){
@@ -151,7 +149,7 @@ class ListingForm extends Component<Props, State> {
           <div className="mx-2 flex-1">
             <div className="text-xs">Price</div>
             <input
-              type="number"
+              type="text"
               step="1"
               min="0"
               className="input"

@@ -50,5 +50,14 @@ const utcDateString = (time) => {
   return result;
 };
 
+const discountToNumber = (discount, amount) => {
+  if(discount.includes('%')){
+    const cleanDiscount = parseInt(discount.replace(/\%/g,''))
+    return (amount * ( (100 - cleanDiscount) / 100 ))
+  } else {
+    const cleanDiscount = discount.includes('.') ? parseInt(discount.replace(/\./g,'')) : parseInt(discount)
+    return amount - cleanDiscount
+  }
+}
 
-module.exports = { mustHaveId, utcDateString }
+module.exports = { mustHaveId, utcDateString, discountToNumber }

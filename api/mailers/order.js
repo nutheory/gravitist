@@ -4,6 +4,7 @@ const pug = require('pug')
 const Moment = require('moment')
 const isProduction = process.env.NODE_ENV === 'production'
 const toMail = (address) => isProduction ? address : 'drush@nutheory.com'
+const sendMail = (msg) => process.env.NODE_ENV !== 'test' ? sgMail.send(msg) : null
 const recruitingTemplate = pug.compileFile(__dirname + '/views/recruit_pilots.pug')
 const completedTemplate = pug.compileFile(__dirname + '/views/order_completed.pug')
 const confirmationTemplate = pug.compileFile(__dirname + '/views/order_confirmation.pug')
@@ -28,7 +29,7 @@ const welcomeConfirmationMailer = ({ order, user }) => {
       baseUrl: process.env.BASE_URL
     }),
   }
-  sgMail.send(msg)
+  sendMail(msg)
 }
 
 const confirmationMailer = ({ order, user }) => {
@@ -85,7 +86,7 @@ const completedMailer = ({ pilot, order }) => {
     text: ``,
     html: ``,
   }
-  sgMail.send(msg)
+  sendMail(msg)
 }
 
 module.exports = {

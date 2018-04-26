@@ -172,15 +172,14 @@ class UserAssets extends Component<Props, State> {
 export default compose(
   graphql( GetAssets, {
     name: "qGetAssets",
-    options: (props) => {
-      console.log('PROPS', props.user.id)
-      return { variables: {
-    input: {
-      authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
-      modelId: props.user.id || jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
-      modelType: 'user',
-      modelName: 'avatar'
-    } } } }}),
+    options: (props) => ({
+      variables: {
+        input: {
+          authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+          modelId: props.user.id || jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+          modelType: 'user',
+          modelName: 'avatar'
+    } } }) }),
   graphql( DestroyAsset, {
     props: ({ ownProps, mutate }) => ({
       destroyAsset: ( id, userId ) => mutate({

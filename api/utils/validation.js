@@ -6,7 +6,7 @@ const chalk = require('chalk')
 const Validate = (input) => {
 
   const missingKeys = []
-  const requiredKeys = []
+  let requiredKeys = []
   const errors = []
 
   const checkKeys = function(attr, requiredKeys){

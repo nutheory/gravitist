@@ -342,7 +342,7 @@ class OrderForm extends Component<Props, State> {
           <NewOrder
             handleReturnedLocation={ this.handleReturnedLocation }
             handleReturnedPayment={ this.handleReturnedPayment }
-            plan={ this.state.selectedPlan.name }
+            plan={ this.state.selectedPlan }
             price={ this.state.price }
             actualPrice={ this.state.amountPaid } />
           { this.renderErrors() }
@@ -377,8 +377,7 @@ export default graphql(CreateOrderWithUser, {
           discountId: state.discountId,
           plan: {
             id: state.selectedPlan.planId,
-            name: state.selectedPlan.name,
-            actualPrice: state.selectedPlan.actualPrice,
+            name: state.selectedPlan.name
           },
           address: {
             address1: state.address1,

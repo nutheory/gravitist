@@ -5,6 +5,7 @@ const { userResolvers } = require('./resolvers/users')
 const { assetResolvers } = require('./resolvers/assets')
 const { listingResolvers } = require('./resolvers/listings')
 const { discountResolvers } = require('./resolvers/discounts')
+const { contactResolvers } = require('./resolvers/contacts')
 const { noteResolvers } = require('./resolvers/notes')
 const { orderResolvers } = require('./resolvers/orders')
 const { paymentResolvers } = require('./resolvers/payments')
@@ -52,6 +53,7 @@ const Mutation = `
     createSource( input: CreateSourceInput ): CustomerPayload
     createListing( input: CreateListingInput ): ListingPayload
     createNote( input: CreateNoteInput ): NotePayload
+    createLead( input: CreateLeadInput ): LeadPayload
     createDiscount( input: CreateDiscountInput ): DiscountPayload
     joinOrLeaveCollaboration( input: CollaborationInput ): OrderPayload
     approveOrder( input: UpdateOrderInput ): OrderPayload
@@ -94,6 +96,7 @@ const resolvers = _.merge(
   assetResolvers,
   listingResolvers,
   discountResolvers,
+  contactResolvers,
   noteResolvers,
   orderResolvers,
   paymentResolvers

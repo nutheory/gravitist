@@ -23,8 +23,6 @@ const getUser = isAuthorized.createResolver(
 const createAgent = baseResolver.createResolver(
   async ( root, { input }, req ) => {
     input.user.type = "agent"
-    // const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
-    // if( !valid ){ throw new Error('hjfjhfjhfjj', '0898978787878') }
     const result = await create( input.user )
     return result
   }
@@ -33,8 +31,6 @@ const createAgent = baseResolver.createResolver(
 const createPilot = baseResolver.createResolver(
   async ( root, { input }, req ) => {
     input.user.type = "pilot"
-    // const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
-    // if( !valid ){ return valid }
     const result = await create( input.user )
     pilotRegistrationMailer(result)
     return result
@@ -43,8 +39,7 @@ const createPilot = baseResolver.createResolver(
 
 const createUser = baseResolver.createResolver(
   async ( root, { input }, req ) => {
-    // const valid = await Validate( input ).isValidUser().isUniqueEmail().done()
-    // if( !valid ){ return valid }
+    if(input.user.type !== 'unapproved_admin'){ return true }
     const result = await create( input.user )
     return result
   }
@@ -68,7 +63,7 @@ const verifyUser = isAuthorized.createResolver(
 
 const destroyUser = isAuthorized.createResolver(
   async ( root, { input }, req ) => {
-    const result = await destroy( input )
+    const result = await destroy({ attrs: input })
     return result
   }
 )
@@ -77,7 +72,6 @@ const loginUser = baseResolver.createResolver(
   async (root, { input }, req) => {
     const { email, password } = input
     const result = await login({attrs: { email, password }})
-    console.log(chalk.blue.bold("USER ERR"),result)
     return result
   }
 )

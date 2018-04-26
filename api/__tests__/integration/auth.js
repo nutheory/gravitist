@@ -23,7 +23,7 @@ describe('existing user can perform authentication actions', () => {
     gQL.defaults.headers.common.authorization = ''
     const agent = await LogIn.user({email: "yyyyyyyyy@yyy.com", password: "badpass"})
     expect(agent.status).toEqual(200)
-    expect(agent.data.errors[0]).toHaveProperty('name', 'NotFoundError')
+    expect(agent.data.errors[0]).toHaveProperty('message', expect.stringContaining('NotFound'))
   })
 
 })

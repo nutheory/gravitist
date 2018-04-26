@@ -1,17 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createOrderContact } = require('../services/contacts')
 const { gallery } = require('../services/orders')
-
-router.post('/contact', async (req, res, next) => {
-  console.log(chalk.blue.bold('save contact'), req.body)
-  const contact = await createOrderContact({
-    contactableId: req.body.orderId,
-    contactable: 'order',
-    name: req.body.name,
-    content: req.body.content })
-  res.status(200).json(contact)
-})
 
 router.get('/:uuid', async (req, res) => {
   const order = await gallery(req.params)

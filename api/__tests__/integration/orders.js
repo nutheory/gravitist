@@ -1,4 +1,4 @@
-const { intStart } = require('../utils/integration_server')
+// const { serverStart } = require('../../server')
 const db = require('../../models')
 const Orders = require('../resolverMethods/orders')
 const { gQL, gQLget, gQLpost, generateUserData, generateAddressData, cleanUpTestItem,
@@ -17,7 +17,7 @@ describe('order mutations', () => {
     gQL.defaults.headers.common.authorization = ''
     const generalUserData = await generateUserData()
     const user = _.merge( generalUserData, { stripeToken: "tok_visa" } )
-    const plan = { name: plans[1].name, actualPrice: plans[1].actualPrice }
+    const plan = { name: plans[1].name, amountPaid: plans[1].actualPrice }
     const attrInput = { order: { plan , address: missionViejoMall }, user }
     const order = await Orders.create( 'OrderWithUser', attrInput )
     const orderResult = order.result["createOrderWithUser"]

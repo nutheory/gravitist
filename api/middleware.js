@@ -3,6 +3,7 @@ const crypto = require('crypto')
 const chalk = require('chalk')
 
 const tokenAuthenticate = (req, res, next) => {
+  console.log(chalk.blue.bold('req'), req)
   if ( !req.headers.authorization || req.headers.authorization == undefined ){return next()}
   passport.authenticate('bearer', (err, user, info) => {
     if (err) { return next(err) }
@@ -20,7 +21,7 @@ const publicPassThrough = (req, res, next) => {
   let noAuthRequired = false
   const unprotectedMethods = [ 'getGallery', 'loginUser', 'createAgent', 'createPilot',
     'createEditor', 'createUser', 'createOrderWithUser', 'applyDiscount', 'initResetPassword',
-    'resetPassword' ]
+    'resetPassword', 'createLead' ]
   unprotectedMethods.map(method => {
     regEx = new RegExp(method)
     if (regEx.test(req.body.query)) {

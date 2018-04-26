@@ -1,0 +1,36 @@
+[
+  {
+    "planId": 1,
+    "price": "349.00",
+    "actualPrice": "34900",
+    "bounty": "40.00",
+    "actualBounty": "4000",
+    "name": "standard",
+    "title": "Standard",
+    "desc": "Photo and video clips package",
+    "color": "Green",
+    "features": [
+      { "icon": "far fa-clock", "desc": "48 Hour Delivery" },
+      { "icon": "fa fa-camera-retro", "desc": "12 High Res Photos" },
+      { "icon": "fa fa-film", "desc": "6 Video Clips" }
+    ]
+  },
+  {
+    "planId": 2,
+    "price": "499.00",
+    "actualPrice": "49900",
+    "bounty": "40",
+    "actualBounty": "4000",
+    "name": "premium",
+    "title": "Premium",
+    "desc": "Photo and video clips with fully edited video package",
+    "color": "Purple",
+    "features": [
+      { "icon": "far fa-clock", "desc": "48 Hour Delivery" },
+      { "icon": "fa fa-camera-retro", "desc": "12 High Res Photos" },
+      { "icon": "fa fa-film", "desc": "6 Video Clips" },
+      { "icon": "fa fa-id-badge", "desc": "6 Video Clips" },
+      { "icon": "fa fa-desktop", "desc": "30 second, fully produced video with the listing address, contact info and music." }
+    ]
+  }
+]

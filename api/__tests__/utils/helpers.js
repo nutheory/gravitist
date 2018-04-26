@@ -6,7 +6,7 @@ const axios = require('axios')
 const Addresses = require('../../db/utils/Addresses.json')
 const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 const randSix = () => Math.floor(100000 + Math.random() * 900000)
-const gQL = axios.create({ baseURL: 'http://localhost:9000/' })
+const gQL = axios.create({ baseURL: `http://localhost:${process.env.PORT}/` })
 const DistAddresses = {
   silveradoHighSchool: {
     address1: '25632 Peter A. Hartman Way',
@@ -76,7 +76,7 @@ const LogIn = ({
   `,
   user: async ({ email, password }) => await gQLpost({ query: LogIn.query(),
     variables: { input: { email, password } }}).catch(err => { throw err }),
-  agent: async () => await LogIn.user({ email: "drush81+agent@gmail.com", password: "Letmein@1" }),
+  agent: () => LogIn.user({ email: "drush81+agent@gmail.com", password: "Letmein@1" }),
   pilot: () => LogIn.user({ email: "drush81+pilot@gmail.com", password: "Letmein@1" }),
   editor: () => LogIn.user({ email: "drush81+editor@gmail.com", password: "Letmein@1" }),
   admin: () => LogIn.user({ email: "drush81+admin@gmail.com", password: "Letmein@1" }),

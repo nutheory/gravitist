@@ -1,9 +1,13 @@
 const { createResolver } = require('apollo-resolvers')
 const { baseResolver, isAuthenticated, isAuthorized, isAgent } = require('./auth')
 const { Validate } = require('../../utils/validation')
+const { discountToNumber } = require('../../utils/helpers')
+const { getDiscount } = require('../../services/discounts')
 const { create, update, joinOrLeave, destroy, order, orders, approve, reject,
         missions, uploaded, notifyLocalPilots, gallery } = require('../../services/orders')
 const { createAgent } = require('./users')
+const Plans = require('../../../client/utils/pricing_plans.json')
+const { RobberyInProgressError } = require('../../utils/errors')
 const { welcomeConfirmationMailer, confirmationMailer } = require('../../mailers/order')
 const chalk = require('chalk')
 
@@ -53,6 +57,13 @@ const createOrderWithUser = baseResolver.createResolver(
 
 const createOrder = isAgent.createResolver(
   async (root, { input }, { user }, newUser = false) => {
+    if(input.order.discountId){
+      const { discount } = await getDiscount({ id: input.order.discountId })
+      const plan = Plans.find((pl) => pl.name === input.order.plan.name )
+      if( input.order.amountPaid !== discountToNumber(discount.amount, plan.actualPrice).toString() ){
+        throw RobberyInProgressError({ args: { input }, loc: "createOrder"})
+      }
+    }
     const order = await create({ ordr: input.order, usr: user, addr: input.order.address })
     if( !newUser ){ confirmationMailer({ order, user }) }
     notifyLocalPilots({ ordr: order })
@@ -63,8 +74,6 @@ const createOrder = isAgent.createResolver(
 
 const updateOrder = isAuthorized.createResolver(
   async (root, { input }, { user }) => {
-    // const valid = await Validate( input ).isValidAddress().done()
-    // if( !valid ){ return valid }
     const result = await update({ usr: user, id: input.id, ordr: input.order, addr: input.address })
     return result
   }
