@@ -1,7 +1,7 @@
 [
   {
     "planId": 1,
-    "price": "149.00",
+    "price": "144.00",
     "actualPrice": "14900",
     "bounty": "40.00",
     "actualBounty": "4000",
@@ -10,7 +10,7 @@
     "desc": "Photos and Branding Package",
     "color": "Green",
     "features": [
-      { "icon": "far fa-clock", "desc": "48 Hour Delivery" },
+      { "icon": "far fa-clock", "desc": "50 Hour Delivery" },
       { "icon": "fa fa-camera-retro", "desc": "20 High Res Photos" },
       { "icon": "fa fa-film", "desc": "All branded with contact info and your likeness" }
     ]
