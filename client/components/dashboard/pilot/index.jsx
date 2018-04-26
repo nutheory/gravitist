@@ -2,24 +2,17 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { graphql } from 'react-apollo'
-import { css } from 'aphrodite'
 import dsh from '../styles/dashboard'
 import jwtDecode from 'jwt-decode'
 import Config from '../../../utils/config'
+import { getEnv } from '../../../utils/helpers'
 import Profile from '../../users/view_edit'
 import OpenMissions from './open_missions'
 import AcceptedMissions from './accepted_missions'
 import MissionView from '../../orders/view_edit'
 import AcceptTermsMutation from '../../../mutations/accept_terms'
 import Notifications from '../../../utils/notifications.json'
-let env = ''
-if(window.location.host.includes("homefilming.com")){
-  env = "production"
-} else if(window.location.host.includes("herokuapp.com")){
-  env = "staging"
-} else {
-  env = "development"
-}
+const env = getEnv(window.location.host)
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
 

@@ -6,20 +6,14 @@ import { pick, pathOr } from 'ramda'
 import { isValidEmail, isValidName, isValidPassword } from '../../../utils/validators'
 import Loading from '../../misc/loader'
 import Config from '../../../utils/config'
+import { getEnv } from '../../../utils/helpers'
 import ContactList from '../../contacts/list'
 import NewOrder from '../../orders/new_order'
 import DragDropUploader from '../../assets/drag_drop_uploader'
 import CreateOrderWithUser from '../../../mutations/create_order_user'
 import jwtDecode from 'jwt-decode'
 import Plans from '../../../utils/pricing_plans.json'
-let env = ''
-if(window.location.host.includes("homefilming.com")){
-  env = "production"
-} else if(window.location.host.includes("herokuapp.com")){
-  env = "staging"
-} else {
-  env = "development"
-}
+const env = getEnv(window.location.host)
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {

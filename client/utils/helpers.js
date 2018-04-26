@@ -32,4 +32,19 @@ const calcNumberDiscount = ({ base, number }) => {
   return (baseAmount - numberAmount).toString()
 }
 
-module.exports =  { humanize, dateTimeShort, dateShort, formatPhone, calcPercentageDiscount, calcNumberDiscount, cleansePrice }
+const getEnv = (location) => {
+  if(location.includes("homefilming.com")){
+    return "production"
+  } else if(location.includes("staging")){
+    return "staging"
+  } else {
+    return "development"
+  }
+}
+
+
+module.exports = {
+  humanize, dateTimeShort, dateShort,
+  formatPhone, calcPercentageDiscount,
+  calcNumberDiscount, cleansePrice, getEnv
+}

@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { css } from 'aphrodite'
 import { contains } from 'ramda'
 import Config from '../../utils/config'
+import { getEnv } from '../../utils/helpers'
 import Evaporate from 'evaporate'
 import Axios from 'axios'
 import Crypto from 'crypto'
@@ -14,16 +14,8 @@ import XHRUpload from 'uppy/lib/plugins/XHRUpload'
 import DragDrop from 'drag-drop'
 import mimeTypes from '../../utils/mime_types.js'
 import styles from './styles/drag_drop_uploader'
-import cE from '../../styles/common_elements'
 const Buffer = require('buffer').Buffer
-let env = ''
-if(window.location.host.includes("homefilming.com")){
-  env = "production"
-} else if(window.location.host.includes("herokuapp.com")){
-  env = "staging"
-} else {
-  env = "development"
-}
+const env = getEnv(window.location.host)
 const host = Config.base_url[env]
 const aws = Config.aws.accessKeyId
 
@@ -179,8 +171,8 @@ class DragDropUploader extends Component<Props, State> {
         this.generatePreview(files[0])
         this.addFileObjsToUppy(files)
       },
-      onDragEnter: () => { if(this.dropzone){ this.dropzone.classList.add(css(styles.mainDragDropContainerHover)) } },
-      onDragLeave: () => { if(this.dropzone){ this.dropzone.classList.remove(css(styles.mainDragDropContainerHover)) } }
+      onDragEnter: () => { if(this.dropzone){ this.dropzone.classList.add("border-2 border-solid border-green-light") } },
+      onDragLeave: () => { if(this.dropzone){ this.dropzone.classList.remove("border-2 border-solid border-green-light") } }
     })
   }
 
@@ -265,7 +257,7 @@ class DragDropUploader extends Component<Props, State> {
             <form className={`h-full w-full`}>
               <input
                 ref={ input => this.inputElement = input }
-                className={css(styles.hiddenDragDropInput)}
+                className={`hidden`}
                 type="file"
                 name="files[]"
                 value=""

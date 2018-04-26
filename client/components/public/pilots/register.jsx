@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { pick } from 'ramda'
 import Loading from '../../misc/loader'
 import Config from '../../../utils/config'
+import { getEnv } from '../../../utils/helpers'
 import DragDropUploader from '../../assets/drag_drop_uploader'
 import User from '../../users/signup'
 import ContactList from '../../contacts/list'
@@ -13,14 +14,7 @@ import InputMask from 'react-input-mask'
 import { formatPhone } from '../../../utils/helpers'
 import { isValidEmail, isValidName, isValidPassword, isValidPhone } from '../../../utils/validators'
 import CreateUserAsPilot from '../../../mutations/create_pilot'
-let env = ''
-if(window.location.host.includes("homefilming.com")){
-  env = "production"
-} else if(window.location.host.includes("herokuapp.com")){
-  env = "staging"
-} else {
-  env = "development"
-}
+const env = getEnv(window.location.host)
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
 

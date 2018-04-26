@@ -5,15 +5,9 @@ import { Link } from 'react-router-dom'
 import NewOrder from '../../orders/new_order'
 import CreateOrder from '../../../mutations/create_order'
 import Config from '../../../utils/config'
+import { getEnv } from '../../../utils/helpers'
 import Plans from '../../../utils/pricing_plans.json'
-let env = ''
-if(window.location.host.includes("homefilming.com")){
-  env = "production"
-} else if(window.location.host.includes("herokuapp.com")){
-  env = "staging"
-} else {
-  env = "development"
-}
+const env = getEnv(window.location.host)
 const publishable_key = Config.stripe[env].publishable_key
 
 type Props = {

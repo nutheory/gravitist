@@ -67427,7 +67427,21 @@ var calcNumberDiscount = function calcNumberDiscount(_ref2) {
   return (baseAmount - numberAmount).toString();
 };
 
-module.exports = { humanize: humanize, dateTimeShort: dateTimeShort, dateShort: dateShort, formatPhone: formatPhone, calcPercentageDiscount: calcPercentageDiscount, calcNumberDiscount: calcNumberDiscount, cleansePrice: cleansePrice };
+var getEnv = function getEnv(location) {
+  if (location.includes("homefilming.com")) {
+    return "production";
+  } else if (location.includes("staging")) {
+    return "staging";
+  } else {
+    return "development";
+  }
+};
+
+module.exports = {
+  humanize: humanize, dateTimeShort: dateTimeShort, dateShort: dateShort,
+  formatPhone: formatPhone, calcPercentageDiscount: calcPercentageDiscount,
+  calcNumberDiscount: calcNumberDiscount, cleansePrice: cleansePrice, getEnv: getEnv
+};
 
 /***/ }),
 /* 502 */
