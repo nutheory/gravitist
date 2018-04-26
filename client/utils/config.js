@@ -24,6 +24,7 @@ module.exports = {
   base_url: {
     test: 'https://homefilming.ngrok.io',
     development: 'https://homefilming.ngrok.io',
+    staging: 'https://staging-homefilming.herokuapp.com',
     production: 'https://www.homefilming.com'
   },
   assemblies: {
