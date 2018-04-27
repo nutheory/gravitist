@@ -37,6 +37,11 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       defaultValue: {}
     },
+    needsAttention: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     discountId: Sequelize.INTEGER,
     pilotAcceptedAt: Sequelize.DATE,
     uploadedAt: Sequelize.DATE,

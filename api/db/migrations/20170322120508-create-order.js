@@ -58,6 +58,11 @@ module.exports = {
         allowNull: false,
         defaultValue: false
       },
+      needsAttention: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
       galleryUrl: Sequelize.STRING,
       history: {
         type: Sequelize.JSONB,

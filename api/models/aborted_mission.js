@@ -1,7 +1,7 @@
 
 
 module.exports = function(sequelize, Sequelize) {
-  const Aborted = sequelize.define('Aborted', {
+  const AbortedMission = sequelize.define('AbortedMission', {
     orderId: {
       allowNull: false,
       type: Sequelize.INTEGER
@@ -27,5 +27,5 @@ module.exports = function(sequelize, Sequelize) {
   //     // has many?
   //   }
   // }
-  return Aborted
+  return AbortedMission
 }

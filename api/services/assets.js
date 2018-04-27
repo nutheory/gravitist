@@ -20,7 +20,7 @@ const transloadit = new TransloaditClient({
   authKey: process.env.TRANSLOADIT_AUTH_KEY,
   authSecret: process.env.TRANSLOADIT_SECRET_KEY
 })
-const env = process.env.NODE_ENV === 'production' ? `/` : `${process.env.NODE_ENV}/`
+const env = `${process.env.ACTING_ENV}/`
 const chalk = require('chalk')
 
 async function toggleActive({ activeId, assetableId, assetable, assetableName }){

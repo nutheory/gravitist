@@ -2,20 +2,20 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('AbortedMissions', {
+    return queryInterface.createTable('ErrorLogs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      orderId: {
+      errorableId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      userId: {
+      errorable: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -25,13 +25,25 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      name: {
+        type: Sequelize.STRING
+      },
+      message: {
+        type: Sequelize.STRING
+      },
       reason: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
+      },
+      offender: {
+        type: Sequelize.STRING
+      },
+      jsonResponse: {
+        type: Sequelize.JSONB
       }
     })
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('AbortedMissions')
+    return queryInterface.dropTable('ErrorLogs')
   }
 };
