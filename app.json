@@ -45,13 +45,19 @@
     "TRANSLOADIT_TEMPLATE_OVERLAY": {
       "required": true
     },
-    "TRANSLOADIT_TEMPLATE_PROCESS": {
+    "TRANSLOADIT_TEMPLATE_PROCESS_VIDEO": {
+      "required": true
+    },
+    "TRANSLOADIT_TEMPLATE_PROCESS_PHOTOS": {
       "required": true
     },
     "TWILIO_SID": {
       "required": true
     },
     "TWILIO_TOKEN": {
+      "required": true
+    },
+    "ASSET_BASE": {
       "required": true
     },
     "WWWHISPER_URL": {

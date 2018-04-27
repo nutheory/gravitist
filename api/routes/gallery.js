@@ -10,7 +10,7 @@ router.get('/:uuid', async (req, res) => {
   const contacts = order.gallery.agent.contacts
   const defaultAsset = order.gallery.galleryAssets.filter(gal => gal.default === true)[0]
   const env = process.env.NODE_ENV === 'development' ? 'development' : ''
-  const assetUrl = `${ process.env.ASSET_BASE }${env}/orders/${ order.gallery.id }/`
+  const assetUrl = `${ process.env.ASSET_BASE }/${env}/orders/${ order.gallery.id }/`
   const pageUrl = `${ process.env.BASE_URL }/gallery/${ order.gallery.uuid }`
   const photos = order.gallery.galleryAssets.filter(gal => gal.assetableName === 'photo')
   const video = order.gallery.galleryAssets.filter(gal => gal.assetableName === 'video_og')[0]

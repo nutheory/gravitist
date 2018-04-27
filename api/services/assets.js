@@ -136,10 +136,10 @@ const buildOrderOverlay = ({ usr, ordr }) => {
       template_id: process.env.TRANSLOADIT_TEMPLATE_OVERLAY,
       fields: {
         env,
-        bgUrl: avatar ? `${process.env.ASSET_BASE}video_canvas_blk.png` : `${process.env.ASSET_BASE}video_canvas_blk_no_av.png`,
+        bgUrl: avatar ? `${process.env.ASSET_BASE}/video_canvas_blk.png` : `${process.env.ASSET_BASE}/video_canvas_blk_no_av.png`,
         avatarXoffset: 60,
         avatarYoffset: 70,
-        avatarUrl: avatar ? avatar.url : `${process.env.ASSET_BASE}no_avatar.png`,
+        avatarUrl: avatar ? avatar.url : `${process.env.ASSET_BASE}/no_avatar.png`,
         nameXoffset: avatar ? 350 : 40,
         nameYoffset: 172,
         contactOneXoffset: avatar ? 346 : 40,
