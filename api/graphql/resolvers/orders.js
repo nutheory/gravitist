@@ -105,6 +105,7 @@ const bailPilot = isAuthenticated.createResolver(
 
 const approveOrder = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
+    console.log(chalk.blue.bold("MISSONS? input"),input)
     const result = await approve({ user, id: input.id, photos: input.order.photos })
     return result
   }
