@@ -43,7 +43,7 @@ class Search extends Component<Props, State>{
     const status = e.currentTarget.getAttribute('value')
     const title = e.currentTarget.getAttribute('title')
     this.setState({ filterOpen: !this.state.filterOpen, orderFilterName: title }, function(){
-      this.props.searchQuery({ currentTarget: { value: status }})
+      this.props.searchQuery({ currentTarget: { value: status, pageType: this.props.pageType }})
     })
   }
 
@@ -69,6 +69,7 @@ class Search extends Component<Props, State>{
                   {  orderStatuses.map((stat, i) => (
                     <a
                       key={`opts_${i}`}
+                      pagetype={this.props.pageType}
                       className="w-full block px-2 py-1 hover:cursor-pointer"
                       onClick={ this.orderStatusSelect }
                       value={stat[1]}
@@ -79,13 +80,14 @@ class Search extends Component<Props, State>{
               </div>
             </div>
           </div>
-        :null }
+        : null }
         <div className="flex-1 w-full md:w-auto">
           <div className="relative">
             <input
               className="input pl-8"
               type="text"
               name="queryString"
+              pagetype={this.props.pageType}
               defaultValue={ this.props.queryString }
               placeholder={ this.props.placeHolder }
               onChange={ this.props.searchQuery } />

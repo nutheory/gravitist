@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 const GetUsers = gql`
   query($input: UserCollectionInput){
     getUsers(input: $input){
+      count
       users{
         id
         name
@@ -10,6 +11,7 @@ const GetUsers = gql`
         type
         bio
         workRadius
+        abortCount
         customerId
         accountId
         isVerified

@@ -50,12 +50,14 @@ const Mutation = `
     createAgent( input: AgentInput ): UserTokenPayload
     createPilot( input: PilotInput ): UserTokenPayload
     createUser( input: UserInput ): UserTokenPayload
+    deactivateUser( input: DeactivateUserInput ): UserTokenPayload
     createSource( input: CreateSourceInput ): CustomerPayload
     createListing( input: CreateListingInput ): ListingPayload
     createNote( input: CreateNoteInput ): NotePayload
     createLead( input: CreateLeadInput ): LeadPayload
     createDiscount( input: CreateDiscountInput ): DiscountPayload
-    joinOrLeaveCollaboration( input: CollaborationInput ): OrderPayload
+    joinPilot( input: JoinPilotInput ): OrderPayload
+    bailPilot( input: BailPilotInput ): OrderPayload
     approveOrder( input: UpdateOrderInput ): OrderPayload
     rejectOrder( input: UpdateOrderInput ): OrderPayload
     createCompany( input: CompanyInput ): CompanyPayload

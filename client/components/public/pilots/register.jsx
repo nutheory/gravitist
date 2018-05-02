@@ -242,7 +242,10 @@ class PilotRegister extends Component<Props, State> {
             </div>
             <div className="flex-1 -mr-6">
               <div className="">
-                <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
+                <div className="flex">
+                  <div className="flex-1"></div>
+                  <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../../assets/svg/hf_logo_dark.svg')}`} /></Link>
+                </div>
                 <div className="text-right text-sm">Step <strong>1</strong> of 2 | <strong>Create Account</strong></div>
               </div>
               <div className="px-6 py-6">

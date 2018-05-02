@@ -1,7 +1,8 @@
 // @flow
 import React, { Component } from 'react'
-import { graphql, compose } from 'react-apollo'
+import { graphql, compose, Mutation } from 'react-apollo'
 import { splitEvery, pick, propOr } from 'ramda'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Loading from '../misc/loader'
 import ContactList from '../contacts/list'
@@ -12,6 +13,8 @@ import GetUser from '../../queries/get_user'
 import GetUsers from '../../queries/user_collections'
 import VerifyUser from '../../mutations/verify_user'
 import UpdateUser from '../../mutations/update_user'
+import DeactivateUser from '../../mutations/deactivate_user'
+import { dateTimeShort } from '../../utils/helpers'
 import StripeLogo from '../../assets/images/powered_by_stripe2x.png'
 import { isValidEmail, isValidName, isValidPassword } from '../../utils/validators'
 const linkToApiAccount = `https://dashboard.stripe.com/${ process.env.NODE_ENV === "production" ? '' : 'test/' }applications/users/`
@@ -36,6 +39,7 @@ type State = {
   bio?: string,
   password?: string,
   confirmPassword?: string,
+  deactivatedReason?: string,
   address1?: string,
   address2?: string,
   city?: string,
@@ -60,6 +64,7 @@ class UserViewEdit extends Component<Props, State>{
   handlePasswordChange: Function
   handleReturnedContacts: Function
   handleReturnedLocation: Function
+  handleDeactivationToggle: Function
   handleGQLErrors: Function
   toggleVerified: Function
   toggleEditMode: Function
@@ -83,6 +88,7 @@ class UserViewEdit extends Component<Props, State>{
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleDeactivationToggle = this.handleDeactivationToggle.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleReturnedContacts = this.handleReturnedContacts.bind(this)
     this.handleReturnedLocation = this.handleReturnedLocation.bind(this)
@@ -125,7 +131,6 @@ class UserViewEdit extends Component<Props, State>{
 
   handleReturnedContacts(verified, contacts){
     if(verified){
-      console.log('returned', contacts)
       this.setState({ contacts })
     }
   }
@@ -165,7 +170,6 @@ class UserViewEdit extends Component<Props, State>{
       password: e.currentTarget.value,
       passwordChanged: true
     }, function(){
-      console.log("fired")
       if(this.state.confirmPassword === "" && this.state.password === ""){
         this.setState({ passwordChanged: false })
       }
@@ -174,6 +178,20 @@ class UserViewEdit extends Component<Props, State>{
 
   handleInputChange(e: SyntheticInputEvent<HTMLInputElement>){
     this.setState({ [e.currentTarget.name]: e.currentTarget.value })
+  }
+
+  async handleDeactivationToggle(deactivateUser: Function, user: Object, e: SyntheticInputEvent<*>){
+    console.log(user)
+    const { data } = await deactivateUser({ variables: { input: {id: user.id }},
+      refetchQueries: [{
+        query: GetUser,
+        variables: { input: {
+          id: user.id ,
+          authorizedId: user.id,
+          deactivatedReason: this.state.deactivatedReason }
+        }
+      }]
+    })
   }
 
   checkRequiredInfo(){
@@ -247,6 +265,44 @@ class UserViewEdit extends Component<Props, State>{
                 </div>
               : null }
             </div>
+            { user.type === "pilot" && currentUser.type === "admin" ?
+              <div className="border border-red-darker bg-red-lightest rounded mt-4 p-4">
+                <h3>Bailed Missions</h3>
+                <ul>
+                  { user.bailedMissions.map((bm, i) => (
+                    <li key={`bailed_${i}`} className="py-1">
+                      {dateTimeShort(bm.createdAt)} - <Link to={`/admin/order/${bm.orderId}`}>View mission details</Link>
+                    </li>
+                  )) }
+                </ul>
+                <div className="mt-4">
+                  <Mutation mutation={DeactivateUser}>
+                    {(deactivateUser) => (
+                      <div className="mt-4 flex">
+                        <div className="flex-1 mr-4">
+                          { user.deactivated ? null :
+                            <input
+                              onChange={ this.handleInputChange }
+                              name="deactivatedReason"
+                              className="input flex-1"
+                              type="text"
+                              placeholder="Reason for deactivation (pilot will see this)"
+                              defaultValue={user.deactivatedReason} />
+                            }
+                        </div>
+                        <div className="">
+                          <button
+                            className={` ${ user.deactivated ? 'button-green' : 'button-red' }`}
+                            onClick={(e) => this.handleDeactivationToggle(deactivateUser, user, e) }>
+                            <span className="action-button-overlay"></span>{ user.deactivated ? 'Reactivate' : 'Deactivate' }
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </Mutation>
+                </div>
+              </div>
+            : null }
             <div className="my-4 w-full">
               <div className="text-xs">Name</div>
               { edit ?

@@ -25,17 +25,17 @@ module.exports = function(sequelize, Sequelize) {
     reason: {
       type: Sequelize.STRING
     },
-    offender: {
+    location: {
       type: Sequelize.STRING
     },
     jsonResponse: {
       type: Sequelize.JSONB
     }
   })
-  // Aborted.associate = (models) => {
-  //   Aborted.belongsTo(models.User, {
-  //     // has many?
-  //   }
-  // }
+  ErrorLog.associate = (models) => {
+    ErrorLog.belongsTo(models.Order, {
+
+    })
+  }
   return ErrorLog
 }

@@ -34,7 +34,7 @@ module.exports = {
       reason: {
         type: Sequelize.STRING
       },
-      offender: {
+      location: {
         type: Sequelize.STRING
       },
       jsonResponse: {

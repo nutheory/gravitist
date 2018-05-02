@@ -50,7 +50,8 @@ class UserCard extends Component<Props, State>{
     const contact = user.contacts.filter(cnt => cnt.default ? cnt : null)[0]
     return (
       <div className={`${ cssSizing } px-4 pb-6`}>
-        <div className="bg-white rounded shadow px-4 py-3">
+        <div className="bg-white rounded shadow px-4 py-3 relative">
+          { user.type === "pilot" ? <div className="absolute pin-t pin-r p-2">Aborted: {user.abortCount}</div> : null }
           <div className="py-4 w-20 mx-auto">
             <Avatar size="large" src={ user.avatars.length > 0 ? user.avatars[0].url : null } />
           </div>

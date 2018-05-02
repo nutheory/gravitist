@@ -16,7 +16,7 @@ const capitalize = str =>
   str.charAt(0).toUpperCase() + str.slice(1)
 
 const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
-  const obj = {}
+  const obj = { distinct: true }
   if( sortKey && sortValue ){ obj.order = [[ sortKey, sortValue ]] }
   if( sizeLimit ){ obj.limit = sizeLimit }
   if( colOffset ){ obj.offset = colOffset }
@@ -27,7 +27,7 @@ const userIncludes = (criteria) => {
   if( criteria && criteria.type === "pilot"){
     return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
       { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
-      { model: db.Contact, as: 'contacts' }] }
+      { model: db.Contact, as: 'contacts' }, { model: db.AbortedMission, as: 'bailedMissions' }] }
   } else {
     return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
     { model: db.Contact, as: 'contacts' }] }
@@ -39,31 +39,25 @@ const userIncludes = (criteria) => {
 
 const log = data => R.tap(() => console.log(chalk.blue.bold('DATA'), data), data)
 
-const getFullUser = ({ attrs }) => {
-  console.log(chalk.blue.bold("findByID"),attrs.id)
-  console.log(chalk.blue.bold("findByEm"),attrs.usr)
-  return task(resolver =>
+const getFullUser = ({ attrs }) =>
+  task(resolver =>
     db.User.findOne({ where: (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
       include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
         { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
-        { model: db.Contact, as: 'contacts' }] })
+        { model: db.Contact, as: 'contacts' }, { model: db.AbortedMission, as: 'bailedMissions' }] })
       .then(res => resolver.resolve({ usr: res, attrs }) )
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getFullUser' }))) )
   .run().promise()
-}
 
-const getCoreUser = ({ attrs }) => {
-  console.log(chalk.blue.bold("Core ATTRS"),attrs)
-  return task(resolver =>
+const getCoreUser = ({ attrs }) =>
+  task(resolver =>
     db.User.find({ where: attrs.email ? { email: attrs.email.toLowerCase() } :
       (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
       include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' },
       { model: db.Asset, as: 'avatar' }] })
       .then(usr => resolver.resolve({ usr, attrs }) )
       .catch(err => console.log( chalk.blue.bold("BIG-ERR"), err ) ))
-      // .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getCoreUser' }))) )
   .run().promise()
-}
 
 const getUser = ({ attrs }) =>
   task(resolver =>
@@ -74,14 +68,14 @@ const getUser = ({ attrs }) =>
 
 const getUsersByCriteria = ({ attrs }) =>
   task(resolver =>
-    db.User.findAll(R.merge({ where: R.merge(attrs.criteria,
+    db.User.findAndCountAll(R.merge({ where: R.merge(attrs.criteria,
       { [Op.or]: [
         { name: { [Op.iLike]: `%${attrs.queryString}%` } },
         { email: { [Op.iLike]: `%${attrs.queryString}%` } },
         { customerId: { [Op.iLike]: `%${attrs.queryString}%` } },
         { accountId: { [Op.iLike]: `%${attrs.queryString}%` } }
-      ] }) }, R.merge(userIncludes(attrs.criteria), collectionOptions( attrs.options))))
-      .then(users => resolver.resolve({ users }))
+      ] }) }, R.merge(userIncludes(attrs.criteria), collectionOptions( attrs.options ))))
+      .then(res => resolver.resolve({ count: res.count, users: res.rows }))
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getUser' }))) )
   .run().promise()
 
@@ -194,6 +188,16 @@ const destroyUser = ({ usr }) => {
   .run().promise()
 }
 
+const deactivateUserToggle = ({ usr, attrs }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver => usr.update({
+      deactivated: !usr.deactivated,
+      deactivatedReason: attrs.deactivatedReason ? attrs.deactivatedReason : null,
+      refreshToken: true }, { transaction: tx })
+      .then(res => resolver.resolve({ usr: res }))
+      .catch(err => resolver.reject(FailFastError(err.name, { args: {}, loc: 'Service: User.deactivateUser' }))) )
+    .run().promise() )
+
 const returnUser = ({ usr }) => {
   if( !usr ){ throw NotFoundError({ args: usr, loc: 'Service: User.returnUser' }) }
   return { user: usr.dataValues }
@@ -258,4 +262,10 @@ const reset = R.pipeP(
   returnTokenAndUserInfo
 )
 
-module.exports = { create, update, verify, destroy, profile, login, refresh, collection, initReset, reset }
+const deactivate = R.pipeP(
+  getUser,
+  deactivateUserToggle,
+  returnTokenAndUserInfo
+)
+
+module.exports = { create, update, verify, destroy, profile, login, refresh, collection, initReset, reset, deactivate }

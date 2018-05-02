@@ -24,6 +24,20 @@ const Order = `
     distanceFromLocation: String
   }
 
+  input JoinPilotInput {
+    id: ID
+    authorizedId: ID
+    status: String
+    pilotBounty: String
+    pilotDistance: String
+    pilotId: ID
+  }
+
+  input BailPilotInput {
+    id: ID
+    authorizedId: ID
+  }
+
   input AgentOrder {
     id: ID
   }
@@ -57,6 +71,7 @@ const Order = `
     agentId: ID
     discountId: ID
     amountPaid: String
+    needsAttention: Boolean
     address: AddressInput
     photos: [String]
   }
@@ -73,21 +88,13 @@ const Order = `
     uuid: String
   }
 
-  input CollaborationInput {
-    id: ID
-    authorizedId: ID
-    status: String
-    pilotBounty: String
-    pilotDistance: String
-    pilotId: ID
-  }
-
   input DestroyOrderInput {
     id: ID!
     authorizedId: ID!
   }
 
   type OrdersPayload {
+    count: Int
     orders: [Order]
   }
 

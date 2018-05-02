@@ -147,6 +147,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       as: 'contacts'
     })
+    Order.hasMany(models.AbortedMission, {
+      foreignKey: 'orderId',
+      constraints: false,
+      as: 'bailedMissions'
+    })
   }
 
   Order.beforeValidate(( order, {pln, customer} ) =>

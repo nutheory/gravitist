@@ -22,10 +22,14 @@ module.exports = function(sequelize, Sequelize) {
       type: Sequelize.TEXT
     }
   })
-  // Aborted.associate = (models) => {
-  //   Aborted.belongsTo(models.User, {
-  //     // has many?
-  //   }
-  // }
+  AbortedMission.associate = (models) => {
+    AbortedMission.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'bailedMissions'
+    })
+    AbortedMission.belongsTo(models.Order, {
+      foreignKey: 'orderId'
+    })
+  }
   return AbortedMission
 }

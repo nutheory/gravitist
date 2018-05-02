@@ -86,7 +86,10 @@ class Login extends Component<Props, State> {
     return(
       <div className="login-container mt-20">
         <div className="login-wrapper">
-          <h2 className="text-right py-1"><Link className="no-underline" to="/">Homefilming</Link></h2>
+          <div className="flex">
+            <div className="flex-1"></div>
+            <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../assets/images/hf_logo_dark@2x.png')}`} /></Link>
+          </div>
           <div className="text-right text-sm font-bold pb-1">Login</div>
           <div className="w-full bg-white rounded shadow p-6 border border-grey-dark">
             <div className="py-1 font-bold text-sm">Log in to Homefilming</div>

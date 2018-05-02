@@ -34,6 +34,7 @@ module.exports = function(sequelize, Sequelize) {
         isIn: [[ 'agent', 'pilot', 'unapproved_admin', 'admin' ]]
       }
     },
+    abortCount: Sequelize.INTEGER,
     bio: Sequelize.TEXT,
     isVerified: {
       type: Sequelize.BOOLEAN,
@@ -255,6 +256,11 @@ module.exports = function(sequelize, Sequelize) {
       },
       as: 'insurance'
     })
+    User.hasMany(models.AbortedMission, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+      as: 'bailedMissions'
+    })
   }
 
   User.buildToken = ( user ) => {
@@ -263,7 +269,8 @@ module.exports = function(sequelize, Sequelize) {
       name: user.name,
       email: user.email,
       type: user.type,
-      isVerified: user.isVerified
+      isVerified: user.isVerified,
+      deactivated: user.deactivated
     }
     if ( user.customerId ) { newToken.customerId = user.customerId }
     if ( user.accountId ) { newToken.accountId = user.accountId }

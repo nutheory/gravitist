@@ -157,7 +157,7 @@ const buildOrderOverlay = ({ usr, ordr }) => {
         city: ordr.address.city,
         pilotId: usr.id,
         orderId: ordr.id,
-        instanceOf: 'overlay'
+        location: 'buildOrderOverlay'
       },
       notify_url: `${process.env.BASE_URL}/notifications/overlay`
     }
@@ -176,7 +176,8 @@ const processVideoInitPhotos = async ({ body }) => {
         env,
         importKey: `${order.rawUrl}`,
         pilotId: order.pilotId,
-        orderId: order.id
+        orderId: order.id,
+        location: 'processVideoInitPhotos'
       },
       notify_url: `${process.env.BASE_URL}/notifications/process-video`
     }
@@ -194,7 +195,8 @@ const processPhotos = ({ ordr, photos }) => {
       fields: {
         env,
         importKeys: photos,
-        orderId: ordr.id
+        orderId: ordr.id,
+        location: 'processPhotos'
       },
       steps: { photo: { path: photos } },
       notify_url: `${process.env.BASE_URL}/notifications/process-photos`

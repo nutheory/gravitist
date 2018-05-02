@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 const GetUser = gql`
-  query($input: GetProtectedInput){
+  query getUser($input: GetProtectedInput){
     getUser(input: $input){
       user{
         id
@@ -11,6 +11,7 @@ const GetUser = gql`
         bio
         workRadius
         customerId
+        deactivated
         accountId
         isVerified
         termsAccepted
@@ -53,6 +54,10 @@ const GetUser = gql`
           type
           url
           createdAt
+        }
+        bailedMissions {
+          createdAt
+          orderId
         }
       }
     }

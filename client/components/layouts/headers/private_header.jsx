@@ -93,13 +93,14 @@ class PrivateHeader extends Component<Props, State> {
       localStorage.removeItem('hf_auth_header_token')
       window.location.reload(true)
     } }
+    console.log(this.state.currentUser)
     if(tokenRefreshCheck.user.refreshToken){ this.handleRefreshToken() }
     return (
       <div className="auth-header-bg">
         <header className="container h-full flex mx-auto">
           <div className="flex-1 flex items-center">
             <Link className="w-48 h-6 block" to="/dashboard">
-              <img src={require('../../../assets/svg/hf_logo_dark.svg')} />
+              <img src={`/${require('../../../assets/images/hf_logo_dark@2x.png')}`} />
             </Link>
           </div>
           <nav className="flex flex-col">

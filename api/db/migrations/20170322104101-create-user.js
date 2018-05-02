@@ -92,12 +92,6 @@ module.exports = {
       },
       deactivatedReason: {
         type: Sequelize.STRING,
-        validate: {
-          isIn: {
-            args: [[ 'rejected_filmings', 'conduct', 'invalid_credentials', 'payout_account_error' ]],
-            msg: 'reason is invalid'
-          }
-        }
       },
       termsAccepted: {
         type: Sequelize.BOOLEAN,

@@ -70,7 +70,13 @@ class PilotDashboard extends Component<Props, State> {
               </div>
               <div className="w-3/4 px-6 pb-4">
                 <div className="font-bold text-xl my-2">Open Missions</div>
-                <OpenMissions cssSizing="w-1/3" />
+                { user.deactivated ?
+                  <div>
+                    <p className="">Your account has been deactived because... </p>
+                    <p>{ user.deactivatedReason }</p>
+                    <p>to contest this or if you believe this was an error please <a href="mailto:contest@homefilming.com">contact us</a>.</p>
+                  </div>
+                : <OpenMissions cssSizing="w-1/3" /> }
               </div>
             </div>
           )} />

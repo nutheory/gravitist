@@ -70,7 +70,6 @@ class Order extends Component<Props, State> {
         variables: { input: { code: val }}
       })
       if(applyDiscount.discount){
-        console.log('applyDiscount.discount', applyDiscount.discount)
         const valid = this.validateDiscount(applyDiscount.discount)
         if(valid){
           const updatedPrice = applyDiscount.discount.amount.includes('%') ? calcPercentageDiscount({

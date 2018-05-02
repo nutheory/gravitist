@@ -21,22 +21,20 @@ const orderIncludes = queryString => {
   { model: db.Asset, as: 'assets' }, { model: db.Listing, as: 'listing' } ] } }
 
 const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
-  const obj = {}
+  const obj = { distinct: true }
   if( sortKey && sortValue ){ obj.order = [[ sortKey, sortValue ]] }
   if( sizeLimit ){ obj.limit = sizeLimit }
   if( colOffset ){ obj.offset = colOffset }
   return obj
 }
 
-const getFullGallery = ({ uuid }) => {
-  console.log(chalk.blue.bold('uuid'), uuid )
-  return task(resolver =>
+const getFullGallery = ({ uuid }) =>
+  task(resolver =>
     db.Order.findOne( R.merge({ where: { uuid }}, { include: [ { model: db.Address, as: 'address' },
       { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }, { model: db.Contact, as: 'contacts' }] },
       { model: db.Listing, as: 'listing' }, { model: db.Asset, as: 'galleryAssets' } ] }) )
       .then(res => resolver.resolve({ gallery: res.dataValues }) ) )
   .run().promise()
-}
 
 const getFullOrderInstance = ({id, usr}) =>
   task(resolver =>
@@ -52,24 +50,20 @@ const getOrdersByCriteria = ({ usr, attrs }) => {
   const criteria = {}
   criteriaArray.map((crit) => {
     if(crit[0] === 'status'){
-      console.log(chalk.blue.bold('criteriaT'),typeof(crit[1]))
       criteria[crit[0]] = { [Op.like]: { [Op.any]: typeof(crit[1]) === 'string' ? crit[1].split(',') : crit[1] } }
     } else {
-      console.log(chalk.blue.bold('criteriaElse'), crit[0])
       criteria[crit[0]] = crit[1]
     }
   })
-  console.log(chalk.blue.bold('criteria'),criteria)
   return task(resolver =>
-    db.Order.findAll( R.merge({ where: R.mergeAll([ criteria,
+    db.Order.findAndCountAll( R.merge({ where: R.mergeAll([ criteria,
       { [Op.or]: [
         { plan: { [Op.iLike]: `%${attrs.queryString}%` } },
         { status: { [Op.iLike]: `%${attrs.queryString}%` } },
         { receiptId: { [Op.iLike]: `%${attrs.queryString}%` } }
       ] }, usr.type !== "admin" ? { [`${usr.type}Id`]: usr.id } : {} ]) },
       R.merge(orderIncludes(attrs.queryString), collectionOptions(attrs.options))))
-      .then(res => {
-        resolver.resolve({orders: res})}) )
+      .then(res => { resolver.resolve({ count: res.count, orders: res.rows }) }) )
   .run().promise()
 }
 
@@ -101,20 +95,30 @@ const getOrderToUpdate = ({ usr, id, ordr }) =>
         .then(upd => resolver.resolve(upd.dataValues))) })
     .run().promise() )
 
-const toggleOrderParticipation = ({ usr, id, updates }) =>
+const signupPilotForMission = ({ usr, id, updates }) =>
   db.sequelize.transaction(tx =>
-    task(resolver =>
-      db.Order.findById(id, { transaction: tx })
-        .then((ordr) => {
-          console.log(chalk.blue.bold('ordr[`${usr.type}AcceptedAt`]'), ordr[`${usr.type}AcceptedAt`])
-          return ordr.update({
-          [`${usr.type}Id`]: ( R.isNil(ordr[`${usr.type}Id`]) ? usr.id :
-          ( R.equals(ordr[`${usr.type}Id`], usr.id) ? null : resolver.reject('Already Assigned.'))),
-          [`${usr.type}AcceptedAt`]: ordr[`${usr.type}AcceptedAt`] ? null : new Date(),
-          status: updates.status, pilotBounty: updates.pilotBounty, pilotDistance: updates.pilotDistance,
-        }).then(ordr => resolver.resolve(({ id: ordr.id, usr, ordr, updates })) ) })
-     ).orElse(reason => reason ).run().promise() )
-  .catch(err => { console.log(chalk.blue.bold("ERRRRRRR"), err) })
+    task(resolver => db.Order.findById(id, { transaction: tx })
+      .then((ordr) => ordr.update({
+        [`${usr.type}Id`]: ( R.isNil(ordr[`${usr.type}Id`]) ? usr.id : resolver.reject('Already Assigned.')),
+        [`${usr.type}AcceptedAt`]: new Date(), status: updates.status, pilotBounty: updates.pilotBounty,
+        pilotDistance: updates.pilotDistance }, { transaction: tx })
+        .then(ordr => resolver.resolve(({ id: ordr.id, usr, ordr, updates })) ) )
+      ).orElse(reason => console.log(reason) ).run().promise()).catch(err => { console.log("ERR", err) })
+
+const pilotBailOnMission = ({ usr, id, updates }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver => db.Order.findById(id, { transaction: tx })
+      .then(ordr => ordr.update({ [`${usr.type}Id`]: null, [`${usr.type}AcceptedAt`]: null,
+        status: 'recruiting', pilotBounty: null, pilotDistance: null }, { transaction: tx })
+        .then(res => db.AbortedMission.create({ userId: usr.id, orderId: id })
+            .then(abt => db.User.findById(usr.id)
+            .then(user => {
+              console.log(chalk.blue.bold('USER'), user)
+              return user.update({ abortCount: user.abortCount + 1 }) } )
+           )
+         )
+          .then(ordr => resolver.resolve(({ id: ordr.id, usr, ordr, updates })) ) )
+    ).orElse(reason => console.log(reason) ).run().promise()).catch(err => { console.log("ERR", err) })
 
 const processUploadedOrder = ({ usr, id, updates }) =>
   db.sequelize.transaction(tx =>
@@ -254,7 +258,8 @@ const missions = R.tryCatch(R.pipeP(queryMissionsWithinRadius),log)
 const order = getFullOrderInstance
 const orders = getOrdersByCriteria
 const gallery = getFullGallery
-const joinOrLeave = toggleOrderParticipation
+const signupToFly = signupPilotForMission
+const bailMission = pilotBailOnMission
 const approve = approveAndPayout
 const reject = rejectAndNotify
 const uploaded = processUploadedOrder
@@ -262,7 +267,8 @@ const uploaded = processUploadedOrder
 module.exports = {
   create,
   update,
-  joinOrLeave,
+  signupToFly,
+  bailMission,
   orders,
   order,
   missions,

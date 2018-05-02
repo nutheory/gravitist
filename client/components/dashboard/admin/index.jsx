@@ -17,7 +17,8 @@ type Props = {
 }
 
 type State = {
-  queryString?: string
+  userQueryString?: string,
+  orderQueryString?: string
 }
 
 class AdminDashboard extends Component<Props, State>{
@@ -34,51 +35,72 @@ class AdminDashboard extends Component<Props, State>{
     this.searchQuery = this.searchQuery.bind(this)
   }
 
-  searchQuery(e: SyntheticInputEvent<HTMLInputElement>){
-    this.setState({ queryString: e.currentTarget.value })
+  searchQuery(e: SyntheticInputEvent<*>){
+    const target = e.currentTarget
+    if (target.pageType){
+      this.setState({ [`${target.pageType}QueryString`]: target.value })
+    } else {
+      this.setState({ [`${target.getAttribute('pagetype')}QueryString`]: target.value })
+    }
+  }
+
+  pagination(){
+
   }
 
   render(){
     return (
       <div className="container mx-auto mt-8">
         <Switch>
-          <Route path="/admin/pilots" render={({ match }) => (
-            <div>
+          <Route path="/admin/pilots/:pageNumber?" render={({ match }) => (
+            <div className="mx-4 md:mx-0 pb-8">
               <div className="flex my-4">
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Pilots</h3>
                 </div>
+                {console.log(match)}
                 <div className="w-2/3">
                   <Search
+                    pageType="user"
                     placeHolder="Search by name, account ID, or email"
-                    queryString={ this.state.queryString }
+                    queryString={ this.state.userQueryString }
                     searchQuery={ this.searchQuery } />
                 </div>
               </div>
               <UserList
+                showPagination={true}
+                match={match}
                 sortBy="createdAt"
+                sizeLimit={20}
+                pageNumber={ match.params.pageNumber || 1 }
                 criteria={{ type: 'pilot' }}
-                queryString={ this.state.queryString }
+                queryString={ this.state.userQueryString }
                 searchQuery={ this.searchQuery } />
             </div>
+
           )} />
-          <Route path="/admin/agents" render={({ match }) => (
-            <div>
-              <div className="flex flex-wrap my-4">
+          <Route path="/admin/agents/:pageNumber?" render={({ match }) => (
+            <div className="mx-4 md:mx-0 pb-8">
+              <div className="flex my-4">
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Agents</h3>
                 </div>
                 <div className="w-1/2">
                   <Search
+                    pageType="user"
                     placeHolder="Search by name, customer ID, or email"
-                    queryString={ this.state.queryString }
+                    queryString={ this.state.userQueryString }
                     searchQuery={ this.searchQuery } />
                 </div>
               </div>
               <UserList
+                showPagination={true}
+                match={match}
                 sortBy="createdAt"
+                sizeLimit={20}
+                pageNumber={ match.params.pageNumber || 1 }
                 criteria={{ type: 'agent' }}
-                queryString={ this.state.queryString }
+                queryString={ this.state.userQueryString }
                 searchQuery={ this.searchQuery } />
             </div>
           )} />
@@ -91,8 +113,9 @@ class AdminDashboard extends Component<Props, State>{
                 <h3 className="font-bold text-right">Recent History</h3>
                 <div className="w-full pt-2 pb-4">
                   <Search
+                    pageType="order"
                     placeHolder="Search by status, or receipt ID"
-                    queryString={ this.state.queryString }
+                    queryString={ this.state.orderQueryString }
                     searchQuery={ this.searchQuery } />
                 </div>
                 <div className="w-full">
@@ -100,14 +123,14 @@ class AdminDashboard extends Component<Props, State>{
                     cssSizing="w-full sm:w-1/2 md:w-1/3 lg:w-full"
                     sortBy="createdAt"
                     criteria={{ [`${ match.params.type ? match.params.type : '' }Id`]: match.params.userId }}
-                    queryString={ this.state.queryString }
+                    queryString={ this.state.orderQueryString }
                     searchQuery={ this.searchQuery } />
                 </div>
               </div>
             </div>
           )} />
-          <Route path="/admin/orders/:criteria?/:criteriaId?" render={({ match }) => (
-            <div>
+          <Route path="/admin/orders/:pageNumber?" render={({ match }) => (
+            <div className="mx-4 md:mx-0 pb-8">
               <div className="flex flex-wrap my-4 mx-4 md:mx-0">
                 <div className="flex-1 flex items-end">
                   <h3 className="font-bold text-xl">Orders</h3>
@@ -117,14 +140,18 @@ class AdminDashboard extends Component<Props, State>{
                   <Search
                     pageType="order"
                     placeHolder="Search by status, receipt ID, or plan"
-                    queryString={ this.state.queryString }
+                    queryString={ this.state.orderQueryString }
                     searchQuery={ this.searchQuery } />
                 </div>
               </div>
               <OrderList
+                showPagination={true}
+                match={match}
                 sortBy="createdAt"
+                sizeLimit={20}
+                pageNumber={ match.params.pageNumber || 1 }
                 criteria={ match.params.criteria ? { [match.params.criteria]: match.params.criteriaId } : null }
-                queryString={ this.state.queryString }
+                queryString={ this.state.orderQueryString }
                 searchQuery={ this.searchQuery } />
             </div>
           )} />

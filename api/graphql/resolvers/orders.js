@@ -3,7 +3,7 @@ const { baseResolver, isAuthenticated, isAuthorized, isAgent } = require('./auth
 const { Validate } = require('../../utils/validation')
 const { discountToNumber } = require('../../utils/helpers')
 const { getDiscount } = require('../../services/discounts')
-const { create, update, joinOrLeave, destroy, order, orders, approve, reject,
+const { create, update, signupToFly, bailMission, destroy, order, orders, approve, reject,
         missions, uploaded, notifyLocalPilots, gallery } = require('../../services/orders')
 const { createAgent } = require('./users')
 const Plans = require('../../../client/utils/pricing_plans.json')
@@ -79,14 +79,29 @@ const updateOrder = isAuthorized.createResolver(
   }
 )
 
-const joinOrLeaveCollaboration = isAuthenticated.createResolver(
+const joinPilot = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
-    const result = await joinOrLeave({ usr: user, id: input.id, updates: input })
+    const result = await signupToFly({ usr: user, id: input.id, updates: input })
     // sendEmailConfirmationToUser,
-    console.log(chalk.blue.bold("joinOrLeave"), result)
     return result
   }
 )
+
+const bailPilot = isAuthenticated.createResolver(
+  async (root, { input }, { user }) => {
+    const result = await bailMission({ usr: user, id: input.id, updates: input })
+    return result
+  }
+)
+
+// const joinOrLeaveCollaboration = isAuthenticated.createResolver(
+//   async (root, { input }, { user }) => {
+//     const result = await joinOrLeave({ usr: user, id: input.id, updates: input })
+//     // sendEmailConfirmationToUser,
+//     console.log(chalk.blue.bold("joinOrLeave"), result)
+//     return result
+//   }
+// )
 
 const approveOrder = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
@@ -130,7 +145,8 @@ const orderResolvers = {
     createOrder,
     approveOrder,
     rejectOrder,
-    joinOrLeaveCollaboration,
+    joinPilot,
+    bailPilot,
     uploadedOrder,
     updateOrder,
     destroyOrder

@@ -1,8 +1,8 @@
 const { createResolver } = require('apollo-resolvers')
-const { baseResolver, isAuthenticated, isAuthorized } = require('./auth')
+const { baseResolver, isAuthenticated, isAuthorized, isAdmin } = require('./auth')
 const { Validate } = require('../../utils/validation')
 const { RequiredFieldsError, UniqueEmailError } = require("../../utils/errors")
-const { create, update, destroy, profile, verify, login, refresh, collection, initReset, reset } = require('../../services/users')
+const { create, update, destroy, profile, verify, login, refresh, collection, initReset, reset, deactivate } = require('../../services/users')
 const { pilotRegistrationMailer, resetPasswordMailer } = require('../../mailers/user')
 const chalk = require('chalk')
 
@@ -105,6 +105,13 @@ const resetPassword = baseResolver.createResolver(
   }
 )
 
+const deactivateUser = isAdmin.createResolver(
+  async ( root, { input }, req ) => {
+    const result = await deactivate({ attrs: input })
+    return result
+  }
+)
+
 const userResolvers = {
 
   Query: {
@@ -123,7 +130,8 @@ const userResolvers = {
     verifyUser,
     destroyUser,
     initResetPassword,
-    resetPassword
+    resetPassword,
+    deactivateUser
   }
 
 }

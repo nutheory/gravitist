@@ -12,9 +12,11 @@ const User = `
     isVerified: Boolean
     refreshToken: Boolean
     termsAccepted: Boolean
+    deactivated: Boolean
     unsubscribedEmail: Boolean
     workRadius: Int
     ratingCount: Int
+    abortCount: Int
     rating: String
     payRate: String
     address: Address
@@ -23,6 +25,7 @@ const User = `
     licenses: [Asset]
     insurances: [Asset]
     contacts: [Contact]
+    bailedMissions: [BailedMissions]
     createdAt: String
     updatedAt: String
   }
@@ -35,6 +38,12 @@ const User = `
     id: ID
     authorizedId: ID
     user: UpdateUserInputFields
+  }
+
+  input DeactivateUserInput {
+    id: ID
+    authorizedId: ID
+    deactivatedReason: String
   }
 
   input UpdateUserInputFields {
@@ -149,7 +158,14 @@ const User = `
   }
 
   type UsersPayload {
+    count: Int
     users: [User]
+  }
+
+  type BailedMissions{
+    userId: ID
+    orderId: ID
+    createdAt: String
   }
 
   type UserPayload {
@@ -178,6 +194,7 @@ const User = `
     id: ID
     name: String
     email: String
+    abortCount: Int
     customerId: String
     companyId: ID
     companyOwner: Boolean
@@ -194,6 +211,8 @@ const User = `
     accountId: String
     companyId: ID
     companyOwner: Boolean
+    deactivated: Boolean
+    abortCount: Int
     bio: String
     address: AddressPayloadFields
     isVerified: Boolean
@@ -206,6 +225,7 @@ const User = `
     avatar: AssetPayload
     type: String
     contacts: [Contact]
+    bailedMissions: [BailedMissions]
   }
 `
 
