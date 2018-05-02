@@ -169,6 +169,7 @@ const approveAndPayout = async ({ id, user, photos }) => {
   if( user.type !== "admin" ){ return false }
   const ordr = await db.Order.findById(id, { include: [{ model: db.User, as: 'pilot'}] })
   processPhotos({ ordr, photos })
+  console.log(chalk.blue.bold('NOTIFY'), ordr)
   if (ordr.pilotBounty > 200) { throw RobberyInProgressError }
   if(ordr.pilotTransferId){
     const result = await ordr.update({
@@ -181,6 +182,7 @@ const approveAndPayout = async ({ id, user, photos }) => {
       transferAmount: ordr.pilotBounty*100,
       orderId: ordr.id,
       pilotId: ordr.pilotId }).catch(err => { throw err })
+    console.log(chalk.blue.bold('NOTIFY'), transfer)
     const result = await ordr.update({
       status: 'final_processing',
       pilotTransferId: transfer.id,
