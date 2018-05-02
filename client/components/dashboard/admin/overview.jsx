@@ -9,7 +9,7 @@ const AdminOverview = () => {
       <div className="w-full lg:w-1/4 px-6 pb-4">
         <div className="font-bold text-xl my-2">Unverified Pilots</div>
         <UserList
-          cssSizing="w-full lg:w-1/2"
+          cssSizing="w-full"
           sortBy="createdAt"
           sizeLimit={20}
           criteria={{ type: 'pilot', isVerified: false }} />

@@ -1,8 +1,6 @@
 // @flow
 import React, { Component } from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
-import { graphql, compose } from 'react-apollo'
-import { css } from 'aphrodite'
 import Overview from './overview'
 import UserList from './user_list'
 import OrderList from './order_list'

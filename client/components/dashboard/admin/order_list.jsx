@@ -6,14 +6,16 @@ import OrderCard from './order_card'
 import Pagination from '../../misc/pagination'
 
 type Props = {
-  match: Object,
+  match?: Object,
   showPagination?: boolean,
-  sizeLimit: number,
-  pageNumber: number,
-  // orderList: Object,
-  title: string,
-  criteria: Object,
-  cssSizing: string
+  sizeLimit?: number,
+  pageNumber?: number,
+  queryString?: string,
+  searchQuery?: Function,
+  title?: string,
+  criteria?: Object,
+  cssSizing?: string,
+  sortBy?: string
 }
 
 type State = {
@@ -21,7 +23,6 @@ type State = {
 }
 
 const OrderList = (props: Props) => (
-  // console.log('getOrders', props)
   <Query
     query={GetOrders}
     variables={{ input: {
@@ -29,7 +30,7 @@ const OrderList = (props: Props) => (
           sortKey: 'uploadedAt' || 'createdAt',
           sortValue: props.sortDirection  || 'DESC',
           sizeLimit: props.sizeLimit,
-          colOffset: (props.pageNumber - 1) * props.sizeLimit
+          colOffset: props.pageNumber && props.sizeLimit ? (props.pageNumber - 1) * props.sizeLimit : null
         },
         criteria: props.criteria,
         queryString: props.queryString || ''
