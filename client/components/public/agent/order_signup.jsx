@@ -278,7 +278,7 @@ class OrderForm extends Component<Props, State> {
               <div className="">
                 <div className="flex">
                   <div className="flex-1"></div>
-                  <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../../assets/svg/hf_logo_dark.svg')}`} /></Link>
+                  <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../../assets/images/hf_logo_dark@2x.png')}`} /></Link>
                 </div>
                 <div className="text-right text-sm font-bold">Create Order</div>
               </div>
