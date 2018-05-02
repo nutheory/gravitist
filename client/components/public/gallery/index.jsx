@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Player } from 'video-react'
 import GalleryImages from './image_gallery'
+import { getEnv } from '../../utils/helpers'
 import ContactAgent from './contact_agent'
 import Config from '../../../utils/config'
 import GalleryQuery from '../../../queries/get_gallery'
@@ -35,7 +36,7 @@ class GalleryView extends Component<Props, State> {
           if (error){return <div>Error! {error.message}</div>}
           const photos = getGallery.gallery.galleryAssets.filter(gal => gal.assetableName === 'photo')
           const video = getGallery.gallery.galleryAssets.filter(gal => gal.assetableName === 'video_og')[0]
-          const env = window.location.host.includes("homefilming.com") ? '' : 'development/'
+          const env = getEnv(window.location.host)
           const assetUrl = `${Config.aws.baseUrl}${env}orders/${getGallery.gallery.id}`
           const agent = getGallery.gallery.agent
           const listing = getGallery.gallery.listing

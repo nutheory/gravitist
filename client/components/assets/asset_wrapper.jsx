@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom'
 import { test, contains } from 'ramda'
 import { Player } from 'video-react'
 import Config from '../../utils/config'
+import { getEnv } from '../../utils/helpers'
 import Axios from 'axios'
 import asw from './styles/asset_wrapper'
 import jwtDecode from 'jwt-decode'
 import AssetsQuery from '../../queries/asset_collections'
 import ToggleDefaultAsset from '../../mutations/toggle_default_asset'
-const env = window.location.host.includes("homefilming.com") ? '' : 'development/'
+const env = getEnv(window.location.host)
 const assetUrl = `${Config.aws.baseUrl}${env}orders/`
 
 type Props = {
