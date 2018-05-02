@@ -13,7 +13,7 @@ import jwtDecode from 'jwt-decode'
 import AssetsQuery from '../../queries/asset_collections'
 import ToggleDefaultAsset from '../../mutations/toggle_default_asset'
 const env = getEnv(window.location.host)
-const assetUrl = `${Config.aws.baseUrl}${env}orders/`
+const assetUrl = `${Config.aws.baseUrl}${env}/orders/`
 
 type Props = {
   handleImageEdit: Function,

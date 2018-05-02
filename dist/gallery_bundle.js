@@ -54747,7 +54747,7 @@ var _image_gallery = __webpack_require__(466);
 
 var _image_gallery2 = _interopRequireDefault(_image_gallery);
 
-var _helpers = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../utils/helpers\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _helpers = __webpack_require__(501);
 
 var _contact_agent = __webpack_require__(473);
 
@@ -54808,7 +54808,7 @@ var GalleryView = function (_Component) {
             return gal.assetableName === 'video_og';
           })[0];
           var env = (0, _helpers.getEnv)(window.location.host);
-          var assetUrl = '' + _config2.default.aws.baseUrl + env + 'orders/' + getGallery.gallery.id;
+          var assetUrl = '' + _config2.default.aws.baseUrl + env + '/orders/' + getGallery.gallery.id;
           var agent = getGallery.gallery.agent;
           var listing = getGallery.gallery.listing;
           var address = getGallery.gallery.address;
