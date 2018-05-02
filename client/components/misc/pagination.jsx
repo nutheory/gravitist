@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
 type Props = {
-  match?: Object,
-  pageSize?: number,
-  recordCount?: number,
-  pageNumber?: number
+  match: Object,
+  pageSize: number,
+  recordCount: number,
+  pageNumber: number
 }
 
 type State = {

@@ -10,6 +10,7 @@ type Props = {
   showPagination?: boolean,
   sizeLimit?: number,
   pageNumber?: number,
+  pageSize?: number,
   queryString?: string,
   searchQuery?: Function,
   title?: string,
@@ -37,9 +38,10 @@ const OrderList = (props: Props) => (
     } } }
     pollInterval={8000}
   >
-    {({ loading, error, data: { orders, count }, startPolling }) => {
+    {({ loading, error, data: {getOrders}, startPolling }) => {
       if(loading){return (<div></div>)}
       if(error) return `Error!: ${error}`
+      const { orders, count } = getOrders
       return (
         <div>
           <div className="flex flex-wrap mb-4 md:-mx-4">
@@ -50,13 +52,13 @@ const OrderList = (props: Props) => (
                 key={`order_${order.id}`} />
             )) : <div className="p-4">No Results</div> }
           </div>
-          { props.showPagination ?
+          { props.showPagination && props.sizeLimit && props.pageNumber && props.match && count ?
             <div className="">
               <Pagination
                 match={props.match}
                 pageSize={props.sizeLimit}
-                recordCount={count}
-                pageNumber={props.pageNumber} />
+                recordCount={parseInt(count)}
+                pageNumber={props.pageNumber || 1} />
             </div>
           : null }
         </div>

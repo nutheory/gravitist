@@ -147,10 +147,10 @@ class AdminDashboard extends Component<Props, State>{
                 match={match}
                 sortBy="createdAt"
                 sizeLimit={20}
-                pageNumber={ match.params.pageNumber || 1 }
-                criteria={ match.params.criteria ? { [match.params.criteria]: match.params.criteriaId } : null }
+                pageNumber={ parseInt(match.params.pageNumber) || 1 }
+                criteria={{}}
                 queryString={ this.state.orderQueryString }
-                searchQuery={ this.searchQuery } />
+                 />
             </div>
           )} />
           <Route path="/admin/order/:orderId" render={({ match }) => (

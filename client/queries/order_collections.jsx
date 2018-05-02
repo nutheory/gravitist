@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 const GetOrders = gql`
-  query getOrders($input: OrderCollectionInput){
+  query ($input: OrderCollectionInput){
     getOrders(input: $input){
       count
       orders {
