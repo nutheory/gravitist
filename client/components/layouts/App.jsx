@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo'
 import ReactResizeDetector from 'react-resize-detector'
 import Helpers from '../../styles/helpers'
 import Routes from './routes'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 

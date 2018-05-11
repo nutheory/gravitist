@@ -3,9 +3,9 @@ const R = require('ramda')
 const db = require('../models')
 const Op = db.Sequelize.Op
 const { AuthenticationFailed, UserError, UnauthorizedError, ForbiddenError, NotFoundError, RobberyInProgressError } = require('../utils/errors')
-const { buildOrderOverlay, processPhotos } = require('./assets')
+const { buildOrderOverlay, processPhotos, clearS3Contents, clearOrderAssets } = require('./assets')
 const { createStripeTransfer } = require('./payments')
-const { recruitingMailer } = require('../mailers/order')
+const { recruitingMailer, sendRejectedMailer } = require('../mailers/order')
 const chalk = require('chalk')
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -110,11 +110,9 @@ const pilotBailOnMission = ({ usr, id, updates }) =>
     task(resolver => db.Order.findById(id, { transaction: tx })
       .then(ordr => ordr.update({ [`${usr.type}Id`]: null, [`${usr.type}AcceptedAt`]: null,
         status: 'recruiting', pilotBounty: null, pilotDistance: null }, { transaction: tx })
-        .then(res => db.AbortedMission.create({ userId: usr.id, orderId: id })
+        .then(res => db.FailedMission.create({ userId: usr.id, orderId: id, typeOfFailure: 'aborted' })
             .then(abt => db.User.findById(usr.id)
-            .then(user => {
-              console.log(chalk.blue.bold('USER'), user)
-              return user.update({ abortCount: user.abortCount + 1 }) } )
+            .then(user => user.update({ abortCount: user.abortCount + 1 }) )
            )
          )
           .then(ordr => resolver.resolve(({ id: ordr.id, usr, ordr, updates })) ) )
@@ -161,7 +159,7 @@ const queryPilotsWithinRadius = ({ ordr, qryPrms }) =>
 
 const notifyLocalPilots = async ({ ordr }) => {
   const { pilots } = await queryPilotsWithinRadius({ ordr })
-  console.log(chalk.blue.bold('NOTIFY'), pilots)
+  // console.log(chalk.blue.bold('NOTIFY'), pilots)
   pilots.map( pilot => recruitingMailer({ pilot, order: ordr }) )
 }
 
@@ -169,7 +167,7 @@ const approveAndPayout = async ({ id, user, photos }) => {
   if( user.type !== "admin" ){ return false }
   const ordr = await db.Order.findById(id, { include: [{ model: db.User, as: 'pilot'}] })
   processPhotos({ ordr, photos })
-  console.log(chalk.blue.bold('NOTIFY'), ordr)
+  // console.log(chalk.blue.bold('NOTIFY'), ordr)
   if (ordr.pilotBounty > 200) { throw RobberyInProgressError }
   if(ordr.pilotTransferId){
     const result = await ordr.update({
@@ -182,7 +180,7 @@ const approveAndPayout = async ({ id, user, photos }) => {
       transferAmount: ordr.pilotBounty*100,
       orderId: ordr.id,
       pilotId: ordr.pilotId }).catch(err => { throw err })
-    console.log(chalk.blue.bold('NOTIFY'), transfer)
+    // console.log(chalk.blue.bold('NOTIFY'), transfer)
     const result = await ordr.update({
       status: 'final_processing',
       pilotTransferId: transfer.id,
@@ -192,9 +190,43 @@ const approveAndPayout = async ({ id, user, photos }) => {
   }
 }
 
-const rejectAndNotify = async ({ id, user }) => {
+const rejectOrder = async ({ attrs }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver =>
+      db.Order.findById(attrs.id, { transaction: tx })
+        .then(ordr => ordr.update({
+          rejected: true,
+          pilotId: null, pilotAcceptedAt: null, pilotBounty: null, pilotDistance: null,
+          status: 'recruiting',
+          rejectedAt: new Date(),
+          reviewedBy: attrs.user.id
+        }, { transaction: tx }).then(res => resolver.resolve({ attrs: {
+          order: res.dataValues,
+          rejectedBy: attrs.user.id,
+          rejectedUserId: attrs.order.pilotId,
+          reason: attrs.order.rejectedDescription } }) )))
+    .run().promise() )
 
-}
+const createFailedMission = async ({ attrs }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver =>
+      db.FailedMission.create({
+        rejectedBy: attrs.rejectedBy,
+        reason: attrs.reason,
+        orderId: attrs.order.id,
+        userId: attrs.rejectedUserId,
+        typeOfFailure: 'rejected'
+      }, { transaction: tx }).then(res => resolver.resolve({ attrs }) ))
+    .run().promise() )
+
+const updateRejectedUser = async ({ attrs }) =>
+  db.sequelize.transaction(tx =>
+    task(resolver =>
+      db.User.findById(attrs.rejectedUserId, { transaction: tx })
+        .then(usr => usr.update({ rejectedCount: usr.rejectedCount + 1 }, { transaction: tx })
+          .then(res => resolver.resolve({ attrs: R.merge(attrs, { pilot: res.dataValues }) }) ) ))
+    .run().promise() )
+
 
 const rawMissionsWithinRadiusSqlQuery = ({ usr, qryPrms }) => db.sequelize.query(`
   SELECT
@@ -263,7 +295,14 @@ const gallery = getFullGallery
 const signupToFly = signupPilotForMission
 const bailMission = pilotBailOnMission
 const approve = approveAndPayout
-const reject = rejectAndNotify
+const reject = R.pipeP(
+  rejectOrder,
+  createFailedMission,
+  updateRejectedUser,
+  clearS3Contents,
+  clearOrderAssets,
+  sendRejectedMailer
+)
 const uploaded = processUploadedOrder
 
 module.exports = {

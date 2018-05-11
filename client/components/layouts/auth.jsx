@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ToastContainer } from "react-toastify"
 import { Route, Redirect } from 'react-router-dom'
 import PrivateHeader from './headers/private_header'
 import jwtDecode from 'jwt-decode'

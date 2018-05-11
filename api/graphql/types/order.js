@@ -72,6 +72,7 @@ const Order = `
     discountId: ID
     amountPaid: String
     needsAttention: Boolean
+    rejectedDescription: String
     address: AddressInput
     photos: [String]
   }

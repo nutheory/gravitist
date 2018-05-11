@@ -1,12 +1,12 @@
 const { createResolver } = require('apollo-resolvers')
-const { baseResolver, isAuthenticated, isAuthorized, isAgent } = require('./auth')
+const { baseResolver, isAuthenticated, isAuthorized, isAgent, isAdmin } = require('./auth')
 const { Validate } = require('../../utils/validation')
 const { discountToNumber } = require('../../utils/helpers')
 const { getDiscount } = require('../../services/discounts')
 const { create, update, signupToFly, bailMission, destroy, order, orders, approve, reject,
         missions, uploaded, notifyLocalPilots, gallery } = require('../../services/orders')
 const { createAgent } = require('./users')
-const Plans = require('../../../client/utils/pricing_plans.json')
+const Plans = require('../../utils/pricing_plans.json')
 const { RobberyInProgressError } = require('../../utils/errors')
 const { welcomeConfirmationMailer, confirmationMailer } = require('../../mailers/order')
 const chalk = require('chalk')
@@ -34,7 +34,6 @@ const getOrder = isAuthenticated.createResolver(
 
 const getMissions = isAuthenticated.createResolver(
   async (root, { input }, { user }) => {
-    console.log(chalk.blue.bold("MISSONS? input"),input)
     const queryParams = {}
     queryParams.sortKey = input.sortKey || "distanceFromLocation"
     queryParams.sortValue = input.sortValue || "ASC"
@@ -94,16 +93,7 @@ const bailPilot = isAuthenticated.createResolver(
   }
 )
 
-// const joinOrLeaveCollaboration = isAuthenticated.createResolver(
-//   async (root, { input }, { user }) => {
-//     const result = await joinOrLeave({ usr: user, id: input.id, updates: input })
-//     // sendEmailConfirmationToUser,
-//     console.log(chalk.blue.bold("joinOrLeave"), result)
-//     return result
-//   }
-// )
-
-const approveOrder = isAuthenticated.createResolver(
+const approveOrder = isAdmin.createResolver(
   async (root, { input }, { user }) => {
     console.log(chalk.blue.bold("MISSONS? input"),input)
     const result = await approve({ user, id: input.id, photos: input.order.photos })
@@ -111,9 +101,10 @@ const approveOrder = isAuthenticated.createResolver(
   }
 )
 
-const rejectOrder = isAuthenticated.createResolver(
+const rejectOrder = isAdmin.createResolver(
   async (root, { input }, { user }) => {
-    const result = await reject({ user, id: input.id })
+    input.user = user
+    const result = await reject({ attrs: input })
     return result
   }
 )

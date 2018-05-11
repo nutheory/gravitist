@@ -71,7 +71,6 @@ class PrivateHeader extends Component<Props, State> {
 
   handleRefreshToken(){
     this.props.refreshToken().then(res => {
-      console.log('res.data.updateUser.auth.token', jwtDecode(res.data.updateUser.auth.token))
       localStorage.setItem('hf_auth_header_token', res.data.updateUser.auth.token)
       window.location.reload(true)
     })
@@ -93,7 +92,6 @@ class PrivateHeader extends Component<Props, State> {
       localStorage.removeItem('hf_auth_header_token')
       window.location.reload(true)
     } }
-    console.log(this.state.currentUser)
     if(tokenRefreshCheck.user.refreshToken){ this.handleRefreshToken() }
     return (
       <div className="auth-header-bg">

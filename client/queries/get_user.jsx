@@ -55,10 +55,6 @@ const GetUser = gql`
           url
           createdAt
         }
-        bailedMissions {
-          createdAt
-          orderId
-        }
       }
     }
   }

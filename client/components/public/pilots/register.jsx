@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { Link, Redirect } from 'react-router-dom'
 import { pick } from 'ramda'
-import Loading from '../../misc/loader'
+import { toast } from 'react-toastify'
 import Config from '../../../utils/config'
 import { getEnv } from '../../../utils/helpers'
 import DragDropUploader from '../../assets/drag_drop_uploader'
@@ -133,16 +133,16 @@ class PilotRegister extends Component<Props, State> {
   }
 
   runMutation(){
-    console.log(Config)
     this.setState({ loading: !this.state.loading }, async () => {
+      toast.info('⏱️ Creating account... One moment please.', {
+        autoClose: false
+      })
       const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status', 'default'], c))
       const resolved = await this.props.submitPilot({ contacts, state: this.state }).catch(err => {
-        console.log('STATE', this.state)
         this.handleGQLErrors(err)
       })
       if(resolved){
         const { data: { createPilot: { user, auth } } } = resolved
-        console.log('USER', user)
         await localStorage.setItem('hf_auth_header_token', auth.token)
         this.state.insurance.plugins.uploader[0].opts.headers.authorization = auth.token
         this.state.license.plugins.uploader[0].opts.headers.authorization = auth.token
@@ -154,7 +154,6 @@ class PilotRegister extends Component<Props, State> {
           this.state.avatar.plugins.uploader[0].opts.headers.authorization = auth.token
           const avatar = await this.state.avatar.upload()
         }
-        console.log('phoneNumber', phoneNumber)
         const base = `https://connect.stripe.com/express/oauth/authorize?`
         const userStr = `&stripe_user[email]=${user.email}&stripe_user[first_name]=${nameArr[0]}&stripe_user[last_name]=${nameArr[1] ? nameArr[1] : ''}&stripe_user[phone_number]=${phoneNumber}&stripe_user[country]="US"`
         window.location = `${base}redirect_uri=${returnUri}/users/signup-pilot&client_id=${stripeClientId}&state=${user.id}${userStr}`
@@ -225,7 +224,6 @@ class PilotRegister extends Component<Props, State> {
   render(){
     return(
       <div className="signup-container">
-        { this.state.loading ? <Loading /> : null }
         <div className="w-full rounded shadow p-6 border border-grey-dark">
           <div className="signup-header">
             <div className="w-48 h-48">
@@ -291,6 +289,9 @@ class PilotRegister extends Component<Props, State> {
                   name="password"
                   type="password"
                   placeholder="Create password" />
+                  <div className="text-xs mt-1">
+                    Password must be at least 8 characters in with capital and lowercase letters and include at least one number.
+                  </div>
               </div>
               <div className="flex-1 mx-2">
                 <div className="text-xs">Confirm password</div>

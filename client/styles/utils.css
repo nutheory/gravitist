@@ -135,6 +135,10 @@ ul{
   background-image: linear-gradient(-180deg,#c94747 0,#9a3b3b 100%);
 }
 
+.button-only {
+  @apply --action-button;
+}
+
 .img-overlay {
   position: absolute;
   display: flex;

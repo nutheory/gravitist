@@ -173,7 +173,7 @@ class PilotView extends Component<Props, State> {
                         connected stripe account.</p>
                       <p className="text-sm mb-2">Happy Filming!</p>
                   </div> }
-                  <div className="my-8">
+                  <div className="">
                     <DragDropUploader
                       header="Upload filming"
                       fileTypeName="video"

@@ -87,11 +87,10 @@ class ContactList extends Component<Props, State> {
 
   updateContact(updatedContact: Object){
     const cType = ContactTypes.filter(ct => ct.type === updatedContact.type ? ct : null )[0]
-    if(cType.type === "phone"){
-      console.log("phone")
-      updatedContact.content = formatPhone(updatedContact.content)
-    }
     if(cType){
+      if(cType.type === "phone"){
+        updatedContact.content = formatPhone(updatedContact.content)
+      }
       updatedContact.validated = cType.validator(updatedContact.content || "")
     } else {
       updatedContact.validated = false

@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { graphql, compose, Mutation } from 'react-apollo'
+import { graphql, compose, Mutation, Query } from 'react-apollo'
 import { splitEvery, pick, propOr } from 'ramda'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
@@ -11,6 +11,7 @@ import UserAssets from './user_assets'
 import jwtDecode from 'jwt-decode'
 import GetUser from '../../queries/get_user'
 import GetUsers from '../../queries/user_collections'
+import GetFailedMissions from '../../queries/failed_mission_collections'
 import VerifyUser from '../../mutations/verify_user'
 import UpdateUser from '../../mutations/update_user'
 import DeactivateUser from '../../mutations/deactivate_user'
@@ -267,14 +268,28 @@ class UserViewEdit extends Component<Props, State>{
             </div>
             { user.type === "pilot" && currentUser.type === "admin" ?
               <div className="border border-red-darker bg-red-lightest rounded mt-4 p-4">
-                <h3>Bailed Missions</h3>
-                <ul>
-                  { user.bailedMissions.map((bm, i) => (
-                    <li key={`bailed_${i}`} className="py-1">
-                      {dateTimeShort(bm.createdAt)} - <Link to={`/admin/order/${bm.orderId}`}>View mission details</Link>
-                    </li>
-                  )) }
-                </ul>
+                <h3>Failed Missions</h3>
+                <Query query={ GetFailedMissions } variables={{ input: { pilotId: user.id }}}>
+                  {({ loading, error, data: { getFailedMissions } }) => {
+                    if (loading) return null
+                    return (
+                      <ul>
+                        { getFailedMissions.failedMissions ? getFailedMissions.failedMissions.map((fm, i) => (
+                          <li key={`failed_${i}`} className=" w-full py-2">
+                            <div className="flex w-full">
+                              <div className="text-sm">{ dateTimeShort(fm.createdAt) } - { fm.typeOfFailure === 'rejected' ? 'Filming rejected' : 'Mission Aborted' }</div>
+                              <div className="text-right flex-1 text-sm">
+                                <Link to={`/admin/order/${fm.order.id}`}>{fm.order.address.address1}, {fm.order.address.city}</Link>
+                              </div>
+                            </div>
+                            { fm.reason ? <p className="mt-1 text-sm">{fm.reason}</p> : null }
+                            { fm.rejectedByUser ? <p className="mt-1 text-sm"> { fm.rejectedByUser.name }</p> : null }
+                          </li>
+                        )) : <li>none...</li> }
+                      </ul>
+                    )
+                  }}
+                </Query>
                 <div className="mt-4">
                   <Mutation mutation={DeactivateUser}>
                     {(deactivateUser) => (

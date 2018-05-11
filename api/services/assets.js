@@ -276,6 +276,28 @@ function performAssembly(opts){
   })
 }
 
+function clearS3Contents({ attrs }){
+  console.log(chalk.blue.bold('attrs', attrs))
+  const listPromise = s3.listObjects({ Bucket: 'homefilming', Prefix: `${env}orders/${ attrs.order.id }/` }).promise()
+  listPromise.then(res => {
+    console.log(chalk.blue.bold('folderOBJ', res))
+    const keys = []
+    res.Contents.map(obj => {
+      keys.push({ Key: obj.Key })
+    })
+    const deleteParams = { Bucket: "homefilming", Delete: { Objects: keys } }
+    const deletePromise = s3.deleteObjects(deleteParams).promise()
+    deletePromise.then(resp => { console.log(chalk.blue.bold('folderRES', resp)) })
+  })
+  return { attrs }
+}
+
+function clearOrderAssets({ attrs }){
+  db.Asset.destroy({ where: { assetable: 'order', assetableId: attrs.order.id } })
+  return { attrs }
+}
+
+
 function createAssetObj({ ssl_url, ext, type, mime, size, meta }){
   return {
     url: ssl_url,
@@ -322,6 +344,8 @@ module.exports = {
   insuranceUploader,
   licenseUploader,
   processVideoInitPhotos,
+  clearOrderAssets,
+  clearS3Contents,
   processPhotos,
   uploadResult,
   uploadBulkResult,

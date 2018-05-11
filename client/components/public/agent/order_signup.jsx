@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { pick, pathOr } from 'ramda'
 import { isValidEmail, isValidName, isValidPassword } from '../../../utils/validators'
-import Loading from '../../misc/loader'
+import { toast } from 'react-toastify'
 import Config from '../../../utils/config'
 import { getEnv } from '../../../utils/helpers'
 import ContactList from '../../contacts/list'
@@ -230,6 +230,9 @@ class OrderForm extends Component<Props, State> {
 
   runMutation(token){
     this.setState({ loading: !this.state.loading }, async () => {
+      toast.info('⏱️ Creating order... One moment please.', {
+        autoClose: false
+      })
       const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status', 'default'], c))
       const resolved = await this.props.submitOrder({ contacts, token, state: this.state }).catch(err => {
         this.handleGQLErrors(err)
@@ -259,7 +262,6 @@ class OrderForm extends Component<Props, State> {
   render(){
     return (
       <div className="signup-container">
-        { this.state.loading ? <Loading /> : null }
         <div className="w-full rounded shadow p-6 border border-grey-dark">
           <div className="signup-header">
             <div className="w-48 h-48">
@@ -316,6 +318,9 @@ class OrderForm extends Component<Props, State> {
                   name="password"
                   type="password"
                   placeholder="Create password" />
+                <div className="text-xs mt-1">
+                  Password must be at least 8 characters in with capital and lowercase letters and include at least one number.
+                </div>
               </div>
               <div className="flex-1 mx-2">
                 <div className="text-xs">Confirm password</div>
@@ -351,12 +356,13 @@ class OrderForm extends Component<Props, State> {
             actualPrice={ this.state.amountPaid } />
           { this.renderErrors() }
           <div className="mt-4">
-            <a
-              className="button-green"
+            <button
+              disabled={ this.state.loading ? true : false }
+              className={ `${ this.state.loading ? 'button-only bg-grey-light' : 'button-green' }` }
               onClick={this.handleSubmit}>
               <span className="action-button-overlay"></span>
               { this.renderButtonText() }
-            </a>
+            </button>
           </div>
         </div>
       </div>

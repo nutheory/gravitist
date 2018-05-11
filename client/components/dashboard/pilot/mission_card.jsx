@@ -38,7 +38,7 @@ class MissionCard extends Component<Props, State> {
     const plan = find(propEq('name', mission.plan))(Plans)
     const distance = mission.pilotDistance || Math.round(parseFloat(mission.distanceFromLocation) * 10 ) / 10
     const bounty = mission.pilotBounty ? mission.pilotBounty :
-      (Math.round(parseInt(plan ? plan.bounty : 0 ) + distance)).toString()
+      (Math.round(parseInt(plan ? plan.bounty : 0 ))).toString()
     return (
       <div className={`${ cssSizing } px-4 pb-6`}>
         <div className="bg-white rounded shadow px-4 py-4">

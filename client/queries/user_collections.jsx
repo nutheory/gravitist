@@ -11,6 +11,7 @@ const GetUsers = gql`
         type
         bio
         workRadius
+        rejectedCount
         abortCount
         customerId
         accountId

@@ -1,10 +1,10 @@
 module.exports = {
   stripe: {
     test: {
-      'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
+      'publishable_key': 'pk_test_Gj4thYfSwvkWU0vs0pVhuIl8'
     },
     development: {
-      'publishable_key': 'pk_test_W90LuXm9KwqYqSwXgmGh0hLp'
+      'publishable_key': 'pk_test_Gj4thYfSwvkWU0vs0pVhuIl8'
     },
     staging: {
       'publishable_key': 'pk_test_iBrsAg4OASHeIPwax9jXpUEz'
@@ -15,7 +15,7 @@ module.exports = {
   },
   stripe_platform: {
     test: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
-    development: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
+    development: 'ca_CqCIS71oSDutjmOSys3tMKop0vhKf46c',
     production: 'ca_BIQQRaLAZtZuz6c5rXDt1iKzIBA5CINl',
     staging: 'ca_CkcRx3A3U0dkiYApkt1WoSNvcNXdnURT'
   },

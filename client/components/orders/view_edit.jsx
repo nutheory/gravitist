@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
-import { css } from 'aphrodite'
 import { splitEvery, pick, propOr, find, propEq } from 'ramda'
+import { toast } from 'react-toastify'
 import moment from 'moment'
 import ListingForm from '../listings/form'
 import OrderAdminView from './admin_view'
@@ -12,7 +12,6 @@ import AgentResults from './agent_results'
 import AssetViewEdit from '../assets/view_edit'
 import AdminOrderVerify from './admin_verify'
 import MapDirections from '../addresses/map_directions'
-import Loading from '../misc/loader'
 import jwtDecode from 'jwt-decode'
 import DragDropUploader from '../assets/drag_drop_uploader'
 import GetOrder from '../../queries/get_order'
@@ -20,6 +19,7 @@ import Plans from '../../utils/pricing_plans.json'
 
 type Props = {
   data: Object,
+  history: Object
 }
 
 type State = {
@@ -27,7 +27,8 @@ type State = {
   duration?: number,
   pilotDistance?: number,
   pilotBounty?: number,
-  isProcessing?: boolean
+  isProcessing?: boolean,
+  currentMessage?: number
 }
 
 class OrderViewEdit extends Component<Props, State>{
@@ -56,7 +57,7 @@ class OrderViewEdit extends Component<Props, State>{
     this.setState({
       duration,
       pilotDistance: distance,
-      pilotBounty: Math.round(parseInt(plan ? plan.bounty : 0) + distance),
+      pilotBounty: Math.round(parseInt(plan ? plan.bounty : 0)),
       mapDirectionsVisible: order.pilot ? true : false })
   }
 
@@ -94,12 +95,16 @@ class OrderViewEdit extends Component<Props, State>{
     if(user.type === 'admin'){
       if(order.status === 'awaiting_review'){
         return <AdminOrderVerify
-          orderId={ order.id }
+          order={ order }
+          history={this.props.history}
           assetNames={['images', 'video_wm', 'video_og']}
           user={ user }
           updateCallback={ this.updateCallback } />
       } else if(order.status === 'final_processing'){
-        return (<div>Final proccessing</div>)
+        const tMessageId = toast.info('Finalizing processing', {
+          autoClose: false
+        })
+        this.setState({ currentMessage: tMessageId })
       } else if(order.status === 'approved_completed'){
         return <AssetViewEdit
           orderId={ order.id }
@@ -126,11 +131,11 @@ class OrderViewEdit extends Component<Props, State>{
     if(loading){return (<div>Loading...</div>)}
     if(currentUser.type === "admin" && getOrder.order.status === "approved_completed" ||
       currentUser.type === "pilot" && getOrder.order.status === "awaiting_review"){
+      toast.dismiss(this.state.currentMessage)
       this.props.data.stopPolling()
     }
     return(
       <div>
-        { this.state.loading ? <Loading /> : null }
         <div className="container py-8">
           <div className="flex flex-wrap md:-mx-4">
             <div className="w-full md:w-3/5">

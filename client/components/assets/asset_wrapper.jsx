@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
-import { graphql, compose } from 'react-apollo'
+import { graphql, compose, Mutation } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { test, contains } from 'ramda'
 import { Player } from 'video-react'
@@ -159,7 +158,6 @@ class AssetWrapper extends Component<Props, State> {
   }
 
   render(){
-    console.log('this.state.url', this.state.selectedAction)
     return(
       <div className="p-4">
         <div className="bg-white rounded shadow">
@@ -241,6 +239,7 @@ class AssetWrapper extends Component<Props, State> {
                   : <div className="share-button hover hover:text-twitter" onClick={ this.shareTwitter }>
                     <i className="fab fa-twitter "></i>
                   </div> }
+
                   { this.state.selectedAction === 'facebook' ?
                     <div className="share-button hover hover:text-facebook" onClick={ this.sendMessage }>
                       <i className="fab fa-facebook "></i><span className=" text-xs inline-block ml-1">Share</span>
@@ -248,89 +247,25 @@ class AssetWrapper extends Component<Props, State> {
                   : <div className="share-button hover hover:text-facebook" onClick={ this.shareFacebook }>
                     <i className="fab fa-facebook "></i>
                   </div> }
+
+                  <div className="share-button hover hover:text-facebook" onClick={ this.shareFacebook }>
+                    <div className="card-button hover">Copy link</div>
+                  </div>
+
                 </div>
               </div>
-              <div className="p-4">
+              {/* <div className="p-4">
                 <div className="flex flex-wrap -mx-2">
                   <div className="flex-1 mx-2">
                     <div className="card-button hover">Copy link</div>
                   </div>
-                  <div className="flex-1 mx-2">
-                    <div onClick={ this.setAsDefault } className={`${ this.props.asset.default ? 'card-button-selected' : 'card-button hover' }`}>
-                      { this.props.asset.default ? 'Default' : 'Set as default' }
-                    </div>
-                  </div>
                 </div>
-              </div>
+              </div> */}
             </div> }
           </div>
         </div>
-
-      // <div className={css(asw.assetWrapper)}>
-      //   { this.state.selectedAction !== '' ?
-      //     <div className={`${css(asw.formArea)}`}>
-      //       { this.state.selectedAction.match(/^(twitter|facebook)$/) ?
-      //         <div className={css(asw.tinyForm)}>
-      //           <div className="field">
-      //             <div className="control">
-      //               <textarea
-      //                 className={`textarea ${css(asw.formText)}`}
-      //                 placeholder={`${ this.state.selectedAction.charAt(0).toUpperCase()+this.state.selectedAction.substring(1) } message`}>
-      //               </textarea>
-      //             </div>
-      //           </div>
-      //           <div>
-      //             <div>
-      //               <div onClick={ this.sendMessage } className={`button is-small ${css(asw[`${this.state.selectedAction}Button`])}`}>
-      //                 <span className="icon is-small">
-      //                   <i className={`fab fa-${this.state.selectedAction}`}></i>
-      //                 </span>
-      //                 <span>Send</span>
-      //               </div>
-      //             </div>
-      //           </div>
-      //         </div>
-      //       : <div>hjgjhgj</div> }
-      //     </div>
-      //   : <div className="">
-      //     {this.props.asset.type === 'video' ?
-      //       <Player src={ this.state.url } />
-      //     : <img src={ this.state.url } alt={`photo`} /> }
-      //     </div> }
-      //   <div className={css(asw.sidebar)}>
-      //     <div className={css(asw.icon, asw.twitter)}>
-      //       <div onClick={ this.shareTwitter }><i className="fab fa-twitter"></i></div>
-      //     </div>
-      //     <div className={css(asw.icon, asw.facebook)}>
-      //       <div onClick={ this.shareFacebook }><i className="fab fa-facebook"></i></div>
-      //     </div>
-      //     <div className={css(asw.icon, asw.link)}>
-      //       <div onClick={ this.copyLink } >
-      //         <div className={css(asw.linkForm)}>{ this.state.url }</div>
-      //         <i className="fas fa-link"></i>
-      //       </div>
-      //     </div>
-      //     <div className={css(asw.spacer)}></div>
-      //     <div className={`${css(asw.icon, asw.watermark)} ${ this.state.watermarked ? css(asw.watermarked) : ''}`}>
-      //       <div onClick={ this.toggleWatermark }>
-      //         <i className="fa fa-tint"></i>
-      //       </div>
-      //     </div>
-      //     <div className={css(asw.icon, asw.default)}>
-      //       <div onClick={ this.setAsDefault }>
-      //         { this.state.default ? <i className={`fa fa-star ${css(asw.isDefault)}`}></i> : <i className="far fa-star"></i> }
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     )
   }
 }
 
-export default compose(
-  graphql(ToggleDefaultAsset, {
-    props: ({ ownProps, mutate }) => ({
-      setDefaultPhoto: (input) => mutate({
-        variables: { input }
-  }) }) }),
-)(AssetWrapper)
+export default AssetWrapper

@@ -3,11 +3,8 @@ import React, { Component } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
 import { graphql, compose } from 'react-apollo'
 import { find, propEq } from 'ramda'
-import { css } from 'aphrodite'
 import Avatar from '../../assets/avatar'
 import ContactDisplay from '../../contacts/display'
-import crd from '../styles/user_card'
-import cE from '../../../styles/common_elements'
 const linkToApiAccount = `https://dashboard.stripe.com/${ process.env.NODE_ENV === "production" ? '' : 'test/' }applications/users/`
 const linkToApiCustomer = `https://dashboard.stripe.com/${ process.env.NODE_ENV === "production" ? '' : 'test/' }customers/`
 
@@ -51,7 +48,12 @@ class UserCard extends Component<Props, State>{
     return (
       <div className={`${ cssSizing } px-4 pb-6`}>
         <div className="bg-white rounded shadow px-4 py-3 relative">
-          { user.type === "pilot" ? <div className="absolute pin-t pin-r p-2">Aborted: {user.abortCount}</div> : null }
+          { user.type === "pilot" ?
+            <div className="absolute pin-t pin-l w-full p-2 flex">
+              <div className="flex-1">Rejected: {user.rejectedCount}</div>
+              <div className="flex-1 text-right">Aborted: {user.abortCount}</div>
+            </div>
+          : null }
           <div className="py-4 w-20 mx-auto">
             <Avatar size="large" src={ user.avatars.length > 0 ? user.avatars[0].url : null } />
           </div>
@@ -89,69 +91,6 @@ class UserCard extends Component<Props, State>{
           </div>
         </div>
       </div>
-      // <div className="column is-one-third">
-      //   <div className={`card ${css(crd.card)}`}>
-      //     <div className="card-content">
-      //       <div className="media">
-      //         <div className="media-left">
-      //           <Avatar size="large" src={ user.avatars.length > 0 ? user.avatars[0].url : null } />
-      //         </div>
-      //         <div className="media-content">
-      //           <p className="title is-4 text-white">boo{user.name}</p>
-      //           <div className="subtitle is-6">
-      //             { user.contacts.length > 0 ? <ContactDisplay size="small" contact={user.contacts[0]} /> : null }
-      //           </div>
-      //         </div>
-      //       </div>
-      //
-      //       <div className="content">
-      //         <div className={css(crd.cardVitals)}>
-      //           { user.type === "pilot" ? <div className={`tag is-info ${css(crd.flyRadius)}`}>{ user.workRadius }m</div> : null }
-      //           <div className={css(crd.typeIcon)}>
-      //             { user.type === "agent" ? <i className={`fa fa-user fa-3x`} /> : null }
-      //             { user.type === "pilot" ? <i className={`fa fa-plane fa-3x`} /> : null }
-      //             { user.type === "admin" ? <i className={`fa fa-wrench fa-3x`} /> : null }
-      //           </div>
-      //           <div className={css(crd.apiInfo)}>
-      //             <div className={css(crd.apiIdName)}>
-      //               { user.type === "agent" ? 'Customer ID' : null }
-      //               { user.type === "pilot" ? 'Account ID' : null }
-      //               { user.type === "admin" ? 'ID' : null }
-      //             </div>
-      //             <div className={css(crd.apiId)}>
-      //               { this.renderApiLink(user) }
-      //             </div>
-      //           </div>
-      //         </div>
-      //         { user.type === "pilot" ?
-      //           <div className="columns">
-      //             <div className="column">
-      //               { user.isVerified ? <div className={`${css(cE.validBackground, cE.validContainer)}`}>
-      //                 <i className={`fas fa-check ${css(cE.validForeground)}`} />Verified</div>
-      //               : <div className={`${css(cE.invalidBackground, cE.invalidContainer)}`}>
-      //                 <i className={`fas fa-check ${css(cE.invalidForeground)}`} />Verified</div> }
-      //             </div>
-      //             <div className="column">
-      //               { user.termsAccepted ? <div className={`${css(cE.validBackground, cE.validContainer)}`}>
-      //                 <i className={`fas fa-check ${css(cE.validForeground)}`} />Terms</div>
-      //               : <div className={`${css(cE.invalidBackground, cE.invalidContainer)}`}>
-      //                 <i className={`fas fa-check ${css(cE.invalidForeground)}`} />Terms</div> }
-      //             </div>
-      //           </div>
-      //         : null }
-      //         <div className="title is-6">
-      //           <i className={`far fa-envelope ${css(cE.iconSpace)}`} />{this.props.user.email}
-      //         </div>
-      //       </div>
-      //     </div>
-      //     <footer className="card-footer">
-      //       <a className={`card-footer-item ${css(crd.footerButton)}`} href={`mailto:${this.props.user.email}`}>Email</a>
-      //       <Link
-      //         className={`card-footer-item ${css(crd.footerButton)}`}
-      //         to={`/admin/${ user.type }/profile/${ user.id }`}>View</Link>
-      //     </footer>
-      //   </div>
-      // </div>
     )
   }
 }

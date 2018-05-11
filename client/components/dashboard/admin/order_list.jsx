@@ -36,7 +36,7 @@ const OrderList = (props: Props) => (
         criteria: props.criteria,
         queryString: props.queryString || ''
     } } }
-    // pollInterval={8000}
+    pollInterval={8000}
   >
     {({ loading, error, data: {getOrders} }) => {
       if(loading){return (<div></div>)}

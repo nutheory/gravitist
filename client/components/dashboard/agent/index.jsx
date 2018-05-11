@@ -63,7 +63,7 @@ class AgentDashboard extends Component<Props, State>{
             <Route path="/settings" render={({ match }) => (
               <Profile />
             )} />
-            <Route path="/" render={({ match }) => (
+            <Route render={({ match }) => (
               <div className="flex flex-wrap -mx-6">
                 <div className="w-full lg:w-1/2 px-6 pb-4">
                   <div className="font-bold text-xl my-2">Recent orders</div>

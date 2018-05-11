@@ -62,7 +62,20 @@ class PilotDashboard extends Component<Props, State> {
       <div className="container mx-auto mt-8">
         { !user.isVerified || !user.accountId ? this.renderNotifications(user) : null }
         <Switch>
-          <Route path="/dashboard" render={({ match }) => (
+          <Route path="/history" render={({ match }) => (
+            <AcceptedMissions view="all" cssSizing={``} />
+          )} />
+          <Route path="/missions/:missionId/:agentId?" render={({ match }) => (
+            <div className={`columns`}>
+              <div className={`column`}>
+                <MissionView orderid={match.params.missionId} authid={match.params.agentId ? match.params.agentId : null} />
+              </div>
+            </div>
+          )} />
+          <Route path="/settings" render={({ match }) => (
+            <Profile />
+          )} />
+          <Route render={({ match }) => (
             <div className="flex flex-wrap -mx-6">
               <div className="w-1/4 px-6 pb-4">
                 <div className="font-bold text-xl my-2">Current Missions</div>
@@ -79,19 +92,6 @@ class PilotDashboard extends Component<Props, State> {
                 : <OpenMissions cssSizing="w-1/3" /> }
               </div>
             </div>
-          )} />
-          <Route path="/history" render={({ match }) => (
-            <AcceptedMissions view="all" cssSizing={``} />
-          )} />
-          <Route path="/missions/:missionId/:agentId?" render={({ match }) => (
-            <div className={`columns`}>
-              <div className={`column`}>
-                <MissionView orderid={match.params.missionId} authid={match.params.agentId ? match.params.agentId : null} />
-              </div>
-            </div>
-          )} />
-          <Route path="/settings" render={({ match }) => (
-            <Profile />
           )} />
         </Switch>
       </div>

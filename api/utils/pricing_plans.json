@@ -1,6 +1,22 @@
 [
   {
     "planId": 1,
+    "price": "199.00",
+    "actualPrice": "19900",
+    "bounty": "40.00",
+    "actualBounty": "4000",
+    "name": "basic",
+    "title": "Basic",
+    "desc": "Photo and video clips package",
+    "color": "Green",
+    "features": [
+      { "icon": "far fa-clock", "desc": "48 Hour Delivery" },
+      { "icon": "fa fa-camera-retro", "desc": "12 High Res Photos" },
+      { "icon": "fa fa-film", "desc": "6 Video Clips" }
+    ]
+  },
+  {
+    "planId": 2,
     "price": "349.00",
     "actualPrice": "34900",
     "bounty": "40.00",
@@ -16,7 +32,7 @@
     ]
   },
   {
-    "planId": 2,
+    "planId": 3,
     "price": "499.00",
     "actualPrice": "49900",
     "bounty": "40",

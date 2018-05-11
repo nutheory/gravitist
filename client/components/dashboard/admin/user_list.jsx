@@ -42,8 +42,6 @@ class UserList extends Component<Props, State>{
     const { loading } = this.state.searchResults || this.props.userList
     if(loading){return <div></div>}
     const { users, count } = this.props.userList.getUsers
-    console.log("count",count)
-    console.log("users",users)
     return (
       <div>
         <div className="flex flex-wrap mb-4 md:-mx-4">

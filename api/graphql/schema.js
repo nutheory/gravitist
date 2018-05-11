@@ -5,6 +5,7 @@ const { userResolvers } = require('./resolvers/users')
 const { assetResolvers } = require('./resolvers/assets')
 const { listingResolvers } = require('./resolvers/listings')
 const { discountResolvers } = require('./resolvers/discounts')
+const { failedMissionResolvers } = require('./resolvers/failed_missions')
 const { contactResolvers } = require('./resolvers/contacts')
 const { noteResolvers } = require('./resolvers/notes')
 const { orderResolvers } = require('./resolvers/orders')
@@ -15,6 +16,7 @@ const Common = require('./types/common')
 const Company = require('./types/company')
 const Contact = require('./types/contact')
 const Discount = require('./types/discount')
+const FailedMission = require('./types/failed_mission')
 const Listing = require('./types/listing')
 const Note = require('./types/note')
 const Order = require('./types/order')
@@ -34,6 +36,7 @@ const Query = `
     getAssets( input: AssetCollectionInput ): AssetsPayload
     getOrder( input: GetProtectedInput ): OrderPayload
     getMissions( input: GetListInput ): [Order]
+    getFailedMissions( input: GetFailedMissionsInput ): FailedMissionPayload
     getUser( input: GetProtectedInput ): GetUserPayload
     getCustomer( input: GetCustomerInput ): CustomerPayload
     getGallery( input: GetGalleryInput ): GalleryPayload
@@ -98,6 +101,7 @@ const resolvers = _.merge(
   assetResolvers,
   listingResolvers,
   discountResolvers,
+  failedMissionResolvers,
   contactResolvers,
   noteResolvers,
   orderResolvers,
@@ -115,6 +119,7 @@ const schema = makeExecutableSchema({
     Company,
     Contact,
     Discount,
+    FailedMission,
     Listing,
     Note,
     Address,

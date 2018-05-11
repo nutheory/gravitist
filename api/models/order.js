@@ -22,7 +22,11 @@ module.exports = (sequelize, Sequelize) => {
     pilotBounty: Sequelize.FLOAT,
     pilotDistance: Sequelize.FLOAT,
     reviewedBy: Sequelize.INTEGER,
-    rejectedDescription: Sequelize.TEXT,
+    rejected: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     rawUrl: Sequelize.STRING,
     pilotTransferId: Sequelize.STRING,
     pilotTransferResult: Sequelize.JSONB,
@@ -48,7 +52,6 @@ module.exports = (sequelize, Sequelize) => {
     initProcessCompletedAt: Sequelize.DATE,
     reviewedAt: Sequelize.DATE,
     completedAt: Sequelize.DATE,
-    rejectedAt: Sequelize.DATE,
     status: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -63,7 +66,13 @@ module.exports = (sequelize, Sequelize) => {
     },
     plan: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isIn: {
+          args: [['basic', 'standard', 'premium']],
+          msg: 'Plan is Invalid'
+        }
+      }
     },
     createdAt: {
       allowNull: false,
@@ -147,10 +156,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       as: 'contacts'
     })
-    Order.hasMany(models.AbortedMission, {
+    Order.hasOne(models.FailedMission, {
       foreignKey: 'orderId',
-      constraints: false,
-      as: 'bailedMissions'
+      as: 'order'
     })
   }
 

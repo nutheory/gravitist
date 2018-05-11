@@ -1,9 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import _ from 'lodash'
-import { css } from 'aphrodite'
-import mapper from './styles/mapper'
-import cF from '../../styles/common_forms'
+import Whitelist from '../../utils/zipcode_whitelist.json'
 
 type Props = {
   handleReturnedLocation: Function
@@ -11,6 +8,7 @@ type Props = {
 
 type State = {
   addressVerified: boolean,
+  addressSupprted: boolean,
   fullAddress?: string,
   address1?: string,
   address2?: string,
@@ -28,7 +26,8 @@ class AddressMapper extends Component<Props, State> {
   constructor(){
     super()
     this.state = {
-      addressVerified: false
+      addressVerified: false,
+      addressSupprted: true
     }
 
     this.deconstructPlaceIntoState = this.deconstructPlaceIntoState.bind(this)
@@ -75,27 +74,37 @@ class AddressMapper extends Component<Props, State> {
   }
 
   deconstructPlaceIntoState(np: Object){
-    this.setState({
-      address1: `${np.street_number} ${np.street}`,
-      address2: "",
-      city: np.city,
-      state: np.state,
-      zip: np.zip,
-      lat: np.lat,
-      lng: np.lng
-    }, async () => {
-      this.setState({addressVerified: true})
-      this.props.handleReturnedLocation(this.state)
-    })
+    const matches = Whitelist.filter(listitem => listitem.zipcode === np.zip )
+    if(matches.length > 0){
+      this.setState({
+        address1: `${np.street_number} ${np.street}`,
+        address2: "",
+        city: np.city,
+        state: np.state,
+        zip: np.zip,
+        lat: np.lat,
+        lng: np.lng
+      }, async () => {
+        this.setState({ addressVerified: true, addressSupprted: true })
+        this.props.handleReturnedLocation(this.state)
+      })
+    } else {
+      this.setState({ addressSupprted: false })
+    }
   }
 
   render(){
     return(
-      <div className="relative">
-        <input type="textfield" className="input pl-8" id="addressToFilm" />
-        <span className="input-icon pin-l">
-          <i className="fa fa-home"></i>
-        </span>
+      <div>
+        <div className="relative">
+          <input type="textfield" className="input pl-8" id="addressToFilm" />
+          <span className="input-icon pin-l">
+            <i className="fa fa-home"></i>
+          </span>
+        </div>
+        <div className={`error-area hide-error ${ this.state.addressSupprted ? '' : 'show-error'}`}>
+          Unfortunatley the area you selected is not supported yet. Please be patient and check back soon.
+        </div>
       </div>
     )
   }

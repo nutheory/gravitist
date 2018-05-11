@@ -8,7 +8,7 @@ module.exports = {
     queryInterface.addIndex('Companies', ['name'])
     queryInterface.addIndex('Contacts', ['contactableId', 'contactable'])
     queryInterface.addIndex('Invitations', ['userId', 'mailId'])
-    queryInterface.addIndex('AbortedMissions', ['userId', 'orderId'])
+    queryInterface.addIndex('FailedMissions', ['userId', 'orderId'])
     queryInterface.addIndex('Assets', ['assetableId', 'assetable', 'awsId'])
     queryInterface.addIndex('Ratings', ['ratableId', 'ratable'])
     queryInterface.addIndex('ErrorLogs', ['errorableId', 'errorable'])
@@ -16,6 +16,7 @@ module.exports = {
     queryInterface.addIndex('Notifications', ['userId'])
     queryInterface.addIndex('Listings', ['orderId'])
     queryInterface.addIndex('Discounts', ['code'])
+    queryInterface.addIndex('SocialApis', ['orderId', 'userId'])
   },
 
   down: function (queryInterface, Sequelize) {
@@ -25,7 +26,7 @@ module.exports = {
     queryInterface.removeIndex('Companies', ['name'])
     queryInterface.removeIndex('Contacts', ['contactableId', 'contactable'])
     queryInterface.removeIndex('Invitations', ['userId', 'mailId'])
-    queryInterface.removeIndex('AbortedMissions', ['userId', 'orderId'])
+    queryInterface.removeIndex('FailedMissions', ['userId', 'orderId'])
     queryInterface.removeIndex('Assets', ['assetableId', 'assetable', 'awsId'])
     queryInterface.removeIndex('Ratings', ['ratableId', 'ratable'])
     queryInterface.removeIndex('ErrorLogs', ['errorableId', 'errorable'])
@@ -33,5 +34,6 @@ module.exports = {
     queryInterface.removeIndex('Notifications', ['userId'])
     queryInterface.removeIndex('Listings', ['orderId'])
     queryInterface.removeIndex('Discounts', ['code'])
+    queryInterface.removeIndex('SocialApis', ['orderId', 'userId'])
   }
 }

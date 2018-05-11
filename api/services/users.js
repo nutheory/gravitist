@@ -27,7 +27,7 @@ const userIncludes = (criteria) => {
   if( criteria && criteria.type === "pilot"){
     return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
       { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
-      { model: db.Contact, as: 'contacts' }, { model: db.AbortedMission, as: 'bailedMissions' }] }
+      { model: db.Contact, as: 'contacts' }, { model: db.FailedMission, as: 'failedMissions' }] }
   } else {
     return { include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
     { model: db.Contact, as: 'contacts' }] }
@@ -44,7 +44,7 @@ const getFullUser = ({ attrs }) =>
     db.User.findOne({ where: (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
       include: [{ model: db.Address, as: 'address' }, { model: db.Asset, as: 'avatars' },
         { model: db.Asset, as: 'insurances' }, { model: db.Asset, as: 'licenses' },
-        { model: db.Contact, as: 'contacts' }, { model: db.AbortedMission, as: 'bailedMissions' }] })
+        { model: db.Contact, as: 'contacts' }, { model: db.FailedMission, as: 'failedMissions' }] })
       .then(res => resolver.resolve({ usr: res, attrs }) )
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getFullUser' }))) )
   .run().promise()

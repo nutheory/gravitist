@@ -22,6 +22,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      socialSecurity: Sequelize.STRING,
+      dateOfBirth: Sequelize.STRING,
       email: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -83,6 +85,10 @@ module.exports = {
         defaultValue: false
       },
       abortCount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      rejectedCount: {
         type: Sequelize.INTEGER,
         defaultValue: 0
       },

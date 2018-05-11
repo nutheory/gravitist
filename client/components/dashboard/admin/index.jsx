@@ -9,9 +9,10 @@ import DiscountForm from './discount_form'
 import Profile from '../../users/view_edit'
 import Order from '../../orders/view_edit'
 import Search from '../../misc/search'
+import { ToastContainer } from 'react-toastify'
 
 type Props = {
-
+  history: Object
 }
 
 type State = {
@@ -49,6 +50,7 @@ class AdminDashboard extends Component<Props, State>{
   render(){
     return (
       <div className="container mx-auto mt-8">
+        <ToastContainer />
         <Switch>
           <Route path="/admin/pilots/:pageNumber?" render={({ match }) => (
             <div className="mx-4 md:mx-0 pb-8">
@@ -154,7 +156,9 @@ class AdminDashboard extends Component<Props, State>{
             </div>
           )} />
           <Route path="/admin/order/:orderId" render={({ match }) => (
-            <Order orderid={ match.params.orderId } />
+            <div>
+              <Order orderid={ match.params.orderId } history={this.props.history} />
+            </div>
           )} />
           <Route path="/admin/discounts" render={({ match }) => (
             <div>
@@ -172,7 +176,7 @@ class AdminDashboard extends Component<Props, State>{
           <Route path="/settings" render={({ match }) => (
             <Profile />
           )} />
-          <Route path="/" render={({ match }) => (
+          <Route render={({ match }) => (
             <Overview />
           )} />
         </Switch>

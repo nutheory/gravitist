@@ -16,6 +16,7 @@ const User = `
     unsubscribedEmail: Boolean
     workRadius: Int
     ratingCount: Int
+    rejectedCount: Int
     abortCount: Int
     rating: String
     payRate: String
@@ -25,7 +26,6 @@ const User = `
     licenses: [Asset]
     insurances: [Asset]
     contacts: [Contact]
-    bailedMissions: [BailedMissions]
     createdAt: String
     updatedAt: String
   }
@@ -194,6 +194,7 @@ const User = `
     id: ID
     name: String
     email: String
+    rejectedCount: Int
     abortCount: Int
     customerId: String
     companyId: ID
@@ -212,6 +213,7 @@ const User = `
     companyId: ID
     companyOwner: Boolean
     deactivated: Boolean
+    rejectedCount: Int
     abortCount: Int
     bio: String
     address: AddressPayloadFields
@@ -225,7 +227,6 @@ const User = `
     avatar: AssetPayload
     type: String
     contacts: [Contact]
-    bailedMissions: [BailedMissions]
   }
 `
 

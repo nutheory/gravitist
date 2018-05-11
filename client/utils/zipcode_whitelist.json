@@ -1,0 +1,492 @@
+[
+  {
+    "zipcode": "92602",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92603",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92604",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92605",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92606",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92607",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92607",
+    "city": "Laguna Niguel",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92609",
+    "city": "El Toro",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92609",
+    "city": "Lake Forest",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92610",
+    "city": "El Toro",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92610",
+    "city": "Foothill Ranch",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92612",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92614",
+    "city": "Laguna Niguel",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92609",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92609",
+    "city": "Lake Forest",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92610",
+    "city": "El Toro",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92610",
+    "city": "Foothill Ranch",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92612",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92614",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92615",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92616",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92618",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92619",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92620",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92623",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92624",
+    "city": "Capistrano Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92624",
+    "city": "Dana Point",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92625",
+    "city": "Corona Del Mar",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92626",
+    "city": "Costa Mesa",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92627",
+    "city": "Costa Mesa",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92628",
+    "city": "Costa Mesa",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92629",
+    "city": "Monarch Bay",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92629",
+    "city": "Monarch Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92629",
+    "city": "Dana Point",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92630",
+    "city": "El Toro",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92630",
+    "city": "Lake Forest",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92629",
+    "city": "Dana Point",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92630",
+    "city": "El Toro",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92630",
+    "city": "Lake Forest",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92637",
+    "city": "Laguna Hills",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92646",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92647",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92648",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92649",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92637",
+    "city": "Laguna Hills",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92646",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92647",
+    "city": "Huntington Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92650",
+    "city": "East Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92650",
+    "city": "Irvine",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92651",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92652",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92653",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92653",
+    "city": "Aliso Viejo",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92653",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92653",
+    "city": "Laguna Hills",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92654",
+    "city": "Laguna Woods",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92654",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92654",
+    "city": "Laguna Hills",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92655",
+    "city": "Midway City",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92656",
+    "city": "Aliso Viejo",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92656",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92656",
+    "city": "Laguna Hills",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92657",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92657",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92658",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92659",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92660",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92661",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92662",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92663",
+    "city": "Newport Coast",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92672",
+    "city": "San Clemente",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92673",
+    "city": "San Clemente",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92674",
+    "city": "San Clemente",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92675",
+    "city": "Mission Viejo",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92675",
+    "city": "San Juan Capistrano",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92676",
+    "city": "Silverado",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92677",
+    "city": "Laguna Beach",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92677",
+    "city": "Laguna Niguel",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92678",
+    "city": "Trabuco",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92679",
+    "city": "Coto De Caza",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92679",
+    "city": "Dove Canyon",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92679",
+    "city": "Portola Hills",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92679",
+    "city": "Robinson Ranch",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92679",
+    "city": "Trabuco Cyn",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92679",
+    "city": "Trabuco",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92683",
+    "city": "Westminster",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92684",
+    "city": "Westminster",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92685",
+    "city": "Westminster",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92688",
+    "city": "Rancho Santa Margarita",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92690",
+    "city": "Mission Viejo",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92690",
+    "city": "San Juan Capistrano",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92691",
+    "city": "Mission Viejo",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92691",
+    "city": "San Juan Capistrano",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92692",
+    "city": "Mission Viejo",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92692",
+    "city": "San Juan Capistrano",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92693",
+    "city": "San Juan Capistrano",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92694",
+    "city": "Ladera Ranch",
+    "county": "Orange County"
+  },
+  {
+    "zipcode": "92694",
+    "city": "Mission Viejo",
+    "county": "Orange County"
+  }
+]

@@ -29,26 +29,23 @@ module.exports = {
       pilotTransferResult: Sequelize.JSONB,
       pilotAcceptedAt: Sequelize.DATE,
       reviewedBy: Sequelize.INTEGER,
-      rejectedDescription: Sequelize.TEXT,
+      rejected: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
       rawUrl: Sequelize.STRING,
       status: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'recruiting',
-        validate: {
-          isIn: {
-            args: [['recruiting', 'pending', 'filming', 'uploaded', 'initial_processing',
-              'awaiting_review','final_processing', 'approved_completed', 'rejected']],
-            msg: 'Order status is invalid'
-          }
-        }
+        defaultValue: 'recruiting'
       },
       plan: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
           isIn: {
-            args: [['standard', 'premium']],
+            args: [['basic', 'standard', 'premium']],
             msg: 'Plan is Invalid'
           }
         }

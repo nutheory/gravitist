@@ -34,7 +34,14 @@ module.exports = function(sequelize, Sequelize) {
         isIn: [[ 'agent', 'pilot', 'unapproved_admin', 'admin' ]]
       }
     },
-    abortCount: Sequelize.INTEGER,
+    abortCount: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
+    rejectedCount: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     bio: Sequelize.TEXT,
     isVerified: {
       type: Sequelize.BOOLEAN,
@@ -256,10 +263,14 @@ module.exports = function(sequelize, Sequelize) {
       },
       as: 'insurance'
     })
-    User.hasMany(models.AbortedMission, {
+    User.hasMany(models.FailedMission, {
       foreignKey: 'userId',
       onDelete: 'CASCADE',
-      as: 'bailedMissions'
+      as: 'failedMissions'
+    })
+    User.hasMany(models.FailedMission, {
+      foreignKey: 'rejectedBy',
+      as: 'rejectedByUser'
     })
   }
 

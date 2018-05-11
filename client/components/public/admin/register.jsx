@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { pick, pathOr } from 'ramda'
-import Loading from '../../misc/loader'
+import { toast } from 'react-toastify'
 import ContactList from '../../contacts/list'
 import User from '../../users/signup'
 import DragDropUploader from '../../assets/drag_drop_uploader'
@@ -170,6 +170,9 @@ class CreateUser extends Component<Props, State> {
 
   runMutation(){
     this.setState({ loading: !this.state.loading }, async () => {
+      toast.info('⏱️ Creating order... One moment please.', {
+        autoClose: false
+      })
       const contacts = this.state.contacts.map(c => pick(['type', 'content', 'status', 'default'], c))
       let resolved = await this.props.submitUser({ contacts, state: this.state }).catch(err => {
         this.handleGQLErrors(err)
@@ -191,9 +194,7 @@ class CreateUser extends Component<Props, State> {
   render(){
     return (
       <div>
-        { this.state.loading ? <Loading /> : null }
         <div className="signup-container">
-          { this.state.loading ? <Loading /> : null }
           <div className="w-full rounded shadow p-6 border border-grey-dark">
             <div className="signup-header">
               <div className="w-48 h-48">
@@ -274,6 +275,9 @@ class CreateUser extends Component<Props, State> {
                     name="password"
                     type="password"
                     placeholder="Create password" />
+                    <div className="text-xs mt-1">
+                      Password must be at least 8 characters in with capital and lowercase letters and include at least one number.
+                    </div>
                 </div>
                 <div className="flex-1 mx-2">
                   <div className="text-xs">Confirm password</div>

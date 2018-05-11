@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import { StyleSheet, css } from 'aphrodite'
-import ss from './styles/simple'
-import Loader from '../misc/loader'
+import { ToastContainer } from 'react-toastify'
 
 const SimpleLayout = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest} render={ props => (
       <div className="font-source-sans">
+        <ToastContainer />
         <Component {...props} />
       </div>
     )} />

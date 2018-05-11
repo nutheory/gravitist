@@ -10,7 +10,6 @@ const completedTemplate = pug.compileFile(__dirname + '/views/order_completed.pu
 const confirmationTemplate = pug.compileFile(__dirname + '/views/order_confirmation.pug')
 const chalk = require('chalk')
 
-
 const welcomeConfirmationMailer = ({ order, user }) => {
   console.log(chalk.blue.bold('Agent'), user)
   console.log(chalk.blue.bold('ORDER'), order)
@@ -89,9 +88,21 @@ const completedMailer = ({ pilot, order }) => {
   sendMail(msg)
 }
 
+const sendRejectedMailer = ({ attrs }) => {
+  const msg = {
+    to: 'drush@nutheory.com',
+    from: 'noreply@homefilming.com',
+    subject: 'Rejected',
+    text: ``,
+    html: ``,
+  }
+  sendMail(msg)
+}
+
 module.exports = {
   welcomeConfirmationMailer,
   confirmationMailer,
   recruitingMailer,
-  completedMailer
+  completedMailer,
+  sendRejectedMailer
 }

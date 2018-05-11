@@ -6,7 +6,7 @@ const _ = require('lodash')
 const db = require('../../models')
 const nums = [ 4, 5, 6, 7 ]
 const Addresses = require('../utils/Addresses.json')
-const plans =  require('../../../client/utils/pricing_plans.json')
+const plans =  require('../../utils/pricing_plans.json')
 const chalk = require('chalk')
 
 

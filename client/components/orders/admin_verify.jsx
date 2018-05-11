@@ -2,30 +2,32 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import { splitEvery, contains, indexOf, remove, concat } from 'ramda'
-import { css } from 'aphrodite'
 import { Player } from 'video-react'
+import { toast } from 'react-toastify'
 import AssetsQuery from '../../queries/asset_collections'
 import ApproveOrder from '../../mutations/approve_order'
 import RejectOrder from '../../mutations/reject_order'
-import frm from './styles/form'
-import cE from '../../styles/common_elements'
 
 type Props = {
   updateCallback: Function,
   approveOrder: Function,
   rejectOrder: Function,
-  orderId: Number,
+  history: Object,
+  order: Object,
   assetNames: Array<String>,
   user: Object,
   data: Object
 }
 
 type State = {
-  selectedImages: Array<String>
+  selectedImages: Array<String>,
+  rejectedDescription?: string
 }
 
 class AdminOrderVerify extends Component<Props, State> {
 
+  rejectOrder: Function
+  handleInputChange: Function
   approveOrderText: Function
   approveOrder: Function
   toggleAcceptedImage: Function
@@ -37,9 +39,16 @@ class AdminOrderVerify extends Component<Props, State> {
       selectedImages: []
     }
 
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.rejectOrder = this.rejectOrder.bind(this)
     this.approveOrderText = this.approveOrderText.bind(this)
     this.approveOrder = this.approveOrder.bind(this)
     this.toggleAcceptedImage = this.toggleAcceptedImage.bind(this)
+  }
+
+  handleInputChange(e: SyntheticEvent<*>){
+    const el = e.currentTarget
+    this.setState({ rejectedDescription: el.value })
   }
 
   toggleAcceptedImage(e: SyntheticEvent<*>){
@@ -65,12 +74,26 @@ class AdminOrderVerify extends Component<Props, State> {
   approveOrder(){
     if(this.state.selectedImages.length === 20){
       this.props.approveOrder({
-        id: this.props.orderId,
-        authorizedId: this.props.orderId,
+        id: this.props.order.id,
+        authorizedId: this.props.order.id,
         order: { photos: this.state.selectedImages }
       }).then(res => {
         this.props.updateCallback(res)
       })
+    }
+  }
+
+  rejectOrder(){
+    if (window.confirm("Are you sure you want to reject this filming?")) {
+      toast.error('Filming rejected, Rolling back this orders status.')
+      this.props.rejectOrder({
+        id: this.props.order.id,
+        authorizedId: this.props.order.id,
+        order: {
+          rejectedDescription: this.state.rejectedDescription,
+          pilotId: this.props.order.pilot ? this.props.order.pilot.id : null
+        }
+      }).then(res => { this.props.history.push('/dashboard') })
     }
   }
 
@@ -83,23 +106,25 @@ class AdminOrderVerify extends Component<Props, State> {
     const assets = getAssets.assets.filter(as => as.type === 'image')
     return(
       <div>
-        <div className="reviewcontainer">
-          <div className="">
-            <div className="">Review Videos</div>
-          </div>
-          <div className="flex flex-wrap md:-mx-4">
-            <div className="w-full md:w-1/2 p-4 rounded-lg">
-              <Player>
-                <source src={ optimized[0].url } />
-              </Player>
+        { this.props.order.plan === 'standard' || this.props.order.plan === 'premium' ?
+          <div className="reviewcontainer">
+            <div className="">
+              <div className="">Review Videos</div>
             </div>
-            <div className="w-full md:w-1/2 p-4 rounded-lg">
-              <Player>
-                <source src={ watermarked[0].url } />
-              </Player>
+            <div className="flex flex-wrap md:-mx-4">
+              <div className="w-full md:w-1/2 p-4 rounded-lg">
+                <Player>
+                  <source src={ optimized[0].url } />
+                </Player>
+              </div>
+              <div className="w-full md:w-1/2 p-4 rounded-lg">
+                <Player>
+                  <source src={ watermarked[0].url } />
+                </Player>
+              </div>
             </div>
           </div>
-        </div>
+        : null }
         <div className="my-8">
           <div className="">
             <div className="">Select 20 Acceptable Photos</div>
@@ -121,8 +146,20 @@ class AdminOrderVerify extends Component<Props, State> {
               ))}
             </div>
           : null }
-          <div className="w-full flex justify-end">
-            <div className="inline-block">
+          <div className="flex flex-wrap-reverse md:-mx-4">
+            <div className="w-full md:w-1/2 p-4">
+              <div className="text-xl font-bold mb-2">Reject filming</div>
+              <textarea
+                name="rejectedDecription"
+                className="input w-full h-24"
+                placeholder="Please explain the rejection (this will be sent to the pilot)"
+                onChange={ this.handleInputChange }>
+              </textarea>
+              <button className="button-red px-8 py-3 mt-2" onClick={ this.rejectOrder }>
+                <span className="action-button-overlay"></span>Reject Filming
+              </button>
+            </div>
+            <div className="w-full md:w-1/2 p-4">
               <a className="button-green px-8 py-3" onClick={ this.approveOrder }>
                 <span className="action-button-overlay"></span>{ this.approveOrderText() }
               </a>
@@ -137,7 +174,7 @@ class AdminOrderVerify extends Component<Props, State> {
 export default compose(
   graphql(AssetsQuery, {
     options: (props) => ({ variables: { input: {
-      modelId: props.orderId,
+      modelId: props.order.id,
       modelType: 'order',
       modelName: props.assetNames } } })
   }),
