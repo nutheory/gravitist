@@ -16,7 +16,6 @@ module.exports = {
     queryInterface.addIndex('Notifications', ['userId'])
     queryInterface.addIndex('Listings', ['orderId'])
     queryInterface.addIndex('Discounts', ['code'])
-    queryInterface.addIndex('SocialApis', ['orderId', 'userId'])
   },
 
   down: function (queryInterface, Sequelize) {
@@ -34,6 +33,5 @@ module.exports = {
     queryInterface.removeIndex('Notifications', ['userId'])
     queryInterface.removeIndex('Listings', ['orderId'])
     queryInterface.removeIndex('Discounts', ['code'])
-    queryInterface.removeIndex('SocialApis', ['orderId', 'userId'])
   }
 }
