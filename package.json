@@ -138,6 +138,7 @@
     "enzyme-adapter-react-16": "1.1.0",
     "errorhandler": "1.5.0",
     "eslint": "^3.19.0",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
     "faker": "^4.1.0",
     "file-loader": "1.1.11",
     "flow-bin": "^0.61.0",

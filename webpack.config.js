@@ -1,11 +1,11 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 // const combineLoaders = require('webpack-combine-loaders')
 const tailwindcss = require('tailwindcss')
 
-// const appCss = new ExtractTextPlugin("styles.css")
-// const galleryCss = new ExtractTextPlugin("gallery.css")
+const appCss = new ExtractTextPlugin("styles.css")
+const galleryCss = new ExtractTextPlugin("gallery.css")
 
 module.exports = [
   {
@@ -32,7 +32,8 @@ module.exports = [
         },
         {
           test: /\.(css)$/,
-          use: [ { loader: 'css-loader', options: { importLoaders: 1} }, { loader: 'postcss-loader'}]
+          use: appCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
+          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
         },
         {
           test: /.*\.(gif|png|jpe?g|svg|mp4|m4v|)$/i,
@@ -52,7 +53,7 @@ module.exports = [
       publicPath: '/'
     },
     plugins: [
-      // appCss,
+      appCss,
       require('autoprefixer')
     ]
   },
@@ -76,12 +77,13 @@ module.exports = [
         },
         {
           test: /\.(css)$/,
-          use: [ { loader: 'css-loader', options: { importLoaders: 1} }, { loader: 'postcss-loader'} ]
+          use: galleryCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
+          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
         }
       ]
     },
     plugins: [
-      // galleryCss,
+      galleryCss,
       require('autoprefixer')
     ]
   }
