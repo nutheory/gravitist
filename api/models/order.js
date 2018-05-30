@@ -131,14 +131,23 @@ module.exports = (sequelize, Sequelize) => {
       },
       as: 'assets'
     })
+    Order.hasOne(models.Asset, {
+      foreignKey: 'assetableId',
+      constraints: false,
+      scope: {
+        assetable: 'order',
+        assetableName: 'video_og'
+      },
+      as: 'video'
+    })
     Order.hasMany(models.Asset, {
       foreignKey: 'assetableId',
       constraints: false,
       scope: {
         assetable: 'order',
-        assetableName: ['video_og', 'photo']
+        assetableName: 'photo'
       },
-      as: 'galleryAssets'
+      as: 'photos'
     })
     Order.hasMany(models.Note, {
       foreignKey: 'notableId',

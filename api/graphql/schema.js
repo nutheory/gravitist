@@ -10,6 +10,7 @@ const { contactResolvers } = require('./resolvers/contacts')
 const { noteResolvers } = require('./resolvers/notes')
 const { orderResolvers } = require('./resolvers/orders')
 const { paymentResolvers } = require('./resolvers/payments')
+// const { socialResolvers } = require('./resolvers/social')
 const Address = require('./types/address')
 const Asset = require('./types/asset')
 const Common = require('./types/common')
@@ -21,6 +22,7 @@ const Listing = require('./types/listing')
 const Note = require('./types/note')
 const Order = require('./types/order')
 const Payment = require('./types/payment')
+// const Social = require('./types/social')
 const Plan = require('./types/plan')
 const Rating = require('./types/rating')
 const User = require('./types/user')
@@ -102,6 +104,7 @@ const resolvers = _.merge(
   listingResolvers,
   discountResolvers,
   failedMissionResolvers,
+  // socialResolvers,
   contactResolvers,
   noteResolvers,
   orderResolvers,
@@ -126,6 +129,7 @@ const schema = makeExecutableSchema({
     Asset,
     Order,
     Rating,
+    // Social,
     User
   ],
   resolvers

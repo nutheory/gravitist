@@ -91,6 +91,7 @@ class OrderViewEdit extends Component<Props, State>{
       return <ListingForm listing={ order.listing } order={ order } />
     }
   }
+
   userTypeResult({ order, user }){
     if(user.type === 'admin'){
       if(order.status === 'awaiting_review'){
@@ -101,14 +102,10 @@ class OrderViewEdit extends Component<Props, State>{
           user={ user }
           updateCallback={ this.updateCallback } />
       } else if(order.status === 'final_processing'){
-        const tMessageId = toast.info('Finalizing processing', {
-          autoClose: false
-        })
-        this.setState({ currentMessage: tMessageId })
+        const tMessageId = toast.info('Finalizing processing', {})
       } else if(order.status === 'approved_completed'){
         return <AssetViewEdit
-          orderId={ order.id }
-          uuid={ order.uuid }
+          order={ order }
           assetNames={['photo', 'video_og']}
           user={ user } />
       }
@@ -117,8 +114,7 @@ class OrderViewEdit extends Component<Props, State>{
     } else {
       if(order.status === 'approved_completed'){
         return <AssetViewEdit
-          orderId={ order.id }
-          uuid={ order.uuid }
+          order={ order }
           assetNames={['photo', 'video_og']}
           user={ user } />
       }
@@ -131,7 +127,7 @@ class OrderViewEdit extends Component<Props, State>{
     if(loading){return (<div>Loading...</div>)}
     if(currentUser.type === "admin" && getOrder.order.status === "approved_completed" ||
       currentUser.type === "pilot" && getOrder.order.status === "awaiting_review"){
-      toast.dismiss(this.state.currentMessage)
+      // toast.dismiss(this.state.currentMessage)
       this.props.data.stopPolling()
     }
     return(

@@ -12,6 +12,7 @@ const AuthLayout = ({ component: Component, ...rest }) => {
   } catch(e){
     console.log("No Auth")
   }
+
   return (
     <Route {...rest} render={ props => (
       <div className="admin-body font-source-sans">

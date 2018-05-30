@@ -44,7 +44,19 @@ const GetGallery = gql`
           lat
           lng
         }
-        galleryAssets {
+        video {
+          id
+          assetableId
+          assetableName
+          name
+          type
+          url
+          awsId
+          active
+          default
+          createdAt
+        }
+        photos {
           id
           assetableId
           assetableName

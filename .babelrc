@@ -1,10 +1,13 @@
 {
-    "presets":["es2015", "stage-2", "stage-3", "react", "flow"],
-    "plugins": [
-      "import-glob",
-      ["transform-runtime", {
-        "polyfill": false,
-        "regenerator": true
-      }]
-    ]
+  "presets":["env", "react", "stage-3", "flow"],
+  "plugins": [
+    "transform-regenerator",
+    "transform-object-rest-spread",
+    "syntax-dynamic-import",
+    "dynamic-import-webpack",
+    [ "transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }]
+  ]
 }

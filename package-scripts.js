@@ -17,11 +17,19 @@ module.exports = {
         script: 'nps api.test.integration.default',
       }
     },
+    webpack: {
+      default: {
+        script: "node_modules/.bin/webpack-dev-server --mode development"
+      }
+    },
     dev: {
       server: "nodemon \"./index.js\" --watch \"./api\"",
-      build: "webpack --config webpack.config.js --watch",
+      build: "webpack --config webpack.config.js --watch --mode development",
     },
     api: {
+      default: {
+        script: "nodemon \"./index.js\" --watch \"./api\""
+      },
       test: {
         integration: {
           default: {
@@ -46,7 +54,7 @@ module.exports = {
     },
     build: {
       default: {
-        script: 'webpack --config webpack.config.js --watch',
+        script: 'webpack --config webpack.config.js --watch --mode production',
       },
     }
   }

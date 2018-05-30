@@ -47,7 +47,7 @@ class ApolloError extends ExtendableError {
       error.locations = locations
       error.path = path
     }
-    
+
     return error
   }
 
@@ -63,6 +63,7 @@ const createError = (name, config) => {
 }
 
 const formatError = (error, returnNull = false) => {
+  console.log(chalk.blue.bold("ERRRRRR"),error)
   const originalError = error ? error.originalError || error : null
 
   if (!originalError) return returnNull ? null : error

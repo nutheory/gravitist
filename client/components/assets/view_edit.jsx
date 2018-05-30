@@ -12,8 +12,7 @@ import AssetsQuery from '../../queries/asset_collections'
 
 type Props = {
   assetQuery: Function,
-  orderId: Number,
-  uuid: string
+  order: Object
 }
 
 type State = {
@@ -42,25 +41,35 @@ class AssetViewEdit extends Component<Props, State> {
     if ( getAssets.assets.length < 1 ) { return <div>Results empty.</div> }
     const optimized = getAssets.assets.filter(as => as.assetableName === 'video_og')[0]
     const assets = getAssets.assets.filter(as => as.type === 'image')
+    console.log(optimized)
     return(
       <div>
+        { this.props.order.plan === 'standard' || this.props.order.plan === 'premium' ?
         <div>
           <div className="my-8">
             <div className="font-bold text-xl my-2">Video</div>
             <div className="md:-mx-4">
               <div className="">
-                <AssetWrapper asset={ optimized } orderId={ this.props.orderId } uuid={ this.props.uuid } />
+                <AssetWrapper
+                  asset={ optimized }
+                  orderId={ this.props.order.id }
+                  uuid={ this.props.order.uuid } />
               </div>
             </div>
           </div>
         </div>
+        : null }
         <div>
           <div className="my-8">
             <div className="font-bold text-xl my-2">Photos</div>
             <div className="flex flex-wrap -mx-4">
               { assets.map((asset, i) => (
                 <div className="w-full md:w-1/4" key={`col_${i}`}>
-                  <AssetWrapper asset={ asset } orderId={ this.props.orderId } handleImageEdit={ this.handleImageEdit } uuid={ this.props.uuid } />
+                  <AssetWrapper
+                    asset={ asset }
+                    orderId={ this.props.order.id }
+                    handleImageEdit={ this.handleImageEdit }
+                    uuid={ this.props.order.uuid } />
                 </div>
               ))}
             </div>
@@ -74,7 +83,7 @@ class AssetViewEdit extends Component<Props, State> {
 export default graphql(AssetsQuery, {
   name: 'assetQuery',
   options: (props) => ({ variables: { input: {
-    modelId: props.orderId,
+    modelId: props.order.id,
     modelType: 'order',
     modelName: props.assetNames } } })
 })(AssetViewEdit)

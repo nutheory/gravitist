@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
 
 type Props = {
 }

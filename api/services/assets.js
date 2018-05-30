@@ -230,6 +230,7 @@ const uploadBulkResult = async ({ body }) => {
       const name= getNameFromUrl(aR.ssl_url)
       const wmRegex = /_wm/
       const watermarked = wmRegex.test(assemblyResultsName)
+      console.log(chalk.blue.bold('ORDER RESULT'), assemblyResultsName)
       await db.Asset.create({ assetableId: orderId, assetable: 'order',
         default: aR.type === "image" && !defaultSet ? true : false,
         assetableName: assemblyResultsName, url: aR.ssl_url, uploaderId: pilotId,

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 const DeactivateUser = gql`
-  mutation destroyAsset($input: DeactivateUserInput) {
+  mutation ($input: DeactivateUserInput) {
     deactivateUser(input: $input){
       user {
         id

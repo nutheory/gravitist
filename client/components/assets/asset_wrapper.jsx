@@ -6,17 +6,16 @@ import { test, contains } from 'ramda'
 import { Player } from 'video-react'
 import Config from '../../utils/config'
 import { getEnv } from '../../utils/helpers'
-import Axios from 'axios'
-import asw from './styles/asset_wrapper'
 import jwtDecode from 'jwt-decode'
 import AssetsQuery from '../../queries/asset_collections'
 import ToggleDefaultAsset from '../../mutations/toggle_default_asset'
+// import CreateSocialMutation from '../../mutations/create_social'
 const env = getEnv(window.location.host)
 const assetUrl = `${Config.aws.baseUrl}${env}/orders/`
 
 type Props = {
-  handleImageEdit: Function,
-  setDefaultPhoto: Function,
+  // handleImageEdit?: Function,
+  // setDefaultPhoto?: Function,
   asset: Object,
   orderId?: Number,
   uuid?: string
@@ -24,23 +23,19 @@ type Props = {
 
 type State = {
   url: string,
-  watermarked: boolean,
-  default: boolean,
-  selectedAction: string,
-  message?: string,
-  status?: string
+  watermarked: boolean
 }
 
 class AssetWrapper extends Component<Props, State> {
 
-  shareTwitter: Function
-  shareFacebook: Function
-  sendMessage: Function
+  // shareTwitter: Function
+  // shareFacebook: Function
+  // sendMessage: Function
   copyLink: Function
   toggleWatermark: Function
-  setAsDefault: Function
-  handleInputChange: Function
-  cancelShare: Function
+  // setAsDefault: Function
+  // handleInputChange: Function
+  // cancelShare: Function
 
   constructor(props: Object){
     super(props)
@@ -50,62 +45,70 @@ class AssetWrapper extends Component<Props, State> {
         props.asset.type === 'video' ?
           assetUrl + props.asset.assetableId + '/video_wm/' + props.asset.name
         : assetUrl + props.asset.assetableId + '/wm_thumb/' + props.asset.name }`,
-      watermarked: true,
-      default: props.asset.default,
-      message: '',
-      status: '',
-      selectedAction: ''
+      watermarked: true
     }
 
-    this.shareTwitter = this.shareTwitter.bind(this)
-    this.shareFacebook = this.shareFacebook.bind(this)
+    // this.shareTwitter = this.shareTwitter.bind(this)
+    // this.shareFacebook = this.shareFacebook.bind(this)
     this.copyLink = this.copyLink.bind(this)
-    this.sendMessage = this.sendMessage.bind(this)
+    // this.sendMessage = this.sendMessage.bind(this)
     this.toggleWatermark = this.toggleWatermark.bind(this)
-    this.setAsDefault = this.setAsDefault.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.cancelShare = this.cancelShare.bind(this)
+    // this.setAsDefault = this.setAsDefault.bind(this)
+    // this.handleInputChange = this.handleInputChange.bind(this)
+    // this.cancelShare = this.cancelShare.bind(this)
   }
 
-  shareTwitter(e: SyntheticEvent<*>){
-    if(this.state.selectedAction === 'twitter'){
-      this.setState({ selectedAction: '' })
-    } else {
-      this.setState({ selectedAction: 'twitter' })
-    }
-  }
+  // shareTwitter(e: SyntheticEvent<*>){
+  //   if(this.state.selectedAction === 'twitter'){
+  //     this.setState({ selectedAction: '' })
+  //   } else {
+  //     this.setState({ selectedAction: 'twitter' })
+  //   }
+  // }
+  //
+  // shareFacebook(e: SyntheticEvent<*>){
+  //   if(this.state.selectedAction === 'facebook'){
+  //     this.setState({ selectedAction: '' })
+  //   } else {
+  //     this.setState({ selectedAction: 'facebook' })
+  //   }
+  // }
 
-  shareFacebook(e: SyntheticEvent<*>){
-    if(this.state.selectedAction === 'facebook'){
-      this.setState({ selectedAction: '' })
-    } else {
-      this.setState({ selectedAction: 'facebook' })
-    }
-  }
+  // handleInputChange(e: SyntheticEvent<*>){
+  //   this.setState({ message: e.currentTarget.value }, function(){
+  //     console.log('tweet', this.state)
+  //   })
+  // }
+  //
+  // cancelShare(){
+  //   this.setState({ selectedAction: '' })
+  // }
+  //
+  // async sendMessage(e: SyntheticEvent<*>, createSocial: Function){
+  //   const { id, assetableId } = this.props.asset
+  //   if(this.state.selectedAction === 'facebook'){
+  //
+  //   } else if(this.state.selectedAction === 'twitter'){
+  //     if(this.state.message && this.state.message.length < 200){
+  //       console.log('this.props.asset', this.props.asset)
+  //       const resolved = await createSocial({
+  //         variables: { input: {
+  //           social: {
+  //             postedTo: `${this.state.selectedAction}`,
+  //             message: `${this.state.url} ${this.state.message ? this.state.message : ''}`,
+  //             assetId: id,
+  //             orderId: assetableId
+  //           }
+  //         }
+  //       }})
+  //
+  //       // set status
+  //       // console.log('tweet', tweet)
+  //     }
+  //   }
+  // }
 
-  handleInputChange(e: SyntheticEvent<*>){
-    this.setState({ message: e.currentTarget.value }, function(){
-      console.log('tweet', this.state)
-    })
-  }
 
-  cancelShare(){
-    this.setState({ selectedAction: '' })
-  }
-
-  async sendMessage(e: SyntheticEvent<*>){
-    if(this.state.selectedAction === 'facebook'){
-
-    } else if(this.state.selectedAction === 'twitter'){
-      if(this.state.message && this.state.message.length < 200){
-        const tweet = await Axios.post('https://api.twitter.com/1.1/statuses/update.json', {
-          status: `${this.state.url} ${this.state.message}`
-        })
-        // set status
-        console.log('tweet', tweet)
-      }
-    }
-  }
 
   copyLink(e: SyntheticEvent<*>){
     console.log(e)
@@ -143,21 +146,22 @@ class AssetWrapper extends Component<Props, State> {
     }
   }
 
-  setAsDefault(e: SyntheticEvent<*>){
-    if(!this.state.default){
-      this.props.setDefaultPhoto({
-        id: this.props.asset.id,
-        authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
-        modelId: this.props.orderId,
-        modelType: 'order',
-        modelName: 'photo'
-      }).then(res => {
-        this.props.handleImageEdit()
-      })
-    }
-  }
+  // setAsDefault(e: SyntheticEvent<*>){
+  //   if(!this.state.default){
+  //     this.props.setDefaultPhoto({
+  //       id: this.props.asset.id,
+  //       authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
+  //       modelId: this.props.orderId,
+  //       modelType: 'order',
+  //       modelName: 'photo'
+  //     }).then(res => {
+  //       this.props.handleImageEdit()
+  //     })
+  //   }
+  // }
 
   render(){
+    const wmString = this.state.watermarked ? '/wm/' : '/photo/'
     return(
       <div className="p-4">
         <div className="bg-white rounded shadow">
@@ -189,16 +193,18 @@ class AssetWrapper extends Component<Props, State> {
                   <div className="font-bold text-sm">Socialize</div>
                   <p className="text-xs my-2">Would you like to add a link to your Gallery in your message?</p>
                   <textarea
-                    onChange={ this.handleInputChange }
                     className="input h-32 mb-2"
-                    value={ this.state.message }
                     placeholder={`Share message`}>
                   </textarea>
                   <div className="flex -mx-2">
-                    <div className="flex-1 share-button hover hover:text-twitter" onClick={ this.sendMessage }>
-                      <i className="fab fa-twitter inline-block"></i><span className=" text-xs inline-block ml-1">Tweet</span>
-                    </div>
-                    <div className="flex-1 share-button hover hover:text-facebook" onClick={ this.sendMessage }>
+                    {/* <Mutation mutation={CreateSocialMutation}>
+                      {(createSocial, { loading, error }) => (
+                        <div className="flex-1 share-button hover hover:text-twitter" >
+                          <i className="fab fa-twitter inline-block"></i><span className=" text-xs inline-block ml-1">Tweet</span>
+                        </div>
+                      )}
+                    </Mutation> */}
+                    <div className="flex-1 share-button hover hover:text-facebook">
                       <i className="fab fa-facebook "></i><span className=" text-xs inline-block ml-1">Share</span>
                     </div>
                   </div>
@@ -206,49 +212,35 @@ class AssetWrapper extends Component<Props, State> {
               </div>
             </div>
           : <div>
-            { this.state.selectedAction !== '' ?
-              <div className="p-4">
-                { this.state.selectedAction.match(/^(twitter|facebook)$/) ?
-                  <div className="control">
-                    <textarea
-                      onChange={ this.handleInputChange }
-                      className="input h-24 mb-2"
-                      value={ this.state.message }
-                      placeholder={`${ this.state.selectedAction.charAt(0).toUpperCase()+this.state.selectedAction.substring(1) } message`}>
-                    </textarea>
-                    <div className="flex">
-                      <div className="flex-1">
-                        { this.state.status }
-                      </div>
-                      <div className="flex-1 text-right">
-                        <span onClick={ this.cancelShare } className="text-sm">cancel</span>
-                      </div>
-                    </div>
-                  </div>
-                : <div></div> }
-              </div>
-            : <div className="hover" onClick={ this.toggleWatermark }>
+            <div className="hover" onClick={ this.toggleWatermark }>
               <img src={ this.state.url } alt={`photo`}  />
-              </div> }
+            </div>
               <div className="px-4 pt-4">
                 <div className="flex flex-wrap -mx-2">
-                  { this.state.selectedAction === 'twitter' ?
-                    <div className="share-button hover hover:text-twitter" onClick={ this.sendMessage }>
-                      <i className="fab fa-twitter inline-block"></i><span className=" text-xs inline-block ml-1">Send</span>
-                    </div>
-                  : <div className="share-button hover hover:text-twitter" onClick={ this.shareTwitter }>
+                  {/* { this.state.selectedAction === 'twitter' ?
+                    <Mutation mutation={CreateSocialMutation}>
+                      {( createSocial, { loading, error }) => (
+                        <div className="share-button hover hover:text-twitter" onClick={ e => this.sendMessage(e, createSocial) }>
+                          <i className="fab fa-twitter inline-block"></i><span className=" text-xs inline-block ml-1">Send</span>
+                        </div>
+                      )}
+                    </Mutation> : */}
+                  <a className="share-button hover hover:text-twitter" href={`https://twitter.com/intent/tweet?url=${
+                    assetUrl + this.props.asset.assetableId + wmString + this.props.asset.name}&hashtags=homefilming`} >
                     <i className="fab fa-twitter "></i>
-                  </div> }
+                  </a>
+                {/* } */}
 
-                  { this.state.selectedAction === 'facebook' ?
+                  {/* { this.state.selectedAction === 'facebook' ?
                     <div className="share-button hover hover:text-facebook" onClick={ this.sendMessage }>
                       <i className="fab fa-facebook "></i><span className=" text-xs inline-block ml-1">Share</span>
-                    </div>
-                  : <div className="share-button hover hover:text-facebook" onClick={ this.shareFacebook }>
+                    </div> : */}
+                  <div className="share-button hover hover:text-facebook">
                     <i className="fab fa-facebook "></i>
-                  </div> }
+                  </div>
+                {/* } */}
 
-                  <div className="share-button hover hover:text-facebook" onClick={ this.shareFacebook }>
+                  <div className="share-button hover hover:text-facebook">
                     <div className="card-button hover">Copy link</div>
                   </div>
 

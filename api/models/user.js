@@ -281,7 +281,9 @@ module.exports = function(sequelize, Sequelize) {
       email: user.email,
       type: user.type,
       isVerified: user.isVerified,
-      deactivated: user.deactivated
+      deactivated: user.deactivated,
+      emailNotifications: user.emailNotifications,
+      smsNotifications: user.smsNotifications
     }
     if ( user.customerId ) { newToken.customerId = user.customerId }
     if ( user.accountId ) { newToken.accountId = user.accountId }

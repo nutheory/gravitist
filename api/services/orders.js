@@ -32,7 +32,7 @@ const getFullGallery = ({ uuid }) =>
   task(resolver =>
     db.Order.findOne( R.merge({ where: { uuid }}, { include: [ { model: db.Address, as: 'address' },
       { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }, { model: db.Contact, as: 'contacts' }] },
-      { model: db.Listing, as: 'listing' }, { model: db.Asset, as: 'galleryAssets' } ] }) )
+      { model: db.Listing, as: 'listing' }, { model: db.Asset, as: 'video' }, { model: db.Asset, as: 'photos' } ] }) )
       .then(res => resolver.resolve({ gallery: res.dataValues }) ) )
   .run().promise()
 

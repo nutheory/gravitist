@@ -2,19 +2,24 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { graphql } from 'react-apollo'
-import dsh from '../styles/dashboard'
+import Loadable from 'react-loadable'
 import jwtDecode from 'jwt-decode'
 import Config from '../../../utils/config'
 import { getEnv } from '../../../utils/helpers'
-import Profile from '../../users/view_edit'
 import OpenMissions from './open_missions'
 import AcceptedMissions from './accepted_missions'
-import MissionView from '../../orders/view_edit'
 import AcceptTermsMutation from '../../../mutations/accept_terms'
 import Notifications from '../../../utils/notifications.json'
 const env = getEnv(window.location.host)
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
+const Loading = () => {
+  return <div>Loading...</div>
+}
+
+
+const MissionView = Loadable({ loader: () => import('../../orders/view_edit'), loading: Loading })
+const Profile = Loadable({ loader: () => import('../../users/view_edit'), loading: Loading })
 
 type Props = {
 }
@@ -41,7 +46,7 @@ class PilotDashboard extends Component<Props, State> {
           <div className="border border-grey bg-red-lightest p-4">
             <h3 className="font-bold text-sm">{ Notifications.user.pilot.account.title }</h3>
             <p className="text-sm">{ Notifications.user.pilot.account.body }</p>
-            <a href={`https://connect.stripe.com/express/oauth/authorize?redirect_uri=${returnUri}/users/signup-pilot&client_id=${stripeClientId}&state=${user.id}`}>
+            <a href={`https://connect.stripe.com/express/oauth/authorize?redirect_uri=${returnUri}/auth/signup-pilot&client_id=${stripeClientId}&state=${user.id}`}>
               <img src={`${require('../../../assets/images/stripe.png')}`} style={{ display: 'block', height: '30px', marginTop: '1rem' }} />
             </a>
           </div>

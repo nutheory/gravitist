@@ -147,7 +147,8 @@ const Order = `
     address: Address
     listing: Listing
     agent: User
-    galleryAssets: [Asset]
+    photos: [Asset]
+    video: Asset
   }
 `
 

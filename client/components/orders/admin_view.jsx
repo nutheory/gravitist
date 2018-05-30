@@ -70,7 +70,7 @@ class OrderViewEditForm extends Component<Props, State>{
       <div>
         <div className="flex pb-4">
           <div className="flex justify-end items-end"><i className="fas fa-chevron-left"></i><Link to="/admin/orders" className="inline-block pl-2" style={{ lineHeight: '1.1rem' }}>Back to orders</Link></div>
-          <div className="flex-1 text-right text-xl font-bold">Order - {this.props.order.uuid}</div>
+          <div className="flex-1 text-right text-xl font-bold">{plan.title} - {this.props.order.uuid}</div>
         </div>
         <div className="bg-white rounded shadow p-6">
           <div id={`order_${ order.id }`} className="w-full">

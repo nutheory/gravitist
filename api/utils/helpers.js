@@ -60,4 +60,14 @@ const discountToNumber = (discount, amount) => {
   }
 }
 
-module.exports = { mustHaveId, utcDateString, discountToNumber }
+const getEnvSendValue = (messageType, value) => {
+  if(process.env.ACTING_ENV === 'development'){
+    return messageType === 'mail' ? 'drush81@gmail.com' : '+19492808977'
+  } else if(process.env.ACTING_ENV === 'staging'){
+    return messageType === 'mail' ? 'drush81@gmail.com' : '+19492808977'
+  } else if(process.env.ACTING_ENV === 'production'){
+    return value
+  }
+}
+
+module.exports = { mustHaveId, utcDateString, discountToNumber, getEnvSendValue }

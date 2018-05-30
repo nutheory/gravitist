@@ -1,8 +1,8 @@
 const express = require('express')
 const wwwhisper = require('connect-wwwhisper')
 const graphqlHTTP = require('express-graphql')
-const enforce = require('express-sslify')
-const session = require('express-session')
+// const enforce = require('express-sslify')
+// const session = require('express-session')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cookieParser = require('cookie-parser')
@@ -18,24 +18,27 @@ const { formatError } = require('./utils/appErrors')
 const notificationRouter = require('./routes/notifications')
 const uploadRouter = require('./routes/uploads')
 const galleryRouter = require('./routes/gallery')
-const usersRouter = require('./routes/users')
+const authRouter = require('./routes/auth')
 const app = express()
 
 function serverStart(done){
   // app.use(opbeat.middleware.express())
   app.use(wwwhisper())
-  process.env.NODE_ENV === 'production' ? app.use(enforce.HTTPS({ trustProtoHeader: true })) : null
+  // process.env.NODE_ENV === 'production' ? app.use(enforce.HTTPS({ trustProtoHeader: true })) : null
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
   app.use(bodyParser.json({limit: '1mb'}))
-  // app.use(cors({ origin: `http://localhost:${process.env.PORT || 5000}`, credentials: true }))
+  app.use(cors({ origin: '*', credentials: true }))
   app.use(logger(':remote-addr - :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'))
   app.use(express.static(path.resolve() + '/dist/'))
   app.set('views', path.resolve() + '/client/views/')
   app.set('view engine', 'pug')
+  // app.use(session({ secret: process.env.JWT_SECRET }))
   app.use(passport.initialize())
+  // app.use(passport.session())
   app.use(function(err, req, res, next) {
     console.error(err)
+    console.log(req)
     return res.status(422).json({ errors: err })
   })
 
@@ -51,7 +54,7 @@ function serverStart(done){
   app.use( '/notifications', notificationRouter )
   app.use( '/uploads', tokenAuthenticate, publicPassThrough, uploadRouter )
   app.use( '/gallery', galleryRouter )
-  app.use( '/users', usersRouter )
+  app.use( '/auth', authRouter )
 
   app.get('/auth-signature', tokenAuthenticate, publicPassThrough, async (req, res, next) => {
     if(req.user && req.user.type === "agent"){ res.sendStatus(200) }

@@ -156,7 +156,7 @@ class PilotRegister extends Component<Props, State> {
         }
         const base = `https://connect.stripe.com/express/oauth/authorize?`
         const userStr = `&stripe_user[email]=${user.email}&stripe_user[first_name]=${nameArr[0]}&stripe_user[last_name]=${nameArr[1] ? nameArr[1] : ''}&stripe_user[phone_number]=${phoneNumber}&stripe_user[country]="US"`
-        window.location = `${base}redirect_uri=${returnUri}/users/signup-pilot&client_id=${stripeClientId}&state=${user.id}${userStr}`
+        window.location = `${base}redirect_uri=${returnUri}/auth/signup-pilot&client_id=${stripeClientId}&state=${user.id}${userStr}`
       }
     })
   }

@@ -1,12 +1,11 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const DashboardPlugin = require('webpack-dashboard/plugin')
-const combineLoaders = require('webpack-combine-loaders')
+// const ExtractTextPlugin = require("extract-text-webpack-plugin")
+// const combineLoaders = require('webpack-combine-loaders')
 const tailwindcss = require('tailwindcss')
 
-const appCss = new ExtractTextPlugin("styles.css")
-const galleryCss = new ExtractTextPlugin("gallery.css")
+// const appCss = new ExtractTextPlugin("styles.css")
+// const galleryCss = new ExtractTextPlugin("gallery.css")
 
 module.exports = [
   {
@@ -33,8 +32,7 @@ module.exports = [
         },
         {
           test: /\.(css)$/,
-          use: appCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
-          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
+          use: [ { loader: 'css-loader', options: { importLoaders: 1} }, { loader: 'postcss-loader'}]
         },
         {
           test: /.*\.(gif|png|jpe?g|svg|mp4|m4v|)$/i,
@@ -47,10 +45,14 @@ module.exports = [
       ]
     },
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: true,
+      host: 'localhost',
+      port: 5005,
+      contentBase: path.join(__dirname, "/dist"),
+      publicPath: '/'
     },
     plugins: [
-      appCss,
+      // appCss,
       require('autoprefixer')
     ]
   },
@@ -74,13 +76,12 @@ module.exports = [
         },
         {
           test: /\.(css)$/,
-          use: galleryCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
-          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
+          use: [ { loader: 'css-loader', options: { importLoaders: 1} }, { loader: 'postcss-loader'} ]
         }
       ]
     },
     plugins: [
-      galleryCss,
+      // galleryCss,
       require('autoprefixer')
     ]
   }

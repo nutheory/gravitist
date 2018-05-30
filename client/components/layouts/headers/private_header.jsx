@@ -1,11 +1,9 @@
 // @flow
 import React, { Component } from 'react'
-import { css } from 'aphrodite'
 import { graphql, compose } from 'react-apollo'
 import { Link, withRouter } from 'react-router-dom'
 import LiNavLink from '../../misc/li_navlink'
 import jwtDecode from 'jwt-decode'
-import styles from '../styles/private_header'
 import UserTokenQuery from '../../../queries/check_refresh'
 import UpdateUserMutation from '../../../mutations/update_user'
 

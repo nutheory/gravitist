@@ -2,19 +2,23 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { graphql, compose } from 'react-apollo'
+import Loadable from 'react-loadable'
 import jwtDecode from 'jwt-decode'
 import OrderList from './order_list'
 import Overview from './overview'
 import PricingOptions from '../../public/agent/pricing_options'
 import Reorder from './reorder'
-import Order from '../../orders/view_edit'
-import Profile from '../../users/view_edit'
-import dsh from '../styles/dashboard'
-import { css } from 'aphrodite'
 import {pathOr} from 'ramda'
 import OrdersQuery from '../../../queries/order_collections'
+const Loading = () => {
+  return <div>Loading...</div>
+}
+
+const Order = Loadable({ loader: () => import('../../orders/view_edit'), loading: Loading })
+const Profile = Loadable({ loader: () => import('../../users/view_edit'), loading: Loading })
 
 type Props = {
+  history: Object,
   orders: Object
 }
 
@@ -55,7 +59,7 @@ class AgentDashboard extends Component<Props, State>{
               <Order orderid={ match.params.orderId } />
             )} />
             <Route path="/re-order/:plan" render={({ match }) => (
-              <Reorder match={match} />
+              <Reorder match={match} history={this.props.history} />
             )} />
             <Route path="/new-order" render={({ match }) => (
               <PricingOptions />
