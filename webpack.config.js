@@ -24,7 +24,7 @@ module.exports = [
       rules: [
         {
           test: /\.pug$/,
-            loader: ['html-loader', 'pug-html-loader?pretty&exports=false']
+          loader: ['html-loader', 'pug-html-loader?pretty&exports=false']
         },
         { test: /\.(js|jsx)$/,
           loader: 'babel-loader',
