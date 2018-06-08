@@ -82,7 +82,7 @@ class LeadForm extends Component<Props, State> {
       <div className="rounded-lg bg-grey-darkest shadow-lg">
         <div className="p-4 border-b-2 border-black">
           <div className="text-sm text-center ">CONTACT AGENT</div>
-          { agent.avatar.url ?
+          { agent.avatar && agent.avatar.url ?
             <div className="text-center mt-4">
               <img src={agent.avatar.url} className="w-24 h-24 rounded-full" />
             </div>
@@ -162,9 +162,9 @@ class LeadForm extends Component<Props, State> {
                     placeholder={this.state.type === "email" ? "Email address" : "Phone number"} />
                 </div>
                 <div className="mb-2">
-                  <button className="button-green">
+                  <button className=" action-button button-green">
                     { this.state.leadSubmitted ? 'Thank you, we\'ll be in touch' : 'Submit' }
-                    <span className="action-button-overlay"></span>
+                    <span className=" action-button-overlay"></span>
                   </button>
                 </div>
               </form>

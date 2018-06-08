@@ -293,8 +293,8 @@ class DragDropUploader extends Component<Props, State> {
 
           { this.state.showSubmitForReview ?
             <div className="mt-4">
-              <button className="button-green" onClick={ this.handleReviewSubmit }>
-                <span className="action-button-overlay"></span>Submit for review
+              <button className=" action-button button-green" onClick={ this.handleReviewSubmit }>
+                <span className=" action-button-overlay"></span>Submit for review
               </button>
             </div>
           : null }

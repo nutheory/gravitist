@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { graphql, compose, Mutation } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { test, contains } from 'ramda'
+import FacebookProvider, { Feed } from 'react-facebook-sdk'
 import { Player } from 'video-react'
 import Config from '../../utils/config'
 import { getEnv } from '../../utils/helpers'
@@ -12,6 +13,7 @@ import ToggleDefaultAsset from '../../mutations/toggle_default_asset'
 // import CreateSocialMutation from '../../mutations/create_social'
 const env = getEnv(window.location.host)
 const assetUrl = `${Config.aws.baseUrl}${env}/orders/`
+const shareUrl = `${Config.base_url[env]}/gallery/order`
 
 type Props = {
   // handleImageEdit?: Function,
@@ -146,20 +148,6 @@ class AssetWrapper extends Component<Props, State> {
     }
   }
 
-  // setAsDefault(e: SyntheticEvent<*>){
-  //   if(!this.state.default){
-  //     this.props.setDefaultPhoto({
-  //       id: this.props.asset.id,
-  //       authorizedId: jwtDecode(localStorage.getItem('hf_auth_header_token')).id,
-  //       modelId: this.props.orderId,
-  //       modelType: 'order',
-  //       modelName: 'photo'
-  //     }).then(res => {
-  //       this.props.handleImageEdit()
-  //     })
-  //   }
-  // }
-
   render(){
     const wmString = this.state.watermarked ? '/wm/' : '/photo/'
     return(
@@ -184,11 +172,11 @@ class AssetWrapper extends Component<Props, State> {
               </div>
               <div className="w-1/4 px-4 md:pr-8 md:pl-4 mt-8">
                 <div className="font-bold mb-4">Your Aerial Video</div>
-                <Link className="big-button bg-blue-lightest mb-4" to={`/gallery/${ this.props.uuid ? this.props.uuid : '' }`} target="_blank">
+                <Link className="no-underline block text-center rounded shadow p-2 border border-grey bg-blue-lightest mb-4" to={`/gallery/${ this.props.uuid ? this.props.uuid : '' }`} target="_blank">
                   Visit Gallery
                 </Link>
-                <div className="big-button hover mb-4" onClick={ this.copyLink }>Copy link</div>
-                <div className="big-button hover mb-4" onClick={ this.toggleWatermark }>Toggle watermark</div>
+                <div className="no-underline block text-center rounded shadow p-2 border border-grey hover mb-4" onClick={ this.copyLink }>Copy link</div>
+                <div className="no-underline block text-center rounded shadow p-2 border border-grey hover mb-4" onClick={ this.toggleWatermark }>Toggle watermark</div>
                 <div className="rounded-lg border border-grey-light bg-grey-lighter p-4">
                   <div className="font-bold text-sm">Socialize</div>
                   <p className="text-xs my-2">Would you like to add a link to your Gallery in your message?</p>
@@ -197,14 +185,7 @@ class AssetWrapper extends Component<Props, State> {
                     placeholder={`Share message`}>
                   </textarea>
                   <div className="flex -mx-2">
-                    {/* <Mutation mutation={CreateSocialMutation}>
-                      {(createSocial, { loading, error }) => (
-                        <div className="flex-1 share-button hover hover:text-twitter" >
-                          <i className="fab fa-twitter inline-block"></i><span className=" text-xs inline-block ml-1">Tweet</span>
-                        </div>
-                      )}
-                    </Mutation> */}
-                    <div className="flex-1 share-button hover hover:text-facebook">
+                    <div className="flex-1 mx-2 bg-white rounded shadow py-1 text-center hover hover:text-facebook">
                       <i className="fab fa-facebook "></i><span className=" text-xs inline-block ml-1">Share</span>
                     </div>
                   </div>
@@ -217,42 +198,22 @@ class AssetWrapper extends Component<Props, State> {
             </div>
               <div className="px-4 pt-4">
                 <div className="flex flex-wrap -mx-2">
-                  {/* { this.state.selectedAction === 'twitter' ?
-                    <Mutation mutation={CreateSocialMutation}>
-                      {( createSocial, { loading, error }) => (
-                        <div className="share-button hover hover:text-twitter" onClick={ e => this.sendMessage(e, createSocial) }>
-                          <i className="fab fa-twitter inline-block"></i><span className=" text-xs inline-block ml-1">Send</span>
-                        </div>
-                      )}
-                    </Mutation> : */}
-                  <a className="share-button hover hover:text-twitter" href={`https://twitter.com/intent/tweet?url=${
-                    assetUrl + this.props.asset.assetableId + wmString + this.props.asset.name}&hashtags=homefilming`} >
+                  <a className="flex-1 hover hover:text-twitter" href={`https://twitter.com/intent/tweet?url=${shareUrl}/${this.props.asset.assetableId}/asset/${this.props.asset.id}&hashtags=gravitist`} >
                     <i className="fab fa-twitter "></i>
                   </a>
-                {/* } */}
-
-                  {/* { this.state.selectedAction === 'facebook' ?
-                    <div className="share-button hover hover:text-facebook" onClick={ this.sendMessage }>
-                      <i className="fab fa-facebook "></i><span className=" text-xs inline-block ml-1">Share</span>
-                    </div> : */}
-                  <div className="share-button hover hover:text-facebook">
-                    <i className="fab fa-facebook "></i>
+                  <FacebookProvider appId="1507022829407993">
+                    <Feed
+                      href="http://www.facebook.com"
+                      name="Hello"
+                      link={`${shareUrl}/${this.props.asset.assetableId}/asset/${this.props.asset.id}`}>
+                      <button type="button"><i className="fab fa-facebook "></i></button>
+                    </Feed>
+                  </FacebookProvider>
+                  <div className="flex-1 hover hover:text-facebook">
+                    <div className="text-blue-darker border border-blue-darker py-1 px-4 rounded-full text-xs text-center hover">Copy link</div>
                   </div>
-                {/* } */}
-
-                  <div className="share-button hover hover:text-facebook">
-                    <div className="card-button hover">Copy link</div>
-                  </div>
-
                 </div>
               </div>
-              {/* <div className="p-4">
-                <div className="flex flex-wrap -mx-2">
-                  <div className="flex-1 mx-2">
-                    <div className="card-button hover">Copy link</div>
-                  </div>
-                </div>
-              </div> */}
             </div> }
           </div>
         </div>

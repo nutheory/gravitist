@@ -129,8 +129,8 @@ class Reorder extends Component<Props, State> {
                 price={ this.state.price }
                 actualPrice={ this.state.amountPaid } />
               <div className="">
-                <button onClick={ this.submitOrder } className="button-green">
-                  <span className="action-button-overlay"></span>Order now</button>
+                <button onClick={ this.submitOrder } className=" action-button button-green">
+                  <span className=" action-button-overlay"></span>Order now</button>
               </div>
             </div>
           </div>

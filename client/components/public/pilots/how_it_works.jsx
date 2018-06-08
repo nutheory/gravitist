@@ -32,8 +32,8 @@ const HowItWorks = () => {
         { instructions.map((instruct, i) => createSteps(instruct, i)) }
       </div>
       <div className="text-center mt-8">
-        <Link className="button-green py-4 w-1/2 md:w-64" to="/pilots/register">
-          <span className="action-button-overlay"></span>
+        <Link className=" action-button button-green py-4 w-1/2 md:w-64" to="/pilots/register">
+          <span className=" action-button-overlay"></span>
           Register now to get paid!
         </Link>
       </div>

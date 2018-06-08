@@ -24,10 +24,10 @@ module.exports = {
     accessKeyId: 'AKIAJIBEGSDYXPQQVALQ'
   },
   base_url: {
-    test: 'https://homefilming.ngrok.io',
-    development: 'https://homefilming.ngrok.io',
-    staging: 'https://staging-homefilming.herokuapp.com',
-    production: 'https://www.homefilming.com'
+    test: 'https://gravitist.ngrok.io',
+    development: 'https://gravitist.ngrok.io',
+    staging: 'https://staging.gravit.ist',
+    production: 'https://www.gravit.ist'
   },
   assemblies: {
     test: {

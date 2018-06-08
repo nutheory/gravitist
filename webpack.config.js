@@ -1,11 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-// const combineLoaders = require('webpack-combine-loaders')
+const postcssPresetEnv = require('postcss-preset-env')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const tailwindcss = require('tailwindcss')
-
-const appCss = new ExtractTextPlugin("styles.css")
-const galleryCss = new ExtractTextPlugin("gallery.css")
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = [
   {
@@ -31,9 +29,19 @@ module.exports = [
           exclude: /node_modules/
         },
         {
-          test: /\.(css)$/,
-          use: appCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
-          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            { loader: 'postcss-loader', options: {
+              ident: 'postcss',
+              plugins: () => [
+                tailwindcss('./client/styles/tailwind.js'),
+                postcssPresetEnv({ stage: 0 })
+                // require('autoprefixer')
+              ]
+            } }
+          ]
         },
         {
           test: /.*\.(gif|png|jpe?g|svg|mp4|m4v|)$/i,
@@ -42,7 +50,6 @@ module.exports = [
           test: /.*\.(eot|ttf|woff|woff2|)$/i,
           loader: "file-loader?name=[hash].[ext]&publicPath=/assets/fonts/&outputPath=assets/fonts/"
         }
-
       ]
     },
     devServer: {
@@ -53,8 +60,10 @@ module.exports = [
       publicPath: '/'
     },
     plugins: [
-      appCss,
-      require('autoprefixer')
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
     ]
   },
   {
@@ -76,15 +85,27 @@ module.exports = [
           exclude: /node_modules/
         },
         {
-          test: /\.(css)$/,
-          use: galleryCss.extract({ fallback: 'style-loader', use: [ { loader: 'css-loader',
-          options: { importLoaders: 1} }, { loader: 'postcss-loader'}]})
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            { loader: 'postcss-loader', options: {
+              ident: 'postcss',
+              plugins: () => [
+                postcssPresetEnv({ stage: 0 }),
+                tailwindcss('./client/styles/tailwind.js'),
+                require('autoprefixer')
+              ]
+            } }
+          ]
         }
       ]
     },
     plugins: [
-      galleryCss,
-      require('autoprefixer')
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
     ]
   }
 ]

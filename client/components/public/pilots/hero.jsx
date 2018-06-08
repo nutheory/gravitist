@@ -15,8 +15,8 @@ const Hero = () => {
             <div className="text-xl xl:text-3xl text-white text-right t-shadow">Earn money. Fly when you want.</div>
             <div className="flex flex-wrap -mx-4 justify-end">
               <div className="p-4 inline-block">
-                <Link className="button-green py-4 px-12" to="/pilots/register">
-                  <span className="action-button-overlay"></span>
+                <Link className=" action-button button-green py-4 px-12" to="/pilots/register">
+                  <span className=" action-button-overlay"></span>
                   Register now to start flying
                 </Link>
               </div>

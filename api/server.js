@@ -2,7 +2,6 @@ const express = require('express')
 const wwwhisper = require('connect-wwwhisper')
 const graphqlHTTP = require('express-graphql')
 // const enforce = require('express-sslify')
-// const session = require('express-session')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cookieParser = require('cookie-parser')
@@ -21,6 +20,7 @@ const galleryRouter = require('./routes/gallery')
 const authRouter = require('./routes/auth')
 const app = express()
 
+
 function serverStart(done){
   // app.use(opbeat.middleware.express())
   app.use(wwwhisper())
@@ -33,9 +33,7 @@ function serverStart(done){
   app.use(express.static(path.resolve() + '/dist/'))
   app.set('views', path.resolve() + '/client/views/')
   app.set('view engine', 'pug')
-  // app.use(session({ secret: process.env.JWT_SECRET }))
   app.use(passport.initialize())
-  // app.use(passport.session())
   app.use(function(err, req, res, next) {
     console.error(err)
     console.log(req)

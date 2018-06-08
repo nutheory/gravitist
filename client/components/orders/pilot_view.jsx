@@ -195,8 +195,8 @@ class PilotView extends Component<Props, State> {
                       <div className="w-1/2 px-4">
                         <Mutation mutation={BailPilot}>
                           {(bailPilot) => (
-                            <button className="button-red" onClick={(e) => this.handleBailMission(bailPilot, order, e) }>
-                              <span className="action-button-overlay"></span>Bail on this mission
+                            <button className=" action-button button-red" onClick={(e) => this.handleBailMission(bailPilot, order, e) }>
+                              <span className=" action-button-overlay"></span>Bail on this mission
                             </button>
                           )}
                         </Mutation>
@@ -237,9 +237,9 @@ class PilotView extends Component<Props, State> {
                 <div className="pt-6">
                   <Mutation mutation={JoinPilot}>
                     {(joinPilot) => (
-                      <button className="button-green" onClick={(e) => this.handleAcceptMission(joinPilot, order, e) }>
+                      <button className=" action-button button-green" onClick={(e) => this.handleAcceptMission(joinPilot, order, e) }>
                         Accept mission for details
-                      <span className="action-button-overlay"></span></button>
+                      <span className=" action-button-overlay"></span></button>
                     )}
                   </Mutation>
                 </div>

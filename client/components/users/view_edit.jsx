@@ -260,8 +260,8 @@ class UserViewEdit extends Component<Props, State>{
               <h3 className="font-bold flex-1">{ currentUser.id === userid ? 'Settings' : 'Profile' }</h3>
               <div onClick={ this.toggleEditMode } className="hover:cursor-pointer">edit</div>
               { currentUser.type === "admin" ?
-                <div onClick={ this.toggleVerified } className={`${user.isVerified ? 'button-red ' : 'button-green' } ml-4 w-24`}>
-                  <span className="action-button-overlay"></span>
+                <div onClick={ this.toggleVerified } className={`${user.isVerified ? ' action-button button-red ' : ' action-button button-green' } ml-4 w-24`}>
+                  <span className=" action-button-overlay"></span>
                   { user.isVerified ? 'Unverify' : 'Verify'}
                 </div>
               : null }
@@ -307,9 +307,9 @@ class UserViewEdit extends Component<Props, State>{
                         </div>
                         <div className="">
                           <button
-                            className={` ${ user.deactivated ? 'button-green' : 'button-red' }`}
+                            className={` ${ user.deactivated ? ' action-button button-green' : ' action-button button-red' }`}
                             onClick={(e) => this.handleDeactivationToggle(deactivateUser, user, e) }>
-                            <span className="action-button-overlay"></span>{ user.deactivated ? 'Reactivate' : 'Deactivate' }
+                            <span className=" action-button-overlay"></span>{ user.deactivated ? 'Reactivate' : 'Deactivate' }
                           </button>
                         </div>
                       </div>
@@ -414,9 +414,9 @@ class UserViewEdit extends Component<Props, State>{
             : null }
             { edit && (currentUser.id === userid || currentUser.type === "admin") ?
               <a
-                className="button-green"
+                className=" action-button button-green"
                 onClick={this.handleSubmit}>
-                <span className="action-button-overlay"></span>
+                <span className=" action-button-overlay"></span>
                 Save Changes
               </a>
             : null }

@@ -1,25 +1,25 @@
 body{
   background: #F1F5F8;
   color: #3d4852;
-  font-family: 'Source Sans Pro','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen','cursive','Droid Sans','Helvetica Neue';
-
-  & a:link{
-    color: #3d4852;
-  }
-
-  & a:hover{
-    color: #3d4852;
-    text-decoration: underline;
-  }
-
-  & a:active{
-    color: #3d4852;
-  }
-
-  & a:visited{
-    color: #3d4852;
-  }
+  font-family: 'Source Sans Pro','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen','cursive','Droid Sans','Helvetica Neue'
 }
+
+/* a:link{
+  color: #3d4852;
+}
+
+a:hover{
+  color: #3d4852;
+  text-decoration: underline;
+}
+
+a:active{
+  color: #3d4852;
+}
+
+a:visited{
+  color: #3d4852;
+} */
 
 .brighten{
   opacity: 0.5;
@@ -49,7 +49,7 @@ body{
     color: #3d4852;
   }
 
-  &.font-source-sans {
+  & .font-source-sans {
     font-family: 'Source Sans Pro','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Oxygen','cursive','Droid Sans','Helvetica Neue';
   }
 }
@@ -68,23 +68,21 @@ ul{
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
-  --action-button: {
-    display: inline-block;
-    color: #fff !important;
+.action-button {
+  display: inline-block;
+  color: #fff !important;
+  text-decoration: none;
+  box-shadow: 1px 1px 2px #0a0a0a;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: 4px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  & :hover{
     text-decoration: none;
-    box-shadow: 1px 1px 2px #0a0a0a;
-    font-weight: 600;
-    font-size: 0.85rem;
-    border: 0;
-    padding: 0.65rem 0.8rem;
-    border-radius: 4px;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    &:hover{
-      text-decoration: none;
-    }
   }
 }
 
@@ -99,14 +97,13 @@ ul{
   border-radius: 6px;
   transition: all .3s ease-out;
   opacity: 0;
-  &:hover {
+  & :hover {
     opacity: 0.6;
     cursor: pointer
   }
 }
 
 .dropdown-menu{
-  display: none;
   left: 0;
   min-width: 12rem;
   padding-top: 4px;
@@ -116,28 +113,21 @@ ul{
 }
 
 .button-green {
-  @apply --action-button;
   background-image: linear-gradient(-180deg,#74c947 0,#4bc459 100%);
 }
 
 .button-blue {
-  @apply --action-button;
   background-image: linear-gradient(-180deg,#479ac9 0,#4b70c4 100%);
 }
 
 .button-purple {
-  @apply --action-button;
   background-image: linear-gradient(-180deg,#9547c9 0,#6e4bc4 100%);
 }
 
 .button-red {
-  @apply --action-button;
   background-image: linear-gradient(-180deg,#c94747 0,#9a3b3b 100%);
 }
 
-.button-only {
-  @apply --action-button;
-}
 
 .img-overlay {
   position: absolute;
@@ -629,4 +619,8 @@ input {
   transition-property: all;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0, 1, 0, 1)
+}
+
+.droid{
+  font-family: "Droid serif", Times, serif !important;
 }

@@ -17,14 +17,14 @@ const Hero = () => {
             </div>
             <div className="flex flex-wrap -mx-4 justify-end">
               <div className="p-4 w-full md:w-1/2">
-                <Link className="button-green p-4" to="/pricing">
-                  <span className="action-button-overlay"></span>
+                <Link className=" action-button button-green p-4" to="/pricing">
+                  <span className=" action-button-overlay"></span>
                   View Pricing
                 </Link>
               </div>
               <div className="p-4 w-full md:w-1/2">
-                <Link className="button-purple p-4" to={{pathname: '/sample-video', state: { modal: true} }}>
-                  <span className="action-button-overlay"></span>
+                <Link className=" action-button button-purple p-4" to={{pathname: '/sample-video', state: { modal: true} }}>
+                  <span className=" action-button-overlay"></span>
                   View Sample Video
                 </Link>
               </div>

@@ -229,9 +229,9 @@ class ListingForm extends Component<Props, State> {
             <a className="" onClick={this.newFeature}>Add feature</a>
           </div>
           <div className="inline-block text-right">
-            <button className="button-green" onClick={ this.submitListing }>
+            <button className=" action-button button-green" onClick={ this.submitListing }>
               { this.state.updated ? 'Saved.' : 'Save listing info' }
-            <span className="action-button-overlay"></span></button>
+            <span className=" action-button-overlay"></span></button>
           </div>
         </div>
       </div>

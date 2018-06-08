@@ -108,8 +108,8 @@ class ResetPassword extends Component<Props, State> {
                       </div>
                       <div className="flex">
                         <div className="w-1/4">
-                          <button type="submit" className="button-blue rounded">
-                            <span className="action-button-overlay"></span>Send instructions
+                          <button type="submit" className=" action-button button-blue rounded">
+                            <span className=" action-button-overlay"></span>Send instructions
                           </button>
                         </div>
                         <div className="pl-4 text-sm flex items-center">
@@ -147,8 +147,8 @@ class ResetPassword extends Component<Props, State> {
                       </div>
                       <div className="flex">
                         <div className="w-1/3">
-                          <button type="submit" className="button-blue rounded">
-                            <span className="action-button-overlay"></span>Save new password
+                          <button type="submit" className=" action-button button-blue rounded">
+                            <span className=" action-button-overlay"></span>Save new password
                           </button>
                         </div>
                         <div className="pl-4 text-sm flex items-center">

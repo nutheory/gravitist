@@ -26,9 +26,9 @@ const PricingOptions = (props: Object) => {
               </div>
               <div className="w-full flex items-end mt-6 h-full">
                 <Link
-                  className="button-green p-4 text-xl"
+                  className=" action-button button-green p-4 text-xl"
                   to={`${props.pageType === "public" ? '/pricing/order/' : '/re-order/' }${plan.name}`}>
-                  <span className="action-button-overlay"></span>
+                  <span className=" action-button-overlay"></span>
                   Order Now
                 </Link>
               </div>

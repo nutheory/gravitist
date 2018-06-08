@@ -17,7 +17,7 @@ import SampleVideo from '../public/sample_video'
 import jwtDecode from 'jwt-decode'
 
 const Loading = () => {
-  return <div>Loading...</div>
+  return <div className="m-6">Loading...</div>
 }
 
 const UserDashboard = Loadable({ loader: () => import('../dashboard/index'), loading: Loading })

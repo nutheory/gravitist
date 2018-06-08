@@ -127,7 +127,7 @@ class Login extends Component<Props, State> {
               </div>
               <div className="flex">
                 <div className="flex-1 flex items-end"><Link to="/reset-password">Forgot your password?</Link></div>
-                <div className="w-1/4"><button className="button-blue"><span className="action-button-overlay"></span>Login</button></div>
+                <div className="w-1/4"><button className=" action-button button-blue"><span className=" action-button-overlay"></span>Login</button></div>
               </div>
             </form>
           </div>

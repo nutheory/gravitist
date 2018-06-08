@@ -19,8 +19,8 @@ const YoureInCharge = () => {
           <div className="w-full md:w-2/5 pl-8 pr-12">
             <div className="bg-white main-text text-center p-8">
               <h4 className="">Tell us a little about yourself and your drone</h4>
-              <Link className="button-blue my-6" to="/pilots/register">
-                <span className="action-button-overlay"></span>
+              <Link className=" action-button button-blue my-6" to="/pilots/register">
+                <span className=" action-button-overlay"></span>
                 Sign up now
               </Link>
               <p className="text-sm px-12">Just upload your FAA license number, and proof of insurance.</p>

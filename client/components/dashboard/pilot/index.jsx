@@ -14,7 +14,7 @@ const env = getEnv(window.location.host)
 const stripeClientId = Config.stripe_platform[env]
 const returnUri = Config.base_url[env]
 const Loading = () => {
-  return <div>Loading...</div>
+  return <div className="m-6">Loading...</div>
 }
 
 

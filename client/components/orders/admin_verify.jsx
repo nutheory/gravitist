@@ -155,13 +155,13 @@ class AdminOrderVerify extends Component<Props, State> {
                 placeholder="Please explain the rejection (this will be sent to the pilot)"
                 onChange={ this.handleInputChange }>
               </textarea>
-              <button className="button-red px-8 py-3 mt-2" onClick={ this.rejectOrder }>
-                <span className="action-button-overlay"></span>Reject Filming
+              <button className=" action-button button-red px-8 py-3 mt-2" onClick={ this.rejectOrder }>
+                <span className=" action-button-overlay"></span>Reject Filming
               </button>
             </div>
             <div className="w-full md:w-1/2 p-4">
-              <a className="button-green px-8 py-3" onClick={ this.approveOrder }>
-                <span className="action-button-overlay"></span>{ this.approveOrderText() }
+              <a className=" action-button button-green px-8 py-3" onClick={ this.approveOrder }>
+                <span className=" action-button-overlay"></span>{ this.approveOrderText() }
               </a>
             </div>
           </div>

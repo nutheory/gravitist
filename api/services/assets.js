@@ -1,5 +1,6 @@
 const TransloaditClient = require("transloadit")
 const Crypto = require('crypto')
+const { task, waitAll } = require('folktale/concurrency/task')
 const { find, propEq, isNil, contains } = require('ramda')
 const Aws = require('aws-sdk')
 const s3 = new Aws.S3({
@@ -41,6 +42,14 @@ const assets = async ({ assetableId, assetable, assetableName }) => {
   // console.log(chalk.blue.bold('ASSETS2'), assets)
   return { assets }
 }
+
+const getAsset = ({ orderId, id }) =>
+  task(resolver =>
+    db.Asset.findOne({ where: { assetableId: orderId, assetable: 'order', id }, include: [
+      { model: db.Order, as: 'order', include: [{ model: db.Address, as: 'address' }, { model: db.Listing, as: 'listing' },
+      { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }, { model: db.Contact, as: 'contacts' }] }]}]
+    }).then(res => resolver.resolve(res.dataValues) ) )
+  .run().promise()
 
 async function avatarUploader({ file, user, body }){
   const assemblyOptions = {
@@ -340,6 +349,7 @@ function transloaditResultValid(transloaditData, signature){
 
 module.exports = {
   assets,
+  getAsset,
   avatarUploader,
   logoUploader,
   insuranceUploader,

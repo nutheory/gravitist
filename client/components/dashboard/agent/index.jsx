@@ -11,7 +11,7 @@ import Reorder from './reorder'
 import {pathOr} from 'ramda'
 import OrdersQuery from '../../../queries/order_collections'
 const Loading = () => {
-  return <div>Loading...</div>
+  return <div className="m-6">Loading...</div>
 }
 
 const Order = Loadable({ loader: () => import('../../orders/view_edit'), loading: Loading })
@@ -47,7 +47,7 @@ class AgentDashboard extends Component<Props, State>{
   render(){
     const { list, loading, error } = this.props.orders
     if (loading) {
-      return <p>Loading...</p>
+      return <div className="m-6">Loading...3</div>
     } else if (error) {
       console.log(error)
       return <p>Error!</p>

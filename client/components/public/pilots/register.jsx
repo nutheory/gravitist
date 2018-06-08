@@ -117,7 +117,6 @@ class PilotRegister extends Component<Props, State> {
 
   returnUploadInstance(upload: Object){
     this.setState({ [upload.opts.meta.instanceOf]: upload }, function(){
-      console.log("UPLOAD", this.state)
     })
   }
 
@@ -198,8 +197,8 @@ class PilotRegister extends Component<Props, State> {
             <h3 className="text-sm font-bold">{err.section}</h3>
             <p className="text-sm mt-1">{err.message}</p>
             { err.type === "email" ?
-              <Link to="/login" className="button-blue w-1/4 mt-2">
-                <span className="action-button-overlay"></span>Login
+              <Link to="/login" className=" action-button button-blue w-1/4 mt-2">
+                <span className=" action-button-overlay"></span>Login
               </Link>
             : null }
           </div>
@@ -351,9 +350,9 @@ class PilotRegister extends Component<Props, State> {
             </div>
             <div className="mt-4">
               <a
-                className="button-green"
+                className=" action-button button-green"
                 onClick={this.handleSubmit}>
-                <span className="action-button-overlay"></span>
+                <span className=" action-button-overlay"></span>
                 { this.renderButtonText() }
               </a>
             </div>

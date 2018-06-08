@@ -30,8 +30,8 @@ const HardSell = () => {
 
             <div className="mt-12 text-center">
 
-              <Link to="/pilots/register" className="button-green p-4 w-full md:w-1/2">
-                <span className="action-button-overlay"></span>Get Started
+              <Link to="/pilots/register" className=" action-button button-green p-4 w-full md:w-1/2">
+                <span className=" action-button-overlay"></span>Get Started
               </Link>
             </div>
           </div>

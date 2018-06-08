@@ -1,0 +1,119 @@
+doctype html
+html(lang="en" class="antialiased")
+  head
+    title= "Homefilming"
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    meta(name="description" content="")
+    meta(name="author" content="Homefilming")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="twitter:card" content="player")
+    meta(name="twitter:site" content="")
+    meta(name="twitter:title" content="")
+    meta(name="twitter:description" content="This is a sample video. When you implement, make sure all links are secure.")
+    meta(name="twitter:image" content=asset.url)
+    if video
+      meta(name="twitter:player" content=pageUrl)
+      meta(name="twitter:player:width" content="480")
+      meta(name="twitter:player:height" content="480")
+      //- meta(name="twitter:player:stream" content=video.url)
+      meta(name="twitter:player:stream:content_type" content="video/mp4")
+    meta(property="og:url" content=pageUrl)
+    meta(property="og:title" content=address.address1)
+    meta(property="og:description" content=listing.description)
+    meta(property="og:image" content=asset.url)
+    meta(property="og:image:width" content="480")
+    meta(property="og:image:height" content="320")
+    meta(property="fb:app_id" content="1507022829407993")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro")
+    script(defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js")
+    link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
+    link(rel="stylesheet" type="text/css" href="/gallery.css")
+  body.bg-black.font-source-sans(style="color: #B8C2CC;")
+    div.container.mx-auto.mt-8
+      div.rounded-tr-lg.rounded-tl-lg.bg-grey-darkest.shadow-lg.p-4
+        div.flex.flex-wrap
+          if address
+            div.flex-1
+              div.text-xl.font-bold= address.address1 
+              if address.address2 
+                div= address.address2
+              if address.city && address.state && address.zipCode
+                div #{address.city} | #{address.state} | #{address.zipCode}
+          if listing && listing.price
+            div
+              div.text-xs List Price
+              div.font-bold 
+                span.text-sm.align-top.leading-normal $
+                span.text-2xl #{listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}            
+      div.w-full
+        if asset.type === 'video'
+          video(class="w-full" controls)
+            source(src=asset.url type="video/mp4")
+        else  
+          img(class="w-full" src=asset.url)
+      div.rounded-br-lg.rounded-bl-lg.bg-grey-darkest.shadow-lg.p-8.flex.flex-wrap
+        if agent
+          div.w-full.px-12.border-b.mb-6(class="md:mb-2 md:border-r md:border-b-0 md:w-2/5" style="border-color: #B8C2CC;")
+            div.text-sm.text-center CONTACT AGENT
+            if agent.avatar && agent.avatar.url
+              div.text-center.mt-4
+                img.w-24.h-24.rounded-full(src=agent.avatar.url)
+            if agent.name
+              div.mt-4.text-center.text-xl.font-bold= agent.name
+            if agent.bio
+              div.mt-2.text-center.text-sm= agent.bio
+            if contacts
+              ul.mt-4
+                each con, i in contacts
+                  li.block.mb-2= index
+                    div.text-xs.text-center= con.type
+                    div.text-lg.text-center.font-bold= con.content
+        if listing
+          div.w-full(class="md:w-3/5")
+            div.text-sm.text-center LISTING DETAILS
+            div.flex.pt-6.mx-auto.w-full(class="md:w-2/3")
+              if listing.beds
+                div.text-center.flex-1
+                  div.text-xs Beds
+                  div.text-2xl.font-bold= listing.beds
+              if listing.baths
+                div.text-center.flex-1
+                  div.text-xs Baths
+                  div.text-2xl.font-bold= listing.baths
+              if listing.sqft
+                div.text-center.flex-1
+                  div.text-xs SqFt.
+                  div.text-2xl.font-bold= listing.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            div.flex.pt-6.mx-auto.w-full(class="md:w-1/2")
+              if listing.price
+                div.flex-1
+                  div.text-xs List price
+                  div.text-2xl.font-bold
+                    span.text-sm.align-top.leading-normal $
+                    span= listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              if listing.mlsStatus
+                div.text-right
+                  div.text-xs Status
+                  div.text-xl.font-bold.capitalize= listing.mlsStatus
+            div.flex.pt-6.mx-auto.w-full(class="md:w-1/2")
+              if listing.type
+                div.flex-1
+                  div.text-xs Property type
+                  div.text-2xl.font-bold= listing.type
+              if listing.mlsNumber
+                div.text-right
+                  div.text-xs MLS number
+                  div.text-xl.font-bold.capitalize= listing.mlsNumber
+            if listing.description
+              div.pt-6.mx-auto.w-full(class="md:w-1/2")
+                div.text-xs Description
+                p= listing.description
+            if listing.features
+              div.pt-6.mx-auto.w-full(class="md:w-1/2")
+                div.text-xs Listing features
+                ul
+                  each feat, i in listing.features
+                    li.my-1.flex
+                      div.text-sm.text-right.pr-6(class="w-2/5")= feat.label
+                      div.font-bold.flex-1= feat.value
+  

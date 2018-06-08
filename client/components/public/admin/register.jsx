@@ -153,8 +153,8 @@ class CreateUser extends Component<Props, State> {
             <h3 className="text-sm font-bold">{err.section}</h3>
             <p className="text-sm">{err.message}</p>
             { err.type === "email" ?
-              <Link to="/login" className="button-blue">
-                <span className="action-button-overlay"></span>Login
+              <Link to="/login" className=" action-button button-blue">
+                <span className=" action-button-overlay"></span>Login
               </Link>
             : null }
           </div>
@@ -302,9 +302,9 @@ class CreateUser extends Component<Props, State> {
             { this.renderErrors() }
             <div className="mt-4">
               <a
-                className="button-green"
+                className=" action-button button-green"
                 onClick={this.handleSubmit}>
-                <span className="action-button-overlay"></span>
+                <span className=" action-button-overlay"></span>
                 { this.renderButtonText() }
               </a>
             </div>

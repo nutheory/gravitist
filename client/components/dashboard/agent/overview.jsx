@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react'
+import React, { Component } from 'react'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 import { css } from 'aphrodite'
 import { Route, Switch } from 'react-router-dom'
 import { graphql, compose } from 'react-apollo'
@@ -32,7 +32,7 @@ class AgentOverview extends Component<Props, State> {
 
   render(){
     const { loading, error, history } = this.props.overview
-    if(loading){ return <div>Loading...</div> }
+    if(loading){ return <div className="m-6">Loading...</div> }
     const currentOrderId = this.props.orderid ? this.props.orderid : history.orders[0].id
     return(
       <div className={`columns`}>

@@ -1,4 +1,5 @@
 // @flow
+import React from 'react'
 
 const ListingView = (props: Object) => {
   const address = props.address

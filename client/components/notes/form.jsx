@@ -64,9 +64,9 @@ class NoteForm extends Component<Props, State> {
         <div className="mt-2 flex justify-end">
           <div className="inline-block">
             <button
-              className="button-green"
+              className=" action-button button-green"
               onClick={ this.handleSubmit }>
-              <span className="action-button-overlay"></span>
+              <span className=" action-button-overlay"></span>
               Add Note
             </button>
           </div>

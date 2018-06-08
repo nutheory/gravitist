@@ -203,8 +203,8 @@ class OrderForm extends Component<Props, State> {
             <h3 className="text-sm font-bold">{err.section}</h3>
             <p className="text-sm mt-1">{err.message}</p>
             { err.type === "email" ?
-            <Link to="/login" className="button-blue w-1/4 mt-2">
-              <span className="action-button-overlay"></span>Login
+            <Link to="/login" className=" action-button button-blue w-1/4 mt-2">
+              <span className=" action-button-overlay"></span>Login
             </Link> : null }
           </div>
         ))}
@@ -358,9 +358,9 @@ class OrderForm extends Component<Props, State> {
           <div className="mt-4">
             <button
               disabled={ this.state.loading ? true : false }
-              className={ `${ this.state.loading ? 'button-only bg-grey-light' : 'button-green' }` }
+              className={ `${ this.state.loading ? 'button-only bg-grey-light' : ' action-button button-green' }` }
               onClick={this.handleSubmit}>
-              <span className="action-button-overlay"></span>
+              <span className=" action-button-overlay"></span>
               { this.renderButtonText() }
             </button>
           </div>

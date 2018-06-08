@@ -52,7 +52,7 @@ class CollaborationArea extends Component<Props, State>{
   render(){
     const { result, loading, error } = this.props.order
     if (loading) {
-      return <p>Loading...</p>
+      return <div className="m-6">Loading...</div>
     } else if (error) {
       return <p>Error!</p>
     } else {

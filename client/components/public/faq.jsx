@@ -1,7 +1,6 @@
 // @flow
 import React, {Component} from 'react'
-import { StyleSheet, css } from 'aphrodite'
-import faq from './styles/faq'
+
 
 type Props = {
   faq: Object,

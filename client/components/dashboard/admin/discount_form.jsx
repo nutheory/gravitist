@@ -163,9 +163,9 @@ class DiscountForm extends Component<Props, State> {
           <div className="mt-3 px-2">
             <button
               onClick={ this.handleSubmit }
-              className="button-green">
+              className=" action-button button-green">
               Add discount
-              <span className="action-button-overlay"></span>
+              <span className=" action-button-overlay"></span>
             </button>
           </div>
         </div>
