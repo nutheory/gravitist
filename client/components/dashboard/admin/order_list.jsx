@@ -42,10 +42,25 @@ const OrderList = (props: Props) => (
       if(loading){return (<div></div>)}
       if(error) return `Error!: ${error}`
       const { orders, count } = getOrders
+      const needsAttention = orders.filter(ord => ord.needsAttention === true)
+      const reviewable = orders.filter(ord => ord.needsAttention === false)
       return (
         <div>
+          { needsAttention.length > 0 ?
+            <div className="px-4 border border-red-darker bg-red-lightest rounded mb-8">
+              <div className="font-bold text-xl my-2">Orders with Errors</div>
+              <div className="flex flex-wrap md:-mx-4">
+                { needsAttention.map(na => (
+                  <OrderCard
+                    cssSizing={ props.cssSizing }
+                    order={na}
+                    key={`order_${na.id}`} />
+                ))}
+              </div>
+            </div>
+          : null }
           <div className="flex flex-wrap mb-4 md:-mx-4">
-            { orders ? orders.map((order, i) => (
+            { reviewable ? reviewable.map((order, i) => (
               <OrderCard
                 cssSizing={ props.cssSizing }
                 order={order}

@@ -20,14 +20,13 @@ router.get('/:uuid', async (req, res) => {
     photos, video, listing, address, agent, contacts, assetUrl, defaultAsset })
 })
 
-router.get('/order/:orderId/asset/:id', async (req, res) => {
+router.get('/order/:orderId/asset/:wm/:name', async (req, res) => {
   const asset = await getAsset(req.params)
   console.log(chalk.blue.bold('ASSET'), asset)
   const agent = asset.order.agent
   const listing = asset.order.listing
   const address = asset.order.address
   const contacts = asset.order.agent.contacts
-  // const defaultAsset = asset.order.photos.filter(gal => gal.default === true)[0]
   const assetUrl = `${ process.env.ASSET_BASE }/${env}/orders/${ asset.order.id }/`
   const pageUrl = `${process.env.BASE_URL}/gallery/order/${ asset.order.id }/asset/${asset.id}`
   res.render('single_asset', { asset, orderId: asset.order.id, uuid: asset.order.uuid, pageUrl,

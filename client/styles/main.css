@@ -2,4 +2,9 @@
 @tailwind components;
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import "utils.css";
+
+.btn-asset-white{
+  @apply no-underline block text-center rounded shadow p-2 border border-grey mb-4 w-full
+}
+
 @tailwind utilities;

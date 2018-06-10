@@ -128,10 +128,10 @@ let colors = {
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
 
-  twitter: '#00aced',
-  facebook: '#3b5998',
-  twitterHigh: '#0084b4',
-  facebookHigh: '#8b9dc3'
+  'twitter': '#00aced',
+  'facebook': '#3b5998',
+  'twitterHigh': '#0084b4',
+  'facebookHigh': '#8b9dc3'
 }
 
 module.exports = {

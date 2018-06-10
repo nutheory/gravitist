@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { css } from 'aphrodite'
 import { graphql } from 'react-apollo'
 const orderStatuses = [['No Filter', ''], [ 'Recruiting','recruiting' ], ['Pending','pending'], ['Filming','filming'],
-  ['Uploaded','uploaded'], ['Initial Processing', 'initial_processing'], ['Awaitng Review', 'awaiting_review'],
+  ['Uploaded','uploaded'], ['Initial Processing', 'initial_processing'], ['Awaiting Review', 'awaiting_review'],
   ['Final Processing','final_processing'], ['Approved/Completed','approved_completed'], ['Rejected','rejected']]
 
 type Props = {

@@ -39,15 +39,15 @@ async function toggleDefault({ defaultId, assetableId, assetable, assetableName 
 
 const assets = async ({ assetableId, assetable, assetableName }) => {
   const assets = await db.Asset.findAll({ where: { assetableId, assetable, assetableName } })
-  // console.log(chalk.blue.bold('ASSETS2'), assets)
   return { assets }
 }
 
-const getAsset = ({ orderId, id }) =>
+const getAsset = ({ orderId, name, wm }) =>
   task(resolver =>
-    db.Asset.findOne({ where: { assetableId: orderId, assetable: 'order', id }, include: [
-      { model: db.Order, as: 'order', include: [{ model: db.Address, as: 'address' }, { model: db.Listing, as: 'listing' },
-      { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }, { model: db.Contact, as: 'contacts' }] }]}]
+    db.Asset.findOne({ where: { assetableId: orderId, assetable: 'order', watermarked: wm === 'wm' ? true : false, name }, 
+      include: [{ model: db.Order, as: 'order', include: [{ model: db.Address, as: 'address' },
+      { model: db.Listing, as: 'listing' }, { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' },
+      { model: db.Contact, as: 'contacts' }] }]}]
     }).then(res => resolver.resolve(res.dataValues) ) )
   .run().promise()
 
@@ -232,7 +232,7 @@ const uploadBulkResult = async ({ body }) => {
   const { template_id, results, fields } = JSON.parse(body.transloadit)
   const { orderId, pilotId } = fields
   let defaultSet = false
-  const resultSet = template_id === 'e6b66e500f3c11e8aa615b9c41212186' ? { photo: results.photo } : results
+  const resultSet = template_id === 'e6b66e500f3c11e8aa615b9c41212186' ? { photo: results.photo, photo_wm: results.wm } : results
   Object.keys(resultSet).forEach(assemblyResultsName => {
     resultSet[assemblyResultsName].map( async (aR) => {
       const awsId = getAwsKeyFromUrl(aR.ssl_url)

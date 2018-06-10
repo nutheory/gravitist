@@ -2639,6 +2639,19 @@ button,
   }
 }
 
+.btn-asset-white {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  border-radius: .375rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .4);
+  padding: .5rem;
+  border-width: 1px;
+  border-color: #b8c2cc;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

@@ -12,6 +12,7 @@ const Order = `
     pilotBounty: String
     pilotDistance: String
     pilotTransferId: String
+    needsAttention: Boolean
     pilotTransferResult: String
     uploadedAt: String
     agent: User
@@ -116,6 +117,7 @@ const Order = `
     pilotDistance: String
     pilotTransferId: String
     pilotTransferResult: String
+    needsAttention: Boolean
     reviewedAt: String
     history: String
     rejectedBy: ID

@@ -259,7 +259,7 @@ class UserViewEdit extends Component<Props, State>{
             <div className="flex">
               <h3 className="font-bold flex-1">{ currentUser.id === userid ? 'Settings' : 'Profile' }</h3>
               <div onClick={ this.toggleEditMode } className="hover:cursor-pointer">edit</div>
-              { currentUser.type === "admin" ?
+              { currentUser.type === "admin" && user.type === "pilot" ?
                 <div onClick={ this.toggleVerified } className={`${user.isVerified ? ' action-button button-red ' : ' action-button button-green' } ml-4 w-24`}>
                   <span className=" action-button-overlay"></span>
                   { user.isVerified ? 'Unverify' : 'Verify'}

@@ -20,6 +20,11 @@ const orderIncludes = queryString => {
   { model: db.User, as: 'pilot', include: [{ model: db.Asset, as: 'avatar' }] },
   { model: db.Asset, as: 'assets' }, { model: db.Listing, as: 'listing' } ] } }
 
+const searchableParams = ({ attrs }) =>
+  [ { plan: { [Op.iLike]: `%${attrs.queryString}%` } },
+  { status: { [Op.iLike]: `%${attrs.queryString}%` } },
+  { receiptId: { [Op.iLike]: `%${attrs.queryString}%` } } ]
+
 const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
   const obj = { distinct: true }
   if( sortKey && sortValue ){ obj.order = [[ sortKey, sortValue ]] }
@@ -27,6 +32,22 @@ const collectionOptions = ({ sortKey, sortValue, sizeLimit, colOffset }) => {
   if( colOffset ){ obj.offset = colOffset }
   return obj
 }
+
+const parseStatusCriteria = ({ attrs }) => {
+  const criteriaArray = R.toPairs(attrs.criteria)
+  const criteria = []
+  criteriaArray.map((crit) => {
+    if(crit[0] === 'status'){
+      criteria.push({ status: { [Op.like]: { [Op.any]: typeof(crit[1]) === 'string' ? crit[1].split(',') : crit[1] } }})
+    } else {
+      criteria.push({ [crit[0]]: crit[1] })
+    }
+  })
+  return criteria
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 const getFullGallery = ({ uuid }) =>
   task(resolver =>
@@ -46,22 +67,12 @@ const getFullOrderInstance = ({id, usr}) =>
   .run().promise()
 
 const getOrdersByCriteria = ({ usr, attrs }) => {
-  const criteriaArray = R.toPairs(attrs.criteria)
-  const criteria = {}
-  criteriaArray.map((crit) => {
-    if(crit[0] === 'status'){
-      criteria[crit[0]] = { [Op.like]: { [Op.any]: typeof(crit[1]) === 'string' ? crit[1].split(',') : crit[1] } }
-    } else {
-      criteria[crit[0]] = crit[1]
-    }
-  })
+  const criteria = parseStatusCriteria({ attrs })
+  const queryString = attrs.queryString ? { [Op.or]: searchableParams({ attrs }) } : {}
+  const criteriaMod = criteria.length > 0 ? { [Op.or]: criteria } : {}
   return task(resolver =>
-    db.Order.findAndCountAll( R.merge({ where: R.mergeAll([ criteria,
-      { [Op.or]: [
-        { plan: { [Op.iLike]: `%${attrs.queryString}%` } },
-        { status: { [Op.iLike]: `%${attrs.queryString}%` } },
-        { receiptId: { [Op.iLike]: `%${attrs.queryString}%` } }
-      ] }, usr.type !== "admin" ? { [`${usr.type}Id`]: usr.id } : {} ]) },
+    db.Order.findAndCountAll( R.merge({ where: R.mergeAll([criteriaMod, queryString,
+      usr.type !== "admin" ? { [`${usr.type}Id`]: usr.id } : {} ]) },
       R.merge(orderIncludes(attrs.queryString), collectionOptions(attrs.options))))
       .then(res => { resolver.resolve({ count: res.count, orders: res.rows }) }) )
   .run().promise()

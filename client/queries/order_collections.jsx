@@ -15,6 +15,7 @@ const GetOrders = gql`
         updatedAt
         pilotBounty
         pilotDistance
+        needsAttention
         distanceFromLocation
         address {
           address1
