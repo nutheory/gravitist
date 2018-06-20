@@ -35,10 +35,10 @@ const calcNumberDiscount = ({ base, number }) => {
 const getEnv = (location) => {
   if(location.includes("staging")){
     return "staging"
-  } else if(location.includes("www")){
-    return "production"
-  } else {
+  } else if(location.includes("ngrok")){
     return "development"
+  } else {
+    return "production"
   }
 }
 
