@@ -1,5 +1,4 @@
 const express = require('express')
-const wwwhisper = require('connect-wwwhisper')
 const graphqlHTTP = require('express-graphql')
 // const enforce = require('express-sslify')
 const bodyParser = require('body-parser')
@@ -23,7 +22,6 @@ const app = express()
 
 function serverStart(done){
   // app.use(opbeat.middleware.express())
-  app.use(wwwhisper())
   // process.env.NODE_ENV === 'production' ? app.use(enforce.HTTPS({ trustProtoHeader: true })) : null
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
