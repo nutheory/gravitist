@@ -3,7 +3,7 @@
     "pilot": {
       "account": {
         "title": "Account payout setup",
-        "body": "We do not have a Stripe ID on file for you yet, if you went through the stripe process during signup and got redirected back to Homefilming, you probably just need to refresh this page. If you skipped this step and have not signuped up yet use the link below to register now to get paid."
+        "body": "We do not have a Stripe ID on file for you yet, if you went through the stripe process during signup and got redirected back to Gravit.ist, you probably just need to refresh this page. If you skipped this step and have not signuped up yet use the link below to register now to get paid."
       },
       "verified": {
         "title": "Document verification",

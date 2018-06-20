@@ -16,10 +16,10 @@ const welcomeConfirmationMailer = ({ order, user }) => {
   const msg = {
     to: toMail(user.email),
     from: 'noreply@homefilming.com',
-    subject: `Welcome to Homefilming`,
-    text: `Welcome to Homefilming`,
+    subject: `Welcome to Gravit.ist`,
+    text: `Welcome to Gravit.ist`,
     html: confirmationTemplate({
-      title: `Welcome to Homefilming`,
+      title: `Welcome to Gravit.ist`,
       name: user.name,
       plan: order.plan,
       createdAt: Moment(Date.parse(order.createdAt)).format('MMM Do YYYY, h:mma'),
@@ -34,11 +34,11 @@ const welcomeConfirmationMailer = ({ order, user }) => {
 const confirmationMailer = ({ order, user }) => {
   const msg = {
     to: toMail(user.email),
-    from: 'noreply@homefilming.com',
-    subject: `Thank you for your order at Homefilming`,
-    text: `Thank you for your order at Homefilming`,
+    from: 'noreply@gravit.ist',
+    subject: `Thank you for your order at Gravit.ist`,
+    text: `Thank you for your order at Gravit.ist`,
     html: confirmationTemplate({
-      title: `Thank you for your order at Homefilming`,
+      title: `Thank you for your order at Gravit.ist`,
       name: user.name,
       plan: order.plan,
       createdAt: Moment(Date.parse(order.createdAt)).format('MMM Do YYYY, h:mma'),
@@ -55,12 +55,12 @@ const recruitingMailer = ({ pilot, order }) => {
   console.log(chalk.blue.bold('ORDER'), order)
   const msg = {
     to: toMail(pilot.email),
-    from: 'noreply@homefilming.com',
+    from: 'noreply@gravit.ist',
     subject: 'New filming opportunity in your area',
     text: `Earn some extra cash by accepting this opportunity to film a
       awesome piece of real estate. Just click the link below to
       take ownership of this mission. And don't forget you must be able
-      to fly within 48hrs. Visit https://homefilming.com`,
+      to fly within 48hrs. Visit https://gravit.ist`,
     html: recruitingTemplate({
       title: `Recruiting ${pilot.name}`,
       name: pilot.name,
@@ -80,7 +80,7 @@ const completedMailer = ({ pilot, order }) => {
 
   const msg = {
     to: toMail(pilot.email),
-    from: 'noreply@homefilming.com',
+    from: 'noreply@gravit.ist',
     subject: 'New filming opportunity in your area',
     text: ``,
     html: ``,
@@ -91,7 +91,7 @@ const completedMailer = ({ pilot, order }) => {
 const sendRejectedMailer = ({ attrs }) => {
   const msg = {
     to: 'drush@nutheory.com',
-    from: 'noreply@homefilming.com',
+    from: 'noreply@gravit.ist',
     subject: 'Rejected',
     text: ``,
     html: ``,

@@ -11,11 +11,11 @@ const chalk = require('chalk')
 const pilotRegistrationMailer = ({ user }) => {
   const msg = {
     to: toMail(user.email),
-    from: 'noreply@homefilming.com',
-    subject: `Welcome to Homefilming`,
-    text: `Welcome to Homefilming`,
+    from: 'noreply@gravit.ist',
+    subject: `Welcome to Gravit.ist`,
+    text: `Welcome to Gravit.ist`,
     html: pilotRegistrationTemplate({
-      title: `Welcome to Homefilming`,
+      title: `Welcome to Gravit.ist`,
       name: user.name,
       baseUrl: process.env.BASE_URL
     }),
@@ -26,10 +26,10 @@ const pilotRegistrationMailer = ({ user }) => {
 const resetPasswordMailer = ({ user, token }) => {
   const msg = {
     to: toMail(user.email),
-    from: 'noreply@homefilming.com',
-    subject: 'Homefilming reset password',
+    from: 'noreply@gravit.ist',
+    subject: 'Gravit.ist reset password',
     text: `Hello,\r\n
-    You have requested to reset password for Homefilming.com.
+    You have requested to reset password for Gravit.ist.
     Open this link to change your password:\r\n
 
     ${process.env.BASE_URL}/reset-password?token=${token}

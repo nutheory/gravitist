@@ -24,10 +24,10 @@ const Footer = (props: Object) => {
             </div>
             <Link className="w-32 block" to="/"><img src={`/${require('../../../assets/svg/light_gravitist_logo.svg')}`} /></Link>
             <p className="copyright">Copyright © 2018 Gravit.ist. All rights reserved.</p>
-            <div className="">
+            {/* <div className="">
               <a href="" target="_target" className="inline-block pr-4">Terms of Use</a>
               <a href="" target="_target" className="inline-block">Privacy Policy</a>
-            </div>
+            </div> */}
           </div>
           <div className="w-full md:w-1/3 p-6">
             <h2 className="text-base font-bold">Anaheim, Ca</h2>
@@ -36,8 +36,8 @@ const Footer = (props: Object) => {
             <p><a href="https://www.google.com/maps/place/1440+S+State+College+Blvd,+Anaheim,+CA+92806/@33.812585,-117.8912877,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcd7a3592a1277:0xc23063dbd3431a50!8m2!3d33.812585!4d-117.8890937" target="_blank">Show On Map</a></p>
           </div>
           <div className="w-full md:w-1/3 p-6">
-            <h2 className="text-base font-bold">Navigation</h2>
-            {/* <p><NavLink to="/pricing">Pricing</NavLink></p> */}
+            <h2 className="text-base font-bold mb-2">Navigation</h2>
+            <p><NavLink to="/">Home</NavLink></p>
             <p><NavLink to="/demo">Sample gallery</NavLink></p>
             <p><NavLink to="/pilots">Jobs for pilots</NavLink></p>
             <p><NavLink to="/pilots/register">Sign up to fly</NavLink></p>
