@@ -19,7 +19,7 @@ const FeaturesProcess = () => {
             <p className="text-lg">The order dashboard once you log in is the perfect place to write notes about
               the filming for the pilot and keep up to date on the status of the current filming.
               Your initial status is recruiting as we find a local drone pilot to your
-              region to do the actual filming.  On the dashoard you can also enter information
+              region to do the actual filming. On the dashboard you can also enter information
               about the listing that will eventually be useful on the gallery site and in
               social media sharing.</p>
           </div>
@@ -31,7 +31,7 @@ const FeaturesProcess = () => {
             <h1 className="text-2xl font-light text-blue-darker mb-3">Completed order dashboard</h1>
             <p className="text-lg">After a short review by our quality assurance team to make sure the pilots
               uploaded video is up to our standards we brand and clean up your video to
-              make it web friendly.  At this point we give you a very simple control panel
+              make it web friendly. At this point we give you a very simple control panel
               that gives you everything you need in to share all media we created for you
               in both branded and unbranded forms. This is also where you can find and
               leads captured from your gallery site.</p>
