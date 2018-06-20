@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>calendar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-679.000000, -99.000000)">
+            <g id="calendar" transform="translate(680.000000, 100.000000)">
+                <path d="M34,46 C34.0043925,41.7150112 36.2933148,37.7575127 40.0053242,35.6169206 C43.7173336,33.4763285 48.2890902,33.4775022 52,35.62 L52,14 L0,14 L0,52 C2.22044605e-16,53.1045695 0.8954305,54 2,54 L37.07,54 C35.0920788,51.8050373 33.9982475,48.9546625 34,46 Z" id="Fill-1" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <path d="M34,46 C34.0043925,41.7150112 36.2933148,37.7575127 40.0053242,35.6169206 C43.7173336,33.4763285 48.2890902,33.4775022 52,35.62 L52,14 L0,14 L0,52 C2.22044605e-16,53.1045695 0.8954305,54 2,54 L37.07,54 C35.0920788,51.8050373 33.9982475,48.9546625 34,46 Z" id="Stroke-3" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M58,46 C58,52.627417 52.627417,58 46,58 C39.372583,58 34,52.627417 34,46 C34,39.372583 39.372583,34 46,34 C52.627417,34 58,39.372583 58,46" id="Fill-5" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <path d="M58,46 C58,52.627417 52.627417,58 46,58 C39.372583,58 34,52.627417 34,46 C34,39.372583 39.372583,34 46,34 C52.627417,34 58,39.372583 58,46 Z" id="Stroke-7" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M0,14 L0,6 C-1.11022302e-16,4.8954305 0.8954305,4 2,4 L50,4 C51.1045695,4 52,4.8954305 52,6 L52,14 L0,14 Z" id="Fill-9" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <path d="M0,14 L0,6 C-1.11022302e-16,4.8954305 0.8954305,4 2,4 L50,4 C51.1045695,4 52,4.8954305 52,6 L52,14 L0,14 Z" id="Stroke-11" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M44,8 C46.209139,8 48,6.209139 48,4 C48,1.790861 46.209139,2.22044605e-16 44,0 C41.790861,-1.11022302e-16 40,1.790861 40,4" id="Stroke-1478" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M32,8 C34.209139,8 36,6.209139 36,4 C36,1.790861 34.209139,2.22044605e-16 32,0 C29.790861,-1.11022302e-16 28,1.790861 28,4" id="Stroke-1479" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M20,8 C22.209139,8 24,6.209139 24,4 C24,1.790861 22.209139,2.22044605e-16 20,0 C17.790861,-1.11022302e-16 16,1.790861 16,4" id="Stroke-1480" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M8,8 C10.209139,8 12,6.209139 12,4 C12,1.790861 10.209139,2.22044605e-16 8,0 C5.790861,-1.11022302e-16 4,1.790861 4,4" id="Stroke-1481" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <polygon id="Stroke-1483" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="5 26 11 26 11 20 5 20"></polygon>
+                <polygon id="Stroke-1485" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="17 26 23 26 23 20 17 20"></polygon>
+                <polygon id="Stroke-1487" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="29 26 35 26 35 20 29 20"></polygon>
+                <polygon id="Stroke-1489" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="41 26 47 26 47 20 41 20"></polygon>
+                <polygon id="Stroke-1491" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="5 37 11 37 11 31 5 31"></polygon>
+                <polygon id="Stroke-1493" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="17 37 23 37 23 31 17 31"></polygon>
+                <polygon id="Stroke-1495" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="29 37 35 37 35 31 29 31"></polygon>
+                <polygon id="Stroke-1497" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="5 48 11 48 11 42 5 42"></polygon>
+                <polygon id="Stroke-1499" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round" points="23 48 23 42 17 42 17 48"></polygon>
+                <path d="M43,49 C43,50.6568542 44.3431458,52 46,52 C47.6568542,52 49,50.6568542 49,49 C49,47.3431458 47.6568542,46 46,46 C44.7866133,46 43.6927044,45.2690735 43.2283614,44.1480503 C42.7640184,43.0270271 43.0206857,41.7366736 43.8786797,40.8786797 C44.7366736,40.0206857 46.0270271,39.7640184 47.1480503,40.2283614 C48.2690735,40.6927044 49,41.7866133 49,43" id="Stroke-1500" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M46,38 L46,54" id="Stroke-1501" stroke="#0C93D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M34,46 C34.0044015,44.636582 34.2411235,43.2838849 34.7,42 L29,42 L29,48 L34.18,48 C34.0642273,47.3395332 34.0040166,46.6705248 34,46 Z" id="Stroke-1503" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M46,34 C46.34,34 46.67,34 47,34.05 L47,31 L41,31 L41,35.1 C42.5673253,34.3755249 44.2733348,34.0002028 46,34 Z" id="Stroke-1504" stroke="#0C93D1" stroke-width="2" fill-opacity="0.2" fill="#0C93D1" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

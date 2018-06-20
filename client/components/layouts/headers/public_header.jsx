@@ -58,22 +58,21 @@ class PublicHeader extends Component<Props, State> {
   }
 
   render(){
-    console.log(window.location.pathname)
     return(
       <div className="fixed z-40 w-full px-8 lg:px-20 py-3 public-header">
         <div className={`header-bg ${ this.state.bgPinned ? 'header-bg-pin' : '' }`}></div>
         <header id="AppHeader" className={`flex ${ this.state.bgPinned ? 'header-fg-pin' : '' }`}>
           <div className="flex-1 flex">
             <div className="pr-4 py-1 inline-block">
-              <NavLink className="w-48 h-6 block mt-2" to="/">
-                { this.state.bgPinned ? <img src={`/${require('../../../assets/images/hf_logo_dark@2x.png')}`} />
-                : <img src={`/${require('../../../assets/images/hf_logo_white@2x.png')}`} /> }
+              <NavLink className="w-32 h-4 block mt-1" to="/">
+                { this.state.bgPinned ? <img src={`/${require('../../../assets/svg/dark_gravitist_logo.svg')}`} />
+                : <img src={`/${require('../../../assets/svg/light_gravitist_logo.svg')}`} /> }
               </NavLink>
             </div>
             { window.location.pathname === '/pilots' ? null :
             <div className="hidden md:flex pl-4 border-l border-grey py-3">
-              <NavLink className="inline-block px-2" to="/pricing">Pricing</NavLink>
-              <NavLink className="inline-block px-2" to="/how-it-works">How it works</NavLink>
+              {/* <NavLink className="inline-block px-2" to="/pricing">Pricing</NavLink> */}
+              <NavLink className="inline-block px-2" to="/demo">Sample gallery</NavLink>
               <NavLink className="inline-block px-2" to="/pilots">Jobs for pilots</NavLink>
             </div> }
           </div>
@@ -103,8 +102,8 @@ class PublicHeader extends Component<Props, State> {
         <nav className={`navDrawer${ this.state.navDrawerActive ? ' navDrawerActive' : '' }`}>
           <div className="mt-16 px-4">
             <h3 className="font-bold text-sm px-4">Navigation</h3>
-            <NavLink to="/pricing">Pricing</NavLink>
-            <NavLink to="/how-it-works">How it works</NavLink>
+            {/* <NavLink to="/pricing">Pricing</NavLink> */}
+            <NavLink to="/demo">Sample gallery</NavLink>
             <NavLink to="/pilots">Jobs for pilots</NavLink>
 
             <NavLink to="/pilots/register">Sign up to fly</NavLink>

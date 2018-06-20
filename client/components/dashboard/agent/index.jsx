@@ -47,7 +47,7 @@ class AgentDashboard extends Component<Props, State>{
   render(){
     const { list, loading, error } = this.props.orders
     if (loading) {
-      return <div className="m-6">Loading...3</div>
+      return <div className="m-6">Loading...</div>
     } else if (error) {
       console.log(error)
       return <p>Error!</p>

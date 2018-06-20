@@ -5374,7 +5374,7 @@ button,
 }
 
 .p-8 {
-  padding: 2rem !important;
+  padding: 2rem;
 }
 
 .p-12 {
@@ -5454,13 +5454,13 @@ button,
 }
 
 .py-8 {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .px-8 {
-  padding-left: 2rem !important;
-  padding-right: 2rem !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .py-12 {
@@ -5600,19 +5600,19 @@ button,
 }
 
 .pt-8 {
-  padding-top: 2rem !important;
+  padding-top: 2rem;
 }
 
 .pr-8 {
-  padding-right: 2rem !important;
+  padding-right: 2rem;
 }
 
 .pb-8 {
-  padding-bottom: 2rem !important;
+  padding-bottom: 2rem;
 }
 
 .pl-8 {
-  padding-left: 2rem !important;
+  padding-left: 2rem;
 }
 
 .pt-12 {
@@ -9725,7 +9725,7 @@ input[type="button"]:focus {
   }
 
   .sm\:p-8 {
-    padding: 2rem !important;
+    padding: 2rem;
   }
 
   .sm\:p-12 {
@@ -9805,13 +9805,13 @@ input[type="button"]:focus {
   }
 
   .sm\:py-8 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .sm\:px-8 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .sm\:py-12 {
@@ -9951,19 +9951,19 @@ input[type="button"]:focus {
   }
 
   .sm\:pt-8 {
-    padding-top: 2rem !important;
+    padding-top: 2rem;
   }
 
   .sm\:pr-8 {
-    padding-right: 2rem !important;
+    padding-right: 2rem;
   }
 
   .sm\:pb-8 {
-    padding-bottom: 2rem !important;
+    padding-bottom: 2rem;
   }
 
   .sm\:pl-8 {
-    padding-left: 2rem !important;
+    padding-left: 2rem;
   }
 
   .sm\:pt-12 {
@@ -14042,7 +14042,7 @@ input[type="button"]:focus {
   }
 
   .md\:p-8 {
-    padding: 2rem !important;
+    padding: 2rem;
   }
 
   .md\:p-12 {
@@ -14122,13 +14122,13 @@ input[type="button"]:focus {
   }
 
   .md\:py-8 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .md\:px-8 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .md\:py-12 {
@@ -14268,19 +14268,19 @@ input[type="button"]:focus {
   }
 
   .md\:pt-8 {
-    padding-top: 2rem !important;
+    padding-top: 2rem;
   }
 
   .md\:pr-8 {
-    padding-right: 2rem !important;
+    padding-right: 2rem;
   }
 
   .md\:pb-8 {
-    padding-bottom: 2rem !important;
+    padding-bottom: 2rem;
   }
 
   .md\:pl-8 {
-    padding-left: 2rem !important;
+    padding-left: 2rem;
   }
 
   .md\:pt-12 {
@@ -18359,7 +18359,7 @@ input[type="button"]:focus {
   }
 
   .lg\:p-8 {
-    padding: 2rem !important;
+    padding: 2rem;
   }
 
   .lg\:p-12 {
@@ -18439,13 +18439,13 @@ input[type="button"]:focus {
   }
 
   .lg\:py-8 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .lg\:px-8 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .lg\:py-12 {
@@ -18585,19 +18585,19 @@ input[type="button"]:focus {
   }
 
   .lg\:pt-8 {
-    padding-top: 2rem !important;
+    padding-top: 2rem;
   }
 
   .lg\:pr-8 {
-    padding-right: 2rem !important;
+    padding-right: 2rem;
   }
 
   .lg\:pb-8 {
-    padding-bottom: 2rem !important;
+    padding-bottom: 2rem;
   }
 
   .lg\:pl-8 {
-    padding-left: 2rem !important;
+    padding-left: 2rem;
   }
 
   .lg\:pt-12 {
@@ -22676,7 +22676,7 @@ input[type="button"]:focus {
   }
 
   .xl\:p-8 {
-    padding: 2rem !important;
+    padding: 2rem;
   }
 
   .xl\:p-12 {
@@ -22756,13 +22756,13 @@ input[type="button"]:focus {
   }
 
   .xl\:py-8 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .xl\:px-8 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .xl\:py-12 {
@@ -22902,19 +22902,19 @@ input[type="button"]:focus {
   }
 
   .xl\:pt-8 {
-    padding-top: 2rem !important;
+    padding-top: 2rem;
   }
 
   .xl\:pr-8 {
-    padding-right: 2rem !important;
+    padding-right: 2rem;
   }
 
   .xl\:pb-8 {
-    padding-bottom: 2rem !important;
+    padding-bottom: 2rem;
   }
 
   .xl\:pl-8 {
-    padding-left: 2rem !important;
+    padding-left: 2rem;
   }
 
   .xl\:pt-12 {

@@ -1,4 +1,4 @@
-// flow-typed signature: 3ff7cdcdf3f5cdb9b17600167ab4f3cc
+// flow-typed signature: 834842bbc75ff7d996d78bc9db3df46a
 // flow-typed version: <<STUB>>/jake_vlatest/flow_v0.61.0
 
 /**
@@ -22,6 +22,10 @@ declare module 'jake' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module 'jake/bin/auto_complete' {
+  declare module.exports: any;
+}
+
 declare module 'jake/bin/cli' {
   declare module.exports: any;
 }
@@ -135,6 +139,9 @@ declare module 'jake/test/task_base' {
 }
 
 // Filename aliases
+declare module 'jake/bin/auto_complete.js' {
+  declare module.exports: $Exports<'jake/bin/auto_complete'>;
+}
 declare module 'jake/bin/cli.js' {
   declare module.exports: $Exports<'jake/bin/cli'>;
 }

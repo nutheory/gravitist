@@ -1500,7 +1500,7 @@ declare module ramda {
     keys: Array<$Keys<T>>,
     ...rest: Array<void>
   ): (val: T) => Object;
-  declare function omit<T: Object>(keys: Array<$Keys<T>>, val: T): Object;
+  // declare function omit<T: Object>(keys: Array<$Keys<T>>, val: T): Object;
 
   // TODO over
 

@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import ipadImg from '../../../assets/images/ipad.png'
 
 const BirdsEyeView = () => {
   return (
@@ -9,7 +8,6 @@ const BirdsEyeView = () => {
       <div className="container mx-auto py-8 flex flex-wrap">
         <div className="w-full md:w-1/2">
           <div className="p-8">
-            <img src={`/${ipadImg}`} />
           </div>
         </div>
         <div className="w-full md:w-1/2">

@@ -1,6 +1,6 @@
 @tailwind preflight;
 @tailwind components;
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 @import "utils.css";
 
 .btn-asset-white{

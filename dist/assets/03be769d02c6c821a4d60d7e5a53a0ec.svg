@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>stand-out</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-994.000000, -816.000000)">
+            <g id="stand-out" transform="translate(995.000000, 817.000000)">
+                <path d="M35,58 L23,58 L23,55 C23,54.4477153 23.4477153,54 24,54 L34,54 C34.5522847,54 35,54.4477153 35,55 L35,58 Z" id="Fill-782" fill="#D0E8F9" fill-rule="nonzero"></path>
+                <path d="M35,58 L23,58 L23,55 C23,54.4477153 23.4477153,54 24,54 L34,54 C34.5522847,54 35,54.4477153 35,55 L35,58 Z" id="Stroke-783" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M34,54 L24,54 L24.21,53.58 C25.3872932,51.2266533 26.0001568,48.6313988 26,46 L32,46 C31.9998432,48.6313988 32.6127068,51.2266533 33.79,53.58 L34,54 Z" id="Fill-784" fill="#D0E8F9" fill-rule="nonzero"></path>
+                <path d="M34,54 L24,54 L24.21,53.58 C25.3872932,51.2266533 26.0001568,48.6313988 26,46 L32,46 C31.9998432,48.6313988 32.6127068,51.2266533 33.79,53.58 L34,54 Z" id="Stroke-785" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M55,37 L3,37 C1.34314575,37 2.22044605e-16,35.6568542 0,34 L0,7 C-2.22044605e-16,5.34314575 1.34314575,4 3,4 L55,4 C56.6568542,4 58,5.34314575 58,7 L58,34 C58,35.6568542 56.6568542,37 55,37" id="Fill-786" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <path d="M55,37 L3,37 C1.34314575,37 2.22044605e-16,35.6568542 0,34 L0,7 C-2.22044605e-16,5.34314575 1.34314575,4 3,4 L55,4 C56.6568542,4 58,5.34314575 58,7 L58,34 C58,35.6568542 56.6568542,37 55,37 Z" id="Stroke-787" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <polygon id="Fill-788" fill="#D0E8F9" fill-rule="nonzero" points="26 4 32 4 32 0 26 0"></polygon>
+                <polygon id="Stroke-789" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round" points="26 4 32 4 32 0 26 0"></polygon>
+                <polygon id="Fill-790" fill="#D0E8F9" fill-rule="nonzero" points="26 46 32 46 32 37 26 37"></polygon>
+                <polygon id="Stroke-791" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round" points="26 46 32 46 32 37 26 37"></polygon>
+                <path d="M15,17 C15,14.2385763 12.7614237,12 10,12 C7.23857625,12 5,14.2385763 5,17 C5,19.7614237 7.23857625,22 10,22 C12.7614237,22 15,19.7614237 15,17" id="Fill-792" fill="#D0E8F9" fill-rule="nonzero"></path>
+                <path d="M15,17 C15,14.2385763 12.7614237,12 10,12 C7.23857625,12 5,14.2385763 5,17 C5,19.7614237 7.23857625,22 10,22 C12.7614237,22 15,19.7614237 15,17 Z" id="Stroke-793" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M33.45,21.39 L26.38,28.46 L19.07,21.15 C18.6798402,20.7616931 18.4390624,20.2482699 18.39,19.7 L18,15.42 C17.9378545,14.7628689 18.1713471,14.112162 18.6371149,13.6444615 C19.1028827,13.1767611 19.7526172,12.9405761 20.41,13 L24.69,13.39 C25.2380437,13.4398982 25.7511951,13.6805485 26.14,14.07 L33.45,21.39 Z" id="Fill-794" fill="#D0E8F9" fill-rule="nonzero"></path>
+                <path d="M33.45,21.39 L26.38,28.46 L19.07,21.15 C18.6798402,20.7616931 18.4390624,20.2482699 18.39,19.7 L18,15.42 C17.9378545,14.7628689 18.1713471,14.112162 18.6371149,13.6444615 C19.1028827,13.1767611 19.7526172,12.9405761 20.41,13 L24.69,13.39 C25.2380437,13.4398982 25.7511951,13.6805485 26.14,14.07 L33.45,21.38 L33.45,21.39 Z" id="Stroke-795" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M13,21 C11.2326011,22.3641147 8.76739887,22.3641147 7,21 L7,31.4 L10,34 L13,31.38 L11,30 L13,28 L11,26 L13,24 L13,21 Z" id="Fill-796" fill="#D0E8F9" fill-rule="nonzero"></path>
+                <path d="M13,21 C11.2326011,22.3641147 8.76739887,22.3641147 7,21 L7,31.4 L10,34 L13,31.38 L11,30 L13,28 L11,26 L13,24 L13,21 Z" id="Stroke-797" stroke="#572072" stroke-width="2" fill-opacity="0.2" fill="#572072" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M20.0000026,13 C20.0025816,10.4312345 18.0582577,8.2784468 15.5024961,8.02028906 C12.9467344,7.76213132 10.6111718,9.48260723 10.1,12" id="Stroke-798" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M11,16 C12.6568542,18.209139 15.790861,18.6568542 18,17" id="Stroke-799" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M38,15 L54,15" id="Stroke-800" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M46,21 L54,21" id="Stroke-801" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M38,21 L42,21" id="Stroke-802" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M49,27 L54,27" id="Stroke-803" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M38,27 L45,27" id="Stroke-804" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M23,20 L25,18" id="Stroke-805" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M26,23 L28,21" id="Stroke-806" stroke="#572072" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

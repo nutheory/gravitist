@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode'
 import UserTokenQuery from '../../../queries/check_refresh'
 import UpdateUserMutation from '../../../mutations/update_user'
 
-const agentLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-rocket', '/new-order', 'New Order']]
+const agentLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-rocket', '/re-order/standard', 'New Order']]
 const pilotLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fas fa-history', '/history', 'History']]
 const adminLinks = [['fas fa-tachometer-alt', '/dashboard', 'Dashboard'], ['fa fa-plane', '/admin/pilots', 'Pilots'],
   ['far fa-id-card', '/admin/agents', 'Agents'],['fa fa-hashtag', '/admin/orders', 'Orders'],
@@ -94,9 +94,9 @@ class PrivateHeader extends Component<Props, State> {
     return (
       <div className="auth-header-bg">
         <header className="container h-full flex mx-auto">
-          <div className="flex-1 flex items-center">
-            <Link className="w-48 h-6 block" to="/dashboard">
-              <img src={`/${require('../../../assets/images/hf_logo_dark@2x.png')}`} />
+          <div className="flex-1 flex">
+            <Link className="w-32 h-4 block mt-4" to="/dashboard">
+              <img src={`/${require('../../../assets/svg/dark_gravitist_logo.svg')}`} />
             </Link>
           </div>
           <nav className="flex flex-col">

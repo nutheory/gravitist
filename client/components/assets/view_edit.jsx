@@ -47,7 +47,7 @@ class AssetViewEdit extends Component<Props, State> {
         { this.props.order.plan === 'standard' || this.props.order.plan === 'premium' ?
         <div>
           <div className="my-8">
-            <div className="font-bold text-xl my-2">Video</div>
+            <div className="font-bold text-xl my-2">Your Completed Order</div>
             <div className="md:-mx-4">
               <div className="">
                 <AssetWrapper

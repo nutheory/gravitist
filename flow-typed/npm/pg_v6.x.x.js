@@ -1,5 +1,5 @@
-// flow-typed signature: 4cf09d33f318aa55cf1289df648ddbc6
-// flow-typed version: b79d1841db/pg_v6.x.x/flow_>=v0.28.x
+// flow-typed signature: 054aac13189fe3a826a6d6c3a5952f6c
+// flow-typed version: 14df781cee/pg_v6.x.x/flow_>=v0.28.x
 
 declare module pg {
   // Note: Currently There are some issues in Function overloading.
@@ -212,12 +212,15 @@ declare module pg {
    * ToDo: should find a better way.
   */
   declare class Query extends Promise<ResultSet> {
-    then<U>( onFulfill?: (value: ResultSet) => Promise<U> | U,
-      onReject?: (error: PG_ERROR) => Promise<U> | U
+    then<U>(
+      onFulfill?: ?((value: ResultSet) => Promise<U> | U),
+      onReject?: ?((error: PG_ERROR) => Promise<U> | U)
     ): Promise<U>;
     // Because then and catch return a Promise,
     // .then.catch will lose catch's type information PG_ERROR.
-    catch<U>( onReject?: (error: PG_ERROR) => ?Promise<U> | U ): Promise<U>;
+    catch<U>(
+      onReject?: ?((error: PG_ERROR) => Promise<U> | U)
+    ): Promise<U>;
 
     on :
     ((event: 'row', listener: (row: Row, result: ResultBuilder) => void) => events$EventEmitter )&

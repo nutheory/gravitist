@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ScrollDown from '../scroll_down'
 
 
-const Hero = () => {
+const Hero = (props: Object) => {
   return(
     <div className="hero">
       <div className="bg" style={{backgroundImage: `url(${require('../../../assets/images/pilotHero.jpg')})`}}>
@@ -23,7 +23,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <ScrollDown to="/" />
+        <ScrollDown to="/" jumpStart={props.jumpStart} />
       </div>
     </div>
   )

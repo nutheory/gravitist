@@ -10,7 +10,7 @@ import IndexPage from '../public/index/index'
 import Login from '../users/login'
 import ResetPassword from '../users/reset_password'
 import PilotPage from '../public/pilots/index'
-import WorkPage from '../public/works/index'
+import Demo from '../public/demo/index'
 import FaqPage from '../public/faq_index'
 import Pricing from '../public/agent/pricing'
 import SampleVideo from '../public/sample_video'
@@ -48,8 +48,8 @@ const Routes = () => {
         <SimpleLayout path='/pilots/register' component={ PilotRegistrationPage } />
         <DefaultLayout path='/pilots' component={PilotPage} />
         <DefaultLayout path='/pricing' component={Pricing} />
-        <DefaultLayout path='/how-it-works' component={WorkPage} />
-        <DefaultLayout path='/faq' component={FaqPage} />
+        <DefaultLayout path='/demo' component={Demo} />
+        {/* <DefaultLayout path='/faq' component={FaqPage} /> */}
         { user ? <AuthLayout path='/' component={ UserDashboard } /> :
         <DefaultLayout path='/' component={IndexPage} /> }
 
