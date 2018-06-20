@@ -19,7 +19,6 @@ const galleryRouter = require('./routes/gallery')
 const authRouter = require('./routes/auth')
 const app = express()
 
-
 function serverStart(done){
   // app.use(opbeat.middleware.express())
   // process.env.NODE_ENV === 'production' ? app.use(enforce.HTTPS({ trustProtoHeader: true })) : null
