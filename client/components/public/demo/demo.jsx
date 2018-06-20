@@ -24,7 +24,7 @@ class Demo extends Component<Props, State> {
     console.log(this.obj)
     setTimeout(() => {
       this.obj.style.height = this.obj.contentWindow.document.body.scrollHeight + 'px'
-    }, 300)
+    }, 500)
   }
 
   render(){
