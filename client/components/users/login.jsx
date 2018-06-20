@@ -88,11 +88,11 @@ class Login extends Component<Props, State> {
         <div className="login-wrapper">
           <div className="flex">
             <div className="flex-1"></div>
-            <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../assets/images/hf_logo_dark@2x.png')}`} /></Link>
+            <Link className="w-32 h-8 block" to="/"><img src={`/${require('../../assets/svg/dark_gravitist_logo.svg')}`} /></Link>
           </div>
           <div className="text-right text-sm font-bold pb-1">Login</div>
           <div className="w-full bg-white rounded shadow p-6 border border-grey-dark">
-            <div className="py-1 font-bold text-sm">Log in to Homefilming</div>
+            <div className="py-1 font-bold text-sm">Log in to Gravit.ist</div>
             { this.state.errors.length > 0 ?
               <div className="text-red-dark">
                 <ul>

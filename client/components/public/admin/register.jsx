@@ -9,7 +9,7 @@ import User from '../../users/signup'
 import DragDropUploader from '../../assets/drag_drop_uploader'
 import { isValidEmail, isValidName, isValidPassword } from '../../../utils/validators'
 import CreateUserMigration from '../../../mutations/create_user'
-const env = window.location.host.includes("homefilming.com") ? "production" : "development"
+const env = window.location.host.includes("gravit.ist") ? "production" : "development"
 
 type Props = {
   submitUser: Function,
@@ -213,7 +213,7 @@ class CreateUser extends Component<Props, State> {
                 <div className="">
                   <div className="flex">
                     <div className="flex-1"></div>
-                    <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../../assets/images/hf_logo_dark@2x.png')}`} /></Link>
+                    <Link className="w-32 h-8 block" to="/"><img src={`/${require('../../../assets/svg/dark_gravitist_logo.svg')}`} /></Link>
                   </div>
                   <div className="text-right text-sm font-bold">Create Admin</div>
                 </div>

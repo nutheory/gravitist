@@ -10,7 +10,7 @@ const Footer = (props: Object) => {
           <div className="w-full md:w-1/3 p-6">
             <h2 className="text-base font-bold">Contact us</h2>
             <p className="text-lg">
-              <a href="mailto:info@homefilming.com" className="" target="_blank">info@homefilming.com</a>
+              <a href="mailto:contact@gravit.ist" className="" target="_blank">contact@gravit.ist</a>
             </p>
             <div className="py-2">
               <a href="" className="inline-block pr-4">
@@ -23,7 +23,7 @@ const Footer = (props: Object) => {
               </a>
             </div>
             <Link className="w-32 block" to="/"><img src={`/${require('../../../assets/svg/light_gravitist_logo.svg')}`} /></Link>
-            <p className="copyright">Copyright © 2018 Homefilming. All rights reserved.</p>
+            <p className="copyright">Copyright © 2018 Gravit.ist. All rights reserved.</p>
             <div className="">
               <a href="" target="_target" className="inline-block pr-4">Terms of Use</a>
               <a href="" target="_target" className="inline-block">Privacy Policy</a>

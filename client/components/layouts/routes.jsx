@@ -55,7 +55,7 @@ const Routes = () => {
 
         {/* <AuthLayout path='/' component={Dashboard} /> */}
       </Switch>
-      <Route path='/sample-video' component={SampleVideo} />
+      {/* <Route path='/sample-video' component={SampleVideo} /> */}
     </div>
   )
 }
