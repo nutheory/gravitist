@@ -35,7 +35,7 @@ class OrderCard extends Component<Props, State>{
                 <i className="fas fa-home fa-3x"></i>
               </div>
               <div className="">
-                <div className="font-bold text-2xl">Coming Soon</div>
+                <div className="font-bold text-2xl">{ order.status == "approved_completed" ? "Delivered" : "Coming Soon" }</div>
                 <p className="">{ humanize(order.status) }</p>
               </div>
             </div>
