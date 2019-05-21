@@ -1,3 +1,4 @@
+// show tory
 const { createResolver } = require('apollo-resolvers')
 const { baseResolver, isAuthenticated, isAuthorized, isAgent, isAdmin } = require('./auth')
 const { Validate } = require('../../utils/validation')
@@ -64,8 +65,8 @@ const createOrder = isAgent.createResolver(
       }
     }
     const order = await create({ ordr: input.order, usr: user, addr: input.order.address })
-    if( !newUser ){ confirmationMailer({ order, user }) }
-    notifyLocalPilots({ ordr: order })
+    // if( !newUser ){ confirmationMailer({ order, user }) }
+    // notifyLocalPilots({ ordr: order })
     order.agent = user
     return { order }
   }

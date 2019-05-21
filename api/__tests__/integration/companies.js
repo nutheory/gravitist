@@ -24,12 +24,12 @@ describe('company mutations', async () => {
   test(chalk.green.bold('it should create a new company'), async () => {
     const styleObj = { color: "#000", fontFamily: "times new roman", background: "blue" }
     const styles = JSON.stringify(styleObj)
-    const newCompany = await Companies.create({ input: { name: 'REmax', styles, visible: "true",
-      styles, logo: { url: "test.com", awsId: "this-is-a-id", name: "create" } } })
+    const newCompany = await Companies.create({ input: { name: 'REmax', visible: "true",
+      styles, logo: { asset: { url: "test.com", awsId: "this-is-a-id", name: "create" } } } })
     const company = newCompany['createCompany'].company
     expect(newCompany.status).toEqual(200)
     expect(company.name).toEqual('REmax')
-    expect(company.logo.url).toEqual('test.com')
+    expect(company.logo.asset.url).toEqual('test.com')
     // clean up
     await Companies.destroy({ input: { id: company.id, authorizedId: company.ownerId }})
   })
@@ -37,12 +37,10 @@ describe('company mutations', async () => {
   test(chalk.green.bold('it should update a company'), async () => {
     const company = await createCompany("update")
     const updateCompany = await Companies.update({ input: { id: company.id, authorizedId: company.ownerId,
-      subtitle: 'this is a subtitle', logo: { id: company.logo.id, url: 'test2.com', awsId: "this-is-a-id",
-      uploaderId: company.ownerId, name: "update" }}})
+      subtitle: 'this is a subtitle', name: "update" } })
     const updated = updateCompany['updateCompany'].company
     expect(updated.name).toEqual('update')
     expect(updated.subtitle).toEqual('this is a subtitle')
-    expect(updated.logo.url).toEqual('test2.com')
     // clean up
     await Companies.destroy({ input: { id: updated.id, authorizedId: updated.ownerId }})
   })
@@ -90,22 +88,25 @@ describe('join and leave a company mutations', async () => {
     const joiningAgent = await secondAgent()
     expect(joiningAgent.companyId).toEqual(null)
     const joinCompany = await Companies.join({ input: { id: company.id, key: `${company.key}89` } })
-    expect(joinCompany.data.errors[0]).toHaveProperty("name", "CompanyAccessError")
+    expect(joinCompany.data.errors[0]).toHaveProperty("name", "CompanyAccess")
   })
 
 })
 
 async function secondAgent(){
   gQL.defaults.headers.common.authorization = ''
-  const getAgent = await db.User.findOne({ where: { type: "agent", email: { [Op.ne]: "drush81+agent@gmail.com" } } })
-  const newAgent = await LogIn.user({ email: getAgent.email, password: "Letmein@1" })
+  const getAgent = await db.User.findOne({ 
+    where: { 
+      type: "agent", email: { [Op.ne]: "drush81+agent@gmail.com" } } 
+  }).then(res => res.dataValues.email)
+  const newAgent = await LogIn.user({ email: getAgent, password: "Letmein@1" })
   gQL.defaults.headers.common.authorization = newAgent.loginUser.auth.token
   return newAgent.loginUser.user
 }
 
 async function createCompany(name){
   const newCompany = await Companies.create({ input: { name, visible: "true",
-    logo: { url: "test.com", awsId: "this-is-a-id", name: "func" } } })
+    logo: { asset: { url: "test.com", awsId: "this-is-a-id", name: "func" } } } })
   return newCompany['createCompany'].company
 }
 

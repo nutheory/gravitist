@@ -1,3 +1,4 @@
+// show tory
 const { task, waitAll } = require('folktale/concurrency/task')
 const R = require('ramda')
 const db = require('../models')
@@ -14,7 +15,7 @@ const chalk = require('chalk')
 const log = data =>
   R.tap(console.log(chalk.blue.bold('DATA'), data))
 
-const orderIncludes = queryString => {
+const orderIncludes = () => {
   return { include: [ { model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' },
   { model: db.User, as: 'agent', include: [{ model: db.Asset, as: 'avatar' }] },
   { model: db.User, as: 'pilot', include: [{ model: db.Asset, as: 'avatar' }] },
@@ -84,11 +85,7 @@ const createOrderWithAssociations = ({ ordr, usr, addr }) =>
         { agentId: usr.id, plan: ordr.plan.name, amountPaid: ordr.amountPaid, discountId: ordr.discountId },
         { customer: usr.customerId, pln: ordr.plan, amountPaid: ordr.amountPaid, transaction: tx })
       .then(ordr => ordr.createAddress(addr, { transaction: tx })
-        .then(addr => {
-          console.log(chalk.blue.bold('ORDR'), ordr)
-          console.log(chalk.blue.bold('ADDR'), addr)
-          const createdOrder = R.merge(ordr.dataValues, {address: addr.dataValues})
-          return resolver.resolve(createdOrder) } )) )
+        .then(addr => resolver.resolve(R.merge(ordr.dataValues, {address: addr.dataValues})))) )
     .orElse(reason => reason ).run().promise() )
   .catch(err => { throw err })
 
@@ -151,7 +148,7 @@ const destroyOrderWithAssociated = (id) =>
   .run().promise()
 
 const splitDbColumnOnDot = key => key[0].split('.').concat(key[1])
-const createObjFromArrayUsingPath = (arr) => R.assocPath(R.init(arr), R.last(arr), {})
+const createObjFromArrayUsingPath = arr => R.assocPath(R.init(arr), R.last(arr), {})
 const mapOverPairsOfObj = pairs => R.map(buildProperJSONFromRawSqlQuery, pairs)
 const recursivelyMergeAllCols = col => R.reduce(R.mergeWith(R.merge), {}, col)
 const buildProperJSONFromRawSqlQuery = R.pipe( splitDbColumnOnDot, createObjFromArrayUsingPath )

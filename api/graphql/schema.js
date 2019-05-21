@@ -1,3 +1,4 @@
+//show tory
 const { makeExecutableSchema, addMockFunctionsToSchema } = require('graphql-tools')
 const GraphQLJSON = require('graphql-type-json')
 const { companyResolvers } = require('./resolvers/companies')

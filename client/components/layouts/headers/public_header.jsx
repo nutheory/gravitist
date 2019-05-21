@@ -64,9 +64,9 @@ class PublicHeader extends Component<Props, State> {
         <header id="AppHeader" className={`flex ${ this.state.bgPinned ? 'header-fg-pin' : '' }`}>
           <div className="flex-1 flex">
             <div className="pr-4 py-1 inline-block">
-              <NavLink className="w-32 h-4 block mt-1" to="/">
-                { this.state.bgPinned ? <img src={`/${require('../../../assets/svg/dark_gravitist_logo.svg')}`} />
-                : <img src={`/${require('../../../assets/svg/light_gravitist_logo.svg')}`} /> }
+              <NavLink className="w-48 h-10 block mt-2" to="/">
+                { this.state.bgPinned ? <img src={`/${require('../../../assets/svg/hf_logo_dark.svg')}`} />
+                : <img src={`/${require('../../../assets/svg/hf_logo_white.svg')}`} /> }
               </NavLink>
             </div>
             { window.location.pathname === '/pilots' ? null :

@@ -12,13 +12,12 @@ const chalk = require('chalk')
 const _ = require('lodash')
 
 describe('order mutations', () => {
-
   test(chalk.green.bold('it should create a new order and user at the same time'), async () => {
     gQL.defaults.headers.common.authorization = ''
     const generalUserData = await generateUserData()
     const user = _.merge( generalUserData, { stripeToken: "tok_visa" } )
-    const plan = { name: plans[1].name, amountPaid: plans[1].actualPrice }
-    const attrInput = { order: { plan , address: missionViejoMall }, user }
+    const plan = { name: plans[1].name, actualPrice: plans[1].actualPrice }
+    const attrInput = { order: { plan , address: missionViejoMall, amountPaid: plans[1].actualPrice }, user }
     const order = await Orders.create( 'OrderWithUser', attrInput )
     const orderResult = order.result["createOrderWithUser"]
     expect(orderResult.order.receiptId).toEqual(expect.any(String))
@@ -49,7 +48,7 @@ describe('Authenticated queries & mutations for agent orders', () => {
 
   test(chalk.green.bold('it should create a new order for existing agent'), async () => {
     const plan = { name: plans[0].name, actualPrice: plans[0].actualPrice }
-    const attr = { order: { plan, address: longBeachAirport } }
+    const attr = { order: { plan, address: longBeachAirport, amountPaid: plans[1].actualPrice } }
     const order = await Orders.create( 'Order', attr )
     const orderResult = order.result["createOrder"].order
     expect(orderResult.receiptId).toEqual(expect.any(String))
@@ -61,8 +60,9 @@ describe('Authenticated queries & mutations for agent orders', () => {
 
   test(chalk.green.bold('it should fail creation without address'), async () => {
     const plan = { name: plans[0].name, actualPrice: plans[0].actualPrice }
-    const attr = { order: { plan } }
+    const attr = { order: { plan, amountPaid: plans[1].actualPrice } }
     const order = await Orders.create( 'Order', attr )
+    console.log(chalk.blue.bold('ORDER'), order)
     expect(order.result.status).toEqual(200)
     expect(order.result.data).toHaveProperty('errors')
   })
@@ -103,7 +103,7 @@ describe('Authenticated queries & mutations for agent orders', () => {
   })
 
   test(chalk.green.bold('it should get a list of all orders by date'), async () => {
-    const orders = await Orders.getOrders({ input: { sortKey: 'createdAt', sortValue: 'DESC' } })
+    const orders = await Orders.getOrders({ input: { options: {sortKey: 'createdAt', sortValue: 'DESC' } } })
     expect(orders.status).toEqual(200)
     expect(orders.getOrders[0]).toHaveProperty('plan')
     expect(orders.getOrders[0].agent).toHaveProperty('type', 'agent')
@@ -135,14 +135,14 @@ describe('Authenticated pilot queries & mutations', () => {
   })
 
   test(chalk.green.bold('it should get all missions assigned to a pilot '), async () => {
-    const orders = await Orders.getOrders({ input: { sortKey: 'pilotAcceptedAt', sortValue: 'DESC', sizeLimit: 5 } })
+    const orders = await Orders.getOrders({ input: { options: { sortKey: 'pilotAcceptedAt', sortValue: 'DESC', sizeLimit: 5 } } })
     expect(orders.status).toEqual(200)
     expect(orders.getOrders[0]).toHaveProperty('plan')
     expect(orders.getOrders[0].pilot).toHaveProperty('type', 'pilot')
   })
 
   test(chalk.green.bold('it should join/leave mission and update order status'), async () => {
-    const missions = await Orders.getMissions({ input: { sortKey: 'distanceFromLocation', sortValue: 'ASC', sizeLimit: 5 } })
+    const missions = await Orders.getMissions({ input: { options: { sortKey: 'distanceFromLocation', sortValue: 'ASC', sizeLimit: 5 } } })
     const missionToAccept = missions.getMissions[0]
     expect(missionToAccept.pilotId).toEqual(null)
     const acceptedMission = await Orders.joinOrLeaveCollaboration({ input: { id: missionToAccept.id, status: 'filming' } })

@@ -16,7 +16,7 @@
   "test": {
     "username": "derekrush",
     "password": null,
-    "database": "homefilming_test",
+    "database": "gravitist_test",
     "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": false,

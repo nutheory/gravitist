@@ -30,7 +30,7 @@ const Orders = (() => {
 
   const getFlights = async ( variables ) => {
     const query = `
-      query($input: GetListInput){
+      query($input: OrderCollectionInput){
         getFlights(input: $input){
           distanceFromLocation
           plan
@@ -74,24 +74,22 @@ const Orders = (() => {
 
   const getOrders = async ( variables ) => {
     const query = `
-      query($input: GetListInput){
+      query($input: OrderCollectionInput){
         getOrders(input: $input){
-          id
-          plan
-          address {
-            zipCode
-          }
-          agent {
+          orders{
             id
-            type
-          }
-          pilot {
-            id
-            type
-          }
-          editor {
-            id
-            type
+            plan
+            address {
+              zipCode
+            }
+            agent {
+              id
+              type
+            }
+            pilot {
+              id
+              type
+            }
           }
         }
       }
@@ -120,9 +118,6 @@ const Orders = (() => {
               type
             }
             pilot {
-              id
-            }
-            editor {
               id
             }
           }

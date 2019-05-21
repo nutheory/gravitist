@@ -92,7 +92,7 @@ class Login extends Component<Props, State> {
           </div>
           <div className="text-right text-sm font-bold pb-1">Login</div>
           <div className="w-full bg-white rounded shadow p-6 border border-grey-dark">
-            <div className="py-1 font-bold text-sm">Log in to Gravit.ist</div>
+            <div className="py-1 font-bold text-sm">Log in to Homefilming</div>
             { this.state.errors.length > 0 ?
               <div className="text-red-dark">
                 <ul>

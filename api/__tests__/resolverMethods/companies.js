@@ -16,10 +16,12 @@ const Companies = (() => {
             styles
             subtitle
             logo {
-              id
-              url
-              awsId
-              uploaderId
+              asset {
+                id
+                url
+                awsId
+                uploaderId
+              }
             }
           }
         }
@@ -88,10 +90,12 @@ const Companies = (() => {
             styles
             subtitle
             logo {
-              id
-              url
-              awsId
-              uploaderId
+              asset {
+                id
+                url
+                awsId
+                uploaderId
+              }
             }
           }
         }

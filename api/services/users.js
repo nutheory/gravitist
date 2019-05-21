@@ -49,15 +49,19 @@ const getFullUser = ({ attrs }) =>
       .catch(err => resolver.reject(FailFastError(err.name, { args: attrs, loc: 'Service: User.getFullUser' }))) )
   .run().promise()
 
-const getCoreUser = ({ attrs }) =>
-  task(resolver =>
+const getCoreUser = ({ attrs }) => {
+  return task(resolver =>
     db.User.find({ where: attrs.email ? { email: attrs.email.toLowerCase() } :
       (attrs.id ? { id: attrs.id  } : { id: attrs.usr.id } ),
       include: [{ model: db.Address, as: 'address' }, { model: db.Contact, as: 'contacts' },
       { model: db.Asset, as: 'avatar' }] })
-      .then(usr => resolver.resolve({ usr, attrs }) )
+      .then(usr => {
+        console.log( chalk.blue.bold("ATTRS"), usr )
+        return resolver.resolve({ usr, attrs }) 
+      })
       .catch(err => console.log( chalk.blue.bold("BIG-ERR"), err ) ))
   .run().promise()
+}
 
 const getUser = ({ attrs }) =>
   task(resolver =>
@@ -148,6 +152,7 @@ const updateUser = ({ usr, attrs }) =>
     .orElse( reason => reason ).run().promise() ).catch(err => { console.log(chalk.blue.bold("err "),err) })
 
 const validateIncomingPassword = async ({ usr, attrs }) => {
+  console.log("USSR", usr)
   if(!usr){ throw new Error(NotFoundError({ args: attrs, loc: 'Service: User.validateIncomingPassword'})) }
   return usr.comparePassword(attrs.password).then(res => {
     console.log(chalk.blue.bold("still OK"),res)

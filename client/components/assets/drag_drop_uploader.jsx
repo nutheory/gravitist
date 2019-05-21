@@ -9,8 +9,7 @@ import Axios from 'axios'
 import Crypto from 'crypto'
 import jwtDecode from 'jwt-decode'
 import ProgressBar from './progress_bar'
-import Uppy from 'uppy/lib/core'
-import XHRUpload from 'uppy/lib/plugins/XHRUpload'
+import Uppy from 'uppy'
 import DragDrop from 'drag-drop'
 import mimeTypes from '../../utils/mime_types.js'
 import styles from './styles/drag_drop_uploader'
@@ -100,7 +99,7 @@ class DragDropUploader extends Component<Props, State> {
       }
     })
 
-    this.uppy.use(XHRUpload, {
+    this.uppy.use(Uppy.plugins.XHRUpload, {
       endpoint: this.props.endpoint,
       fieldName: this.props.fieldname,
       headers: {

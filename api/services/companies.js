@@ -7,11 +7,11 @@ async function create(company){
   const newCompany = await db.sequelize.transaction(t => {
     return db.Company.create(company, { transaction: t }).then( async (comp) => {
       const user = await db.User.find({ where: { id: company.ownerId }}, { transaction: t })
-      const logoPromise = db.Asset.create(_.merge(company.logo,
+      const logoPromise = db.Asset.create(_.merge(company.logo.asset,
         { assetableId: comp.id, assetable: 'logo', verified: true, active: true }), { transaction: t })
       const userPromise = user.update({ companyId: comp.id, companyOwner: true }, { transaction: t })
       const [ logo, usr ] = await Promise.all([ logoPromise, userPromise ])
-      const result = _.merge(comp.dataValues, { logo: logo.dataValues })
+      const result = _.merge(comp.dataValues, { logo: { asset: logo.dataValues } })
       return { company: result }
     }).catch(err => { throw err })
   }).catch(err => { throw err })
@@ -38,7 +38,7 @@ async function update({ companyId, details }){
   const company = await db.Company.find({ where: { id: companyId },
     include: [ { model: db.Asset, as: 'logo', fields: db.Asset.updateFields } ] })
   const companyUpdate = await company.update(details).catch(err => { throw err })
-  return { company: _.merge( companyUpdate.dataValues, { logo: companyUpdate.logo.dataValues }) }
+  return { company: companyUpdate.dataValues }
 }
 
 async function destroy(companyId, userId){

@@ -1,3 +1,4 @@
+//show tory
 const Common = `
   input GetProtectedInput {
     id: ID

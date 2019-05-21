@@ -29,7 +29,6 @@ class GalleryView extends Component<Props, State> {
   }
 
   render(){
-    console.log(this.props.uuid)
     return (
       <Query query={GalleryQuery} variables={{ input: { uuid: this.props.uuid } }}>
         {({ loading, error, data: { getGallery } }) => {

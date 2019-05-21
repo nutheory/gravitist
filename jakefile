@@ -70,7 +70,7 @@ namespace('db', function() {
     var pg         = require('pg');
     var pool       = new pg.Pool(config);
     var connection = pool.connect( function (err, client, done){
-      client.query('DROP DATABASE homefilming_test', (err, result) => {
+      client.query('DROP DATABASE gravitist_test', (err, result) => {
         done(err);
 
         if(err) {
@@ -97,7 +97,7 @@ namespace('db', function() {
 		var pg         = require('pg');
     var pool       = new pg.Pool(config);
 		var connection = pool.connect( function (err, client, done){
-      client.query('CREATE DATABASE homefilming_test;', (err, result) => {
+      client.query('CREATE DATABASE gravitist_test;', (err, result) => {
         done(err);
         if(err) {
           return console.error('error running query', err);
