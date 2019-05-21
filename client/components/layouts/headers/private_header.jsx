@@ -95,7 +95,7 @@ class PrivateHeader extends Component<Props, State> {
       <div className="auth-header-bg">
         <header className="container h-full flex mx-auto">
           <div className="flex-1 flex">
-            <Link className="w-48 h-10 block mt-4" to="/dashboard">
+            <Link className="w-48 h-10 block mt-6" to="/dashboard">
               <img src={`/${require('../../../assets/svg/hf_logo_dark.svg')}`} />
             </Link>
           </div>

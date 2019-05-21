@@ -35,7 +35,7 @@ const calcNumberDiscount = ({ base, number }) => {
 const getEnv = (location) => {
   if(location.includes("homefilming.cffd")){
     return "staging"
-  } else if(location.includes("ngrok")){
+  } else if(location.includes("ngrok") || location.includes("localhost")){
     return "development"
   } else {
     return "production"

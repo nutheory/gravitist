@@ -88,7 +88,7 @@ class Login extends Component<Props, State> {
         <div className="login-wrapper">
           <div className="flex">
             <div className="flex-1"></div>
-            <Link className="w-48 h-10 block" to="/"><img src={`/${require('../../assets/svg/hf_logo_dark.svg')}`} /></Link>
+            <Link className="w-48 h-6 block" to="/"><img src={`/${require('../../assets/svg/hf_logo_dark.svg')}`} /></Link>
           </div>
           <div className="text-right text-sm font-bold pb-1">Login</div>
           <div className="w-full bg-white rounded shadow p-6 border border-grey-dark">
