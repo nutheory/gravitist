@@ -213,7 +213,7 @@ class CreateUser extends Component<Props, State> {
                 <div className="">
                   <div className="flex">
                     <div className="flex-1"></div>
-                    <Link className="w-32 h-8 block" to="/"><img src={`/${require('../../../assets/svg/dark_gravitist_logo.svg')}`} /></Link>
+                    <Link className="w-32 h-8 block" to="/"><img src={`/${require('../../../assets/svg/hf_logo_dark.svg')}`} /></Link>
                   </div>
                   <div className="text-right text-sm font-bold">Create Admin</div>
                 </div>

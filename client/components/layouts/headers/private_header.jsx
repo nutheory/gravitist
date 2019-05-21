@@ -96,7 +96,7 @@ class PrivateHeader extends Component<Props, State> {
         <header className="container h-full flex mx-auto">
           <div className="flex-1 flex">
             <Link className="w-32 h-4 block mt-4" to="/dashboard">
-              <img src={`/${require('../../../assets/svg/dark_gravitist_logo.svg')}`} />
+              <img src={`/${require('../../../assets/svg/hf_logo_dark.svg')}`} />
             </Link>
           </div>
           <nav className="flex flex-col">
