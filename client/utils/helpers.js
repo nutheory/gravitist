@@ -33,7 +33,7 @@ const calcNumberDiscount = ({ base, number }) => {
 }
 
 const getEnv = (location) => {
-  if(location.includes("staging")){
+  if(location.includes("homefilming.cffd")){
     return "staging"
   } else if(location.includes("ngrok")){
     return "development"
