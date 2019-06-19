@@ -19,27 +19,20 @@ type State = {}
 
 class Demo extends Component<Props, State> {
 
-  resizeIframe: Function
+  // resizeIframe: Function
   obj: Object
 
   constructor(props: Object) {
    super(props)
 
    this.obj = React.createRef()
-   this.resizeIframe = this.resizeIframe.bind(this)
-  }
-
-  resizeIframe(obj: Object){
-    setTimeout(() => {
-      this.obj.style.height = this.obj.contentWindow.document.body.scrollHeight + 'px'
-    }, 500)
   }
 
   render(){
     const uuid = galleryUuid()
     return (
-      <div className="w-full h-full" ref={this.props.demoRef}>
-        <iframe className="w-full h-full" scrolling="no" src={`${baseUri}/gallery/${ uuid ? uuid : '' }`} ref={node => this.obj = node} onLoad={this.resizeIframe}></iframe>
+      <div className="w-full h-full" style={{height: `${window.innerWidth < 760 ? 110 : 78}rem`}} ref={this.props.demoRef}>
+        <iframe className="w-full h-full" scrolling="no" src={`${baseUri}/gallery/${ uuid ? uuid : '' }`} ref={node => this.obj = node}></iframe>
       </div>
     )
   }

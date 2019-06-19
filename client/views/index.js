@@ -1,4 +1,3 @@
-// show tory
 //@flow
 import React from 'react'
 import { ApolloClient } from 'apollo-client'

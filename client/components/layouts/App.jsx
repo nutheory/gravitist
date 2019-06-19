@@ -33,7 +33,6 @@ class App extends Component {
     let height = window.innerHeight
     if(width > this.state.windowWidth+40 || width < this.state.windowWidth-40){
       this.setState({ windowWidth: width, windowHeight: height }, (res) => {
-        console.log('window resized!')
       })
     }
   }

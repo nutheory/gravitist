@@ -25,7 +25,7 @@ module.exports = {
   },
   base_url: {
     test: 'https://gravitist.ngrok.io',
-    development: 'https://gravitist.ngrok.io',
+    development: 'http://localhost:5000',
     staging: 'https://homefilming.cffd.ink',
     production: 'https://homefilming.cffd.ink'
   },
