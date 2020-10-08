@@ -38,7 +38,7 @@ const getEnv = (location) => {
   } else if(location.includes("ngrok") || location.includes("localhost")){
     return "development"
   } else {
-    return "production"
+    return "staging"
   }
 }
 
