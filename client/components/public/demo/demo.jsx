@@ -30,6 +30,7 @@ class Demo extends Component<Props, State> {
 
   render(){
     const uuid = galleryUuid()
+    console.log("TEST", `${baseUri}/gallery/${ uuid ? uuid : '' }`)
     return (
       <div className="w-full h-full" style={{height: `${window.innerWidth < 760 ? 110 : 78}rem`}} ref={this.props.demoRef}>
         <iframe className="w-full h-full" scrolling="no" src={`${baseUri}/gallery/${ uuid ? uuid : '' }`} ref={node => this.obj = node}></iframe>
