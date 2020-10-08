@@ -27,7 +27,7 @@ module.exports = {
     test: 'https://gravitist.ngrok.io',
     development: 'http://localhost:5000',
     staging: 'https://homefilming.cffd.ink',
-    production: 'https://homefilming.cffd.ink'
+    production: 'https://homefilming.herokuapp.com'
   },
   assemblies: {
     test: {
